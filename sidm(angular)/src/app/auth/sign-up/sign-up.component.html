@@ -1,0 +1,400 @@
+
+<app-login-header></app-login-header>
+
+<section class="registrationForm">
+    <div class="maintitle">
+        <div class="container">
+            <p class="font-weight-bold">Please read the brochure carefully before applying.</p>
+            <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p>
+            <div class="bb mt-4 mb-4"></div>
+        </div>
+    </div>
+
+    <div class="formBody">
+        <div class="container">
+            <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-Online-tab" data-toggle="pill" href="#pills-Online"
+                        role="tab" aria-controls="pills-Online" aria-selected="true">Apply Online</a>
+                </li>
+                <li class="nav-item ml-2">
+                    <a class="nav-link" id="pills-User-tab" data-toggle="pill" href="#pills-User" role="tab"
+                        aria-controls="pills-User" aria-selected="false">Registered User</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-Online" role="tabpanel"
+                    aria-labelledby="pills-Online-tab">
+                    <form [formGroup]="registrationForm">
+                        <div class="formPart_1">
+                            <h5 class="mb-3">Please choose the Category that you wish to Apply for</h5>
+                            <div class="">
+                                <div class="checkgroup">
+                                    <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
+                                        <input formControlName="category"  value="technologu-productInnovation" type="radio" id="ApplyRadio1" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio1">Technology / Product Innovation to address defence capability gaps</label>
+                                    </div>
+                                    <div class="mr-0 radioBox Apply-control Apply-radio d-flex align-item-center">
+                                        <input formControlName="category" value="ImportSubstitutionForMission" type="radio" id="ApplyRadio2" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio2">Import Substitution for mission critical parts / sub-systems / systems</label>
+                                    </div>
+                                    <div class="radioBox Apply-control Apply-radio d-flex align-item-center ml-3">
+                                        <input formControlName="category" value="creationOfNiche" type="radio" id="ApplyRadio3" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio3">Creation of Niche, Technological Capability for Design, Manufacturing or Testing</label>
+                                    </div>
+                                    <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
+                                        <input formControlName="category" value="cat4" type="radio" id="ApplyRadio4" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio4">Export Performance of Defence and Aerospace Products</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5 mb-3">Type of Applicant company</h5>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="radioBox company-control company-radio">
+                                        <input formControlName="typeOfApplicant" value="large"  type="radio" id="companyRadio5" name="companyRadio"
+                                            class="company-control-input">
+                                        <label class="company-control-label font" for="companyRadio5">Large</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radioBox company-control company-radio">
+                                        <input formControlName="typeOfApplicant" value="msme"  type="radio" id="companyRadio6" name="companyRadio"
+                                            class="company-control-input">
+                                        <label class="company-control-label font" for="companyRadio6">MSME</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radioBox company-control company-radio">
+                                        <input formControlName="typeOfApplicant" value="start-up"  type="radio" id="companyRadio7" name="companyRadio"
+                                            class="company-control-input">
+                                        <label class="company-control-label font" for="companyRadio7">Start-Up</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="mt-5 mb-3">Name of the Organisation</h5>
+                                    <input formControlName="nameOfOrganisation" type="text">
+                                </div>
+                            </div>
+                            <h3 class="mt-5 mb-3 text-left">Please furnish the applicable information </h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Company Identification Number (CIN)</h5>
+                                    <input formControlName="cin" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Udhyog Aadhaar Number</h5>
+                                    <input formControlName="udhyogAadharNumber" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">DIPP Number</h5>
+                                    <input formControlName="dippNumber" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Adhar Number</h5>
+                                    <input formControlName="adhaarNumber" type="text">
+                                </div>
+                            </div>
+                            <h5 class="mt-5 mb-3">Are you member of SIDM</h5>
+                            <div class="container">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link " id="pills-YES-tab" data-toggle="pill" href="#pills-YES"
+                                            role="tab" aria-controls="pills-YES" aria-selected="true">YES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-NO-tab" data-toggle="pill" href="#pills-NO"
+                                            role="tab" aria-controls="pills-NO" aria-selected="false">NO</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade" id="pills-YES" role="tabpanel"
+                                        aria-labelledby="pills-YES-tab">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p class="mt-2 mb-3">Provide the membership number</p>
+                                                <input formControlName="sidmMemberShipNumber" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-NO" role="tabpanel"
+                                        aria-labelledby="pills-NO-tab"></div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5 mb-3">Are you member of any other association</h5>
+                            <div class="container">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link " id="pills-true-tab" data-toggle="pill"
+                                            href="#pills-true" role="tab" aria-controls="pills-true"
+                                            aria-selected="true">YES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-false-tab" data-toggle="pill"
+                                            href="#pills-false" role="tab" aria-controls="pills-false"
+                                            aria-selected="false">NO</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade" id="pills-true" role="tabpanel"
+                                        aria-labelledby="pills-true-tab">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p class="mt-2 mb-3">Provide the membership number</p>
+                                                <input formControlName="otherAssociationMemberShipNumber" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-false" role="tabpanel"
+                                        aria-labelledby="pills-false-tab"></div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5 mb-3">Are you registered vendor of defence organizations ? </h5>
+                            <div class="container">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link " id="pills-vendor-tab" data-toggle="pill"
+                                            href="#pills-vendor" role="tab" aria-controls="pills-vendor"
+                                            aria-selected="vendor">YES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-nonvendor-tab" data-toggle="pill"
+                                            href="#pills-nonvendor" role="tab" aria-controls="pills-nonvendor"
+                                            aria-selected="nonvendor">NO</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade" id="pills-vendor" role="tabpanel"
+                                        aria-labelledby="pills-vendor-tab">
+                                        <div class="form-group">
+                                            <h5>Name of entities whom registerd</h5>
+                                            <div class="row mt-3">
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <h5>Name of Product registerd</h5>
+                                            <div class="row mt-3">
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-nonvendor" role="tabpanel"
+                                        aria-labelledby="pills-nonvendor-tab"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="mt-3 mb-3">Address of your organizations</h5>
+                                    <input formControlName="organizationsAddress" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Contact name</h5>
+                                    <input formControlName="contactName" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Designation</h5>
+                                    <input formControlName="designation" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Mobile</h5>
+                                    <input (keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text">
+                                    <span style='color: red;' *ngIf="registrationForm.get('mobileNumber').invalid">
+                                        Please enter a valid number
+                                      </span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Email</h5>
+                                    <input formControlName="email" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">PAN Number</h5>
+                                    <!-- <div class="container"> -->
+                                    <input formControlName="panNumber" type="text">
+                                    <!-- </div> -->
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">GSTIN</h5>
+                                    <!-- <div class="container"> -->
+                                    <input formControlName="gstin" type="text">
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Date of incorporation of company</h5>
+                                    <!-- <div class="container"> -->
+                                    <input formControlName="dateOfCompany" type="text">
+                                    <!-- </div> -->
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <h5 for="">Upload scan of Document</h5>
+                                        <input formControlName="scanDocument" type="file" class="border-light mt-3" name="" id=""
+                                            aria-describedby="helpId" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5">Upload Photograph of building of the company showing name board</h5>
+                            <div class="mb-3 mt-3">
+                                <input formControlName="companyPhotograph" type="file" class="border-light" name="" id="" aria-describedby="helpId"
+                                    placeholder="">
+                            </div>
+                            <h5 class="mt-5 mb-3">Have you ever been awarded by any other organizations for the same
+                                achievement ?</h5>
+                            <div class="">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link " id="pills-awarded-tab" data-toggle="pill"
+                                            href="#pills-awarded" role="tab" aria-controls="pills-awarded"
+                                            aria-selected="awarded">YES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-noawarded-tab" data-toggle="pill"
+                                            href="#pills-noawarded" role="tab" aria-controls="pills-noaformControlNames"
+                                            aria-selected="noawarded">NO</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade" id="pills-awarded" role="tabpanel"
+                                        aria-labelledby="pills-awarded-tab">
+                                        <div class="form-group">
+                                            <label for="">Give Details</label>
+                                            <textarea formControlName="userAwardedByOrganization" class="form-control mb-5"
+                                                aria-label="With textarea"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-noawarded" role="tabpanel"
+                                        aria-labelledby="pills-noawarded-tab"></div>
+                                </div>
+                            </div>
+                        </div>
+            
+            
+                        <!-- **********************form part 2************************************************************************ --> 
+                      <div class="formPart_2">
+                            <div class="container">
+                                <p>Please give write up as per the format given below of not more then 3000 words
+                                    about
+                                    Company
+                                    and the details indicating achievements to justify as to why Application
+                                    deserves to
+                                    be
+                                    considered for the award apply for:</p>
+                            </div>
+                            <h5 class="mt-5 mb-4">About the company</h5>
+                            <div class="">
+                                <textarea formControlName="aboutCompany" formControlName="aboutCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
+                            </div>
+                            <h5 class="mt-5 mb-4">Achievements</h5>
+                            <div class="">
+                                <textarea formControlName="achievementsToJustifyApplication" class="form-control mb-5" aria-label="With textarea"></textarea>
+                            </div>
+                            <h5 class="mt-5">Have you received any reports of performance / letters of appreciation
+                                from
+                                customer
+                                organization?</h5>
+                            <div class=" mb-3 mt-3">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link " id="pills-reports-tab" data-toggle="pill"
+                                            href="#pills-reports" role="tab" aria-controls="pills-reports"
+                                            aria-selected="reports">YES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-noreports-tab" data-toggle="pill"
+                                            href="#pills-noreports" role="tab" aria-controls="pills-noawarded"
+                                            aria-selected="noreports">NO</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade" id="pills-reports" role="tabpanel"
+                                        aria-labelledby="pills-reports-tab">
+                                        <div class="form-group">
+                                            <h5 for="">Upload documents</h5>
+                                            <input formControlName="appreciationDocuments" type="file" class="mt-3" name="" id="" aria-describedby="helpId"
+                                                placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-noreports" role="tabpanel"
+                                        aria-labelledby="pills-noreports-tab"></div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5 mb-4">How does your achievement compare with the other competing options
+                                available to the customer?</h5>
+                            <div class="">
+                                <textarea formControlName="campareAchivement" class="form-control mb-5" aria-label="With textarea"></textarea>
+                            </div>
+                            <h5 class="mt-5 mb-4">How, in your opinion, dose this award matter to your company?</h5>
+                            <div class="">
+                                <textarea formControlName="awardMatterToCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
+                            </div>
+                            <h5 class="mt-5 mb-4">Please upload Photograph / videos of the products / innovation /
+                                facilities, fielded for the awards</h5>
+                            <div class="">
+                                <input formControlName="documentsOfProduct" type="file" class="border-light mb-4" name="" id="" aria-describedby="helpId"
+                                    placeholder="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade show active" id="pills-User" role="tabpanel"
+                    aria-labelledby="pills-Online-tab">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mt-5 mb-5 text-center">
+                <button type="submit" class="btn btn-border mx-2" [disabled]="!registrationForm.valid" (click)="onSubmit()"><span>Submit Form</span></button>
+                <button class="save-btn" target="blanck"><span>Save Draft</span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<app-login-footer></app-login-footer>
