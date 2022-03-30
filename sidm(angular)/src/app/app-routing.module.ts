@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import(`./landinig-page/landinig-page.module`).then(m => m.LandinigPageModule)
+  },
+  {
+    path: 'memberDashboard',
+    loadChildren: () => import(`./memberdashboard/memberdashboard.module`).then(m => m.MemberdashboardModule)
   }
 ];
 
