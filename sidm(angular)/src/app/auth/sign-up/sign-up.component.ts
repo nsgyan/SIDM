@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CellNumValidation } from 'src/app/shared/services/custom-validator.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,9 +8,16 @@ import { CellNumValidation } from 'src/app/shared/services/custom-validator.serv
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  appreciationDocuments: any;
+  scanDocument: any;
+  documentsOfProduct: any;
+  companyPhotograph: any;
+
 
   registrationForm: FormGroup
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder,
+    private httpService: HttpService) {
     this.registrationForm = this.formBuilder.group({
       category: [''],
       typeOfApplicant: [''],
@@ -35,12 +42,47 @@ export class SignUpComponent implements OnInit {
       achievementsToJustifyApplication: [''],
       appreciationDocuments: [''],
       campareAchivement: [''],
-      documentsOfProduct: ['']
+      documentsOfProduct: [''],
+      companyPhotograph: ['']
 
     })
   }
   ngOnInit(): void {
 
+  }
+  changeListener($event: any, form: any) {
+    console.log($event);
+
+    this.readThis($event.target, form);
+
+
+  }
+
+  readThis(inputValue: any, form: any): void {
+
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      if (form === 'companyPhotograph') {
+        this.companyPhotograph = myReader.result;
+      }
+      else if (form === 'documentsOfProduct') {
+        this.documentsOfProduct = myReader.result;
+      }
+      else if (form === 'scanDocument') {
+        this.scanDocument = myReader.result;
+      }
+      else if (form === 'appreciationDocuments') {
+        this.appreciationDocuments = myReader.result;
+
+      }
+      console.log(this.companyPhotograph);
+      console.log(this.documentsOfProduct);
+      console.log(this.scanDocument);
+      console.log(this.appreciationDocuments);
+    }
+    myReader.readAsDataURL(file);
   }
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
@@ -54,7 +96,37 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registrationForm);
+    this.httpService.postregistrationForm({
+      "category": this.registrationForm.value.category,
+      "typeOfApplicant": this.registrationForm.value.typeOfApplicant,
+      'nameOfOrganisation': this.registrationForm.value.nameOfOrganisation,
+      'cin': this.registrationForm.value.cin,
+      'udhyogAadharNumber': this.registrationForm.value.udhyogAadharNumber,
+      'dippNumber': this.registrationForm.value.dippNumber,
+      'adhaarNumber': this.registrationForm.value.adhaarNumber,
+      'sidmMemberShipNumber': this.registrationForm.value.sidmMemberShipNumber,
+      'otherAssociationMemberShipNumber': this.registrationForm.value.otherAssociationMemberShipNumber,
+      'organizationsAddress': this.registrationForm.value.organizationsAddress,
+      'contactName': this.registrationForm.value.contactName,
+      'designation': this.registrationForm.value.designation,
+      'mobileNumber': this.registrationForm.value.mobileNumber,
+      'email': this.registrationForm.value.email,
+      'panNumber': this.registrationForm.value.panNumber,
+      'gstin': this.registrationForm.value.gstin,
+      'dateOfCompany': this.registrationForm.value.dateOfCompany,
+      'scanDocumentUrl': this.scanDocument,
+      'userAwardedByOrganization': this.registrationForm.value.userAwardedByOrganization,
+      'aboutCompany': this.registrationForm.value.aboutCompany,
+      'achievementsToJustifyApplication': this.registrationForm.value.achievementsToJustifyApplication,
+      'appreciationDocumentsUrl': this.appreciationDocuments,
+      'campareAchivement': this.registrationForm.value.campareAchivement,
+      'documentsOfProductUrl': this.documentsOfProduct,
+      'companyPhotograph': this.companyPhotograph
+
+    }).subscribe(data => {
+      console.log(data);
+
+    })
 
   }
 
