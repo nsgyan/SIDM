@@ -29,6 +29,14 @@ exports.postRegistrationForm = (req, res, next) => {
     const campareAchivement = req.body.campareAchivement;
     const documentsOfProductUrl = req.body.documentsOfProductUrl
     const companyPhotographUrl = req.body.companyPhotographUrl
+    const vendorOfDefenceOrganizationEntities1 = req.body.vendorOfDefenceOrganizationEntities1
+    const vendorOfDefenceOrganizationEntities2 = req.body.vendorOfDefenceOrganizationEntities2
+    const vendorOfDefenceOrganizationEntities3 = req.body.vendorOfDefenceOrganizationEntities3
+    const vendorOfDefenceOrganizationEntities4 = req.body.vendorOfDefenceOrganizationEntities4
+    const vendorOfDefenceOrganizationProduct1 = req.body.vendorOfDefenceOrganizationProduct1
+    const vendorOfDefenceOrganizationProduct2 = req.body.vendorOfDefenceOrganizationProduct2
+    const vendorOfDefenceOrganizationProduct3 = req.body.vendorOfDefenceOrganizationProduct3
+    const vendorOfDefenceOrganizationProduct4 = req.body.vendorOfDefenceOrganizationProduct4
 
     const form = new RegistrationForm({
         category: category,
@@ -55,7 +63,15 @@ exports.postRegistrationForm = (req, res, next) => {
         appreciationDocumentsUrl: appreciationDocumentsUrl,
         campareAchivement: campareAchivement,
         documentsOfProductUrl: documentsOfProductUrl,
-        companyPhotographUrl: companyPhotographUrl
+        companyPhotographUrl: companyPhotographUrl,
+        vendorOfDefenceOrganizationEntities1: vendorOfDefenceOrganizationEntities1,
+        vendorOfDefenceOrganizationEntities2: vendorOfDefenceOrganizationEntities2,
+        vendorOfDefenceOrganizationEntities3: vendorOfDefenceOrganizationEntities3,
+        vendorOfDefenceOrganizationEntities4: vendorOfDefenceOrganizationEntities4,
+        vendorOfDefenceOrganizationProduct1: vendorOfDefenceOrganizationProduct1,
+        vendorOfDefenceOrganizationProduct2: vendorOfDefenceOrganizationProduct2,
+        vendorOfDefenceOrganizationProduct3: vendorOfDefenceOrganizationProduct3,
+        vendorOfDefenceOrganizationProduct4: vendorOfDefenceOrganizationProduct4,
 
     })
     form.save()
@@ -69,6 +85,15 @@ exports.postRegistrationForm = (req, res, next) => {
 }
 
 
+exports.getForms = (req, res, next) => {
+    RegistrationForm.find()
+        .then(data => {
+            console.log(data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
 
 
 

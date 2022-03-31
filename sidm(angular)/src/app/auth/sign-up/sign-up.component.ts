@@ -43,7 +43,15 @@ export class SignUpComponent implements OnInit {
       appreciationDocuments: [''],
       campareAchivement: [''],
       documentsOfProduct: [''],
-      companyPhotograph: ['']
+      companyPhotograph: [''],
+      vendorOfDefenceOrganizationEntities1: [''],
+      vendorOfDefenceOrganizationEntities2: [''],
+      vendorOfDefenceOrganizationEntities3: [''],
+      vendorOfDefenceOrganizationEntities4: [''],
+      vendorOfDefenceOrganizationProduct1: [''],
+      vendorOfDefenceOrganizationProduct2: [''],
+      vendorOfDefenceOrganizationProduct3: [''],
+      vendorOfDefenceOrganizationProduct4: ['']
 
     })
   }
@@ -121,7 +129,16 @@ export class SignUpComponent implements OnInit {
       'appreciationDocumentsUrl': this.appreciationDocuments,
       'campareAchivement': this.registrationForm.value.campareAchivement,
       'documentsOfProductUrl': this.documentsOfProduct,
-      'companyPhotograph': this.companyPhotograph
+      'companyPhotograph': this.companyPhotograph,
+      'vendorOfDefenceOrganizationEntities1': this.registrationForm.value.vendorOfDefenceOrganizationEntities1,
+      'vendorOfDefenceOrganizationEntities2': this.registrationForm.value.vendorOfDefenceOrganizationEntities2,
+      'vendorOfDefenceOrganizationEntities3': this.registrationForm.value.vendorOfDefenceOrganizationEntities3,
+      'vendorOfDefenceOrganizationEntities4': this.registrationForm.value.vendorOfDefenceOrganizationEntities4,
+      'vendorOfDefenceOrganizationProduct1': this.registrationForm.value.vendorOfDefenceOrganizationProduct1,
+      'vendorOfDefenceOrganizationProduct2': this.registrationForm.value.vendorOfDefenceOrganizationProduct2,
+      'vendorOfDefenceOrganizationProduct3': this.registrationForm.value.vendorOfDefenceOrganizationProduct3,
+      'vendorOfDefenceOrganizationProduct4': this.registrationForm.value.vendorOfDefenceOrganizationProduct4
+
 
     }).subscribe(data => {
       console.log(data);

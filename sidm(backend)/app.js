@@ -7,10 +7,13 @@ app.use(cors())
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 const Register = require('./routes/register')
+const User = require('./routes/user')
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
 app.use('/regester', Register)
+app.use('/user', User)
+
 
 
 mongoose

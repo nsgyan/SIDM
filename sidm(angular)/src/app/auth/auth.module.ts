@@ -5,8 +5,11 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginHeaderComponent } from './login-header/login-header.component';
 import { LoginFooterComponent } from './login-footer/login-footer.component';
-import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 
 @NgModule({
@@ -14,13 +17,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SignUpComponent,
     LoginHeaderComponent,
     LoginFooterComponent,
-    RegistrationFormComponent
+    AdminLoginComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,
+    NgxSpinnerModule
   ]
 })
 export class AuthModule { }

@@ -25,7 +25,15 @@ const RegistrationFormSchema = new Schema({
     appreciationDocumentsUrl: { type: String },
     campareAchivement: { type: String },
     documentsOfProductUrl: { type: String },
-    companyPhotographUrl: { type: String }
+    companyPhotographUrl: { type: String },
+    vendorOfDefenceOrganizationEntities1: { type: String },
+    vendorOfDefenceOrganizationEntities2: { type: String },
+    vendorOfDefenceOrganizationEntities3: { type: String },
+    vendorOfDefenceOrganizationEntities4: { type: String },
+    vendorOfDefenceOrganizationProduct1: { type: String },
+    vendorOfDefenceOrganizationProduct2: { type: String },
+    vendorOfDefenceOrganizationProduct3: { type: String },
+    vendorOfDefenceOrganizationProduct4: { type: String }
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

@@ -11,4 +11,7 @@ export class HttpService {
   postregistrationForm(formData: any) {
     return this.httpService.post('http://localhost:3000/regester', formData);
   }
+  adminlogin(adminData: any) {
+    return this.httpService.post('http://localhost:3000/user/login', adminData)
+  }
 }
