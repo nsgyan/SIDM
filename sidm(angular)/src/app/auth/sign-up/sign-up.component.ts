@@ -11,7 +11,7 @@ export class SignUpComponent implements OnInit {
   appreciationDocuments: any;
   scanDocument: any;
   documentsOfProduct: any;
-  companyPhotograph: any;
+  documentGstCertificate: any;
 
 
   registrationForm: FormGroup
@@ -22,36 +22,30 @@ export class SignUpComponent implements OnInit {
       category: [''],
       typeOfApplicant: [''],
       nameOfOrganisation: [''],
-      cin: [''],
-      udhyogAadharNumber: [''],
-      dippNumber: [''],
-      adhaarNumber: [''],
-      sidmMemberShipNumber: [''],
-      otherAssociationMemberShipNumber: [''],
-      organizationsAddress: [''],
+      addressl1: [''],
+      addressl2: [''],
+      state: [''],
+      city: [''],
+      pincode: [''],
       contactName: [''],
       designation: [''],
       mobileNumber: ['', [Validators.required]],
       email: [''],
-      panNumber: [''],
-      gstin: [''],
-      dateOfCompany: [''],
-      scanDocument: [''],
-      userAwardedByOrganization: [''],
+      sidmMemberShipNumber: [''],
+      otherAssociationMemberShipNumber: [''],
+      panNumberOfOrganization: [''],
+      gstinOfOrganization: [''],
+      dateOfOrganization: [''],
+      financialStatement1: [''],
+      financialStatement2: [''],
+      financialStatement3: [''],
       aboutCompany: [''],
       achievementsToJustifyApplication: [''],
-      appreciationDocuments: [''],
       campareAchivement: [''],
-      documentsOfProduct: [''],
-      companyPhotograph: [''],
-      vendorOfDefenceOrganizationEntities1: [''],
-      vendorOfDefenceOrganizationEntities2: [''],
-      vendorOfDefenceOrganizationEntities3: [''],
-      vendorOfDefenceOrganizationEntities4: [''],
-      vendorOfDefenceOrganizationProduct1: [''],
-      vendorOfDefenceOrganizationProduct2: [''],
-      vendorOfDefenceOrganizationProduct3: [''],
-      vendorOfDefenceOrganizationProduct4: ['']
+      documentGstCertificate: [''],
+      documentsOfProductL: [''],
+      appreciationDocuments: [''],
+      briefCompany: ['']
 
     })
   }
@@ -72,20 +66,17 @@ export class SignUpComponent implements OnInit {
     var myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
-      if (form === 'companyPhotograph') {
-        this.companyPhotograph = myReader.result;
+      if (form === 'documentGstCertificate') {
+        this.documentGstCertificate = myReader.result;
       }
       else if (form === 'documentsOfProduct') {
         this.documentsOfProduct = myReader.result;
-      }
-      else if (form === 'scanDocument') {
-        this.scanDocument = myReader.result;
       }
       else if (form === 'appreciationDocuments') {
         this.appreciationDocuments = myReader.result;
 
       }
-      console.log(this.companyPhotograph);
+      console.log(this.documentGstCertificate);
       console.log(this.documentsOfProduct);
       console.log(this.scanDocument);
       console.log(this.appreciationDocuments);
@@ -105,40 +96,33 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     this.httpService.postregistrationForm({
-      "category": this.registrationForm.value.category,
-      "typeOfApplicant": this.registrationForm.value.typeOfApplicant,
-      'nameOfOrganisation': this.registrationForm.value.nameOfOrganisation,
-      'cin': this.registrationForm.value.cin,
-      'udhyogAadharNumber': this.registrationForm.value.udhyogAadharNumber,
-      'dippNumber': this.registrationForm.value.dippNumber,
-      'adhaarNumber': this.registrationForm.value.adhaarNumber,
-      'sidmMemberShipNumber': this.registrationForm.value.sidmMemberShipNumber,
-      'otherAssociationMemberShipNumber': this.registrationForm.value.otherAssociationMemberShipNumber,
-      'organizationsAddress': this.registrationForm.value.organizationsAddress,
-      'contactName': this.registrationForm.value.contactName,
-      'designation': this.registrationForm.value.designation,
-      'mobileNumber': this.registrationForm.value.mobileNumber,
-      'email': this.registrationForm.value.email,
-      'panNumber': this.registrationForm.value.panNumber,
-      'gstin': this.registrationForm.value.gstin,
-      'dateOfCompany': this.registrationForm.value.dateOfCompany,
-      'scanDocumentUrl': this.scanDocument,
-      'userAwardedByOrganization': this.registrationForm.value.userAwardedByOrganization,
-      'aboutCompany': this.registrationForm.value.aboutCompany,
-      'achievementsToJustifyApplication': this.registrationForm.value.achievementsToJustifyApplication,
-      'appreciationDocumentsUrl': this.appreciationDocuments,
-      'campareAchivement': this.registrationForm.value.campareAchivement,
-      'documentsOfProductUrl': this.documentsOfProduct,
-      'companyPhotograph': this.companyPhotograph,
-      'vendorOfDefenceOrganizationEntities1': this.registrationForm.value.vendorOfDefenceOrganizationEntities1,
-      'vendorOfDefenceOrganizationEntities2': this.registrationForm.value.vendorOfDefenceOrganizationEntities2,
-      'vendorOfDefenceOrganizationEntities3': this.registrationForm.value.vendorOfDefenceOrganizationEntities3,
-      'vendorOfDefenceOrganizationEntities4': this.registrationForm.value.vendorOfDefenceOrganizationEntities4,
-      'vendorOfDefenceOrganizationProduct1': this.registrationForm.value.vendorOfDefenceOrganizationProduct1,
-      'vendorOfDefenceOrganizationProduct2': this.registrationForm.value.vendorOfDefenceOrganizationProduct2,
-      'vendorOfDefenceOrganizationProduct3': this.registrationForm.value.vendorOfDefenceOrganizationProduct3,
-      'vendorOfDefenceOrganizationProduct4': this.registrationForm.value.vendorOfDefenceOrganizationProduct4
-
+      category: this.registrationForm.value.category,
+      typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+      nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+      addressl1: this.registrationForm.value.addressl1,
+      addressl2: this.registrationForm.value.addressl2,
+      state: this.registrationForm.value.state,
+      city: this.registrationForm.value.city,
+      pincode: this.registrationForm.value.pincode,
+      contactName: this.registrationForm.value.contactName,
+      designation: this.registrationForm.value.designation,
+      mobileNumber: this.registrationForm.value.mobileNumber,
+      email: this.registrationForm.value.email,
+      sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+      otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
+      panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
+      gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
+      dateOfOrganization: this.registrationForm.value.dateOfOrganization,
+      financialStatement1: this.registrationForm.value.financialStatement1,
+      financialStatement2: this.registrationForm.value.financialStatement2,
+      financialStatement3: this.registrationForm.value.financialStatement2,
+      aboutCompany: this.registrationForm.value.financialStatement3,
+      achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
+      campareAchivement: this.registrationForm.value.campareAchivement,
+      documentGstCertificate: this.documentGstCertificate,
+      documentsOfProduct: this.documentsOfProduct,
+      appreciationDocuments: this.appreciationDocuments,
+      briefCompany: this.registrationForm.value.briefCompany
 
     }).subscribe(data => {
       console.log(data);

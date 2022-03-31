@@ -9,9 +9,9 @@ export class HttpService {
   constructor(private httpService: HttpClient) { }
 
   postregistrationForm(formData: any) {
-    return this.httpService.post('http://localhost:3000/regester', formData);
+    return this.httpService.post('http://localhost:3002/regester', formData);
   }
   adminlogin(adminData: any) {
-    return this.httpService.post('http://localhost:3000/user/login', adminData)
+    return this.httpService.post('http://localhost:3002/user/login', adminData)
   }
 }

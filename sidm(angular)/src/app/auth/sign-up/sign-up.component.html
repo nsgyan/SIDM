@@ -12,98 +12,164 @@
 
     <div class="formBody">
         <div class="container">
-            <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="pills-Online-tab" data-toggle="pill" href="#pills-Online"
-                        role="tab" aria-controls="pills-Online" aria-selected="true">Apply Online</a>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#ApplyOnline" role="tab"
+                        aria-controls="pills-home" aria-selected="true">Apply Online</a>
                 </li>
-                <li class="nav-item ml-2">
-                    <a class="nav-link" id="pills-User-tab" data-toggle="pill" href="#pills-User" role="tab"
-                        aria-controls="pills-User" aria-selected="false">Registered User</a>
+                <li class="nav-item ml-2" role="presentation">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#RegisteredUser" role="tab"
+                        aria-controls="pills-profile" aria-selected="false">Registered User</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-Online" role="tabpanel"
-                    aria-labelledby="pills-Online-tab">
-                    <form [formGroup]="registrationForm">
+                <div class="tab-pane fade show active" id="ApplyOnline" role="tabpanel"
+                    aria-labelledby="pills-home-tab">
+                    <form  [formGroup]="registrationForm" class="mb-2">
                         <div class="formPart_1">
-                            <h5 class="mb-3">Please choose the Category that you wish to Apply for</h5>
+                            <div class="row">
+        
+                            </div>
+                            <h5 class="mb-3 mt-3">Please choose the Category that you wish to Apply for</h5>
                             <div class="">
                                 <div class="checkgroup">
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input formControlName="category"  value="technologu-productInnovation" type="radio" id="ApplyRadio1" name="ApplyRadio"
+                                        <input  formControlName="category"  value="cat1" type="radio" id="ApplyRadio1" name="ApplyRadio"
                                             class="Apply-control-input mt-2 mr-2">
-                                        <label class="Apply-control-label font" for="ApplyRadio1">Technology / Product Innovation to address defence capability gaps</label>
+                                        <label class="Apply-control-label font" for="ApplyRadio1">C1 – Technology /
+                                            Product Innovation to address Defence Capability Gaps </label>
                                     </div>
                                     <div class="mr-0 radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input formControlName="category" value="ImportSubstitutionForMission" type="radio" id="ApplyRadio2" name="ApplyRadio"
+                                        <input formControlName="category" value="cat2" type="radio" id="ApplyRadio2" name="ApplyRadio"
                                             class="Apply-control-input mt-2 mr-2">
-                                        <label class="Apply-control-label font" for="ApplyRadio2">Import Substitution for mission critical parts / sub-systems / systems</label>
+                                        <label class="Apply-control-label font" for="ApplyRadio2">C2 – Import
+                                            Substitution for Mission Critical Parts / Sub-Systems / Systems</label>
                                     </div>
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center ml-3">
-                                        <input formControlName="category" value="creationOfNiche" type="radio" id="ApplyRadio3" name="ApplyRadio"
+                                        <input formControlName="category" value="cat3" type="radio" id="ApplyRadio3" name="ApplyRadio"
                                             class="Apply-control-input mt-2 mr-2">
-                                        <label class="Apply-control-label font" for="ApplyRadio3">Creation of Niche, Technological Capability for Design, Manufacturing or Testing</label>
+                                        <label class="Apply-control-label font" for="ApplyRadio3">C3 – Creation of
+                                            Niche, Technological Capability for Design, Manufacturing or Testing
+                                        </label>
                                     </div>
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
                                         <input formControlName="category" value="cat4" type="radio" id="ApplyRadio4" name="ApplyRadio"
                                             class="Apply-control-input mt-2 mr-2">
-                                        <label class="Apply-control-label font" for="ApplyRadio4">Export Performance of Defence and Aerospace Products</label>
+                                        <label class="Apply-control-label font" for="ApplyRadio4">C4 – Export
+                                            Performance of Defence & Aerospace Products</label>
                                     </div>
                                 </div>
                             </div>
                             <h5 class="mt-5 mb-3">Type of Applicant company</h5>
                             <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="radioBox company-control company-radio">
-                                        <input formControlName="typeOfApplicant" value="large"  type="radio" id="companyRadio5" name="companyRadio"
-                                            class="company-control-input">
-                                        <label class="company-control-label font" for="companyRadio5">Large</label>
+                                <div class="checkgroup">
+                                    <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
+                                        <input formControlName="typeOfApplicant" value="L" type="radio" id="ApplyRadio5" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio5">L – Large
+                                            <br>(Annual Turnover FY 2020-21 over & above Rs 250 Crore)</label>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="radioBox company-control company-radio">
-                                        <input formControlName="typeOfApplicant" value="msme"  type="radio" id="companyRadio6" name="companyRadio"
-                                            class="company-control-input">
-                                        <label class="company-control-label font" for="companyRadio6">MSME</label>
+                                    <div class="mr-0 radioBox Apply-control Apply-radio d-flex align-item-center">
+                                        <input  formControlName="typeOfApplicant" value="M"type="radio" id="ApplyRadio6" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio6">M – Medium<br>
+                                            (Annual Turnover FY 2020-21 between Rs 75 to 250 Crore)
+                                        </label>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="radioBox company-control company-radio">
-                                        <input formControlName="typeOfApplicant" value="start-up"  type="radio" id="companyRadio7" name="companyRadio"
-                                            class="company-control-input">
-                                        <label class="company-control-label font" for="companyRadio7">Start-Up</label>
+                                    <div class="radioBox Apply-control Apply-radio d-flex align-item-center ml-3">
+                                        <input formControlName="typeOfApplicant" value="S" type="radio" id="ApplyRadio7" name="ApplyRadio"
+                                            class="Apply-control-input mt-2 mr-2">
+                                        <label class="Apply-control-label font" for="ApplyRadio7">S – Small<br>
+                                            (Annual Turnover FY 2020-21 less than Rs 75 Crore)
+                                        </label>
                                     </div>
+        
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h5 class="mt-5 mb-3">Name of the Organisation</h5>
-                                    <input formControlName="nameOfOrganisation" type="text">
-                                </div>
+                                    <h5 class="mt-4 mb-3">Name of the Organization</h5>
+                                    <input formControlName="nameOfOrganisation"  type="text">
+                                </div> 
                             </div>
-                            <h3 class="mt-5 mb-3 text-left">Please furnish the applicable information </h3>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Company Identification Number (CIN)</h5>
-                                    <input formControlName="cin" type="text">
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Udhyog Aadhaar Number</h5>
-                                    <input formControlName="udhyogAadharNumber" type="text">
+                                <div class="col-lg-12">
+                                    <h3 class="mt-5 mb-3">Address of your organizations</h3>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">DIPP Number</h5>
-                                    <input formControlName="dippNumber" type="text">
+                                    <h5 class="mt-3 mb-3">Address Line 1</h5>
+                                    <input formControlName="addressl1" type="text">
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Adhar Number</h5>
-                                    <input formControlName="adhaarNumber" type="text">
+                                    <h5 class="mt-3 mb-3">Address Line 2</h5>
+                                    <input formControlName="addressl2" type="text">
                                 </div>
                             </div>
-                            <h5 class="mt-5 mb-3">Are you member of SIDM</h5>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">State</h5>
+                                    <input formControlName="state" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">City</h5>
+                                    <input formControlName="city" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Pincode</h5>
+                                    <input formControlName="pincode" type="text">
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">*Contact Person Name</h5>
+                                    <input formControlName="contactName" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Designation</h5>
+                                    <input ormControlName="designation" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">E-Mail Address</h5>
+                                    <input formControlName="email" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">*Mobile Number</h5>
+                                    <input keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">*PAN of the Organization</h5>
+                                    <input formControlName="panNumberOfOrganization" type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">GSTIN of the Organization</h5>
+                                    <input formControlName="gstinOfOrganization" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Upload GST Certificate Document</h5>
+                                    <input formControlName="gstCertificate" type="file" (change)="changeListener($event,'gstCertificate')">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Date of Incorporation of the Organization</h5>
+                                    <input formControlName="dateOfOrganization" type="date">
+                                </div>
+                            </div>
+                            
+                        </div>
+        
+        
+                        <!-- **********************form part 2************************************************************************ -->
+                        <div class="formPart_2">
+                            <h5 class="mt-3 mb-3">Are you member of SIDM</h5>
                             <div class="container">
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     <li class="nav-item">
@@ -148,7 +214,7 @@
                                         aria-labelledby="pills-true-tab">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="mt-2 mb-3">Provide the membership number</p>
+                                                <p class="mt-2 mb-3">Provide the association number</p>
                                                 <input formControlName="otherAssociationMemberShipNumber" type="text">
                                             </div>
                                         </div>
@@ -157,7 +223,8 @@
                                         aria-labelledby="pills-false-tab"></div>
                                 </div>
                             </div>
-                            <h5 class="mt-5 mb-3">Are you registered vendor of defence organizations ? </h5>
+                            <h5 class="mt-5 mb-3">Are you a registered Vendor of any Defence Organisation such as
+                                DPSU/DRDO etc</h5>
                             <div class="container">
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     <li class="nav-item">
@@ -175,40 +242,28 @@
                                     <div class="tab-pane fade" id="pills-vendor" role="tabpanel"
                                         aria-labelledby="pills-vendor-tab">
                                         <div class="form-group">
-                                            <h5>Name of entities whom registerd</h5>
                                             <div class="row mt-3">
                                                 <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationEntities1" type="text">
+                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
+                                                        (Mandatory)</h6>
+                                                    <input formControlName="financialStatement1" type="text">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationEntities2" type="text">
+                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
+                                                        (Mandatory)</h6>
+                                                    <input formControlName="financialStatement2" type="text">
                                                 </div>
                                             </div>
                                             <div class="row mt-3">
                                                 <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationEntities3" type="text">
+                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
+                                                        (Mandatory)</h6>
+                                                    <input formControlName="financialStatement2" type="text">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationEntities4" type="text">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <h5>Name of Product registerd</h5>
-                                            <div class="row mt-3">
-                                                <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationProduct1" type="text">
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationProduct2" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationProduct3" type="text">
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input formControlName="vendorOfDefenceOrganizationProduct4" type="text">
+                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
+                                                        (Mandatory)</h6>
+                                                    <input formControlName="financialStatement3" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -219,100 +274,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h5 class="mt-3 mb-3">Address of your organizations</h5>
-                                    <input formControlName="organizationsAddress" type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Contact name</h5>
-                                    <input formControlName="contactName" type="text">
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Designation</h5>
-                                    <input formControlName="designation" type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Mobile</h5>
-                                    <input (keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text">
-                                    <span style='color: red;' *ngIf="registrationForm.get('mobileNumber').invalid">
-                                        Please enter a valid number
-                                      </span>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Email</h5>
-                                    <input formControlName="email" type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">PAN Number</h5>
-                                    <!-- <div class="container"> -->
-                                    <input formControlName="panNumber" type="text">
-                                    <!-- </div> -->
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">GSTIN</h5>
-                                    <!-- <div class="container"> -->
-                                    <input formControlName="gstin" type="text">
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Date of incorporation of company</h5>
-                                    <!-- <div class="container"> -->
-                                    <input formControlName="dateOfCompany" type="text">
-                                    <!-- </div> -->
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mt-3">
-                                        <h5 for="">Upload scan of Document</h5>
-                                        <input formControlName="scanDocument" type="file" (change)="changeListener($event,'scanDocument')" class="border-light mt-3" name="dsfa" id="sadff"
-                                            aria-describedby="helpId" placeholder="">
+                                    <h5 class="mt-5 mb-4">Brief About the Company in 200 Words </h5>
+                                    <div class="">
+                                        <textarea formControlName="briefCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <h5 class="mt-5">Upload Photograph of building of the company showing name board</h5>
-                            <div class="mb-3 mt-3">
-                                <input formControlName="companyPhotograph" type="file" (change)="changeListener($event,'companyPhotograph')" class="border-light" name="" id="" aria-describedby="helpId"
-                                    placeholder="">
-                            </div>
-                            <h5 class="mt-5 mb-3">Have you ever been awarded by any other organizations for the same
-                                achievement ?</h5>
-                            <div class="">
-                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link " id="pills-awarded-tab" data-toggle="pill"
-                                            href="#pills-awarded" role="tab" aria-controls="pills-awarded"
-                                            aria-selected="awarded">YES</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="pills-noawarded-tab" data-toggle="pill"
-                                            href="#pills-noawarded" role="tab" aria-controls="pills-noaformControlNames"
-                                            aria-selected="noawarded">NO</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade" id="pills-awarded" role="tabpanel"
-                                        aria-labelledby="pills-awarded-tab">
-                                        <div class="form-group">
-                                            <label for="">Give Details</label>
-                                            <textarea formControlName="userAwardedByOrganization" class="form-control mb-5"
-                                                aria-label="With textarea"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="pills-noawarded" role="tabpanel"
-                                        aria-labelledby="pills-noawarded-tab"></div>
-                                </div>
-                            </div>
-                        </div>
-            
-            
-                        <!-- **********************form part 2************************************************************************ --> 
-                      <div class="formPart_2">
                             <div class="container">
                                 <p>Please give write up as per the format given below of not more then 3000 words
                                     about
@@ -324,7 +291,7 @@
                             </div>
                             <h5 class="mt-5 mb-4">About the company</h5>
                             <div class="">
-                                <textarea formControlName="aboutCompany" formControlName="aboutCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
+                                <textarea formControlName="aboutCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
                             </div>
                             <h5 class="mt-5 mb-4">Achievements</h5>
                             <div class="">
@@ -377,24 +344,46 @@
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="tab-pane fade show active" id="pills-User" role="tabpanel"
-                    aria-labelledby="pills-Online-tab">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 mt-5 mb-5 text-center">
-                <button type="submit" class="btn btn-border mx-2" [disabled]="!registrationForm.valid" (click)="onSubmit()"><span>Submit Form</span></button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 mt-5 mb-5 text-center">
+                                <button type="submit" class="btn btn-border mx-2" [disabled]="!registrationForm.valid" (click)="onSubmit()"><span>Submit Form</span></button>
                 <button class="save-btn" target="blanck"><span>Save Draft</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="RegisteredUser" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <form action="">
+                        <div class="formPart_1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-1 mb-3">Token Number</h5>
+                                    <input type="text">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-1 mb-3">Email</h5>
+                                    <input type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 mt-5 mb-5 text-center">
+                                <button type="submit" class="NewBtn"><span>Submit</span></button>
+                                <button class="save-btn" target="blanck"><span>Reset</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </section>
 
+       
 
 
 <app-login-footer></app-login-footer>

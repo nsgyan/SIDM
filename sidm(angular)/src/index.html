@@ -6,35 +6,51 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- =================== STYLE =================== -->
-<link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" />
-<link rel="stylesheet" href="assets/css/bootstrap-grid.css">
-<link href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/css/nice-select.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/custom.css">
+<link rel="shortcut icon" href="assets/img/New_img/favicon.png">
+	<!-- =================== STYLE =================== -->
+	<link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" />
+	<link rel="stylesheet" href="assets/css/bootstrap-grid.css">
+	<link href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--Animate CSS-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<!-- <link rel="stylesheet" href="../assets/css/popup-lightbox.css"> -->
+	<link rel="stylesheet" href="assets/css/popup-lightbox.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
 </head>
 <body>
   <app-root></app-root>
   	<!--=================== SCRIPT	===================-->
 	<script src="assets/js/jquery-2.2.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/slick.min.js"></script>
 	<script src="assets/js/rx-lazy.js"></script>
 	<script src="assets/js/jquery.nice-select.js"></script>
 	<script src="assets/js/parallax.min.js"></script>
+	<!-- <script src="assets/js/jquery.popup.lightbox.js"></script> -->
+	<script src="assets/js/jquery.popup.lightbox.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$('.single-item').slick({
 			dots: true,
 			autoplay: true,
 		});
 
+		// -----------lightBox-------------
+		$(document).ready(function () {
+			$(".img-container").popupLightbox({
+				width: 600,
+				height: 450
+			});
+		});
+		// -----------lightBox end-------------
 	</script>
 </body>
 
