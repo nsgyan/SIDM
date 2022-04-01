@@ -3,83 +3,70 @@ const RegistrationForm = require('../models/registrationForm')
 exports.postRegistrationForm = (req, res, next) => {
 
 
-
     const category = req.body.category;
     const typeOfApplicant = req.body.typeOfApplicant;
     const nameOfOrganisation = req.body.nameOfOrganisation;
-    const cin = req.body.cin;
-    const udhyogAadharNumber = req.body.udhyogAadharNumber;
-    const dippNumber = req.body.dippNumber;
-    const adhaarNumber = req.body.adhaarNumber
-    const sidmMemberShipNumber = req.body.sidmMemberShipNumber;
-    const otherAssociationMemberShipNumber = req.body.otherAssociationMemberShipNumber;
-    const organizationsAddress = req.body.organizationsAddress;
-    const contactName = req.body.contactName;
+    const addressl1 = req.body.addressl1;
+    const addressl2 = req.body.addressl2;
+    const state = req.body.state;
+    const city = req.body.city;
+    const pincode = req.body.pincode;
+    const name = req.body.name;
     const designation = req.body.designation;
     const mobileNumber = req.body.mobileNumber;
     const email = req.body.email;
-    const panNumber = req.body.panNumber;
-    const gstin = req.body.gstin;
-    const dateOfCompany = req.body.dateOfCompany;
-    const scanDocumentUrl = req.body.scanDocumentUrl;
-    const userAwardedByOrganization = req.body.userAwardedByOrganization;
+    const sidmMemberShipNumber = req.body.sidmMemberShipNumber;
+    const otherAssociationMemberShipNumber = req.body.otherAssociationMemberShipNumber;
+    const panNumberOfOrganization = req.body.panNumberOfOrganization;
+    const gstinOfOrganization = req.body.gstinOfOrganization;
+    const dateOfOrganization = req.body.dateOfOrganization;
+    const financialStatement1 = req.body.financialStatement1;
+    const financialStatement2 = req.body.financialStatement2;
+    const financialStatement3 = req.body.financialStatement3;
     const aboutCompany = req.body.aboutCompany;
     const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
-    const appreciationDocumentsUrl = req.body.appreciationDocumentsUrl;
-    const campareAchivement = req.body.campareAchivement;
-    const documentsOfProductUrl = req.body.documentsOfProductUrl
-    const companyPhotographUrl = req.body.companyPhotographUrl
-    const vendorOfDefenceOrganizationEntities1 = req.body.vendorOfDefenceOrganizationEntities1
-    const vendorOfDefenceOrganizationEntities2 = req.body.vendorOfDefenceOrganizationEntities2
-    const vendorOfDefenceOrganizationEntities3 = req.body.vendorOfDefenceOrganizationEntities3
-    const vendorOfDefenceOrganizationEntities4 = req.body.vendorOfDefenceOrganizationEntities4
-    const vendorOfDefenceOrganizationProduct1 = req.body.vendorOfDefenceOrganizationProduct1
-    const vendorOfDefenceOrganizationProduct2 = req.body.vendorOfDefenceOrganizationProduct2
-    const vendorOfDefenceOrganizationProduct3 = req.body.vendorOfDefenceOrganizationProduct3
-    const vendorOfDefenceOrganizationProduct4 = req.body.vendorOfDefenceOrganizationProduct4
-
+    const campareAchivement = req.body.compareAchivement;
+    const documentGstCertificate = req.body.documentGstCertificate;
+    const documentsOfProduct = req.body.documentsOfProduct;
+    const appreciationDocuments = req.body.appreciationDocuments;
+    const briefCompany = req.body.briefCompany
     const form = new RegistrationForm({
         category: category,
         typeOfApplicant: typeOfApplicant,
         nameOfOrganisation: nameOfOrganisation,
-        cin: cin,
-        udhyogAadharNumber: udhyogAadharNumber,
-        dippNumber: dippNumber,
-        adhaarNumber: adhaarNumber,
         sidmMemberShipNumber: sidmMemberShipNumber,
         otherAssociationMemberShipNumber: otherAssociationMemberShipNumber,
-        organizationsAddress: organizationsAddress,
-        contactName: contactName,
+        name: name,
         designation: designation,
         mobileNumber: mobileNumber,
         email: email,
-        panNumber: panNumber,
-        gstin: gstin,
-        dateOfCompany: dateOfCompany,
-        scanDocumentUrl: scanDocumentUrl,
-        userAwardedByOrganization: userAwardedByOrganization,
+        panNumberOfOrganization: panNumberOfOrganization,
+        gstinOfOrganization: gstinOfOrganization,
         aboutCompany: aboutCompany,
         achievementsToJustifyApplication: achievementsToJustifyApplication,
-        appreciationDocumentsUrl: appreciationDocumentsUrl,
         campareAchivement: campareAchivement,
-        documentsOfProductUrl: documentsOfProductUrl,
-        companyPhotographUrl: companyPhotographUrl,
-        vendorOfDefenceOrganizationEntities1: vendorOfDefenceOrganizationEntities1,
-        vendorOfDefenceOrganizationEntities2: vendorOfDefenceOrganizationEntities2,
-        vendorOfDefenceOrganizationEntities3: vendorOfDefenceOrganizationEntities3,
-        vendorOfDefenceOrganizationEntities4: vendorOfDefenceOrganizationEntities4,
-        vendorOfDefenceOrganizationProduct1: vendorOfDefenceOrganizationProduct1,
-        vendorOfDefenceOrganizationProduct2: vendorOfDefenceOrganizationProduct2,
-        vendorOfDefenceOrganizationProduct3: vendorOfDefenceOrganizationProduct3,
-        vendorOfDefenceOrganizationProduct4: vendorOfDefenceOrganizationProduct4,
+        addressl1: addressl1,
+        addressl2: addressl2,
+        state: state,
+        city: city,
+        pincode: pincode,
+        dateOfOrganization: dateOfOrganization,
+        financialStatement1: financialStatement1,
+        financialStatement2: financialStatement2,
+        financialStatement3: financialStatement3,
+        documentGstCertificate: documentGstCertificate,
+        documentsOfProduct: documentsOfProduct,
+        appreciationDocuments: appreciationDocuments,
+        briefCompany: briefCompany
 
     })
     form.save()
         .then(result => {
-            console.log('done', result);
+            res.status(200).send(result)
+            console.log(result);
         }).catch(err => {
-            console.log(err);
 
+            res.send(err)
         })
 
 }
@@ -88,13 +75,34 @@ exports.postRegistrationForm = (req, res, next) => {
 exports.getForms = (req, res, next) => {
     RegistrationForm.find()
         .then(data => {
-            console.log(data);
+            if (data) {
+                res.status(200).send(data)
+            }
+            else {
+                res.status(404).send('not Found')
+            }
         })
         .catch(err => {
             console.log(err);
         })
 }
 
+exports.getUserData = (req, res, next) => {
+    const userID = req.params.userId;
+    console.log(userID);
+    RegistrationForm.findById(userID)
+        .then(data => {
+            if (data) {
+                res.status(200).send(data)
+            }
+            else {
+                res.status(404).send('not Found')
+            }
+        }).catch(err => {
+            res.status(404).send('not Found')
+        })
+
+}
 
 
 

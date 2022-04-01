@@ -27,8 +27,6 @@ exports.loginVerify = (req, res, next) => {
                 res.status(404).send({ message: 'User does not exist' })
             }
         }).catch(err => {
-            console.log(err);
 
         })
-    console.log(req.body);
 }

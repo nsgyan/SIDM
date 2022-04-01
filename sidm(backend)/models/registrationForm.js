@@ -9,9 +9,9 @@ const RegistrationFormSchema = new Schema({
     state: { type: String },
     city: { type: String },
     pincode: { type: String },
-    contactName: { type: String },
+    name: { type: String },
     designation: { type: String },
-    mobileNumber: ['', [Validators.required]],
+    mobileNumber: { type: String },
     email: { type: String },
     sidmMemberShipNumber: { type: String },
     otherAssociationMemberShipNumber: { type: String },
@@ -25,7 +25,7 @@ const RegistrationFormSchema = new Schema({
     achievementsToJustifyApplication: { type: String },
     campareAchivement: { type: String },
     documentGstCertificate: { type: String },
-    documentsOfProductL: { type: String },
+    documentsOfProduct: { type: String },
     appreciationDocuments: { type: String },
     briefCompany: { type: String }
 })

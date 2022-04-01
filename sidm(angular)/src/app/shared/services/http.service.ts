@@ -14,4 +14,11 @@ export class HttpService {
   adminlogin(adminData: any) {
     return this.httpService.post('http://localhost:3002/user/login', adminData)
   }
+  memberlogin(id: string) {
+    return this.httpService.get(`http://localhost:3002/user/login/?${id}`)
+  }
+
+  getData() {
+    return this.httpService.get('http://localhost:3002/regester/formsData')
+  }
 }

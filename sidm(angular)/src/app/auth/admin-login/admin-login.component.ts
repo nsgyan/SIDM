@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpService } from 'src/app/shared/services/http.service';
-
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -11,7 +10,7 @@ export class AdminLoginComponent implements OnInit {
   myForm: FormGroup
 
   constructor(private formBuilder: FormBuilder,
-    private httpService: HttpService) {
+    private httpService: HttpService,) {
     this.myForm = this.formBuilder.group({
       email: [''],
       password: [''],
@@ -26,8 +25,12 @@ export class AdminLoginComponent implements OnInit {
     this.httpService.adminlogin({
       'email': this.myForm.value.email,
       'password': this.myForm.value.password
-    }).subscribe(data => {
+    })
+      .subscribe((data: any) => {
       console.log(data);
+
+      }, (error: Error) => {
+        console.log(error);
 
     })
 

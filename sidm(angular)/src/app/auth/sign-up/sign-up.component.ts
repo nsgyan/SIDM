@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
@@ -13,27 +14,28 @@ export class SignUpComponent implements OnInit {
   documentsOfProduct: any;
   documentGstCertificate: any;
 
-
+  memberform: FormGroup;
   registrationForm: FormGroup
 
   constructor(private formBuilder: FormBuilder,
+
     private httpService: HttpService) {
     this.registrationForm = this.formBuilder.group({
-      category: [''],
-      typeOfApplicant: [''],
-      nameOfOrganisation: [''],
-      addressl1: [''],
+      category: ['', Validators.required],
+      typeOfApplicant: ['', Validators.required],
+      nameOfOrganisation: ['', Validators.required],
+      addressl1: ['', Validators.required],
       addressl2: [''],
-      state: [''],
-      city: [''],
-      pincode: [''],
-      contactName: [''],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      pincode: ['', Validators.required],
+      name: ['', Validators.required],
       designation: [''],
-      mobileNumber: ['', [Validators.required]],
-      email: [''],
+      mobileNumber: ['', [Validators.required, CellNumValidation]],
+      email: ['', Validators.required],
       sidmMemberShipNumber: [''],
       otherAssociationMemberShipNumber: [''],
-      panNumberOfOrganization: [''],
+      panNumberOfOrganization: ['', [Validators.required, panValidation]],
       gstinOfOrganization: [''],
       dateOfOrganization: [''],
       financialStatement1: [''],
@@ -43,10 +45,16 @@ export class SignUpComponent implements OnInit {
       achievementsToJustifyApplication: [''],
       campareAchivement: [''],
       documentGstCertificate: [''],
-      documentsOfProductL: [''],
+      documentsOfProduct: [''],
       appreciationDocuments: [''],
-      briefCompany: ['']
+      briefCompany: [''],
+      awardMatterToCompany: ['']
 
+    })
+
+    this.memberform = this.formBuilder.group({
+      id: [''],
+      email: [''],
     })
   }
   ngOnInit(): void {
@@ -93,6 +101,16 @@ export class SignUpComponent implements OnInit {
       return true;
     }
   }
+  keyPresschar(evt: any) {
+    evt = (evt) ? evt : event;
+    const charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+      ((evt.which) ? evt.which : 0));
+    if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+      (charCode < 97 || charCode > 122)) {
+      return false;
+    }
+    return true;
+  }
 
   onSubmit() {
     this.httpService.postregistrationForm({
@@ -104,7 +122,7 @@ export class SignUpComponent implements OnInit {
       state: this.registrationForm.value.state,
       city: this.registrationForm.value.city,
       pincode: this.registrationForm.value.pincode,
-      contactName: this.registrationForm.value.contactName,
+      name: this.registrationForm.value.name,
       designation: this.registrationForm.value.designation,
       mobileNumber: this.registrationForm.value.mobileNumber,
       email: this.registrationForm.value.email,
@@ -122,13 +140,22 @@ export class SignUpComponent implements OnInit {
       documentGstCertificate: this.documentGstCertificate,
       documentsOfProduct: this.documentsOfProduct,
       appreciationDocuments: this.appreciationDocuments,
-      briefCompany: this.registrationForm.value.briefCompany
+      briefCompany: this.registrationForm.value.briefCompany,
 
     }).subscribe(data => {
       console.log(data);
 
+      // this.toastr.success('successfully applied');
     })
 
+  }
+  memberlogin() {
+    console.log(this.memberform);
+
+    this.httpService.memberlogin(this.memberform.value.id).subscribe(data => {
+      console.log(data);
+
+    })
   }
 
 }

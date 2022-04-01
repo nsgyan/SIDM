@@ -2,9 +2,11 @@
 <app-login-header></app-login-header>
 
 <section class="registrationForm">
-    <div class="maintitle">
+    <div class="maintitle mt-5">
         <div class="container">
-            <p class="font-weight-bold">Please read the brochure carefully before applying.</p>
+            <p class="font-weight-bold">Please read the brochure carefully before applying.
+                <a href="assets/img/New_img/SIDM-brochure-2022.pdf" class="brochure" target="blanck">Click Here</a>
+            </p>
             <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p>
             <div class="bb mt-4 mb-4"></div>
         </div>
@@ -34,26 +36,26 @@
                             <div class="">
                                 <div class="checkgroup">
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input  formControlName="category"  value="cat1" type="radio" id="ApplyRadio1" name="ApplyRadio"
+                                        <input  formControlName="category"  value="cat1" type="radio" id="ApplyRadio1" name="category"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio1">C1 – Technology /
                                             Product Innovation to address Defence Capability Gaps </label>
                                     </div>
                                     <div class="mr-0 radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input formControlName="category" value="cat2" type="radio" id="ApplyRadio2" name="ApplyRadio"
+                                        <input formControlName="category" value="cat2" type="radio" id="ApplyRadio2" name="category"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio2">C2 – Import
                                             Substitution for Mission Critical Parts / Sub-Systems / Systems</label>
                                     </div>
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center ml-3">
-                                        <input formControlName="category" value="cat3" type="radio" id="ApplyRadio3" name="ApplyRadio"
+                                        <input formControlName="category" value="cat3" type="radio" id="ApplyRadio3" name="category"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio3">C3 – Creation of
                                             Niche, Technological Capability for Design, Manufacturing or Testing
                                         </label>
                                     </div>
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input formControlName="category" value="cat4" type="radio" id="ApplyRadio4" name="ApplyRadio"
+                                        <input formControlName="category" value="cat4" type="radio" id="ApplyRadio4" name="category"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio4">C4 – Export
                                             Performance of Defence & Aerospace Products</label>
@@ -64,20 +66,20 @@
                             <div class="row">
                                 <div class="checkgroup">
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input formControlName="typeOfApplicant" value="L" type="radio" id="ApplyRadio5" name="ApplyRadio"
+                                        <input formControlName="typeOfApplicant" value="L" type="radio" id="ApplyRadio5" name="typeOfApplicant"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio5">L – Large
                                             <br>(Annual Turnover FY 2020-21 over & above Rs 250 Crore)</label>
                                     </div>
                                     <div class="mr-0 radioBox Apply-control Apply-radio d-flex align-item-center">
-                                        <input  formControlName="typeOfApplicant" value="M"type="radio" id="ApplyRadio6" name="ApplyRadio"
+                                        <input  formControlName="typeOfApplicant" value="M"type="radio" id="ApplyRadio6" name="typeOfApplicant"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio6">M – Medium<br>
                                             (Annual Turnover FY 2020-21 between Rs 75 to 250 Crore)
                                         </label>
                                     </div>
                                     <div class="radioBox Apply-control Apply-radio d-flex align-item-center ml-3">
-                                        <input formControlName="typeOfApplicant" value="S" type="radio" id="ApplyRadio7" name="ApplyRadio"
+                                        <input formControlName="typeOfApplicant" value="S" type="radio" id="ApplyRadio7" name="typeOfApplicant"
                                             class="Apply-control-input mt-2 mr-2">
                                         <label class="Apply-control-label font" for="ApplyRadio7">S – Small<br>
                                             (Annual Turnover FY 2020-21 less than Rs 75 Crore)
@@ -99,34 +101,34 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Address Line 1</h5>
+                                    <h5 class="mt-3 mb-3">Address Line 1 *</h5>
                                     <input formControlName="addressl1" type="text">
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Address Line 2</h5>
+                                    <h5 class="mt-3 mb-3">Address Line 2 *</h5>
                                     <input formControlName="addressl2" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">State</h5>
+                                    <h5 class="mt-3 mb-3">State *</h5>
                                     <input formControlName="state" type="text">
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">City</h5>
+                                    <h5 class="mt-3 mb-3">City *</h5>
                                     <input formControlName="city" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Pincode</h5>
+                                    <h5 class="mt-3 mb-3">Pincode *</h5>
                                     <input formControlName="pincode" type="text">
                                 </div>
                             </div>
                             <div class="row mt-5">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">*Contact Person Name</h5>
-                                    <input formControlName="contactName" type="text">
+                                    <h5 class="mt-3 mb-3">Contact Person Name *</h5>
+                                    <input formControlName="name" type="text">
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Designation</h5>
@@ -135,17 +137,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">E-Mail Address</h5>
+                                    <h5 class="mt-3 mb-3">E-Mail Address *</h5>
                                     <input formControlName="email" type="text">
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">*Mobile Number</h5>
-                                    <input keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text">
+                                    <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                                    <input (keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">*PAN of the Organization</h5>
+                                    <h5 class="mt-3 mb-3">PAN of the Organization *</h5>
                                     <input formControlName="panNumberOfOrganization" type="text">
                                 </div>
                                 <div class="col-lg-6">
@@ -156,7 +158,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Upload GST Certificate Document</h5>
-                                    <input formControlName="gstCertificate" type="file" (change)="changeListener($event,'gstCertificate')">
+                                    <input formControlName="documentGstCertificate" type="file" (change)="changeListener($event,'documentGstCertificate')">
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Date of Incorporation of the Organization</h5>
@@ -214,7 +216,7 @@
                                         aria-labelledby="pills-true-tab">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="mt-2 mb-3">Provide the association number</p>
+                                                <p class="mt-2 mb-3">Enter the name(s) of the associations separated by comma</p>
                                                 <input formControlName="otherAssociationMemberShipNumber" type="text">
                                             </div>
                                         </div>
@@ -249,8 +251,7 @@
                                                     <input formControlName="financialStatement1" type="text">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
-                                                        (Mandatory)</h6>
+                                                    <h6 class="mb-2">Name of the Vendor Organization registered with</h6>
                                                     <input formControlName="financialStatement2" type="text">
                                                 </div>
                                             </div>
@@ -274,9 +275,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h5 class="mt-5 mb-4">Brief About the Company in 200 Words </h5>
+                                    <h5 class="mt-5 mb-4">Brief About the Company <p class="wordFont">( in 200 Words
+                                        )</p>
+                                </h5>
                                     <div class="">
-                                        <textarea formControlName="briefCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
+                                        <textarea formControlName="briefCompany" class="form-control mb-3" aria-label="With textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -291,7 +294,7 @@
                             </div>
                             <h5 class="mt-5 mb-4">About the company</h5>
                             <div class="">
-                                <textarea formControlName="aboutCompany" class="form-control mb-5" aria-label="With textarea"></textarea>
+                                <textarea formControlName="aboutCompany" class="form-control mb-3" aria-label="With textarea"></textarea>
                             </div>
                             <h5 class="mt-5 mb-4">Achievements</h5>
                             <div class="">
@@ -343,36 +346,58 @@
                                     placeholder="">
                             </div>
                         </div>
+                       
                     </form>
                     <div class="container">
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <re-captcha
+                                        siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+                                </div>
+
+                            </div>
                             <div class="col-lg-12 mt-5 mb-5 text-center">
-                                <button type="submit" class="btn btn-border mx-2" [disabled]="!registrationForm.valid" (click)="onSubmit()"><span>Submit Form</span></button>
+                                <button type="submit" class="NewBtn mx-2" [disabled]="!registrationForm.valid" (click)="onSubmit()"><span>Submit</span></button>
                 <button class="save-btn" target="blanck"><span>Save Draft</span></button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="RegisteredUser" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <form action="">
+                    <form [formGroup]="memberform">
                         <div class="formPart_1">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-1 mb-3">Token Number</h5>
-                                    <input type="text">
+                                    <h5 class="mt-1 mb-3">Email</h5>
+                                    <input formControlName="id" type="text">
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-1 mb-3">Email</h5>
-                                    <input type="text">
+                                    <h5 class="mt-1 mb-3">Mobile Number</h5>
+                                    <input formControlName="email" type="number">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Pan Number</h5>
+                                    <input formControlName="id" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <re-captcha
+                                        siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+                                </div>
+    
+                            </div>
                         </div>
+                       
                     </form>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 mt-5 mb-5 text-center">
-                                <button type="submit" class="NewBtn"><span>Submit</span></button>
-                                <button class="save-btn" target="blanck"><span>Reset</span></button>
+                                <button type="submit" class="NewBtn" (click)="memberlogin()"><span>Submit</span></button>
+                                <button class="save-btn ml-2" target="blanck"><span>Reset</span></button>
                             </div>
                         </div>
                     </div>

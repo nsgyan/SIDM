@@ -28,3 +28,16 @@ export function CellNumValidation(
     return null;
   }
 }
+
+export function panValidation(
+  control: AbstractControl
+): { [key: string]: any } | null {
+  const text = new RegExp('[A-Z]{5}[0-9]{4}[A-Z]{1}');
+  const valid = text.test(control.value);
+
+  if (!valid) {
+    return { cellNumNotValid: 'please enter valid pan number' };
+  } else {
+    return null;
+  }
+}

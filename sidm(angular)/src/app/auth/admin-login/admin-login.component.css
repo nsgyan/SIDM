@@ -13,9 +13,8 @@
 }
 
 .main-bg {
-    /* background: url(../../../assets/img/bg.jpg) center center no-repeat;
-    background-size: cover; */
-    background-color: #f4f4f4;
+    background: url(../../../assets/img/CII-Bg.png) center center no-repeat;
+    background-size: cover;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -36,36 +35,40 @@
 
 .left-content h3 {
     font-weight: 800;
-    font-size: 3rem;
+    /* font-size: 3rem; */
     color: #444444;
     margin: 0 0 0px;
     line-height: 35px;
-    margin-bottom: 14px;
+    margin-bottom: 30px;
 }
 
 .left-content {
     margin: 2.5rem 2.5rem 0 2.5rem;
     position: relative;
-    min-height: 45rem;
+    /* min-height: 45rem; */
 }
 
 .left-content span {
     color: #fff;
     background: #3988c0;
     padding: 7px 20px;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
 }
 
 .left-content .Bottom-Content p {
-    margin: 0 0 10px 0;
+    margin: 0;
     font-size: 14px;
     color: rgb(40 40 40);
     line-height: 22px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: justify;
 }
-
+.left-content .Bottom-Content a {
+    /* font-size: 18px; */
+    color: #0e5aa5;
+    font-weight: 600;
+}
 .left-content h6 {
     font-size: 1.9rem;
     color: #768F31;
@@ -76,7 +79,7 @@
 
 .left-content h5 {
     font-size: 1.3rem;
-    color: #444444;
+    color: #0e5aa5;
     line-height: 1.7rem;
 }
 
@@ -102,9 +105,9 @@
 }
 
 .login-sec-con .form-control {
-    font-size: 1.5rem;
+    font-size: 20px;
     margin-bottom: 3%;
-    padding: 15px 0 15px 40px;
+    padding: 30px 0 30px 40px;
     height: 42px;
     border-radius: 8px;
 }
@@ -123,35 +126,36 @@
 
 .login-sec .user-bg {
     background: url(../../../assets/img/user-t.png)no-repeat 3%;
-    background-size: 2.2rem;
+    background-size: 1.2rem;
 }
 
 .login-sec .user-password {
     background: url(../../../assets/img/key.png)no-repeat 3%;
-    background-size: 2.2rem;
+    background-size: 1.2rem;
 }
 
 .login-sec .email-bg {
     background: url(../../../assets/img/email.png)no-repeat 3%;
-    background-size: 2.2rem;
+    background-size: 1.2rem;
 }
 
 .login-sec .mobile-bg {
     background: url(../../../assets/img/cell-phone.png)no-repeat 3%;
-    background-size: 2.2rem;
+    background-size: 1.2rem;
 }
 
 .login-sec .confirm-password {
     background: url(../../../assets/img/padlock.png)no-repeat 3%;
-    background-size: 2.2rem;
+    background-size: 1.2rem;
 }
 
 .login-sec-con .login_btn {
     background: #3988c0;
     border: none;
     border-radius: 8px;
-    padding: 10px 0 11px;
-    font-size: 1.9rem;
+    margin-top: 1rem;
+    padding: 18px 0;
+    font-size: 1.5rem;
 }
 
 .login-sec .forget_password {
@@ -324,6 +328,7 @@ a {
     width: 50px;
     margin: 0 0 8px 0;
 }
+
 
 /* -------------------Media Query Start--------------- */
 @media only screen and (max-width: 1024px) {
