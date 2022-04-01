@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const RegistrationFormSchema = new Schema({
-    category: { type: String },
+    category: { type: Array },
     typeOfApplicant: { type: String },
     nameOfOrganisation: { type: String },
     addressl1: { type: String },

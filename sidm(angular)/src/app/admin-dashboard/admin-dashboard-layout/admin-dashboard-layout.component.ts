@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { HttpService } from 'src/app/shared/services/http.service';
 export class AdminDashboardLayoutComponent implements OnInit {
   allFormsData: any;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService,
+    private routes: Router) {
     this.httpService.getData().subscribe((data: any) => {
       data.map((item: any) => {
         if (item.category === 'cat1') {
@@ -40,7 +42,9 @@ export class AdminDashboardLayoutComponent implements OnInit {
 
     })
   }
-
+  logout() {
+    this.routes.navigate(['/adminLogin'])
+  }
   ngOnInit(): void {
   }
 

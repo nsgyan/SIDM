@@ -4,7 +4,9 @@ const Register = require('../controllers/register')
 
 router.post('/', Register.postRegistrationForm);
 router.get('/formsData', Register.getForms);
-router.get('/formsData/:userId', Register.getUserData);
+router.post('/memberLogin', Register.getUserData);
+router.get('/memberdata/:memberId', Register.getmemberData);
+
 
 
 module.exports = router;

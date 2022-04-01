@@ -3,8 +3,23 @@ const RegistrationForm = require('../models/registrationForm')
 exports.postRegistrationForm = (req, res, next) => {
 
 
-    const category = req.body.category;
-    const typeOfApplicant = req.body.typeOfApplicant;
+    const category = {
+        type: req.body.category,
+        typeOfApplicant: req.body.typeOfApplicant,
+        sidmMemberShipNumber: req.body.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: req.body.otherAssociationMemberShipNumber,
+        gstinOfOrganization: req.body.gstinOfOrganization,
+        dateOfOrganization: req.body.dateOfOrganization,
+        financialStatement1: req.body.financialStatement1,
+        financialStatement2: req.body.financialStatement2,
+        financialStatement3: req.body.financialStatement3,
+        aboutCompany: req.body.aboutCompany,
+        achievementsToJustifyApplication: req.body.achievementsToJustifyApplication,
+        campareAchivement: req.body.compareAchivement,
+        documentsOfProduct: req.body.documentsOfProduct,
+        appreciationDocuments: req.body.appreciationDocuments,
+        briefCompany: req.body.briefCompany,
+    }
     const nameOfOrganisation = req.body.nameOfOrganisation;
     const addressl1 = req.body.addressl1;
     const addressl2 = req.body.addressl2;
@@ -15,50 +30,23 @@ exports.postRegistrationForm = (req, res, next) => {
     const designation = req.body.designation;
     const mobileNumber = req.body.mobileNumber;
     const email = req.body.email;
-    const sidmMemberShipNumber = req.body.sidmMemberShipNumber;
-    const otherAssociationMemberShipNumber = req.body.otherAssociationMemberShipNumber;
-    const panNumberOfOrganization = req.body.panNumberOfOrganization;
-    const gstinOfOrganization = req.body.gstinOfOrganization;
-    const dateOfOrganization = req.body.dateOfOrganization;
-    const financialStatement1 = req.body.financialStatement1;
-    const financialStatement2 = req.body.financialStatement2;
-    const financialStatement3 = req.body.financialStatement3;
-    const aboutCompany = req.body.aboutCompany;
-    const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
-    const campareAchivement = req.body.compareAchivement;
     const documentGstCertificate = req.body.documentGstCertificate;
-    const documentsOfProduct = req.body.documentsOfProduct;
-    const appreciationDocuments = req.body.appreciationDocuments;
-    const briefCompany = req.body.briefCompany
+    const panNumberOfOrganization = req.body.panNumberOfOrganization;
+
     const form = new RegistrationForm({
         category: category,
-        typeOfApplicant: typeOfApplicant,
-        nameOfOrganisation: nameOfOrganisation,
-        sidmMemberShipNumber: sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: otherAssociationMemberShipNumber,
-        name: name,
-        designation: designation,
-        mobileNumber: mobileNumber,
-        email: email,
-        panNumberOfOrganization: panNumberOfOrganization,
-        gstinOfOrganization: gstinOfOrganization,
-        aboutCompany: aboutCompany,
-        achievementsToJustifyApplication: achievementsToJustifyApplication,
-        campareAchivement: campareAchivement,
         addressl1: addressl1,
         addressl2: addressl2,
         state: state,
         city: city,
         pincode: pincode,
-        dateOfOrganization: dateOfOrganization,
-        financialStatement1: financialStatement1,
-        financialStatement2: financialStatement2,
-        financialStatement3: financialStatement3,
+        name: name,
+        designation: designation,
+        mobileNumber: mobileNumber,
+        email: email,
+        nameOfOrganisation: nameOfOrganisation,
         documentGstCertificate: documentGstCertificate,
-        documentsOfProduct: documentsOfProduct,
-        appreciationDocuments: appreciationDocuments,
-        briefCompany: briefCompany
-
+        panNumberOfOrganization: panNumberOfOrganization,
     })
     form.save()
         .then(result => {
@@ -88,9 +76,29 @@ exports.getForms = (req, res, next) => {
 }
 
 exports.getUserData = (req, res, next) => {
-    const userID = req.params.userId;
-    console.log(userID);
-    RegistrationForm.findById(userID)
+    const email = req.body.email;
+    const mobileNumber = req.body.mobileNumber;
+    const panNumber = req.body.panNumber
+    console.log(req.body);
+    RegistrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: panNumber })
+        .then(data => {
+            if (data) {
+
+                res.status(200).send(data)
+            }
+            else {
+                res.status(404).send('not Found user Data')
+            }
+        }).catch(err => {
+            res.status(404).send('not Found')
+        })
+
+}
+
+exports.getmemberData = (req, res, next) => {
+    const memberId = req.params.memberId;
+    console.log(memberId);
+    RegistrationForm.findById(memberId)
         .then(data => {
             if (data) {
                 res.status(200).send(data)
@@ -103,7 +111,6 @@ exports.getUserData = (req, res, next) => {
         })
 
 }
-
 
 
 
