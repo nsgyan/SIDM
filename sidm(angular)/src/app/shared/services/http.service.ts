@@ -18,10 +18,13 @@ export class HttpService {
     return this.httpService.post(`http://localhost:3002/regester/memberLogin`, memberLoginData)
   }
   getMemberData(id: any) {
-    return this.httpService.get(`http://localhost:3002/user/login/?${id}`)
-
+    return this.httpService.get(`http://localhost:3002/regester/memberdata/${id}`)
   }
   getData() {
     return this.httpService.get('http://localhost:3002/regester/formsData')
+  }
+
+  applyNewCategory(id: string, data: any) {
+    return this.httpService.patch(`http://localhost:3002/regester/update/${id}`, data)
   }
 }

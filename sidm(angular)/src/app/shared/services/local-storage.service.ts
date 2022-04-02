@@ -13,7 +13,7 @@ export class LocalStorageService {
   }
 
   get(key: string) {
-    this.localStorage.getItem(key);
+    return JSON.parse(this.localStorage.getItem(key));
   }
 
   set(key: string, data: any) {

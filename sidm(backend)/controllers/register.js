@@ -112,6 +112,64 @@ exports.getmemberData = (req, res, next) => {
 
 }
 
+exports.updateFrom = (req, res, next) => {
+    const userID = req.params.userID;
+    const UpdateCategory = {
+        type: req.body.category,
+        typeOfApplicant: req.body.typeOfApplicant,
+        sidmMemberShipNumber: req.body.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: req.body.otherAssociationMemberShipNumber,
+        gstinOfOrganization: req.body.gstinOfOrganization,
+        dateOfOrganization: req.body.dateOfOrganization,
+        financialStatement1: req.body.financialStatement1,
+        financialStatement2: req.body.financialStatement2,
+        financialStatement3: req.body.financialStatement3,
+        aboutCompany: req.body.aboutCompany,
+        achievementsToJustifyApplication: req.body.achievementsToJustifyApplication,
+        campareAchivement: req.body.compareAchivement,
+        documentsOfProduct: req.body.documentsOfProduct,
+        appreciationDocuments: req.body.appreciationDocuments,
+        briefCompany: req.body.briefCompany,
+    }
+    const updateNameOfOrganisation = req.body.nameOfOrganisation;
+    const updateAddressl1 = req.body.addressl1;
+    const updateAddressl2 = req.body.addressl2;
+    const updateState = req.body.state;
+    const updateCity = req.body.city;
+    const updatePincode = req.body.pincode;
+    const updateName = req.body.name;
+    const updateDesignation = req.body.designation;
+    const updateMobileNumber = req.body.mobileNumber;
+    const updateEmail = req.body.email;
+    const updateDocumentGstCertificate = req.body.documentGstCertificate;
+    const updatePanNumberOfOrganization = req.body.panNumberOfOrganization;
+
+    RegistrationForm.findById(userID)
+        .then(formData => {
+            formData.nameOfOrganisation = updateNameOfOrganisation;
+            formData.addressl1 = updateAddressl1;
+            formData.addressl2 = updateAddressl2;
+            formData.state = updateState;
+            formData.city = updateCity;
+            formData.pincode = updatePincode;
+            formData.name = updateName;
+            formData.designation = updateDesignation;
+            formData.mobileNumber = updateMobileNumber;
+            formData.email = updateEmail;
+            if (updateDocumentGstCertificate) {
+                formData.documentGstCertificate = updateDocumentGstCertificate
+            }
+            formData.panNumberOfOrganization = updatePanNumberOfOrganization;
+            formData.category.push(UpdateCategory)
+            return formData.save();
+        })
+        .then(result => {
+            res.status(200).send(result)
+        })
+        .catch(error => {
+            res.status(404).send(error)
+        })
+}
 
 
 

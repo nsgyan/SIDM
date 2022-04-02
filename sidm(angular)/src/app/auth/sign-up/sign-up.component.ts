@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -20,6 +21,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private localStorage: LocalStorageService,
+    private router: Router,
     private httpService: HttpService) {
     this.registrationForm = this.formBuilder.group({
       category: ['', Validators.required],
@@ -156,6 +158,7 @@ export class SignUpComponent implements OnInit {
 
     this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber }).subscribe((data: any) => {
       this.localStorage.set('memberUserID', data._id)
+      this.router.navigate(['/memberDashboard'])
 
 
     })
