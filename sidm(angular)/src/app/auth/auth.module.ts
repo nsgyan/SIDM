@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -26,6 +27,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     RecaptchaModule,
     NgxSpinnerModule,
+    MatSnackBarModule
 
   ]
 })

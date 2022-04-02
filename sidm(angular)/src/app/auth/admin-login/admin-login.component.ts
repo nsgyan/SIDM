@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
-  myForm: FormGroup
-
+  adminLogin: FormGroup
+  submitted: boolean = false;
   constructor(private formBuilder: FormBuilder,
     private httpService: HttpService,
     private snackBar: MatSnackBar,
+    private toast: ToastrService,
     private router: Router) {
-    this.myForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
+    this.adminLogin = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     })
   }
 
@@ -26,22 +28,24 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.adminLogin.valid) {
     this.httpService.adminlogin({
-      'email': this.myForm.value.email,
-      'password': this.myForm.value.password
+      'email': this.adminLogin.value.email,
+      'password': this.adminLogin.value.password
     }).subscribe(data => {
-      console.log(data);
       this.router.navigate(['/adminDashboard'])
-      // this._snackBar.open('sucessfully login', 'Done');
+      this.toast.success('Admin Successfully login!');
       this.snackBar.open('Successfully login', 'close', {
         duration: 1500
       })
     }, (err: Error) => {
-      console.log(err);
-      // this._snackBar.open('User does not exist', 'Done');
-
+      this.toast.error('User does not exist');
     })
-
+    }
+    else {
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
   }
 
 }

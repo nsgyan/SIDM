@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -18,9 +20,11 @@ export class SignUpComponent implements OnInit {
 
   memberform: FormGroup;
   registrationForm: FormGroup
+  submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private localStorage: LocalStorageService,
+    private toast: ToastrService,
     private router: Router,
     private httpService: HttpService) {
     this.registrationForm = this.formBuilder.group({
@@ -28,7 +32,7 @@ export class SignUpComponent implements OnInit {
       typeOfApplicant: ['', Validators.required],
       nameOfOrganisation: ['', Validators.required],
       addressl1: ['', Validators.required],
-      addressl2: [''],
+      addressl2: ['', Validators.required],
       state: ['', Validators.required],
       city: ['', Validators.required],
       pincode: ['', Validators.required],
@@ -38,7 +42,7 @@ export class SignUpComponent implements OnInit {
       email: ['', Validators.required],
       sidmMemberShipNumber: [''],
       otherAssociationMemberShipNumber: [''],
-      panNumberOfOrganization: ['', [Validators.required, panValidation]],
+      panNumberOfOrganization: ['', Validators.required],
       gstinOfOrganization: [''],
       dateOfOrganization: [''],
       financialStatement1: [''],
@@ -56,20 +60,15 @@ export class SignUpComponent implements OnInit {
     })
 
     this.memberform = this.formBuilder.group({
-      mobileNumber: [''],
-      email: [''],
-      panNumber: [''],
+      mobileNumber: ['', Validators.required],
+      email: ['', Validators.required],
+      panNumber: ['', Validators.required],
     })
   }
   ngOnInit(): void {
-
   }
   changeListener($event: any, form: any) {
-    console.log($event);
-
     this.readThis($event.target, form);
-
-
   }
 
   readThis(inputValue: any, form: any): void {
@@ -88,10 +87,6 @@ export class SignUpComponent implements OnInit {
         this.appreciationDocuments = myReader.result;
 
       }
-      console.log(this.documentGstCertificate);
-      console.log(this.documentsOfProduct);
-      console.log(this.scanDocument);
-      console.log(this.appreciationDocuments);
     }
     myReader.readAsDataURL(file);
   }
@@ -117,6 +112,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.registrationForm.valid) {
     this.httpService.postregistrationForm({
       category: this.registrationForm.value.category,
       typeOfApplicant: this.registrationForm.value.typeOfApplicant,
@@ -147,21 +143,36 @@ export class SignUpComponent implements OnInit {
       briefCompany: this.registrationForm.value.briefCompany,
 
     }).subscribe(data => {
-      console.log(data);
-
+      this.registrationForm.reset();
+      this.toast.success(' Successfully Applied');
       // this.toastr.success('successfully applied');
     })
+    }
+    else {
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
 
   }
   memberlogin() {
     console.log(this.memberform);
-
+    if (this.memberform.valid) {
     this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber }).subscribe((data: any) => {
       this.localStorage.set('memberUserID', data._id)
       this.router.navigate(['/memberDashboard'])
-
-
+      this.toast.success('Member Successfully login!');
+    }, err => {
+      this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');
     })
+    }
+    else {
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
+  }
+  reset() {
+    this.memberform.reset()
+    this.submitted = false
   }
 
 }

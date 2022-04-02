@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -23,8 +24,10 @@ export class MemberDashboardComponent implements OnInit {
   cat3 = true
   cat4 = true
   memberData: any
+  submitted: boolean = true;
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
+    private toast: ToastrService,
     private httpService: HttpService) {
     this.userId = this.localStroage.get('memberUserID')
     this.httpService.getMemberData(this.userId).
@@ -64,7 +67,7 @@ export class MemberDashboardComponent implements OnInit {
           email: [this.memberData?.email, Validators.required],
           sidmMemberShipNumber: [''],
           otherAssociationMemberShipNumber: [''],
-          panNumberOfOrganization: [this.memberData?.panNumberOfOrganization, [Validators.required, panValidation]],
+          panNumberOfOrganization: [this.memberData?.panNumberOfOrganization, Validators.required],
           gstinOfOrganization: [''],
           dateOfOrganization: [''],
           financialStatement1: [''],
@@ -142,6 +145,7 @@ export class MemberDashboardComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.newCategoryForm.valid) {
     this.httpService.applyNewCategory(this.userId, {
       category: this.newCategoryForm.value.category,
       typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
@@ -172,11 +176,10 @@ export class MemberDashboardComponent implements OnInit {
       briefCompany: this.newCategoryForm.value.briefCompany,
 
     }).subscribe(data => {
-      console.log(data);
-
       this.newCategory = false
       this.httpService.getMemberData(this.userId).
         subscribe((data: any) => {
+          this.toast.success(' Successfully Applied New category');
           data?.category?.map((item: any) => {
             if (item.type === 'cat1') {
               this.cat1 = false
@@ -196,23 +199,22 @@ export class MemberDashboardComponent implements OnInit {
             }
           })
           this.memberData = data;
-          console.log(this.memberData);
           this.newCategoryForm = this.formBuilder.group({
             category: ['', Validators.required],
             typeOfApplicant: ['', Validators.required],
             nameOfOrganisation: ['', Validators.required],
             addressl1: [this.memberData?.addressl1, Validators.required],
-            addressl2: [this.memberData?.addressl2],
+            addressl2: [this.memberData?.addressl2, Validators.required],
             state: [this.memberData?.state, Validators.required],
             city: [this.memberData?.city, Validators.required],
             pincode: [this.memberData?.pincode, Validators.required],
             name: [this.memberData?.name, Validators.required],
             designation: [this.memberData?.designation],
-            mobileNumber: [this.memberData?.mobileNumber, [Validators.required, CellNumValidation]],
+            mobileNumber: [this.memberData?.mobileNumber, Validators.required],
             email: [this.memberData?.email, Validators.required],
             sidmMemberShipNumber: [''],
             otherAssociationMemberShipNumber: [''],
-            panNumberOfOrganization: [this.memberData?.panNumberOfOrganization, [Validators.required, panValidation]],
+            panNumberOfOrganization: [this.memberData?.panNumberOfOrganization, [Validators.required]],
             gstinOfOrganization: [''],
             dateOfOrganization: [''],
             financialStatement1: [''],
@@ -233,6 +235,11 @@ export class MemberDashboardComponent implements OnInit {
 
       // this.toastr.success('successfully applied');
     })
+    }
+    else {
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
 
   }
 

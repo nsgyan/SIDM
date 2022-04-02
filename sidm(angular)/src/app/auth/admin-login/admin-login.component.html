@@ -4,7 +4,7 @@
 <script>
   function validateForm() {
 
-    let x = document.forms["myForm"]["g-recaptcha-response"].value;
+    let x = document.forms["adminLogin"]["g-recaptcha-response"].value;
     if (x == "") {
       alert("Captcha must be filled out");
       return false;
@@ -58,7 +58,7 @@
                                     <h2>Login</h2>
                                     <p>Login to your PBMS system portal</p>
                                     <div class="login-sec-con">
-                                        <form [formGroup]="myForm">
+                                        <form [formGroup]="adminLogin">
                                             <div class="">
                                                 <div class="form-group">
                                                     <input type="text"
@@ -66,6 +66,11 @@
                                                         user-bg" id="uername"
                                                         placeholder="Email"
                                                         formControlName="email">
+                                                        <div *ngIf="submitted||adminLogin.controls['email'].invalid &&  adminLogin.controls['email'].touched">         
+                                                            <span *ngIf="adminLogin.get('email').hasError('required')" style="color: red;">
+                                                                Email <strong>required</strong>
+                                                            </span>                        
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="">
@@ -75,6 +80,11 @@
                                                         user-password" id=""
                                                         placeholder="Password"
                                                         formControlName="password">
+                                                        <div *ngIf=" submitted||adminLogin.controls['password'].invalid &&  adminLogin.controls['password'].touched">         
+                                                            <span *ngIf="adminLogin.get('password').hasError('required')" style="color: red;">
+                                                                Password <strong>required</strong>
+                                                            </span>                        
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -90,7 +100,7 @@
                                                     class="btn btn-primary
                                                     btn-lg btn-block login_btn"
                                                     id="btn-validate"
-                                                    (click)="onSubmit()">Login</button>
+                                                    (click)="onSubmit()" >Login</button>
                                             </div>
 
                                             <div>
