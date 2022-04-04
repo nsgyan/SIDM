@@ -5,6 +5,7 @@ router.post('/addAdmin', User.addAdminUser);
 
 router.post('/login', User.loginVerify);
 
+router.get('/getStateList', User.getState);
 
 
 module.exports = router;

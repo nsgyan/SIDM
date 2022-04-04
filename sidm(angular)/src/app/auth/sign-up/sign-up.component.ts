@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
+import { CellNumValidation, Confirmed, ConfirmedValidator, CrossEmailValidation, CrossMobileValidation, CrossPanValidation, fileSizeValidator, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -17,32 +17,41 @@ export class SignUpComponent implements OnInit {
   scanDocument: any;
   documentsOfProduct: any;
   documentGstCertificate: any;
+  states: any;
+  panMatch: boolean = false;
+  mobileMatch: Boolean = false
+  emailMatch: Boolean = false
 
   memberform: FormGroup;
   registrationForm: FormGroup
   submitted: boolean = false;
+
 
   constructor(private formBuilder: FormBuilder,
     private localStorage: LocalStorageService,
     private toast: ToastrService,
     private router: Router,
     private httpService: HttpService) {
+    this.getState()
     this.registrationForm = this.formBuilder.group({
       category: ['', Validators.required],
       typeOfApplicant: ['', Validators.required],
       nameOfOrganisation: ['', Validators.required],
       addressl1: ['', Validators.required],
-      addressl2: ['', Validators.required],
+      addressl2: [''],
       state: ['', Validators.required],
       city: ['', Validators.required],
-      pincode: ['', Validators.required],
+      pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
       name: ['', Validators.required],
       designation: [''],
       mobileNumber: ['', [Validators.required, CellNumValidation]],
-      email: ['', Validators.required],
+      confirmMobileNumber: ['', [Validators.required, CellNumValidation,]],
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', [Validators.required, Validators.email]],
       sidmMemberShipNumber: [''],
       otherAssociationMemberShipNumber: [''],
-      panNumberOfOrganization: ['', Validators.required],
+      panNumberOfOrganization: ['', [Validators.required, panValidation]],
+      confirmPanNumberOfOrganization: ['', [Validators.required, panValidation, CrossPanValidation]],
       gstinOfOrganization: [''],
       dateOfOrganization: [''],
       financialStatement1: [''],
@@ -57,7 +66,8 @@ export class SignUpComponent implements OnInit {
       briefCompany: [''],
       awardMatterToCompany: ['']
 
-    })
+    },
+    )
 
     this.memberform = this.formBuilder.group({
       mobileNumber: ['', Validators.required],
@@ -68,7 +78,9 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
   changeListener($event: any, form: any) {
-    this.readThis($event.target, form);
+    let file = $event.target.files;
+    console.log($event.target.files);
+    // this.readThis($event.target, form);
   }
 
   readThis(inputValue: any, form: any): void {
@@ -90,6 +102,14 @@ export class SignUpComponent implements OnInit {
     }
     myReader.readAsDataURL(file);
   }
+  getState() {
+    this.httpService.getStateList()
+      .subscribe(data => {
+        console.log(data);
+        this.states = data
+
+      })
+  }
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -100,6 +120,7 @@ export class SignUpComponent implements OnInit {
       return true;
     }
   }
+
   keyPresschar(evt: any) {
     evt = (evt) ? evt : event;
     const charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
@@ -111,9 +132,10 @@ export class SignUpComponent implements OnInit {
     return true;
   }
 
-  onSubmit() {
+  onSubmit(type: string) {
     if (this.registrationForm.valid) {
-    this.httpService.postregistrationForm({
+      if (this.registrationForm.value.email === this.registrationForm.value.confirmEmail && this.registrationForm.value.mobileNumber === this.registrationForm.value.confirmMobileNumber && this.registrationForm.value.panNumberOfOrganization === this.registrationForm.value.confirmPanNumberOfOrganization) {
+        this.httpService.postregistrationForm({
       category: this.registrationForm.value.category,
       typeOfApplicant: this.registrationForm.value.typeOfApplicant,
       nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
@@ -145,10 +167,28 @@ export class SignUpComponent implements OnInit {
     }).subscribe(data => {
       this.registrationForm.reset();
       this.toast.success(' Successfully Applied');
+      this.router.navigate(['/thankYou'])
       // this.toastr.success('successfully applied');
     })
+      }
+      else {
+        if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
+          this.mobileMatch = true
+          this.toast.error('Confirm Mobile number does not match');
+        }
+        if (this.registrationForm.value.email !== this.registrationForm.value.confirmEmail) {
+          this.emailMatch = true
+          this.toast.error('Confirm Email does not match');
+        }
+        if (this.registrationForm.value.panNumberOfOrganization !== this.registrationForm.value.confirmPanNumberOfOrganization) {
+          this.panMatch = true
+          this.toast.error('Pan number does not match');
+        }
+      }
     }
     else {
+      console.log(this.registrationForm);
+
       this.submitted = true;
       this.toast.error('Please Fill Required Field');
     }

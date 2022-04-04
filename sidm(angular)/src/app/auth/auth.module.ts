@@ -10,6 +10,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ThankyouPageComponent } from './thankyou-page/thankyou-page.component';
 
 
 
@@ -19,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginHeaderComponent,
     LoginFooterComponent,
     AdminLoginComponent,
+    ThankyouPageComponent,
   ],
   imports: [
     CommonModule,

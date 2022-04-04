@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const State = require('../models/state.model')
 exports.addAdminUser = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -29,4 +30,15 @@ exports.loginVerify = (req, res, next) => {
         }).catch(err => {
 
         })
+}
+
+exports.getState = (req, res, next) => {
+    State.find()
+        .then(data => {
+            res.json(data)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+
 }

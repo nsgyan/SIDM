@@ -1,5 +1,5 @@
 
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 
 export function PasswordValidation(
@@ -36,8 +36,101 @@ export function panValidation(
   const valid = text.test(control.value);
 
   if (!valid) {
-    return { cellNumNotValid: 'please enter valid pan number' };
+    return { panValidation: 'please enter valid pan number' };
   } else {
     return null;
+  }
+}
+export function fileSizeValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  const file: File = control.value
+  var size = file.size
+  console.log(size);
+  let forbidden = true
+  if (file) {
+    const fileSizeInMB = Math.round(size / 1024);
+    if (fileSizeInMB < 1024) {
+      //console.log('less than 1024', fileSizeInMB);
+      forbidden = false;
+    }
+
+  }
+  return forbidden ? { 'inValidSize': true } : null;
+}
+export function CrossEmailValidation(
+  control: AbstractControl
+): { [key: string]: any } | null {
+  const email = control.get('email');
+  const confirmEmail = control.get('confirmEmail');
+
+  if (email?.pristine && confirmEmail?.pristine) {
+    return null;
+  }
+
+  if (email && confirmEmail && email.value !== confirmEmail.value) {
+    return { crossEmailNotValid: 'email\'s don\'t match.' };
+  } else {
+    return null;
+  }
+}
+export function CrossMobileValidation(
+  control: AbstractControl
+): { [key: string]: any } | null {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls['mobileNumber'];
+    const matchingControl = formGroup.controls['confirmMobileNumber'];
+    if (matchingControl.errors && !matchingControl.errors['confirmedValidator']) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ confirmedValidator: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
+  }
+}
+export function CrossPanValidation(
+  control: AbstractControl
+): { [key: string]: any } | null {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls['panNumberOfOrganization'];
+    const matchingControl = formGroup.controls['confirmPanNumberOfOrganization'];
+    if (matchingControl.errors && !matchingControl.errors['confirmedValidator']) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ confirmedValidator: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
+  }
+}
+
+
+export function ConfirmedValidator(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[controlName];
+    const matchingControl = formGroup.controls[matchingControlName];
+    if (matchingControl.errors && !matchingControl.errors['confirmedValidator']) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ confirmedValidator: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
+  }
+}
+export function Confirmed(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[controlName];
+    const matchingControl = formGroup.controls[matchingControlName];
+    if (matchingControl.errors && !matchingControl.errors['confirmedValidator']) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ confirmedValidator: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
   }
 }

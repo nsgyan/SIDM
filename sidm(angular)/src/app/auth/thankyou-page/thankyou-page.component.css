@@ -1,0 +1,55 @@
+.thanku {
+    margin: 3rem 0;
+}
+
+.thanku .card {
+    background: #fff;
+    border: none;
+    box-shadow: 1px 1px 10px #d7d7d7;
+}
+
+.thanku .RegistrationContent {
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+}
+
+.thanku .RegistrationContent h5 {
+    background: #597640;
+    padding: 8px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 400;
+    width: 33%;
+    margin-left: 17rem;
+}
+
+.thanku .RegistrationContent h2 {
+    color: #597640;
+    font-weight: 500;
+    margin: .75rem 0;
+}
+
+.thanku .RegistrationContent h6 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 17px;
+    color: #666464;
+}
+
+.thanku .RegistrationContent p {
+    margin: 0.4rem 0;
+}
+
+.thanku .RegistrationContent button {
+    background: #597640;
+    padding: 8px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 400;
+    border: none;
+}
+
+.thanku .RegistrationContent button a {
+    color: #fff;
+    text-decoration: none;
+}

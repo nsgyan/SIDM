@@ -69,8 +69,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of memberData?.category"> 
-                                            <th scope="row">1</th>
+                                        <tr *ngFor="let item of memberData?.category;let i = index"> 
+                                            <th scope="row">{{i}}</th>
                                             <td>{{item.type}}</td>
                                             <td><a href="javascript:void(0)" class="viewBtn">View</a></td>
                                         </tr>

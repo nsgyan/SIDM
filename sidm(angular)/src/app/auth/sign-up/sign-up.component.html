@@ -125,19 +125,18 @@
                                 </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Address Line 2 *</h5>
+                                    <h5 class="mt-3 mb-3">Address Line 2 </h5>
                                     <input formControlName="addressl2" type="text">
-                                    <div *ngIf="submitted||registrationForm.controls['addressl1'].invalid &&  registrationForm.controls['addressl1'].touched">         
-                                        <span *ngIf="registrationForm.get('addressl1').hasError('required')" style="color: red;">
-                                            Address Line 1 <strong>required</strong>
-                                        </span>                        
-                                </div>
+                                   
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">State *</h5>
-                                    <input formControlName="state" type="text">
+                                    <select formControlName="state" class="select">
+                                        <option  *ngFor="let item of states" value="{{item.state}}">{{item.state}}</option>
+                                    </select>
+                                    <!-- <input formControlName="state" type="text"> -->
                                     <div *ngIf="submitted||registrationForm.controls['state'].invalid &&  registrationForm.controls['state'].touched">         
                                         <span *ngIf="registrationForm.get('state').hasError('required')" style="color: red;">
                                             State <strong>required</strong>
@@ -146,7 +145,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">City *</h5>
-                                    <input formControlName="city" type="text">
+                                    <input formControlName="city" (keypress)="keyPresschar($event)"  type="text">
                                     <div *ngIf=" submitted||registrationForm.controls['city'].invalid &&  registrationForm.controls['city'].touched">         
                                         <span *ngIf="registrationForm.get('city').hasError('required')" style="color: red;">
                                             City <strong>required</strong>
@@ -157,10 +156,13 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Pincode *</h5>
-                                    <input formControlName="pincode" type="text">
+                                    <input formControlName="pincode" (keypress)="keyPressNumbers($event)" type="text">
                                     <div *ngIf=" submitted||registrationForm.controls['pincode'].invalid &&  registrationForm.controls['pincode'].touched">         
                                         <span *ngIf="registrationForm.get('pincode').hasError('required')" style="color: red;">
                                             Pincode <strong>required</strong>
+                                        </span>   
+                                        <span   style="color: red;" *ngIf="registrationForm.get('pincode').hasError('pattern') && !registrationForm.get('pincode').hasError('required')">
+                                            Please enter a valid pincode
                                         </span>                        
                                 </div>
                                 </div>
@@ -183,30 +185,68 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">E-Mail Address *</h5>
-                                    <input formControlName="email" type="text">
+                                    <input formControlName="email" type="text" appCpoyPaste>
                                     <div *ngIf=" submitted|| registrationForm.controls['email'].invalid &&  registrationForm.controls['email'].touched">         
                                         <span *ngIf="registrationForm.get('email').hasError('required')" style="color: red;">
                                             E-Mail Address <strong>required</strong>
-                                        </span>                        
-                                </div>
+                                        </span>              
+                                        <span style="color: red;" *ngIf="registrationForm.get('email').hasError('email') && !registrationForm.get('email').hasError('required')"> 
+                                            Please enter a valid  E-Mail Address
+                                          </span>     
+                                    </div>      
                                 </div>
                                 <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3"> Confirm E-Mail Address *</h5>
+                                    <input formControlName="confirmEmail" type="password" appCpoyPaste>
+                                    <div *ngIf=" submitted|| registrationForm.controls['confirmEmail'].invalid &&  registrationForm.controls['confirmEmail'].touched">         
+                                        <span *ngIf="registrationForm.get('confirmEmail').hasError('required')" style="color: red;">
+                                            Confirm   E-Mail Address <strong>required</strong>
+                                        </span>              
+                                        <span style="color: red;" *ngIf="registrationForm.get('confirmEmail').hasError('email') && !registrationForm.get('confirmEmail').hasError('required')"> 
+                                            Please enter a valid  E-Mail Address
+                                          </span>            
+                                </div>
+                                <span style="color: red;" *ngIf="emailMatch"> 
+                                   your E-Mail does not match
+                                  </span> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Mobile Number *</h5>
-                                    <input (keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text">
+                                    <input (keypress)="keyPressNumbers($event)" formControlName="mobileNumber" type="text" appCpoyPaste>
                                     <div *ngIf=" submitted||registrationForm.controls['mobileNumber'].invalid &&  registrationForm.controls['mobileNumber'].touched">         
                                         <span *ngIf="registrationForm.get('mobileNumber').hasError('required')" style="color: red;">
                                             Mobile Number <strong>required</strong>
                                         </span>       
                                         <span style="color: red;" *ngIf="registrationForm.get('mobileNumber').hasError('cellNumNotValid') && !registrationForm.get('mobileNumber').hasError('required')"> 
                                             Please enter a valid mobile number
-                                          </span>                 
+                                          </span>  
+                                                         
                                 </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3"> Confirm Mobile Number *</h5>
+                                    <input (keypress)="keyPressNumbers($event)" formControlName="confirmMobileNumber" type="password" appCpoyPaste>
+                                    <div *ngIf=" submitted||registrationForm.controls['confirmMobileNumber'].invalid &&  registrationForm.controls['confirmMobileNumber'].touched">         
+                                        <span *ngIf="registrationForm.get('confirmMobileNumber').hasError('required')" style="color: red;">
+                                            Please Confirm  Mobile Number 
+
+                                        </span>       
+                                        <span style="color: red;" *ngIf="registrationForm.get('confirmMobileNumber').hasError('cellNumNotValid') && !registrationForm.get('mobileNumber').hasError('required')"> 
+                                            Please enter a valid mobile number
+                                          </span>   
+
+                                </div>
+                                <span style="color: red;" *ngIf=" mobileMatch"> 
+                                     Mobile Number does not match
+                                  </span>    
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">PAN of the Organization *</h5>
-                                    <input formControlName="panNumberOfOrganization" type="text">
+                                    <input formControlName="panNumberOfOrganization" type="text" appCpoyPaste>
                                     <div *ngIf=" submitted||registrationForm.controls['panNumberOfOrganization'].invalid &&  registrationForm.controls['panNumberOfOrganization'].touched">         
                                         <span *ngIf="registrationForm.get('panNumberOfOrganization').hasError('required')" style="color: red;">
                                             PAN of the Organization <strong>required</strong>
@@ -217,14 +257,29 @@
                                 </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">GSTIN of the Organization</h5>
-                                    <input formControlName="gstinOfOrganization" type="text">
+                                    <h5 class="mt-3 mb-3">Confirm PAN of the Organization *</h5>
+                                    <input formControlName="confirmPanNumberOfOrganization" type="password" appCpoyPaste>
+                                    <div *ngIf=" submitted||registrationForm.controls['confirmPanNumberOfOrganization'].invalid &&  registrationForm.controls['confirmPanNumberOfOrganization'].touched">         
+                                        <span *ngIf="registrationForm.get('confirmPanNumberOfOrganization').hasError('required')" style="color: red;">
+                                            Please Confirm your  PAN Number
+                                        </span>      
+                                        <span style="color: red;" *ngIf="registrationForm.get('confirmPanNumberOfOrganization').hasError('panValidation') && !registrationForm.get('confirmPanNumberOfOrganization').hasError('required')"> 
+                                            Please enter a valid Pan number
+                                          </span>                     
+                                </div>
+                                <span style="color: red;" *ngIf="panMatch"> 
+                                  your Pan Number Does not match
+                                  </span> 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">GSTIN of the Organization</h5>
+                                    <input formControlName="gstinOfOrganization" type="text">
+                                </div>
+                                <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Upload GST Certificate Document</h5>
-                                    <input formControlName="documentGstCertificate" type="file" (change)="changeListener($event,'documentGstCertificate')">
+                                    <input formControlName="documentGstCertificate" accept="application/pdf" type="file" (change)="changeListener($event,'documentGstCertificate')">
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Date of Incorporation of the Organization</h5>
@@ -424,8 +479,8 @@
 
                             </div>
                             <div class="col-lg-12 mt-5 mb-5 text-center">
-                                <button type="submit" class="NewBtn mx-2"  (click)="onSubmit()"  ><span>Submit</span></button>
-                <button class="save-btn" target="blanck" (click)="onSubmit()"  ><span>Save Draft</span></button>
+                                <button type="submit" class="NewBtn mx-2"  (click)="onSubmit('submit')"  ><span>Submit</span></button>
+                <button class="save-btn" target="blanck" (click)="onSubmit('Draft')"  ><span>Save Draft</span></button>
                             </div>
                         </div>
                     </div>

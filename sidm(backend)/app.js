@@ -11,7 +11,7 @@ const User = require('./routes/user')
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-app.use('/regester', Register)
+app.use('/sidm', Register)
 app.use('/user', User)
 
 
