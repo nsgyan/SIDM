@@ -4,10 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import(`./landinig-page/landinig-page.module`).then(m => m.LandinigPageModule)
+    loadChildren: () => import(`./registration/registration.module`).then(m => m.RegistrationModule)
   },
   {
-    path: 'member',
+    path: 'login',
+    loadChildren: () => import(`./auth/auth.module`).then(m => m.AuthModule)
+  },
+  {
+    path: 'memberDashboard',
     loadChildren: () => import(`./memberdashboard/memberdashboard.module`).then(m => m.MemberdashboardModule)
   },
   {

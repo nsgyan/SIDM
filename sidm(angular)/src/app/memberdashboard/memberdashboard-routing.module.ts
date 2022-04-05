@@ -4,8 +4,8 @@ import { MemberDashboardComponent } from './member-dashboard/member-dashboard.co
 import { MemberLoginComponent } from './member-login/member-login.component';
 
 const routes: Routes = [
-  { path: 'Dashboard', component: MemberDashboardComponent },
-  { path: '', component: MemberLoginComponent }
+  { path: '', component: MemberDashboardComponent },
+  // { path: '', component: MemberLoginComponent }
 ];
 
 @NgModule({

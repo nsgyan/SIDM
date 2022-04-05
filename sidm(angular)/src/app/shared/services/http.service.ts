@@ -33,4 +33,10 @@ export class HttpService {
     return this.httpService.get(Globals.route.getStateList)
 
   }
+
+  checkEmail(data: any) {
+    console.log('hello');
+
+    return this.httpService.get(Globals.route.checkEmail, data)
+  }
 }

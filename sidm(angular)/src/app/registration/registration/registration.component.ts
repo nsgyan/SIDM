@@ -1,18 +1,18 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Event, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CellNumValidation, Confirmed, ConfirmedValidator, CrossEmailValidation, CrossMobileValidation, CrossPanValidation, fileSizeValidator, panValidation } from 'src/app/shared/services/custom-validator.service';
+import { CellNumValidation, panValidation, CrossPanValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
+
   appreciationDocuments: any;
   scanDocument: any;
   documentsOfProduct: any;
@@ -110,6 +110,7 @@ export class SignUpComponent implements OnInit {
     }
     myReader.readAsDataURL(file);
   }
+
   getState() {
     this.httpService.getStateList()
       .subscribe(data => {
@@ -117,6 +118,23 @@ export class SignUpComponent implements OnInit {
         this.states = data
 
       })
+  }
+
+  checkemail(event: any) {
+    // console.log(event.target.value);
+
+    const email = event.traget?.value
+    if (email) {
+      const data = { email: email }
+      console.log('function');
+
+      this.httpService.checkEmail(data).subscribe(data => {
+        console.log(data);
+
+      })
+
+    }
+
   }
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {

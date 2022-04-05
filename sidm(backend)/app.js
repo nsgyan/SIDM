@@ -16,6 +16,7 @@ app.use('/user', User)
 
 
 
+
 mongoose
     .connect(
         'mongodb://localhost:27017/sidm',
@@ -25,7 +26,7 @@ mongoose
         }
     )
     .then(result => {
-        app.listen(3002);
+        app.listen(3000);
     })
     .catch(err => {
         console.log(err); s

@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Register = require('../models/registrationForm')
 const State = require('../models/state.model')
 exports.addAdminUser = (req, res, next) => {
     const email = req.body.email;
@@ -41,4 +42,12 @@ exports.getState = (req, res, next) => {
             res.json(err)
         })
 
+}
+
+exports.getEmail = (req, res) => {
+    const email = req.body.email
+    Register.findOne({ email: email })
+        .then(data => {
+            res.status(200).send(data)
+        })
 }
