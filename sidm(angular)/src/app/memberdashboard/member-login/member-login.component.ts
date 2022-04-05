@@ -78,5 +78,8 @@ export class MemberLoginComponent implements OnInit {
     this.memberform.reset()
     this.submitted = false
   }
+  applyNow() {
+    this.router.navigate(['/'])
+  }
 
 }

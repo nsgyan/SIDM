@@ -14,16 +14,10 @@
 
     <div class="formBody">
         <div class="container">
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#ApplyOnline" role="tab"
-                        aria-controls="pills-home" aria-selected="true">Apply Online</a>
-                </li>
-                <li class="nav-item ml-2" role="presentation">
-                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#RegisteredUser" (click)="reset()" role="tab"
-                        aria-controls="pills-profile" aria-selected="false">Registered User</a>
-                </li>
-            </ul>
+            <button class="NewBtn mb-5" (click)="registerdUser()">
+                Registered User
+            </button>
+           
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="ApplyOnline" role="tabpanel"
                     aria-labelledby="pills-home-tab">
@@ -367,25 +361,22 @@
                                         <div class="form-group">
                                             <div class="row mt-3">
                                                 <div class="col-lg-6">
-                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
-                                                        (Mandatory)</h6>
-                                                    <input formControlName="financialStatement1" type="text">
+                                                    <h6 class="mb-2">Name of the Vendor Organization registered with</h6>
+                                                    <input formControlName="vendorOrganization1" type="text">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <h6 class="mb-2">Name of the Vendor Organization registered with</h6>
-                                                    <input formControlName="financialStatement2" type="text">
+                                                    <input formControlName="vendorOrganization2" type="text">
                                                 </div>
                                             </div>
                                             <div class="row mt-3">
                                                 <div class="col-lg-6">
-                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
-                                                        (Mandatory)</h6>
-                                                    <input formControlName="financialStatement2" type="text">
+                                                    <h6 class="mb-2">Name of the Vendor Organization registered with</h6>
+                                                    <input formControlName="vendorOrganization3" type="text">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <h6 class="mb-2">Please upldoad Audited Financial Statement
-                                                        (Mandatory)</h6>
-                                                    <input formControlName="financialStatement3" type="text">
+                                                    <h6 class="mb-2">Name of the Vendor Organization registered with</h6>
+                                                    <input formControlName="vendorOrganization4" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -443,7 +434,7 @@
                                         aria-labelledby="pills-reports-tab">
                                         <div class="form-group">
                                             <h5 for="">Upload documents</h5>
-                                            <input formControlName="appreciationDocuments" type="file" (change)="changeListener($event,'appreciationDocuments')" class="mt-3" name="" id="" aria-describedby="helpId"
+                                            <input formControlName="appreciationDocuments" type="file" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf" (change)="changeListener($event,'appreciationDocuments')" class="mt-3" name="" id="" aria-describedby="helpId"
                                                 placeholder="">
                                         </div>
                                     </div>
@@ -463,7 +454,7 @@
                             <h5 class="mt-5 mb-4">Please upload Photograph / videos of the products / innovation /
                                 facilities, fielded for the awards</h5>
                             <div class="">
-                                <input formControlName="documentsOfProduct" type="file" (change)="changeListener($event,'documentsOfProduct')" class="border-light mb-4" name="" id="" aria-describedby="helpId"
+                                <input formControlName="documentsOfProduct" type="file" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf" (change)="changeListener($event,'documentsOfProduct')" class="border-light mb-4" name="" id="" aria-describedby="helpId"
                                     placeholder="">
                             </div>
                         </div>
@@ -472,7 +463,7 @@
                     <div class="container">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <re-captcha
+                                <re-captcha 
                                     siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
                             </div>
 
@@ -485,59 +476,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="RegisteredUser" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <form [formGroup]="memberform">
-                        <div class="formPart_1">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-1 mb-3">Email</h5>
-                                    <input formControlName="email" type="text">
-                                    <div *ngIf="submitted||memberform.controls['email'].invalid &&  memberform.controls['email'].touched">         
-                                        <span *ngIf="memberform.get('email').hasError('required')" style="color: red;">
-                                            E-Mail Address <strong>required</strong>
-                                        </span>                        
-                                </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-1 mb-3">Mobile Number</h5>
-                                    <input formControlName="mobileNumber" type="number">
-                                    <div *ngIf=" submitted||memberform.controls['mobileNumber'].invalid &&  memberform.controls['mobileNumber'].touched">         
-                                        <span *ngIf="memberform.get('mobileNumber').hasError('required')" style="color: red;">
-                                            Mobile Number <strong>required</strong>
-                                        </span>                        
-                                </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Pan Number</h5>
-                                    <input formControlName="panNumber" type="text">
-                                    <div *ngIf=" submitted|| memberform.controls['panNumber'].invalid &&  memberform.controls['panNumber'].touched">         
-                                        <span *ngIf="memberform.get('panNumber').hasError('required')" style="color: red;">
-                                            Pan Number <strong>required</strong>
-                                        </span>                        
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <re-captcha
-                                        siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
-                                </div>
-
-                            </div>
-                        </div>
-                       
-                    </form>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 mt-5 mb-5 text-center">
-                                <button type="submit" class="NewBtn" (click)="memberlogin()"><span>Submit</span></button>
-                                <button class="save-btn ml-2" target="blanck" (click)="reset()"><span>Reset</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
             </div>
         </div>
     </div>
