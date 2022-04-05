@@ -1,0 +1,86 @@
+<app-login-header></app-login-header>
+
+<section class="registrationForm">
+    <div class="maintitle mt-5">
+        <div class="container">
+            <p class="font-weight-bold">Please read the brochure carefully before applying.
+                <a href="assets/img/New_img/SIDM-brochure-2022.pdf" class="brochure" target="blanck">Click Here</a>
+            </p>
+            <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p>
+            <div class="bb mt-4 mb-4"></div>
+        </div>
+    </div>
+
+    <div class="formBody">
+        <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="" role="tab"
+                        aria-controls="pills-home" aria-selected="true">Apply Online</a>
+                </li>
+               
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade" id="RegisteredUser" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <form [formGroup]="memberform">
+                        <div class="formPart_1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-1 mb-3">Email</h5>
+                                    <input formControlName="email" type="text">
+                                    <div *ngIf="submitted||memberform.controls['email'].invalid &&  memberform.controls['email'].touched">         
+                                        <span *ngIf="memberform.get('email').hasError('required')" style="color: red;">
+                                            E-Mail Address <strong>required</strong>
+                                        </span>                        
+                                </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-1 mb-3">Mobile Number</h5>
+                                    <input formControlName="mobileNumber" type="number">
+                                    <div *ngIf=" submitted||memberform.controls['mobileNumber'].invalid &&  memberform.controls['mobileNumber'].touched">         
+                                        <span *ngIf="memberform.get('mobileNumber').hasError('required')" style="color: red;">
+                                            Mobile Number <strong>required</strong>
+                                        </span>                        
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-3">Pan Number</h5>
+                                    <input formControlName="panNumber" type="text">
+                                    <div *ngIf=" submitted|| memberform.controls['panNumber'].invalid &&  memberform.controls['panNumber'].touched">         
+                                        <span *ngIf="memberform.get('panNumber').hasError('required')" style="color: red;">
+                                            Pan Number <strong>required</strong>
+                                        </span>                        
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <re-captcha
+                                        siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+                                </div>
+
+                            </div>
+                        </div>
+                       
+                    </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 mt-5 mb-5 text-center">
+                                <button type="submit" class="NewBtn" (click)="memberlogin()"><span>Submit</span></button>
+                                <button class="save-btn ml-2" target="blanck" (click)="reset()"><span>Reset</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+       
+
+
+<app-login-footer></app-login-footer>
