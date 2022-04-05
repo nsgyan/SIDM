@@ -2,24 +2,22 @@ const RegistrationForm = require('../models/registrationForm')
 
 exports.postRegistrationForm = (req, res, next) => {
 
-
-    const category = {
-        type: req.body.category,
-        typeOfApplicant: req.body.typeOfApplicant,
-        sidmMemberShipNumber: req.body.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: req.body.otherAssociationMemberShipNumber,
-        gstinOfOrganization: req.body.gstinOfOrganization,
-        dateOfOrganization: req.body.dateOfOrganization,
-        financialStatement1: req.body.financialStatement1,
-        financialStatement2: req.body.financialStatement2,
-        financialStatement3: req.body.financialStatement3,
-        aboutCompany: req.body.aboutCompany,
-        achievementsToJustifyApplication: req.body.achievementsToJustifyApplication,
-        campareAchivement: req.body.compareAchivement,
-        documentsOfProduct: req.body.documentsOfProduct,
-        appreciationDocuments: req.body.appreciationDocuments,
-        briefCompany: req.body.briefCompany,
-    }
+    const status = req.body.status
+    const category = req.body.category;
+    const typeOfApplicant = req.body.typeOfApplicant;
+    const sidmMemberShipNumber = req.body.sidmMemberShipNumber;
+    const otherAssociationMemberShipNumber = req.body.otherAssociationMemberShipNumber;
+    const gstinOfOrganization = req.body.gstinOfOrganization;
+    const dateOfOrganization = req.body.dateOfOrganization;
+    const financialStatement1 = req.body.financialStatement1;
+    const financialStatement2 = req.body.financialStatement2;
+    const financialStatement3 = req.body.financialStatement3;
+    const aboutCompany = req.body.aboutCompany;
+    const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
+    const campareAchivement = req.body.compareAchivement;
+    const documentsOfProduct = req.body.documentsOfProduct;
+    const appreciationDocuments = req.body.appreciationDocuments;
+    const briefCompany = req.body.briefCompany;
     const nameOfOrganisation = req.body.nameOfOrganisation;
     const addressl1 = req.body.addressl1;
     const addressl2 = req.body.addressl2;
@@ -34,7 +32,23 @@ exports.postRegistrationForm = (req, res, next) => {
     const panNumberOfOrganization = req.body.panNumberOfOrganization;
 
     const form = new RegistrationForm({
+        cstatus: status,
         category: category,
+        type: category,
+        typeOfApplicant: typeOfApplicant,
+        sidmMemberShipNumber: sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: otherAssociationMemberShipNumber,
+        gstinOfOrganization: gstinOfOrganization,
+        dateOfOrganization: dateOfOrganization,
+        financialStatement1: financialStatement1,
+        financialStatement2: financialStatement2,
+        financialStatement3: financialStatement3,
+        aboutCompany: aboutCompany,
+        achievementsToJustifyApplication: achievementsToJustifyApplication,
+        campareAchivement: campareAchivement,
+        documentsOfProduct: documentsOfProduct,
+        appreciationDocuments: appreciationDocuments,
+        briefCompany: briefCompany,
         addressl1: addressl1,
         addressl2: addressl2,
         state: state,

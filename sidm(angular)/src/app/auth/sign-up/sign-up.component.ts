@@ -36,13 +36,13 @@ export class SignUpComponent implements OnInit {
     this.registrationForm = this.formBuilder.group({
       category: ['', Validators.required],
       typeOfApplicant: ['', Validators.required],
-      nameOfOrganisation: ['', Validators.required],
-      addressl1: ['', Validators.required],
+      nameOfOrganisation: [''],
+      addressl1: [''],
       addressl2: [''],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      pincode: ['', [Validators.required, Validators.pattern('^[1-9][0-9]{5}$')]],
-      name: ['', Validators.required],
+      state: [''],
+      city: [''],
+      pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
+      name: [''],
       designation: [''],
       mobileNumber: ['', [Validators.required, CellNumValidation]],
       confirmMobileNumber: ['', [Validators.required, CellNumValidation,]],
@@ -131,45 +131,63 @@ export class SignUpComponent implements OnInit {
     }
     return true;
   }
-
-  onSubmit(type: string) {
+  savedraft(type: String) {
+    this.registrationForm.get('category')?.clearValidators()
+    this.registrationForm.get('category')?.updateValueAndValidity()
+    this.registrationForm.get('typeOfApplicant')?.clearValidators()
+    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.registrationForm.get('gstinOfOrganization')?.clearValidators()
+    this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('nameOfOrganisation')?.clearValidators()
+    this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.registrationForm.get('addressl1')?.clearValidators()
+    this.registrationForm.get('addressl1')?.updateValueAndValidity()
+    this.registrationForm.get('state')?.clearValidators()
+    this.registrationForm.get('state')?.updateValueAndValidity()
+    this.registrationForm.get('city')?.clearValidators()
+    this.registrationForm.get('city')?.updateValueAndValidity()
+    this.registrationForm.get('pincode')?.clearValidators()
+    this.registrationForm.get('pincode')?.updateValueAndValidity()
+    this.registrationForm.get('name')?.clearValidators()
+    this.registrationForm.get('name')?.updateValueAndValidity()
     if (this.registrationForm.valid) {
       if (this.registrationForm.value.email === this.registrationForm.value.confirmEmail && this.registrationForm.value.mobileNumber === this.registrationForm.value.confirmMobileNumber && this.registrationForm.value.panNumberOfOrganization === this.registrationForm.value.confirmPanNumberOfOrganization) {
         this.httpService.postregistrationForm({
-      category: this.registrationForm.value.category,
-      typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-      nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
-      addressl1: this.registrationForm.value.addressl1,
-      addressl2: this.registrationForm.value.addressl2,
-      state: this.registrationForm.value.state,
-      city: this.registrationForm.value.city,
-      pincode: this.registrationForm.value.pincode,
-      name: this.registrationForm.value.name,
-      designation: this.registrationForm.value.designation,
-      mobileNumber: this.registrationForm.value.mobileNumber,
-      email: this.registrationForm.value.email,
-      sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
-      otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
-      panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
-      gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
-      dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-      financialStatement1: this.registrationForm.value.financialStatement1,
-      financialStatement2: this.registrationForm.value.financialStatement2,
-      financialStatement3: this.registrationForm.value.financialStatement2,
-      aboutCompany: this.registrationForm.value.financialStatement3,
-      achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
-      campareAchivement: this.registrationForm.value.campareAchivement,
-      documentGstCertificate: this.documentGstCertificate,
-      documentsOfProduct: this.documentsOfProduct,
-      appreciationDocuments: this.appreciationDocuments,
-      briefCompany: this.registrationForm.value.briefCompany,
+          category: this.registrationForm.value.category,
+          typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+          nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+          addressl1: this.registrationForm.value.addressl1,
+          addressl2: this.registrationForm.value.addressl2,
+          state: this.registrationForm.value.state,
+          city: this.registrationForm.value.city,
+          pincode: this.registrationForm.value.pincode,
+          name: this.registrationForm.value.name,
+          designation: this.registrationForm.value.designation,
+          mobileNumber: this.registrationForm.value.mobileNumber,
+          email: this.registrationForm.value.email,
+          sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+          otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
+          panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
+          gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
+          dateOfOrganization: this.registrationForm.value.dateOfOrganization,
+          financialStatement1: this.registrationForm.value.financialStatement1,
+          financialStatement2: this.registrationForm.value.financialStatement2,
+          financialStatement3: this.registrationForm.value.financialStatement2,
+          aboutCompany: this.registrationForm.value.financialStatement3,
+          achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
+          campareAchivement: this.registrationForm.value.campareAchivement,
+          documentGstCertificate: this.documentGstCertificate,
+          documentsOfProduct: this.documentsOfProduct,
+          appreciationDocuments: this.appreciationDocuments,
+          briefCompany: this.registrationForm.value.briefCompany,
+          status: type
 
-    }).subscribe(data => {
-      this.registrationForm.reset();
-      this.toast.success(' Successfully Applied');
-      this.router.navigate(['/thankYou'])
-      // this.toastr.success('successfully applied');
-    })
+        }).subscribe(data => {
+          this.registrationForm.reset();
+          this.toast.success(' Successfully Applied');
+          this.router.navigate(['/thankYou'])
+          // this.toastr.success('successfully applied');
+        })
       }
       else {
         if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
@@ -191,6 +209,98 @@ export class SignUpComponent implements OnInit {
 
       this.submitted = true;
       this.toast.error('Please Fill Required Field');
+    }
+
+  }
+
+  finalSubmit(type: string) {
+    this.registrationForm.get('category')?.setValidators(Validators.required)
+    this.registrationForm.get('category')?.updateValueAndValidity()
+    this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.registrationForm.get('gstinOfOrganization')?.setValidators(Validators.required)
+    this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('nameOfOrganisation')?.setValidators(Validators.required)
+    this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.registrationForm.get('addressl1')?.setValidators(Validators.required)
+    this.registrationForm.get('addressl1')?.updateValueAndValidity()
+    this.registrationForm.get('state')?.setValidators(Validators.required)
+    this.registrationForm.get('state')?.updateValueAndValidity()
+    this.registrationForm.get('city')?.setValidators(Validators.required)
+    this.registrationForm.get('city')?.updateValueAndValidity()
+    this.registrationForm.get('pincode')?.setValidators(Validators.required)
+    this.registrationForm.get('pincode')?.updateValueAndValidity()
+    this.registrationForm.get('name')?.setValidators(Validators.required)
+    this.registrationForm.get('name')?.updateValueAndValidity()
+    if (this.registrationForm.valid) {
+      if (this.registrationForm.value.email === this.registrationForm.value.confirmEmail && this.registrationForm.value.mobileNumber === this.registrationForm.value.confirmMobileNumber && this.registrationForm.value.panNumberOfOrganization === this.registrationForm.value.confirmPanNumberOfOrganization) {
+        this.httpService.postregistrationForm({
+          category: this.registrationForm.value.category,
+          typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+          nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+          addressl1: this.registrationForm.value.addressl1,
+          addressl2: this.registrationForm.value.addressl2,
+          state: this.registrationForm.value.state,
+          city: this.registrationForm.value.city,
+          pincode: this.registrationForm.value.pincode,
+          name: this.registrationForm.value.name,
+          designation: this.registrationForm.value.designation,
+          mobileNumber: this.registrationForm.value.mobileNumber,
+          email: this.registrationForm.value.email,
+          sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+          otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
+          panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
+          gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
+          dateOfOrganization: this.registrationForm.value.dateOfOrganization,
+          financialStatement1: this.registrationForm.value.financialStatement1,
+          financialStatement2: this.registrationForm.value.financialStatement2,
+          financialStatement3: this.registrationForm.value.financialStatement2,
+          aboutCompany: this.registrationForm.value.financialStatement3,
+          achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
+          campareAchivement: this.registrationForm.value.campareAchivement,
+          documentGstCertificate: this.documentGstCertificate,
+          documentsOfProduct: this.documentsOfProduct,
+          appreciationDocuments: this.appreciationDocuments,
+          briefCompany: this.registrationForm.value.briefCompany,
+          status: type
+
+        }).subscribe(data => {
+          this.registrationForm.reset();
+          this.toast.success(' Successfully Applied');
+          this.router.navigate(['/thankYou'])
+          // this.toastr.success('successfully applied');
+        })
+      }
+      else {
+        if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
+          this.mobileMatch = true
+          this.toast.error('Confirm Mobile number does not match');
+        }
+        if (this.registrationForm.value.email !== this.registrationForm.value.confirmEmail) {
+          this.emailMatch = true
+          this.toast.error('Confirm Email does not match');
+        }
+        if (this.registrationForm.value.panNumberOfOrganization !== this.registrationForm.value.confirmPanNumberOfOrganization) {
+          this.panMatch = true
+          this.toast.error('Pan number does not match');
+        }
+      }
+    }
+    else {
+      console.log(this.registrationForm);
+
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
+
+  }
+
+  onSubmit(type: string) {
+    if (type === 'submit') {
+      this.finalSubmit(type)
+    }
+    else if (type === 'Draft') {
+      this.savedraft(type)
     }
 
   }

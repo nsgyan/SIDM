@@ -233,7 +233,7 @@
                                             Please Confirm  Mobile Number 
 
                                         </span>       
-                                        <span style="color: red;" *ngIf="registrationForm.get('confirmMobileNumber').hasError('cellNumNotValid') && !registrationForm.get('mobileNumber').hasError('required')"> 
+                                        <span style="color: red;" *ngIf="registrationForm.get('confirmMobileNumber').hasError('cellNumNotValid') && !registrationForm.get('confirmMobileNumber').hasError('required')"> 
                                             Please enter a valid mobile number
                                           </span>   
 
@@ -479,8 +479,8 @@
 
                             </div>
                             <div class="col-lg-12 mt-5 mb-5 text-center">
-                                <button type="submit" class="NewBtn mx-2"  (click)="onSubmit('submit')"  ><span>Submit</span></button>
-                <button class="save-btn" target="blanck" (click)="onSubmit('Draft')"  ><span>Save Draft</span></button>
+                                <button type="submit" class="NewBtn mx-2"  (click)="finalSubmit('submit')"  ><span>Submit</span></button>
+                <button class="save-btn" target="blanck" (click)="savedraft('Draft')"  ><span>Save Draft</span></button>
                             </div>
                         </div>
                     </div>
