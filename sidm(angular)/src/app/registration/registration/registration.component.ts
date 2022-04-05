@@ -122,23 +122,48 @@ export class RegistrationComponent implements OnInit {
 
 
   checkemail(event: any) {
-
     const email = event.target.value
-    console.log('email', email);
-
     if (email) {
+      console.log(email);
+      this.httpService.checkEmail({ email: email })
+        .subscribe((data: any) => {
+          if (email === data.email) {
+            this.registrationForm.get('email')?.setErrors({ isExist: true });
+          }
 
-      console.log('function');
+        })
 
-      this.httpService.checkEmail({
-        "email": "nivas4837@gmail.com"
-      }).subscribe(data => {
+    }
+  }
+  checkMobile(event: any) {
+    const mobileNumber = event.target.value
+    if (mobileNumber) {
+      console.log(mobileNumber);
+      this.httpService.checkMobile({ mobileNumber: mobileNumber })
+        .subscribe((data: any) => {
         console.log(data);
+
+          if (mobileNumber === data.mobileNumber) {
+            this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
+          }
 
       })
 
     }
+  }
+  checkPan(event: any) {
+    const panNumberOfOrganization = event.target.value
+    if (panNumberOfOrganization) {
+      console.log(panNumberOfOrganization);
+      this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
+        .subscribe((data: any) => {
+          if (panNumberOfOrganization === data.panNumberOfOrganization) {
+            this.registrationForm.get('panNumberOfOrganization')?.setErrors({ isExist: true });
+          }
 
+        })
+
+    }
   }
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
@@ -161,6 +186,7 @@ export class RegistrationComponent implements OnInit {
     }
     return true;
   }
+
   savedraft(type: String) {
     this.registrationForm.get('typeOfApplicant')?.clearValidators()
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
@@ -229,6 +255,7 @@ export class RegistrationComponent implements OnInit {
     }
 
   }
+
   confirmEmail(event: any,) {
     console.log(event.target.value);
     console.log(this.registrationForm.value.email);
@@ -238,6 +265,7 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.get('confirmEmail')?.setErrors({ confirmEmail: true })
     }
   }
+
   confirmmobile(event: any,) {
     console.log(event.target.value);
     console.log(this.registrationForm.value.mobileNumber);
@@ -247,6 +275,7 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.get('confirmMobileNumber')?.setErrors({ confirmMobileNumber: true })
     }
   }
+
   confirmPan(event: any,) {
     console.log(event.target.value);
     console.log(this.registrationForm.value.panNumberOfOrganization);
@@ -338,7 +367,7 @@ export class RegistrationComponent implements OnInit {
 
   }
   registerdUser() {
-    this.router.navigate(['/member'])
+    this.router.navigate(['/login/member'])
   }
 
 }

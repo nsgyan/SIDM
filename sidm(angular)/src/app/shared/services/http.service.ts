@@ -35,8 +35,15 @@ export class HttpService {
   }
 
   checkEmail(data: any) {
-    console.log('hello');
-
-    return this.httpService.get(Globals.route.checkEmail, data)
+    // console.log(data);
+    return this.httpService.post(Globals.route.checkEmail, data)
+  }
+  checkMobile(data: any) {
+    // console.log(data);
+    return this.httpService.post(Globals.route.checkMobile, data)
+  }
+  checkPan(data: any) {
+    // console.log(data);
+    return this.httpService.post(Globals.route.checkPan, data)
   }
 }

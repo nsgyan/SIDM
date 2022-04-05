@@ -8,7 +8,9 @@ export class Globals {
         'memberdata': Globals.server + 'sidm/memberdata',
         'getStateList': Globals.server + 'user/getStateList',
         'update': Globals.server + 'sidm/update',
-        'checkEmail': Globals.server + 'user/checkemail'
+        'checkEmail': Globals.server + 'user/checkemail',
+        'checkMobile': Globals.server + 'user/checkMobile',
+        'checkPan': Globals.server + 'user/checkPan'
 
     };
 }

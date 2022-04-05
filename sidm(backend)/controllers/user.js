@@ -44,10 +44,28 @@ exports.getState = (req, res, next) => {
 
 }
 
-exports.getEmail = (req, res) => {
-    console.log(req.body);
+exports.getEmail = (req, res, next) => {
+    console.log('email', req.body);
     const email = req.body.email
     Register.findOne({ email: email })
+        .then(data => {
+            res.status(200).send(data)
+        })
+}
+exports.getMobile = (req, res, next) => {
+    // console.log(req.body);
+    const mobileNumber = req.body.mobileNumber
+    console.log('mobile.', mobileNumber);
+    Register.findOne({ mobileNumber: mobileNumber })
+        .then(data => {
+            mobileNumber
+            res.status(200).send(data)
+        })
+}
+exports.getPan = (req, res, next) => {
+    console.log('pan', req.body);
+    const panNumberOfOrganization = req.body.panNumberOfOrganization
+    Register.findOne({ panNumberOfOrganization: panNumberOfOrganization })
         .then(data => {
             res.status(200).send(data)
         })

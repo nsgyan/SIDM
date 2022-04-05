@@ -6,7 +6,9 @@ router.post('/addAdmin', User.addAdminUser);
 router.post('/login', User.loginVerify);
 
 router.get('/getStateList', User.getState);
-router.get('/checkemail', User.getEmail);
+router.post('/checkemail', User.getEmail);
+router.post('/checkMobile', User.getMobile);
+router.post('/checkPan', User.getPan);
 
 
 
