@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://localhost:3002/'
+  serverUrl: 'http://sidm.evalue8.info/'
 };
