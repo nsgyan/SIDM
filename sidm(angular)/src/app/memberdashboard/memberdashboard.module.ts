@@ -5,11 +5,13 @@ import { MemberdashboardRoutingModule } from './memberdashboard-routing.module';
 import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
 import { LandinigPageModule } from '../landinig-page/landinig-page.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MemberLoginComponent } from './member-login/member-login.component';
 
 
 @NgModule({
   declarations: [
-    MemberDashboardComponent
+    MemberDashboardComponent,
+    MemberLoginComponent
   ],
   imports: [
     CommonModule,

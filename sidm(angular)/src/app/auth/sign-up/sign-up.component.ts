@@ -54,9 +54,10 @@ export class SignUpComponent implements OnInit {
       confirmPanNumberOfOrganization: ['', [Validators.required, panValidation, CrossPanValidation]],
       gstinOfOrganization: [''],
       dateOfOrganization: [''],
-      financialStatement1: [''],
-      financialStatement2: [''],
-      financialStatement3: [''],
+      vendorOrganization1: [''],
+      vendorOrganization2: [''],
+      vendorOrganization3: [''],
+      vendorOrganization4: [''],
       aboutCompany: [''],
       achievementsToJustifyApplication: [''],
       campareAchivement: [''],
@@ -80,7 +81,14 @@ export class SignUpComponent implements OnInit {
   changeListener($event: any, form: any) {
     let file = $event.target.files;
     console.log($event.target.files);
-    // this.readThis($event.target, form);
+    if (parseInt(file[0].size) > 5242880) {
+      this.registrationForm.get(form)?.reset()
+      this.registrationForm.get(form)?.updateValueAndValidity()
+      this.toast.error('file to large')
+    }
+    else {
+      this.readThis($event.target, form);
+    }
   }
 
   readThis(inputValue: any, form: any): void {
@@ -132,10 +140,6 @@ export class SignUpComponent implements OnInit {
     return true;
   }
   savedraft(type: String) {
-    this.registrationForm.get('category')?.clearValidators()
-    this.registrationForm.get('category')?.updateValueAndValidity()
-    this.registrationForm.get('typeOfApplicant')?.clearValidators()
-    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.registrationForm.get('gstinOfOrganization')?.clearValidators()
     this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.registrationForm.get('nameOfOrganisation')?.clearValidators()
@@ -170,10 +174,11 @@ export class SignUpComponent implements OnInit {
           panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
           gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
           dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-          financialStatement1: this.registrationForm.value.financialStatement1,
-          financialStatement2: this.registrationForm.value.financialStatement2,
-          financialStatement3: this.registrationForm.value.financialStatement2,
-          aboutCompany: this.registrationForm.value.financialStatement3,
+          vendorOrganization1: this.registrationForm.value.vendorOrganization1,
+          vendorOrganization2: this.registrationForm.value.vendorOrganization2,
+          vendorOrganization3: this.registrationForm.value.vendorOrganization3,
+          vendorOrganization4: this.registrationForm.value.vendorOrganization4,
+          aboutCompany: this.registrationForm.value.vendorOrganization3,
           achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
           campareAchivement: this.registrationForm.value.campareAchivement,
           documentGstCertificate: this.documentGstCertificate,
@@ -187,7 +192,11 @@ export class SignUpComponent implements OnInit {
           this.toast.success(' Successfully Applied');
           this.router.navigate(['/thankYou'])
           // this.toastr.success('successfully applied');
-        })
+        },
+          error => {
+            this.toast.error('Email or Mobile or Pan  already exists');
+          }
+        )
       }
       else {
         if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
@@ -252,10 +261,11 @@ export class SignUpComponent implements OnInit {
           panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
           gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
           dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-          financialStatement1: this.registrationForm.value.financialStatement1,
-          financialStatement2: this.registrationForm.value.financialStatement2,
-          financialStatement3: this.registrationForm.value.financialStatement2,
-          aboutCompany: this.registrationForm.value.financialStatement3,
+          vendorOrganization1: this.registrationForm.value.vendorOrganization1,
+          vendorOrganization2: this.registrationForm.value.vendorOrganization2,
+          vendorOrganization3: this.registrationForm.value.vendorOrganization3,
+          vendorOrganization4: this.registrationForm.value.vendorOrganization4,
+          aboutCompany: this.registrationForm.value.vendorOrganization3,
           achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
           campareAchivement: this.registrationForm.value.campareAchivement,
           documentGstCertificate: this.documentGstCertificate,
@@ -269,6 +279,10 @@ export class SignUpComponent implements OnInit {
           this.toast.success(' Successfully Applied');
           this.router.navigate(['/thankYou'])
           // this.toastr.success('successfully applied');
+        }, err => {
+          console.log(err);
+          this.toast.error(err);
+
         })
       }
       else {
@@ -304,25 +318,8 @@ export class SignUpComponent implements OnInit {
     }
 
   }
-  memberlogin() {
-    console.log(this.memberform);
-    if (this.memberform.valid) {
-    this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber }).subscribe((data: any) => {
-      this.localStorage.set('memberUserID', data._id)
-      this.router.navigate(['/memberDashboard'])
-      this.toast.success('Member Successfully login!');
-    }, err => {
-      this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');
-    })
-    }
-    else {
-      this.submitted = true;
-      this.toast.error('Please Fill Required Field');
-    }
-  }
-  reset() {
-    this.memberform.reset()
-    this.submitted = false
+  registerdUser() {
+    this.router.navigate(['/member'])
   }
 
 }

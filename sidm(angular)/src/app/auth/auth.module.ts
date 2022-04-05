@@ -31,6 +31,8 @@ import { ThankyouPageComponent } from './thankyou-page/thankyou-page.component';
     NgxSpinnerModule,
     MatSnackBarModule
 
-  ]
+  ],
+  exports: [LoginHeaderComponent,
+    LoginFooterComponent,]
 })
 export class AuthModule { }

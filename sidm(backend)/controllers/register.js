@@ -1,3 +1,4 @@
+const registrationForm = require('../models/registrationForm');
 const RegistrationForm = require('../models/registrationForm')
 
 exports.postRegistrationForm = (req, res, next) => {
@@ -9,9 +10,10 @@ exports.postRegistrationForm = (req, res, next) => {
     const otherAssociationMemberShipNumber = req.body.otherAssociationMemberShipNumber;
     const gstinOfOrganization = req.body.gstinOfOrganization;
     const dateOfOrganization = req.body.dateOfOrganization;
-    const financialStatement1 = req.body.financialStatement1;
-    const financialStatement2 = req.body.financialStatement2;
-    const financialStatement3 = req.body.financialStatement3;
+    const vendorOrganization1 = req.body.vendorOrganization1;
+    const vendorOrganization2 = req.body.vendorOrganization2;
+    const vendorOrganization3 = req.body.vendorOrganization3;
+    const vendorOrganization4 = req.body.vendorOrganization4;
     const aboutCompany = req.body.aboutCompany;
     const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
     const campareAchivement = req.body.compareAchivement;
@@ -30,44 +32,60 @@ exports.postRegistrationForm = (req, res, next) => {
     const email = req.body.email;
     const documentGstCertificate = req.body.documentGstCertificate;
     const panNumberOfOrganization = req.body.panNumberOfOrganization;
+    registrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: panNumberOfOrganization })
+        .then(data => {
+            if (data) {
+                if (data.mobileNumber === mobileNumber) {
+                    res.status(409).send('mobile number already exists')
+                }
+                else if (data.panNumberOfOrganization === panNumberOfOrganization) {
+                    res.status(409).send('Pan Number Of Organization already exists')
+                }
+                else {
+                    res.status(409).send('email already exists')
+                }
+            }
+            else {
+                const form = new RegistrationForm({
+                    status: status,
+                    category: category,
+                    typeOfApplicant: typeOfApplicant,
+                    sidmMemberShipNumber: sidmMemberShipNumber,
+                    otherAssociationMemberShipNumber: otherAssociationMemberShipNumber,
+                    gstinOfOrganization: gstinOfOrganization,
+                    dateOfOrganization: dateOfOrganization,
+                    financialStatement1: financialStatement1,
+                    financialStatement2: financialStatement2,
+                    financialStatement3: financialStatement3,
+                    aboutCompany: aboutCompany,
+                    achievementsToJustifyApplication: achievementsToJustifyApplication,
+                    campareAchivement: campareAchivement,
+                    documentsOfProduct: documentsOfProduct,
+                    appreciationDocuments: appreciationDocuments,
+                    briefCompany: briefCompany,
+                    addressl1: addressl1,
+                    addressl2: addressl2,
+                    state: state,
+                    city: city,
+                    pincode: pincode,
+                    name: name,
+                    designation: designation,
+                    mobileNumber: mobileNumber,
+                    email: email,
+                    nameOfOrganisation: nameOfOrganisation,
+                    documentGstCertificate: documentGstCertificate,
+                    panNumberOfOrganization: panNumberOfOrganization,
+                })
+                form.save()
+                    .then(result => {
+                        res.status(200).send(result)
+                        console.log(result);
+                    }).catch(err => {
 
-    const form = new RegistrationForm({
-        status: status,
-        category: category,
-        typeOfApplicant: typeOfApplicant,
-        sidmMemberShipNumber: sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: otherAssociationMemberShipNumber,
-        gstinOfOrganization: gstinOfOrganization,
-        dateOfOrganization: dateOfOrganization,
-        financialStatement1: financialStatement1,
-        financialStatement2: financialStatement2,
-        financialStatement3: financialStatement3,
-        aboutCompany: aboutCompany,
-        achievementsToJustifyApplication: achievementsToJustifyApplication,
-        campareAchivement: campareAchivement,
-        documentsOfProduct: documentsOfProduct,
-        appreciationDocuments: appreciationDocuments,
-        briefCompany: briefCompany,
-        addressl1: addressl1,
-        addressl2: addressl2,
-        state: state,
-        city: city,
-        pincode: pincode,
-        name: name,
-        designation: designation,
-        mobileNumber: mobileNumber,
-        email: email,
-        nameOfOrganisation: nameOfOrganisation,
-        documentGstCertificate: documentGstCertificate,
-        panNumberOfOrganization: panNumberOfOrganization,
-    })
-    form.save()
-        .then(result => {
-            res.status(200).send(result)
-            console.log(result);
-        }).catch(err => {
+                        res.send(err)
+                    })
+            }
 
-            res.send(err)
         })
 
 }
@@ -134,9 +152,9 @@ exports.updateFrom = (req, res, next) => {
         otherAssociationMemberShipNumber: req.body.otherAssociationMemberShipNumber,
         gstinOfOrganization: req.body.gstinOfOrganization,
         dateOfOrganization: req.body.dateOfOrganization,
-        financialStatement1: req.body.financialStatement1,
-        financialStatement2: req.body.financialStatement2,
-        financialStatement3: req.body.financialStatement3,
+        vendorOrganization1: req.body.vendorOrganization1,
+        vendorOrganization2: req.body.vendorOrganization2,
+        vendorOrganization3: req.body.vendorOrganization3,
         aboutCompany: req.body.aboutCompany,
         achievementsToJustifyApplication: req.body.achievementsToJustifyApplication,
         campareAchivement: req.body.compareAchivement,

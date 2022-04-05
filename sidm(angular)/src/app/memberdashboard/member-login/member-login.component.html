@@ -1,0 +1,218 @@
+
+ <header class="marathon-header-fixed header-fixed">
+    <a href="javascript:void(0)" class="nav-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <div class="top-panel">
+        <div class="container">
+            <a href="javascript:void(0)" class="logo"><img src="assets/img/New_img/logo.png" alt="logo"></a>
+            <a href="registration.html" class="NewBtn"><span>Registration</span></a>
+        </div>
+    </div>
+    <div class="header-nav">
+        <div class="container">
+            <div class="header-nav-cover">
+                <nav class="nav-menu menu">
+                    <ul class="nav-list">
+                        <li class="active-page">
+                            <a href="index.html">home</a>
+                        </li>
+                        <li><a href="#about">about sidm</a></li>
+                        <li><a href="#Objective">OBJECTIVE</a></li>
+                        <li><a href="#categories">categories</a></li>
+                        <li><a href="#committee">AWARDS COMMITTEE</a></li>
+                        <li><a href="#process">process</a></li>
+                        <li><a href="#testimonial">testimonials</a></li>
+                        <li><a href="#faq">faqs</a></li>
+                        <li><a href="#award2020">AWARDS 2020</a></li>
+                        <li><a href="#footer">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</header>
+<!-- =============== HEADER END =============== -->
+
+<!--=================== PAGE-TITLE ===================-->
+<div class="page-title" style="background: #175AA5;">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Registration</li>
+            </ul>
+        </div>
+        <h1 class="title">Registration</h1>
+    </div>
+</div>
+<!-- <app-login-header></app-login-header> -->
+
+<section class="registrationForm">
+    <div class="maintitle mt-5">
+        <div class="container">
+            <p class="font-weight-bold">Please read the brochure carefully before applying.
+                <a href="assets/img/New_img/SIDM-brochure-2022.pdf" class="brochure" target="blanck">Click Here</a>
+            </p>
+            <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p>
+            <div class="bb mt-4 mb-4"></div>
+        </div>
+    </div>
+
+    <div class="formBody">
+        <div class="container">
+            <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="" role="tab"
+                        aria-controls="pills-home" aria-selected="true">Apply Online</a>
+                </li>
+               
+            </ul> -->
+            <button class="NewBtn mb-5" (click)="applyNow()">
+                Apply Now
+            </button>
+            <form [formGroup]="memberform">
+                <div class="formPart_1">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h5 class="mt-1 mb-3">Email</h5>
+                            <input formControlName="email" type="text">
+                            <div *ngIf="submitted||memberform.controls['email'].invalid &&  memberform.controls['email'].touched">         
+                                <span *ngIf="memberform.get('email').hasError('required')" style="color: red;">
+                                    E-Mail Address <strong>required</strong>
+                                </span>                        
+                        </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 class="mt-1 mb-3">Mobile Number</h5>
+                            <input formControlName="mobileNumber" type="number">
+                            <div *ngIf=" submitted||memberform.controls['mobileNumber'].invalid &&  memberform.controls['mobileNumber'].touched">         
+                                <span *ngIf="memberform.get('mobileNumber').hasError('required')" style="color: red;">
+                                    Mobile Number <strong>required</strong>
+                                </span>                        
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h5 class="mt-3 mb-3">Pan Number</h5>
+                            <input formControlName="panNumber" type="text">
+                            <div *ngIf=" submitted|| memberform.controls['panNumber'].invalid &&  memberform.controls['panNumber'].touched">         
+                                <span *ngIf="memberform.get('panNumber').hasError('required')" style="color: red;">
+                                    Pan Number <strong>required</strong>
+                                </span>                        
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <!-- <re-captcha
+                                siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha> -->
+                        </div>
+
+                    </div>
+                </div>
+               
+            </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 mt-5 mb-5 text-center">
+                        <button type="submit" class="NewBtn" (click)="memberlogin()"><span>Submit</span></button>
+                        <button class="save-btn ml-2" target="blanck" (click)="reset()"><span>Reset</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+       
+
+
+<!-- <app-login-footer></app-login-footer> -->
+
+
+<footer id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-cont col-12 col-sm-6 col-lg-4">
+				<a href="index.html" class="logo"><img src="assets/img/New_img/logo.png" alt="logo"></a>
+				<p>
+					<i aria-hidden="true" class="fas fa-home"></i>
+					Society of Indian Defence Manufacturers
+					C/o Confederation of Indian Industry
+					The Mantosh Sondhi Centre
+					23, Institutional Area, Lodi Road,
+					New Delhi 110 003, India
+				</p>
+				<ul class="footer-contacts">
+					<li class="footer-phone">
+						<i aria-hidden="true" class="fas fa-phone-alt"></i>
+						<a href="tel:+91 11 45771000">+91 11 45771000</a>
+						<span> / </span>
+						<a href="tel:24629994">24629994 – 7</a>
+					</li>
+					<li class="footer-email">
+						<i aria-hidden="true" class="fas fa-envelope"></i>
+						<a href="mailto:membership@sidm.in" class="mt-2">membership@sidm.in</a>
+					</li>
+				</ul>
+			</div>
+			<div class="footer-item-link col-12 col-sm-6 col-lg-4">
+				<!-- <div class="footer-link">
+					<h5>Awards Tweets</h5>
+					<ul class="footer-list">
+						<li><a href="https://twitter.com/SIDMIndia/status/1443187020822503428"
+								target="blanck">https://twitter.com/SIDMIndia/status/1443187020<br />822503428</a>
+						</li>
+						<li><a
+								href="https://twitter.com/DefencePRO_Guj/status/1442806669461782529">https://twitter.com/DefencePRO_Guj/status/14428066694<br />61782529</a>
+						</li>
+						<li><a
+								href="https://twitter.com/SIDMIndia/status/1442841694265745410">https://twitter.com/SIDMIndia/status/1442841694265745410</a>
+						</li>
+						<li><a
+								href="https://twitter.com/rajnathsingh/status/1442823101767553037">https://twitter.com/rajnathsingh/status/14428231017<br />67553037</a>
+						</li>
+						<li><a
+								href="https://twitter.com/DefProdnIndia/status/1442823671563755524">https://twitter.com/DefProdnIndia/status/1442823671563<br />755524</a>
+						</li>
+						<li><a
+								href="https://twitter.com/SpokespersonMoD/status/1442805427549270019">https://twitter.com/SpokespersonMoD/status/1442805427549<br />270019</a>
+						</li>
+					</ul>
+				</div> -->
+				<a class="twitter-timeline" data-height="400" data-theme="dark"
+					href="https://twitter.com/SIDMIndia?ref_src=twsrc%5Etfw">Tweets by SIDMIndia</a>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+			<div class="footer-subscribe col-12 col-sm-6 col-lg-4">
+				<h5>Subscribe to our newsletter. Stay up to date with our latest news and updates.</h5>
+				<form class="subscribe-form">
+					<input class="inp-form" type="email" name="subscribe" placeholder="E-mail">
+					<button class="btn-form" type="submit"><i class="fas fa-paper-plane"></i></button>
+				</form>
+				<p>By clicking the button you agree to the
+					<a href="javascript:void(0)" target="_blank">Privacy
+						Policy</a> and
+					<a href="javascript:void(0)" target="_blank">Terms and Conditions</a>
+				</p>
+				<p>Made with love by Team <a href="https://troology.in/demo/troology" target="_blank"> TROOLOGY</a>
+				</p>
+				<div class="footer-copyright"><a target="_blank" href="javascript:void(0)">© SIDM </a>. All Rights
+					Reserved
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--================== FOOTER END ==================-->
+
+<!--=================== TO TOP ===================-->
+<a class="to-top" href="#home">
+	<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+</a>
