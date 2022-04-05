@@ -13,6 +13,6 @@ export class ThankYouPageComponent implements OnInit {
   }
 
   registerdUser() {
-    this.router.navigate(['/member'])
+    this.router.navigate(['/login/member'])
   }
 }

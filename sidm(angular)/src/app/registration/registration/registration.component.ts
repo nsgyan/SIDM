@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Event, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CellNumValidation, panValidation, CrossPanValidation } from 'src/app/shared/services/custom-validator.service';
+import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
     this.getState()
     this.registrationForm = this.formBuilder.group({
       category: ['', Validators.required],
-      typeOfApplicant: ['', Validators.required],
+      typeOfApplicant: [''],
       nameOfOrganisation: [''],
       addressl1: [''],
       addressl2: [''],
@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
       mobileNumber: ['', [Validators.required, CellNumValidation]],
       confirmMobileNumber: ['', [Validators.required, CellNumValidation,]],
       email: ['', [Validators.required, Validators.email]],
-      confirmEmail: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', [Validators.required, Validators.email, CrossEmailValidation]],
       sidmMemberShipNumber: [''],
       otherAssociationMemberShipNumber: [''],
       panNumberOfOrganization: ['', [Validators.required, panValidation]],
@@ -120,15 +120,19 @@ export class RegistrationComponent implements OnInit {
       })
   }
 
-  checkemail(event: any) {
-    // console.log(event.target.value);
 
-    const email = event.traget?.value
+  checkemail(event: any) {
+
+    const email = event.target.value
+    console.log('email', email);
+
     if (email) {
-      const data = { email: email }
+
       console.log('function');
 
-      this.httpService.checkEmail(data).subscribe(data => {
+      this.httpService.checkEmail({
+        "email": "nivas4837@gmail.com"
+      }).subscribe(data => {
         console.log(data);
 
       })
@@ -158,6 +162,8 @@ export class RegistrationComponent implements OnInit {
     return true;
   }
   savedraft(type: String) {
+    this.registrationForm.get('typeOfApplicant')?.clearValidators()
+    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.registrationForm.get('gstinOfOrganization')?.clearValidators()
     this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.registrationForm.get('nameOfOrganisation')?.clearValidators()
@@ -173,63 +179,47 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
     if (this.registrationForm.valid) {
-      if (this.registrationForm.value.email === this.registrationForm.value.confirmEmail && this.registrationForm.value.mobileNumber === this.registrationForm.value.confirmMobileNumber && this.registrationForm.value.panNumberOfOrganization === this.registrationForm.value.confirmPanNumberOfOrganization) {
-        this.httpService.postregistrationForm({
-          category: this.registrationForm.value.category,
-          typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-          nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
-          addressl1: this.registrationForm.value.addressl1,
-          addressl2: this.registrationForm.value.addressl2,
-          state: this.registrationForm.value.state,
-          city: this.registrationForm.value.city,
-          pincode: this.registrationForm.value.pincode,
-          name: this.registrationForm.value.name,
-          designation: this.registrationForm.value.designation,
-          mobileNumber: this.registrationForm.value.mobileNumber,
-          email: this.registrationForm.value.email,
-          sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
-          otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
-          panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
-          gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
-          dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-          vendorOrganization1: this.registrationForm.value.vendorOrganization1,
-          vendorOrganization2: this.registrationForm.value.vendorOrganization2,
-          vendorOrganization3: this.registrationForm.value.vendorOrganization3,
-          vendorOrganization4: this.registrationForm.value.vendorOrganization4,
-          aboutCompany: this.registrationForm.value.vendorOrganization3,
-          achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
-          campareAchivement: this.registrationForm.value.campareAchivement,
-          documentGstCertificate: this.documentGstCertificate,
-          documentsOfProduct: this.documentsOfProduct,
-          appreciationDocuments: this.appreciationDocuments,
-          briefCompany: this.registrationForm.value.briefCompany,
-          status: type
+      this.httpService.postregistrationForm({
+        category: this.registrationForm.value.category,
+        typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+        nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+        addressl1: this.registrationForm.value.addressl1,
+        addressl2: this.registrationForm.value.addressl2,
+        state: this.registrationForm.value.state,
+        city: this.registrationForm.value.city,
+        pincode: this.registrationForm.value.pincode,
+        name: this.registrationForm.value.name,
+        designation: this.registrationForm.value.designation,
+        mobileNumber: this.registrationForm.value.mobileNumber,
+        email: this.registrationForm.value.email,
+        sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
+        panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
+        gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
+        dateOfOrganization: this.registrationForm.value.dateOfOrganization,
+        vendorOrganization1: this.registrationForm.value.vendorOrganization1,
+        vendorOrganization2: this.registrationForm.value.vendorOrganization2,
+        vendorOrganization3: this.registrationForm.value.vendorOrganization3,
+        vendorOrganization4: this.registrationForm.value.vendorOrganization4,
+        aboutCompany: this.registrationForm.value.vendorOrganization3,
+        achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
+        campareAchivement: this.registrationForm.value.campareAchivement,
+        documentGstCertificate: this.documentGstCertificate,
+        documentsOfProduct: this.documentsOfProduct,
+        appreciationDocuments: this.appreciationDocuments,
+        briefCompany: this.registrationForm.value.briefCompany,
+        status: type
 
-        }).subscribe(data => {
-          this.registrationForm.reset();
-          this.toast.success(' Successfully Applied');
-          this.router.navigate(['/thankYou'])
-          // this.toastr.success('successfully applied');
-        },
-          error => {
-            this.toast.error('Email or Mobile or Pan  already exists');
-          }
-        )
-      }
-      else {
-        if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
-          this.mobileMatch = true
-          this.toast.error('Confirm Mobile number does not match');
+      }).subscribe(data => {
+        this.registrationForm.reset();
+        this.toast.success(' Successfully Applied');
+        this.router.navigate(['/thankYou'])
+        // this.toastr.success('successfully applied');
+      },
+        error => {
+          this.toast.error('Email or Mobile or Pan  already exists');
         }
-        if (this.registrationForm.value.email !== this.registrationForm.value.confirmEmail) {
-          this.emailMatch = true
-          this.toast.error('Confirm Email does not match');
-        }
-        if (this.registrationForm.value.panNumberOfOrganization !== this.registrationForm.value.confirmPanNumberOfOrganization) {
-          this.panMatch = true
-          this.toast.error('Pan number does not match');
-        }
-      }
+      )
     }
     else {
       console.log(this.registrationForm);
@@ -238,6 +228,33 @@ export class RegistrationComponent implements OnInit {
       this.toast.error('Please Fill Required Field');
     }
 
+  }
+  confirmEmail(event: any,) {
+    console.log(event.target.value);
+    console.log(this.registrationForm.value.email);
+    if (event.target.value !== this.registrationForm.value.email) {
+      console.log(event.target.value);
+      console.log(this.registrationForm.value.email);
+      this.registrationForm.get('confirmEmail')?.setErrors({ confirmEmail: true })
+    }
+  }
+  confirmmobile(event: any,) {
+    console.log(event.target.value);
+    console.log(this.registrationForm.value.mobileNumber);
+    if (event.target.value !== this.registrationForm.value.mobileNumber) {
+      console.log(event.target.value);
+      console.log(this.registrationForm.value.mobileNumber);
+      this.registrationForm.get('confirmMobileNumber')?.setErrors({ confirmMobileNumber: true })
+    }
+  }
+  confirmPan(event: any,) {
+    console.log(event.target.value);
+    console.log(this.registrationForm.value.panNumberOfOrganization);
+    if (event.target.value !== this.registrationForm.value.panNumberOfOrganization) {
+      console.log(event.target.value);
+      console.log(this.registrationForm.value.panNumberOfOrganization);
+      this.registrationForm.get('confirmPanNumberOfOrganization')?.setErrors({ confirmPanNumber: true })
+    }
   }
 
   finalSubmit(type: string) {
@@ -260,63 +277,47 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('name')?.setValidators(Validators.required)
     this.registrationForm.get('name')?.updateValueAndValidity()
     if (this.registrationForm.valid) {
-      if (this.registrationForm.value.email === this.registrationForm.value.confirmEmail && this.registrationForm.value.mobileNumber === this.registrationForm.value.confirmMobileNumber && this.registrationForm.value.panNumberOfOrganization === this.registrationForm.value.confirmPanNumberOfOrganization) {
-        this.httpService.postregistrationForm({
-          category: this.registrationForm.value.category,
-          typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-          nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
-          addressl1: this.registrationForm.value.addressl1,
-          addressl2: this.registrationForm.value.addressl2,
-          state: this.registrationForm.value.state,
-          city: this.registrationForm.value.city,
-          pincode: this.registrationForm.value.pincode,
-          name: this.registrationForm.value.name,
-          designation: this.registrationForm.value.designation,
-          mobileNumber: this.registrationForm.value.mobileNumber,
-          email: this.registrationForm.value.email,
-          sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
-          otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
-          panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
-          gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
-          dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-          vendorOrganization1: this.registrationForm.value.vendorOrganization1,
-          vendorOrganization2: this.registrationForm.value.vendorOrganization2,
-          vendorOrganization3: this.registrationForm.value.vendorOrganization3,
-          vendorOrganization4: this.registrationForm.value.vendorOrganization4,
-          aboutCompany: this.registrationForm.value.vendorOrganization3,
-          achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
-          campareAchivement: this.registrationForm.value.campareAchivement,
-          documentGstCertificate: this.documentGstCertificate,
-          documentsOfProduct: this.documentsOfProduct,
-          appreciationDocuments: this.appreciationDocuments,
-          briefCompany: this.registrationForm.value.briefCompany,
-          status: type
+      this.httpService.postregistrationForm({
+        category: this.registrationForm.value.category,
+        typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+        nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+        addressl1: this.registrationForm.value.addressl1,
+        addressl2: this.registrationForm.value.addressl2,
+        state: this.registrationForm.value.state,
+        city: this.registrationForm.value.city,
+        pincode: this.registrationForm.value.pincode,
+        name: this.registrationForm.value.name,
+        designation: this.registrationForm.value.designation,
+        mobileNumber: this.registrationForm.value.mobileNumber,
+        email: this.registrationForm.value.email,
+        sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
+        panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
+        gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
+        dateOfOrganization: this.registrationForm.value.dateOfOrganization,
+        vendorOrganization1: this.registrationForm.value.vendorOrganization1,
+        vendorOrganization2: this.registrationForm.value.vendorOrganization2,
+        vendorOrganization3: this.registrationForm.value.vendorOrganization3,
+        vendorOrganization4: this.registrationForm.value.vendorOrganization4,
+        aboutCompany: this.registrationForm.value.vendorOrganization3,
+        achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
+        campareAchivement: this.registrationForm.value.campareAchivement,
+        documentGstCertificate: this.documentGstCertificate,
+        documentsOfProduct: this.documentsOfProduct,
+        appreciationDocuments: this.appreciationDocuments,
+        briefCompany: this.registrationForm.value.briefCompany,
+        status: type
 
-        }).subscribe(data => {
-          this.registrationForm.reset();
-          this.toast.success(' Successfully Applied');
-          this.router.navigate(['/thankYou'])
-          // this.toastr.success('successfully applied');
-        }, err => {
-          console.log(err);
-          this.toast.error(err);
+      }).subscribe(data => {
+        this.registrationForm.reset();
+        this.toast.success(' Successfully Applied');
+        this.router.navigate(['/thankYou'])
+        // this.toastr.success('successfully applied');
+      }, err => {
+        console.log(err);
+        this.toast.error(err);
 
-        })
-      }
-      else {
-        if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
-          this.mobileMatch = true
-          this.toast.error('Confirm Mobile number does not match');
-        }
-        if (this.registrationForm.value.email !== this.registrationForm.value.confirmEmail) {
-          this.emailMatch = true
-          this.toast.error('Confirm Email does not match');
-        }
-        if (this.registrationForm.value.panNumberOfOrganization !== this.registrationForm.value.confirmPanNumberOfOrganization) {
-          this.panMatch = true
-          this.toast.error('Pan number does not match');
-        }
-      }
+      })
     }
     else {
       console.log(this.registrationForm);

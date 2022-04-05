@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CpoyPasteDirective } from './services/cpoy-paste.directive';
+import { BlockCopyPasteDirective } from './services/cpoy-paste.directive';
 
 
 
 @NgModule({
   declarations: [
-    CpoyPasteDirective
+    BlockCopyPasteDirective
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [BlockCopyPasteDirective]
 })
 export class SharedModule { }

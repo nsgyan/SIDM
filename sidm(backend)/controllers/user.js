@@ -45,6 +45,7 @@ exports.getState = (req, res, next) => {
 }
 
 exports.getEmail = (req, res) => {
+    console.log(req.body);
     const email = req.body.email
     Register.findOne({ email: email })
         .then(data => {

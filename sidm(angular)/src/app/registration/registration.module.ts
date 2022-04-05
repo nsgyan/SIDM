@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component
     ReactiveFormsModule,
     RecaptchaModule,
     NgxSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SharedModule
   ]
 })
 export class RegistrationModule { }

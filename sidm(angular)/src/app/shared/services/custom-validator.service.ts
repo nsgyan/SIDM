@@ -67,6 +67,9 @@ export function CrossEmailValidation(
   }
 
   if (email && confirmEmail && email.value !== confirmEmail.value) {
+    console.log('hello');
+
+
     return { crossEmailNotValid: 'email\'s don\'t match.' };
   } else {
     return null;
