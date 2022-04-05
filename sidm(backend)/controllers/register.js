@@ -32,9 +32,8 @@ exports.postRegistrationForm = (req, res, next) => {
     const panNumberOfOrganization = req.body.panNumberOfOrganization;
 
     const form = new RegistrationForm({
-        cstatus: status,
+        status: status,
         category: category,
-        type: category,
         typeOfApplicant: typeOfApplicant,
         sidmMemberShipNumber: sidmMemberShipNumber,
         otherAssociationMemberShipNumber: otherAssociationMemberShipNumber,
