@@ -132,10 +132,6 @@ export class SignUpComponent implements OnInit {
     return true;
   }
   savedraft(type: String) {
-    this.registrationForm.get('category')?.clearValidators()
-    this.registrationForm.get('category')?.updateValueAndValidity()
-    this.registrationForm.get('typeOfApplicant')?.clearValidators()
-    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.registrationForm.get('gstinOfOrganization')?.clearValidators()
     this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.registrationForm.get('nameOfOrganisation')?.clearValidators()
@@ -187,7 +183,11 @@ export class SignUpComponent implements OnInit {
           this.toast.success(' Successfully Applied');
           this.router.navigate(['/thankYou'])
           // this.toastr.success('successfully applied');
-        })
+        },
+          error => {
+            this.toast.error(error);
+          }
+        )
       }
       else {
         if (this.registrationForm.value.mobileNumber !== this.registrationForm.value.confirmMobileNumber) {
@@ -269,6 +269,10 @@ export class SignUpComponent implements OnInit {
           this.toast.success(' Successfully Applied');
           this.router.navigate(['/thankYou'])
           // this.toastr.success('successfully applied');
+        }, err => {
+          console.log(err);
+          this.toast.error(err);
+
         })
       }
       else {
