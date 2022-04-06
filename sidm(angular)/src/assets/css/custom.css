@@ -343,9 +343,9 @@ footer h5 {
 .table-text {
     text-align: left;
 }
-.container {
+/* .container {
     max-width: 1350px;
-}
+} */
 .s-our-mission {
     padding: 2rem 0;
 }

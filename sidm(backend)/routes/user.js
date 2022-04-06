@@ -4,6 +4,9 @@ const User = require('../controllers/user')
 router.post('/addAdmin', User.addAdminUser);
 
 router.post('/login', User.loginVerify);
+router.post('/memberLogin', User.memberLogin);
+
+router.get('/memberdata',User.memberData);
 
 router.get('/getStateList', User.getState);
 router.post('/checkemail', User.getEmail);

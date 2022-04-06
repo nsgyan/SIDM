@@ -14,6 +14,7 @@ export class MemberLoginComponent implements OnInit {
 
   memberform: FormGroup;
   submitted: boolean = false;
+  captcha: any;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -59,16 +60,18 @@ export class MemberLoginComponent implements OnInit {
 
   memberlogin() {
     console.log(this.memberform);
-    if (this.memberform.valid) {
-      this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber }).subscribe((data: any) => {
-        this.localStorage.set('memberUserID', data._id)
-        console.log('hello');
-
+    if (this.memberform.valid && this.captcha) {
+      this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumberOfOrganization: this.memberform.value.panNumber })
+        .subscribe((data: any) => {
+          this.localStorage.set('membertoken', data.token)
         this.router.navigate(['/memberDashboard'])
         this.toast.success('Member Successfully login!');
       }, err => {
         this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');
       })
+    }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
     }
     else {
       this.submitted = true;
@@ -82,5 +85,10 @@ export class MemberLoginComponent implements OnInit {
   applyNow() {
     this.router.navigate(['/'])
   }
+
+  resolved(captchaResponse: any) {
+    this.captcha = captchaResponse;
+  }
+
 
 }

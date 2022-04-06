@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
   memberform: FormGroup;
   registrationForm: FormGroup
   submitted: boolean = false;
-
+  captcha: any;
 
   constructor(private formBuilder: FormBuilder,
     private localStorage: LocalStorageService,
@@ -122,6 +122,7 @@ export class RegistrationComponent implements OnInit {
 
 
   checkemail(event: any) {
+    this.registrationForm.get('confirmEmail')?.reset()
     const email = event.target.value
     if (email) {
       console.log(email);
@@ -136,6 +137,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
   checkMobile(event: any) {
+    this.registrationForm.get('confirmMobileNumber')?.reset()
     const mobileNumber = event.target.value
     if (mobileNumber) {
       console.log(mobileNumber);
@@ -152,6 +154,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
   checkPan(event: any) {
+    this.registrationForm.get('confirmPanNumberOfOrganization')?.reset()
     const panNumberOfOrganization = event.target.value
     if (panNumberOfOrganization) {
       console.log(panNumberOfOrganization);
@@ -204,7 +207,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
-    if (this.registrationForm.valid) {
+    if (this.registrationForm.valid && this.captcha) {
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
@@ -247,8 +250,10 @@ export class RegistrationComponent implements OnInit {
         }
       )
     }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
     else {
-      console.log(this.registrationForm);
 
       this.submitted = true;
       this.toast.error('Please Fill Required Field');
@@ -305,7 +310,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.setValidators(Validators.required)
     this.registrationForm.get('name')?.updateValueAndValidity()
-    if (this.registrationForm.valid) {
+    if (this.registrationForm.valid && this.captcha) {
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
@@ -348,6 +353,9 @@ export class RegistrationComponent implements OnInit {
 
       })
     }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
     else {
       console.log(this.registrationForm);
 
@@ -369,8 +377,10 @@ export class RegistrationComponent implements OnInit {
   registerdUser() {
     this.router.navigate(['/login/member'])
   }
-  handleSuccess(data: any) {
-    console.log(data);
+
+
+  resolved(captchaResponse: any) {
+    this.captcha = captchaResponse;
   }
 
 }

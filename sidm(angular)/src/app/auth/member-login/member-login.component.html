@@ -8,10 +8,10 @@
     <div class="top-panel">
         <div class="container">
             <a href="javascript:void(0)" class="logo"><img src="assets/img/New_img/logo.png" alt="logo"></a>
-            <a href="registration.html" class="NewBtn"><span>Registration</span></a>
+            <!-- <a href="registration.html" class="NewBtn"><span>Registration</span></a> -->
         </div>
     </div>
-    <div class="header-nav">
+    <!-- <div class="header-nav">
         <div class="container">
             <div class="header-nav-cover">
                 <nav class="nav-menu menu">
@@ -33,7 +33,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 </header>
 <!-- =============== HEADER END =============== -->
 
@@ -42,11 +42,11 @@
     <div class="container">
         <div class="breadcrumbs">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li>Registration</li>
+                <!-- <li><a href="index.html">Home</a></li> -->
+                <li>Registered User</li>
             </ul>
         </div>
-        <h1 class="title">Registration</h1>
+        <h1 class="title">Registered User</h1>
     </div>
 </div>
 <!-- <app-login-header></app-login-header> -->
@@ -110,6 +110,7 @@
                     <div class="col-md-12 mt-4">
                         <div class="form-group">
                             <re-captcha
+                            (resolved)="resolved($event)"
                                 siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
                         </div>
 

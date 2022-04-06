@@ -1,6 +1,8 @@
+const RegistrationForm = require('../models/registrationForm')
 const User = require('../models/user')
 const Register = require('../models/registrationForm')
 const State = require('../models/state.model')
+const jwt = require('jsonwebtoken');
 exports.addAdminUser = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -69,4 +71,59 @@ exports.getPan = (req, res, next) => {
         .then(data => {
             res.status(200).send(data)
         })
+}
+exports.memberLogin = (req, res, next) => {
+    console.log(req.body);
+    const email = req.body.email;
+    const pan = req.body.panNumberOfOrganization;
+    const mobileNumber = req.body.mobileNumber
+    RegistrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: pan })
+        .then(data => {
+
+            if (data) {
+                const token = jwt.sign({
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                    email: email,
+                    panNumber: pan,
+                    mobileNumber: mobileNumber
+                }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
+                );
+                res.status(200).send({ token: token })
+            }
+            else {
+
+                res.status(404).send('user not Found')
+            }
+        }).catch(err => {
+            res.status(404).send('not Found')
+        })
+
+}
+
+exports.memberData = (req, res, next) => {
+    const token = req.header('authorization');
+
+    jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
+        if (decoded) {
+            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumberOfOrganization: decoded.panNumber })
+                .then(data => {
+                    if (data) {
+
+                        res.status(200).send(data)
+                    }
+                    else {
+
+                        res.status(404).send('not Found user Data')
+                    }
+
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        }
+        else {
+            res.status(401).send('token invalid')
+        }
+
+    })
 }

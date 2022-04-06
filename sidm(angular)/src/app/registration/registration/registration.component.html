@@ -5,7 +5,7 @@
         <div class="container">
             <p class="font-weight-bold">Please read the brochure carefully
                 before applying.
-                <a href="assets/img/New_img/SIDM-brochure-2022.pdf"
+                <a href="https://troology.in/demo/sidm/assets/img/New_img/SIDM-brochure-2022.pdf"
                     class="brochure" target="blanck">Click Here</a>
             </p>
             <p class="font-weight-bold">All <span class="mandatory">*</span>
@@ -336,8 +336,8 @@
                                                 &&
                                                 !registrationForm.get('confirmEmail').hasError('required')&&
                                                 !registrationForm.get('confirmEmail').hasError('email')">
-                                                please Provide same email
-                                                address
+                                                Email
+                                                address mismatch 
                                             </span>
                                         
                                     </div>
@@ -403,7 +403,7 @@
                                                 &&
                                                 !registrationForm.get('confirmMobileNumber').hasError('required')&&
                                                 !registrationForm.get('confirmMobileNumber').hasError('cellNumNotValid')">
-                                                Please Provide Same Mobile
+                                                Mobile number mismatch 
                                             </span>
                                     </div>
                                 </div>
@@ -470,13 +470,10 @@
                                                 !registrationForm.get('confirmPanNumberOfOrganization').hasError('required')
                                                 &&
                                                 !registrationForm.get('confirmPanNumberOfOrganization').hasError('panValidation')">
-                                                Please enter a valid Pan number
+                                                Pan number mismatch 
                                             </span>
                                         
                                     </div>
-                                    <span style="color: red;" *ngIf="panMatch">
-                                        your Pan Number Does not match
-                                    </span>
                                 </div>
                             </div>
                             <div class="row">
@@ -766,7 +763,8 @@
                             <div class="col-md-12 mt-4">
                                 <div class="form-group">
                                     <re-captcha
-                                        siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS" (click)="handleSuccess($event)"></re-captcha>
+                                    (resolved)="resolved($event)" 
+                                        siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS" ></re-captcha>
                                 </div>
     
                             </div>

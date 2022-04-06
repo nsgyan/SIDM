@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Globals } from './global-constants';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient,
+    private localStroage: LocalStorageService) { }
 
   postregistrationForm(formData: any) {
     return this.httpService.post(Globals.route.formsData, formData);
@@ -15,12 +17,12 @@ export class HttpService {
   adminlogin(adminData: any) {
     return this.httpService.post(Globals.route.login, adminData)
   }
-  memberlogin(memberLoginData: any) {
-    return this.httpService.post(Globals.route.memberLogin, memberLoginData)
-  }
-  getMemberData(id: any) {
-    return this.httpService.get(`${Globals.route.memberdata}/${id}`)
-  }
+  // memberlogin(memberLoginData: any) {
+  //   return this.httpService.post(Globals.route.memberLogin, memberLoginData)
+  // }
+  // getMemberData(id: any) {
+  //   return this.httpService.get(`${Globals.route.memberdata}/${id}`)
+  // }
   getData() {
     return this.httpService.get(Globals.route.formsData)
   }
@@ -45,5 +47,15 @@ export class HttpService {
   checkPan(data: any) {
     // console.log(data);
     return this.httpService.post(Globals.route.checkPan, data)
+  }
+  getMemberData(key: string) {
+    const token = this.localStroage.get(key)
+    let headers: HttpHeaders = new HttpHeaders({ 'Authorization': token });
+    // headers.append('Authorization', token);
+    return this.httpService.get('http://localhost:3000/user/memberdata', { headers })
+  }
+
+  memberlogin(memberLoginData: any) {
+    return this.httpService.post('http://localhost:3000/user/memberLogin', memberLoginData)
   }
 }

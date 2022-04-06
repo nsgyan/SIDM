@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminLoginComponent implements OnInit {
   adminLogin: FormGroup
   submitted: boolean = false;
+  captcha: any;
   constructor(private formBuilder: FormBuilder,
     private httpService: HttpService,
     private snackBar: MatSnackBar,
@@ -28,7 +29,7 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.adminLogin.valid) {
+    if (this.adminLogin.valid && this.captcha) {
     this.httpService.adminlogin({
       'email': this.adminLogin.value.email,
       'password': this.adminLogin.value.password
@@ -42,10 +43,18 @@ export class AdminLoginComponent implements OnInit {
       this.toast.error('User does not exist');
     })
     }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
     else {
       this.submitted = true;
       this.toast.error('Please Fill Required Field');
     }
   }
+
+  resolved(captchaResponse: any) {
+    this.captcha = captchaResponse;
+  }
+
 
 }
