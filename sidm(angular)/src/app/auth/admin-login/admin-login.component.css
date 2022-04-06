@@ -13,7 +13,7 @@
 }
 
 .main-bg {
-    background: url(../../../assets/img/CII-Bg.png) center center no-repeat;
+    background: #f4f9ed;
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -99,7 +99,7 @@
 }
 
 .login-sec p {
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: #5a5a5a;
     margin-bottom: 5%;
 }
@@ -155,7 +155,7 @@
     border-radius: 8px;
     margin-top: 1rem;
     padding: 18px 0;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .login-sec .forget_password {
@@ -179,7 +179,7 @@
 
 .login-sec h2 {
     font-weight: 700;
-    font-size: 3.5rem;
+    font-size: 31px;
     color: #444444;
     margin-bottom: 3%;
 }

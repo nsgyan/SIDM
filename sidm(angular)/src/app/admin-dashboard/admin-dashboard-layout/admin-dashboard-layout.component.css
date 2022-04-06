@@ -5,3 +5,9 @@ p {
   .clickable {
     cursor: pointer;
   }
+  .table .thead-light th {
+    background-color: #566f3d;
+  }
+  .table .thead-light th {
+    color: #fff;
+  }
