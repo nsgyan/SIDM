@@ -1,0 +1,56 @@
+.detail {
+    display: flex;
+    border-bottom: 1px solid rgb(229 229 229);
+    padding: .5rem 0 !important;
+}
+
+.detail:last-child {
+    border-bottom: none;
+}
+
+.detail h6 {
+    /* margin-right: 10rem; */
+    line-height: 1.9;
+    width: 50%;
+}
+
+.detail p {
+    font-size: .8rem !important;
+    margin-left: 1rem !important;
+    color: #000 !important;
+    font-weight: 500 !important;
+    line-height: 1rem !important;
+    width: 50%;
+}
+
+.document {
+    width: 55%;
+}
+
+.detail a {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.detail img {
+    width: 6%;
+    margin: 0 1.5rem;
+}
+
+.detail-page .modal-header {
+    border-bottom: none;
+}
+
+.detail-page .modal-dialog {
+    max-width: 800px;
+}
+
+.detail-page .formPart_1 {
+    box-shadow: none;
+}
+
+.detail-page .modal-content {
+    background-color: transparent;
+    border: transparent;
+}

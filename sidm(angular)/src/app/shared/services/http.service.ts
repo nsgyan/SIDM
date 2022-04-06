@@ -20,9 +20,9 @@ export class HttpService {
   // memberlogin(memberLoginData: any) {
   //   return this.httpService.post(Globals.route.memberLogin, memberLoginData)
   // }
-  // getMemberData(id: any) {
-  //   return this.httpService.get(`${Globals.route.memberdata}/${id}`)
-  // }
+  getdetails(id: any) {
+    return this.httpService.get(`${Globals.route.memberdata}/${id}`)
+  }
   getData() {
     return this.httpService.get(Globals.route.formsData)
   }
@@ -52,10 +52,10 @@ export class HttpService {
     const token = this.localStroage.get(key)
     let headers: HttpHeaders = new HttpHeaders({ 'Authorization': token });
     // headers.append('Authorization', token);
-    return this.httpService.get('http://localhost:3000/user/memberdata', { headers })
+    return this.httpService.get(Globals.route.memberdata, { headers })
   }
 
   memberlogin(memberLoginData: any) {
-    return this.httpService.post('http://localhost:3000/user/memberLogin', memberLoginData)
+    return this.httpService.post(Globals.route.memberLogin, memberLoginData)
   }
 }

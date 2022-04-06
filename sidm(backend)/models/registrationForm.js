@@ -13,10 +13,16 @@ const RegistrationFormSchema = new Schema({
     name: { type: String },
     designation: { type: String },
     mobileNumber: { type: String },
-    email: { type: String },
+    email: {
+        type: String,
+        lowercase: true
+    },
     sidmMemberShipNumber: { type: String },
     otherAssociationMemberShipNumber: { type: String },
-    panNumberOfOrganization: { type: String },
+    panNumberOfOrganization: {
+        type: String,
+        lowercase: true
+    },
     gstinOfOrganization: { type: String },
     dateOfOrganization: { type: String },
     vendorOrganization1: { type: String },

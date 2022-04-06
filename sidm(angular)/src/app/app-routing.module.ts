@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ViewpageComponent } from './viewpage/viewpage.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'adminDashboard',
     loadChildren: () => import(`./admin-dashboard/admin-dashboard.module`).then(m => m.AdminDashboardModule)
+  },
+  {
+    path: 'detail/:id',
+    component: ViewpageComponent
   }
 ];
 

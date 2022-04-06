@@ -25,54 +25,56 @@ export class MemberDashboardComponent implements OnInit {
   cat4 = true
   memberData: any
   submitted: boolean = true;
+  captcha: any;
+  states: any;
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
     private httpService: HttpService) {
-    this.userId = this.localStroage.get('memberUserID')
-    this.httpService.getMemberData(this.userId).
+    this.getState()
+    this.httpService.getMemberData('membertoken').
       subscribe((data: any) => {
-        data?.category?.map((item: any) => {
-          if (item.type === 'cat1') {
+        data.map((item: any) => {
+          if (item.category === 'cat1') {
             this.cat1 = false
-            item.type = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+            item.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
           }
-          else if (item.type === 'cat2') {
+          else if (item.category === 'cat2') {
             this.cat2 = false
-            item.type = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+            item.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
           }
-          else if (item.type === 'cat3') {
+          else if (item.category === 'cat3') {
             this.cat3 = false
-            item.type = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+            item.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
           }
-          else if (item.type === 'cat4') {
+          else if (item.category === 'cat4') {
             this.cat4 = false
-            item.type = 'C4- Export Performance of Defence & Aerospace Products'
+            item.category = 'C4- Export Performance of Defence & Aerospace Products'
           }
         })
         this.memberData = data;
-        console.log(this.memberData);
         this.newCategoryForm = this.formBuilder.group({
           category: ['', Validators.required],
-          typeOfApplicant: ['', Validators.required],
-          nameOfOrganisation: ['', Validators.required],
-          addressl1: [this.memberData?.addressl1, Validators.required],
-          addressl2: [this.memberData?.addressl2],
-          state: [this.memberData?.state, Validators.required],
-          city: [this.memberData?.city, Validators.required],
-          pincode: [this.memberData?.pincode, Validators.required],
-          name: [this.memberData?.name, Validators.required],
-          designation: [this.memberData?.designation],
-          mobileNumber: [this.memberData?.mobileNumber, [Validators.required, CellNumValidation]],
-          email: [this.memberData?.email, Validators.required],
+          typeOfApplicant: [''],
+          nameOfOrganisation: [''],
+          addressl1: [''],
+          addressl2: [''],
+          state: [''],
+          city: [''],
+          pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
+          name: [''],
+          designation: [''],
+          mobileNumber: [''],
+          email: [this.memberData?.email],
           sidmMemberShipNumber: [''],
           otherAssociationMemberShipNumber: [''],
-          panNumberOfOrganization: [this.memberData?.panNumberOfOrganization, Validators.required],
+          panNumberOfOrganization: [''],
           gstinOfOrganization: [''],
           dateOfOrganization: [''],
-          financialStatement1: [''],
-          financialStatement2: [''],
-          financialStatement3: [''],
+          vendorOrganization1: [''],
+          vendorOrganization2: [''],
+          vendorOrganization3: [''],
+          vendorOrganization4: [''],
           aboutCompany: [''],
           achievementsToJustifyApplication: [''],
           campareAchivement: [''],
@@ -146,95 +148,96 @@ export class MemberDashboardComponent implements OnInit {
 
   onSubmit() {
     if (this.newCategoryForm.valid) {
-    this.httpService.applyNewCategory(this.userId, {
-      category: this.newCategoryForm.value.category,
-      typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
-      nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
-      addressl1: this.newCategoryForm.value.addressl1,
-      addressl2: this.newCategoryForm.value.addressl2,
-      state: this.newCategoryForm.value.state,
-      city: this.newCategoryForm.value.city,
-      pincode: this.newCategoryForm.value.pincode,
-      name: this.newCategoryForm.value.name,
-      designation: this.newCategoryForm.value.designation,
-      mobileNumber: this.newCategoryForm.value.mobileNumber,
-      email: this.newCategoryForm.value.email,
-      sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
-      otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
-      panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
-      gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
-      dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
-      financialStatement1: this.newCategoryForm.value.financialStatement1,
-      financialStatement2: this.newCategoryForm.value.financialStatement2,
-      financialStatement3: this.newCategoryForm.value.financialStatement2,
-      aboutCompany: this.newCategoryForm.value.financialStatement3,
-      achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
-      campareAchivement: this.newCategoryForm.value.campareAchivement,
-      documentGstCertificate: this.documentGstCertificate,
-      documentsOfProduct: this.documentsOfProduct,
-      appreciationDocuments: this.appreciationDocuments,
-      briefCompany: this.newCategoryForm.value.briefCompany,
+    // this.httpService.applyNewCategory(this.userId, {
+    //   category: this.newCategoryForm.value.category,
+    //   nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
+    //   addressl1: this.newCategoryForm.value.addressl1,
+    //   addressl2: this.newCategoryForm.value.addressl2,
+    //   state: this.newCategoryForm.value.state,
+    //   city: this.newCategoryForm.value.city,
+    //   pincode: this.newCategoryForm.value.pincode,
+    //   name: this.newCategoryForm.value.name,
+    //   designation: this.newCategoryForm.value.designation,
+    //   mobileNumber: this.newCategoryForm.value.mobileNumber,
+    //   email: this.newCategoryForm.value.email,
+    //   sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
+    //   otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
+    //   panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
+    //   gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
+    //   dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
+    //   financialStatement1: this.newCategoryForm.value.financialStatement1,
+    //   financialStatement2: this.newCategoryForm.value.financialStatement2,
+    //   financialStatement3: this.newCategoryForm.value.financialStatement2,
+    //   aboutCompany: this.newCategoryForm.value.financialStatement3,
+    //   achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
+    //   campareAchivement: this.newCategoryForm.value.campareAchivement,
+    //   documentGstCertificate: this.documentGstCertificate,
+    //   documentsOfProduct: this.documentsOfProduct,
+    //   appreciationDocuments: this.appreciationDocuments,
+    //   briefCompany: this.newCategoryForm.value.briefCompany,
 
-    }).subscribe(data => {
-      this.newCategory = false
-      this.httpService.getMemberData(this.userId).
-        subscribe((data: any) => {
-          this.toast.success(' Successfully Applied New category');
-          data?.category?.map((item: any) => {
-            if (item.type === 'cat1') {
-              this.cat1 = false
-              item.type = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
-            }
-            else if (item.type === 'cat2') {
-              this.cat2 = false
-              item.type = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
-            }
-            else if (item.type === 'cat3') {
-              this.cat3 = false
-              item.type = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
-            }
-            else if (item.type === 'cat4') {
-              this.cat4 = false
-              item.type = 'C4- Export Performance of Defence & Aerospace Products'
-            }
-          })
-          this.memberData = data;
-          this.newCategoryForm = this.formBuilder.group({
-            category: ['', Validators.required],
-            typeOfApplicant: ['', Validators.required],
-            nameOfOrganisation: ['', Validators.required],
-            addressl1: [this.memberData?.addressl1, Validators.required],
-            addressl2: [this.memberData?.addressl2, Validators.required],
-            state: [this.memberData?.state, Validators.required],
-            city: [this.memberData?.city, Validators.required],
-            pincode: [this.memberData?.pincode, Validators.required],
-            name: [this.memberData?.name, Validators.required],
-            designation: [this.memberData?.designation],
-            mobileNumber: [this.memberData?.mobileNumber, Validators.required],
-            email: [this.memberData?.email, Validators.required],
-            sidmMemberShipNumber: [''],
-            otherAssociationMemberShipNumber: [''],
-            panNumberOfOrganization: [this.memberData?.panNumberOfOrganization, [Validators.required]],
-            gstinOfOrganization: [''],
-            dateOfOrganization: [''],
-            financialStatement1: [''],
-            financialStatement2: [''],
-            financialStatement3: [''],
-            aboutCompany: [''],
-            achievementsToJustifyApplication: [''],
-            campareAchivement: [''],
-            documentGstCertificate: [''],
-            documentsOfProduct: [''],
-            appreciationDocuments: [''],
-            briefCompany: [''],
-            awardMatterToCompany: ['']
-
-          })
-        })
+    // }).subscribe(data => {
+    //   this.newCategory = false
+    //   this.httpService.getMemberData(this.userId).
+    //     subscribe((data: any) => {
+    //       this.toast.success(' Successfully Applied New category');
+    //       data?.category?.map((item: any) => {
+    //         if (item.category === 'cat1') {
+    //           this.cat1 = false
+    //           item.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+    //         }
+    //         else if (item.category === 'cat2') {
+    //           this.cat2 = false
+    //           item.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+    //         }
+    //         else if (item.category === 'cat3') {
+    //           this.cat3 = false
+    //           item.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+    //         }
+    //         else if (item.category === 'cat4') {
+    //           this.cat4 = false
+    //           item.category = 'C4- Export Performance of Defence & Aerospace Products'
+    //         }
+    //       })
+    //       this.memberData = data;
+    //       this.newCategoryForm = this.formBuilder.group({
+    //         category: ['', Validators.required],
+    //         typeOfApplicant: [''],
+    //         nameOfOrganisation: [''],
+    //         addressl1: [''],
+    //         addressl2: [''],
+    //         state: [''],
+    //         city: [''],
+    //         pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
+    //         name: [''],
+    //         designation: [''],
+    //         mobileNumber: ['', [Validators.required, CellNumValidation]],
+    //         email: ['', [Validators.required, Validators.email]],
+    //         sidmMemberShipNumber: [''],
+    //         otherAssociationMemberShipNumber: [''],
+    //         panNumberOfOrganization: ['', [Validators.required, panValidation]],
+    //         gstinOfOrganization: [''],
+    //         dateOfOrganization: [''],
+    //         vendorOrganization1: [''],
+    //         vendorOrganization2: [''],
+    //         vendorOrganization3: [''],
+    //         vendorOrganization4: [''],
+    //         aboutCompany: [''],
+    //         achievementsToJustifyApplication: [''],
+    //         campareAchivement: [''],
+    //         documentGstCertificate: [''],
+    //         documentsOfProduct: [''],
+    //         appreciationDocuments: [''],
+    //         briefCompany: [''],
+    //         awardMatterToCompany: ['']
 
 
-      // this.toastr.success('successfully applied');
-    })
+    //       })
+    //     })
+
+
+    //   // this.toastr.success('successfully applied');
+    // })
     }
     else {
       this.submitted = true;
@@ -242,10 +245,23 @@ export class MemberDashboardComponent implements OnInit {
     }
 
   }
+  getState() {
+    this.httpService.getStateList()
+      .subscribe(data => {
+        console.log(data);
+        this.states = data
+
+      })
+  }
+
 
   applyNew() {
     this.newCategory = true
 
+  }
+
+  resolved(captchaResponse: any) {
+    this.captcha = captchaResponse;
   }
 
 }

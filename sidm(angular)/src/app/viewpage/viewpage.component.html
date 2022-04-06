@@ -1,1 +1,205 @@
-<p>viewpage works!</p>
+<header class="marathon-header-fixed header-fixed">
+    <a href="javascript:void(0)" class="nav-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <div class="top-panel">
+        <div class="container">
+            <a href="javascript:void(0)" class="logo"><img src="assets/img/New_img/logo.png" alt="logo"></a>
+            <!-- <a href="registration.html" class="NewBtn"><span>Registration</span></a> -->
+        </div>
+    </div>
+    <!-- <div class="header-nav">
+        <div class="container">
+            <div class="header-nav-cover">
+                <nav class="nav-menu menu">
+                    <ul class="nav-list">
+                        <li class="active-page">
+                            <a href="index.html">home</a>
+                        </li>
+                        <li><a href="#about">about sidm</a></li>
+                        <li><a href="#Objective">OBJECTIVE</a></li>
+                        <li><a href="#categories">categories</a></li>
+                        <li><a href="#committee">AWARDS COMMITTEE</a></li>
+                        <li><a href="#process">process</a></li>
+                        <li><a href="#testimonial">testimonials</a></li>
+                        <li><a href="#faq">faqs</a></li>
+                        <li><a href="#award2020">AWARDS 2020</a></li>
+                        <li><a href="#footer">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div> -->
+</header>
+<!-- =============== HEADER END =============== -->
+
+<!--=================== PAGE-TITLE ===================-->
+<div class="page-title" style="background: #175AA5;">
+    <div class="container">
+        <!-- <div class="breadcrumbs">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Registration</li>
+            </ul>
+        </div> -->
+        <h1 class="title">Registration Detail</h1>
+    </div>
+</div>
+<!--================= PAGE-TITLE END =================-->
+
+<div class="registrationForm" >
+    <div class="formBody">
+        <div class="container">
+            <!-- <h2>This is heading</h2> -->
+            <div class="formPart_1 mt-4 mb-4" >
+                <div class="detail">
+                    <h6>Category</h6>
+                    <p>{{memberData?.category}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Type of Applicant company</h6>
+                    <p>{{memberData?.typeOfApplicant}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Name of the Organization</h6>
+                    <p>{{memberData?.nameOfOrganisation}}</p>
+                </div>
+                <!-- <h4 class="text-left mt-4">Address of your Organization</h4> -->
+                <div class="detail">
+                    <h6>Address Line 1</h6>
+                    <p>{{memberData?.addressl1}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Address Line 2</h6>
+                    <p>{{memberData?.addressl2}}</p>
+                </div>
+                <div class="detail">
+                    <h6>State</h6>
+                    <p>{{memberData?.state}}</p>
+                </div>
+                <div class="detail">
+                    <h6>City</h6>
+                    <p>{{memberData?.city}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Pincode</h6>
+                    <p>{{memberData?.pincode}}</p>
+                </div>
+
+                <div class="detail">
+                    <h6>Contact Person Name</h6>
+                    <p>{{memberData?.name}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Designation</h6>
+                    <p>{{memberData?.designation}}</p>
+                </div>
+                <div class="detail">
+                    <h6>E-Mail Address</h6>
+                    <p>{{memberData?.email}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Mobile Number</h6>
+                    <p>{{memberData?.mobileNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6>PAN of the Organization</h6>
+                    <p>{{memberData?.panNumberOfOrganization}}</p>
+                </div>
+                <div class="detail">
+                    <h6>GSTIN of the Organization</h6>
+                    <p>{{memberData?.gstinOfOrganization}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Upload GST Certificate Document</h6>
+                    <div class="document">
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="detail">
+                    <h6>Date of Incorporation of the Organization</h6>
+                    <p>{{memberData?.dateOfOrganization}}</p>
+                </div>
+                
+                <div class="detail">
+                    <h6>Are you member of SIDM ?</h6>
+                    <p *ngIf="memberData?.sidmMemberShipNumber">Yes</p>
+                    <p *ngIf="!memberData?.sidmMemberShipNumber">No</p>
+                </div>
+                <div *ngIf="memberData?.sidmMemberShipNumber" class="detail">
+                    <h6>Membership number</h6>
+                    <p>{{memberData?.sidmMemberShipNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Are you member of any other association</h6>
+                    
+                    <p *ngIf="memberData?.otherAssociationMemberShipNumber">Yes</p>
+                    <p *ngIf="!memberData?.otherAssociationMemberShipNumber">No</p>
+                </div>
+                <div *ngIf="memberData?.otherAssociationMemberShipNumber" class="detail">
+                    <h6>Membership number</h6>
+                    <p>{{memberData?.otherAssociationMemberShipNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Are you a registered Vendor of any Defence Organisation such as DPSU/DRDO etc</h6>
+                    <p>No</p>
+                </div>
+                <div class="detail">
+                    <h6>Brief About the Company</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                        galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <div class="detail">
+                    <h6>About the company</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                        galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <div class="detail">
+                    <h6>Achievements</h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. </p>
+                </div>
+                <div class="detail">
+                    <h6>Have you received any reports of performance / letters of appreciation from customer
+                        organization?</h6>
+                    <p>Yes</p>
+                </div>
+                <div class="detail">
+                    <h6>How does your achievement compare with the other competing options available to the
+                        customer?</h6>
+                    <p>Lorem ipsum</p>
+                </div>
+                <div class="detail">
+                    <h6>How, in your opinion, dose this award matter to your company?</h6>
+                    <p>Lorem ipsum</p>
+                </div>
+                <div class="detail">
+                    <h6>Upload GST Certificate Document</h6>
+                    <div class="document">
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--==================== FOOTER ====================-->
+<footer id="footer">
+    
+</footer>
+<!--================== FOOTER END ==================-->
+
+<!--=================== TO TOP ===================-->
+<a class="to-top" href="#home">
+    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+</a>

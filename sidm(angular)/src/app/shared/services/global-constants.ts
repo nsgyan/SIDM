@@ -4,13 +4,13 @@ export class Globals {
     public static readonly route = {
         'formsData': Globals.server + 'sidm/formsData',
         'login': Globals.server + 'user/login',
-        'memberLogin': Globals.server + 'sidm/memberLogin',
-        'memberdata': Globals.server + 'sidm/memberdata',
         'getStateList': Globals.server + 'user/getStateList',
         'update': Globals.server + 'sidm/update',
         'checkEmail': Globals.server + 'user/checkemail',
         'checkMobile': Globals.server + 'user/checkMobile',
-        'checkPan': Globals.server + 'user/checkPan'
+        'checkPan': Globals.server + 'user/checkPan',
+        'memberdata': Globals.server + 'user/memberdata',
+        'memberLogin': Globals.server + 'user/memberLogin'
 
     };
 }

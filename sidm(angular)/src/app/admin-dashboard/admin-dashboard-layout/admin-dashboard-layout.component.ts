@@ -48,4 +48,10 @@ export class AdminDashboardLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  viewDetails(id: string) {
+    let url: string = "/detail/" + id
+    this.routes.navigateByUrl(url);
+
+  }
+
 }

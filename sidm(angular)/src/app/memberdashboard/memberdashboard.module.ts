@@ -5,6 +5,10 @@ import { MemberdashboardRoutingModule } from './memberdashboard-routing.module';
 import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MemberLoginComponent } from './member-login/member-login.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import { MemberLoginComponent } from './member-login/member-login.component';
     CommonModule,
     MemberdashboardRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,
+    NgxSpinnerModule,
+    MatSnackBarModule,
+    SharedModule
   ]
 })
 export class MemberdashboardModule { }
