@@ -369,5 +369,8 @@ export class RegistrationComponent implements OnInit {
   registerdUser() {
     this.router.navigate(['/login/member'])
   }
+  handleSuccess(data: any) {
+    console.log(data);
+  }
 
 }
