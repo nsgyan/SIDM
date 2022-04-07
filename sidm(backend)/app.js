@@ -7,11 +7,8 @@ const app = express()
 var cors = require('cors')
 app.use(cors())
 
-app.use(bodyParser.urlencoded({
-    limit: "50mb",
-    extended: false
-}));
-app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 const Register = require('./routes/register')
 const User = require('./routes/user')
 const fileUpload = require('express-fileupload');
@@ -22,16 +19,16 @@ app.use('/user', User)
 
 
 
-const root = path.join(__dirname, 'dist', 'sidm');
-app.get('*', function (req, res) {
-    fs.stat(root + req.path, function (err) {
-        if (err) {
-            res.sendFile("index.html", { root });
-        } else {
-            res.sendFile(req.path, { root });
-        }
-    })
-});
+// const root = path.join(__dirname, 'dist', 'sidm');
+// app.get('*', function (req, res) {
+//     fs.stat(root + req.path, function (err) {
+//         if (err) {
+//             res.sendFile("index.html", { root });
+//         } else {
+//             res.sendFile(req.path, { root });
+//         }
+//     })
+// });
 
 
 mongoose

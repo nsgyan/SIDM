@@ -21,13 +21,13 @@ export class HttpService {
   //   return this.httpService.post(Globals.route.memberLogin, memberLoginData)
   // }
   getdetails(id: any) {
-    return this.httpService.get(`${Globals.route.memberdata}/${id}`)
+    return this.httpService.get(`${Globals.route.formsdata}/${id}`)
   }
   getData() {
     return this.httpService.get(Globals.route.formsData)
   }
 
-  applyNewCategory(id: string, data: any) {
+ updateform(id: string, data: any) {
     return this.httpService.patch(`${Globals.route.update}/${id}`, data)
   }
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
+import { CellNumValidation, CrossEmailValidation, CrossPanValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -16,9 +17,10 @@ export class MemberDashboardComponent implements OnInit {
   documentsOfProduct: any;
   documentGstCertificate: any;
   userId: any
-
+  EditForm = true
   newCategory = false
   newCategoryForm!: FormGroup;
+  editForm!: FormGroup;
   cat1 = true
   cat2 = true
   cat3 = true
@@ -27,10 +29,14 @@ export class MemberDashboardComponent implements OnInit {
   submitted: boolean = true;
   captcha: any;
   states: any;
+  editData: any;
+  catagery: any;
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
-    private httpService: HttpService) {
+    private httpService: HttpService,
+    private routes: Router,
+  ) {
     this.getState()
     this.httpService.getMemberData('membertoken').
       subscribe((data: any) => {
@@ -53,6 +59,16 @@ export class MemberDashboardComponent implements OnInit {
           }
         })
         this.memberData = data;
+        let email, pan, mobilenumber;
+
+
+        for (let i of this.memberData) {
+          email = i.email
+          mobilenumber = i.mobileNumber;
+          pan = i.panNumberOfOrganization.toUpperCase();
+        }
+        console.log(email, pan, mobilenumber);
+
         this.newCategoryForm = this.formBuilder.group({
           category: ['', Validators.required],
           typeOfApplicant: [''],
@@ -64,11 +80,11 @@ export class MemberDashboardComponent implements OnInit {
           pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
           name: [''],
           designation: [''],
-          mobileNumber: [''],
-          email: [this.memberData?.email],
+          mobileNumber: [mobilenumber],
+          email: [email],
           sidmMemberShipNumber: [''],
           otherAssociationMemberShipNumber: [''],
-          panNumberOfOrganization: [''],
+          panNumberOfOrganization: [pan],
           gstinOfOrganization: [''],
           dateOfOrganization: [''],
           vendorOrganization1: [''],
@@ -95,149 +111,11 @@ export class MemberDashboardComponent implements OnInit {
   }
 
 
-  readThis(inputValue: any, form: any): void {
 
-    var file: File = inputValue.files[0];
-    var myReader: FileReader = new FileReader();
-
-    myReader.onloadend = (e) => {
-      if (form === 'documentGstCertificate') {
-        this.documentGstCertificate = myReader.result;
-      }
-      else if (form === 'documentsOfProduct') {
-        this.documentsOfProduct = myReader.result;
-      }
-      else if (form === 'appreciationDocuments') {
-        this.appreciationDocuments = myReader.result;
-
-      }
-      console.log(this.documentGstCertificate);
-      console.log(this.documentsOfProduct);
-      console.log(this.scanDocument);
-      console.log(this.appreciationDocuments);
-    }
-    myReader.readAsDataURL(file);
-  }
-
-  changeListener($event: any, form: any) {
-    console.log($event);
-
-    this.readThis($event.target, form);
-
-
-  }
-  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if ((charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-      return false;
-    } else {
-      return true;
-    }
-  }
-  keyPresschar(evt: any) {
-    evt = (evt) ? evt : event;
-    const charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
-      ((evt.which) ? evt.which : 0));
-    if (charCode > 31 && (charCode < 65 || charCode > 90) &&
-      (charCode < 97 || charCode > 122)) {
-      return false;
-    }
-    return true;
-  }
 
   onSubmit() {
     if (this.newCategoryForm.valid) {
-    // this.httpService.applyNewCategory(this.userId, {
-    //   category: this.newCategoryForm.value.category,
-    //   nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
-    //   addressl1: this.newCategoryForm.value.addressl1,
-    //   addressl2: this.newCategoryForm.value.addressl2,
-    //   state: this.newCategoryForm.value.state,
-    //   city: this.newCategoryForm.value.city,
-    //   pincode: this.newCategoryForm.value.pincode,
-    //   name: this.newCategoryForm.value.name,
-    //   designation: this.newCategoryForm.value.designation,
-    //   mobileNumber: this.newCategoryForm.value.mobileNumber,
-    //   email: this.newCategoryForm.value.email,
-    //   sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
-    //   otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
-    //   panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
-    //   gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
-    //   dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
-    //   financialStatement1: this.newCategoryForm.value.financialStatement1,
-    //   financialStatement2: this.newCategoryForm.value.financialStatement2,
-    //   financialStatement3: this.newCategoryForm.value.financialStatement2,
-    //   aboutCompany: this.newCategoryForm.value.financialStatement3,
-    //   achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
-    //   campareAchivement: this.newCategoryForm.value.campareAchivement,
-    //   documentGstCertificate: this.documentGstCertificate,
-    //   documentsOfProduct: this.documentsOfProduct,
-    //   appreciationDocuments: this.appreciationDocuments,
-    //   briefCompany: this.newCategoryForm.value.briefCompany,
 
-    // }).subscribe(data => {
-    //   this.newCategory = false
-    //   this.httpService.getMemberData(this.userId).
-    //     subscribe((data: any) => {
-    //       this.toast.success(' Successfully Applied New category');
-    //       data?.category?.map((item: any) => {
-    //         if (item.category === 'cat1') {
-    //           this.cat1 = false
-    //           item.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
-    //         }
-    //         else if (item.category === 'cat2') {
-    //           this.cat2 = false
-    //           item.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
-    //         }
-    //         else if (item.category === 'cat3') {
-    //           this.cat3 = false
-    //           item.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
-    //         }
-    //         else if (item.category === 'cat4') {
-    //           this.cat4 = false
-    //           item.category = 'C4- Export Performance of Defence & Aerospace Products'
-    //         }
-    //       })
-    //       this.memberData = data;
-    //       this.newCategoryForm = this.formBuilder.group({
-    //         category: ['', Validators.required],
-    //         typeOfApplicant: [''],
-    //         nameOfOrganisation: [''],
-    //         addressl1: [''],
-    //         addressl2: [''],
-    //         state: [''],
-    //         city: [''],
-    //         pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
-    //         name: [''],
-    //         designation: [''],
-    //         mobileNumber: ['', [Validators.required, CellNumValidation]],
-    //         email: ['', [Validators.required, Validators.email]],
-    //         sidmMemberShipNumber: [''],
-    //         otherAssociationMemberShipNumber: [''],
-    //         panNumberOfOrganization: ['', [Validators.required, panValidation]],
-    //         gstinOfOrganization: [''],
-    //         dateOfOrganization: [''],
-    //         vendorOrganization1: [''],
-    //         vendorOrganization2: [''],
-    //         vendorOrganization3: [''],
-    //         vendorOrganization4: [''],
-    //         aboutCompany: [''],
-    //         achievementsToJustifyApplication: [''],
-    //         campareAchivement: [''],
-    //         documentGstCertificate: [''],
-    //         documentsOfProduct: [''],
-    //         appreciationDocuments: [''],
-    //         briefCompany: [''],
-    //         awardMatterToCompany: ['']
-
-
-    //       })
-    //     })
-
-
-    //   // this.toastr.success('successfully applied');
-    // })
     }
     else {
       this.submitted = true;
@@ -256,12 +134,285 @@ export class MemberDashboardComponent implements OnInit {
 
 
   applyNew() {
-    this.newCategory = true
+    this.newCategory = !this.newCategory
 
   }
 
   resolved(captchaResponse: any) {
     this.captcha = captchaResponse;
+  }
+
+
+
+
+
+  changeListener($event: any, form: any) {
+    let file = $event.target.files;
+    console.log($event.target.files);
+    if (parseInt(file[0].size) > 5242880) {
+      this.newCategoryForm.get(form)?.reset()
+      this.newCategoryForm.get(form)?.updateValueAndValidity()
+      this.toast.error('file to large')
+    }
+    else {
+      this.readThis($event.target, form);
+    }
+  }
+
+  readThis(inputValue: any, form: any): void {
+
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      if (form === 'documentGstCertificate') {
+        this.documentGstCertificate = myReader.result;
+      }
+      else if (form === 'documentsOfProduct') {
+        this.documentsOfProduct = myReader.result;
+      }
+      else if (form === 'appreciationDocuments') {
+        this.appreciationDocuments = myReader.result;
+
+      }
+    }
+    myReader.readAsDataURL(file);
+  }
+
+
+  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  keyPresschar(evt: any) {
+    evt = (evt) ? evt : event;
+    const charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+      ((evt.which) ? evt.which : 0));
+    if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+      (charCode < 97 || charCode > 122)) {
+      return false;
+    }
+    return true;
+  }
+
+
+  viewForm(item: any) {
+    console.log(item);
+
+    if (item.status === "Draft") {
+      this.EditForm = !this.EditForm
+
+      this.httpService.getdetails(item._id).subscribe((data: any) => {
+        if (data.category === 'cat1') {
+          data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+        }
+        else if (data.category === 'cat2') {
+          data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+        }
+        else if (data.category === 'cat3') {
+          data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+        }
+        else if (data.category === 'cat4') {
+          data.category = 'C4- Export Performance of Defence & Aerospace Products'
+        }
+        console.log(data);
+        this.editData = data
+        this.catagery = this.editData.catagery
+        this.editForm = this.formBuilder.group({
+          typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
+          nameOfOrganisation: [this.editData.nameOfOrganisation ? this.editData.nameOfOrganisation : ''],
+          addressl1: [this.editData.addressl1 ? this.editData.addressl1 : ''],
+          addressl2: [this.editData.addressl2 ? this.editData.addressl2 : ''],
+          state: [this.editData.state ? this.editData.state : ''],
+          city: [this.editData.city ? this.editData.city : ''],
+          pincode: [this.editData.pincode ? this.editData.pincode : '', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
+          name: [this.editData.name ? this.editData.name : ''],
+          designation: [this.editData.designation ? this.editData.designation : ''],
+          mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber : ''],
+          email: [this.editData.email ? this.editData.email : ''],
+
+          sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber : ''],
+          otherAssociationMemberShipNumber: [this.editData.otherAssociationMemberShipNumber ? this.editData.otherAssociationMemberShipNumber : ''],
+          panNumberOfOrganization: [this.editData.panNumberOfOrganization ? this.editData.panNumberOfOrganization : ''],
+          gstinOfOrganization: [this.editData.gstinOfOrganization ? this.editData.gstinOfOrganization : ''],
+          dateOfOrganization: [this.editData.dateOfOrganization ? this.editData.dateOfOrganization : ''],
+          vendorOrganization1: [this.editData.vendorOrganization1 ? this.editData.vendorOrganization1 : ''],
+          vendorOrganization2: [this.editData.vendorOrganization2 ? this.editData.vendorOrganization2 : ''],
+          vendorOrganization3: [this.editData.vendorOrganization3 ? this.editData.vendorOrganization3 : ''],
+          vendorOrganization4: [this.editData.vendorOrganization4 ? this.editData.vendorOrganization4 : ''],
+          aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
+          achievementsToJustifyApplication: [this.editData.achievementsToJustifyApplication ? this.editData.achievementsToJustifyApplication : ''],
+          campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
+          documentGstCertificate: [this.editData.documentGstCertificate ? this.editData.documentGstCertificate : ''],
+          documentsOfProduct: [this.editData.documentsOfProduct ? this.editData.documentsOfProduct : ''],
+          appreciationDocuments: [this.editData.appreciationDocuments ? this.editData.appreciationDocuments : ''],
+          briefCompany: [this.editData.briefCompany ? this.editData.briefCompany : ''],
+          awardMatterToCompany: [this.editData.awardMatterToCompany ? this.editData.awardMatterToCompany : '']
+
+        })
+
+
+      })
+    }
+
+  }
+
+
+  finalSubmit(type: string) {
+    console.log('hello');
+
+    // this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    // this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
+    // this.editForm.get('gstinOfOrganization')?.setValidators(Validators.required)
+    // this.editForm.get('gstinOfOrganization')?.updateValueAndValidity()
+    // this.editForm.get('nameOfOrganisation')?.setValidators(Validators.required)
+    // this.editForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    // this.editForm.get('addressl1')?.setValidators(Validators.required)
+    // this.editForm.get('addressl1')?.updateValueAndValidity()
+    // this.editForm.get('state')?.setValidators(Validators.required)
+    // this.editForm.get('state')?.updateValueAndValidity()
+    // this.editForm.get('city')?.setValidators(Validators.required)
+    // this.editForm.get('city')?.updateValueAndValidity()
+    // this.editForm.get('pincode')?.setValidators(Validators.required)
+    // this.editForm.get('pincode')?.updateValueAndValidity()
+    // this.editForm.get('name')?.setValidators(Validators.required)
+    // this.editForm.get('name')?.updateValueAndValidity()
+    if (this.editForm.valid && this.captcha) {
+      this.httpService.updateform(this.editData._id, {
+        category: this.editForm.value.category,
+        typeOfApplicant: this.editForm.value.typeOfApplicant,
+        nameOfOrganisation: this.editForm.value.nameOfOrganisation,
+        addressl1: this.editForm.value.addressl1,
+        addressl2: this.editForm.value.addressl2,
+        state: this.editForm.value.state,
+        city: this.editForm.value.city,
+        pincode: this.editForm.value.pincode,
+        name: this.editForm.value.name,
+        designation: this.editForm.value.designation,
+        mobileNumber: this.editForm.value.mobileNumber,
+        email: this.editForm.value.email,
+        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: this.editForm.value.otherAssociationMemberShipNumber,
+        panNumberOfOrganization: this.editForm.value.panNumberOfOrganization,
+        gstinOfOrganization: this.editForm.value.gstinOfOrganization,
+        dateOfOrganization: this.editForm.value.dateOfOrganization,
+        vendorOrganization1: this.editForm.value.vendorOrganization1,
+        vendorOrganization2: this.editForm.value.vendorOrganization2,
+        vendorOrganization3: this.editForm.value.vendorOrganization3,
+        vendorOrganization4: this.editForm.value.vendorOrganization4,
+        aboutCompany: this.editForm.value.vendorOrganization3,
+        achievementsToJustifyApplication: this.editForm.value.achievementsToJustifyApplication,
+        campareAchivement: this.editForm.value.campareAchivement,
+        documentGstCertificate: this.documentGstCertificate,
+        documentsOfProduct: this.documentsOfProduct,
+        appreciationDocuments: this.appreciationDocuments,
+        briefCompany: this.editForm.value.briefCompany,
+        awardMatterToCompany: this.editForm.value.awardMatterToCompany,
+        status: type
+
+      }).subscribe(data => {
+        console.log('success');
+
+        this.toast.success(' Successfully Applied');
+        this.routes.navigate(['/thankYou'])
+        this.toast.success('successfully applied');
+      }, err => {
+        console.log(err);
+        this.toast.error(err);
+
+      })
+    }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
+    else {
+
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
+
+  }
+
+  savedraft(type: String) {
+    this.editForm.get('typeOfApplicant')?.clearValidators()
+    this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.editForm.get('gstinOfOrganization')?.clearValidators()
+    this.editForm.get('gstinOfOrganization')?.updateValueAndValidity()
+    this.editForm.get('nameOfOrganisation')?.clearValidators()
+    this.editForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.editForm.get('addressl1')?.clearValidators()
+    this.editForm.get('addressl1')?.updateValueAndValidity()
+    this.editForm.get('state')?.clearValidators()
+    this.editForm.get('state')?.updateValueAndValidity()
+    this.editForm.get('city')?.clearValidators()
+    this.editForm.get('city')?.updateValueAndValidity()
+    this.editForm.get('pincode')?.clearValidators()
+    this.editForm.get('pincode')?.updateValueAndValidity()
+    this.editForm.get('name')?.clearValidators()
+    this.editForm.get('name')?.updateValueAndValidity()
+    if (this.editForm.valid && this.captcha) {
+      this.httpService.updateform(this.editData._id, {
+        category: this.editForm.value.category,
+        typeOfApplicant: this.editForm.value.typeOfApplicant,
+        nameOfOrganisation: this.editForm.value.nameOfOrganisation,
+        addressl1: this.editForm.value.addressl1,
+        addressl2: this.editForm.value.addressl2,
+        state: this.editForm.value.state,
+        city: this.editForm.value.city,
+        pincode: this.editForm.value.pincode,
+        name: this.editForm.value.name,
+        designation: this.editForm.value.designation,
+        mobileNumber: this.editForm.value.mobileNumber,
+        email: this.editForm.value.email,
+        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: this.editForm.value.otherAssociationMemberShipNumber,
+        panNumberOfOrganization: this.editForm.value.panNumberOfOrganization,
+        gstinOfOrganization: this.editForm.value.gstinOfOrganization,
+        dateOfOrganization: this.editForm.value.dateOfOrganization,
+        vendorOrganization1: this.editForm.value.vendorOrganization1,
+        vendorOrganization2: this.editForm.value.vendorOrganization2,
+        vendorOrganization3: this.editForm.value.vendorOrganization3,
+        vendorOrganization4: this.editForm.value.vendorOrganization4,
+        aboutCompany: this.editForm.value.vendorOrganization3,
+        achievementsToJustifyApplication: this.editForm.value.achievementsToJustifyApplication,
+        campareAchivement: this.editForm.value.campareAchivement,
+        documentGstCertificate: this.documentGstCertificate,
+        documentsOfProduct: this.documentsOfProduct,
+        appreciationDocuments: this.appreciationDocuments,
+        briefCompany: this.editForm.value.briefCompany,
+        awardMatterToCompany: this.editForm.value.awardMatterToCompany,
+        status: type
+
+      }).subscribe(data => {
+        this.editForm.reset();
+        this.toast.success(' Successfully Applied');
+        this.routes.navigate(['/thankYou'])
+        this.toast.success('successfully applied');
+      },
+        error => {
+          this.toast.error('Email or Mobile or Pan  already exists');
+        }
+      )
+    }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
+    else {
+
+      this.submitted = true;
+      this.toast.error('Please Fill Required Field');
+    }
+
+  }
+
+  report() {
+    this.editForm.get('appreciationDocuments')?.reset()
   }
 
 }
