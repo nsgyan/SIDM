@@ -247,7 +247,7 @@
                                                 Pincode <strong>required</strong>
                                             </span>
                                             <span style="color: red;"
-                                                *ngIf="registrationForm.get('pincode').hasError('pattern')
+                                                *ngIf="registrationForm.get('pincode').invalid
                                                 &&
                                                 !registrationForm.get('pincode').hasError('required')">
                                                 Please enter a valid pincode
@@ -331,6 +331,7 @@
                                                 Please enter a valid E-Mail
                                                 Address
                                             </span>
+                                            
                                             <span style="color: red;"
                                                 *ngIf="registrationForm.get('confirmEmail').hasError('confirmEmail')
                                                 &&
@@ -363,6 +364,12 @@
                                             &&
                                             !registrationForm.get('mobileNumber').hasError('required')">
                                             Please enter a valid mobile number
+                                        </span>
+                                        <span style="color: red;"
+                                            *ngIf="registrationForm.get('mobileNumber').invalid
+                                            &&
+                                            !registrationForm.get('mobileNumber').hasError('required') && !registrationForm.get('mobileNumber').hasError('cellNumNotValid')">
+                                            Mobile Number should be 10 digit  long
                                         </span>
                                         <span style="color: red;"
                                             *ngIf="registrationForm.get('mobileNumber').hasError('isExist')

@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
       pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$'),Validators.minLength(6),Validators.maxLength(6)]],
       name: [''],
       designation: [''],
-      mobileNumber: ['', [Validators.required, CellNumValidation,Validators.minLength(10),Validators.maxLength(10)]],
+      mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
       confirmMobileNumber: ['', [Validators.required, CellNumValidation,]],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: ['', [Validators.required, Validators.email, CrossEmailValidation]],
