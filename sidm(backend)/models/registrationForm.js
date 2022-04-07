@@ -35,7 +35,8 @@ const RegistrationFormSchema = new Schema({
     documentGstCertificate: { type: String },
     documentsOfProduct: { type: String },
     appreciationDocuments: { type: String },
-    briefCompany: { type: String }
+    briefCompany: { type: String },
+    awardMatterToCompany: { type: String }
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

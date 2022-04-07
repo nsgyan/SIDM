@@ -9,7 +9,7 @@ export class Globals {
         'checkEmail': Globals.server + 'user/checkemail',
         'checkMobile': Globals.server + 'user/checkMobile',
         'checkPan': Globals.server + 'user/checkPan',
-        'memberdata': Globals.server + 'user/memberdata',
+        'memberdata': Globals.server + 'sidm/memberdata',
         'memberLogin': Globals.server + 'user/memberLogin'
 
     };

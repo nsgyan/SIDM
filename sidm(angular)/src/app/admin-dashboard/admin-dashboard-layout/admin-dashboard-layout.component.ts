@@ -35,6 +35,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
         else {
           item.typeOfApplicant = 'Annual Turnover FY 2020-21 less than Rs 75 Crore'
         }
+        item.panNumberOfOrganization = item.panNumberOfOrganization.toUpperCase();
 
       })
       this.allFormsData = data

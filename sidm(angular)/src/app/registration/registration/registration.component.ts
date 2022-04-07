@@ -123,7 +123,7 @@ export class RegistrationComponent implements OnInit {
 
   checkemail(event: any) {
     this.registrationForm.get('confirmEmail')?.reset()
-    const email = event.target.value
+    const email = event.target.value.toLowerCase()
     if (email) {
       console.log(email);
       this.httpService.checkEmail({ email: email })
@@ -155,7 +155,7 @@ export class RegistrationComponent implements OnInit {
   }
   checkPan(event: any) {
     this.registrationForm.get('confirmPanNumberOfOrganization')?.reset()
-    const panNumberOfOrganization = event.target.value
+    const panNumberOfOrganization = event.target.value.toLowerCase()
     if (panNumberOfOrganization) {
       console.log(panNumberOfOrganization);
       this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
@@ -207,7 +207,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
-    if (this.registrationForm.valid && this.captcha) {
+    if (!this.registrationForm.valid && !this.captcha) {
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
@@ -237,6 +237,7 @@ export class RegistrationComponent implements OnInit {
         documentsOfProduct: this.documentsOfProduct,
         appreciationDocuments: this.appreciationDocuments,
         briefCompany: this.registrationForm.value.briefCompany,
+        awardMatterToCompany: this.registrationForm.value.awardMatterToCompany,
         status: type
 
       }).subscribe(data => {
@@ -340,6 +341,7 @@ export class RegistrationComponent implements OnInit {
         documentsOfProduct: this.documentsOfProduct,
         appreciationDocuments: this.appreciationDocuments,
         briefCompany: this.registrationForm.value.briefCompany,
+        awardMatterToCompany: this.registrationForm.value.awardMatterToCompany,
         status: type
 
       }).subscribe(data => {

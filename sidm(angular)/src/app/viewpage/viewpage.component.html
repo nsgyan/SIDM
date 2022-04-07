@@ -56,6 +56,10 @@
             <!-- <h2>This is heading</h2> -->
             <div class="formPart_1 mt-4 mb-4" >
                 <div class="detail">
+                    <h6>Status</h6>
+                    <p>{{memberData?.status}}</p>
+                </div>
+                <div class="detail">
                     <h6>Category</h6>
                     <p>{{memberData?.category}}</p>
                 </div>
@@ -116,9 +120,14 @@
                 <div class="detail">
                     <h6>Upload GST Certificate Document</h6>
                     <div class="document">
-                        <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
+                        <!-- <a [href]="{{memberData?.documentGstCertificate}}" [download]="filename">
+
+                        </a> -->
+                        <img src="{{memberData?.documentsOfProduct}}" alt="">
+                        <a href="{{memberData?.documentsOfProduct}}" download="gst">Gst Document</a>
+                        <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
-                        <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
                     </div>
                 </div>
                 <div class="detail">
@@ -147,24 +156,36 @@
                 </div>
                 <div class="detail">
                     <h6>Are you a registered Vendor of any Defence Organisation such as DPSU/DRDO etc</h6>
-                    <p>No</p>
+                    <p *ngIf="memberData?.vendorOrganization1||memberData?.vendorOrganization2||memberData?.vendorOrganization3||memberData?.vendorOrganization4">Yes</p>
+                    <p *ngIf="!memberData?.vendorOrganization1 &&! memberData?.vendorOrganization2 &&! memberData?.vendorOrganization3 &&! memberData?.vendorOrganization4">No</p>
+                </div>
+                <div class="detail" *ngIf="memberData?.vendorOrganization1">
+                    <h6>Name of the Vendor Organization registered with</h6>
+                    <p >{{memberData?.vendorOrganization1}}</p>
+                </div>
+                <div class="detail" *ngIf="memberData?.vendorOrganization2">
+                    <h6>Name of the Vendor Organization registered with</h6>
+                    <p >{{memberData?.vendorOrganization2}}</p>
+                </div>
+                <div class="detail" *ngIf="memberData?.vendorOrganization3">
+                    <h6>Name of the Vendor Organization registered with</h6>
+                    <p >{{memberData?.vendorOrganization3}}</p>
+                </div>
+                <div class="detail" *ngIf="memberData?.vendorOrganization4">
+                    <h6>Name of the Vendor Organization registered with</h6>
+                    <p >{{memberData?.vendorOrganization4}}</p>
                 </div>
                 <div class="detail">
                     <h6>Brief About the Company</h6>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book.</p>
+                    <p>{{memberData?.briefCompany}}</p>
                 </div>
                 <div class="detail">
                     <h6>About the company</h6>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book.</p>
+                    <p>{{memberData?.aboutCompany}}</p>
                 </div>
                 <div class="detail">
                     <h6>Achievements</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. </p>
+                    <p>{{memberData?.achievementsToJustifyApplication}}</p>
                 </div>
                 <div class="detail">
                     <h6>Have you received any reports of performance / letters of appreciation from customer
@@ -174,11 +195,11 @@
                 <div class="detail">
                     <h6>How does your achievement compare with the other competing options available to the
                         customer?</h6>
-                    <p>Lorem ipsum</p>
+                    <p>{{memberData?.campareAchivement}}</p>
                 </div>
                 <div class="detail">
                     <h6>How, in your opinion, dose this award matter to your company?</h6>
-                    <p>Lorem ipsum</p>
+                    <p>{{memberData?.awardMatterToCompany}}</p>
                 </div>
                 <div class="detail">
                     <h6>Upload GST Certificate Document</h6>

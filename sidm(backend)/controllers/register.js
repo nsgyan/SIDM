@@ -1,5 +1,6 @@
 const registrationForm = require('../models/registrationForm');
 const RegistrationForm = require('../models/registrationForm')
+const fs = require('fs')
 
 exports.postRegistrationForm = (req, res, next) => {
 
@@ -32,6 +33,7 @@ exports.postRegistrationForm = (req, res, next) => {
     const email = req.body.email;
     const documentGstCertificate = req.body.documentGstCertificate;
     const panNumberOfOrganization = req.body.panNumberOfOrganization;
+    const awardMatterToCompany = req.body.awardMatterToCompany;
     registrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: panNumberOfOrganization })
         .then(data => {
             if (data) {
@@ -57,7 +59,7 @@ exports.postRegistrationForm = (req, res, next) => {
                     vendorOrganization1: vendorOrganization1,
                     vendorOrganization2: vendorOrganization2,
                     vendorOrganization3: vendorOrganization3,
-                    vendorOrganization4: vendorOrganization4,
+                    vendorOrganizationcampareAchivement4: vendorOrganization4,
                     aboutCompany: aboutCompany,
                     achievementsToJustifyApplication: achievementsToJustifyApplication,
                     campareAchivement: campareAchivement,
@@ -76,6 +78,7 @@ exports.postRegistrationForm = (req, res, next) => {
                     nameOfOrganisation: nameOfOrganisation,
                     documentGstCertificate: documentGstCertificate,
                     panNumberOfOrganization: panNumberOfOrganization,
+                    awardMatterToCompany: awardMatterToCompany,
                 })
                 form.save()
                     .then(result => {
