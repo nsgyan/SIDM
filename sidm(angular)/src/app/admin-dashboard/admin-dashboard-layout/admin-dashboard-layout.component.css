@@ -7,7 +7,17 @@ p {
   }
   .table .thead-light th {
     background-color: #566f3d;
+    font-size: 16px;
   }
   .table .thead-light th {
     color: #fff;
+  }
+  .viewBtn {
+    border: none;
+    padding: 2px 16px;
+  }
+  .table_content {
+    color: #1e1e1e;
+    font-size: 13px;
+    font-weight: 500;
   }
