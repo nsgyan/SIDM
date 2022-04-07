@@ -123,8 +123,8 @@
                         <!-- <a [href]="{{memberData?.documentGstCertificate}}" [download]="filename">
 
                         </a> -->
-                        <img src="{{memberData?.documentsOfProduct}}" alt="">
-                        <a href="{{memberData?.documentsOfProduct}}" download="gst">Gst Document</a>
+                        <img src="{{memberData?.appreciationDocuments}}" alt="">
+                        <a href="{{memberData?.appreciationDocuments}}" download="gst">Gst Document</a>
                         <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
@@ -190,7 +190,13 @@
                 <div class="detail">
                     <h6>Have you received any reports of performance / letters of appreciation from customer
                         organization?</h6>
-                    <p>Yes</p>
+                        <p *ngIf="memberData?.appreciationDocuments">Yes</p>
+                        <p *ngIf="!memberData?.appreciationDocuments">No</p>
+                </div>
+                <div class="detail" *ngIf="memberData?.appreciationDocuments">
+                    <h6> Appreciation Document</h6>
+                    <img src="{{memberData?.appreciationDocuments}}" alt="">
+                    <a href="{{memberData?.appreciationDocuments}}" download="gst">Gst Document</a>
                 </div>
                 <div class="detail">
                     <h6>How does your achievement compare with the other competing options available to the

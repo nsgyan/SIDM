@@ -207,7 +207,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
-    if (!this.registrationForm.valid && !this.captcha) {
+    if (this.registrationForm.valid && this.captcha) {
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
@@ -383,6 +383,9 @@ export class RegistrationComponent implements OnInit {
 
   resolved(captchaResponse: any) {
     this.captcha = captchaResponse;
+  }
+  report() {
+    this.registrationForm.get('appreciationDocuments')?.reset()
   }
 
 }

@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-lg-6">
                             <h5 class="mt-1 mb-3">Mobile Number</h5>
-                            <input formControlName="mobileNumber" type="number">
+                            <input formControlName="mobileNumber" type="text">
                             <div *ngIf=" submitted||memberform.controls['mobileNumber'].invalid &&  memberform.controls['mobileNumber'].touched">         
                                 <span *ngIf="memberform.get('mobileNumber').hasError('required')" style="color: red;">
                                     Mobile Number <strong>required</strong>
