@@ -148,9 +148,8 @@ exports.getmemberData = (req, res, next) => {
 }
 
 exports.updateFrom = (req, res, next) => {
-    console.log('hejbfhj');
-    console.log(req.params);
     const userID = req.params.userID;
+    const status = req.body.status
     const typeOfApplicant = req.body.typeOfApplicant;
     const sidmMemberShipNumber = req.body.sidmMemberShipNumber;
     const otherAssociationMemberShipNumber = req.body.otherAssociationMemberShipNumber;
@@ -186,6 +185,7 @@ exports.updateFrom = (req, res, next) => {
         if (updateDocumentGstCertificate) {
             formData.documentGstCertificate = updateDocumentGstCertificate
         }
+        formData.status = status
         formData.typeOfApplicant = typeOfApplicant;
         formData.sidmMemberShipNumber = sidmMemberShipNumber;
         formData.otherAssociationMemberShipNumber = otherAssociationMemberShipNumber;

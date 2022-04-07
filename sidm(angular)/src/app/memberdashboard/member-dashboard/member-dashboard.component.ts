@@ -260,6 +260,11 @@ export class MemberDashboardComponent implements OnInit {
 
       })
     }
+    else {
+
+      let url: string = "/detail/" + item._id
+      this.routes.navigateByUrl(url);
+    }
 
   }
 
@@ -317,9 +322,7 @@ export class MemberDashboardComponent implements OnInit {
         status: type
 
       }).subscribe(data => {
-        console.log('success');
 
-        this.toast.success(' Successfully Applied');
         this.routes.navigate(['/thankYou'])
         this.toast.success('successfully applied');
       }, err => {
@@ -391,7 +394,6 @@ export class MemberDashboardComponent implements OnInit {
 
       }).subscribe(data => {
         this.editForm.reset();
-        this.toast.success(' Successfully Applied');
         this.routes.navigate(['/thankYou'])
         this.toast.success('successfully applied');
       },
