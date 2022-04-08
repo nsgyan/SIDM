@@ -3,6 +3,19 @@
     <div class="page-title">
         <div class="container">
             <h1 class="title">Dashboard</h1>
+            <ul class=" d-flex mt-3 pb-2 ">
+                <li class="footer-phone">
+                    <i aria-hidden="true" class="fas fa-phone-alt"></i>
+                    <a href="tel:+91 11 45771000" class="phoneNo">{{memberData[0].mobileNumber}}</a>
+                    <span> / </span>
+                   
+                </li>
+                <li class="footer-email ml-3">
+                    <i aria-hidden="true" class="fas fa-envelope"></i>
+                    <a href="mailto:membership@sidm.in" class="phoneNo mt-2">{{memberData[0].email}}</a>
+                </li>
+            </ul>
+
         </div>
     </div>
     <!--================= PAGE-TITLE END =================-->
@@ -12,13 +25,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="profileSection">
+                    <div class="">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <!-- <div class="col-lg-3">
                                 <img class="profile_Img" src="assets/img/New_img/building.png" alt="">
-                            </div>
-                            <div class="col-lg-9">
-                                <h1 class="profile-title">Troology</h1>
+                            </div> -->
+                            <!-- <div class="col-lg-12" *ngFor="let item of memberData;let i=
+                            index">
+                                <h1 class="profile-title">{{item.nameOfOrganisation}}</h1>
                                 <ul class="footer-contacts d-flex mt-3 pb-2 profile-info">
                                     <li class="footer-phone">
                                         <i aria-hidden="true" class="fas fa-phone-alt"></i>
@@ -39,7 +53,7 @@
                                     ipsa sequi, quos consectetur voluptate. Facilis, deserunt corporis laborum minus
                                     soluta, repellendus ipsa sequi, quos consectetur voluptate. Facilis, deserunt
                                     corporis</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
