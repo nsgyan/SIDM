@@ -12,7 +12,8 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
+  sidmMember = false
+  otherMember = false
   appreciationDocuments: any;
   scanDocument: any;
   documentsOfProduct: any;
@@ -26,6 +27,8 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup
   submitted: boolean = false;
   captcha: any;
+  vendorOrganization: boolean = false;
+  isappreciation: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private localStorage: LocalStorageService,
@@ -52,7 +55,7 @@ export class RegistrationComponent implements OnInit {
       otherAssociationMemberShipNumber: [''],
       panNumberOfOrganization: ['', [Validators.required, panValidation]],
       confirmPanNumberOfOrganization: ['', [Validators.required, panValidation, CrossPanValidation]],
-      gstinOfOrganization: ['', [GstValidation]],
+      gstinOfOrganization: ['', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
       dateOfOrganization: [''],
       vendorOrganization1: [''],
       vendorOrganization2: [''],
@@ -65,7 +68,11 @@ export class RegistrationComponent implements OnInit {
       documentsOfProduct: [''],
       appreciationDocuments: [''],
       briefCompany: [''],
-      awardMatterToCompany: ['']
+      awardMatterToCompany: [''],
+      sidmMember: [''],
+      otherMember: [''],
+      vendorOrganization: [''],
+      isappreciation: [''],
 
     },
     )
@@ -218,6 +225,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('typeOfApplicant')?.clearValidators()
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.registrationForm.get('gstinOfOrganization')?.clearValidators()
+    this.registrationForm.get('gstinOfOrganization')?.setValidators(Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$'))
     this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.registrationForm.get('nameOfOrganisation')?.clearValidators()
     this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
@@ -228,11 +236,14 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('city')?.clearValidators()
     this.registrationForm.get('city')?.updateValueAndValidity()
     this.registrationForm.get('pincode')?.clearValidators()
+    this.registrationForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
+      let currentDate = new Date();
       this.httpService.postregistrationForm({
+        createAt: currentDate,
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
         nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
@@ -262,7 +273,12 @@ export class RegistrationComponent implements OnInit {
         appreciationDocuments: this.appreciationDocuments,
         briefCompany: this.registrationForm.value.briefCompany,
         awardMatterToCompany: this.registrationForm.value.awardMatterToCompany,
-        status: type
+        status: type,
+        sidmMember: this.registrationForm.value.sidmMember,
+        otherMember: this.registrationForm.value.otherMember,
+        vendorOrganization: this.registrationForm.value.vendorOrganization,
+        isappreciation: this.registrationForm.value.isappreciation,
+
 
       }).subscribe(data => {
         this.registrationForm.reset();
@@ -336,7 +352,9 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('name')?.setValidators(Validators.required)
     this.registrationForm.get('name')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
+      let currentDate = new Date();
       this.httpService.postregistrationForm({
+        createAt: currentDate,
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
         nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
@@ -366,7 +384,11 @@ export class RegistrationComponent implements OnInit {
         appreciationDocuments: this.appreciationDocuments,
         briefCompany: this.registrationForm.value.briefCompany,
         awardMatterToCompany: this.registrationForm.value.awardMatterToCompany,
-        status: type
+        status: type,
+        sidmMember: this.registrationForm.value.sidmMember,
+        otherMember: this.registrationForm.value.otherMember,
+        vendorOrganization: this.registrationForm.value.vendorOrganization,
+        isappreciation: this.registrationForm.value.isappreciation,
 
       }).subscribe(data => {
         this.registrationForm.reset();
@@ -411,7 +433,63 @@ export class RegistrationComponent implements OnInit {
 
   report() {
     this.registrationForm.get('appreciationDocuments')?.reset()
-    this.appreciationDocuments = ''
+    this.appreciationDocuments = null
+  }
+
+  changetoggel(conttrolName: String, value: string) {
+    if (conttrolName === 'sidmMember' && value == 'Yes') {
+      this.registrationForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+      this.registrationForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+      this.sidmMember = true
+    }
+    else if (conttrolName === 'sidmMember' && value == 'No') {
+      this.sidmMember = false
+      this.registrationForm.get('sidmMemberShipNumber')?.reset()
+      this.registrationForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
+      this.registrationForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+    }
+
+    if (conttrolName === 'otherMember' && value == 'Yes') {
+      this.otherMember = true
+      this.registrationForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
+
+      this.registrationForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+    }
+    else if (conttrolName === 'otherAssociationMemberShipNumber' && value == 'No') {
+      this.otherMember = false
+      this.registrationForm.get('otherAssociationMemberShipNumber')?.reset()
+
+      this.registrationForm.get('otherAssociationMemberShipNumber')?.clearValidators()
+      this.registrationForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+
+    }
+
+    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
+      this.vendorOrganization = true
+      this.registrationForm.get('vendorOrganization1')?.setValidators(Validators.required)
+
+      this.registrationForm.get('vendorOrganization1')?.updateValueAndValidity()
+
+    }
+    else if (conttrolName === 'vendorOrganization' && value == 'No') {
+      this.vendorOrganization = false
+      this.registrationForm.get('vendorOrganization1')?.reset()
+      this.registrationForm.get('vendorOrganization3')?.reset()
+      this.registrationForm.get('vendorOrganization4')?.reset()
+      this.registrationForm.get('vendorOrganization2')?.reset()
+
+      this.registrationForm.get('vendorOrganization1')?.clearValidators()
+      this.registrationForm.get('vendorOrganization1')?.updateValueAndValidity()
+    }
+    if (conttrolName === 'isappreciation' && value == 'Yes') {
+      this.isappreciation = true
+    }
+    else if (conttrolName === 'isappreciation' && value == 'No') {
+      this.isappreciation = false
+      this.registrationForm.get('appreciationDocuments')?.reset()
+      this.appreciationDocuments = null
+
+    }
   }
 
 }

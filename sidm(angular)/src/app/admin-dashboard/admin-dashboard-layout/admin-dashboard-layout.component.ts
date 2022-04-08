@@ -9,11 +9,25 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class AdminDashboardLayoutComponent implements OnInit {
   allFormsData: any;
+  page = 1;
+  itemPerPage = 10;
 
   constructor(private httpService: HttpService,
     private routes: Router) {
-    this.httpService.getData().subscribe((data: any) => {
-      data.map((item: any) => {
+    this.getdata()
+  
+
+  }
+  logout() {
+    this.routes.navigate(['/adminLogin'])
+  }
+  ngOnInit(): void {
+  }
+  getdata() {
+    this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
+      console.log(data);
+
+      data.forms.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = ' Technology /  Product Innovation to address Defence Capability Gaps'
         }
@@ -39,20 +53,25 @@ export class AdminDashboardLayoutComponent implements OnInit {
 
       })
       this.allFormsData = data
+
       console.log(this.allFormsData);
 
     })
-  }
-  logout() {
-    this.routes.navigate(['/adminLogin'])
-  }
-  ngOnInit(): void {
+
   }
 
   viewDetails(id: string) {
     let url: string = "/detail/" + id
     this.routes.navigateByUrl(url);
 
+  }
+  perviousPage() {
+    this.page = this.page - 1;
+    this.getdata()
+  }
+  nextpage() {
+    this.page = this.page + 1;
+    this.getdata()
   }
 
 }

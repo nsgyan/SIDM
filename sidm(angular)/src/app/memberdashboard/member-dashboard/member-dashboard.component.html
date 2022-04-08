@@ -6,13 +6,13 @@
             <ul class=" d-flex mt-3 pb-2 ">
                 <li class="footer-phone">
                     <i aria-hidden="true" class="fas fa-phone-alt"></i>
-                    <a href="tel:+91 11 45771000" class="phoneNo">{{memberData[0].mobileNumber}}</a>
+                    <a href="tel:+91 11 45771000" class="phoneNo"></a>
                     <span> / </span>
                    
                 </li>
                 <li class="footer-email ml-3">
                     <i aria-hidden="true" class="fas fa-envelope"></i>
-                    <a href="mailto:membership@sidm.in" class="phoneNo mt-2">{{memberData[0].email}}</a>
+                    <a href="mailto:membership@sidm.in" class="phoneNo mt-2"></a>
                 </li>
             </ul>
 
@@ -96,7 +96,7 @@
                 <button class="viewBtn paymentBtn" (click)="applyNew()" >Apply for new category +</button> 
                 <!-- <button type="submit" class="NewBtn"><span>Apply Now</span></button> -->
             </div>
-<div  *ngIf="newCategory">
+<!-- <div  *ngIf="newCategory">
     <form  [formGroup]="newCategoryForm" class="mb-2">
         <div class="formPart_1">
             <div class="row">
@@ -242,7 +242,7 @@
                         <option *ngFor="let item of states"
                             value="{{item.state}}">{{item.state}}</option>
                     </select>
-                    <!-- <input formControlName="state" type="text"> -->
+                     <input formControlName="state" type="text"> 
                     <div *ngIf="newCategoryForm.controls['state'].invalid &&   newCategoryForm.controls['state'].touched ">
                     <div
                         *ngIf="submitted||newCategoryForm.controls['state'].invalid
@@ -373,8 +373,6 @@
 
         </div>
 
-
-        <!-- **********************form part 2************************************************************************ -->
         <div class="formPart_2">
             <h5 class="mt-3 mb-3">Are you member of SIDM</h5>
             <div class="container">
@@ -651,7 +649,7 @@
                     </div>
                 </div>
             </div>
-</div>
+</div> -->
 
 
 <!--Edit Form-->
@@ -708,17 +706,13 @@
                             than Rs 75 Crore)
                         </label>
                     </div>
-                    <div *ngIf="editForm.controls['typeOfApplicant'].invalid &&  editForm.controls['typeOfApplicant'].touched ">
-                    <div *ngIf="submitted||editForm.controls['typeOfApplicant'].invalid
-                        &&
-                        editForm.controls['typeOfApplicant'].touched">
+                   
                         <span
-                            *ngIf="editForm.get('typeOfApplicant').hasError('required')"
+                            *ngIf="editForm.get('typeOfApplicant').invalid"
                             style="color: red;">
                             Type of Applicant company <strong>required</strong>
                         </span>
-                    </div>
-                </div>
+                  
 
                 </div>
             </div>
@@ -728,6 +722,14 @@
                         Organization</h5>
                     <input formControlName="nameOfOrganisation"
                         type="text">
+                        <span
+                        *ngIf="editForm.get('nameOfOrganisation').invalid"
+                        style="color: red;">
+                        Name of the
+                        Organizationy <strong>required</strong>
+                    </span>
+              
+
                 </div>
             </div>
             <div class="row">
@@ -741,17 +743,17 @@
                     <h5 class="mt-3 mb-3">Address Line 1 *</h5>
                     <input formControlName="addressl1"
                         type="text">
-                        <div *ngIf="editForm.controls['addressl1'].invalid &&  editForm.controls['identifier'].touched ">
+                        <!-- <div *ngIf="editForm.controls['addressl1'].invalid &&  editForm.controls['identifier'].touched ">
                     <div *ngIf="submitted||editForm.controls['addressl1'].invalid
                         &&
-                        editForm.controls['addressl1'].touched">
+                        editForm.controls['addressl1'].touched"> -->
                         <span
-                            *ngIf="editForm.get('addressl1').hasError('required')"
+                            *ngIf="editForm.get('addressl1').invalid"
                             style="color: red;">
                             Address Line 1 <strong>required</strong>
                         </span>
-                    </div>
-                        </div>
+                    <!-- </div>
+                        </div> -->
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Address Line 2 </h5>
@@ -769,34 +771,34 @@
                             value="{{item.state}}">{{item.state}}</option>
                     </select>
                     <!-- <input formControlName="state" type="text"> -->
-                    <div *ngIf="editForm.controls['state'].invalid && editForm.controls['state'].touched ">
+                    <!-- <div *ngIf="editForm.controls['state'].invalid && editForm.controls['state'].touched ">
                     <div
                         *ngIf="submitted||editForm.controls['state'].invalid
                         &&
-                        editForm.controls['state'].touched">
+                        editForm.controls['state'].touched"> -->
                         <span
-                            *ngIf="editForm.get('state').hasError('required')"
+                            *ngIf="editForm.get('state').invalid"
                             style="color: red;">
                             State <strong>required</strong>
                         </span>
-                    </div>
-                    </div>
+                    <!-- </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">City *</h5>
                     <input formControlName="city"
                         (keypress)="keyPresschar($event)"
                         type="text">
-                    <div *ngIf="submitted||editForm.controls['city'].invalid
+                    <!-- <div *ngIf="submitted||editForm.controls['city'].invalid
                         &&
-                        editForm.controls['city'].touched">
+                        editForm.controls['city'].touched"> -->
                         <span
-                            *ngIf="editForm.get('city').hasError('required')"
+                            *ngIf="editForm.get('city').invalid"
                             style="color: red;">
                             City <strong>required</strong>
                         </span>
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -826,14 +828,15 @@
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Contact Person Name *</h5>
                     <input formControlName="name" type="text">
-                    <div *ngIf="submitted||editForm.controls['name'].invalid
+                    <!-- <div *ngIf="submitted||editForm.controls['name'].invalid
                         &&
-                        editForm.controls['name'].touched">
+                        editForm.controls['name'].touched"> -->
                         <span
                             *ngIf="editForm.get('name').hasError('required')"
                             style="color: red;">
                             Contact Person Name <strong>required</strong>
                         </span>
+                <!-- </div> -->
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -846,13 +849,8 @@
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">E-Mail Address *</h5>
                     <input appBlockCopyPaste formControlName="email" type="text"
-                       readonly
-                        >
-                   
+                       readonly >    
                 </div>
-               
-            </div>
-            <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Mobile Number *</h5>
                     <input appBlockCopyPaste 
@@ -860,7 +858,7 @@
                         type="text"  readonly>
                   
                 </div>
-                
+               
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -872,15 +870,20 @@
                         type="text" >
                     
                 </div>
-              
-            </div>
-            <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">GSTIN of the
                         Organization</h5>
                     <input formControlName="gstinOfOrganization"
                         type="text">
+                        <span style="color: red;"
+                                        *ngIf="editForm.get('gstinOfOrganization').hasError('pattern')">
+                                       Invalid GST
+                                    </span>
                 </div>
+              
+            </div>
+            <div class="row">
+                
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Upload GST Certificate
                         Document</h5>
@@ -904,8 +907,18 @@
         <div class="formPart_2">
             <h5 class="mt-3 mb-3">Are you member of SIDM</h5>
             <div class="container">
-                <ul class="nav nav-pills mb-3" id="pills-tab"
-                    role="tablist">
+                <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
+                    role="tablist"> -->
+                    
+                        <input type="radio" formControlName="sidmMember" value="Yes" (click)="changetoggel('sidmMember','Yes')" id="YES">
+                        <label  for="YES">Yes</label>
+            
+                      
+                        <input type="radio"  formControlName="sidmMember" (click)="changetoggel('sidmMember','No')" value="No" 
+                         id="No">
+                        <label for="No">No</label>
+                      
+                <!-- </ul>
                     <li class="nav-item">
                         <a class="nav-link"id="pills-YES-tab"
                             data-toggle="pill" href="#pills-YES"
@@ -918,11 +931,9 @@
                             role="tab" aria-controls="pills-NO"
                             aria-selected="false">NO</a>
                     </li>
-                </ul>
+                </ul> -->
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade" id="pills-YES"
-                        role="tabpanel"
-                        aria-labelledby="pills-YES-tab">
+                    <div *ngIf="sidmMember">
                         <div class="row">
                             <div class="col-lg-6">
                                 <p class="mt-2 mb-3">Provide the
@@ -930,6 +941,9 @@
                                 <input
                                     formControlName="sidmMemberShipNumber"
                                     type="text">
+                                    <span  style="color: red;" *ngIf="editForm.get('sidmMemberShipNumber').hasError('required')&&editForm.controls['sidmMemberShipNumber'].touched" >
+                                        membership number required
+                                    </span>
                             </div>
                         </div>
                     </div>
@@ -937,31 +951,20 @@
                         role="tabpanel"
                         aria-labelledby="pills-NO-tab"></div>
                 </div>
-            </div>
+            
+                        </div>
             <h5 class="mt-5 mb-3">Are you member of any other
                 association</h5>
             <div class="container">
-                <ul class="nav nav-pills mb-3" id="pills-tab"
-                    role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link"id="pills-true-tab"
-                            data-toggle="pill"
-                            href="#pills-true" role="tab"
-                            aria-controls="pills-true"
-                            aria-selected="true">YES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-false-tab"
-                            data-toggle="pill"
-                            href="#pills-false" role="tab"
-                            aria-controls="pills-false"
-                            aria-selected="false">NO</a>
-                    </li>
-                </ul>
+                <input type="radio" formControlName="otherMember" value="Yes" (click)="changetoggel('otherMember','Yes')" id="YES">
+                <label  for="YES">Yes</label>
+    
+              
+                <input type="radio"  formControlName="otherMember" (click)="changetoggel('otherMember','No')" value="No" 
+                 id="No">
+                <label for="No">No</label>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade" id="pills-true"
-                        role="tabpanel"
-                        aria-labelledby="pills-true-tab">
+                    <div *ngIf="otherMember">
                         <div class="row">
                             <div class="col-lg-6">
                                 <p class="mt-2 mb-3">Enter the
@@ -970,6 +973,9 @@
                                 <input
                                     formControlName="otherAssociationMemberShipNumber"
                                     type="text">
+                                    <span  style="color: red;" *ngIf="editForm.get('otherAssociationMemberShipNumber').hasError('required')&&editForm.controls['otherAssociationMemberShipNumber'].touched" >
+                                        membership number required
+                                    </span>
                             </div>
                         </div>
                     </div>
@@ -982,28 +988,16 @@
                 any Defence Organisation such as
                 DPSU/DRDO etc</h5>
             <div class="container">
-                <ul class="nav nav-pills mb-3" id="pills-tab"
-                    role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link"id="pills-vendor-tab"
-                            data-toggle="pill"
-                            href="#pills-vendor" role="tab"
-                            aria-controls="pills-vendor"
-                            aria-selected="vendor">YES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            id="pills-nonvendor-tab"
-                            data-toggle="pill"
-                            href="#pills-nonvendor" role="tab"
-                            aria-controls="pills-nonvendor"
-                            aria-selected="nonvendor">NO</a>
-                    </li>
-                </ul>
+                <input type="radio" formControlName="vendorOrganization" value="Yes" (click)="changetoggel('vendorOrganization','Yes')" id="YES">
+                <label  for="YES">Yes</label>
+    
+              
+                <input type="radio"  formControlName="vendorOrganization" (click)="changetoggel('vendorOrganization','No')" value="No" 
+                 id="No">
+                <label for="No">No</label>
+
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade" id="pills-vendor"
-                        role="tabpanel"
-                        aria-labelledby="pills-vendor-tab">
+                    <div *ngIf="vendorOrganization">
                         <div class="form-group">
                             <div class="row mt-3">
                                 <div class="col-lg-6">
@@ -1013,6 +1007,9 @@
                                     <input
                                         formControlName="vendorOrganization1"
                                         type="text">
+                                        <span  style="color: red;" *ngIf="editForm.get('vendorOrganization1').hasError('required')&&(editForm.controls['vendorOrganization1'].touched||editForm.controls['vendorOrganization2'].touched||editForm.controls['vendorOrganization3'].touched||editForm.controls['vendorOrganization4'].touched)" >
+                                            Vendor Organization  required
+                                        </span>
                                 </div>
                                 <div class="col-lg-6">
                                     <h6 class="mb-2">Name of the
@@ -1031,6 +1028,7 @@
                                     <input
                                         formControlName="vendorOrganization3"
                                         type="text">
+                                       
                                 </div>
                                 <div class="col-lg-6">
                                     <h6 class="mb-2">Name of the
@@ -1039,6 +1037,7 @@
                                     <input
                                         formControlName="vendorOrganization4"
                                         type="text">
+                                       
                                 </div>
                             </div>
                         </div>
@@ -1092,28 +1091,15 @@
                 customer
                 organization?</h5>
             <div class="mb-3 mt-3">
-                <ul class="nav nav-pills mb-3" id="pills-tab"
-                    role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link"id="pills-reports-tab"
-                            data-toggle="pill"
-                            href="#pills-reports" role="tab"
-                            aria-controls="pills-reports"
-                            aria-selected="reports">YES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            id="pills-noreports-tab"
-                            data-toggle="pill"
-                            href="#pills-noreports" role="tab"
-                            aria-controls="pills-noawarded"
-                            aria-selected="noreports" (click)="report()">NO</a>
-                    </li>
-                </ul>
+                <input type="radio" formControlName="isappreciation" value="Yes" (click)="changetoggel('isappreciation','Yes')" id="YES">
+                <label  for="YES">Yes</label>
+    
+              
+                <input type="radio"  formControlName="isappreciation" (click)="changetoggel('isappreciation','No')" value="No" 
+                 id="No">
+                <label for="No">No</label>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade"
-                        id="pills-reports" role="tabpanel"
-                        aria-labelledby="pills-reports-tab">
+                    <div *ngIf="isappreciation">
                         <div class="form-group">
                             <h5 for="">Upload documents</h5>
                             <input
@@ -1124,6 +1110,12 @@
                                 class="mt-3" name="" id=""
                                 aria-describedby="helpId"
                                 placeholder="">
+                                <span  style="color: red;" *ngIf="editForm.get('appreciationDocuments').hasError('required')&&editForm.controls['appreciationDocuments'].touched" >
+                                    documents  required
+                                </span>
+                                
+                                <br>
+                        <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
                         </div>
                     </div>
                     <div class="tab-pane fade"

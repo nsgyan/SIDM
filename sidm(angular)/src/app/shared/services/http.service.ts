@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Globals } from './global-constants';
@@ -24,8 +24,13 @@ export class HttpService {
   getdetails(id: any) {
     return this.httpService.get(`${Globals.route.formsdata}/${id}`)
   }
-  getData() {
-    return this.httpService.get(Globals.route.formsData)
+  getData(page: number, itemPerPage: number) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("page", page);
+    queryParams = queryParams.append("itemPerPage", itemPerPage);
+    return this.httpService.get(Globals.route.formsData, {
+      params: queryParams
+    })
   }
 
  updateform(id: string, data: any) {

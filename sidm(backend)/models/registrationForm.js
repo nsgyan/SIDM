@@ -12,6 +12,7 @@ const RegistrationFormSchema = new Schema({
     pincode: { type: String },
     name: { type: String },
     designation: { type: String },
+    createAt: { type: String },
     mobileNumber: { type: String },
     email: {
         type: String,
@@ -36,7 +37,11 @@ const RegistrationFormSchema = new Schema({
     documentsOfProduct: { type: String },
     appreciationDocuments: { type: String },
     briefCompany: { type: String },
-    awardMatterToCompany: { type: String }
+    awardMatterToCompany: { type: String },
+    sidmMember: { type: String },
+    otherMember: { type: String },
+    vendorOrganization: { type: String },
+    isappreciation: { type: String },
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

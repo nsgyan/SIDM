@@ -137,8 +137,7 @@
                 
                 <div class="detail">
                     <h6>Are you member of SIDM ?</h6>
-                    <p *ngIf="memberData?.sidmMemberShipNumber">Yes</p>
-                    <p *ngIf="!memberData?.sidmMemberShipNumber">No</p>
+                    <p >{{memberData?.sidmMember}}</p>
                 </div>
                 <div *ngIf="memberData?.sidmMemberShipNumber" class="detail">
                     <h6>Membership number</h6>
@@ -146,9 +145,7 @@
                 </div>
                 <div class="detail">
                     <h6>Are you member of any other association</h6>
-                    
-                    <p *ngIf="memberData?.otherAssociationMemberShipNumber">Yes</p>
-                    <p *ngIf="!memberData?.otherAssociationMemberShipNumber">No</p>
+                    <p>{{memberData?.otherMember}}</p>
                 </div>
                 <div *ngIf="memberData?.otherAssociationMemberShipNumber" class="detail">
                     <h6>Membership number</h6>
@@ -156,8 +153,7 @@
                 </div>
                 <div class="detail">
                     <h6>Are you a registered Vendor of any Defence Organisation such as DPSU/DRDO etc</h6>
-                    <p *ngIf="memberData?.vendorOrganization1||memberData?.vendorOrganization2||memberData?.vendorOrganization3||memberData?.vendorOrganization4">Yes</p>
-                    <p *ngIf="!memberData?.vendorOrganization1 &&! memberData?.vendorOrganization2 &&! memberData?.vendorOrganization3 &&! memberData?.vendorOrganization4">No</p>
+                    <p>{{memberData?.vendorOrganization}}</p>
                 </div>
                 <div class="detail" *ngIf="memberData?.vendorOrganization1">
                     <h6>Name of the Vendor Organization registered with</h6>
@@ -190,8 +186,7 @@
                 <div class="detail">
                     <h6>Have you received any reports of performance / letters of appreciation from customer
                         organization?</h6>
-                        <p *ngIf="memberData?.appreciationDocuments">Yes</p>
-                        <p *ngIf="!memberData?.appreciationDocuments">No</p>
+                        <p>{{memberData?.isappreciation}}</p>
                 </div>
                 <div class="detail" *ngIf="memberData?.appreciationDocuments">
                     <h6> Appreciation Document</h6>

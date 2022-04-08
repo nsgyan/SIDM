@@ -3,7 +3,7 @@ const RegistrationForm = require('../models/registrationForm')
 const fs = require('fs')
 
 exports.postRegistrationForm = (req, res, next) => {
-
+    const createAt = req.body.createAt
     const status = req.body.status
     const category = req.body.category;
     const typeOfApplicant = req.body.typeOfApplicant;
@@ -34,6 +34,11 @@ exports.postRegistrationForm = (req, res, next) => {
     const documentGstCertificate = req.body.documentGstCertificate;
     const panNumberOfOrganization = req.body.panNumberOfOrganization;
     const awardMatterToCompany = req.body.awardMatterToCompany;
+    const sidmMember = req.body.sidmMember
+    const otherMember = req.body.otherMember
+    const vendorOrganization = req.body.vendorOrganization
+    const isappreciation = req.body.isappreciation
+
     registrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: panNumberOfOrganization })
         .then(data => {
             if (data) {
@@ -49,6 +54,7 @@ exports.postRegistrationForm = (req, res, next) => {
             }
             else {
                 const form = new RegistrationForm({
+                    createAt: createAt,
                     status: status,
                     category: category,
                     typeOfApplicant: typeOfApplicant,
@@ -79,6 +85,10 @@ exports.postRegistrationForm = (req, res, next) => {
                     documentGstCertificate: documentGstCertificate,
                     panNumberOfOrganization: panNumberOfOrganization,
                     awardMatterToCompany: awardMatterToCompany,
+                    sidmMember: sidmMember,
+                    otherMember: otherMember,
+                    vendorOrganization: vendorOrganization,
+                    isappreciation: isappreciation,
                 })
                 form.save()
                     .then(result => {
@@ -96,10 +106,32 @@ exports.postRegistrationForm = (req, res, next) => {
 
 
 exports.getForms = (req, res, next) => {
-    RegistrationForm.find()
+    const page = req.query.page || 1;
+    const itemPerPage = req.query.itemPerPage || 10;
+    console.log(req.query);
+    let totalItems;
+    RegistrationForm.find().countDocuments().then(numOfForm => {
+        totalItems = numOfForm;
+        // totalItems = numO
+        // console.log(numofForms);
+        return RegistrationForm.find()
+            .skip((page - 1) * itemPerPage)
+            .limit(itemPerPage)
+    })
         .then(data => {
+            console.log(data);
             if (data) {
-                res.status(200).send(data)
+                res.status(200).send({
+                    forms: data,
+                    currentPage: page,
+                    hasNextPage: itemPerPage * page < totalItems,
+                    hasPreviousPage: page > 1,
+                    nextPage: page + 1,
+                    previousPage: page - 1,
+                    lastPage: Math.ceil(totalItems / itemPerPage)
+
+
+                })
             }
             else {
                 res.status(404).send('not Found')
@@ -172,6 +204,10 @@ exports.updateFrom = (req, res, next) => {
     const updatePincode = req.body.pincode;
     const updateName = req.body.name;
     const updateDesignation = req.body.designation;
+    const sidmMember = req.body.sidmMember
+    const otherMember = req.body.otherMember
+    const vendorOrganization = req.body.vendorOrganization
+    const isappreciation = req.body.isappreciation
     console.log(updateDesignation, 'desf');
     const updateDocumentGstCertificate = req.body.documentGstCertificate;
     RegistrationForm.findById(userID).then(formData => {
@@ -195,6 +231,11 @@ exports.updateFrom = (req, res, next) => {
         formData.vendorOrganization1 = vendorOrganization1;
         formData.vendorOrganization2 = vendorOrganization2;
         formData.vendorOrganization3 = vendorOrganization3;
+        formData.sidmMember = sidmMember;
+        formData.otherMember = otherMember;
+        formData.vendorOrganization = vendorOrganization;
+        formData.isappreciation = isappreciation;
+
         formData.aboutCompany = aboutCompany;
         formData.achievementsToJustifyApplication = achievementsToJustifyApplication;
         if (documentsOfProduct) {

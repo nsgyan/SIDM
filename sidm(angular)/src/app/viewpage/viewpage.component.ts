@@ -49,6 +49,8 @@ export class ViewpageComponent implements OnInit {
         else if (data.documentsOfProduct) {
           data.documentsOfProduct = '/sidm(backend)/uploads/' + data.documentsOfProduct
         }
+        data.panNumberOfOrganization=data.panNumberOfOrganization.toUpperCase();
+
         this.memberData = data
         console.log(data);
 
