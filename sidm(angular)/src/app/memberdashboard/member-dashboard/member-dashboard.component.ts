@@ -359,6 +359,8 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('pincode')?.updateValueAndValidity()
     this.editForm.get('name')?.clearValidators()
     this.editForm.get('name')?.updateValueAndValidity()
+    console.log(this.editForm.value.designation);
+
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
         category: this.editForm.value.category,

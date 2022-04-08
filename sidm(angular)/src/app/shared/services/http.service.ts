@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Globals } from './global-constants';
 import { LocalStorageService } from './local-storage.service';
 
@@ -57,5 +58,36 @@ export class HttpService {
 
   memberlogin(memberLoginData: any) {
     return this.httpService.post(Globals.route.memberLogin, memberLoginData)
+  }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+    console.log(formData);
+
+
+    const request = new HttpRequest(
+      'POST',
+      Globals.route.upload,
+      formData,
+      {
+        reportProgress: false,
+        responseType: 'text',
+      }
+    );
+
+    return this.httpService.request(request);
+  }
+
+  uploadImage(data: any) {
+    let api_url = Globals.route.upload;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json;charset=UTF-8',
+        Accept: 'multipart/form-data',
+      }),
+    };
+    return this.httpService.post(api_url, data, httpOptions);
   }
 }

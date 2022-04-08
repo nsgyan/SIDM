@@ -172,6 +172,7 @@ exports.updateFrom = (req, res, next) => {
     const updatePincode = req.body.pincode;
     const updateName = req.body.name;
     const updateDesignation = req.body.designation;
+    console.log(updateDesignation, 'desf');
     const updateDocumentGstCertificate = req.body.documentGstCertificate;
     RegistrationForm.findById(userID).then(formData => {
         formData.nameOfOrganisation = updateNameOfOrganisation;

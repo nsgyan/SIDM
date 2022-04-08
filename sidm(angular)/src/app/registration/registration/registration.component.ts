@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Event, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation } from 'src/app/shared/services/custom-validator.service';
+import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation, GstValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -52,7 +52,7 @@ export class RegistrationComponent implements OnInit {
       otherAssociationMemberShipNumber: [''],
       panNumberOfOrganization: ['', [Validators.required, panValidation]],
       confirmPanNumberOfOrganization: ['', [Validators.required, panValidation, CrossPanValidation]],
-      gstinOfOrganization: [''],
+      gstinOfOrganization: ['', [GstValidation]],
       dateOfOrganization: [''],
       vendorOrganization1: [''],
       vendorOrganization2: [''],
@@ -78,18 +78,36 @@ export class RegistrationComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+
   changeListener($event: any, form: any) {
     let file = $event.target.files;
-    console.log($event.target.files);
+    console.log(file);
+
     if (parseInt(file[0].size) > 5242880) {
       this.registrationForm.get(form)?.reset()
       this.registrationForm.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')
     }
     else {
+      this.httpService.upload(file[0]).subscribe((data: any) => {
+        if (form === 'documentGstCertificate') {
+
+          this.documentGstCertificate = data.body;
+          console.log(this.documentGstCertificate);
+
+        }
+        else if (form === 'documentsOfProduct') {
+          this.documentsOfProduct = data.body;
+        }
+        else if (form === 'appreciationDocuments') {
+          this.appreciationDocuments = data.body;
+
+        }
+      })
       this.readThis($event.target, form);
     }
   }
+
 
   readThis(inputValue: any, form: any): void {
 
@@ -98,6 +116,7 @@ export class RegistrationComponent implements OnInit {
 
     myReader.onloadend = (e) => {
       if (form === 'documentGstCertificate') {
+
         this.documentGstCertificate = myReader.result;
       }
       else if (form === 'documentsOfProduct') {
@@ -376,16 +395,18 @@ export class RegistrationComponent implements OnInit {
     }
 
   }
+
   registerdUser() {
     this.router.navigate(['/login/member'])
   }
 
-
   resolved(captchaResponse: any) {
     this.captcha = captchaResponse;
   }
+
   report() {
     this.registrationForm.get('appreciationDocuments')?.reset()
+    this.appreciationDocuments = ''
   }
 
 }

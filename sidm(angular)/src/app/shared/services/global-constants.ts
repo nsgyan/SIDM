@@ -11,7 +11,7 @@ export class Globals {
         'checkPan': Globals.server + 'user/checkPan',
         'formsdata':  Globals.server + 'sidm/memberdata',
         'memberdata': Globals.server + 'user/memberdata',
-        'memberLogin': Globals.server + 'user/memberLogin'
-
+        'memberLogin': Globals.server + 'user/memberLogin',
+        'upload': Globals.server + 'upload'
     };
 }

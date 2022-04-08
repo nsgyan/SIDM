@@ -40,7 +40,15 @@ export class ViewpageComponent implements OnInit {
         else if (data?.typeOfApplicant === 'S') {
           data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
         }
-
+        if (data.documentGstCertificate) {
+          data.documentGstCertificate = '/sidm(backend)/uploads/' + data.documentGstCertificate
+        }
+        else if (data.appreciationDocuments) {
+          data.appreciationDocuments = '/sidm(backend)/uploads/' + data.appreciationDocuments
+        }
+        else if (data.documentsOfProduct) {
+          data.documentsOfProduct = '/sidm(backend)/uploads/' + data.documentsOfProduct
+        }
         this.memberData = data
         console.log(data);
 

@@ -1,22 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const fs = require('fs')
 const mongoose = require('mongoose');
 const app = express()
+const Register = require('./routes/register')
+const User = require('./routes/user')
+
+const path = require('path')
+const fileUpload = require('express-fileupload');
+const UploadFile = require('./controllers/UploadFile');
 var cors = require('cors')
 app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-const Register = require('./routes/register')
-const User = require('./routes/user')
-const fileUpload = require('express-fileupload');
+
 app.use(fileUpload());
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 app.use('/sidm', Register)
 app.use('/user', User)
-
+app.use('/upload', UploadFile)
 
 
 // const root = path.join(__dirname, 'dist', 'sidm');
