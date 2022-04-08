@@ -12,8 +12,8 @@ const UploadFile = require('./controllers/UploadFile');
 var cors = require('cors')
 app.use(cors())
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(fileUpload());
 app.use('/uploads', express.static(__dirname + '/uploads'))
@@ -23,16 +23,16 @@ app.use('/user', User)
 app.use('/upload', UploadFile)
 
 
-// const root = path.join(__dirname, 'dist', 'sidm');
-// app.get('*', function (req, res) {
-//     fs.stat(root + req.path, function (err) {
-//         if (err) {
-//             res.sendFile("index.html", { root });
-//         } else {
-//             res.sendFile(req.path, { root });
-//         }
-//     })
-// });
+const root = path.join(__dirname, 'dist', 'sidm');
+app.get('*', function (req, res) {
+    fs.stat(root + req.path, function (err) {
+        if (err) {
+            res.sendFile("index.html", { root });
+        } else {
+            res.sendFile(req.path, { root });
+        }
+    })
+});
 
 
 mongoose
