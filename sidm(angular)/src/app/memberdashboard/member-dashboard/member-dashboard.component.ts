@@ -148,16 +148,38 @@ export class MemberDashboardComponent implements OnInit {
 
   changeListener($event: any, form: any) {
     let file = $event.target.files;
-    console.log($event.target.files);
+    console.log(file);
+
     if (parseInt(file[0].size) > 5242880) {
-      this.newCategoryForm.get(form)?.reset()
-      this.newCategoryForm.get(form)?.updateValueAndValidity()
+      this.editData.get(form)?.reset()
+      this.editData.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')
     }
     else {
+      const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+      const time = '7:00 AM';
+
+      console.log(file[0], 'fghj');
+
+      this.httpService.upload(file[0]).subscribe((data: any) => {
+        if (form === 'documentGstCertificate') {
+
+          this.documentGstCertificate = data.body;
+          console.log(this.documentGstCertificate);
+
+        }
+        else if (form === 'documentsOfProduct') {
+          this.documentsOfProduct = data.body;
+        }
+        else if (form === 'appreciationDocuments') {
+          this.appreciationDocuments = data.body;
+
+        }
+      })
       this.readThis($event.target, form);
     }
   }
+
 
   readThis(inputValue: any, form: any): void {
 

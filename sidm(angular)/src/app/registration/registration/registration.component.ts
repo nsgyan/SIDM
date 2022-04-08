@@ -89,6 +89,11 @@ export class RegistrationComponent implements OnInit {
       this.toast.error('file to large')
     }
     else {
+      const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+      const time = '7:00 AM';
+
+      console.log(file[0], 'fghj');
+
       this.httpService.upload(file[0]).subscribe((data: any) => {
         if (form === 'documentGstCertificate') {
 
