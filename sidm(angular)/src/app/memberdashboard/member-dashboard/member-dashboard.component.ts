@@ -439,6 +439,8 @@ export class MemberDashboardComponent implements OnInit {
 
   report() {
     this.editForm.get('appreciationDocuments')?.reset()
+
+    this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
   }
 
 }
