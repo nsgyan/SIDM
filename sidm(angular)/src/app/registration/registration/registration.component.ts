@@ -86,16 +86,58 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  gstchangeListener($event: any, form: any) {
+    let file = $event.target.files;
+
+    if (
+      file[0].type == 'application/pdf'
+
+    ) {
+
+      if (parseInt(file[0].size) > 524280) {
+        this.registrationForm.get(form)?.reset()
+        this.registrationForm.get(form)?.updateValueAndValidity()
+        this.toast.error('file to large')
+      }
+      else {
+
+        this.httpService.upload(file[0]).subscribe((data: any) => {
+
+
+          this.documentGstCertificate = data.body;
+          console.log(this.documentGstCertificate);
+
+
+
+        })
+
+      }
+    }
+    else {
+      this.toast.error('File uploaded is invalid!')
+      this.registrationForm.get(form)?.reset()
+      this.registrationForm.get(form)?.updateValueAndValidity()
+
+    }
+  }
+
+
   changeListener($event: any, form: any) {
     let file = $event.target.files;
     console.log(file);
+
+
     if (
       file[0].type == 'image/png' ||
       file[0].type == 'image/jpg' ||
       file[0].type == 'image/jpeg' ||
-      file[0].type == 'application/pdf'
+      file[0].type == 'application/pdf' ||
+      file[0].type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      || file[0].type == 'application/msword'
     ) {
-      if (parseInt(file[0].size) > 52428) {
+      console.log('jhe');
+
+      if (parseInt(file[0].size) > 524280) {
       this.registrationForm.get(form)?.reset()
       this.registrationForm.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')
@@ -121,35 +163,18 @@ export class RegistrationComponent implements OnInit {
 
         }
       })
-      this.readThis($event.target, form);
+
       }
     }
     else {
       this.toast.error('File uploaded is invalid!')
+      this.registrationForm.get(form)?.reset()
+      this.registrationForm.get(form)?.updateValueAndValidity()
+
     }
   }
 
 
-  readThis(inputValue: any, form: any): void {
-
-    var file: File = inputValue.files[0];
-    var myReader: FileReader = new FileReader();
-
-    myReader.onloadend = (e) => {
-      if (form === 'documentGstCertificate') {
-
-        this.documentGstCertificate = myReader.result;
-      }
-      else if (form === 'documentsOfProduct') {
-        this.documentsOfProduct = myReader.result;
-      }
-      else if (form === 'appreciationDocuments') {
-        this.appreciationDocuments = myReader.result;
-
-      }
-    }
-    myReader.readAsDataURL(file);
-  }
 
   getState() {
     this.httpService.getStateList()

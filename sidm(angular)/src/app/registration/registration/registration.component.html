@@ -231,7 +231,7 @@
                                     <h5 class="mt-3 mb-3">Pincode *</h5>
                                     <input formControlName="pincode"
                                         (keypress)="keyPressNumbers($event)"
-                                        type="text">
+                                        type="text" maxlength="6">
                                     <div> 
                                             <span
                                                 *ngIf="registrationForm.get('pincode').hasError('required')"
@@ -342,7 +342,7 @@
                                     <input appBlockCopyPaste (keypress)="keyPressNumbers($event)"
                                     (change)="checkMobile($event)"
                                         formControlName="mobileNumber"
-                                        type="text" appCpoyPaste>
+                                        type="text" appCpoyPaste maxlength="10">
                                     <div *ngIf="registrationForm.controls['mobileNumber'].invalid
                                         &&(submited||
                                         registrationForm.controls['mobileNumber'].touched)">
@@ -378,7 +378,7 @@
                                     <input appBlockCopyPaste (keypress)="keyPressNumbers($event)"
                                         formControlName="confirmMobileNumber"
                                         (focusout)="confirmmobile($event)"
-                                        type="password" appCpoyPaste>
+                                        type="password" appCpoyPaste maxlength="10">
                                     <div
                                         *ngIf="registrationForm.controls['confirmMobileNumber'].invalid
                                         &&
@@ -496,8 +496,9 @@
                                         Document</h5>
                                     <input
                                         formControlName="documentGstCertificate"
-                                        accept="application/pdf" type="file"
-                                        (change)="changeListener($event,'documentGstCertificate')">
+                                        type="file"
+                                        accept="application/pdf"
+                                        (change)="gstchangeListener($event,'documentGstCertificate')">
                                         <br>
                                         <span> only accept .pdf</span>
                                 </div>
@@ -678,7 +679,8 @@
                                     <div class="">
                                         <textarea formControlName="briefCompany"
                                             class="form-control mb-3"
-                                            aria-label="With textarea"></textarea>
+                                            aria-label="With textarea" maxlength="200"></textarea>
+                                           
                                     </div>
                                 </div>
                             </div>
