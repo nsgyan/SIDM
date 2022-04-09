@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../shared/services/http.service';
+import { environment } from "../../environments/environment.prod";
 
 @Component({
   selector: 'app-viewpage',
@@ -41,13 +42,13 @@ export class ViewpageComponent implements OnInit {
           data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
         }
         if (data.documentGstCertificate) {
-          data.documentGstCertificate = '/sidm(backend)/uploads/' + data.documentGstCertificate
+          data.documentGstCertificate = environment.download + data.documentGstCertificate
         }
         else if (data.appreciationDocuments) {
-          data.appreciationDocuments = '/sidm(backend)/uploads/' + data.appreciationDocuments
+          data.appreciationDocuments = environment.download + data.appreciationDocuments
         }
         else if (data.documentsOfProduct) {
-          data.documentsOfProduct = '/sidm(backend)/uploads/' + data.documentsOfProduct
+          data.documentsOfProduct = environment.download + data.documentsOfProduct
         }
         data.panNumberOfOrganization=data.panNumberOfOrganization.toUpperCase();
 

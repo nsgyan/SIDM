@@ -35,6 +35,9 @@ export class MemberDashboardComponent implements OnInit {
   states: any;
   editData: any;
   catagery: any;
+  email: any;
+  mobilenumber: any;
+  pan: any;
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
@@ -67,9 +70,9 @@ export class MemberDashboardComponent implements OnInit {
 
 
         for (let i of this.memberData) {
-          email = i.email
-          mobilenumber = i.mobileNumber;
-          pan = i.panNumberOfOrganization.toUpperCase();
+          this.email = i.email
+          this.mobilenumber = i.mobileNumber;
+          this.pan = i.panNumberOfOrganization.toUpperCase();
         }
         console.log(email, pan, mobilenumber);
         console.log('hello');
@@ -512,7 +515,7 @@ export class MemberDashboardComponent implements OnInit {
 
       this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
     }
-    else if (conttrolName === 'otherAssociationMemberShipNumber' && value == 'No') {
+    else if (conttrolName === 'otherMember' && value == 'No') {
       this.otherMember = false
       this.editForm.get('otherAssociationMemberShipNumber')?.reset()
 

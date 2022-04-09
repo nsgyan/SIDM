@@ -5,7 +5,7 @@
         <h1 class="title">Dashboard</h1>
         <div class="breadcrumbs">
             <ul>
-                <li><a href="#"><i aria-hidden="true" class="fa fa-sign-out "></i> Logout</a></li>
+                <li><a><i aria-hidden="true" class="fa fa-sign-out "></i> Logout</a></li>
             </ul>
         </div>
     </div>
@@ -140,7 +140,18 @@
 </section>
 
 <section class="pagination  " style="justify-content: flex-end;" >
-    <nav aria-label="Page navigation example " s>
+    <nav aria-label="Page navigation example " style="margin: 1rem;">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link"  (click)="perviousPage()" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item">
+            <a class="page-link" (click)="nextpage()">Next</a>
+          </li>
+        </ul>
+      </nav>
+    <!-- <nav aria-label="Page navigation example ">
         <ul class="pagination">
           <li class="page-item" *ngIf="allFormsData?.hasPreviousPage">
             <a class="page-link" (click)="perviousPage()"  aria-label="Previous">
@@ -156,7 +167,7 @@
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
 <!-- <button (click)="perviousPage()" *ngIf="allFormsData?.hasPreviousPage" >Pervious Page</button>
 <button class="active">Current Page</button>
 <button  (click)="nextpage()" *ngIf="allFormsData?.hasNextPage">Next Page</button> -->

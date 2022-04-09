@@ -8,6 +8,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MemberLoginComponent } from './member-login/member-login.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -23,7 +24,8 @@ import { MemberLoginComponent } from './member-login/member-login.component';
     ReactiveFormsModule,
     RecaptchaModule,
     NgxSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SharedModule
 
   ]
 })

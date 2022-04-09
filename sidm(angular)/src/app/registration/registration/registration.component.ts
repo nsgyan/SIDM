@@ -455,7 +455,7 @@ export class RegistrationComponent implements OnInit {
 
       this.registrationForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
     }
-    else if (conttrolName === 'otherAssociationMemberShipNumber' && value == 'No') {
+    else if (conttrolName === 'otherMember' && value == 'No') {
       this.otherMember = false
       this.registrationForm.get('otherAssociationMemberShipNumber')?.reset()
 

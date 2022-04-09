@@ -874,6 +874,7 @@
                     <h5 class="mt-3 mb-3">GSTIN of the
                         Organization</h5>
                     <input formControlName="gstinOfOrganization"
+                    appUpperCase
                         type="text">
                         <span style="color: red;"
                                         *ngIf="editForm.get('gstinOfOrganization').hasError('pattern')">

@@ -438,7 +438,8 @@
                                         Organization *</h5>
                                     <input appBlockCopyPaste
                                         formControlName="panNumberOfOrganization"
-                                        (focusout)="checkPan($event)"
+                                        appUpperCase
+                                        (focusout)="checkPan($event)"onkeydown="upperCaseF(this)"
                                         type="text" appCpoyPaste>
                                     <div *ngIf="registrationForm.controls['panNumberOfOrganization'].invalid
                                         &&
@@ -468,6 +469,7 @@
                                     <input appBlockCopyPaste
                                         formControlName="confirmPanNumberOfOrganization"
                                         type="password"
+                                        appUpperCase
                                         (focusout)="confirmPan($event)"
                                         appCpoyPaste>
                                     <div
@@ -504,7 +506,7 @@
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">GSTIN of the
                                         Organization</h5>
-                                    <input formControlName="gstinOfOrganization"
+                                    <input appUpperCase formControlName="gstinOfOrganization"
                                         type="text">
                                         <div *ngIf="registrationForm.controls['gstinOfOrganization'].invalid
                                         &&
