@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
 
   memberform: FormGroup;
   registrationForm: FormGroup
-  submitted: boolean = false;
+  submited: boolean = false;
   captcha: any;
   vendorOrganization: boolean = false;
   isappreciation: boolean = false;
@@ -48,13 +48,13 @@ export class RegistrationComponent implements OnInit {
       name: [''],
       designation: [''],
       mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
-      confirmMobileNumber: ['', [Validators.required, CellNumValidation,]],
+      confirmMobileNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      confirmEmail: ['', [Validators.required, Validators.email, CrossEmailValidation]],
+      confirmEmail: ['', Validators.required],
       sidmMemberShipNumber: [''],
       otherAssociationMemberShipNumber: [''],
       panNumberOfOrganization: ['', [Validators.required, panValidation]],
-      confirmPanNumberOfOrganization: ['', [Validators.required, panValidation, CrossPanValidation]],
+      confirmPanNumberOfOrganization: ['', [Validators.required]],
       gstinOfOrganization: ['', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
       dateOfOrganization: [''],
       vendorOrganization1: [''],
@@ -89,8 +89,13 @@ export class RegistrationComponent implements OnInit {
   changeListener($event: any, form: any) {
     let file = $event.target.files;
     console.log(file);
-
-    if (parseInt(file[0].size) > 5242880) {
+    if (
+      file[0].type == 'image/png' ||
+      file[0].type == 'image/jpg' ||
+      file[0].type == 'image/jpeg' ||
+      file[0].type == 'application/pdf'
+    ) {
+      if (parseInt(file[0].size) > 52428) {
       this.registrationForm.get(form)?.reset()
       this.registrationForm.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')
@@ -117,6 +122,10 @@ export class RegistrationComponent implements OnInit {
         }
       })
       this.readThis($event.target, form);
+      }
+    }
+    else {
+      this.toast.error('File uploaded is invalid!')
     }
   }
 
@@ -152,53 +161,7 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-  checkemail(event: any) {
-    this.registrationForm.get('confirmEmail')?.reset()
-    const email = event.target.value.toLowerCase()
-    if (email) {
-      console.log(email);
-      this.httpService.checkEmail({ email: email })
-        .subscribe((data: any) => {
-          if (email === data.email) {
-            this.registrationForm.get('email')?.setErrors({ isExist: true });
-          }
 
-        })
-
-    }
-  }
-  checkMobile(event: any) {
-    this.registrationForm.get('confirmMobileNumber')?.reset()
-    const mobileNumber = event.target.value
-    if (mobileNumber) {
-      console.log(mobileNumber);
-      this.httpService.checkMobile({ mobileNumber: mobileNumber })
-        .subscribe((data: any) => {
-        console.log(data);
-
-          if (mobileNumber === data.mobileNumber) {
-            this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
-          }
-
-      })
-
-    }
-  }
-  checkPan(event: any) {
-    this.registrationForm.get('confirmPanNumberOfOrganization')?.reset()
-    const panNumberOfOrganization = event.target.value.toLowerCase()
-    if (panNumberOfOrganization) {
-      console.log(panNumberOfOrganization);
-      this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
-        .subscribe((data: any) => {
-          if (panNumberOfOrganization === data.panNumberOfOrganization) {
-            this.registrationForm.get('panNumberOfOrganization')?.setErrors({ isExist: true });
-          }
-
-        })
-
-    }
-  }
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -222,6 +185,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   savedraft(type: String) {
+
     this.registrationForm.get('typeOfApplicant')?.clearValidators()
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.registrationForm.get('gstinOfOrganization')?.clearValidators()
@@ -292,23 +256,86 @@ export class RegistrationComponent implements OnInit {
       )
     }
     else if (!this.captcha) {
+      this.submited = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
 
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Form invalid');
     }
 
+  }
+  checkemail(event: any) {
+    this.registrationForm.get('confirmEmail')?.reset()
+    const email = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('email')?.value
+    if (email) {
+      console.log(email);
+      this.httpService.checkEmail({ email: email })
+        .subscribe((data: any) => {
+          if (email === data.email) {
+            this.registrationForm.get('email')?.setErrors({ isExist: true });
+          }
+
+        })
+
+    }
+  }
+  checkMobile(event: any) {
+    this.registrationForm.get('confirmMobileNumber')?.reset()
+    const mobileNumber = event.target.value ? event.target.value : this.registrationForm.get('mobileNumber')?.value
+    if (mobileNumber) {
+      console.log(mobileNumber);
+      this.httpService.checkMobile({ mobileNumber: mobileNumber })
+        .subscribe((data: any) => {
+          console.log(data);
+
+          if (mobileNumber === data.mobileNumber) {
+            this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
+          }
+
+        })
+
+    }
+  }
+  checkPan(event: any) {
+    this.registrationForm.get('confirmPanNumberOfOrganization')?.reset()
+    const panNumberOfOrganization = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumberOfOrganization')?.value
+    if (panNumberOfOrganization) {
+      console.log(panNumberOfOrganization);
+      this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
+        .subscribe((data: any) => {
+          if (panNumberOfOrganization === data.panNumberOfOrganization) {
+            this.registrationForm.get('panNumberOfOrganization')?.setErrors({ isExist: true });
+          }
+
+        })
+
+    }
   }
 
   confirmEmail(event: any,) {
     console.log(event.target.value);
     console.log(this.registrationForm.value.email);
-    if (event.target.value !== this.registrationForm.value.email) {
+    if (event.target.value.toLowerCase() !== this.registrationForm.value.email.toLowerCase()) {
       console.log(event.target.value);
       console.log(this.registrationForm.value.email);
       this.registrationForm.get('confirmEmail')?.setErrors({ confirmEmail: true })
+    }
+    else {
+      const email = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('email')?.value
+      if (email) {
+        console.log(email);
+        this.httpService.checkEmail({ email: email })
+          .subscribe((data: any) => {
+            if (email === data.email) {
+              this.registrationForm.get('email')?.setErrors({ isExist: true });
+            }
+
+          })
+
+      }
+
     }
   }
 
@@ -320,19 +347,50 @@ export class RegistrationComponent implements OnInit {
       console.log(this.registrationForm.value.mobileNumber);
       this.registrationForm.get('confirmMobileNumber')?.setErrors({ confirmMobileNumber: true })
     }
+    else {
+      const mobileNumber = event.target.value ? event.target.value : this.registrationForm.get('mobileNumber')?.value
+      if (mobileNumber) {
+        console.log(mobileNumber);
+        this.httpService.checkMobile({ mobileNumber: mobileNumber })
+          .subscribe((data: any) => {
+            console.log(data);
+
+            if (mobileNumber === data.mobileNumber) {
+              this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
+            }
+
+          })
+
+      }
+    }
   }
 
   confirmPan(event: any,) {
     console.log(event.target.value);
     console.log(this.registrationForm.value.panNumberOfOrganization);
-    if (event.target.value !== this.registrationForm.value.panNumberOfOrganization) {
+    if (event.target.value.toUpperCase() !== this.registrationForm.value.panNumberOfOrganization.toUpperCase()) {
       console.log(event.target.value);
       console.log(this.registrationForm.value.panNumberOfOrganization);
       this.registrationForm.get('confirmPanNumberOfOrganization')?.setErrors({ confirmPanNumber: true })
     }
+    else {
+      const panNumberOfOrganization = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumberOfOrganization')?.value
+      if (panNumberOfOrganization) {
+        console.log(panNumberOfOrganization);
+        this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
+          .subscribe((data: any) => {
+            if (panNumberOfOrganization === data.panNumberOfOrganization) {
+              this.registrationForm.get('panNumberOfOrganization')?.setErrors({ isExist: true });
+            }
+
+          })
+
+      }
+    }
   }
 
   finalSubmit(type: string) {
+
     this.registrationForm.get('category')?.setValidators(Validators.required)
     this.registrationForm.get('category')?.updateValueAndValidity()
     this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
@@ -396,18 +454,17 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['/thankYou'])
         // this.toastr.success('successfully applied');
       }, err => {
-        console.log(err);
         this.toast.error(err);
 
       })
     }
     else if (!this.captcha) {
+      this.submited = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
-      console.log(this.registrationForm);
 
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Form invalid');
     }
 

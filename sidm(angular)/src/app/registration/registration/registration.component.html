@@ -86,15 +86,12 @@
                                  
                                     
                                     <div
-                                    *ngIf="registrationForm.controls['category'].invalid
-                                    &&(
-                                    (registrationForm.controls['category'].dirty
-                                    ||
-                                    registrationForm.controls['category'].touched))">>
+                                    *ngIf="registrationForm.controls['category'].invalid && (submited || registrationForm.controls['category'].touched) ">
+                                    <br>
                                         <span
                                             *ngIf="registrationForm.get('category').hasError('required')"
                                             style="color: red;">
-                                            category <strong>required</strong>
+                                           Category <strong>required</strong>
                                         </span>
                                     </div>
                                     </div>
@@ -145,18 +142,13 @@
                                             than Rs 75 Crore)
                                         </label>
                                     </div>
-                                    <div
-                                    *ngIf="registrationForm.controls['typeOfApplicant'].invalid
-                                    &&(
-                                    (registrationForm.controls['typeOfApplicant'].dirty
-                                    ||
-                                    registrationForm.controls['typeOfApplicant'].touched))">>
+                                   <br>
                                         <span
                                             *ngIf="registrationForm.get('typeOfApplicant').hasError('required')"
                                             style="color: red;">
                                             Type Of Applicant <strong>required</strong>
                                         </span>
-                                    </div>
+                                    
                                   
 
                                 </div>
@@ -164,22 +156,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h5 class="mt-4 mb-3">Name of the
-                                        Organization</h5>
+                                        Organization *</h5>
                                     <input formControlName="nameOfOrganisation"
                                         type="text">
-                                        <div
-                                    *ngIf="registrationForm.controls['nameOfOrganisation'].invalid
-                                    &&(
-                                    (registrationForm.controls['nameOfOrganisation'].dirty
-                                    ||
-                                    registrationForm.controls['nameOfOrganisation'].touched))">>
+                                        
                                         <span
                                             *ngIf="registrationForm.get('nameOfOrganisation').hasError('required')"
                                             style="color: red;">
-                                            Name of the
-                                            Organization <strong>required</strong>
+                                           
+                                            Organization Name <strong>required</strong>
                                         </span>
-                                    </div>
+                                   
                                         
                                 </div>
                             </div>
@@ -194,7 +181,7 @@
                                     <h5 class="mt-3 mb-3">Address Line 1 *</h5>
                                     <input formControlName="addressl1"
                                         type="text">
-                                        <div *ngIf="registrationForm.controls['addressl1'].invalid && ( (registrationForm.controls['identifier'].dirty || registrationForm.controls['identifier'].touched)) ">
+                                        
                                   
                                         <span
                                             *ngIf="registrationForm.get('addressl1').hasError('required')"
@@ -202,7 +189,6 @@
                                             Address Line 1 <strong>required</strong>
                                         </span>
                                    
-                                        </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Address Line 2 </h5>
@@ -219,34 +205,25 @@
                                         <option *ngFor="let item of states"
                                             value="{{item.state}}">{{item.state}}</option>
                                     </select>
-                                    <!-- <input formControlName="state" type="text"> -->
-                                    <div *ngIf="registrationForm.controls['state'].invalid &&(registrationForm.controls['state'].dirty || registrationForm.controls['state'].touched) ">
-                                    <div
-                                        *ngIf="registrationForm.controls['state'].invalid
-                                        &&
-                                        registrationForm.controls['state'].touched">
+                                
                                         <span
                                             *ngIf="registrationForm.get('state').hasError('required')"
                                             style="color: red;">
                                             State <strong>required</strong>
                                         </span>
-                                    </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">City *</h5>
                                     <input formControlName="city"
                                         (keypress)="keyPresschar($event)"
                                         type="text">
-                                    <div *ngIf="registrationForm.controls['city'].invalid
-                                        &&
-                                        ( registrationForm.controls['city'].dirty || registrationForm.controls['city'].touched)">
                                         <span
                                             *ngIf="registrationForm.get('city').hasError('required')"
                                             style="color: red;">
                                             City <strong>required</strong>
                                         </span>
-                                    </div>
+                                   
                                 </div>
                             </div>
                             <div class="row">
@@ -255,9 +232,7 @@
                                     <input formControlName="pincode"
                                         (keypress)="keyPressNumbers($event)"
                                         type="text">
-                                    <div> <div *ngIf="registrationForm.controls['pincode'].invalid
-                                            &&
-                                            (registrationForm.controls['pincode'].dirty || registrationForm.controls['pincode'].touched)">
+                                    <div> 
                                             <span
                                                 *ngIf="registrationForm.get('pincode').hasError('required')"
                                                 style="color: red;">
@@ -269,7 +244,7 @@
                                                 !registrationForm.get('pincode').hasError('required')">
                                                 Please enter a valid pincode
                                             </span>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +254,7 @@
                                     <input formControlName="name" type="text">
                                     <div *ngIf="registrationForm.controls['name'].invalid
                                         &&
-                                        (registrationForm.controls['name'].dirty ||registrationForm.controls['name'].touched)">
+                                        (submited ||registrationForm.controls['name'].touched)">
                                         <span
                                             *ngIf="registrationForm.get('name').hasError('required')"
                                             style="color: red;">
@@ -297,10 +272,10 @@
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">E-Mail Address *</h5>
                                     <input appBlockCopyPaste appLowercase formControlName="email" type="text"
-                                        (focusout)="checkemail($event)"
+                                        (change)="checkemail($event)"
                                         appCpoyPaste>
                                     <div *ngIf="
-                                        registrationForm.controls['email'].invalid&& (registrationForm.controls['email'].dirty
+                                        registrationForm.controls['email'].invalid&& (submited
                                         ||
                                         registrationForm.controls['email'].touched)">
                                         <span
@@ -332,7 +307,7 @@
                                     <div
                                         *ngIf="registrationForm.controls['confirmEmail'].invalid
                                         &&(
-                                        (registrationForm.controls['confirmEmail'].dirty
+                                        (submited
                                         ||
                                         registrationForm.controls['confirmEmail'].touched))">
                                        
@@ -365,11 +340,11 @@
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Mobile Number *</h5>
                                     <input appBlockCopyPaste (keypress)="keyPressNumbers($event)"
-                                    (focusout)="checkMobile($event)"
+                                    (change)="checkMobile($event)"
                                         formControlName="mobileNumber"
                                         type="text" appCpoyPaste>
                                     <div *ngIf="registrationForm.controls['mobileNumber'].invalid
-                                        &&(registrationForm.controls['mobileNumber'].dirty||
+                                        &&(submited||
                                         registrationForm.controls['mobileNumber'].touched)">
                                         <span
                                             *ngIf="registrationForm.get('mobileNumber').hasError('required')"
@@ -385,7 +360,7 @@
                                         <span style="color: red;"
                                             *ngIf="registrationForm.get('mobileNumber').invalid
                                             &&(
-                                            !registrationForm.get('mobileNumber').hasError('required') && !registrationForm.get('mobileNumber').hasError('cellNumNotValid'))">
+                                            !registrationForm.get('mobileNumber').hasError('required') && !registrationForm.get('mobileNumber').hasError('cellNumNotValid')&&!registrationForm.get('mobileNumber').hasError('isExist'))">
                                             Mobile Number should be 10 digit  long
                                         </span>
                                         <span style="color: red;"
@@ -407,7 +382,7 @@
                                     <div
                                         *ngIf="registrationForm.controls['confirmMobileNumber'].invalid
                                         &&
-                                        (registrationForm.controls['confirmMobileNumber'].dirty
+                                        (submited
                                         ||
                                         registrationForm.controls['confirmMobileNumber'].touched)">
                                             <span
@@ -439,11 +414,11 @@
                                     <input appBlockCopyPaste
                                         formControlName="panNumberOfOrganization"
                                         appUpperCase
-                                        (focusout)="checkPan($event)"onkeydown="upperCaseF(this)"
+                                        (change)="checkPan($event)"onkeydown="upperCaseF(this)"
                                         type="text" appCpoyPaste>
                                     <div *ngIf="registrationForm.controls['panNumberOfOrganization'].invalid
                                         &&
-                                        registrationForm.controls['panNumberOfOrganization'].touched">
+                                       (submited|| registrationForm.controls['panNumberOfOrganization'].touched)">
                                         <span
                                             *ngIf="registrationForm.get('panNumberOfOrganization').hasError('required')"
                                             style="color: red;">
@@ -475,7 +450,7 @@
                                     <div
                                         *ngIf="registrationForm.controls['confirmPanNumberOfOrganization'].invalid
                                         &&
-                                        (registrationForm.controls['confirmPanNumberOfOrganization'].dirty
+                                        (submited
                                         ||
                                         registrationForm.controls['confirmPanNumberOfOrganization'].touched)">
                                        
@@ -508,14 +483,12 @@
                                         Organization</h5>
                                     <input appUpperCase formControlName="gstinOfOrganization"
                                         type="text">
-                                        <div *ngIf="registrationForm.controls['gstinOfOrganization'].invalid
-                                        &&
-                                        (registrationForm.controls['gstinOfOrganization'].dirty ||registrationForm.controls['gstinOfOrganization'].touched)">
+                                       
                                         <span style="color: red;"
                                         *ngIf="registrationForm.get('gstinOfOrganization').hasError('pattern')">
                                        Invalid GST
                                     </span>
-                                        </div>
+                                        
                                         
                                 </div>
                                 <div class="col-lg-6">
@@ -579,8 +552,8 @@
                                                     type="text">
                                                     <div *ngIf="registrationForm.controls['sidmMemberShipNumber'].invalid
                                                     &&
-                                                    (registrationForm.controls['sidmMemberShipNumber'].dirty ||registrationForm.controls['sidmMemberShipNumber'].touched)">
-                                                    <span  style="color: red;" *ngIf="registrationForm.get('sidmMemberShipNumber').hasError('required')&&registrationForm.controls['sidmMemberShipNumber'].touched" >
+                                                    (submited  ||registrationForm.controls['sidmMemberShipNumber'].touched)">
+                                                    <span  style="color: red;" *ngIf="registrationForm.get('sidmMemberShipNumber').hasError('required')" >
                                                         membership number required
                                                     </span>
                                                     </div>
@@ -615,7 +588,7 @@
                                                     type="text">
                                                     <div *ngIf="registrationForm.controls['otherAssociationMemberShipNumber'].invalid
                                                     &&
-                                                    (registrationForm.controls['otherAssociationMemberShipNumber'].dirty ||registrationForm.controls['otherAssociationMemberShipNumber'].touched)">
+                                                    (submited ||registrationForm.controls['otherAssociationMemberShipNumber'].touched)">
                                                     <span  style="color: red;" *ngIf="registrationForm.get('otherAssociationMemberShipNumber').hasError('required')" >
                                                         membership number required
                                                     </span>
@@ -653,7 +626,7 @@
                                                         type="text">
                                                         <div *ngIf="registrationForm.controls['vendorOrganization1'].invalid
                                                     &&
-                                                    (registrationForm.controls['vendorOrganization1'].dirty ||registrationForm.controls['vendorOrganization1'].touched)">
+                                                    (submited ||registrationForm.controls['vendorOrganization1'].touched)">
                                                         <span  style="color: red;" *ngIf="registrationForm.get('vendorOrganization1').hasError('required')" >
                                                             Vendor Organization  required
                                                         </span>
@@ -760,7 +733,7 @@
                                                 placeholder="">
                                                 <div *ngIf="registrationForm.controls['appreciationDocuments'].invalid
                                                     &&
-                                                    (registrationForm.controls['appreciationDocuments'].dirty ||registrationForm.controls['appreciationDocuments'].touched)">
+                                                    (submited ||registrationForm.controls['appreciationDocuments'].touched)">
                                                 <span  style="color: red;" *ngIf="registrationForm.get('appreciationDocuments').hasError('required')" >
                                                     documents  required
                                                 </span>
