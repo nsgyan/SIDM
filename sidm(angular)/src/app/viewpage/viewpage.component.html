@@ -124,7 +124,7 @@
 
                         </a> -->
                         <p *ngIf='!memberData?.documentGstCertificate'>you have't upload  GST Certificate Document </p>
-                        <a href="{{memberData?.documentGstCertificate}}"*ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
+                        <a href="{{memberData?.documentGstCertificate}}" *ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
                         <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
@@ -191,7 +191,7 @@
                 <div class="detail" *ngIf="memberData?.appreciationDocuments">
                     <h6> Appreciation Document</h6>
                     <p *ngIf='!memberData?.appreciationDocuments'>you have't upload Appreciation Document </p>
-                    <a href="{{memberData?.appreciationDocuments}}" download="gst">Appreciation Document</a>
+                    <a  href="{{memberData?.appreciationDocuments}}" download="gst">Appreciation Document</a>
                 </div>
                 <div class="detail">
                     <h6>How does your achievement compare with the other competing options available to the
@@ -201,6 +201,13 @@
                 <div class="detail">
                     <h6>How, in your opinion, dose this award matter to your company?</h6>
                     <p>{{memberData?.awardMatterToCompany}}</p>
+                </div>
+                <div class="detail" *ngIf="memberData?.documentsOfProduct">
+                    <h6> Photograph /
+                        videos of the products / innovation /
+                        facilities, fielded for the awards</h6>
+                    <p *ngIf='!memberData?.documentsOfProduct'>you have't upload Appreciation Document </p>
+                    <a  href="{{memberData?.documentsOfProduct}}" download="gst"> Document</a>
                 </div>
                 
             </div>

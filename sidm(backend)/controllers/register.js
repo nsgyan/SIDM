@@ -17,7 +17,7 @@ exports.postRegistrationForm = (req, res, next) => {
     const vendorOrganization4 = req.body.vendorOrganization4;
     const aboutCompany = req.body.aboutCompany;
     const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
-    const campareAchivement = req.body.compareAchivement;
+    const campareAchivement = req.body.campareAchivement;
     const documentsOfProduct = req.body.documentsOfProduct;
     const appreciationDocuments = req.body.appreciationDocuments;
     const briefCompany = req.body.briefCompany;
@@ -180,6 +180,7 @@ exports.getmemberData = (req, res, next) => {
 }
 
 exports.updateFrom = (req, res, next) => {
+    console.log('hello');
     const userID = req.params.userID;
     const status = req.body.status
     const typeOfApplicant = req.body.typeOfApplicant;
@@ -192,7 +193,7 @@ exports.updateFrom = (req, res, next) => {
     const vendorOrganization3 = req.body.vendorOrganization3;
     const aboutCompany = req.body.aboutCompany;
     const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
-    const campareAchivement = req.body.compareAchivement;
+    const campareAchivement = req.body.campareAchivement;
     const documentsOfProduct = req.body.documentsOfProduct;
     const appreciationDocuments = req.body.appreciationDocuments;
     const briefCompany = req.body.briefCompany;
@@ -208,7 +209,7 @@ exports.updateFrom = (req, res, next) => {
     const otherMember = req.body.otherMember
     const vendorOrganization = req.body.vendorOrganization
     const isappreciation = req.body.isappreciation
-    console.log(updateDesignation, 'desf');
+    console.log(campareAchivement, 'desf');
     const updateDocumentGstCertificate = req.body.documentGstCertificate;
     RegistrationForm.findById(userID).then(formData => {
         formData.nameOfOrganisation = updateNameOfOrganisation;

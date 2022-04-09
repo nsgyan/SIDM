@@ -44,10 +44,12 @@ export class ViewpageComponent implements OnInit {
         if (data.documentGstCertificate) {
           data.documentGstCertificate = environment.download + data.documentGstCertificate
         }
-        else if (data.appreciationDocuments) {
+        if (data.appreciationDocuments) {
           data.appreciationDocuments = environment.download + data.appreciationDocuments
+          console.log(data.appreciationDocuments);
+
         }
-        else if (data.documentsOfProduct) {
+        if (data.documentsOfProduct) {
           data.documentsOfProduct = environment.download + data.documentsOfProduct
         }
         data.panNumberOfOrganization=data.panNumberOfOrganization.toUpperCase();

@@ -66,7 +66,6 @@ export class MemberDashboardComponent implements OnInit {
           }
         })
         this.memberData = data;
-        let email, pan, mobilenumber;
 
 
         for (let i of this.memberData) {
@@ -74,8 +73,7 @@ export class MemberDashboardComponent implements OnInit {
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumberOfOrganization.toUpperCase();
         }
-        console.log(email, pan, mobilenumber);
-        console.log('hello');
+
 
 
         // this.newCategoryForm = this.formBuilder.group({
@@ -281,6 +279,8 @@ export class MemberDashboardComponent implements OnInit {
         this.editData = data
         this.catagery = this.editData.catagery
         this.editData.panNumberOfOrganization = this.editData.panNumberOfOrganization.toUpperCase();
+        console.log(this.editData.awardMatterToCompany);
+
         this.editForm = this.formBuilder.group({
           typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
           nameOfOrganisation: [this.editData.nameOfOrganisation ? this.editData.nameOfOrganisation : ''],
