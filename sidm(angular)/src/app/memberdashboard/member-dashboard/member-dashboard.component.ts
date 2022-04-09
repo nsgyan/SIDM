@@ -143,6 +143,8 @@ export class MemberDashboardComponent implements OnInit {
 
 
   applyNew() {
+    console.log('hello');
+
     this.newCategory = !this.newCategory
 
   }
@@ -236,6 +238,7 @@ export class MemberDashboardComponent implements OnInit {
   viewForm(item: any) {
     console.log(item);
 
+    this.newCategory = false
     if (item.status === "Draft") {
       this.EditForm = !this.EditForm
 
@@ -568,6 +571,167 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('appreciationDocuments')?.reset()
 
     this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+  }
+
+
+
+  newSubmit(type: string) {
+    this.newCategoryForm.get('category')?.setValidators(Validators.required)
+    this.newCategoryForm.get('category')?.updateValueAndValidity()
+    this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.newCategoryForm.get('gstinOfOrganization')?.setValidators(Validators.required)
+    this.newCategoryForm.get('gstinOfOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('nameOfOrganisation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.newCategoryForm.get('addressl1')?.setValidators(Validators.required)
+    this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
+    this.newCategoryForm.get('state')?.setValidators(Validators.required)
+    this.newCategoryForm.get('state')?.updateValueAndValidity()
+    this.newCategoryForm.get('city')?.setValidators(Validators.required)
+    this.newCategoryForm.get('city')?.updateValueAndValidity()
+    this.newCategoryForm.get('pincode')?.setValidators(Validators.required)
+    this.newCategoryForm.get('pincode')?.updateValueAndValidity()
+    this.newCategoryForm.get('name')?.setValidators(Validators.required)
+    this.newCategoryForm.get('name')?.updateValueAndValidity()
+    if (this.newCategoryForm.valid && this.captcha) {
+      let currentDate = new Date();
+      this.httpService.postregistrationForm({
+        createAt: currentDate,
+        category: this.newCategoryForm.value.category,
+        typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
+        nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
+        addressl1: this.newCategoryForm.value.addressl1,
+        addressl2: this.newCategoryForm.value.addressl2,
+        state: this.newCategoryForm.value.state,
+        city: this.newCategoryForm.value.city,
+        pincode: this.newCategoryForm.value.pincode,
+        name: this.newCategoryForm.value.name,
+        designation: this.newCategoryForm.value.designation,
+        mobileNumber: this.newCategoryForm.value.mobileNumber,
+        email: this.newCategoryForm.value.email,
+        sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
+        panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
+        gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
+        dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
+        vendorOrganization1: this.newCategoryForm.value.vendorOrganization1,
+        vendorOrganization2: this.newCategoryForm.value.vendorOrganization2,
+        vendorOrganization3: this.newCategoryForm.value.vendorOrganization3,
+        vendorOrganization4: this.newCategoryForm.value.vendorOrganization4,
+        aboutCompany: this.newCategoryForm.value.vendorOrganization3,
+        achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
+        campareAchivement: this.newCategoryForm.value.campareAchivement,
+        documentGstCertificate: this.documentGstCertificate,
+        documentsOfProduct: this.documentsOfProduct,
+        appreciationDocuments: this.appreciationDocuments,
+        briefCompany: this.newCategoryForm.value.briefCompany,
+        awardMatterToCompany: this.newCategoryForm.value.awardMatterToCompany,
+        status: type,
+        sidmMember: this.newCategoryForm.value.sidmMember,
+        otherMember: this.newCategoryForm.value.otherMember,
+        vendorOrganization: this.newCategoryForm.value.vendorOrganization,
+        isappreciation: this.newCategoryForm.value.isappreciation,
+
+      }).subscribe(data => {
+        this.newCategoryForm.reset();
+        this.toast.success(' Successfully Applied');
+        this.routes.navigate(['/thankYou'])
+      }, err => {
+        console.log(err);
+        this.toast.error(err);
+
+      })
+    }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
+    else {
+      console.log(this.newCategoryForm);
+
+      this.submitted = true;
+      this.toast.error('Form invalid');
+    }
+
+
+  }
+  newsavedraft(type: string) {
+    this.newCategoryForm.get('typeOfApplicant')?.clearValidators()
+    this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.newCategoryForm.get('gstinOfOrganization')?.clearValidators()
+    this.newCategoryForm.get('gstinOfOrganization')?.setValidators(Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$'))
+    this.newCategoryForm.get('gstinOfOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('nameOfOrganisation')?.clearValidators()
+    this.newCategoryForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.newCategoryForm.get('addressl1')?.clearValidators()
+    this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
+    this.newCategoryForm.get('state')?.clearValidators()
+    this.newCategoryForm.get('state')?.updateValueAndValidity()
+    this.newCategoryForm.get('city')?.clearValidators()
+    this.newCategoryForm.get('city')?.updateValueAndValidity()
+    this.newCategoryForm.get('pincode')?.clearValidators()
+    this.newCategoryForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
+    this.newCategoryForm.get('pincode')?.updateValueAndValidity()
+    this.newCategoryForm.get('name')?.clearValidators()
+    this.newCategoryForm.get('name')?.updateValueAndValidity()
+    if (this.newCategoryForm.valid && this.captcha) {
+      let currentDate = new Date();
+      this.httpService.postregistrationForm({
+        createAt: currentDate,
+        category: this.newCategoryForm.value.category,
+        typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
+        nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
+        addressl1: this.newCategoryForm.value.addressl1,
+        addressl2: this.newCategoryForm.value.addressl2,
+        state: this.newCategoryForm.value.state,
+        city: this.newCategoryForm.value.city,
+        pincode: this.newCategoryForm.value.pincode,
+        name: this.newCategoryForm.value.name,
+        designation: this.newCategoryForm.value.designation,
+        mobileNumber: this.newCategoryForm.value.mobileNumber,
+        email: this.newCategoryForm.value.email,
+        sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
+        otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
+        panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
+        gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
+        dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
+        vendorOrganization1: this.newCategoryForm.value.vendorOrganization1,
+        vendorOrganization2: this.newCategoryForm.value.vendorOrganization2,
+        vendorOrganization3: this.newCategoryForm.value.vendorOrganization3,
+        vendorOrganization4: this.newCategoryForm.value.vendorOrganization4,
+        aboutCompany: this.newCategoryForm.value.vendorOrganization3,
+        achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
+        campareAchivement: this.newCategoryForm.value.campareAchivement,
+        documentGstCertificate: this.documentGstCertificate,
+        documentsOfProduct: this.documentsOfProduct,
+        appreciationDocuments: this.appreciationDocuments,
+        briefCompany: this.newCategoryForm.value.briefCompany,
+        awardMatterToCompany: this.newCategoryForm.value.awardMatterToCompany,
+        status: type,
+        sidmMember: this.newCategoryForm.value.sidmMember,
+        otherMember: this.newCategoryForm.value.otherMember,
+        vendorOrganization: this.newCategoryForm.value.vendorOrganization,
+        isappreciation: this.newCategoryForm.value.isappreciation,
+      }).subscribe(data => {
+        this.newCategoryForm.reset();
+        this.toast.success(' Successfully Applied');
+        this.routes.navigate(['/thankYou'])
+      },
+        error => {
+          this.toast.error('Email or Mobile or Pan  already exists');
+        }
+      )
+    }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
+    else {
+
+      this.submitted = true;
+      this.toast.error('Form invalid');
+    }
+
+
   }
 
 }

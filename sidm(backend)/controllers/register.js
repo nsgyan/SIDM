@@ -39,20 +39,8 @@ exports.postRegistrationForm = (req, res, next) => {
     const vendorOrganization = req.body.vendorOrganization
     const isappreciation = req.body.isappreciation
 
-    registrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: panNumberOfOrganization })
-        .then(data => {
-            if (data) {
-                if (data.mobileNumber === mobileNumber) {
-                    res.status(409).send('mobile number already exists')
-                }
-                else if (data.panNumberOfOrganization === panNumberOfOrganization) {
-                    res.status(409).send('Pan Number Of Organization already exists')
-                }
-                else {
-                    res.status(409).send('email already exists')
-                }
-            }
-            else {
+
+
                 const form = new RegistrationForm({
                     createAt: createAt,
                     status: status,
@@ -98,9 +86,8 @@ exports.postRegistrationForm = (req, res, next) => {
 
                         res.send(err)
                     })
-            }
 
-        })
+
 
 }
 
