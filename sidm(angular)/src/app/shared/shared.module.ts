@@ -15,6 +15,6 @@ import { LowercaseDirective } from './services/lowercase.directive';
   imports: [
     CommonModule
   ],
-  exports: [BlockCopyPasteDirective, UpperCaseDirective]
+  exports: [BlockCopyPasteDirective, UpperCaseDirective,LowercaseDirective]
 })
 export class SharedModule { }

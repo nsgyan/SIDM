@@ -12,3 +12,11 @@ select {
     transition: .35s ease;
 
 }
+.documentBtn {
+    background: #5b7842;;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 12px;
+    text-decoration: none;
+  }

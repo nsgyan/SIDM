@@ -3,6 +3,9 @@
     <div class="page-title">
         <div class="container">
             <h1 class="title">Dashboard</h1>
+            <ul>
+                <li><a href="#"><i aria-hidden="true"  class="fa fa-sign-out "></i> Logout</a></li>
+            </ul>
             <ul class=" d-flex mt-3 pb-2 ">
                 <li class="footer-phone">
                     <i aria-hidden="true" class="fas fa-phone-alt"></i>
@@ -652,6 +655,10 @@
 </div> -->
 
 
+
+
+
+
 <!--Edit Form-->
 <div  *ngIf="!EditForm">
     <form  [formGroup]="editForm" class="mb-2">
@@ -800,6 +807,7 @@
                     <!-- </div>
                 </div> -->
             </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Pincode *</h5>
@@ -823,8 +831,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-5">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Contact Person Name *</h5>
                     <input formControlName="name" type="text">
@@ -838,7 +844,10 @@
                         </span>
                 <!-- </div> -->
                     </div>
-                </div>
+            </div>
+            <div class="row mt-5">
+               
+                
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Designation</h5>
                     <input formControlName="designation"
@@ -888,10 +897,13 @@
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Upload GST Certificate
                         Document</h5>
-                    <input
+                    <input class="mb-3"
                         formControlName="documentGstCertificate"
                         accept="application/pdf" type="file"
                         (change)="changeListener($event,'documentGstCertificate')">
+                        <span> only accept .pdf </span>
+
+                    <a class="documentBtn "  target="blank" href="{{editData?.documentGstCertificate}}" *ngIf="editData?.documentGstCertificate" download="gst">View Document</a>
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Date of Incorporation
@@ -1117,6 +1129,9 @@
                                 
                                 <br>
                         <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
+                        <br>
+
+                    <a class="documentBtn "  href="{{editData?.appreciationDocuments}}" *ngIf="editData?.appreciationDocuments" download="gst">View Document</a>
                         </div>
                     </div>
                     <div class="tab-pane fade"
@@ -1150,6 +1165,9 @@
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
+<br>
+                    <a  class="documentBtn" href="{{editData?.documentsOfProduct}}" *ngIf="editData?.documentsOfProduct" download="gst"> View Document</a>
             </div>
             <div class="col-md-12 mt-4">
                 <div class="form-group">

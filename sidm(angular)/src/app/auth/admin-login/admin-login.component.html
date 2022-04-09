@@ -63,7 +63,7 @@
                                                     <input type="text"
                                                         class="form-control
                                                         user-bg" id="uername"
-                                                        placeholder="Email"
+                                                        placeholder="Email" appLowercase
                                                         formControlName="email">
                                                         <div *ngIf="submitted||adminLogin.controls['email'].invalid &&  adminLogin.controls['email'].touched">         
                                                             <span *ngIf="adminLogin.get('email').hasError('required')" style="color: red;">

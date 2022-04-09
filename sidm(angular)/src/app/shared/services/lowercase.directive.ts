@@ -4,25 +4,9 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   selector: '[appLowercase]'
 })
 export class LowercaseDirective {
-  // lastValue: string | undefined;
-
-  // constructor(public ref: ElementRef) { }
-
-  // @HostListener('input', ['$event']) onInput($event: { target: { selectionStart: any; selectionEnd: any; value: string; setSelectionRange: (arg0: any, arg1: any) => void; }; preventDefault: () => void; }) 
-  // {
-  //   var start = $event.target.selectionStart;
-  //   var end = $event.target.selectionEnd;
-  //   $event.target.value = $event.target.value.toLowerCase();
-  //   $event.target.setSelectionRange(start, end);
-  //   $event.preventDefault();
-
-  //   // Garante que o último caractere digitado fique minúsculo
-  //   if (!this.lastValue || (this.lastValue && $event.target.value.length > 0 && this.lastValue !== $event.target.value)) {
-  //     this.lastValue = this.ref.nativeElement.value = $event.target.value;
-  //     // Propagation
-  //     const evt = document.createEvent('HTMLEvents');
-  //     evt.initEvent('input', false, true);
-  //     event.target.dispatchEvent(evt);
-  //   }
-  // }
+  @HostListener('input', ['$event']) onInput(event: { target: { value: string; }; }) {
+    console.log("UpperCaseInputDirective::event", event);
+    event.target.value = event.target.value.toLowerCase();
+    return true;
+  }
 }

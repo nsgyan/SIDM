@@ -74,7 +74,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <h5 class="mt-1 mb-3">Email</h5>
-                            <input formControlName="email" type="text">
+                            <input formControlName="email" appLowercase type="text">
                             <div *ngIf="submitted||memberform.controls['email'].invalid &&  memberform.controls['email'].touched">         
                                 <span *ngIf="memberform.get('email').hasError('required')" style="color: red;">
                                     E-Mail Address <strong>required</strong>

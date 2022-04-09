@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, CrossEmailValidation, CrossPanValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-member-dashboard',
@@ -73,41 +74,38 @@ export class MemberDashboardComponent implements OnInit {
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumberOfOrganization.toUpperCase();
         }
+        this.newCategoryForm = this.formBuilder.group({
+          category: ['', Validators.required],
+          typeOfApplicant: [''],
+          nameOfOrganisation: [''],
+          addressl1: [''],
+          addressl2: [''],
+          state: [''],
+          city: [''],
+          pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
+          name: [''],
+          designation: [''],
+          mobileNumber: [this.mobilenumber],
+          email: [this.email],
+          sidmMemberShipNumber: [''],
+          otherAssociationMemberShipNumber: [''],
+          panNumberOfOrganization: [this.pan],
+          gstinOfOrganization: ['', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
+          dateOfOrganization: [''],
+          vendorOrganization1: [''],
+          vendorOrganization2: [''],
+          vendorOrganization3: [''],
+          vendorOrganization4: [''],
+          aboutCompany: [''],
+          achievementsToJustifyApplication: [''],
+          campareAchivement: [''],
+          documentGstCertificate: [''],
+          documentsOfProduct: [''],
+          appreciationDocuments: [''],
+          briefCompany: [''],
+          awardMatterToCompany: ['']
 
-
-
-        // this.newCategoryForm = this.formBuilder.group({
-        //   category: ['', Validators.required],
-        //   typeOfApplicant: [''],
-        //   nameOfOrganisation: [''],
-        //   addressl1: [''],
-        //   addressl2: [''],
-        //   state: [''],
-        //   city: [''],
-        //   pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
-        //   name: [''],
-        //   designation: [''],
-        //   mobileNumber: [mobilenumber],
-        //   email: [email],
-        //   sidmMemberShipNumber: [''],
-        //   otherAssociationMemberShipNumber: [''],
-        //   panNumberOfOrganization: [pan],
-        //   gstinOfOrganization: ['', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
-        //   dateOfOrganization: [''],
-        //   vendorOrganization1: [''],
-        //   vendorOrganization2: [''],
-        //   vendorOrganization3: [''],
-        //   vendorOrganization4: [''],
-        //   aboutCompany: [''],
-        //   achievementsToJustifyApplication: [''],
-        //   campareAchivement: [''],
-        //   documentGstCertificate: [''],
-        //   documentsOfProduct: [''],
-        //   appreciationDocuments: [''],
-        //   briefCompany: [''],
-        //   awardMatterToCompany: ['']
-
-        // })
+        })
       }, err => {
         console.log(err.error);
         this.toast.error(err.error);
@@ -254,6 +252,18 @@ export class MemberDashboardComponent implements OnInit {
         else if (data.category === 'cat4') {
           data.category = 'C4- Export Performance of Defence & Aerospace Products'
         }
+        if (data.documentGstCertificate) {
+          data.documentGstCertificate = environment.download + data.documentGstCertificate
+        }
+        if (data.appreciationDocuments) {
+          data.appreciationDocuments = environment.download + data.appreciationDocuments
+          console.log(data.appreciationDocuments);
+
+        }
+        if (data.documentsOfProduct) {
+          data.documentsOfProduct = environment.download + data.documentsOfProduct
+        }
+
         data.sidmMember === 'Yes' ? this.sidmMember = true : ''
         data.otherMember === 'Yes' ? this.otherMember = true : ''
         data.vendorOrganization === 'Yes' ? this.vendorOrganization = true : ''
