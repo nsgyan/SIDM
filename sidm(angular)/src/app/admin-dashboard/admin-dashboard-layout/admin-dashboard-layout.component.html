@@ -56,83 +56,79 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="profileSection mb-6">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <table class="table">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">S.No</th>
-                                        <th scope="col">Personal Information</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Type Of Applicant</th>
-                                        <th scope="col">Organisation</th>
-                                        <th scope="col">Membership Number</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of allFormsData?.forms; let i=
-                                        index">
-                                        <td class="table_content"><span class="font-bold text-theme">{{i+1}}</span></td>
-                                        <th scope="row">
-                                            <ul class="list-unstyled text-xs">
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Name:</span>{{item.name}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Mobile
-                                                        Number:</span>{{item.mobileNumber}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Email:</span>{{item.email}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Designation:</span>{{item.designation}}</li>
-                                            </ul>
-                                        </th>
-                                        <td><ul class="list-unstyled text-xs">
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Address:</span>
-                                                    {{item.addressl1}}
-                                                    {{item.addressl2}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">City:</span>{{item.city}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">State:</span>{{item.state}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">PinCode:</span>{{item.pincode}}</li>
-                                            </ul></td>
-                                        <td class="table_content"  scope="row">{{item.category}}</td>
-                                        <th class="table_content" scope="row">{{item.typeOfApplicant}}</th>
-                                        <td scope="row">
-                                            <ul class="list-unstyled text-xs">
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Name:</span>{{item.nameOfOrganisation}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Date:</span>{{item.dateOfOrganization}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Pan Number:</span>{{item.panNumberOfOrganization}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Gst Number:</span>{{item.gstinOfOrganization}}</li>
-                                            </ul></td>
-                                        <td scope="row">
-                                            <ul class="list-unstyled text-xs">
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">SIDM
-                                                        Membership Number:</span>{{item.sidmMemberShipNumber}}</li>
-                                                <li class="table_content"><span class="font-bold
-                                                        text-theme">Other Other
-                                                        Organisation Membership:</span>{{item.otherAssociationMemberShipNumber}}</li>
-                                            </ul></td>
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Personal Information</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Type Of Applicant</th>
+                                <th scope="col">Organisation</th>
+                                <th scope="col">Membership Number</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of allFormsData.forms; let i=
+                                index">
+                                <td class="table_content"><span class="font-bold text-theme">{{i+1}}</span></td>
+                                <th scope="row">
+                                    <ul class="list-unstyled text-xs">
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Name:</span>{{item.name}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Mobile
+                                                Number:</span>{{item.mobileNumber}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Email:</span>{{item.email}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Designation:</span>{{item.designation}}</li>
+                                    </ul>
+                                </th>
+                                <td><ul class="list-unstyled text-xs">
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Address:</span>
+                                            {{item.addressl1}}
+                                            {{item.addressl2}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">City:</span>{{item.city}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">State:</span>{{item.state}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">PinCode:</span>{{item.pincode}}</li>
+                                    </ul></td>
+                                <td class="table_content"  scope="row">{{item.category}}</td>
+                                <th class="table_content" scope="row">{{item.typeOfApplicant}}</th>
+                                <td scope="row">
+                                    <ul class="list-unstyled text-xs">
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Name:</span>{{item.nameOfOrganisation}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Date:</span>{{item.dateOfOrganization}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Pan Number:</span>{{item.panNumberOfOrganization}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Gst Number:</span>{{item.gstinOfOrganization}}</li>
+                                    </ul></td>
+                                <td scope="row">
+                                    <ul class="list-unstyled text-xs">
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">SIDM
+                                                Membership Number:</span>{{item.sidmMemberShipNumber}}</li>
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Other Other
+                                                Organisation Membership:</span>{{item.otherAssociationMemberShipNumber}}</li>
+                                    </ul></td>
 
 
-                                        <td><button  class="viewBtn" (click)="viewDetails(item._id)" >
-                                            View
-                                        </button></td>
-                                    </tr>
+                                <td><button  class="viewBtn" (click)="viewDetails(item._id)" >
+                                    View
+                                </button></td>
+                            </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -143,10 +139,27 @@
     </div>
 </section>
 
-<section class="pagination">
-<button (click)="perviousPage()" *ngIf="allFormsData?.hasPreviousPage" >Pervious Page</button>
+<section class="pagination  " style="justify-content: flex-end;" >
+    <nav aria-label="Page navigation example " s>
+        <ul class="pagination">
+          <li class="page-item" *ngIf="allFormsData?.hasPreviousPage">
+            <a class="page-link" (click)="perviousPage()"  aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="active" >Current</a></li>
+          <li class="page-item"  *ngIf="allFormsData?.hasNextPage">
+            <a class="page-link"(click)="nextpage()" *ngIf="allFormsData?.hasNextPage" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+<!-- <button (click)="perviousPage()" *ngIf="allFormsData?.hasPreviousPage" >Pervious Page</button>
 <button class="active">Current Page</button>
-<button  (click)="nextpage()" *ngIf="allFormsData?.hasNextPage">Next Page</button>
+<button  (click)="nextpage()" *ngIf="allFormsData?.hasNextPage">Next Page</button> -->
 </section>
 
 

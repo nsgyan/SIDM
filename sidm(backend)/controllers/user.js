@@ -88,6 +88,7 @@ exports.memberLogin = (req, res, next) => {
                     mobileNumber: mobileNumber
                 }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
                 );
+
                 res.status(200).send({ token: token })
             }
             else {
@@ -112,7 +113,6 @@ exports.memberData = (req, res, next) => {
                         res.status(200).send(data)
                     }
                     else {
-
                         res.status(404).send('not Found user Data')
                     }
 
@@ -122,7 +122,8 @@ exports.memberData = (req, res, next) => {
                 })
         }
         else {
-            res.status(401).send('token invalid')
+            console.log(err);
+            res.status(401).send('Token expired  please login again')
         }
 
     })

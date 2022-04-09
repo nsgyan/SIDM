@@ -297,7 +297,7 @@ export class RegistrationComponent implements OnInit {
     else {
 
       this.submitted = true;
-      this.toast.error('Please Fill Required Field');
+      this.toast.error('Form invalid');
     }
 
   }
@@ -408,7 +408,7 @@ export class RegistrationComponent implements OnInit {
       console.log(this.registrationForm);
 
       this.submitted = true;
-      this.toast.error('Please Fill Required Field');
+      this.toast.error('Form invalid');
     }
 
   }

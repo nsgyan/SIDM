@@ -107,6 +107,10 @@ export class MemberDashboardComponent implements OnInit {
         //   awardMatterToCompany: ['']
 
         // })
+      }, err => {
+        console.log(err.error);
+        this.toast.error(err.error);
+
       })
   }
 
