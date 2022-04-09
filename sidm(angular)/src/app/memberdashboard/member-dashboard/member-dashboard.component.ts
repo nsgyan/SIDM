@@ -734,4 +734,63 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
+  NewFormchangetoggel(conttrolName: String, value: string) {
+    if (conttrolName === 'sidmMember' && value == 'Yes') {
+      this.newCategoryForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+      this.newCategoryForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+      this.sidmMember = true
+    }
+    else if (conttrolName === 'sidmMember' && value == 'No') {
+      this.sidmMember = false
+      this.newCategoryForm.get('sidmMemberShipNumber')?.reset()
+      this.newCategoryForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
+      this.newCategoryForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+    }
+
+    if (conttrolName === 'otherMember' && value == 'Yes') {
+      this.otherMember = true
+      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
+
+      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+    }
+    else if (conttrolName === 'otherMember' && value == 'No') {
+      this.otherMember = false
+      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.reset()
+
+      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.clearValidators()
+      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+
+    }
+
+    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
+      this.vendorOrganization = true
+      this.newCategoryForm.get('vendorOrganization1')?.setValidators(Validators.required)
+
+      this.newCategoryForm.get('vendorOrganization1')?.updateValueAndValidity()
+
+
+    }
+    else if (conttrolName === 'vendorOrganization' && value == 'No') {
+      this.vendorOrganization = false
+      this.newCategoryForm.get('vendorOrganization1')?.reset()
+      this.newCategoryForm.get('vendorOrganization3')?.reset()
+      this.newCategoryForm.get('vendorOrganization4')?.reset()
+      this.newCategoryForm.get('vendorOrganization2')?.reset()
+
+      this.newCategoryForm.get('vendorOrganization1')?.clearValidators()
+      this.newCategoryForm.get('vendorOrganization1')?.updateValueAndValidity()
+
+    }
+    if (conttrolName === 'isappreciation' && value == 'Yes') {
+      this.isappreciation = true
+    }
+    else if (conttrolName === 'isappreciation' && value == 'No') {
+      this.isappreciation = false
+      this.newCategoryForm.get('appreciationDocuments')?.reset()
+      this.appreciationDocuments = null
+
+    }
+  }
+
+
 }
