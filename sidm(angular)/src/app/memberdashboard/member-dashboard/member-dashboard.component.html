@@ -134,7 +134,7 @@
                             Performance of Defence & Aerospace Products</label>
                     </div>
                 </div>
-                <div *ngIf="submitted||newCategoryForm.controls['category'].invalid &&  newCategoryForm.controls['category'].touched">         
+                <div *ngIf="submited||newCategoryForm.controls['category'].invalid &&  (submited||newCategoryForm.controls['category'].touched)">         
                     <span *ngIf="newCategoryForm.get('category').hasError('required')" style="color: red;">
                         category <strong>required</strong>
                     </span>                        
@@ -185,18 +185,13 @@
                             than Rs 75 Crore)
                         </label>
                     </div>
-                    <div
-                    *ngIf="newCategoryForm.controls['typeOfApplicant'].invalid
-                    &&(
-                    (newCategoryForm.controls['typeOfApplicant'].dirty
-                    ||
-                    newCategoryForm.controls['typeOfApplicant'].touched))">>
+                   <br>
                         <span
                             *ngIf="newCategoryForm.get('typeOfApplicant').hasError('required')"
                             style="color: red;">
                             Type Of Applicant <strong>required</strong>
                         </span>
-                    </div>
+                    
                   
 
                 </div>
@@ -204,22 +199,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h5 class="mt-4 mb-3">Name of the
-                        Organization</h5>
+                        Organization *</h5>
                     <input formControlName="nameOfOrganisation"
                         type="text">
-                        <div
-                    *ngIf="newCategoryForm.controls['nameOfOrganisation'].invalid
-                    &&(
-                    (newCategoryForm.controls['nameOfOrganisation'].dirty
-                    ||
-                    newCategoryForm.controls['nameOfOrganisation'].touched))">>
+                        
                         <span
                             *ngIf="newCategoryForm.get('nameOfOrganisation').hasError('required')"
                             style="color: red;">
-                            Name of the
-                            Organization <strong>required</strong>
+                           
+                            Organization Name <strong>required</strong>
                         </span>
-                    </div>
+                   
                         
                 </div>
             </div>
@@ -234,7 +224,7 @@
                     <h5 class="mt-3 mb-3">Address Line 1 *</h5>
                     <input formControlName="addressl1"
                         type="text">
-                        <div *ngIf="newCategoryForm.controls['addressl1'].invalid && ( (newCategoryForm.controls['identifier'].dirty || newCategoryForm.controls['identifier'].touched)) ">
+                        
                   
                         <span
                             *ngIf="newCategoryForm.get('addressl1').hasError('required')"
@@ -242,7 +232,6 @@
                             Address Line 1 <strong>required</strong>
                         </span>
                    
-                        </div>
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Address Line 2 </h5>
@@ -259,34 +248,25 @@
                         <option *ngFor="let item of states"
                             value="{{item.state}}">{{item.state}}</option>
                     </select>
-                    <!-- <input formControlName="state" type="text"> -->
-                    <div *ngIf="newCategoryForm.controls['state'].invalid &&(newCategoryForm.controls['state'].dirty || newCategoryForm.controls['state'].touched) ">
-                    <div
-                        *ngIf="newCategoryForm.controls['state'].invalid
-                        &&
-                        newCategoryForm.controls['state'].touched">
+                
                         <span
                             *ngIf="newCategoryForm.get('state').hasError('required')"
                             style="color: red;">
                             State <strong>required</strong>
                         </span>
-                    </div>
-                    </div>
+                    
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">City *</h5>
                     <input formControlName="city"
                         (keypress)="keyPresschar($event)"
                         type="text">
-                    <div *ngIf="newCategoryForm.controls['city'].invalid
-                        &&
-                        ( newCategoryForm.controls['city'].dirty || newCategoryForm.controls['city'].touched)">
                         <span
                             *ngIf="newCategoryForm.get('city').hasError('required')"
                             style="color: red;">
                             City <strong>required</strong>
                         </span>
-                    </div>
+                   
                 </div>
             </div>
             <div class="row">
@@ -294,10 +274,8 @@
                     <h5 class="mt-3 mb-3">Pincode *</h5>
                     <input formControlName="pincode"
                         (keypress)="keyPressNumbers($event)"
-                        type="text">
-                    <div> <div *ngIf="newCategoryForm.controls['pincode'].invalid
-                            &&
-                            (newCategoryForm.controls['pincode'].dirty || newCategoryForm.controls['pincode'].touched)">
+                        type="text" maxlength="6">
+                    <div> 
                             <span
                                 *ngIf="newCategoryForm.get('pincode').hasError('required')"
                                 style="color: red;">
@@ -309,7 +287,7 @@
                                 !newCategoryForm.get('pincode').hasError('required')">
                                 Please enter a valid pincode
                             </span>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -319,7 +297,7 @@
                     <input formControlName="name" type="text">
                     <div *ngIf="newCategoryForm.controls['name'].invalid
                         &&
-                        (newCategoryForm.controls['name'].dirty ||newCategoryForm.controls['name'].touched)">
+                        (submited ||newCategoryForm.controls['name'].touched)">
                         <span
                             *ngIf="newCategoryForm.get('name').hasError('required')"
                             style="color: red;">
@@ -336,46 +314,41 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">E-Mail Address *</h5>
-                    <input  formControlName="email" type="text"
+                    <input formControlName="email" readonly>
+                    <div class="col-lg-6">
+                        <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                        <input 
+                            formControlName="mobileNumber" readonly>
                     
-                        appCpoyPaste readonly>
-                  
+                    </div>
+                   
+                 
                 </div>
-                <div class="col-lg-6">
-                    <h5 class="mt-3 mb-3">Mobile Number *</h5>
-                    <input appBlockCopyPaste
-                        formControlName="mobileNumber"
-                        type="text" appCpoyPaste readonly>
-                  
-                </div>
-                
+               
             </div>
-           
+         
             <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">PAN of the
                         Organization *</h5>
-                    <input appBlockCopyPaste
-                        formControlName="panNumberOfOrganization"
-                        type="text" appCpoyPaste readonly>
-                    
+                    <input 
+                        formControlName="panNumberOfOrganization" readonly>
+                  
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">GSTIN of the
                         Organization</h5>
                     <input appUpperCase formControlName="gstinOfOrganization"
                         type="text">
-                        <div *ngIf="newCategoryForm.controls['gstinOfOrganization'].invalid
-                        &&
-                        (newCategoryForm.controls['gstinOfOrganization'].dirty ||newCategoryForm.controls['gstinOfOrganization'].touched)">
+                       
                         <span style="color: red;"
                         *ngIf="newCategoryForm.get('gstinOfOrganization').hasError('pattern')">
                        Invalid GST
                     </span>
-                        </div>
+                        
                         
                 </div>
-               
+              
             </div>
             <div class="row">
               
@@ -384,8 +357,9 @@
                         Document</h5>
                     <input
                         formControlName="documentGstCertificate"
-                        accept="application/pdf" type="file"
-                        (change)="changeListener($event,'documentGstCertificate')">
+                        type="file"
+                        accept="application/pdf"
+                        (change)="gstchangeListener($event,'documentGstCertificate','newCategoryForm')">
                         <br>
                         <span> only accept .pdf</span>
                 </div>
@@ -407,11 +381,11 @@
                 <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
                     role="tablist"> -->
                     
-                        <input type="radio" formControlName="sidmMember" name="newsidmMember" value="Yes" (click)="NewFormchangetoggel('sidmMember','Yes')" id="YES">
-                        <label  class="mx-2" for="YES">Yes</label>
+                        <input type="radio" formControlName="sidmMember" value="Yes" (click)="NewFormchangetoggel('sidmMember','Yes')" id="YES">
+                        <label   class="mx-2" for="YES">Yes</label>
             
                       
-                        <input type="radio"  formControlName="sidmMember" name="newsidmMember" (click)="NewFormchangetoggel('sidmMember','No')" value="No" 
+                        <input type="radio"  formControlName="sidmMember" (click)="NewFormchangetoggel('sidmMember','No')" value="No" 
                          id="No">
                         <label class="mx-2" for="No">No</label>
                       
@@ -438,9 +412,13 @@
                                 <input
                                     formControlName="sidmMemberShipNumber"
                                     type="text">
-                                    <span  style="color: red;" *ngIf="editForm.get('sidmMemberShipNumber').hasError('required')&&editForm.controls['sidmMemberShipNumber'].touched" >
+                                    <div *ngIf="newCategoryForm.controls['sidmMemberShipNumber'].invalid
+                                    &&
+                                    (submited  ||newCategoryForm.controls['sidmMemberShipNumber'].touched)">
+                                    <span  style="color: red;" *ngIf="newCategoryForm.get('sidmMemberShipNumber').hasError('required')" >
                                         membership number required
                                     </span>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -453,11 +431,11 @@
             <h5 class="mt-5 mb-3">Are you member of any other
                 association</h5>
             <div class="container">
-                <input type="radio" formControlName="otherMember" value="Yes" name="newotherMember" (click)="NewFormchangetoggel('otherMember','Yes')" id="YES">
+                <input type="radio" formControlName="otherMember" value="Yes" (click)="NewFormchangetoggel('otherMember','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="otherMember" name="newotherMember" (click)="NewFormchangetoggel('otherMember','No')" value="No" 
+                <input type="radio"  formControlName="otherMember" (click)="NewFormchangetoggel('otherMember','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
                 <div class="tab-content" id="pills-tabContent">
@@ -470,9 +448,13 @@
                                 <input
                                     formControlName="otherAssociationMemberShipNumber"
                                     type="text">
-                                    <span  style="color: red;" *ngIf="editForm.get('otherAssociationMemberShipNumber').hasError('required')&&editForm.controls['otherAssociationMemberShipNumber'].touched" >
+                                    <div *ngIf="newCategoryForm.controls['otherAssociationMemberShipNumber'].invalid
+                                    &&
+                                    (submited ||newCategoryForm.controls['otherAssociationMemberShipNumber'].touched)">
+                                    <span  style="color: red;" *ngIf="newCategoryForm.get('otherAssociationMemberShipNumber').hasError('required')" >
                                         membership number required
                                     </span>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -485,11 +467,11 @@
                 any Defence Organisation such as
                 DPSU/DRDO etc</h5>
             <div class="container">
-                <input type="radio" formControlName="vendorOrganization" name="newVendorOrganization" value="Yes" (click)="NewFormchangetoggel('vendorOrganization','Yes')" id="YES">
+                <input type="radio" formControlName="vendorOrganization" value="Yes" (click)="NewFormchangetoggel('vendorOrganization','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="vendorOrganization" name="newVendorOrganization" (click)="NewFormchangetoggel('vendorOrganization','No')" value="No" 
+                <input type="radio"  formControlName="vendorOrganization" (click)="NewFormchangetoggel('vendorOrganization','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
 
@@ -504,9 +486,13 @@
                                     <input
                                         formControlName="vendorOrganization1"
                                         type="text">
-                                        <span  style="color: red;" *ngIf="editForm.get('vendorOrganization1').hasError('required')&&(editForm.controls['vendorOrganization1'].touched||editForm.controls['vendorOrganization2'].touched||editForm.controls['vendorOrganization3'].touched||editForm.controls['vendorOrganization4'].touched)" >
+                                        <div *ngIf="newCategoryForm.controls['vendorOrganization1'].invalid
+                                    &&
+                                    (submited ||newCategoryForm.controls['vendorOrganization1'].touched)">
+                                        <span  style="color: red;" *ngIf="newCategoryForm.get('vendorOrganization1').hasError('required')" >
                                             Vendor Organization  required
                                         </span>
+                                        </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <h6 class="mb-2">Name of the
@@ -554,7 +540,8 @@
                     <div class="">
                         <textarea formControlName="briefCompany"
                             class="form-control mb-3"
-                            aria-label="With textarea"></textarea>
+                            aria-label="With textarea" maxlength="200"></textarea>
+                           
                     </div>
                 </div>
             </div>
@@ -588,11 +575,11 @@
                 customer
                 organization?</h5>
             <div class="mb-3 mt-3">
-                <input type="radio" formControlName="isappreciation" value="Yes" name="newisappreciation" (click)="NewFormchangetoggel('isappreciation','Yes')" id="YES">
+                <input type="radio" formControlName="isappreciation" value="Yes" (click)="NewFormchangetoggel('isappreciation','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="isappreciation" name="newisappreciation" (click)="NewFormchangetoggel('isappreciation','No')" value="No" 
+                <input type="radio"  formControlName="isappreciation" (click)="NewFormchangetoggel('isappreciation','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
                 <div class="tab-content" id="pills-tabContent">
@@ -603,19 +590,20 @@
                                 formControlName="appreciationDocuments"
                                 type="file"
                                 accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
-                                (change)="changeListener($event,'appreciationDocuments')"
+                                (change)="changeListener($event,'appreciationDocuments','newCategoryForm')"
                                 class="mt-3" name="" id=""
                                 aria-describedby="helpId"
                                 placeholder="">
-                                <span  style="color: red;" *ngIf="editForm.get('appreciationDocuments').hasError('required')&&editForm.controls['appreciationDocuments'].touched" >
+                                <div *ngIf="newCategoryForm.controls['appreciationDocuments'].invalid
+                                    &&
+                                    (submited ||newCategoryForm.controls['appreciationDocuments'].touched)">
+                                <span  style="color: red;" *ngIf="newCategoryForm.get('appreciationDocuments').hasError('required')" >
                                     documents  required
                                 </span>
+                                </div>
                                 
                                 <br>
                         <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
-                        <br>
-
-                    <a class="documentBtn "  href="{{editData?.appreciationDocuments}}" *ngIf="editData?.appreciationDocuments" download="gst">View Document</a>
                         </div>
                     </div>
                     <div class="tab-pane fade"
@@ -642,16 +630,13 @@
                 videos of the products / innovation /
                 facilities, fielded for the awards</h5>
             <div class="">
-                <input formControlName="documentsOfProduct" 
+                <input formControlName="documentsOfProduct"
                     type="file"
                     accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
-                    (change)="changeListener($event,'documentsOfProduct')"
+                    (change)="changeListener($event,'documentsOfProduct','newCategoryForm')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
-                    <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
-<br>
-                    <a  class="documentBtn" href="{{editData?.documentsOfProduct}}" *ngIf="editData?.documentsOfProduct" download="gst"> View Document</a>
             </div>
             <div class="col-md-12 mt-4">
                 <div class="form-group">
@@ -733,12 +718,13 @@
                             than Rs 75 Crore)
                         </label>
                     </div>
-                   
+                   <br>
                         <span
-                            *ngIf="editForm.get('typeOfApplicant').invalid"
+                            *ngIf="editForm.get('typeOfApplicant').hasError('required')"
                             style="color: red;">
-                            Type of Applicant company <strong>required</strong>
+                            Type Of Applicant <strong>required</strong>
                         </span>
+                    
                   
 
                 </div>
@@ -746,17 +732,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h5 class="mt-4 mb-3">Name of the
-                        Organization</h5>
+                        Organization *</h5>
                     <input formControlName="nameOfOrganisation"
                         type="text">
+                        
                         <span
-                        *ngIf="editForm.get('nameOfOrganisation').invalid"
-                        style="color: red;">
-                        Name of the
-                        Organizationy <strong>required</strong>
-                    </span>
-              
-
+                            *ngIf="editForm.get('nameOfOrganisation').hasError('required')"
+                            style="color: red;">
+                           
+                            Organization Name <strong>required</strong>
+                        </span>
+                   
+                        
                 </div>
             </div>
             <div class="row">
@@ -770,17 +757,14 @@
                     <h5 class="mt-3 mb-3">Address Line 1 *</h5>
                     <input formControlName="addressl1"
                         type="text">
-                        <!-- <div *ngIf="editForm.controls['addressl1'].invalid &&  editForm.controls['identifier'].touched ">
-                    <div *ngIf="submitted||editForm.controls['addressl1'].invalid
-                        &&
-                        editForm.controls['addressl1'].touched"> -->
+                        
+                  
                         <span
-                            *ngIf="editForm.get('addressl1').invalid"
+                            *ngIf="editForm.get('addressl1').hasError('required')"
                             style="color: red;">
                             Address Line 1 <strong>required</strong>
                         </span>
-                    <!-- </div>
-                        </div> -->
+                   
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Address Line 2 </h5>
@@ -797,46 +781,34 @@
                         <option *ngFor="let item of states"
                             value="{{item.state}}">{{item.state}}</option>
                     </select>
-                    <!-- <input formControlName="state" type="text"> -->
-                    <!-- <div *ngIf="editForm.controls['state'].invalid && editForm.controls['state'].touched ">
-                    <div
-                        *ngIf="submitted||editForm.controls['state'].invalid
-                        &&
-                        editForm.controls['state'].touched"> -->
+                
                         <span
-                            *ngIf="editForm.get('state').invalid"
+                            *ngIf="editForm.get('state').hasError('required')"
                             style="color: red;">
                             State <strong>required</strong>
                         </span>
-                    <!-- </div>
-                    </div> -->
+                    
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">City *</h5>
                     <input formControlName="city"
                         (keypress)="keyPresschar($event)"
                         type="text">
-                    <!-- <div *ngIf="submitted||editForm.controls['city'].invalid
-                        &&
-                        editForm.controls['city'].touched"> -->
                         <span
-                            *ngIf="editForm.get('city').invalid"
+                            *ngIf="editForm.get('city').hasError('required')"
                             style="color: red;">
                             City <strong>required</strong>
                         </span>
-                    <!-- </div>
-                </div> -->
-            </div>
+                   
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Pincode *</h5>
                     <input formControlName="pincode"
                         (keypress)="keyPressNumbers($event)"
-                        type="text">
-                    <div> <div *ngIf="submitted||editForm.controls['pincode'].invalid
-                            &&
-                            editForm.controls['pincode'].touched">
+                        type="text" maxlength="6">
+                    <div> 
                             <span
                                 *ngIf="editForm.get('pincode').hasError('required')"
                                 style="color: red;">
@@ -848,26 +820,24 @@
                                 !editForm.get('pincode').hasError('required')">
                                 Please enter a valid pincode
                             </span>
-                        </div>
+                        
                     </div>
                 </div>
+            </div>
+            <div class="row mt-5">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Contact Person Name *</h5>
                     <input formControlName="name" type="text">
-                    <!-- <div *ngIf="submitted||editForm.controls['name'].invalid
+                    <div *ngIf="editForm.controls['name'].invalid
                         &&
-                        editForm.controls['name'].touched"> -->
+                        (submited ||editForm.controls['name'].touched)">
                         <span
                             *ngIf="editForm.get('name').hasError('required')"
                             style="color: red;">
                             Contact Person Name <strong>required</strong>
                         </span>
-                <!-- </div> -->
                     </div>
-            </div>
-            <div class="row mt-5">
-               
-                
+                </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Designation</h5>
                     <input formControlName="designation"
@@ -877,53 +847,52 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">E-Mail Address *</h5>
-                    <input appBlockCopyPaste formControlName="email" type="text"
-                       readonly >    
+                    <input  formControlName="email" type="text"readonly>
+                
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Mobile Number *</h5>
-                    <input appBlockCopyPaste 
-                        formControlName="mobileNumber"
-                        type="text"  readonly>
-                  
+                    <input  formControlName="mobileNumber" readonly>
+                   
                 </div>
-               
+                
+            
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">PAN of the
                         Organization *</h5>
-                    <input appBlockCopyPaste
-                        formControlName="panNumberOfOrganization"
-                        readonly
-                        type="text" >
-                    
+                    <input 
+                        formControlName="panNumberOfOrganization" readonly>
+                  
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">GSTIN of the
                         Organization</h5>
-                    <input formControlName="gstinOfOrganization"
-                    appUpperCase
+                    <input appUpperCase formControlName="gstinOfOrganization"
                         type="text">
+                       
                         <span style="color: red;"
-                                        *ngIf="editForm.get('gstinOfOrganization').hasError('pattern')">
-                                       Invalid GST
-                                    </span>
+                        *ngIf="editForm.get('gstinOfOrganization').hasError('pattern')">
+                       Invalid GST
+                    </span>
+                        
+                        
                 </div>
-              
+                
             </div>
             <div class="row">
-                
+            
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Upload GST Certificate
                         Document</h5>
-                    <input class="mb-3"
+                    <input
                         formControlName="documentGstCertificate"
-                        accept="application/pdf" type="file"
-                        (change)="changeListener($event,'documentGstCertificate')">
-                        <span> only accept .pdf </span>
-
-                    <a class="documentBtn "  target="blank" href="{{editData?.documentGstCertificate}}" *ngIf="editData?.documentGstCertificate" download="gst">View Document</a>
+                        type="file"
+                        accept="application/pdf"
+                        (change)="gstchangeListener($event,'documentGstCertificate','editForm')">
+                        <br>
+                        <span> only accept .pdf</span>
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Date of Incorporation
@@ -943,11 +912,11 @@
                 <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
                     role="tablist"> -->
                     
-                        <input type="radio" formControlName="sidmMember" value="Yes" (click)="changetoggel('sidmMember','Yes')" id="YES">
-                        <label  class="mx-2" for="YES">Yes</label>
+                        <input type="radio" formControlName="sidmMember" value="Yes" (click)="NewFormchangetoggel('sidmMember','Yes')" id="YES">
+                        <label   class="mx-2" for="YES">Yes</label>
             
                       
-                        <input type="radio"  formControlName="sidmMember" (click)="changetoggel('sidmMember','No')" value="No" 
+                        <input type="radio"  formControlName="sidmMember" (click)="NewFormchangetoggel('sidmMember','No')" value="No" 
                          id="No">
                         <label class="mx-2" for="No">No</label>
                       
@@ -974,9 +943,13 @@
                                 <input
                                     formControlName="sidmMemberShipNumber"
                                     type="text">
-                                    <span  style="color: red;" *ngIf="editForm.get('sidmMemberShipNumber').hasError('required')&&editForm.controls['sidmMemberShipNumber'].touched" >
+                                    <div *ngIf="editForm.controls['sidmMemberShipNumber'].invalid
+                                    &&
+                                    (submited  ||editForm.controls['sidmMemberShipNumber'].touched)">
+                                    <span  style="color: red;" *ngIf="editForm.get('sidmMemberShipNumber').hasError('required')" >
                                         membership number required
                                     </span>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -989,11 +962,11 @@
             <h5 class="mt-5 mb-3">Are you member of any other
                 association</h5>
             <div class="container">
-                <input type="radio" formControlName="otherMember" value="Yes" (click)="changetoggel('otherMember','Yes')" id="YES">
+                <input type="radio" formControlName="otherMember" value="Yes" (click)="NewFormchangetoggel('otherMember','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="otherMember" (click)="changetoggel('otherMember','No')" value="No" 
+                <input type="radio"  formControlName="otherMember" (click)="NewFormchangetoggel('otherMember','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
                 <div class="tab-content" id="pills-tabContent">
@@ -1006,9 +979,13 @@
                                 <input
                                     formControlName="otherAssociationMemberShipNumber"
                                     type="text">
-                                    <span  style="color: red;" *ngIf="editForm.get('otherAssociationMemberShipNumber').hasError('required')&&editForm.controls['otherAssociationMemberShipNumber'].touched" >
+                                    <div *ngIf="editForm.controls['otherAssociationMemberShipNumber'].invalid
+                                    &&
+                                    (submited ||editForm.controls['otherAssociationMemberShipNumber'].touched)">
+                                    <span  style="color: red;" *ngIf="editForm.get('otherAssociationMemberShipNumber').hasError('required')" >
                                         membership number required
                                     </span>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -1021,11 +998,11 @@
                 any Defence Organisation such as
                 DPSU/DRDO etc</h5>
             <div class="container">
-                <input type="radio" formControlName="vendorOrganization" value="Yes" (click)="changetoggel('vendorOrganization','Yes')" id="YES">
+                <input type="radio" formControlName="vendorOrganization" value="Yes" (click)="NewFormchangetoggel('vendorOrganization','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="vendorOrganization" (click)="changetoggel('vendorOrganization','No')" value="No" 
+                <input type="radio"  formControlName="vendorOrganization" (click)="NewFormchangetoggel('vendorOrganization','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
 
@@ -1040,9 +1017,13 @@
                                     <input
                                         formControlName="vendorOrganization1"
                                         type="text">
-                                        <span  style="color: red;" *ngIf="editForm.get('vendorOrganization1').hasError('required')&&(editForm.controls['vendorOrganization1'].touched||editForm.controls['vendorOrganization2'].touched||editForm.controls['vendorOrganization3'].touched||editForm.controls['vendorOrganization4'].touched)" >
+                                        <div *ngIf="editForm.controls['vendorOrganization1'].invalid
+                                    &&
+                                    (submited ||editForm.controls['vendorOrganization1'].touched)">
+                                        <span  style="color: red;" *ngIf="editForm.get('vendorOrganization1').hasError('required')" >
                                             Vendor Organization  required
                                         </span>
+                                        </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <h6 class="mb-2">Name of the
@@ -1090,7 +1071,8 @@
                     <div class="">
                         <textarea formControlName="briefCompany"
                             class="form-control mb-3"
-                            aria-label="With textarea"></textarea>
+                            aria-label="With textarea" maxlength="200"></textarea>
+                           
                     </div>
                 </div>
             </div>
@@ -1124,11 +1106,11 @@
                 customer
                 organization?</h5>
             <div class="mb-3 mt-3">
-                <input type="radio" formControlName="isappreciation" value="Yes" (click)="changetoggel('isappreciation','Yes')" id="YES">
+                <input type="radio" formControlName="isappreciation" value="Yes" (click)="NewFormchangetoggel('isappreciation','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="isappreciation" (click)="changetoggel('isappreciation','No')" value="No" 
+                <input type="radio"  formControlName="isappreciation" (click)="NewFormchangetoggel('isappreciation','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
                 <div class="tab-content" id="pills-tabContent">
@@ -1139,19 +1121,20 @@
                                 formControlName="appreciationDocuments"
                                 type="file"
                                 accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
-                                (change)="changeListener($event,'appreciationDocuments')"
+                                (change)="changeListener($event,'appreciationDocuments','editForm')"
                                 class="mt-3" name="" id=""
                                 aria-describedby="helpId"
                                 placeholder="">
-                                <span  style="color: red;" *ngIf="editForm.get('appreciationDocuments').hasError('required')&&editForm.controls['appreciationDocuments'].touched" >
+                                <div *ngIf="editForm.controls['appreciationDocuments'].invalid
+                                    &&
+                                    (submited ||editForm.controls['appreciationDocuments'].touched)">
+                                <span  style="color: red;" *ngIf="editForm.get('appreciationDocuments').hasError('required')" >
                                     documents  required
                                 </span>
+                                </div>
                                 
                                 <br>
                         <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
-                        <br>
-
-                    <a class="documentBtn "  href="{{editData?.appreciationDocuments}}" *ngIf="editData?.appreciationDocuments" download="gst">View Document</a>
                         </div>
                     </div>
                     <div class="tab-pane fade"
@@ -1181,13 +1164,10 @@
                 <input formControlName="documentsOfProduct"
                     type="file"
                     accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
-                    (change)="changeListener($event,'documentsOfProduct')"
+                    (change)="changeListener($event,'documentsOfProduct','editForm')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
-                    <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
-<br>
-                    <a  class="documentBtn" href="{{editData?.documentsOfProduct}}" *ngIf="editData?.documentsOfProduct" download="gst"> View Document</a>
             </div>
             <div class="col-md-12 mt-4">
                 <div class="form-group">

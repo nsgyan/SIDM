@@ -31,7 +31,7 @@ export class MemberDashboardComponent implements OnInit {
   cat3 = true
   cat4 = true
   memberData: any
-  submitted: boolean = true;
+  submited: boolean = true;
   captcha: any;
   states: any;
   editData: any;
@@ -103,7 +103,11 @@ export class MemberDashboardComponent implements OnInit {
           documentsOfProduct: [''],
           appreciationDocuments: [''],
           briefCompany: [''],
-          awardMatterToCompany: ['']
+          awardMatterToCompany: [''],
+          sidmMember: [''],
+          otherMember: [''],
+          vendorOrganization: [''],
+          isappreciation: [''],
 
         })
       }, err => {
@@ -127,7 +131,7 @@ export class MemberDashboardComponent implements OnInit {
 
     }
     else {
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
 
@@ -143,8 +147,7 @@ export class MemberDashboardComponent implements OnInit {
 
 
   applyNew() {
-    console.log('hello');
-
+    this.submited = false
     this.newCategory = !this.newCategory
 
   }
@@ -157,15 +160,89 @@ export class MemberDashboardComponent implements OnInit {
 
 
 
-  changeListener($event: any, form: any) {
+
+  gstchangeListener($event: any, form: any, type: string) {
+    let file = $event.target.files;
+
+    if (
+      file[0].type == 'application/pdf'
+
+    ) {
+
+      if (parseInt(file[0].size) > 524280) {
+
+        if (type === 'editForm') {
+          this.editForm.get(form)?.reset()
+          this.editForm.get(form)?.updateValueAndValidity()
+          this.toast.error('file to large')
+        }
+        else if (type === 'newCategoryForm') {
+          this.newCategoryForm.get(form)?.reset()
+          this.newCategoryForm.get(form)?.updateValueAndValidity()
+          this.toast.error('file to large');
+
+        }
+      }
+      else {
+
+        this.httpService.upload(file[0]).subscribe((data: any) => {
+
+
+          this.documentGstCertificate = data.body;
+          console.log(this.documentGstCertificate);
+
+
+
+        })
+
+      }
+    }
+    else {
+      if (type === 'editForm') {
+        this.editForm.get(form)?.reset()
+        this.editForm.get(form)?.updateValueAndValidity()
+
+        this.toast.error('File uploaded is invalid!')
+      }
+      else if (type === 'newCategoryForm') {
+        this.newCategoryForm.get(form)?.reset()
+        this.newCategoryForm.get(form)?.updateValueAndValidity()
+
+        this.toast.error('File uploaded is invalid!')
+
+      }
+    }
+  }
+
+
+  changeListener($event: any, form: any, type: string) {
     let file = $event.target.files;
     console.log(file);
 
-    if (parseInt(file[0].size) > 5242880) {
-      this.editData.get(form)?.reset()
-      this.editData.get(form)?.updateValueAndValidity()
+
+    if (
+      file[0].type == 'image/png' ||
+      file[0].type == 'image/jpg' ||
+      file[0].type == 'image/jpeg' ||
+      file[0].type == 'application/pdf' ||
+      file[0].type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      || file[0].type == 'application/msword'
+    ) {
+      console.log('jhe');
+
+      if (parseInt(file[0].size) > 524280) {
+        if (type === 'editForm') {
+          this.editForm.get(form)?.reset()
+          this.editForm.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')
     }
+        else if (type === 'newCategoryForm') {
+          this.newCategoryForm.get(form)?.reset()
+          this.newCategoryForm.get(form)?.updateValueAndValidity()
+          this.toast.error('file to large');
+
+        }
+      }
     else {
       const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
       const time = '7:00 AM';
@@ -187,30 +264,27 @@ export class MemberDashboardComponent implements OnInit {
 
         }
       })
-      this.readThis($event.target, form);
-    }
-  }
-
-
-  readThis(inputValue: any, form: any): void {
-
-    var file: File = inputValue.files[0];
-    var myReader: FileReader = new FileReader();
-
-    myReader.onloadend = (e) => {
-      if (form === 'documentGstCertificate') {
-        this.documentGstCertificate = myReader.result;
-      }
-      else if (form === 'documentsOfProduct') {
-        this.documentsOfProduct = myReader.result;
-      }
-      else if (form === 'appreciationDocuments') {
-        this.appreciationDocuments = myReader.result;
 
       }
     }
-    myReader.readAsDataURL(file);
+    else {
+      if (type === 'editForm') {
+        this.editForm.get(form)?.reset()
+        this.editForm.get(form)?.updateValueAndValidity()
+
+        this.toast.error('File uploaded is invalid!')
+      }
+      else if (type === 'newCategoryForm') {
+        this.newCategoryForm.get(form)?.reset()
+        this.newCategoryForm.get(form)?.updateValueAndValidity()
+
+        this.toast.error('File uploaded is invalid!')
+
+      }
+
+    }
   }
+
 
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
@@ -236,8 +310,7 @@ export class MemberDashboardComponent implements OnInit {
 
 
   viewForm(item: any) {
-    console.log(item);
-
+    this.submited = false
     this.newCategory = false
     if (item.status === "Draft") {
       this.EditForm = !this.EditForm
@@ -427,7 +500,7 @@ export class MemberDashboardComponent implements OnInit {
     }
     else {
 
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
 
@@ -499,11 +572,12 @@ export class MemberDashboardComponent implements OnInit {
       )
     }
     else if (!this.captcha) {
+      this.submited = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
 
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
 
@@ -644,12 +718,13 @@ export class MemberDashboardComponent implements OnInit {
       })
     }
     else if (!this.captcha) {
+      this.submited = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
       console.log(this.newCategoryForm);
 
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Form invalid');
     }
 
@@ -723,11 +798,12 @@ export class MemberDashboardComponent implements OnInit {
       )
     }
     else if (!this.captcha) {
+      this.submited = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
 
-      this.submitted = true;
+      this.submited = true;
       this.toast.error('Form invalid');
     }
 
