@@ -75,7 +75,7 @@
                         <div class="col-lg-6">
                             <h5 class="mt-1 mb-3">Email</h5>
                             <input formControlName="email" appLowercase type="text">
-                            <div *ngIf="submitted||memberform.controls['email'].invalid &&  memberform.controls['email'].touched">         
+                            <div *ngIf="memberform.controls['email'].invalid && (submitted|| memberform.controls['email'].touched)">         
                                 <span *ngIf="memberform.get('email').hasError('required')" style="color: red;">
                                     E-Mail Address <strong>required</strong>
                                 </span>                        
@@ -84,7 +84,7 @@
                         <div class="col-lg-6">
                             <h5 class="mt-1 mb-3">Mobile Number</h5>
                             <input formControlName="mobileNumber" type="text">
-                            <div *ngIf=" submitted||memberform.controls['mobileNumber'].invalid &&  memberform.controls['mobileNumber'].touched">         
+                            <div *ngIf=" memberform.controls['mobileNumber'].invalid &&  (submitted || memberform.controls['mobileNumber'].touched)">         
                                 <span *ngIf="memberform.get('mobileNumber').hasError('required')" style="color: red;">
                                     Mobile Number <strong>required</strong>
                                 </span>                        
@@ -95,7 +95,7 @@
                         <div class="col-lg-6">
                             <h5 class="mt-3 mb-3">Pan Number</h5>
                             <input appUpperCase formControlName="panNumber" type="text">
-                            <div *ngIf=" submitted|| memberform.controls['panNumber'].invalid &&  memberform.controls['panNumber'].touched">         
+                            <div *ngIf=" memberform.controls['panNumber'].invalid && ( submitted || memberform.controls['panNumber'].touched)">         
                                 <span *ngIf="memberform.get('panNumber').hasError('required')" style="color: red;">
                                     Pan Number <strong>required</strong>
                                 </span>                        

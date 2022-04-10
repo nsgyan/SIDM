@@ -71,6 +71,7 @@ export class MemberLoginComponent implements OnInit {
       })
     }
     else if (!this.captcha) {
+      this.submitted = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
