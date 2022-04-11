@@ -55,7 +55,7 @@ export class RegistrationComponent implements OnInit {
       otherAssociationMemberShipNumber: [''],
       panNumberOfOrganization: ['', [Validators.required, panValidation]],
       confirmPanNumberOfOrganization: ['', [Validators.required]],
-      gstinOfOrganization: ['', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
+      gstinOfOrganization: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
       dateOfOrganization: [''],
       vendorOrganization1: [''],
       vendorOrganization2: [''],
@@ -503,6 +503,9 @@ export class RegistrationComponent implements OnInit {
       this.savedraft(type)
     }
 
+  }
+  pickclender() {
+    return false
   }
 
   registerdUser() {

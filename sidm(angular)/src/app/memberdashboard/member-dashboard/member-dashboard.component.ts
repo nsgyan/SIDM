@@ -90,7 +90,7 @@ export class MemberDashboardComponent implements OnInit {
           sidmMemberShipNumber: [''],
           otherAssociationMemberShipNumber: [''],
           panNumberOfOrganization: [this.pan],
-          gstinOfOrganization: ['', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
+          gstinOfOrganization: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           dateOfOrganization: [''],
           vendorOrganization1: [''],
           vendorOrganization2: [''],
@@ -214,6 +214,9 @@ export class MemberDashboardComponent implements OnInit {
     }
   }
 
+  pickclender() {
+    return false
+  }
 
   changeListener($event: any, form: any, type: string) {
     let file = $event.target.files;
@@ -383,7 +386,7 @@ export class MemberDashboardComponent implements OnInit {
           sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber : ''],
           otherAssociationMemberShipNumber: [this.editData.otherAssociationMemberShipNumber ? this.editData.otherAssociationMemberShipNumber : ''],
           panNumberOfOrganization: [this.editData.panNumberOfOrganization ? this.editData.panNumberOfOrganization : ''],
-          gstinOfOrganization: [this.editData.gstinOfOrganization ? this.editData.gstinOfOrganization : '', Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')],
+          gstinOfOrganization: [this.editData.gstinOfOrganization ? this.editData.gstinOfOrganization : '', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           dateOfOrganization: [this.editData.dateOfOrganization ? this.editData.dateOfOrganization : ''],
           vendorOrganization1: [this.editData.vendorOrganization1 ? this.editData.vendorOrganization1 : ''],
           vendorOrganization2: [this.editData.vendorOrganization2 ? this.editData.vendorOrganization2 : ''],

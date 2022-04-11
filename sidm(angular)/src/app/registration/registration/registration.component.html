@@ -264,7 +264,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Designation</h5>
-                                    <input formControlName="designation"
+                                    <input (keypress)="keyPresschar($event)" formControlName="designation"
                                         type="text">
                                 </div>
                             </div>
@@ -479,13 +479,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">GSTIN of the
+                                    <h5 class="mt-3 mb-3">GST of the
                                         Organization</h5>
                                     <input appUpperCase formControlName="gstinOfOrganization"
-                                        type="text">
+                                        type="text" maxlength="16">
                                        
                                         <span style="color: red;"
-                                        *ngIf="registrationForm.get('gstinOfOrganization').hasError('pattern')">
+                                        *ngIf="registrationForm.get('gstinOfOrganization').invalid">
                                        Invalid GST
                                     </span>
                                         
@@ -505,8 +505,9 @@
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Date of Incorporation
                                         of the Organization</h5>
-                                    <input formControlName="dateOfOrganization"
-                                        type="date">
+                                    <!-- <input formControlName="dateOfOrganization"
+                                        type="date"> -->
+                                        <input type="date"   value="yyyy-mm-dd" class="input-medium search-query" (keypress)="pickclender()">
                                 </div>
                             </div>
 
