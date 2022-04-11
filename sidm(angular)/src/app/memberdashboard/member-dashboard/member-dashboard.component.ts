@@ -423,10 +423,67 @@ export class MemberDashboardComponent implements OnInit {
     }
 
   }
+  changetoggel(conttrolName: String, value: string) {
+    if (conttrolName === 'sidmMember' && value == 'Yes') {
+      this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+      console.log('hello');
+
+      this.sidmMember = true
+    }
+    else if (conttrolName === 'sidmMember' && value == 'No') {
+      this.sidmMember = false
+      this.editForm.get('sidmMemberShipNumber')?.reset()
+      this.editForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
+      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+    }
+
+    if (conttrolName === 'otherMember' && value == 'Yes') {
+      this.otherMember = true
+      this.editForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
+
+      this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+    }
+    else if (conttrolName === 'otherMember' && value == 'No') {
+      this.otherMember = false
+      this.editForm.get('otherAssociationMemberShipNumber')?.reset()
+
+      this.editForm.get('otherAssociationMemberShipNumber')?.clearValidators()
+      this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+
+    }
+
+    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
+      this.vendorOrganization = true
+      this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
+
+      this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
+
+    }
+    else if (conttrolName === 'vendorOrganization' && value == 'No') {
+      this.vendorOrganization = false
+      this.editForm.get('vendorOrganization1')?.reset()
+      this.editForm.get('vendorOrganization3')?.reset()
+      this.editForm.get('vendorOrganization4')?.reset()
+      this.editForm.get('vendorOrganization2')?.reset()
+
+      this.editForm.get('vendorOrganization1')?.clearValidators()
+      this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
+    }
+    if (conttrolName === 'isappreciation' && value == 'Yes') {
+      this.isappreciation = true
+    }
+    else if (conttrolName === 'isappreciation' && value == 'No') {
+      this.isappreciation = false
+      this.editForm.get('appreciationDocuments')?.reset()
+      this.appreciationDocuments = null
+
+    }
+  }
+
 
 
   finalSubmit(type: string) {
-    console.log('hello');
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.editForm.get('nameOfOrganisation')?.setValidators(Validators.required)
@@ -441,22 +498,7 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('pincode')?.updateValueAndValidity()
     this.editForm.get('name')?.setValidators(Validators.required)
     this.editForm.get('name')?.updateValueAndValidity()
-    // this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
-    // this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
-    // this.editForm.get('gstinOfOrganization')?.setValidators(Validators.required)
-    // this.editForm.get('gstinOfOrganization')?.updateValueAndValidity()
-    // this.editForm.get('nameOfOrganisation')?.setValidators(Validators.required)
-    // this.editForm.get('nameOfOrganisation')?.updateValueAndValidity()
-    // this.editForm.get('addressl1')?.setValidators(Validators.required)
-    // this.editForm.get('addressl1')?.updateValueAndValidity()
-    // this.editForm.get('state')?.setValidators(Validators.required)
-    // this.editForm.get('state')?.updateValueAndValidity()
-    // this.editForm.get('city')?.setValidators(Validators.required)
-    // this.editForm.get('city')?.updateValueAndValidity()
-    // this.editForm.get('pincode')?.setValidators(Validators.required)
-    // this.editForm.get('pincode')?.updateValueAndValidity()
-    // this.editForm.get('name')?.setValidators(Validators.required)
-    // this.editForm.get('name')?.updateValueAndValidity()
+
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
         category: this.editForm.value.category,
@@ -592,63 +634,7 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
-  changetoggel(conttrolName: String, value: string) {
-    if (conttrolName === 'sidmMember' && value == 'Yes') {
-      this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
-      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
-      this.sidmMember = true
-    }
-    else if (conttrolName === 'sidmMember' && value == 'No') {
-      this.sidmMember = false
-      this.editForm.get('sidmMemberShipNumber')?.reset()
-      this.editForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
-      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
-    }
 
-    if (conttrolName === 'otherMember' && value == 'Yes') {
-      this.otherMember = true
-      this.editForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
-
-      this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
-    }
-    else if (conttrolName === 'otherMember' && value == 'No') {
-      this.otherMember = false
-      this.editForm.get('otherAssociationMemberShipNumber')?.reset()
-
-      this.editForm.get('otherAssociationMemberShipNumber')?.clearValidators()
-      this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
-
-    }
-
-    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
-      this.vendorOrganization = true
-      this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
-
-      this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
-
-
-    }
-    else if (conttrolName === 'vendorOrganization' && value == 'No') {
-      this.vendorOrganization = false
-      this.editForm.get('vendorOrganization1')?.reset()
-      this.editForm.get('vendorOrganization3')?.reset()
-      this.editForm.get('vendorOrganization4')?.reset()
-      this.editForm.get('vendorOrganization2')?.reset()
-
-      this.editForm.get('vendorOrganization1')?.clearValidators()
-      this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
-
-    }
-    if (conttrolName === 'isappreciation' && value == 'Yes') {
-      this.isappreciation = true
-    }
-    else if (conttrolName === 'isappreciation' && value == 'No') {
-      this.isappreciation = false
-      this.editForm.get('appreciationDocuments')?.reset()
-      this.appreciationDocuments = null
-
-    }
-  }
 
   report() {
     this.editForm.get('appreciationDocuments')?.reset()
