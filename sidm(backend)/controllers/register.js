@@ -53,7 +53,7 @@ exports.postRegistrationForm = (req, res, next) => {
                     vendorOrganization1: vendorOrganization1,
                     vendorOrganization2: vendorOrganization2,
                     vendorOrganization3: vendorOrganization3,
-                    vendorOrganizationcampareAchivement4: vendorOrganization4,
+                    vendorOrganization4: vendorOrganization4,
                     aboutCompany: aboutCompany,
                     achievementsToJustifyApplication: achievementsToJustifyApplication,
                     campareAchivement: campareAchivement,
@@ -189,6 +189,7 @@ exports.updateFrom = (req, res, next) => {
     const updateAddressl2 = req.body.addressl2;
     const updateState = req.body.state;
     const updateCity = req.body.city;
+    const awardMatterToCompany = req.body.awardMatterToCompany
     const updatePincode = req.body.pincode;
     const updateName = req.body.name;
     const updateDesignation = req.body.designation;
@@ -216,6 +217,7 @@ exports.updateFrom = (req, res, next) => {
         formData.sidmMemberShipNumber = sidmMemberShipNumber;
         formData.otherAssociationMemberShipNumber = otherAssociationMemberShipNumber;
         formData.gstinOfOrganization = gstinOfOrganization;
+        formData.awardMatterToCompany = awardMatterToCompany
         formData.dateOfOrganization = dateOfOrganization;
         formData.vendorOrganization1 = vendorOrganization1;
         formData.vendorOrganization2 = vendorOrganization2;

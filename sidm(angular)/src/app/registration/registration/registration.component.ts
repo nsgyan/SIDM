@@ -213,8 +213,6 @@ export class RegistrationComponent implements OnInit {
 
     this.registrationForm.get('typeOfApplicant')?.clearValidators()
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.registrationForm.get('gstinOfOrganization')?.clearValidators()
-    this.registrationForm.get('gstinOfOrganization')?.setValidators(Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$'))
     this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.registrationForm.get('nameOfOrganisation')?.clearValidators()
     this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
