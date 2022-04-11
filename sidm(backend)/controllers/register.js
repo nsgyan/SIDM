@@ -196,6 +196,7 @@ exports.updateFrom = (req, res, next) => {
     const otherMember = req.body.otherMember
     const vendorOrganization = req.body.vendorOrganization
     const isappreciation = req.body.isappreciation
+    console.log(appreciationDocuments);
     console.log(campareAchivement, 'desf');
     const updateDocumentGstCertificate = req.body.documentGstCertificate;
     RegistrationForm.findById(userID).then(formData => {
@@ -207,7 +208,7 @@ exports.updateFrom = (req, res, next) => {
         formData.pincode = updatePincode;
         formData.name = updateName;
         formData.designation = updateDesignation;
-        if (updateDocumentGstCertificate) {
+        if (updateDocumentGstCertificate !== formData.documentGstCertificate) {
             formData.documentGstCertificate = updateDocumentGstCertificate
         }
         formData.status = status
@@ -226,11 +227,11 @@ exports.updateFrom = (req, res, next) => {
 
         formData.aboutCompany = aboutCompany;
         formData.achievementsToJustifyApplication = achievementsToJustifyApplication;
-        if (documentsOfProduct) {
+        if (documentsOfProduct !== formData.documentsOfProduct) {
             formData.documentsOfProduct = documentsOfProduct;
         }
         formData.campareAchivement = campareAchivement;
-        if (appreciationDocuments) {
+        if (appreciationDocuments !== formData.appreciationDocuments) {
             formData.appreciationDocuments = appreciationDocuments;
         }
 

@@ -315,15 +315,15 @@
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">E-Mail Address *</h5>
                     <input formControlName="email" readonly>
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-3">Mobile Number *</h5>
-                        <input 
-                            formControlName="mobileNumber" readonly>
-                    
-                    </div>
-                   
                  
                 </div>
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                    <input 
+                        formControlName="mobileNumber" readonly>
+                
+                </div>
+               
                
             </div>
          
@@ -892,12 +892,15 @@
                         (change)="gstchangeListener($event,'documentGstCertificate','editForm')">
                         <br>
                         <span> only accept .pdf</span>
+                        <button *ngIf='editData?.documentGstCertificate' (click)="delete('documentGstCertificate')">Delete documents</button>
+                        <a href="{{editData?.documentGstCertificate}}" class="viewBtn" *ngIf='editData?.documentGstCertificate' download="gst">View Document</a>
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Date of Incorporation
                         of the Organization</h5>
                     <input formControlName="dateOfOrganization"
                         type="date" (keypress)="pickclender()">
+                        
                 </div>
             </div>
 
@@ -1134,6 +1137,8 @@
                                 
                                 <br>
                         <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
+                        <button *ngIf='editData?.appreciationDocuments' (click)="delete('appreciationDocuments')">Delete documents</button>
+                        <a href="{{editData?.appreciationDocuments}}" class="viewBtn" *ngIf='editData?.appreciationDocuments' download="gst">View Document</a>
                         </div>
                     </div>
                     <div class="tab-pane fade"
@@ -1167,6 +1172,10 @@
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+
+                    <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
+                    <button *ngIf='editData?.documentsOfProduct' (click)="delete('documentsOfProduct')">Delete documents</button>
+                        <a href="{{editData?.documentsOfProduct}}" class="viewBtn" *ngIf='editData?.documentsOfProduct' download="gst">View Document</a>
             </div>
             <div class="col-md-12 mt-4">
                 <div class="form-group">

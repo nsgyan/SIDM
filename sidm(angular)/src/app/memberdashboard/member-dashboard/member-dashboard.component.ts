@@ -149,6 +149,9 @@ export class MemberDashboardComponent implements OnInit {
   applyNew() {
     this.submited = false
     this.newCategory = !this.newCategory
+    this.documentGstCertificate = '';
+    this.documentsOfProduct = '';
+    this.appreciationDocuments = ''
 
   }
 
@@ -333,14 +336,17 @@ export class MemberDashboardComponent implements OnInit {
         }
         if (data.documentGstCertificate) {
           data.documentGstCertificate = environment.download + data.documentGstCertificate
+          this.documentGstCertificate = data.documentGstCertificate
         }
         if (data.appreciationDocuments) {
           data.appreciationDocuments = environment.download + data.appreciationDocuments
           console.log(data.appreciationDocuments);
+          this.appreciationDocuments = data.appreciationDocuments
 
         }
         if (data.documentsOfProduct) {
           data.documentsOfProduct = environment.download + data.documentsOfProduct
+          this.documentsOfProduct = data.documentsOfProduct
         }
 
         data.sidmMember === 'Yes' ? this.sidmMember = true : ''
@@ -871,5 +877,30 @@ export class MemberDashboardComponent implements OnInit {
     }
   }
 
+  delete(conttrolName: string) {
+    if (conttrolName === 'documentGstCertificate') {
+      this.documentGstCertificate = null
+      this.editForm.get('documentGstCertificate')?.reset()
+      this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
+      this.editData.documentGstCertificate = null
+
+    }
+    else if (conttrolName === 'documentsOfProduct') {
+      this.documentsOfProduct = null;
+      this.editForm.get('documentsOfProduct')?.reset()
+      this.editForm.get('documentsOfProduct')?.updateValueAndValidity()
+      this.editData.documentsOfProduct = null
+    }
+    else if (conttrolName === 'appreciationDocuments') {
+      this.appreciationDocuments = null;
+      this.editForm.get('appreciationDocuments')?.reset()
+      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+      this.editData.appreciationDocuments = null
+      this.editForm.get('isappreciation')?.setValue('No')
+
+      this.editForm.get('isappreciation')?.updateValueAndValidity()
+    }
+
+  }
 
 }
