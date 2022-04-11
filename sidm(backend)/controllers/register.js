@@ -178,6 +178,7 @@ exports.updateFrom = (req, res, next) => {
     const vendorOrganization1 = req.body.vendorOrganization1;
     const vendorOrganization2 = req.body.vendorOrganization2;
     const vendorOrganization3 = req.body.vendorOrganization3;
+    const vendorOrganization4 = req.body.vendorOrganization4;
     const aboutCompany = req.body.aboutCompany;
     const achievementsToJustifyApplication = req.body.achievementsToJustifyApplication;
     const campareAchivement = req.body.campareAchivement;
@@ -222,6 +223,7 @@ exports.updateFrom = (req, res, next) => {
         formData.vendorOrganization1 = vendorOrganization1;
         formData.vendorOrganization2 = vendorOrganization2;
         formData.vendorOrganization3 = vendorOrganization3;
+        formData.vendorOrganization4 = vendorOrganization4;
         formData.sidmMember = sidmMember;
         formData.otherMember = otherMember;
         formData.vendorOrganization = vendorOrganization;

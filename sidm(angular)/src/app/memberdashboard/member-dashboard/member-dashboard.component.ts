@@ -152,6 +152,11 @@ export class MemberDashboardComponent implements OnInit {
     this.documentGstCertificate = '';
     this.documentsOfProduct = '';
     this.appreciationDocuments = ''
+    this.otherMember = false;
+    this.sidmMember = false
+    this.submited = false
+    this.isappreciation = false
+
 
   }
 
@@ -316,6 +321,11 @@ export class MemberDashboardComponent implements OnInit {
 
 
   viewForm(item: any) {
+    this.otherMember = false;
+    this.sidmMember = false
+    this.submited = false
+    this.newCategory = false
+    this.isappreciation = false
     this.submited = false
     this.newCategory = false
     if (item.status === "Draft") {
@@ -522,7 +532,7 @@ export class MemberDashboardComponent implements OnInit {
         vendorOrganization2: this.editForm.value.vendorOrganization2,
         vendorOrganization3: this.editForm.value.vendorOrganization3,
         vendorOrganization4: this.editForm.value.vendorOrganization4,
-        aboutCompany: this.editForm.value.vendorOrganization3,
+        aboutCompany: this.editForm.value.aboutCompany,
         achievementsToJustifyApplication: this.editForm.value.achievementsToJustifyApplication,
         campareAchivement: this.editForm.value.campareAchivement,
         documentGstCertificate: this.documentGstCertificate,
@@ -598,7 +608,7 @@ export class MemberDashboardComponent implements OnInit {
         vendorOrganization2: this.editForm.value.vendorOrganization2,
         vendorOrganization3: this.editForm.value.vendorOrganization3,
         vendorOrganization4: this.editForm.value.vendorOrganization4,
-        aboutCompany: this.editForm.value.vendorOrganization3,
+        aboutCompany: this.editForm.value.aboutCompany,
         achievementsToJustifyApplication: this.editForm.value.achievementsToJustifyApplication,
         campareAchivement: this.editForm.value.campareAchivement,
         documentGstCertificate: this.documentGstCertificate,
