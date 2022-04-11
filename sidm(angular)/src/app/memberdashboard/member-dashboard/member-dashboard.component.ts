@@ -649,8 +649,6 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('category')?.updateValueAndValidity()
     this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.newCategoryForm.get('gstinOfOrganization')?.setValidators(Validators.required)
-    this.newCategoryForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.newCategoryForm.get('nameOfOrganisation')?.setValidators(Validators.required)
     this.newCategoryForm.get('nameOfOrganisation')?.updateValueAndValidity()
     this.newCategoryForm.get('addressl1')?.setValidators(Validators.required)

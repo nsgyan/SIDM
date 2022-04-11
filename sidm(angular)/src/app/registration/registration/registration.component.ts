@@ -420,8 +420,6 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('category')?.updateValueAndValidity()
     this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.registrationForm.get('gstinOfOrganization')?.setValidators(Validators.required)
-    this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
     this.registrationForm.get('nameOfOrganisation')?.setValidators(Validators.required)
     this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
     this.registrationForm.get('addressl1')?.setValidators(Validators.required)
