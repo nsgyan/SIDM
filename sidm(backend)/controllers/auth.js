@@ -27,7 +27,15 @@ exports.adminAuth = (req, res, next) => {
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
         if (decoded) {
-            next()
+            User.findOne({ email: decoded.email, password: decoded.password })
+                .then(data => {
+                    if (data) {
+                        next()
+                    }
+                    else {
+                        res.status(401).send('invalid token')
+                    }
+                })
         }
         else {
             console.log(err);

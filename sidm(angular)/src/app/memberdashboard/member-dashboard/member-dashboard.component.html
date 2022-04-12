@@ -679,7 +679,10 @@
 <div  *ngIf="!EditForm">
     <form  [formGroup]="editForm" class="mb-2">
         <div class="formPart_1">
-           
+            <div>
+                <h5 class="mb-3 mt-3"> Category that you  Apply for</h5>
+                <span>{{editData.category}}</span>
+            </div>
             <h5 class="mt-5 mb-3">Type of Applicant company</h5>
             <div class="row">
                 <div class="checkgroup">

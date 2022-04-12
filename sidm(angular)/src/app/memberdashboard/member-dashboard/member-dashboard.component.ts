@@ -394,9 +394,9 @@ export class MemberDashboardComponent implements OnInit {
           aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
           achievementsToJustifyApplication: [this.editData.achievementsToJustifyApplication ? this.editData.achievementsToJustifyApplication : ''],
           campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
-          documentGstCertificate: [''],
-          documentsOfProduct: [''],
-          appreciationDocuments: [''],
+          documentGstCertificate: [this.editData.documentGstCertificate ? this.editData.documentGstCertificate : ''],
+          documentsOfProduct: [this.editData.documentsOfProduct ? this.editData.documentsOfProduct : ''],
+          appreciationDocuments: [this.editData.appreciationDocuments ? this.editData.appreciationDocuments : ''],
           briefCompany: [this.editData.briefCompany ? this.editData.briefCompany : ''],
           awardMatterToCompany: [this.editData.awardMatterToCompany ? this.editData.awardMatterToCompany : ''],
           sidmMember: [this.editData.sidmMember ? this.editData.sidmMember : ''],
@@ -423,12 +423,7 @@ export class MemberDashboardComponent implements OnInit {
 
         }
 
-        if (this.editData.isappreciation === 'Yes') {
 
-          this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
-
-          this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
-        }
       })
     }
     else {
@@ -494,6 +489,9 @@ export class MemberDashboardComponent implements OnInit {
     else if (conttrolName === 'isappreciation' && value == 'No') {
       this.isappreciation = false
       this.editForm.get('appreciationDocuments')?.reset()
+      this.editForm.get('appreciationDocuments')?.clearValidators()
+
+      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.appreciationDocuments = null
 
     }
@@ -911,6 +909,9 @@ export class MemberDashboardComponent implements OnInit {
     else if (conttrolName === 'isappreciation' && value == 'No') {
       this.isappreciation = false
       this.newCategoryForm.get('appreciationDocuments')?.reset()
+      this.newCategoryForm.get('appreciationDocuments')?.clearValidators()
+
+      this.newCategoryForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.appreciationDocuments = null
 
     }
@@ -936,6 +937,7 @@ export class MemberDashboardComponent implements OnInit {
       this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.editData.appreciationDocuments = null
       this.editForm.get('isappreciation')?.setValue('No')
+      this.isappreciation = false
 
       this.editForm.get('isappreciation')?.updateValueAndValidity()
     }
