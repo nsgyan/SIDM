@@ -227,6 +227,14 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
+    this.registrationForm.get('sidmMember')?.clearValidators()
+    this.registrationForm.get('sidmMember')?.updateValueAndValidity()
+    this.registrationForm.get('otherMember')?.clearValidators()
+    this.registrationForm.get('otherMember')?.updateValueAndValidity()
+    this.registrationForm.get('vendorOrganization')?.clearValidators()
+    this.registrationForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('isappreciation')?.clearValidators()
+    this.registrationForm.get('isappreciation')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
@@ -430,6 +438,14 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.setValidators(Validators.required)
     this.registrationForm.get('name')?.updateValueAndValidity()
+    this.registrationForm.get('sidmMember')?.setValidators(Validators.required)
+    this.registrationForm.get('sidmMember')?.updateValueAndValidity()
+    this.registrationForm.get('otherMember')?.setValidators(Validators.required)
+    this.registrationForm.get('otherMember')?.updateValueAndValidity()
+    this.registrationForm.get('vendorOrganization')?.setValidators(Validators.required)
+    this.registrationForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
+    this.registrationForm.get('isappreciation')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
@@ -563,7 +579,11 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.get('vendorOrganization1')?.updateValueAndValidity()
     }
     if (conttrolName === 'isappreciation' && value == 'Yes') {
+
       this.isappreciation = true
+      this.registrationForm.get('appreciationDocuments')?.setValidators(Validators.required)
+
+      this.registrationForm.get('appreciationDocuments')?.updateValueAndValidity()
     }
     else if (conttrolName === 'isappreciation' && value == 'No') {
       this.isappreciation = false

@@ -158,6 +158,7 @@ export class MemberDashboardComponent implements OnInit {
     this.sidmMember = false
     this.submited = false
     this.isappreciation = false
+    this.vendorOrganization = false
 
 
   }
@@ -366,28 +367,9 @@ export class MemberDashboardComponent implements OnInit {
         data.vendorOrganization === 'Yes' ? this.vendorOrganization = true : ''
         data.isappreciation === 'Yes' ? this.isappreciation = true : ''
 
-        // if (data.sidmMember === 'Yes' ) {
-        //   this.sidmMember = true
-        // }
-        // if (data.otherMember === 'Yes') {
-        //   this.sidmMember = true
-        // }
-        // if (data.vendorOrganization === 'Yes') {
-        //   this.otherMember = true
-        // }
-
-
-
-        // if (data.isappreciation === 'Yes') {
-        //   this.isappreciation = true
-        // }
-
-        console.log(data);
         this.editData = data
         this.catagery = this.editData.catagery
         this.editData.panNumberOfOrganization = this.editData.panNumberOfOrganization.toUpperCase();
-        console.log(this.editData.awardMatterToCompany);
-
         this.editForm = this.formBuilder.group({
           typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
           nameOfOrganisation: [this.editData.nameOfOrganisation ? this.editData.nameOfOrganisation : ''],
@@ -400,7 +382,6 @@ export class MemberDashboardComponent implements OnInit {
           designation: [this.editData.designation ? this.editData.designation : ''],
           mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber : ''],
           email: [this.editData.email ? this.editData.email : ''],
-
           sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber : ''],
           otherAssociationMemberShipNumber: [this.editData.otherAssociationMemberShipNumber ? this.editData.otherAssociationMemberShipNumber : ''],
           panNumberOfOrganization: [this.editData.panNumberOfOrganization ? this.editData.panNumberOfOrganization : ''],
@@ -424,8 +405,30 @@ export class MemberDashboardComponent implements OnInit {
           isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
 
         })
+        if (this.editData.sidmMember === 'Yes') {
+          this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+          this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
 
+        }
+        if (this.editData.otherMember === 'Yes') {
+          this.editForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
 
+          this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+
+        }
+        if (this.editData.vendorOrganization === 'Yes') {
+          this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
+
+          this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
+
+        }
+
+        if (this.editData.isappreciation === 'Yes') {
+
+          this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
+
+          this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+        }
       })
     }
     else {
@@ -446,7 +449,7 @@ export class MemberDashboardComponent implements OnInit {
     else if (conttrolName === 'sidmMember' && value == 'No') {
       this.sidmMember = false
       this.editForm.get('sidmMemberShipNumber')?.reset()
-      this.editForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
+      this.editForm.get('sidmMemberShipNumber')?.clearValidators()
       this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
     }
 
@@ -483,6 +486,9 @@ export class MemberDashboardComponent implements OnInit {
       this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
     }
     if (conttrolName === 'isappreciation' && value == 'Yes') {
+      this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
+
+      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.isappreciation = true
     }
     else if (conttrolName === 'isappreciation' && value == 'No') {
@@ -510,6 +516,14 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('pincode')?.updateValueAndValidity()
     this.editForm.get('name')?.setValidators(Validators.required)
     this.editForm.get('name')?.updateValueAndValidity()
+    this.editForm.get('sidmMember')?.setValidators(Validators.required)
+    this.editForm.get('sidmMember')?.updateValueAndValidity()
+    this.editForm.get('otherMember')?.setValidators(Validators.required)
+    this.editForm.get('otherMember')?.updateValueAndValidity()
+    this.editForm.get('vendorOrganization')?.setValidators(Validators.required)
+    this.editForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.editForm.get('isappreciation')?.setValidators(Validators.required)
+    this.editForm.get('isappreciation')?.updateValueAndValidity()
 
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
@@ -587,7 +601,14 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('pincode')?.updateValueAndValidity()
     this.editForm.get('name')?.clearValidators()
     this.editForm.get('name')?.updateValueAndValidity()
-    console.log(this.editForm.value.designation);
+    this.editForm.get('sidmMember')?.clearValidators()
+    this.editForm.get('sidmMember')?.updateValueAndValidity()
+    this.editForm.get('otherMember')?.clearValidators()
+    this.editForm.get('otherMember')?.updateValueAndValidity()
+    this.editForm.get('vendorOrganization')?.clearValidators()
+    this.editForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.editForm.get('isappreciation')?.clearValidators()
+    this.editForm.get('isappreciation')?.updateValueAndValidity()
 
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
@@ -676,6 +697,14 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('pincode')?.updateValueAndValidity()
     this.newCategoryForm.get('name')?.setValidators(Validators.required)
     this.newCategoryForm.get('name')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmMember')?.setValidators(Validators.required)
+    this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('otherMember')?.setValidators(Validators.required)
+    this.newCategoryForm.get('otherMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('vendorOrganization')?.setValidators(Validators.required)
+    this.newCategoryForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
     if (this.newCategoryForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
@@ -757,6 +786,14 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('pincode')?.updateValueAndValidity()
     this.newCategoryForm.get('name')?.clearValidators()
     this.newCategoryForm.get('name')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmMember')?.clearValidators()
+    this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('otherMember')?.clearValidators()
+    this.newCategoryForm.get('otherMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('vendorOrganization')?.clearValidators()
+    this.newCategoryForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('isappreciation')?.clearValidators()
+    this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
     if (this.newCategoryForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
@@ -866,6 +903,9 @@ export class MemberDashboardComponent implements OnInit {
 
     }
     if (conttrolName === 'isappreciation' && value == 'Yes') {
+      this.newCategoryForm.get('appreciationDocuments')?.setValidators(Validators.required)
+
+      this.newCategoryForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.isappreciation = true
     }
     else if (conttrolName === 'isappreciation' && value == 'No') {

@@ -387,6 +387,9 @@
                         <input type="radio"  formControlName="sidmMember" (click)="NewFormchangetoggel('sidmMember','No')" value="No" 
                          id="No">
                         <label class="mx-2" for="No">No</label>
+                        <span  style="color: red;" *ngIf="newCategoryForm.get('sidmMember').hasError('required')" >
+                            please select Yes or No
+                          </span>
                       
                 <!-- </ul>
                     <li class="nav-item">
@@ -437,6 +440,9 @@
                 <input type="radio"  formControlName="otherMember" (click)="NewFormchangetoggel('otherMember','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
+                <span  style="color: red;" *ngIf="newCategoryForm.get('otherMember').hasError('required')" >
+                    please select Yes or No
+                  </span>
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="otherMember">
                         <div class="row">
@@ -473,6 +479,9 @@
                 <input type="radio"  formControlName="vendorOrganization" (click)="NewFormchangetoggel('vendorOrganization','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
+                <span  style="color: red;" *ngIf="newCategoryForm.get('vendorOrganization').hasError('required')" >
+                    please select Yes or No
+                  </span>
 
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="vendorOrganization">
@@ -581,6 +590,9 @@
                 <input type="radio"  formControlName="isappreciation" (click)="NewFormchangetoggel('isappreciation','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
+                <span  style="color: red;" *ngIf="newCategoryForm.get('isappreciation').hasError('required')" >
+                    please select Yes or No
+                  </span>
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="isappreciation">
                         <div class="form-group">
@@ -918,7 +930,9 @@
                         <input type="radio"  formControlName="sidmMember" (click)="changetoggel('sidmMember','No')" value="No" 
                          id="No">
                         <label class="mx-2" for="No">No</label>
-                      
+                        <span  style="color: red;" *ngIf="editForm.get('sidmMember').hasError('required')" >
+                            please select Yes or No
+                          </span>
                 <!-- </ul>
                     <li class="nav-item">
                         <a class="nav-link"id="pills-YES-tab"
@@ -946,7 +960,7 @@
                                     &&
                                     (submited  ||editForm.controls['sidmMemberShipNumber'].touched)">
                                     <span  style="color: red;" *ngIf="editForm.get('sidmMemberShipNumber').hasError('required')" >
-                                        membership number required
+                                     SIDM   membership number required
                                     </span>
                                     </div>
                                     
@@ -969,6 +983,9 @@
                 <input type="radio"  formControlName="otherMember" (click)="changetoggel('otherMember','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
+                <span  style="color: red;" *ngIf="editForm.get('otherMember').hasError('required')" >
+                    please select Yes or No
+                  </span>
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="otherMember">
                         <div class="row">
@@ -983,7 +1000,7 @@
                                     &&
                                     (submited ||editForm.controls['otherAssociationMemberShipNumber'].touched)">
                                     <span  style="color: red;" *ngIf="editForm.get('otherAssociationMemberShipNumber').hasError('required')" >
-                                        membership number required
+                                        other association    membership number required
                                     </span>
                                     </div>
                             </div>
@@ -1005,7 +1022,9 @@
                 <input type="radio"  formControlName="vendorOrganization" (click)="changetoggel('vendorOrganization','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
-
+                <span  style="color: red;" *ngIf="editForm.get('vendorOrganization').hasError('required')" >
+                    please select Yes or No
+                  </span>
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="vendorOrganization">
                         <div class="form-group">
@@ -1113,6 +1132,9 @@
                 <input type="radio"  formControlName="isappreciation" (click)="NewFormchangetoggel('isappreciation','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
+                <span  style="color: red;" *ngIf="editForm.get('isappreciation').hasError('required')" >
+                    please select Yes or No
+                  </span>
                 <div class="tab-content" id="pills-tabContent">
                     <div *ngIf="isappreciation">
                         <div class="form-group">
