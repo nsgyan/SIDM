@@ -394,9 +394,9 @@ export class MemberDashboardComponent implements OnInit {
           aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
           achievementsToJustifyApplication: [this.editData.achievementsToJustifyApplication ? this.editData.achievementsToJustifyApplication : ''],
           campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
-          documentGstCertificate: [],
-          documentsOfProduct: [],
-          appreciationDocuments: [],
+          documentGstCertificate: [''],
+          documentsOfProduct: [''],
+          appreciationDocuments: [''],
           briefCompany: [this.editData.briefCompany ? this.editData.briefCompany : ''],
           awardMatterToCompany: [this.editData.awardMatterToCompany ? this.editData.awardMatterToCompany : ''],
           sidmMember: [this.editData.sidmMember ? this.editData.sidmMember : ''],
@@ -466,7 +466,6 @@ export class MemberDashboardComponent implements OnInit {
     if (conttrolName === 'vendorOrganization' && value == 'Yes') {
       this.vendorOrganization = true
       this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
-
       this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
 
     }
@@ -482,7 +481,6 @@ export class MemberDashboardComponent implements OnInit {
     }
     if (conttrolName === 'isappreciation' && value == 'Yes') {
       this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
-
       this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.isappreciation = true
     }
