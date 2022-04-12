@@ -25,13 +25,20 @@ exports.loginVerify = (req, res, next) => {
     User.findOne({ email: email, password: password })
         .then(data => {
             if (data) {
-                res.status(200).send(data)
+                const token = jwt.sign({
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                    email: email,
+                    password: password,
+                }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
+                );
+
+                res.status(200).send({ token: token })
             }
             else {
                 res.status(404).send({ message: 'User does not exist' })
             }
         }).catch(err => {
-
+            res.status(404).send(err)
         })
 }
 

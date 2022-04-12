@@ -4,6 +4,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -17,6 +18,7 @@ export class AdminLoginComponent implements OnInit {
     private httpService: HttpService,
     private snackBar: MatSnackBar,
     private toast: ToastrService,
+    private localStorage: LocalStorageService,
     private router: Router) {
     this.adminLogin = this.formBuilder.group({
       email: ['', Validators.required],
@@ -33,7 +35,8 @@ export class AdminLoginComponent implements OnInit {
     this.httpService.adminlogin({
       'email': this.adminLogin.value.email,
       'password': this.adminLogin.value.password
-    }).subscribe(data => {
+    }).subscribe((data: any) => {
+      this.localStorage.set('token', data.token)
       this.router.navigate(['/adminDashboard'])
       this.toast.success('Admin Successfully login!');
       this.snackBar.open('Successfully login', 'close', {

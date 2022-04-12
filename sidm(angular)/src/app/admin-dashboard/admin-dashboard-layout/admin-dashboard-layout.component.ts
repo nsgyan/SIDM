@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
@@ -13,13 +14,14 @@ export class AdminDashboardLayoutComponent implements OnInit {
   itemPerPage = 10;
 
   constructor(private httpService: HttpService,
+    private toast: ToastrService,
     private routes: Router) {
     this.getdata()
   
 
   }
   logout() {
-    this.routes.navigate(['/adminLogin'])
+    this.routes.navigate(['login/admin'])
   }
   ngOnInit(): void {
   }
@@ -55,6 +57,10 @@ export class AdminDashboardLayoutComponent implements OnInit {
       this.allFormsData = data
 
       console.log(this.allFormsData);
+
+    }, err => {
+      this.toast.error(err.error);
+      this.routes.navigate(['login/admin'])
 
     })
 
