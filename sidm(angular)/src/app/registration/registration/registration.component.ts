@@ -542,7 +542,7 @@ export class RegistrationComponent implements OnInit {
     else if (conttrolName === 'sidmMember' && value == 'No') {
       this.sidmMember = false
       this.registrationForm.get('sidmMemberShipNumber')?.reset()
-      this.registrationForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
+      this.registrationForm.get('sidmMemberShipNumber')?.clearValidators()
       this.registrationForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
     }
 
@@ -588,6 +588,10 @@ export class RegistrationComponent implements OnInit {
     else if (conttrolName === 'isappreciation' && value == 'No') {
       this.isappreciation = false
       this.registrationForm.get('appreciationDocuments')?.reset()
+
+      this.registrationForm.get('appreciationDocuments')?.clearValidators()
+
+      this.registrationForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.appreciationDocuments = null
 
     }
