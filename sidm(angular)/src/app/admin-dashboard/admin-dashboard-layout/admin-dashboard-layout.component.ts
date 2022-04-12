@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-admin-dashboard-layout',
@@ -15,13 +16,16 @@ export class AdminDashboardLayoutComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private toast: ToastrService,
+    private localStorage: LocalStorageService,
     private routes: Router) {
     this.getdata()
   
 
   }
   logout() {
+    this.localStorage.clearLocalStorage()
     this.routes.navigate(['login/admin'])
+
   }
   ngOnInit(): void {
   }

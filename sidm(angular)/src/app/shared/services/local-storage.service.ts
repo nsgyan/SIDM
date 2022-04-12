@@ -7,13 +7,15 @@ import { Subject } from 'rxjs';
 export class LocalStorageService {
   localStorage: Storage;
   localStorageChanges = new Subject();
+  token: any
 
   constructor() {
     this.localStorage = window.localStorage
   }
 
   get(key: string) {
-    return JSON.parse(this.localStorage.getItem(key));
+    this.token = this.localStorage.getItem(key)
+    return JSON.parse(this.token);
   }
 
   set(key: string, data: any) {
@@ -27,11 +29,9 @@ export class LocalStorageService {
   }
 
   clearLocalStorage() {
-    //   if (this.localStorage.token) {
-    //     this.localStorage.clear()
-    //     return true
-    //   }
-    //   return false
-    // }
+
+    this.localStorage.clear()
+    return true
+
   }
 }

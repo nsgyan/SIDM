@@ -944,4 +944,11 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
+
+  logout() {
+    this.localStroage.clearLocalStorage()
+    this.routes.navigate(['login/member'])
+
+  }
+
 }
