@@ -103,6 +103,7 @@ exports.memberLogin = (req, res, next) => {
 
 exports.memberData = (req, res, next) => {
     const token = req.header('authorization');
+    console.log(req, 'dfffffffffff')
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
         if (decoded) {

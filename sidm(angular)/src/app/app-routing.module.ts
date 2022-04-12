@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MemberAuthguradService } from './shared/services/member-authgurad.service';
 import { ViewpageComponent } from './viewpage/viewpage.component';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'memberDashboard',
-    loadChildren: () => import(`./memberdashboard/memberdashboard.module`).then(m => m.MemberdashboardModule)
+    loadChildren: () => import(`./memberdashboard/memberdashboard.module`).then(m => m.MemberdashboardModule),
+    canActivate: [MemberAuthguradService],
   },
   {
     path: 'adminDashboard',

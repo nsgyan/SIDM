@@ -167,7 +167,7 @@ exports.getmemberData = (req, res, next) => {
 }
 
 exports.updateFrom = (req, res, next) => {
-    console.log('hello');
+  
     const userID = req.params.userID;
     const status = req.body.status
     const typeOfApplicant = req.body.typeOfApplicant;

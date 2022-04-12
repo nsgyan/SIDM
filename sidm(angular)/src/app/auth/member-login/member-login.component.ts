@@ -63,7 +63,7 @@ export class MemberLoginComponent implements OnInit {
     if (this.memberform.valid && this.captcha) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumberOfOrganization: this.memberform.value.panNumber })
         .subscribe((data: any) => {
-          this.localStorage.set('membertoken', data.token)
+          this.localStorage.set('token', data.token)
         this.router.navigate(['/memberDashboard'])
         this.toast.success('Member Successfully login!');
       }, err => {

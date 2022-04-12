@@ -54,11 +54,9 @@ export class HttpService {
     // console.log(data);
     return this.httpService.post(Globals.route.checkPan, data)
   }
-  getMemberData(key: string) {
-    const token = this.localStroage.get(key)
-    let headers: HttpHeaders = new HttpHeaders({ 'Authorization': token });
+  getMemberData() {
     // headers.append('Authorization', token);
-    return this.httpService.get(Globals.route.memberdata, { headers })
+    return this.httpService.get(Globals.route.memberdata)
   }
 
   memberlogin(memberLoginData: any) {

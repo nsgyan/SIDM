@@ -46,7 +46,7 @@ export class MemberDashboardComponent implements OnInit {
     private routes: Router,
   ) {
     this.getState()
-    this.httpService.getMemberData('membertoken').
+    this.httpService.getMemberData().
       subscribe((data: any) => {
         data.map((item: any) => {
           if (item.category === 'cat1') {
@@ -112,7 +112,9 @@ export class MemberDashboardComponent implements OnInit {
         })
       }, err => {
         console.log(err.error);
+
         this.toast.error(err.error);
+        this.routes.navigate(['login/member'])
 
       })
   }
@@ -552,7 +554,9 @@ export class MemberDashboardComponent implements OnInit {
         this.toast.success('successfully applied');
       }, err => {
         console.log(err);
-        this.toast.error(err);
+        this.toast.error(err.error);
+        this.routes.navigate(['login/member'])
+
 
       })
     }
@@ -628,7 +632,8 @@ export class MemberDashboardComponent implements OnInit {
         this.toast.success('successfully applied');
       },
         error => {
-          this.toast.error('Email or Mobile or Pan  already exists');
+          this.toast.error(error.error);
+          this.routes.navigate(['login/member'])
         }
       )
     }
