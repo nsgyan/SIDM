@@ -22,6 +22,7 @@ export class MemberLoginComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private httpService: HttpService) {
+      this.localStorage.clearLocalStorage()
 
     this.memberform = this.formBuilder.group({
       mobileNumber: ['', Validators.required],

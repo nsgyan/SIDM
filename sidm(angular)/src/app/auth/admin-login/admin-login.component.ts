@@ -20,6 +20,7 @@ export class AdminLoginComponent implements OnInit {
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private router: Router) {
+      this.localStorage.clearLocalStorage();
     this.adminLogin = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],

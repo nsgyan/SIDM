@@ -10,8 +10,20 @@ exports.memberAuth = (req, res, next) => {
     console.log(req, 'dfffffffffff')
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
-        if (decoded) {
-            next()
+        if (decoded.panNumber) {
+            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumberOfOrganization: decoded.panNumber })
+                .then(data => {
+                    if (data) {
+                        next()
+                    }
+                    else {
+                        res.status(401).send('invalid token')
+                    }
+
+                })
+                .catch(err => {
+                    res.send(err)
+                })
         }
         else {
             console.log(err);
