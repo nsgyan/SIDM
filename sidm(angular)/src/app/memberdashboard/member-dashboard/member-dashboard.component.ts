@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, CrossEmailValidation, CrossPanValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
@@ -39,6 +39,10 @@ export class MemberDashboardComponent implements OnInit {
   email: any;
   mobilenumber: any;
   pan: any;
+  financialDoccument: any;
+  subCategoryDoccument: any;
+  exhibit1: any;
+  exhibit2: any;
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
@@ -72,7 +76,7 @@ export class MemberDashboardComponent implements OnInit {
         for (let i of this.memberData) {
           this.email = i.email
           this.mobilenumber = i.mobileNumber;
-          this.pan = i.panNumberOfOrganization.toUpperCase();
+          this.pan = i.panNumber;
         }
         this.newCategoryForm = this.formBuilder.group({
           category: ['', Validators.required],
@@ -89,7 +93,7 @@ export class MemberDashboardComponent implements OnInit {
           email: [this.email],
           sidmMemberShipNumber: [''],
           otherAssociationMemberShipNumber: [''],
-          panNumberOfOrganization: [this.pan],
+          panNumber: [this.pan],
           gstinOfOrganization: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           dateOfOrganization: [''],
           vendorOrganization1: [''],
@@ -229,75 +233,7 @@ export class MemberDashboardComponent implements OnInit {
     return false
   }
 
-  changeListener($event: any, form: any, type: string) {
-    let file = $event.target.files;
-    console.log(file);
 
-
-    if (
-      file[0].type == 'image/png' ||
-      file[0].type == 'image/jpg' ||
-      file[0].type == 'image/jpeg' ||
-      file[0].type == 'application/pdf' ||
-      file[0].type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      || file[0].type == 'application/msword'
-    ) {
-      console.log('jhe');
-
-      if (parseInt(file[0].size) > 524280) {
-        if (type === 'editForm') {
-          this.editForm.get(form)?.reset()
-          this.editForm.get(form)?.updateValueAndValidity()
-      this.toast.error('file to large')
-    }
-        else if (type === 'newCategoryForm') {
-          this.newCategoryForm.get(form)?.reset()
-          this.newCategoryForm.get(form)?.updateValueAndValidity()
-          this.toast.error('file to large');
-
-        }
-      }
-    else {
-      const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
-      const time = '7:00 AM';
-
-      console.log(file[0], 'fghj');
-
-      this.httpService.upload(file[0]).subscribe((data: any) => {
-        if (form === 'documentGstCertificate') {
-
-          this.documentGstCertificate = data.body;
-          console.log(this.documentGstCertificate);
-
-        }
-        else if (form === 'documentsOfProduct') {
-          this.documentsOfProduct = data.body;
-        }
-        else if (form === 'appreciationDocuments') {
-          this.appreciationDocuments = data.body;
-
-        }
-      })
-
-      }
-    }
-    else {
-      if (type === 'editForm') {
-        this.editForm.get(form)?.reset()
-        this.editForm.get(form)?.updateValueAndValidity()
-
-        this.toast.error('File uploaded is invalid!')
-      }
-      else if (type === 'newCategoryForm') {
-        this.newCategoryForm.get(form)?.reset()
-        this.newCategoryForm.get(form)?.updateValueAndValidity()
-
-        this.toast.error('File uploaded is invalid!')
-
-      }
-
-    }
-  }
 
 
 
@@ -369,41 +305,48 @@ export class MemberDashboardComponent implements OnInit {
 
         this.editData = data
         this.catagery = this.editData.catagery
-        this.editData.panNumberOfOrganization = this.editData.panNumberOfOrganization.toUpperCase();
+        this.editData.panNumber = this.editData.panNumber.toUpperCase();
         this.editForm = this.formBuilder.group({
-          typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
-          nameOfOrganisation: [this.editData.nameOfOrganisation ? this.editData.nameOfOrganisation : ''],
-          addressl1: [this.editData.addressl1 ? this.editData.addressl1 : ''],
-          addressl2: [this.editData.addressl2 ? this.editData.addressl2 : ''],
-          state: [this.editData.state ? this.editData.state : ''],
-          city: [this.editData.city ? this.editData.city : ''],
-          pincode: [this.editData.pincode ? this.editData.pincode : '', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
-          name: [this.editData.name ? this.editData.name : ''],
-          designation: [this.editData.designation ? this.editData.designation : ''],
-          mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber : ''],
-          email: [this.editData.email ? this.editData.email : ''],
-          sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber : ''],
-          otherAssociationMemberShipNumber: [this.editData.otherAssociationMemberShipNumber ? this.editData.otherAssociationMemberShipNumber : ''],
-          panNumberOfOrganization: [this.editData.panNumberOfOrganization ? this.editData.panNumberOfOrganization : ''],
-          gstinOfOrganization: [this.editData.gstinOfOrganization ? this.editData.gstinOfOrganization : '', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
-          dateOfOrganization: [this.editData.dateOfOrganization ? this.editData.dateOfOrganization : ''],
-          vendorOrganization1: [this.editData.vendorOrganization1 ? this.editData.vendorOrganization1 : ''],
-          vendorOrganization2: [this.editData.vendorOrganization2 ? this.editData.vendorOrganization2 : ''],
-          vendorOrganization3: [this.editData.vendorOrganization3 ? this.editData.vendorOrganization3 : ''],
-          vendorOrganization4: [this.editData.vendorOrganization4 ? this.editData.vendorOrganization4 : ''],
-          aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
-          achievementsToJustifyApplication: [this.editData.achievementsToJustifyApplication ? this.editData.achievementsToJustifyApplication : ''],
-          campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
-          documentGstCertificate: [''],
-          documentsOfProduct: [''],
-          appreciationDocuments: [''],
-          briefCompany: [this.editData.briefCompany ? this.editData.briefCompany : ''],
-          awardMatterToCompany: [this.editData.awardMatterToCompany ? this.editData.awardMatterToCompany : ''],
-          sidmMember: [this.editData.sidmMember ? this.editData.sidmMember : ''],
-          otherMember: [this.editData.otherMember ? this.editData.otherMember : ''],
-          vendorOrganization: [this.editData.vendorOrganization ? this.editData.vendorOrganization : ''],
-          isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
+         // isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
 
+      typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant: ''],
+      subCategoryDoccument:[ ' '],
+      financialDoccument:[ ' '],
+      nameOfCompany: [this.editData.nameOfCompany ? this.editData.nameOfCompany:' '],
+      addressl1: [this.editData.addressl1 ? this.editData.addressl1: ' '],
+      addressl2: [this.editData.addressl2 ? this.editData.addressl2:' '],
+      state: [''],
+      city: [this.editData.city ? this.editData.city: ''],
+      pincode: [this.editData.pincode ? this.editData.pincode:'', [Validators.pattern('^[1-9][0-9]{5}$'),Validators.minLength(6),Validators.maxLength(6)]],
+      name: [this.editData.name ? this.editData.name:''],
+      designation: [this.editData.designation ? this.editData.designation:''],
+      email: [this.editData.email ? this.editData.email :' '],
+      mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber :' '],
+      panNumber: [this.editData.panNumber ? this.editData.panNumber:' '],
+      gstinOfCompany: [this.editData.gstinOfCompany ? this.editData.gstinOfCompany:' ', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
+      documentGstCertificate: [' '],
+      dateOfCompany: [this.editData.dateOfCompany ? this.editData.dateOfCompany:' '],
+      sidmMember: [this.editData.sidmMember ? this.editData.sidmMember:' '],
+      sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber:' '],
+      association: [this.editData.association ? this.editData.association:' '],
+      associationName: [this.editData.associationName ? this.editData.associationName:' '],
+      registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization:' '],
+   nameRegisteredOrganization: this.formBuilder.array([
+    this.formBuilder.group({
+      name:['',Validators.required]
+    }),
+  ]),
+      aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany:' '],
+      sidmChampionAwards:[this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards:' '],
+      isappreciation: [this.editData.isappreciation ? this.editData.isappreciation:' '],
+      appreciationDocuments: [' '],
+      campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement:' '],
+      mudp:[this.editData.mudp ? this.editData.mudp:' '],
+      productLink:[this.editData.productLink ? this.editData.productLink:' '],
+      
+      exhibit1:[' '],
+      exhibit2:[' '],
+         
         })
         if (this.editData.sidmMember === 'Yes') {
           this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
@@ -433,67 +376,117 @@ export class MemberDashboardComponent implements OnInit {
     }
 
   }
-  changetoggel(conttrolName: String, value: string) {
-    if (conttrolName === 'sidmMember' && value == 'Yes') {
-      this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
-      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
-      console.log('hello');
+  addRegisteredOrganization() {
+    let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
+    control.push(
+      this.formBuilder.group({
+        name: ['', Validators.required],
+       
+      })
+    );
+   
+  }
 
-      this.sidmMember = true
+  removeRegisteredOrganization(index:number) {
+    let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
+    control.removeAt(index)
+  }
+
+  getRegisteredOrganizationControls(){
+    return this.editForm.get('nameRegisteredOrganization') as FormArray;
+  }
+  get nameRegisteredOrganization(): FormArray {
+    return this.editForm.get('nameRegisteredOrganization') as FormArray;
+  }
+
+
+  gstpdfOnly($event: any, form: any) {
+    let file = $event.target.files;
+    if (
+      file[0].type == 'application/pdf'
+
+    ) {
+      if (parseInt(file[0].size) > 524280) {
+        this.editForm.get(form)?.reset()
+        this.editForm.get(form)?.updateValueAndValidity()
+        this.toast.error('file to large')
+      }
+      else {
+        this.httpService.upload(file[0]).subscribe((data: any) => {
+          this.financialDoccument=data.body;
+        })
+
+      }
     }
-    else if (conttrolName === 'sidmMember' && value == 'No') {
-      this.sidmMember = false
-      this.editForm.get('sidmMemberShipNumber')?.reset()
-      this.editForm.get('sidmMemberShipNumber')?.clearValidators()
-      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
-    }
-
-    if (conttrolName === 'otherMember' && value == 'Yes') {
-      this.otherMember = true
-      this.editForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
-
-      this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
-    }
-    else if (conttrolName === 'otherMember' && value == 'No') {
-      this.otherMember = false
-      this.editForm.get('otherAssociationMemberShipNumber')?.reset()
-
-      this.editForm.get('otherAssociationMemberShipNumber')?.clearValidators()
-      this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
-
-    }
-
-    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
-      this.vendorOrganization = true
-      this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
-      this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
-
-    }
-    else if (conttrolName === 'vendorOrganization' && value == 'No') {
-      this.vendorOrganization = false
-      this.editForm.get('vendorOrganization1')?.reset()
-      this.editForm.get('vendorOrganization3')?.reset()
-      this.editForm.get('vendorOrganization4')?.reset()
-      this.editForm.get('vendorOrganization2')?.reset()
-
-      this.editForm.get('vendorOrganization1')?.clearValidators()
-      this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
-    }
-    if (conttrolName === 'isappreciation' && value == 'Yes') {
-      this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
-      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
-      this.isappreciation = true
-    }
-    else if (conttrolName === 'isappreciation' && value == 'No') {
-      this.isappreciation = false
-      this.editForm.get('appreciationDocuments')?.reset()
-      this.editForm.get('appreciationDocuments')?.clearValidators()
-
-      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
-      this.appreciationDocuments = null
+    else {
+      this.toast.error('File uploaded is invalid!')
+      this.editForm.get(form)?.reset()
+      this.editForm.get(form)?.updateValueAndValidity()
 
     }
   }
+
+
+  changeListener($event: any, form: any) {
+    let file = $event.target.files;
+    console.log(file);
+
+
+    if (
+      file[0].type == 'image/png' ||
+      file[0].type == 'image/jpg' ||
+      file[0].type == 'image/jpeg' ||
+      file[0].type == 'application/pdf'
+    ) {
+      console.log('jhe');
+
+      if (parseInt(file[0].size) > 524280) {
+      this.editForm.get(form)?.reset()
+      this.editForm.get(form)?.updateValueAndValidity()
+      this.toast.error('file to large')
+    }
+    else {
+      const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+      const time = '7:00 AM';
+
+      console.log(file[0], 'fghj');
+
+      this.httpService.upload(file[0]).subscribe((data: any) => {
+        if (form === 'subCategoryDoccument') {
+          this.subCategoryDoccument = data.body;
+        }
+        else if(form === 'documentGstCertificate')
+        {
+          this.documentGstCertificate = data.body;
+        }
+        else if(form === 'exhibit1')
+        {
+          this.exhibit1=data.body;
+        }
+        else if(form === 'exhibit2')
+        {
+          this.exhibit2=data.body;
+        }
+        else if (form === 'documentsOfProduct') {
+          this.documentsOfProduct = data.body;
+        }
+        else if (form === 'appreciationDocuments') {
+          this.appreciationDocuments = data.body;
+
+        }
+      })
+
+      }
+    }
+    else {
+      this.toast.error('File uploaded is invalid!')
+      this.editForm.get(form)?.reset()
+      this.editForm.get(form)?.updateValueAndValidity()
+
+    }
+  }
+
+
 
 
 
@@ -537,7 +530,7 @@ export class MemberDashboardComponent implements OnInit {
         email: this.editForm.value.email,
         sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
         otherAssociationMemberShipNumber: this.editForm.value.otherAssociationMemberShipNumber,
-        panNumberOfOrganization: this.editForm.value.panNumberOfOrganization,
+        panNumber: this.editForm.value.panNumber,
         gstinOfOrganization: this.editForm.value.gstinOfOrganization,
         dateOfOrganization: this.editForm.value.dateOfOrganization,
         vendorOrganization1: this.editForm.value.vendorOrganization1,
@@ -622,7 +615,7 @@ export class MemberDashboardComponent implements OnInit {
         email: this.editForm.value.email,
         sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
         otherAssociationMemberShipNumber: this.editForm.value.otherAssociationMemberShipNumber,
-        panNumberOfOrganization: this.editForm.value.panNumberOfOrganization,
+        panNumber: this.editForm.value.panNumber,
         gstinOfOrganization: this.editForm.value.gstinOfOrganization,
         dateOfOrganization: this.editForm.value.dateOfOrganization,
         vendorOrganization1: this.editForm.value.vendorOrganization1,
@@ -719,7 +712,7 @@ export class MemberDashboardComponent implements OnInit {
         email: this.newCategoryForm.value.email,
         sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
         otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
-        panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
+        panNumber: this.newCategoryForm.value.panNumber,
         gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
         dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
         vendorOrganization1: this.newCategoryForm.value.vendorOrganization1,
@@ -808,7 +801,7 @@ export class MemberDashboardComponent implements OnInit {
         email: this.newCategoryForm.value.email,
         sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
         otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
-        panNumberOfOrganization: this.newCategoryForm.value.panNumberOfOrganization,
+        panNumber: this.newCategoryForm.value.panNumber,
         gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
         dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
         vendorOrganization1: this.newCategoryForm.value.vendorOrganization1,

@@ -43,6 +43,7 @@ exports.loginVerify = (req, res, next) => {
 }
 
 exports.getState = (req, res, next) => {
+    console.log('hello');
     State.find()
         .then(data => {
             res.json(data)
@@ -73,8 +74,8 @@ exports.getMobile = (req, res, next) => {
 }
 exports.getPan = (req, res, next) => {
     console.log('pan', req.body);
-    const panNumberOfOrganization = req.body.panNumberOfOrganization
-    Register.findOne({ panNumberOfOrganization: panNumberOfOrganization })
+    const panNumber = req.body.panNumber
+    Register.findOne({ panNumber: panNumber })
         .then(data => {
             res.status(200).send(data)
         })
@@ -82,16 +83,18 @@ exports.getPan = (req, res, next) => {
 exports.memberLogin = (req, res, next) => {
     console.log(req.body);
     const email = req.body.email;
-    const pan = req.body.panNumberOfOrganization;
+     const pan = req.body.panNumber;
     const mobileNumber = req.body.mobileNumber
-    RegistrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumberOfOrganization: pan })
+    console.log(req.body.panNumber);
+    RegistrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumber: pan })
         .then(data => {
+            console.log(data);
 
             if (data) {
                 const token = jwt.sign({
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
                     email: email,
-                    panNumber: pan,
+                     panNumber: pan,
                     mobileNumber: mobileNumber
                 }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
                 );
@@ -103,6 +106,7 @@ exports.memberLogin = (req, res, next) => {
                 res.status(404).send('user not Found')
             }
         }).catch(err => {
+            console.log('insidesss');
             res.status(404).send('not Found')
         })
 
@@ -110,11 +114,10 @@ exports.memberLogin = (req, res, next) => {
 
 exports.memberData = (req, res, next) => {
     const token = req.header('authorization');
-    console.log(req, 'dfffffffffff')
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
         if (decoded) {
-            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumberOfOrganization: decoded.panNumber })
+            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
                 .then(data => {
                     if (data) {
 

@@ -7,11 +7,12 @@ const jwt = require('jsonwebtoken');
 
 exports.memberAuth = (req, res, next) => {
     const token = req.header('authorization');
-    console.log(req, 'dfffffffffff')
+    
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
-        if (decoded.panNumber) {
-            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumberOfOrganization: decoded.panNumber })
+        console.log(decoded ,' fdetd');
+       if (decoded.panNumber) {
+            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
                 .then(data => {
                     if (data) {
                         next()
@@ -24,11 +25,11 @@ exports.memberAuth = (req, res, next) => {
                 .catch(err => {
                     res.send(err)
                 })
-        }
-        else {
-            console.log(err);
+       }
+       else {
+           console.log(err);
             res.status(401).send('Token expired  please login again')
-        }
+       }
 
     })
 }

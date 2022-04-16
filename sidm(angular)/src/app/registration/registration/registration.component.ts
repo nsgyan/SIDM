@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { Event, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation, GstValidation } from 'src/app/shared/services/custom-validator.service';
@@ -12,9 +12,14 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  registeredFieldIndexs=1;
   sidmMember = false
-  otherMember = false
+  association = false
   appreciationDocuments: any;
+  exhibit2:any;
+  exhibit1:any;
+  subCategoryDoccument:any;
+  financialDoccument:any;
   scanDocument: any;
   documentsOfProduct: any;
   documentGstCertificate: any;
@@ -27,7 +32,7 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup
   submited: boolean = false;
   captcha: any;
-  vendorOrganization: boolean = false;
+  registeredOrganization: boolean = false;
   isappreciation: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
@@ -39,7 +44,9 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm = this.formBuilder.group({
       category: ['', Validators.required],
       typeOfApplicant: [''],
-      nameOfOrganisation: [''],
+      subCategoryDoccument:[''],
+      financialDoccument:[''],
+      nameOfCompany: [''],
       addressl1: [''],
       addressl2: [''],
       state: [''],
@@ -47,32 +54,45 @@ export class RegistrationComponent implements OnInit {
       pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$'),Validators.minLength(6),Validators.maxLength(6)]],
       name: [''],
       designation: [''],
-      mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
-      confirmMobileNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: ['', Validators.required],
-      sidmMemberShipNumber: [''],
-      otherAssociationMemberShipNumber: [''],
-      panNumberOfOrganization: ['', [Validators.required, panValidation]],
-      confirmPanNumberOfOrganization: ['', [Validators.required]],
-      gstinOfOrganization: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
-      dateOfOrganization: [''],
-      vendorOrganization1: [''],
-      vendorOrganization2: [''],
-      vendorOrganization3: [''],
-      vendorOrganization4: [''],
-      aboutCompany: [''],
-      achievementsToJustifyApplication: [''],
-      campareAchivement: [''],
+      mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
+      confirmMobileNumber: ['', Validators.required],
+      panNumber: ['', [Validators.required, panValidation]],
+      confirmPanNumber: ['', [Validators.required]],
+      gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
       documentGstCertificate: [''],
-      documentsOfProduct: [''],
-      appreciationDocuments: [''],
-      briefCompany: [''],
-      awardMatterToCompany: [''],
+      dateOfCompany: [''],
       sidmMember: [''],
-      otherMember: [''],
-      vendorOrganization: [''],
+      sidmMemberShipNumber: [''],
+      association: [''],
+      associationName: [''],
+      registeredOrganization: [''],
+   nameRegisteredOrganization: this.formBuilder.array([
+    this.formBuilder.group({
+      name:['',Validators.required]
+    }),
+  ]),
+      aboutCompany: [''],
+      sidmChampionAwards:[''],
       isappreciation: [''],
+      appreciationDocuments: [''],
+      campareAchivement: [''],
+      mudp:[''],
+      productLink:[''],
+      
+      exhibit1:[''],
+      exhibit2:[''],
+
+
+      // achievementsToJustifyApplication: [''],
+     
+      // documentsOfProduct: [''],
+      // briefCompany: [''],
+      // awardMatterToCompany: [''],
+      
+   
+     
 
     },
     )
@@ -86,29 +106,44 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  gstchangeListener($event: any, form: any) {
-    let file = $event.target.files;
+  addRegisteredOrganization() {
+    let control = <FormArray>this.registrationForm.get('nameRegisteredOrganization');
+    control.push(
+      this.formBuilder.group({
+        name: ['', Validators.required],
+       
+      })
+    );
+   
+  }
 
+  removeRegisteredOrganization(index:number) {
+    let control = <FormArray>this.registrationForm.get('nameRegisteredOrganization');
+    control.removeAt(index)
+  }
+
+  getRegisteredOrganizationControls(){
+    return this.registrationForm.get('nameRegisteredOrganization') as FormArray;
+  }
+  get nameRegisteredOrganization(): FormArray {
+    return this.registrationForm.get('nameRegisteredOrganization') as FormArray;
+  }
+
+
+  gstpdfOnly($event: any, form: any) {
+    let file = $event.target.files;
     if (
       file[0].type == 'application/pdf'
 
     ) {
-
       if (parseInt(file[0].size) > 524280) {
         this.registrationForm.get(form)?.reset()
         this.registrationForm.get(form)?.updateValueAndValidity()
         this.toast.error('file to large')
       }
       else {
-
         this.httpService.upload(file[0]).subscribe((data: any) => {
-
-
-          this.documentGstCertificate = data.body;
-          console.log(this.documentGstCertificate);
-
-
-
+          this.financialDoccument=data.body;
         })
 
       }
@@ -131,9 +166,7 @@ export class RegistrationComponent implements OnInit {
       file[0].type == 'image/png' ||
       file[0].type == 'image/jpg' ||
       file[0].type == 'image/jpeg' ||
-      file[0].type == 'application/pdf' ||
-      file[0].type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      || file[0].type == 'application/msword'
+      file[0].type == 'application/pdf'
     ) {
       console.log('jhe');
 
@@ -149,11 +182,20 @@ export class RegistrationComponent implements OnInit {
       console.log(file[0], 'fghj');
 
       this.httpService.upload(file[0]).subscribe((data: any) => {
-        if (form === 'documentGstCertificate') {
-
+        if (form === 'subCategoryDoccument') {
+          this.subCategoryDoccument = data.body;
+        }
+        else if(form === 'documentGstCertificate')
+        {
           this.documentGstCertificate = data.body;
-          console.log(this.documentGstCertificate);
-
+        }
+        else if(form === 'exhibit1')
+        {
+          this.exhibit1=data.body;
+        }
+        else if(form === 'exhibit2')
+        {
+          this.exhibit2=data.body;
         }
         else if (form === 'documentsOfProduct') {
           this.documentsOfProduct = data.body;
@@ -177,11 +219,12 @@ export class RegistrationComponent implements OnInit {
 
 
   getState() {
+    console.log('state list');
+    
     this.httpService.getStateList()
       .subscribe(data => {
         console.log(data);
         this.states = data
-
       })
   }
 
@@ -210,12 +253,15 @@ export class RegistrationComponent implements OnInit {
   }
 
   savedraft(type: String) {
-
+    console.log(this.registrationForm);
     this.registrationForm.get('typeOfApplicant')?.clearValidators()
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.registrationForm.get('gstinOfOrganization')?.updateValueAndValidity()
-    this.registrationForm.get('nameOfOrganisation')?.clearValidators()
-    this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.registrationForm.get('subCategoryDoccument')?.clearValidators()
+    this.registrationForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.registrationForm.get('financialDoccument')?.clearValidators()
+    this.registrationForm.get('financialDoccument')?.updateValueAndValidity()
+    this.registrationForm.get('nameOfCompany')?.clearValidators()
+    this.registrationForm.get('nameOfCompany')?.updateValueAndValidity()
     this.registrationForm.get('addressl1')?.clearValidators()
     this.registrationForm.get('addressl1')?.updateValueAndValidity()
     this.registrationForm.get('state')?.clearValidators()
@@ -227,21 +273,46 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.clearValidators()
     this.registrationForm.get('name')?.updateValueAndValidity()
+    this.registrationForm.get('designation')?.clearValidators()
+    this.registrationForm.get('designation')?.updateValueAndValidity()
+    this.registrationForm.get('gstinOfCompany')?.clearValidators()
+    this.registrationForm.get('gstinOfCompany')?.setValidators( Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.registrationForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.registrationForm.get('documentGstCertificate')?.clearValidators()
+    this.registrationForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.registrationForm.get('dateOfCompany')?.clearValidators()
+    this.registrationForm.get('dateOfCompany')?.updateValueAndValidity()
     this.registrationForm.get('sidmMember')?.clearValidators()
     this.registrationForm.get('sidmMember')?.updateValueAndValidity()
-    this.registrationForm.get('otherMember')?.clearValidators()
-    this.registrationForm.get('otherMember')?.updateValueAndValidity()
-    this.registrationForm.get('vendorOrganization')?.clearValidators()
-    this.registrationForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('association')?.clearValidators()
+    this.registrationForm.get('association')?.updateValueAndValidity()
+    this.registrationForm.get('registeredOrganization')?.clearValidators()
+    this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('aboutCompany')?.clearValidators()
+    this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
+    this.registrationForm.get('sidmChampionAwards')?.clearValidators()
+    this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.registrationForm.get('isappreciation')?.clearValidators()
     this.registrationForm.get('isappreciation')?.updateValueAndValidity()
+    this.registrationForm.get('campareAchivement')?.clearValidators()
+    this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
+    this.registrationForm.get('mudp')?.clearValidators()
+    this.registrationForm.get('mudp')?.updateValueAndValidity()
+    this.registrationForm.get('productLink')?.clearValidators()
+    this.registrationForm.get('productLink')?.updateValueAndValidity()
+    this.registrationForm.get('exhibit1')?.clearValidators()
+    this.registrationForm.get('exhibit1')?.updateValueAndValidity()
+    this.registrationForm.get('exhibit2')?.clearValidators()
+    this.registrationForm.get('exhibit2')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-        nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+        subCategoryDoccument:this.subCategoryDoccument,
+        financialDoccument:this.financialDoccument,
+        nameOfCompany: this.registrationForm.value.nameOfCompany,
         addressl1: this.registrationForm.value.addressl1,
         addressl2: this.registrationForm.value.addressl2,
         state: this.registrationForm.value.state,
@@ -249,32 +320,28 @@ export class RegistrationComponent implements OnInit {
         pincode: this.registrationForm.value.pincode,
         name: this.registrationForm.value.name,
         designation: this.registrationForm.value.designation,
-        mobileNumber: this.registrationForm.value.mobileNumber,
         email: this.registrationForm.value.email,
-        sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
-        panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
-        gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
-        dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-        vendorOrganization1: this.registrationForm.value.vendorOrganization1,
-        vendorOrganization2: this.registrationForm.value.vendorOrganization2,
-        vendorOrganization3: this.registrationForm.value.vendorOrganization3,
-        vendorOrganization4: this.registrationForm.value.vendorOrganization4,
-        aboutCompany: this.registrationForm.value.vendorOrganization3,
-        achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
-        campareAchivement: this.registrationForm.value.campareAchivement,
+        mobileNumber: this.registrationForm.value.mobileNumber,
+        panNumber: this.registrationForm.value.panNumber,
+        gstinOfCompany: this.registrationForm.value.gstinOfCompany,
         documentGstCertificate: this.documentGstCertificate,
-        documentsOfProduct: this.documentsOfProduct,
-        appreciationDocuments: this.appreciationDocuments,
-        briefCompany: this.registrationForm.value.briefCompany,
-        awardMatterToCompany: this.registrationForm.value.awardMatterToCompany,
-        status: type,
+        dateOfCompany: this.registrationForm.value.dateOfCompany,
         sidmMember: this.registrationForm.value.sidmMember,
-        otherMember: this.registrationForm.value.otherMember,
-        vendorOrganization: this.registrationForm.value.vendorOrganization,
+        sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+        association: this.registrationForm.value.association,
+        associationName: this.registrationForm.value.associationName,
+        registeredOrganization: this.registrationForm.value.registeredOrganization,
+   nameRegisteredOrganization: this.registrationForm.value.nameRegisteredOrganization, 
+        aboutCompany: this.registrationForm.value.aboutCompany,
+        sidmChampionAwards: this.registrationForm.value.sidmChampionAwards,
         isappreciation: this.registrationForm.value.isappreciation,
-
-
+        appreciationDocuments: this.appreciationDocuments,
+        campareAchivement: this.registrationForm.value.campareAchivement,
+        mudp: this.registrationForm.value.mudp,
+        productLink: this.registrationForm.value.productLink,
+        exhibit1:this.exhibit1,
+        exhibit2:this.exhibit2,
+        status: type,
       }).subscribe(data => {
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
@@ -330,14 +397,14 @@ export class RegistrationComponent implements OnInit {
     }
   }
   checkPan(event: any) {
-    this.registrationForm.get('confirmPanNumberOfOrganization')?.reset()
-    const panNumberOfOrganization = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumberOfOrganization')?.value
-    if (panNumberOfOrganization) {
-      console.log(panNumberOfOrganization);
-      this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
+    this.registrationForm.get('confirmPanNumber')?.reset()
+    const panNumber = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumber')?.value
+    if (panNumber) {
+      console.log(panNumber);
+      this.httpService.checkPan({ panNumber: panNumber })
         .subscribe((data: any) => {
-          if (panNumberOfOrganization === data.panNumberOfOrganization) {
-            this.registrationForm.get('panNumberOfOrganization')?.setErrors({ isExist: true });
+          if (panNumber === data.panNumber) {
+            this.registrationForm.get('panNumber')?.setErrors({ isExist: true });
           }
 
         })
@@ -398,20 +465,20 @@ export class RegistrationComponent implements OnInit {
 
   confirmPan(event: any,) {
     console.log(event.target.value);
-    console.log(this.registrationForm.value.panNumberOfOrganization);
-    if (event.target.value.toUpperCase() !== this.registrationForm.value.panNumberOfOrganization.toUpperCase()) {
+    console.log(this.registrationForm.value.panNumber);
+    if (event.target.value.toUpperCase() !== this.registrationForm.value.panNumber.toUpperCase()) {
       console.log(event.target.value);
-      console.log(this.registrationForm.value.panNumberOfOrganization);
-      this.registrationForm.get('confirmPanNumberOfOrganization')?.setErrors({ confirmPanNumber: true })
+      console.log(this.registrationForm.value.panNumber);
+      this.registrationForm.get('confirmPanNumber')?.setErrors({ confirmPanNumber: true })
     }
     else {
-      const panNumberOfOrganization = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumberOfOrganization')?.value
-      if (panNumberOfOrganization) {
-        console.log(panNumberOfOrganization);
-        this.httpService.checkPan({ panNumberOfOrganization: panNumberOfOrganization })
+      const panNumber = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumber')?.value
+      if (panNumber) {
+        console.log(panNumber);
+        this.httpService.checkPan({ panNumber: panNumber })
           .subscribe((data: any) => {
-            if (panNumberOfOrganization === data.panNumberOfOrganization) {
-              this.registrationForm.get('panNumberOfOrganization')?.setErrors({ isExist: true });
+            if (panNumber === data.panNumber) {
+              this.registrationForm.get('panNumber')?.setErrors({ isExist: true });
             }
 
           })
@@ -426,8 +493,12 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('category')?.updateValueAndValidity()
     this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.registrationForm.get('nameOfOrganisation')?.setValidators(Validators.required)
-    this.registrationForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.registrationForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.registrationForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.registrationForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.registrationForm.get('financialDoccument')?.updateValueAndValidity()
+    this.registrationForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('nameOfCompany')?.updateValueAndValidity()
     this.registrationForm.get('addressl1')?.setValidators(Validators.required)
     this.registrationForm.get('addressl1')?.updateValueAndValidity()
     this.registrationForm.get('state')?.setValidators(Validators.required)
@@ -435,24 +506,58 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('city')?.setValidators(Validators.required)
     this.registrationForm.get('city')?.updateValueAndValidity()
     this.registrationForm.get('pincode')?.setValidators(Validators.required)
+    this.registrationForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.setValidators(Validators.required)
     this.registrationForm.get('name')?.updateValueAndValidity()
+    this.registrationForm.get('designation')?.setValidators(Validators.required)
+    this.registrationForm.get('designation')?.updateValueAndValidity()
+    this.registrationForm.get('gstinOfCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('gstinOfCompany')?.setValidators( Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.registrationForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.registrationForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.registrationForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.registrationForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('dateOfCompany')?.updateValueAndValidity()
     this.registrationForm.get('sidmMember')?.setValidators(Validators.required)
     this.registrationForm.get('sidmMember')?.updateValueAndValidity()
-    this.registrationForm.get('otherMember')?.setValidators(Validators.required)
-    this.registrationForm.get('otherMember')?.updateValueAndValidity()
-    this.registrationForm.get('vendorOrganization')?.setValidators(Validators.required)
-    this.registrationForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+    this.registrationForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+    this.registrationForm.get('association')?.setValidators(Validators.required)
+    this.registrationForm.get('association')?.updateValueAndValidity()
+    this.registrationForm.get('associationName')?.setValidators(Validators.required)
+    this.registrationForm.get('associationName')?.updateValueAndValidity()
+    this.registrationForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
+    this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
+    this.registrationForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
     this.registrationForm.get('isappreciation')?.updateValueAndValidity()
+    this.registrationForm.get('appreciationDocuments')?.setValidators(Validators.required)
+    this.registrationForm.get('appreciationDocuments')?.updateValueAndValidity()
+    this.registrationForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
+    this.registrationForm.get('mudp')?.setValidators(Validators.required)
+    this.registrationForm.get('mudp')?.updateValueAndValidity()
+    this.registrationForm.get('productLink')?.setValidators(Validators.required)
+    this.registrationForm.get('productLink')?.updateValueAndValidity()
+    this.registrationForm.get('exhibit1')?.setValidators(Validators.required)
+    this.registrationForm.get('exhibit1')?.updateValueAndValidity()
+    this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
+    this.registrationForm.get('exhibit2')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-        nameOfOrganisation: this.registrationForm.value.nameOfOrganisation,
+        subCategoryDoccument:this.subCategoryDoccument,
+        financialDoccument:this.financialDoccument,
+        nameOfCompany: this.registrationForm.value.nameOfCompany,
         addressl1: this.registrationForm.value.addressl1,
         addressl2: this.registrationForm.value.addressl2,
         state: this.registrationForm.value.state,
@@ -460,30 +565,28 @@ export class RegistrationComponent implements OnInit {
         pincode: this.registrationForm.value.pincode,
         name: this.registrationForm.value.name,
         designation: this.registrationForm.value.designation,
-        mobileNumber: this.registrationForm.value.mobileNumber,
         email: this.registrationForm.value.email,
-        sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: this.registrationForm.value.otherAssociationMemberShipNumber,
-        panNumberOfOrganization: this.registrationForm.value.panNumberOfOrganization,
-        gstinOfOrganization: this.registrationForm.value.gstinOfOrganization,
-        dateOfOrganization: this.registrationForm.value.dateOfOrganization,
-        vendorOrganization1: this.registrationForm.value.vendorOrganization1,
-        vendorOrganization2: this.registrationForm.value.vendorOrganization2,
-        vendorOrganization3: this.registrationForm.value.vendorOrganization3,
-        vendorOrganization4: this.registrationForm.value.vendorOrganization4,
-        aboutCompany: this.registrationForm.value.vendorOrganization3,
-        achievementsToJustifyApplication: this.registrationForm.value.achievementsToJustifyApplication,
-        campareAchivement: this.registrationForm.value.campareAchivement,
+        mobileNumber: this.registrationForm.value.mobileNumber,
+        panNumber: this.registrationForm.value.panNumber,
+        gstinOfCompany: this.registrationForm.value.gstinOfCompany,
         documentGstCertificate: this.documentGstCertificate,
-        documentsOfProduct: this.documentsOfProduct,
-        appreciationDocuments: this.appreciationDocuments,
-        briefCompany: this.registrationForm.value.briefCompany,
-        awardMatterToCompany: this.registrationForm.value.awardMatterToCompany,
-        status: type,
+        dateOfCompany: this.registrationForm.value.dateOfCompany,
         sidmMember: this.registrationForm.value.sidmMember,
-        otherMember: this.registrationForm.value.otherMember,
-        vendorOrganization: this.registrationForm.value.vendorOrganization,
+        sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+        association: this.registrationForm.value.association,
+        associationName: this.registrationForm.value.associationName,
+        registeredOrganization: this.registrationForm.value.registeredOrganization,
+   nameRegisteredOrganization: this.registrationForm.value.nameRegisteredOrganization, 
+        aboutCompany: this.registrationForm.value.aboutCompany,
+        sidmChampionAwards: this.registrationForm.value.sidmChampionAwards,
         isappreciation: this.registrationForm.value.isappreciation,
+        appreciationDocuments: this.appreciationDocuments,
+        campareAchivement: this.registrationForm.value.campareAchivement,
+        mudp: this.registrationForm.value.mudp,
+        productLink: this.registrationForm.value.productLink,
+        exhibit1:this.exhibit1,
+        exhibit2:this.exhibit2,
+        status: type,
 
       }).subscribe(data => {
         this.registrationForm.reset();
@@ -546,37 +649,33 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
     }
 
-    if (conttrolName === 'otherMember' && value == 'Yes') {
-      this.otherMember = true
-      this.registrationForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
+    if (conttrolName === 'association' && value == 'Yes') {
+      this.association = true
+      this.registrationForm.get('associationName')?.setValidators(Validators.required)
 
-      this.registrationForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+      this.registrationForm.get('associationName')?.updateValueAndValidity()
     }
-    else if (conttrolName === 'otherMember' && value == 'No') {
-      this.otherMember = false
-      this.registrationForm.get('otherAssociationMemberShipNumber')?.reset()
+    else if (conttrolName === 'association' && value == 'No') {
+      this.association = false
+      this.registrationForm.get('associationName')?.reset()
 
-      this.registrationForm.get('otherAssociationMemberShipNumber')?.clearValidators()
-      this.registrationForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
-
-    }
-
-    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
-      this.vendorOrganization = true
-      this.registrationForm.get('vendorOrganization1')?.setValidators(Validators.required)
-
-      this.registrationForm.get('vendorOrganization1')?.updateValueAndValidity()
+      this.registrationForm.get('associationName')?.clearValidators()
+      this.registrationForm.get('associationName')?.updateValueAndValidity()
 
     }
-    else if (conttrolName === 'vendorOrganization' && value == 'No') {
-      this.vendorOrganization = false
-      this.registrationForm.get('vendorOrganization1')?.reset()
-      this.registrationForm.get('vendorOrganization3')?.reset()
-      this.registrationForm.get('vendorOrganization4')?.reset()
-      this.registrationForm.get('vendorOrganization2')?.reset()
 
-      this.registrationForm.get('vendorOrganization1')?.clearValidators()
-      this.registrationForm.get('vendorOrganization1')?.updateValueAndValidity()
+    if (conttrolName === 'registeredOrganization' && value == 'Yes') {
+      this.registeredOrganization = true
+      this.registrationForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
+
+      this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
+
+    }
+    else if (conttrolName === 'registeredOrganization' && value == 'No') {
+      this.registeredOrganization = false
+      this.registrationForm.get('nameRegisteredOrganization')?.reset()
+      this.registrationForm.get('nameRegisteredOrganization')?.clearValidators()
+      this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
     }
     if (conttrolName === 'isappreciation' && value == 'Yes') {
 

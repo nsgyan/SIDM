@@ -38,6 +38,8 @@ export class HttpService {
   }
 
   getStateList() {
+    console.log('hello');
+    
     return this.httpService.get(Globals.route.getStateList)
 
   }
