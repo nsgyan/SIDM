@@ -68,11 +68,7 @@ export class RegistrationComponent implements OnInit {
       association: [''],
       associationName: [''],
       registeredOrganization: [''],
-   nameRegisteredOrganization: this.formBuilder.array([
-    this.formBuilder.group({
-      name:['',Validators.required]
-    }),
-  ]),
+      nameRegisteredOrganization: this.formBuilder.array([]),
       aboutCompany: [''],
       sidmChampionAwards:[''],
       isappreciation: [''],
@@ -521,24 +517,16 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('dateOfCompany')?.updateValueAndValidity()
     this.registrationForm.get('sidmMember')?.setValidators(Validators.required)
     this.registrationForm.get('sidmMember')?.updateValueAndValidity()
-    this.registrationForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
-    this.registrationForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
     this.registrationForm.get('association')?.setValidators(Validators.required)
     this.registrationForm.get('association')?.updateValueAndValidity()
-    this.registrationForm.get('associationName')?.setValidators(Validators.required)
-    this.registrationForm.get('associationName')?.updateValueAndValidity()
     this.registrationForm.get('registeredOrganization')?.setValidators(Validators.required)
     this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
-    this.registrationForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
-    this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
     this.registrationForm.get('aboutCompany')?.setValidators(Validators.required)
     this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
     this.registrationForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
     this.registrationForm.get('isappreciation')?.updateValueAndValidity()
-    this.registrationForm.get('appreciationDocuments')?.setValidators(Validators.required)
-    this.registrationForm.get('appreciationDocuments')?.updateValueAndValidity()
     this.registrationForm.get('campareAchivement')?.setValidators(Validators.required)
     this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
     this.registrationForm.get('mudp')?.setValidators(Validators.required)
@@ -666,14 +654,18 @@ export class RegistrationComponent implements OnInit {
 
     if (conttrolName === 'registeredOrganization' && value == 'Yes') {
       this.registeredOrganization = true
+      this.addRegisteredOrganization()
       this.registrationForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
-
       this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
 
     }
     else if (conttrolName === 'registeredOrganization' && value == 'No') {
       this.registeredOrganization = false
       this.registrationForm.get('nameRegisteredOrganization')?.reset()
+      let control = <FormArray>this.registrationForm.get('nameRegisteredOrganization');
+      while (control.length) {
+        control.removeAt(0);
+      }
       this.registrationForm.get('nameRegisteredOrganization')?.clearValidators()
       this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
     }

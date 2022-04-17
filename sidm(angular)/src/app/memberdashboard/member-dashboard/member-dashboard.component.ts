@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 export class MemberDashboardComponent implements OnInit {
   appreciationDocuments: any;
   sidmMember = false
-  otherMember = false
+  association = false
   vendorOrganization: boolean = false;
   isappreciation: boolean = false;
   scanDocument: any;
@@ -43,6 +43,7 @@ export class MemberDashboardComponent implements OnInit {
   subCategoryDoccument: any;
   exhibit1: any;
   exhibit2: any;
+  registeredOrganization: boolean = false;
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
@@ -69,7 +70,11 @@ export class MemberDashboardComponent implements OnInit {
             this.cat4 = false
             item.category = 'C4- Export Performance of Defence & Aerospace Products'
           }
+          console.log(data);
+
         })
+        console.log(data);
+
         this.memberData = data;
 
 
@@ -78,40 +83,44 @@ export class MemberDashboardComponent implements OnInit {
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumber;
         }
+
         this.newCategoryForm = this.formBuilder.group({
           category: ['', Validators.required],
           typeOfApplicant: [''],
-          nameOfOrganisation: [''],
+          subCategoryDoccument: [''],
+          financialDoccument: [''],
+          nameOfCompany: [''],
           addressl1: [''],
           addressl2: [''],
           state: [''],
           city: [''],
-          pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]],
+          pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
           name: [''],
           designation: [''],
-          mobileNumber: [this.mobilenumber],
           email: [this.email],
-          sidmMemberShipNumber: [''],
-          otherAssociationMemberShipNumber: [''],
+          mobileNumber: [this.mobilenumber],
           panNumber: [this.pan],
-          gstinOfOrganization: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
-          dateOfOrganization: [''],
-          vendorOrganization1: [''],
-          vendorOrganization2: [''],
-          vendorOrganization3: [''],
-          vendorOrganization4: [''],
-          aboutCompany: [''],
-          achievementsToJustifyApplication: [''],
-          campareAchivement: [''],
+          gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           documentGstCertificate: [''],
-          documentsOfProduct: [''],
-          appreciationDocuments: [''],
-          briefCompany: [''],
-          awardMatterToCompany: [''],
+          dateOfCompany: [''],
           sidmMember: [''],
-          otherMember: [''],
-          vendorOrganization: [''],
+          sidmMemberShipNumber: [''],
+          association: [''],
+          associationName: [''],
+          registeredOrganization: [''],
+          nameRegisteredOrganization: this.formBuilder.array([]),
+          aboutCompany: [''],
+          sidmChampionAwards: [''],
           isappreciation: [''],
+          appreciationDocuments: [''],
+          campareAchivement: [''],
+          mudp: [''],
+          productLink: [''],
+
+          exhibit1: [''],
+          exhibit2: [''],
+
+
 
         })
       }, err => {
@@ -158,7 +167,7 @@ export class MemberDashboardComponent implements OnInit {
     this.documentGstCertificate = '';
     this.documentsOfProduct = '';
     this.appreciationDocuments = ''
-    this.otherMember = false;
+    this.association = false;
     this.sidmMember = false
     this.submited = false
     this.isappreciation = false
@@ -176,58 +185,7 @@ export class MemberDashboardComponent implements OnInit {
 
 
 
-  gstchangeListener($event: any, form: any, type: string) {
-    let file = $event.target.files;
 
-    if (
-      file[0].type == 'application/pdf'
-
-    ) {
-
-      if (parseInt(file[0].size) > 524280) {
-
-        if (type === 'editForm') {
-          this.editForm.get(form)?.reset()
-          this.editForm.get(form)?.updateValueAndValidity()
-          this.toast.error('file to large')
-        }
-        else if (type === 'newCategoryForm') {
-          this.newCategoryForm.get(form)?.reset()
-          this.newCategoryForm.get(form)?.updateValueAndValidity()
-          this.toast.error('file to large');
-
-        }
-      }
-      else {
-
-        this.httpService.upload(file[0]).subscribe((data: any) => {
-
-
-          this.documentGstCertificate = data.body;
-          console.log(this.documentGstCertificate);
-
-
-
-        })
-
-      }
-    }
-    else {
-      if (type === 'editForm') {
-        this.editForm.get(form)?.reset()
-        this.editForm.get(form)?.updateValueAndValidity()
-
-        this.toast.error('File uploaded is invalid!')
-      }
-      else if (type === 'newCategoryForm') {
-        this.newCategoryForm.get(form)?.reset()
-        this.newCategoryForm.get(form)?.updateValueAndValidity()
-
-        this.toast.error('File uploaded is invalid!')
-
-      }
-    }
-  }
 
   pickclender() {
     return false
@@ -260,7 +218,7 @@ export class MemberDashboardComponent implements OnInit {
 
 
   viewForm(item: any) {
-    this.otherMember = false;
+    this.association = false;
     this.sidmMember = false
     this.submited = false
     this.newCategory = false
@@ -293,59 +251,72 @@ export class MemberDashboardComponent implements OnInit {
           this.appreciationDocuments = data.appreciationDocuments
 
         }
-        if (data.documentsOfProduct) {
-          data.documentsOfProduct = environment.download + data.documentsOfProduct
-          this.documentsOfProduct = data.documentsOfProduct
+        if (data.subCategoryDoccument) {
+          data.subCategoryDoccument = environment.download + data.subCategoryDoccument
+          this.subCategoryDoccument = data.subCategoryDoccument
+        }
+        if (data.financialDoccument) {
+          data.financialDoccument = environment.download + data.financialDoccument
+          this.financialDoccument = data.financialDoccument
+        }
+        if (data.exhibit1) {
+          data.exhibit1 = environment.download + data.exhibit1
+          this.exhibit1 = data.exhibit1
+        }
+        if (data.exhibit2) {
+          data.exhibit2 = environment.download + data.exhibit2
+          this.exhibit2 = data.exhibit2
         }
 
         data.sidmMember === 'Yes' ? this.sidmMember = true : ''
-        data.otherMember === 'Yes' ? this.otherMember = true : ''
-        data.vendorOrganization === 'Yes' ? this.vendorOrganization = true : ''
+        data.association === 'Yes' ? this.association = true : ''
+        data.registeredOrganization === 'Yes' ? this.registeredOrganization = true : '';
         data.isappreciation === 'Yes' ? this.isappreciation = true : ''
 
         this.editData = data
         this.catagery = this.editData.catagery
-        this.editData.panNumber = this.editData.panNumber.toUpperCase();
+        this.editData.panNumber = this.editData.panNumber
         this.editForm = this.formBuilder.group({
          // isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
 
-      typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant: ''],
-      subCategoryDoccument:[ ' '],
-      financialDoccument:[ ' '],
-      nameOfCompany: [this.editData.nameOfCompany ? this.editData.nameOfCompany:' '],
-      addressl1: [this.editData.addressl1 ? this.editData.addressl1: ' '],
-      addressl2: [this.editData.addressl2 ? this.editData.addressl2:' '],
-      state: [''],
-      city: [this.editData.city ? this.editData.city: ''],
-      pincode: [this.editData.pincode ? this.editData.pincode:'', [Validators.pattern('^[1-9][0-9]{5}$'),Validators.minLength(6),Validators.maxLength(6)]],
-      name: [this.editData.name ? this.editData.name:''],
-      designation: [this.editData.designation ? this.editData.designation:''],
-      email: [this.editData.email ? this.editData.email :' '],
-      mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber :' '],
-      panNumber: [this.editData.panNumber ? this.editData.panNumber:' '],
-      gstinOfCompany: [this.editData.gstinOfCompany ? this.editData.gstinOfCompany:' ', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
-      documentGstCertificate: [' '],
-      dateOfCompany: [this.editData.dateOfCompany ? this.editData.dateOfCompany:' '],
-      sidmMember: [this.editData.sidmMember ? this.editData.sidmMember:' '],
-      sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber:' '],
-      association: [this.editData.association ? this.editData.association:' '],
-      associationName: [this.editData.associationName ? this.editData.associationName:' '],
-      registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization:' '],
-   nameRegisteredOrganization: this.formBuilder.array([
-    this.formBuilder.group({
-      name:['',Validators.required]
-    }),
-  ]),
-      aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany:' '],
-      sidmChampionAwards:[this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards:' '],
-      isappreciation: [this.editData.isappreciation ? this.editData.isappreciation:' '],
-      appreciationDocuments: [' '],
-      campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement:' '],
-      mudp:[this.editData.mudp ? this.editData.mudp:' '],
-      productLink:[this.editData.productLink ? this.editData.productLink:' '],
-      
-      exhibit1:[' '],
-      exhibit2:[' '],
+          typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
+          subCategoryDoccument: [''],
+          financialDoccument: [''],
+          nameOfCompany: [this.editData.nameOfCompany ? this.editData.nameOfCompany : ''],
+          addressl1: [this.editData.addressl1 ? this.editData.addressl1 : ''],
+          addressl2: [this.editData.addressl2 ? this.editData.addressl2 : ''],
+          state: [this.editData.state ? this.editData.state : ''],
+          city: [this.editData.city ? this.editData.city : ''],
+          pincode: [this.editData.pincode ? this.editData.pincode : '', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
+          name: [this.editData.name ? this.editData.name : ''],
+          designation: [this.editData.designation ? this.editData.designation : ''],
+          email: [this.editData.email ? this.editData.email : ''],
+          mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber : ''],
+          panNumber: [this.editData.panNumber ? this.editData.panNumber : ''],
+          gstinOfCompany: [this.editData.gstinOfCompany ? this.editData.gstinOfCompany : '', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
+          documentGstCertificate: [''],
+          dateOfCompany: [this.editData.dateOfCompany ? this.editData.dateOfCompany : ''],
+          sidmMember: [this.editData.sidmMember ? this.editData.sidmMember : ''],
+          sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber : ''],
+          association: [this.editData.association ? this.editData.association : ''],
+          associationName: [this.editData.associationName ? this.editData.associationName : ''],
+          registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization : ''],
+          nameRegisteredOrganization: this.formBuilder.array([
+            this.formBuilder.group({
+              name: ['', Validators.required]
+            }),
+          ]),
+          aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
+          sidmChampionAwards: [this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards : ''],
+          isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
+          appreciationDocuments: [''],
+          campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
+          mudp: [this.editData.mudp ? this.editData.mudp : ''],
+          productLink: [this.editData.productLink ? this.editData.productLink : ''],
+
+          exhibit1: [''],
+          exhibit2: [''],
+
          
         })
         if (this.editData.sidmMember === 'Yes') {
@@ -353,7 +324,7 @@ export class MemberDashboardComponent implements OnInit {
           this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
 
         }
-        if (this.editData.otherMember === 'Yes') {
+        if (this.editData.association === 'Yes') {
           this.editForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
 
           this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
@@ -426,6 +397,66 @@ export class MemberDashboardComponent implements OnInit {
     }
   }
 
+  changetoggel(conttrolName: String, value: string) {
+    if (conttrolName === 'sidmMember' && value == 'Yes') {
+      this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+      this.sidmMember = true
+    }
+    else if (conttrolName === 'sidmMember' && value == 'No') {
+      this.sidmMember = false
+      this.editForm.get('sidmMemberShipNumber')?.reset()
+      this.editForm.get('sidmMemberShipNumber')?.clearValidators()
+      this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+    }
+
+    if (conttrolName === 'association' && value == 'Yes') {
+      this.association = true
+      this.editForm.get('associationName')?.setValidators(Validators.required)
+
+      this.editForm.get('associationName')?.updateValueAndValidity()
+    }
+    else if (conttrolName === 'association' && value == 'No') {
+      this.association = false
+      this.editForm.get('associationName')?.reset()
+
+      this.editForm.get('associationName')?.clearValidators()
+      this.editForm.get('associationName')?.updateValueAndValidity()
+
+    }
+
+    if (conttrolName === 'registeredOrganization' && value == 'Yes') {
+      this.registeredOrganization = true
+      this.editForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
+
+      this.editForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
+
+    }
+    else if (conttrolName === 'registeredOrganization' && value == 'No') {
+      this.registeredOrganization = false
+      this.editForm.get('nameRegisteredOrganization')?.reset()
+      this.editForm.get('nameRegisteredOrganization')?.clearValidators()
+      this.editForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
+    }
+    if (conttrolName === 'isappreciation' && value == 'Yes') {
+
+      this.isappreciation = true
+      this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
+
+      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+    }
+    else if (conttrolName === 'isappreciation' && value == 'No') {
+      this.isappreciation = false
+      this.editForm.get('appreciationDocuments')?.reset()
+
+      this.editForm.get('appreciationDocuments')?.clearValidators()
+
+      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+      this.appreciationDocuments = null
+
+    }
+  }
+
 
   changeListener($event: any, form: any) {
     let file = $event.target.files;
@@ -491,10 +522,16 @@ export class MemberDashboardComponent implements OnInit {
 
 
   finalSubmit(type: string) {
+    console.log(this.financialDoccument);
+
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.editForm.get('nameOfOrganisation')?.setValidators(Validators.required)
-    this.editForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.editForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.editForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.editForm.get('financialDoccument')?.updateValueAndValidity()
+    this.editForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('nameOfCompany')?.updateValueAndValidity()
     this.editForm.get('addressl1')?.setValidators(Validators.required)
     this.editForm.get('addressl1')?.updateValueAndValidity()
     this.editForm.get('state')?.setValidators(Validators.required)
@@ -502,23 +539,56 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('city')?.setValidators(Validators.required)
     this.editForm.get('city')?.updateValueAndValidity()
     this.editForm.get('pincode')?.setValidators(Validators.required)
+    this.editForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
     this.editForm.get('pincode')?.updateValueAndValidity()
     this.editForm.get('name')?.setValidators(Validators.required)
     this.editForm.get('name')?.updateValueAndValidity()
+    this.editForm.get('designation')?.setValidators(Validators.required)
+    this.editForm.get('designation')?.updateValueAndValidity()
+    this.editForm.get('gstinOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('gstinOfCompany')?.setValidators(Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.editForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.editForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('dateOfCompany')?.updateValueAndValidity()
     this.editForm.get('sidmMember')?.setValidators(Validators.required)
     this.editForm.get('sidmMember')?.updateValueAndValidity()
-    this.editForm.get('otherMember')?.setValidators(Validators.required)
-    this.editForm.get('otherMember')?.updateValueAndValidity()
-    this.editForm.get('vendorOrganization')?.setValidators(Validators.required)
-    this.editForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+    this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+    this.editForm.get('association')?.setValidators(Validators.required)
+    this.editForm.get('association')?.updateValueAndValidity()
+    this.editForm.get('associationName')?.setValidators(Validators.required)
+    this.editForm.get('associationName')?.updateValueAndValidity()
+    this.editForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.editForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.editForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
+    this.editForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
+    this.editForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.setValidators(Validators.required)
     this.editForm.get('isappreciation')?.updateValueAndValidity()
+    this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
+    this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+    this.editForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.editForm.get('campareAchivement')?.updateValueAndValidity()
+    this.editForm.get('mudp')?.setValidators(Validators.required)
+    this.editForm.get('mudp')?.updateValueAndValidity()
+    this.editForm.get('productLink')?.setValidators(Validators.required)
+    this.editForm.get('productLink')?.updateValueAndValidity()
+    this.editForm.get('exhibit1')?.setValidators(Validators.required)
+    this.editForm.get('exhibit1')?.updateValueAndValidity()
+    this.editForm.get('exhibit2')?.setValidators(Validators.required)
+    this.editForm.get('exhibit2')?.updateValueAndValidity()
 
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
-        category: this.editForm.value.category,
         typeOfApplicant: this.editForm.value.typeOfApplicant,
-        nameOfOrganisation: this.editForm.value.nameOfOrganisation,
+        subCategoryDoccument: this.subCategoryDoccument,
+        financialDoccument: this.financialDoccument,
+        nameOfCompany: this.editForm.value.nameOfCompany,
         addressl1: this.editForm.value.addressl1,
         addressl2: this.editForm.value.addressl2,
         state: this.editForm.value.state,
@@ -526,31 +596,28 @@ export class MemberDashboardComponent implements OnInit {
         pincode: this.editForm.value.pincode,
         name: this.editForm.value.name,
         designation: this.editForm.value.designation,
-        mobileNumber: this.editForm.value.mobileNumber,
         email: this.editForm.value.email,
-        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: this.editForm.value.otherAssociationMemberShipNumber,
+        mobileNumber: this.editForm.value.mobileNumber,
         panNumber: this.editForm.value.panNumber,
-        gstinOfOrganization: this.editForm.value.gstinOfOrganization,
-        dateOfOrganization: this.editForm.value.dateOfOrganization,
-        vendorOrganization1: this.editForm.value.vendorOrganization1,
-        vendorOrganization2: this.editForm.value.vendorOrganization2,
-        vendorOrganization3: this.editForm.value.vendorOrganization3,
-        vendorOrganization4: this.editForm.value.vendorOrganization4,
-        aboutCompany: this.editForm.value.aboutCompany,
-        achievementsToJustifyApplication: this.editForm.value.achievementsToJustifyApplication,
-        campareAchivement: this.editForm.value.campareAchivement,
+        gstinOfCompany: this.editForm.value.gstinOfCompany,
         documentGstCertificate: this.documentGstCertificate,
-        documentsOfProduct: this.documentsOfProduct,
-        appreciationDocuments: this.appreciationDocuments,
-        briefCompany: this.editForm.value.briefCompany,
-        awardMatterToCompany: this.editForm.value.awardMatterToCompany,
-        status: type,
+        dateOfCompany: this.editForm.value.dateOfCompany,
         sidmMember: this.editForm.value.sidmMember,
-        otherMember: this.editForm.value.otherMember,
-        vendorOrganization: this.editForm.value.vendorOrganization,
+        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
+        association: this.editForm.value.association,
+        associationName: this.editForm.value.associationName,
+        registeredOrganization: this.editForm.value.registeredOrganization,
+        nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization,
+        aboutCompany: this.editForm.value.aboutCompany,
+        sidmChampionAwards: this.editForm.value.sidmChampionAwards,
         isappreciation: this.editForm.value.isappreciation,
-
+        appreciationDocuments: this.appreciationDocuments,
+        campareAchivement: this.editForm.value.campareAchivement,
+        mudp: this.editForm.value.mudp,
+        productLink: this.editForm.value.productLink,
+        exhibit1: this.exhibit1,
+        exhibit2: this.exhibit2,
+        status: type,
       }).subscribe(data => {
 
         this.routes.navigate(['/thankYou'])
@@ -575,10 +642,15 @@ export class MemberDashboardComponent implements OnInit {
   }
 
   savedraft(type: String) {
+
     this.editForm.get('typeOfApplicant')?.clearValidators()
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.editForm.get('nameOfOrganisation')?.clearValidators()
-    this.editForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.editForm.get('subCategoryDoccument')?.clearValidators()
+    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.editForm.get('financialDoccument')?.clearValidators()
+    this.editForm.get('financialDoccument')?.updateValueAndValidity()
+    this.editForm.get('nameOfCompany')?.clearValidators()
+    this.editForm.get('nameOfCompany')?.updateValueAndValidity()
     this.editForm.get('addressl1')?.clearValidators()
     this.editForm.get('addressl1')?.updateValueAndValidity()
     this.editForm.get('state')?.clearValidators()
@@ -590,20 +662,44 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('pincode')?.updateValueAndValidity()
     this.editForm.get('name')?.clearValidators()
     this.editForm.get('name')?.updateValueAndValidity()
+    this.editForm.get('designation')?.clearValidators()
+    this.editForm.get('designation')?.updateValueAndValidity()
+    this.editForm.get('gstinOfCompany')?.clearValidators()
+    this.editForm.get('gstinOfCompany')?.setValidators(Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.editForm.get('documentGstCertificate')?.clearValidators()
+    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.editForm.get('dateOfCompany')?.clearValidators()
+    this.editForm.get('dateOfCompany')?.updateValueAndValidity()
     this.editForm.get('sidmMember')?.clearValidators()
     this.editForm.get('sidmMember')?.updateValueAndValidity()
-    this.editForm.get('otherMember')?.clearValidators()
-    this.editForm.get('otherMember')?.updateValueAndValidity()
-    this.editForm.get('vendorOrganization')?.clearValidators()
-    this.editForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.editForm.get('association')?.clearValidators()
+    this.editForm.get('association')?.updateValueAndValidity()
+    this.editForm.get('registeredOrganization')?.clearValidators()
+    this.editForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.editForm.get('aboutCompany')?.clearValidators()
+    this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('sidmChampionAwards')?.clearValidators()
+    this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.clearValidators()
     this.editForm.get('isappreciation')?.updateValueAndValidity()
+    this.editForm.get('campareAchivement')?.clearValidators()
+    this.editForm.get('campareAchivement')?.updateValueAndValidity()
+    this.editForm.get('mudp')?.clearValidators()
+    this.editForm.get('mudp')?.updateValueAndValidity()
+    this.editForm.get('productLink')?.clearValidators()
+    this.editForm.get('productLink')?.updateValueAndValidity()
+    this.editForm.get('exhibit1')?.clearValidators()
+    this.editForm.get('exhibit1')?.updateValueAndValidity()
+    this.editForm.get('exhibit2')?.clearValidators()
+    this.editForm.get('exhibit2')?.updateValueAndValidity()
 
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
-        category: this.editForm.value.category,
         typeOfApplicant: this.editForm.value.typeOfApplicant,
-        nameOfOrganisation: this.editForm.value.nameOfOrganisation,
+        subCategoryDoccument: this.subCategoryDoccument ? this.subCategoryDoccument : 'sds',
+        financialDoccument: this.financialDoccument,
+        nameOfCompany: this.editForm.value.nameOfCompany,
         addressl1: this.editForm.value.addressl1,
         addressl2: this.editForm.value.addressl2,
         state: this.editForm.value.state,
@@ -611,30 +707,28 @@ export class MemberDashboardComponent implements OnInit {
         pincode: this.editForm.value.pincode,
         name: this.editForm.value.name,
         designation: this.editForm.value.designation,
-        mobileNumber: this.editForm.value.mobileNumber,
         email: this.editForm.value.email,
-        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: this.editForm.value.otherAssociationMemberShipNumber,
+        mobileNumber: this.editForm.value.mobileNumber,
         panNumber: this.editForm.value.panNumber,
-        gstinOfOrganization: this.editForm.value.gstinOfOrganization,
-        dateOfOrganization: this.editForm.value.dateOfOrganization,
-        vendorOrganization1: this.editForm.value.vendorOrganization1,
-        vendorOrganization2: this.editForm.value.vendorOrganization2,
-        vendorOrganization3: this.editForm.value.vendorOrganization3,
-        vendorOrganization4: this.editForm.value.vendorOrganization4,
-        aboutCompany: this.editForm.value.aboutCompany,
-        achievementsToJustifyApplication: this.editForm.value.achievementsToJustifyApplication,
-        campareAchivement: this.editForm.value.campareAchivement,
+        gstinOfCompany: this.editForm.value.gstinOfCompany,
         documentGstCertificate: this.documentGstCertificate,
-        documentsOfProduct: this.documentsOfProduct,
-        appreciationDocuments: this.appreciationDocuments,
-        briefCompany: this.editForm.value.briefCompany,
-        awardMatterToCompany: this.editForm.value.awardMatterToCompany,
-        status: type,
+        dateOfCompany: this.editForm.value.dateOfCompany,
         sidmMember: this.editForm.value.sidmMember,
-        otherMember: this.editForm.value.otherMember,
-        vendorOrganization: this.editForm.value.vendorOrganization,
+        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
+        association: this.editForm.value.association,
+        associationName: this.editForm.value.associationName,
+        registeredOrganization: this.editForm.value.registeredOrganization,
+        nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization, 
+        aboutCompany: this.editForm.value.aboutCompany,
+        sidmChampionAwards: this.editForm.value.sidmChampionAwards,
         isappreciation: this.editForm.value.isappreciation,
+        appreciationDocuments: this.appreciationDocuments,
+        campareAchivement: this.editForm.value.campareAchivement,
+        mudp: this.editForm.value.mudp,
+        productLink: this.editForm.value.productLink,
+        exhibit1: this.exhibit1,
+        exhibit2: this.exhibit2,
+        status: type,
 
       }).subscribe(data => {
         this.editForm.reset();
@@ -688,8 +782,8 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('name')?.updateValueAndValidity()
     this.newCategoryForm.get('sidmMember')?.setValidators(Validators.required)
     this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
-    this.newCategoryForm.get('otherMember')?.setValidators(Validators.required)
-    this.newCategoryForm.get('otherMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('association')?.setValidators(Validators.required)
+    this.newCategoryForm.get('association')?.updateValueAndValidity()
     this.newCategoryForm.get('vendorOrganization')?.setValidators(Validators.required)
     this.newCategoryForm.get('vendorOrganization')?.updateValueAndValidity()
     this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)
@@ -729,7 +823,7 @@ export class MemberDashboardComponent implements OnInit {
         awardMatterToCompany: this.newCategoryForm.value.awardMatterToCompany,
         status: type,
         sidmMember: this.newCategoryForm.value.sidmMember,
-        otherMember: this.newCategoryForm.value.otherMember,
+        association: this.newCategoryForm.value.association,
         vendorOrganization: this.newCategoryForm.value.vendorOrganization,
         isappreciation: this.newCategoryForm.value.isappreciation,
 
@@ -777,8 +871,8 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('name')?.updateValueAndValidity()
     this.newCategoryForm.get('sidmMember')?.clearValidators()
     this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
-    this.newCategoryForm.get('otherMember')?.clearValidators()
-    this.newCategoryForm.get('otherMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('association')?.clearValidators()
+    this.newCategoryForm.get('association')?.updateValueAndValidity()
     this.newCategoryForm.get('vendorOrganization')?.clearValidators()
     this.newCategoryForm.get('vendorOrganization')?.updateValueAndValidity()
     this.newCategoryForm.get('isappreciation')?.clearValidators()
@@ -818,7 +912,7 @@ export class MemberDashboardComponent implements OnInit {
         awardMatterToCompany: this.newCategoryForm.value.awardMatterToCompany,
         status: type,
         sidmMember: this.newCategoryForm.value.sidmMember,
-        otherMember: this.newCategoryForm.value.otherMember,
+        association: this.newCategoryForm.value.association,
         vendorOrganization: this.newCategoryForm.value.vendorOrganization,
         isappreciation: this.newCategoryForm.value.isappreciation,
       }).subscribe(data => {
@@ -857,14 +951,14 @@ export class MemberDashboardComponent implements OnInit {
       this.newCategoryForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
     }
 
-    if (conttrolName === 'otherMember' && value == 'Yes') {
-      this.otherMember = true
+    if (conttrolName === 'association' && value == 'Yes') {
+      this.association = true
       this.newCategoryForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
 
       this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
     }
-    else if (conttrolName === 'otherMember' && value == 'No') {
-      this.otherMember = false
+    else if (conttrolName === 'association' && value == 'No') {
+      this.association = false
       this.newCategoryForm.get('otherAssociationMemberShipNumber')?.reset()
 
       this.newCategoryForm.get('otherAssociationMemberShipNumber')?.clearValidators()
@@ -916,11 +1010,29 @@ export class MemberDashboardComponent implements OnInit {
       this.editData.documentGstCertificate = null
 
     }
-    else if (conttrolName === 'documentsOfProduct') {
-      this.documentsOfProduct = null;
-      this.editForm.get('documentsOfProduct')?.reset()
-      this.editForm.get('documentsOfProduct')?.updateValueAndValidity()
-      this.editData.documentsOfProduct = null
+    else if (conttrolName === 'exhibit1') {
+      this.exhibit1 = null;
+      this.editForm.get('exhibit1')?.reset()
+      this.editForm.get('exhibit1')?.updateValueAndValidity()
+      this.editData.exhibit1 = null
+    }
+    else if (conttrolName === 'exhibit2') {
+      this.exhibit2 = null;
+      this.editForm.get('exhibit2')?.reset()
+      this.editForm.get('exhibit2')?.updateValueAndValidity()
+      this.editData.exhibit2 = null
+    }
+    else if (conttrolName === 'subCategoryDoccument') {
+      this.subCategoryDoccument = null;
+      this.editForm.get('subCategoryDoccument')?.reset()
+      this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
+      this.editData.subCategoryDoccument = null
+    }
+    else if (conttrolName === 'financialDoccument') {
+      this.financialDoccument = null;
+      this.editForm.get('financialDoccument')?.reset()
+      this.editForm.get('financialDoccument')?.updateValueAndValidity()
+      this.editData.financialDoccument = null
     }
     else if (conttrolName === 'appreciationDocuments') {
       this.appreciationDocuments = null;

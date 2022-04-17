@@ -162,7 +162,7 @@
                                         <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
                                         <li>DPIIT Certificate -  SME/START-UP</li>
                                     </ul></span> -->
-                                    <input type="file" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
+                                    <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
                                     <span
                                     *ngIf="registrationForm.get('subCategoryDoccument')?.hasError('required')"
                                     style="color: red;">
@@ -744,7 +744,7 @@
                                                 <input
                                                     formControlName="appreciationDocuments"
                                                     type="file"
-                                                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
+                                                    accept=".gif,.jpg,.jpeg,.png,.pdf"
                                                     (change)="changeListener($event,'appreciationDocuments')"
                                                     class="mt-3" name="" id=""
                                                     aria-describedby="helpId"

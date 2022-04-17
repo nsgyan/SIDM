@@ -162,8 +162,9 @@ exports.getmemberData = (req, res, next) => {
 };
 
 exports.updateFrom = (req, res, next) => {
+  const userID = req.params.userID
+  console.log(userID);
   const createAt = req.body.currentDate;
-  const category = req.body.category;
   const typeOfApplicant = req.body.typeOfApplicant;
   const subCategoryDoccument = req.body.subCategoryDoccument;
   const financialDoccument = req.body.financialDoccument;
@@ -200,8 +201,7 @@ exports.updateFrom = (req, res, next) => {
   RegistrationForm.findById(userID)
     .then((formData) => {
     
-      formData.createAt= createAt;
-          formData.category= category;
+      formData.createAt = createAt;
           formData.typeOfApplicant= typeOfApplicant;
           if (subCategoryDoccument !== formData.subCategoryDoccument) {
             formData.subCategoryDoccument = subCategoryDoccument;
@@ -221,11 +221,8 @@ exports.updateFrom = (req, res, next) => {
           formData.email= email;
           formData.mobileNumber= mobileNumber;
           formData.panNumber= panNumber;
-          formData.gstinOfCompany= gstinOfCompany;
-          if (documentGstCertificate !== formData.documentGstCertificate) {
-            formData.documentGstCertificate = documentGstCertificate;
-          }
-         
+      formData.gstinOfCompany = gstinOfCompany;
+      formData.documentGstCertificate = documentGstCertificate;
           formData.dateOfCompany= dateOfCompany;
           formData.sidmMember= sidmMember;
           formData.sidmMemberShipNumber= sidmMemberShipNumber;
@@ -235,35 +232,14 @@ exports.updateFrom = (req, res, next) => {
           formData.nameRegisteredOrganization= nameRegisteredOrganization;
           formData.aboutCompany= aboutCompany;
           formData. sidmChampionAwards= sidmChampionAwards;
-          formData.isappreciation= isappreciation;
-          if (appreciationDocuments !== formData.appreciationDocuments) {
-            formData.appreciationDocuments = appreciationDocuments;
-          }
+      formData.isappreciation = isappreciation;
+      formData.appreciationDocuments = appreciationDocuments;
           formData.campareAchivement= campareAchivement;
           formData.mudp= mudp;
-          formData.productLink= productLink;
-          if (exhibit1 !== formData.exhibit1) {
-            formData.exhibit1 = exhibit1;
-          }
-         
-          if (exhibit2 !== formData.exhibit2) {
-            formData.exhibit2 = exhibit2;
-          }
-          formData.status= status;
-      
-      if (updateDocumentGstCertificate !== formData.documentGstCertificate) {
-        formData.documentGstCertificate = updateDocumentGstCertificate;
-      }
-      
-    
-      if (documentsOfProduct !== formData.documentsOfProduct) {
-        formData.documentsOfProduct = documentsOfProduct;
-      }
-      formData.campareAchivement = campareAchivement;
-      if (appreciationDocuments !== formData.appreciationDocuments) {
-        formData.appreciationDocuments = appreciationDocuments;
-      }
-
+      formData.productLink = productLink;
+      formData.exhibit1 = exhibit1;
+      formData.exhibit2 = exhibit2;
+      formData.status = status;
       formData.save((err, success) => {
         console.log(err, "err");
         res.status(200).send(success);
@@ -272,6 +248,7 @@ exports.updateFrom = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+}
 
   // RegistrationForm.findById(userID)
   //     .then(formData => {
@@ -320,7 +297,6 @@ exports.updateFrom = (req, res, next) => {
   //     .catch(error => {
   //         // res.status(404).send(error)
   //     })
-};
 
 // const multer  = require('multer');
 // const fileStroage = multer.diskStorage({

@@ -94,7 +94,7 @@ exports.memberLogin = (req, res, next) => {
                 const token = jwt.sign({
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
                     email: email,
-                     panNumber: pan,
+                    panNumber: pan,
                     mobileNumber: mobileNumber
                 }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
                 );
@@ -120,7 +120,6 @@ exports.memberData = (req, res, next) => {
             RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
                 .then(data => {
                     if (data) {
-
                         res.status(200).send(data)
                     }
                     else {

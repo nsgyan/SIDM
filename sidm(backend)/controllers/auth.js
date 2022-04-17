@@ -12,9 +12,9 @@ exports.memberAuth = (req, res, next) => {
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
         console.log(decoded ,' fdetd');
        if (decoded.panNumber) {
-            RegistrationForm.find({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
+           RegistrationForm.findOne({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
                 .then(data => {
-                    if (data) {
+                    if (data.panNumber) {
                         next()
                     }
                     else {
@@ -23,7 +23,7 @@ exports.memberAuth = (req, res, next) => {
 
                 })
                 .catch(err => {
-                    res.send(err)
+                    res.status(401).send('invalid token')
                 })
        }
        else {
