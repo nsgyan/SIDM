@@ -239,7 +239,7 @@
                         <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
                         <li>DPIIT Certificate -  SME/START-UP</li>
                     </ul></span> -->
-                    <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
+                    <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="newChangeListener($event,'subCategoryDoccument')" >
                     <span
                     *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
                     style="color: red;">
@@ -251,7 +251,7 @@
             <div class="row" >
                 <div class="col-lg-12">
                     <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21</h5>
-                    <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="gstpdfOnly($event,'financialDoccument')" >
+                    <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="newGstpdfOnly($event,'financialDoccument')" >
                     <br>
                         <span> only accept .pdf</span>
                         <span
@@ -427,7 +427,7 @@
                         formControlName="documentGstCertificate"
                         type="file"
                         accept="application/pdf"
-                        (change)="changeListener($event,'documentGstCertificate')">
+                        (change)="newChangeListener($event,'documentGstCertificate')">
                         <br>
                         <span> only accept .pdf</span>
                         <span
@@ -461,11 +461,11 @@
                 <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
                     role="tablist"> -->
                     
-                        <input type="radio" formControlName="sidmMember" name="sidmMember" value="Yes" (click)="changetoggel('sidmMember','Yes')" id="YES">
+                        <input type="radio" formControlName="sidmMember" name="sidmMember" value="Yes" (click)="newChangetoggel('sidmMember','Yes')" id="YES">
                         <label   class="mx-2" for="YES">Yes</label>
             
                       
-                        <input type="radio"  formControlName="sidmMember" name="sidmMember" (click)="changetoggel('sidmMember','No')" value="No" 
+                        <input type="radio"  formControlName="sidmMember" name="sidmMember" (click)="newChangetoggel('sidmMember','No')" value="No" 
                          id="No">
                         <label class="mx-2" for="No">No</label>
 
@@ -514,11 +514,11 @@
                         </div>
             <h5 class="mt-5 mb-3">Are you Member of any other Association ?</h5>
             <div class="container">
-                <input type="radio" formControlName="association" name="association" value="Yes" (click)="changetoggel('association','Yes')" id="YES">
+                <input type="radio" formControlName="association" name="association" value="Yes" (click)="newChangetoggel('association','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="association"  name="association" (click)="changetoggel('association','No')" value="No" 
+                <input type="radio"  formControlName="association"  name="association" (click)="newChangetoggel('association','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
                 <span  style="color: red;" *ngIf="newCategoryForm.get('association')?.hasError('required')" >
@@ -551,11 +551,11 @@
             </div>
             <h5 class="mt-5 mb-3">Are you registered with any Defence Organization (such as DPSU/DRDO etc.)? *</h5>
             <div class="container">
-                <input type="radio" formControlName="registeredOrganization" value="Yes" (click)="changetoggel('registeredOrganization','Yes')" id="YES">
+                <input type="radio" formControlName="registeredOrganization" value="Yes" (click)="newChangetoggel('registeredOrganization','Yes')" id="YES">
                 <label  class="mx-2" for="YES">Yes</label>
     
               
-                <input type="radio"  formControlName="registeredOrganization" (click)="changetoggel('registeredOrganization','No')" value="No" 
+                <input type="radio"  formControlName="registeredOrganization" (click)="newChangetoggel('registeredOrganization','No')" value="No" 
                  id="No">
                 <label class="mx-2" for="No">No</label>
                 <span  style="color: red;" *ngIf="newCategoryForm.get('registeredOrganization')?.hasError('required')" >
@@ -569,12 +569,12 @@
                                 <div class="col-lg-6" formArrayName="nameRegisteredOrganization">
                                     <h6 class="mb-2">Name of the Organization registered with</h6>
                                     <div class="full-width" cellspacing="0">
-                                        <div *ngFor=" let controlName of nameRegisteredOrganization.controls; let i = index" 
+                                        <div *ngFor=" let controlName of newNameRegisteredOrganization.controls; let i = index" 
                                         [formGroupName]="i">
                                          
                                             
                                               <input type="text" class="mt-4 mb-2"  formControlName="name">
-                                              <a *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i class="fa fa-minus-circle"></i> Delete </a>
+                                              <a *ngIf='i!==0' (click)="newRemoveRegisteredOrganization(i)"><i class="fa fa-minus-circle"></i> Delete </a>
                                               <div
                                               *ngIf="newCategoryForm.controls['nameRegisteredOrganization'].invalid
                                               &&
@@ -590,7 +590,7 @@
                                            -->
                                         </div>
                                       </div>  
-                                      <a (click)="addRegisteredOrganization()"><i class="fa fa-plus"></i> Add</a>
+                                      <a (click)="newAddRegisteredOrganization()"><i class="fa fa-plus"></i> Add</a>
                                       <!-- <button (click)="addRegisteredOrganization()">Add new Registered  Organization</button>
                                         -->
                                         </div>
@@ -638,7 +638,7 @@
                                     formControlName="appreciationDocuments"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
-                                    (change)="changeListener($event,'appreciationDocuments')"
+                                    (change)="newChangeListener($event,'appreciationDocuments')"
                                     class="mt-3" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
@@ -683,7 +683,7 @@
                 <input formControlName="exhibit1"
                     type="file"
                     accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
-                    (change)="changeListener($event,'exhibit1')"
+                    (change)="newChangeListener($event,'exhibit1')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
@@ -692,7 +692,7 @@
                     <input formControlName="exhibit2"
                     type="file"
                     accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
-                    (change)="changeListener($event,'exhibit2')"
+                    (change)="newChangeListener($event,'exhibit2')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">

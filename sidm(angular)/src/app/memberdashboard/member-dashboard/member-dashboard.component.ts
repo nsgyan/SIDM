@@ -938,7 +938,59 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
-  NewFormchangetoggel(conttrolName: String, value: string) {
+
+  newAddRegisteredOrganization() {
+    let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
+    control.push(
+      this.formBuilder.group({
+        name: ['', Validators.required],
+
+      })
+    );
+
+  }
+
+  newRemoveRegisteredOrganization(index: number) {
+    let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
+    control.removeAt(index)
+  }
+
+  gewGetRegisteredOrganizationControls() {
+    return this.newCategoryForm.get('nameRegisteredOrganization') as FormArray;
+  }
+  get newNameRegisteredOrganization(): FormArray {
+    return this.newCategoryForm.get('nameRegisteredOrganization') as FormArray;
+  }
+
+
+  newGstpdfOnly($event: any, form: any) {
+    let file = $event.target.files;
+    if (
+      file[0].type == 'application/pdf'
+
+    ) {
+      if (parseInt(file[0].size) > 524280) {
+        this.newCategoryForm.get(form)?.reset()
+        this.newCategoryForm.get(form)?.updateValueAndValidity()
+        this.toast.error('file to large')
+      }
+      else {
+        this.httpService.upload(file[0]).subscribe((data: any) => {
+          this.financialDoccument = data.body;
+        })
+
+      }
+    }
+    else {
+      this.toast.error('File uploaded is invalid!')
+      this.newCategoryForm.get(form)?.reset()
+      this.newCategoryForm.get(form)?.updateValueAndValidity()
+
+    }
+  }
+
+
+  newChangetoggel(conttrolName: String, value: string) {
     if (conttrolName === 'sidmMember' && value == 'Yes') {
       this.newCategoryForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
       this.newCategoryForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
@@ -947,57 +999,114 @@ export class MemberDashboardComponent implements OnInit {
     else if (conttrolName === 'sidmMember' && value == 'No') {
       this.sidmMember = false
       this.newCategoryForm.get('sidmMemberShipNumber')?.reset()
-      this.newCategoryForm.get('sidmMsidmMemberShipNumberember')?.clearValidators()
+      this.newCategoryForm.get('sidmMemberShipNumber')?.clearValidators()
       this.newCategoryForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
     }
 
     if (conttrolName === 'association' && value == 'Yes') {
       this.association = true
-      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
+      this.newCategoryForm.get('associationName')?.setValidators(Validators.required)
 
-      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+      this.newCategoryForm.get('associationName')?.updateValueAndValidity()
     }
     else if (conttrolName === 'association' && value == 'No') {
       this.association = false
-      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.reset()
+      this.newCategoryForm.get('associationName')?.reset()
 
-      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.clearValidators()
-      this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
-
-    }
-
-    if (conttrolName === 'vendorOrganization' && value == 'Yes') {
-      this.vendorOrganization = true
-      this.newCategoryForm.get('vendorOrganization1')?.setValidators(Validators.required)
-
-      this.newCategoryForm.get('vendorOrganization1')?.updateValueAndValidity()
-
+      this.newCategoryForm.get('associationName')?.clearValidators()
+      this.newCategoryForm.get('associationName')?.updateValueAndValidity()
 
     }
-    else if (conttrolName === 'vendorOrganization' && value == 'No') {
-      this.vendorOrganization = false
-      this.newCategoryForm.get('vendorOrganization1')?.reset()
-      this.newCategoryForm.get('vendorOrganization3')?.reset()
-      this.newCategoryForm.get('vendorOrganization4')?.reset()
-      this.newCategoryForm.get('vendorOrganization2')?.reset()
 
-      this.newCategoryForm.get('vendorOrganization1')?.clearValidators()
-      this.newCategoryForm.get('vendorOrganization1')?.updateValueAndValidity()
+    if (conttrolName === 'registeredOrganization' && value == 'Yes') {
+      this.registeredOrganization = true
+      this.newCategoryForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
+      this.newAddRegisteredOrganization()
 
+      this.newCategoryForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
+
+    }
+    else if (conttrolName === 'registeredOrganization' && value == 'No') {
+      this.registeredOrganization = false
+      this.newCategoryForm.get('nameRegisteredOrganization')?.reset()
+      let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
+      while (control.length) {
+        control.removeAt(0);
+      }
+      this.newCategoryForm.get('nameRegisteredOrganization')?.clearValidators()
+      this.newCategoryForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
     }
     if (conttrolName === 'isappreciation' && value == 'Yes') {
+
+      this.isappreciation = true
       this.newCategoryForm.get('appreciationDocuments')?.setValidators(Validators.required)
 
       this.newCategoryForm.get('appreciationDocuments')?.updateValueAndValidity()
-      this.isappreciation = true
     }
     else if (conttrolName === 'isappreciation' && value == 'No') {
       this.isappreciation = false
       this.newCategoryForm.get('appreciationDocuments')?.reset()
+
       this.newCategoryForm.get('appreciationDocuments')?.clearValidators()
 
       this.newCategoryForm.get('appreciationDocuments')?.updateValueAndValidity()
       this.appreciationDocuments = null
+
+    }
+  }
+
+  newChangeListener($event: any, form: any) {
+    let file = $event.target.files;
+    console.log(file);
+
+
+    if (
+      file[0].type == 'image/png' ||
+      file[0].type == 'image/jpg' ||
+      file[0].type == 'image/jpeg' ||
+      file[0].type == 'application/pdf'
+    ) {
+      console.log('jhe');
+
+      if (parseInt(file[0].size) > 524280) {
+        this.newCategoryForm.get(form)?.reset()
+        this.newCategoryForm.get(form)?.updateValueAndValidity()
+        this.toast.error('file to large')
+      }
+      else {
+        const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+        const time = '7:00 AM';
+
+        console.log(file[0], 'fghj');
+
+        this.httpService.upload(file[0]).subscribe((data: any) => {
+          if (form === 'subCategoryDoccument') {
+            this.subCategoryDoccument = data.body;
+          }
+          else if (form === 'documentGstCertificate') {
+            this.documentGstCertificate = data.body;
+          }
+          else if (form === 'exhibit1') {
+            this.exhibit1 = data.body;
+          }
+          else if (form === 'exhibit2') {
+            this.exhibit2 = data.body;
+          }
+          else if (form === 'documentsOfProduct') {
+            this.documentsOfProduct = data.body;
+          }
+          else if (form === 'appreciationDocuments') {
+            this.appreciationDocuments = data.body;
+
+          }
+        })
+
+      }
+    }
+    else {
+      this.toast.error('File uploaded is invalid!')
+      this.newCategoryForm.get(form)?.reset()
+      this.newCategoryForm.get(form)?.updateValueAndValidity()
 
     }
   }
