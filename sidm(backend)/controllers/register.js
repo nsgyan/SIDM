@@ -38,6 +38,8 @@ exports.postRegistrationForm = (req, res, next) => {
   const exhibit1 = req.body.exhibit1;
   const exhibit2 = req.body.exhibit2;
   const status = req.body.status;
+ const alterMobileNumber= req.body.alterMobileNumber;
+  const alterEmail= req.body.alterEmail
   const form = new RegistrationForm({
     createAt: createAt,
     category: category,
@@ -74,6 +76,8 @@ exports.postRegistrationForm = (req, res, next) => {
     exhibit1: exhibit1,
     exhibit2: exhibit2,
     status: status,
+    alterMobileNumber:alterMobileNumber,
+        alterEmail:alterEmail
   });
   form
     .save()
@@ -198,6 +202,8 @@ exports.updateFrom = (req, res, next) => {
   const exhibit1 = req.body.exhibit1;
   const exhibit2 = req.body.exhibit2;
   const status = req.body.type;
+  const alterMobileNumber= req.body.alterMobileNumber;
+  const alterEmail= req.body.alterEmail
   RegistrationForm.findById(userID)
     .then((formData) => {
     
@@ -240,6 +246,8 @@ exports.updateFrom = (req, res, next) => {
       formData.exhibit1 = exhibit1;
       formData.exhibit2 = exhibit2;
       formData.status = status;
+      formData.alterMobileNumber= alterMobileNumber;
+      formData.alterEmail= alterEmail
       formData.save((err, success) => {
         console.log(err, "err");
         res.status(200).send(success);

@@ -56,8 +56,10 @@ export class RegistrationComponent implements OnInit {
       designation: [''],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: ['', Validators.required],
+      alterEmail:['',Validators.email],
       mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
       confirmMobileNumber: ['', Validators.required],
+      alterMobileNumber:['',[Validators.maxLength(10), CellNumValidation]],
       panNumber: ['', [Validators.required, panValidation]],
       confirmPanNumber: ['', [Validators.required]],
       gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
@@ -337,6 +339,8 @@ export class RegistrationComponent implements OnInit {
         productLink: this.registrationForm.value.productLink,
         exhibit1:this.exhibit1,
         exhibit2:this.exhibit2,
+        alterMobileNumber:this.registrationForm.value.alterMobileNumber,
+        alterEmail:this.registrationForm.value.alterEmail,
         status: type,
       }).subscribe(data => {
         this.registrationForm.reset();
@@ -501,15 +505,13 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('state')?.updateValueAndValidity()
     this.registrationForm.get('city')?.setValidators(Validators.required)
     this.registrationForm.get('city')?.updateValueAndValidity()
-    this.registrationForm.get('pincode')?.setValidators(Validators.required)
-    this.registrationForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
+    this.registrationForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
     this.registrationForm.get('pincode')?.updateValueAndValidity()
     this.registrationForm.get('name')?.setValidators(Validators.required)
     this.registrationForm.get('name')?.updateValueAndValidity()
     this.registrationForm.get('designation')?.setValidators(Validators.required)
     this.registrationForm.get('designation')?.updateValueAndValidity()
-    this.registrationForm.get('gstinOfCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('gstinOfCompany')?.setValidators( Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.registrationForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
     this.registrationForm.get('gstinOfCompany')?.updateValueAndValidity()
     this.registrationForm.get('documentGstCertificate')?.setValidators(Validators.required)
     this.registrationForm.get('documentGstCertificate')?.updateValueAndValidity()
@@ -574,6 +576,8 @@ export class RegistrationComponent implements OnInit {
         productLink: this.registrationForm.value.productLink,
         exhibit1:this.exhibit1,
         exhibit2:this.exhibit2,
+        alterMobileNumber:this.registrationForm.value.alterMobileNumber,
+        alterEmail:this.registrationForm.value.alterEmail,
         status: type,
 
       }).subscribe(data => {

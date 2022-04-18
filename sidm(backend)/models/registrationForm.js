@@ -38,6 +38,8 @@ const RegistrationFormSchema = new Schema({
         exhibit1:{ type: String },
         exhibit2:{ type: String },
         status: { type: String },
+        alterMobileNumber:{type:String},
+        alterEmail:{type:String}
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

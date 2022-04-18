@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CellNumValidation, CrossEmailValidation, CrossPanValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
+import { CellNumValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { environment } from 'src/environments/environment.prod';
@@ -100,6 +100,8 @@ export class MemberDashboardComponent implements OnInit {
           email: [this.email],
           mobileNumber: [this.mobilenumber],
           panNumber: [this.pan],
+          alterEmail:['',Validators.email],
+          alterMobileNumber:['',[Validators.maxLength(10), CellNumValidation]],
           gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           documentGstCertificate: [''],
           dateOfCompany: [''],
@@ -309,6 +311,8 @@ export class MemberDashboardComponent implements OnInit {
           campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
           mudp: [this.editData.mudp ? this.editData.mudp : ''],
           productLink: [this.editData.productLink ? this.editData.productLink : ''],
+          alterMobileNumber:[this.editData.alterMobileNumber,[Validators.maxLength(10), CellNumValidation]],
+          alterEmail:[this.editData.alterEmail,Validators.email],
 
           exhibit1: [''],
           exhibit2: [''],
@@ -339,9 +343,7 @@ export class MemberDashboardComponent implements OnInit {
          })
          
          
-          this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
-
-          this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
+         
 
         }
 
@@ -538,10 +540,12 @@ export class MemberDashboardComponent implements OnInit {
 
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
+    if(!this.editData.subCategoryDoccument){
     this.editForm.get('subCategoryDoccument')?.setValidators(Validators.required)
-    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()}
+    if(!this.editData.financialDoccument){
     this.editForm.get('financialDoccument')?.setValidators(Validators.required)
-    this.editForm.get('financialDoccument')?.updateValueAndValidity()
+    this.editForm.get('financialDoccument')?.updateValueAndValidity()}
     this.editForm.get('nameOfCompany')?.setValidators(Validators.required)
     this.editForm.get('nameOfCompany')?.updateValueAndValidity()
     this.editForm.get('addressl1')?.setValidators(Validators.required)
@@ -560,8 +564,9 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('gstinOfCompany')?.setValidators(Validators.required)
     this.editForm.get('gstinOfCompany')?.setValidators(Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
     this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
+    if(!this.editData.documentGstCertificate){
     this.editForm.get('documentGstCertificate')?.setValidators(Validators.required)
-    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()}
     this.editForm.get('dateOfCompany')?.setValidators(Validators.required)
     this.editForm.get('dateOfCompany')?.updateValueAndValidity()
     this.editForm.get('sidmMember')?.setValidators(Validators.required)
@@ -582,18 +587,17 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.setValidators(Validators.required)
     this.editForm.get('isappreciation')?.updateValueAndValidity()
-    this.editForm.get('appreciationDocuments')?.setValidators(Validators.required)
-    this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
+  
     this.editForm.get('campareAchivement')?.setValidators(Validators.required)
     this.editForm.get('campareAchivement')?.updateValueAndValidity()
     this.editForm.get('mudp')?.setValidators(Validators.required)
     this.editForm.get('mudp')?.updateValueAndValidity()
-    this.editForm.get('productLink')?.setValidators(Validators.required)
-    this.editForm.get('productLink')?.updateValueAndValidity()
+    if(!this.editData.exhibit1){
     this.editForm.get('exhibit1')?.setValidators(Validators.required)
-    this.editForm.get('exhibit1')?.updateValueAndValidity()
+    this.editForm.get('exhibit1')?.updateValueAndValidity()}
+    if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
-    this.editForm.get('exhibit2')?.updateValueAndValidity()
+    this.editForm.get('exhibit2')?.updateValueAndValidity()}
 
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
@@ -629,6 +633,9 @@ export class MemberDashboardComponent implements OnInit {
         productLink: this.editForm.value.productLink,
         exhibit1: this.exhibit1,
         exhibit2: this.exhibit2,
+        alterMobileNumber:this.editForm.value.alterMobileNumber,
+        alterEmail:this.editForm.value.alterEmail,
+        
         status: type,
       }).subscribe(data => {
 
@@ -740,6 +747,8 @@ export class MemberDashboardComponent implements OnInit {
         productLink: this.editForm.value.productLink,
         exhibit1: this.exhibit1,
         exhibit2: this.exhibit2,
+        alterMobileNumber:this.editForm.value.alterMobileNumber,
+        alterEmail:this.editForm.value.alterEmail,
         status: type,
 
       }).subscribe(data => {
@@ -766,12 +775,6 @@ export class MemberDashboardComponent implements OnInit {
   }
 
 
-
-  report() {
-    this.editForm.get('appreciationDocuments')?.reset()
-
-    this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
-  }
 
 
 
@@ -822,8 +825,6 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('campareAchivement')?.updateValueAndValidity()
     this.newCategoryForm.get('mudp')?.setValidators(Validators.required)
     this.newCategoryForm.get('mudp')?.updateValueAndValidity()
-    this.newCategoryForm.get('productLink')?.setValidators(Validators.required)
-    this.newCategoryForm.get('productLink')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit1')?.setValidators(Validators.required)
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
@@ -865,6 +866,8 @@ export class MemberDashboardComponent implements OnInit {
         productLink: this.newCategoryForm.value.productLink,
         exhibit1: this.exhibit1,
         exhibit2: this.exhibit2,
+        alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
+        alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
       }).subscribe(data => {
         this.newCategoryForm.reset();
@@ -890,6 +893,8 @@ export class MemberDashboardComponent implements OnInit {
 
   }
   newsavedraft(type: string) {
+    console.log(this.newCategoryForm);
+    
     this.newCategoryForm.get('typeOfApplicant')?.clearValidators()
     this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.newCategoryForm.get('subCategoryDoccument')?.clearValidators()
@@ -977,6 +982,8 @@ export class MemberDashboardComponent implements OnInit {
         productLink: this.newCategoryForm.value.productLink,
         exhibit1: this.exhibit1,
         exhibit2: this.exhibit2,
+        alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
+        alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
       }).subscribe(data => {
         this.newCategoryForm.reset();

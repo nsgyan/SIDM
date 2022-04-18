@@ -387,14 +387,34 @@
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Primary E-Mail Address *</h5>
                     <input formControlName="email" type="text" readonly>
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-3">Mobile Number *</h5>
-                        <input formControlName="mobileNumber" type="text" readonly>
-                        
-                    </div>
+                    
                   
                 </div>
-                
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                    <input formControlName="mobileNumber" type="text" readonly>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
+                    <input type="text"formControlName='alterMobileNumber'  appBlockCopyPaste (keypress)="keyPressNumbers($event)"
+                   appCpoyPaste maxlength="10">
+                   <span *ngIf="newCategoryForm.get('alterMobileNumber')?.hasError('cellNumNotValid')&& ( newCategoryForm.controls['alterMobileNumber'].touched)"
+                                style="color: red;">
+                                please enter  valid Mobile Number
+                            </span>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Email</h5>
+                    <input type="text"formControlName='alterEmail'  appBlockCopyPaste 
+                   appCpoyPaste >
+                   <span *ngIf="newCategoryForm.get('alterEmail')?.hasError('email')&& ( newCategoryForm.controls['alterEmail'].touched)"
+                                style="color: red;">
+                                please enter  valid Email
+                            </span>
+                </div>
             </div>
             
             <div class="row">
@@ -604,6 +624,11 @@
                     <textarea formControlName="aboutCompany"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="150"></textarea>
+                        <span
+                        *ngIf="newCategoryForm.get('aboutCompany')?.hasError('required')"
+                        style="color: red;">
+                        About the company <strong>required</strong>
+                    </span>
                 </div>
 
                 <h5 class="mt-5 mb-4">
@@ -613,6 +638,11 @@
                     <textarea formControlName="sidmChampionAwards"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="50"></textarea>
+                        <span
+                        *ngIf="newCategoryForm.get('sidmChampionAwards')?.hasError('required')"
+                        style="color: red;">
+                        SIDM Champion Awards <strong>required</strong>
+                    </span>
                 </div>
                 <h5 class="mt-5">Have you received any reports of
                     performance / letters of appreciation
@@ -666,6 +696,11 @@
                     <textarea formControlName="campareAchivement"
                         class="form-control mb-5" aria-label="With
                         textarea"  maxlength="150"></textarea>
+                        <span
+                        *ngIf="newCategoryForm.get('campareAchivement')?.hasError('required')"
+                        style="color: red;">
+                        SIDM Champion Awards <strong>required</strong>
+                    </span>
                 </div>
      
             
@@ -674,6 +709,11 @@
                 <textarea formControlName="mudp"
                     class="form-control mb-5" aria-label="With
                     textarea" maxlength="150"></textarea>
+                    <span
+                    *ngIf="newCategoryForm.get('mudp')?.hasError('required')"
+                    style="color: red;">
+                    SIDM Champion Awards <strong>required</strong>
+                </span>
             </div>
             <h5 class="mt-5 mb-4">Please upload Photograph /
                 videos of the products / innovation /
@@ -687,6 +727,11 @@
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                    *ngIf="newCategoryForm.get('exhibit1')?.hasError('required')"
+                    style="color: red;">
+                    Exhibit 1 <strong>required</strong>
+                </span>
                     <br>
                     <h5>Exhibit 2</h5>
                     <input formControlName="exhibit2"
@@ -696,6 +741,11 @@
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                    *ngIf="newCategoryForm.get('exhibit2')?.hasError('required')"
+                    style="color: red;">
+                    Exhibit 2 <strong>required</strong>
+                </span>
                     <br>
                     <h5>Product video link (Optiona)</h5>
                     <input type="text" formControlName="productLink">
@@ -802,7 +852,11 @@
                     <input *ngIf="!editData.subCategoryDoccument" type="file" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
                     <a *ngIf="editData.subCategoryDoccument" href="{{editData?.subCategoryDoccument}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
                     <a *ngIf="editData.subCategoryDoccument"(click)="delete('subCategoryDoccument')"><i class="fa fa-delete"></i></a>
-
+                    <span
+                        *ngIf="editForm.get('subCategoryDoccument')?.hasError('required')"
+                        style="color: red;">
+                        Sub category <strong>required</strong>
+                    </span>
                 </div> 
             </div>
             <div class="row" >
@@ -813,7 +867,7 @@
                     <a *ngIf="editData.financialDoccument"(click)="delete('financialDoccument')"><i class="fa fa-delete"></i></a>
 
                     <br>
-                        <span> only accept .pdf</span>
+                      
                         <span
                         *ngIf="editForm.get('financialDoccument')?.hasError('required')"
                         style="color: red;">
@@ -957,8 +1011,24 @@
               
             </div>
             <div class="row">
-          
-               
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
+                    <input type="text"formControlName='alterMobileNumber'  appBlockCopyPaste (keypress)="keyPressNumbers($event)"
+                   appCpoyPaste maxlength="10">
+                   <span *ngIf="newCategoryForm.get('alterMobileNumber')?.hasError('cellNumNotValid')&& (submited || newCategoryForm.controls['alterMobileNumber'].touched)"
+                                style="color: red;">
+                                please enter  valid Mobile Number
+                            </span>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Email</h5>
+                    <input type="text"formControlName='alterEmail'  appBlockCopyPaste 
+                   appCpoyPaste >
+                   <span *ngIf="newCategoryForm.get('alterEmail')?.hasError('email')&& (submited || newCategoryForm.controls['alterEmail'].touched)"
+                                style="color: red;">
+                                please enter  valid Email
+                            </span>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -1169,6 +1239,11 @@
                     <textarea formControlName="aboutCompany"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="150"></textarea>
+                        <span
+                        *ngIf="editForm.get('aboutCompany')?.hasError('required')"
+                        style="color: red;">
+                        About the company<strong>required</strong>
+                    </span>
                 </div>
 
                 <h5 class="mt-5 mb-4">
@@ -1178,6 +1253,11 @@
                     <textarea formControlName="sidmChampionAwards"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="50"></textarea>
+                        <span
+                        *ngIf="editForm.get('sidmChampionAwards')?.hasError('required')"
+                        style="color: red;">
+                        SIDM Champion Awards<strong>required</strong>
+                    </span>
                 </div>
                 <h5 class="mt-5">Have you received any reports of
                     performance / letters of appreciation
@@ -1223,9 +1303,7 @@
                             <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
                             </div>
                         </div>
-                        <div class="tab-pane fade"
-                            id="pills-noreports" role="tabpanel"
-                            aria-labelledby="pills-noreports-tab"></div>
+                        
                     </div>
                 </div>
                 <h5 class="mt-5 mb-4">How does your achievement
@@ -1235,6 +1313,12 @@
                     <textarea formControlName="campareAchivement"
                         class="form-control mb-5" aria-label="With
                         textarea"  maxlength="150"></textarea>
+                        <span
+                        *ngIf="editForm.get('campareAchivement')?.hasError('required')"
+                        style="color: red;">
+                        your achievement
+                        compare   <strong>Required</strong> 
+                    </span>
                 </div>
      
             
@@ -1243,6 +1327,12 @@
                 <textarea formControlName="mudp"
                     class="form-control mb-5" aria-label="With
                     textarea" maxlength="150"></textarea>
+                    <span
+                        *ngIf="editForm.get('mudp')?.hasError('required')"
+                        style="color: red;">
+                        please fill the input field
+                    </span>
+                    
             </div>
             <h5 class="mt-5 mb-4">Please upload Photograph /
                 videos of the products / innovation /
@@ -1256,6 +1346,11 @@
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                        *ngIf="editForm.get('exhibit1')?.hasError('required')"
+                        style="color: red;">
+                        Exhibit 1<strong>required</strong>
+                    </span>
                     <a *ngIf="editData.exhibit1" href="{{editData?.exhibit1}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
                     <a *ngIf="editData.exhibit1"(click)="delete('exhibit1')"><i class="fa fa-delete"></i></a>
                     
@@ -1268,6 +1363,11 @@
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                    *ngIf="editForm.get('exhibit2')?.hasError('required')"
+                    style="color: red;">
+                    Exhibit 2<strong>required</strong>
+                </span>
                     <a *ngIf="editData.exhibit2" href="{{editData?.exhibit2}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
                     <a *ngIf="editData.exhibit2"(click)="delete('exhibit2')"><i class="fa fa-delete"></i></a>
                     
