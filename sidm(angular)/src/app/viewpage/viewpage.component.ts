@@ -46,13 +46,13 @@ export class ViewpageComponent implements OnInit {
         }
         if (data.appreciationDocuments) {
           data.appreciationDocuments = environment.download + data.appreciationDocuments
-          console.log(data.appreciationDocuments);
-
         }
-        if (data.documentsOfProduct) {
-          data.documentsOfProduct = environment.download + data.documentsOfProduct
+        if (data.subCategoryDoccument) {
+          data.subCategoryDoccument = environment.download + data.subCategoryDoccument
         }
-        data.panNumberOfOrganization=data.panNumberOfOrganization.toUpperCase();
+        if (data.financialDoccument) {
+          data.financialDoccument = environment.download + data.financialDoccument
+        }
 
         this.memberData = data
         console.log(data);

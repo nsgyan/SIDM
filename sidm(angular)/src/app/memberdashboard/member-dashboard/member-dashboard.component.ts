@@ -168,10 +168,10 @@ export class MemberDashboardComponent implements OnInit {
     this.documentsOfProduct = '';
     this.appreciationDocuments = ''
     this.association = false;
+    this.registeredOrganization = false
     this.sidmMember = false
     this.submited = false
     this.isappreciation = false
-    this.vendorOrganization = false
 
 
   }
@@ -301,11 +301,7 @@ export class MemberDashboardComponent implements OnInit {
           association: [this.editData.association ? this.editData.association : ''],
           associationName: [this.editData.associationName ? this.editData.associationName : ''],
           registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization : ''],
-          nameRegisteredOrganization: this.formBuilder.array([
-            this.formBuilder.group({
-              name: ['', Validators.required]
-            }),
-          ]),
+          nameRegisteredOrganization: this.formBuilder.array([ ]),
           aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
           sidmChampionAwards: [this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards : ''],
           isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
@@ -330,7 +326,19 @@ export class MemberDashboardComponent implements OnInit {
           this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
 
         }
-        if (this.editData.vendorOrganization === 'Yes') {
+        if (this.editData.registeredOrganization === 'Yes') {
+          let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
+         this.editData.nameRegisteredOrganization.map((item:any)=>{
+          control.push(
+            this.formBuilder.group({
+              name: [item.name, Validators.required],
+             
+            })
+          );
+           
+         })
+         
+         
           this.editForm.get('vendorOrganization1')?.setValidators(Validators.required)
 
           this.editForm.get('vendorOrganization1')?.updateValueAndValidity()
@@ -435,6 +443,10 @@ export class MemberDashboardComponent implements OnInit {
     else if (conttrolName === 'registeredOrganization' && value == 'No') {
       this.registeredOrganization = false
       this.editForm.get('nameRegisteredOrganization')?.reset()
+      let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
+      while (control.length) {
+        control.removeAt(0);
+      }
       this.editForm.get('nameRegisteredOrganization')?.clearValidators()
       this.editForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
     }
@@ -697,7 +709,7 @@ export class MemberDashboardComponent implements OnInit {
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
-        subCategoryDoccument: this.subCategoryDoccument ? this.subCategoryDoccument : 'sds',
+        subCategoryDoccument: this.subCategoryDoccument,
         financialDoccument: this.financialDoccument,
         nameOfCompany: this.editForm.value.nameOfCompany,
         addressl1: this.editForm.value.addressl1,
@@ -768,8 +780,12 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('category')?.updateValueAndValidity()
     this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.newCategoryForm.get('nameOfOrganisation')?.setValidators(Validators.required)
-    this.newCategoryForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.newCategoryForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.newCategoryForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.newCategoryForm.get('financialDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('nameOfCompany')?.updateValueAndValidity()
     this.newCategoryForm.get('addressl1')?.setValidators(Validators.required)
     this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
     this.newCategoryForm.get('state')?.setValidators(Validators.required)
@@ -777,24 +793,50 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('city')?.setValidators(Validators.required)
     this.newCategoryForm.get('city')?.updateValueAndValidity()
     this.newCategoryForm.get('pincode')?.setValidators(Validators.required)
+    this.newCategoryForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
     this.newCategoryForm.get('pincode')?.updateValueAndValidity()
     this.newCategoryForm.get('name')?.setValidators(Validators.required)
     this.newCategoryForm.get('name')?.updateValueAndValidity()
+    this.newCategoryForm.get('designation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('designation')?.updateValueAndValidity()
+    this.newCategoryForm.get('gstinOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('gstinOfCompany')?.setValidators( Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.newCategoryForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.newCategoryForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.newCategoryForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('dateOfCompany')?.updateValueAndValidity()
     this.newCategoryForm.get('sidmMember')?.setValidators(Validators.required)
     this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
     this.newCategoryForm.get('association')?.setValidators(Validators.required)
     this.newCategoryForm.get('association')?.updateValueAndValidity()
-    this.newCategoryForm.get('vendorOrganization')?.setValidators(Validators.required)
-    this.newCategoryForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)
     this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
+    this.newCategoryForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.newCategoryForm.get('campareAchivement')?.updateValueAndValidity()
+    this.newCategoryForm.get('mudp')?.setValidators(Validators.required)
+    this.newCategoryForm.get('mudp')?.updateValueAndValidity()
+    this.newCategoryForm.get('productLink')?.setValidators(Validators.required)
+    this.newCategoryForm.get('productLink')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit1')?.setValidators(Validators.required)
+    this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
+    this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
     if (this.newCategoryForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
         category: this.newCategoryForm.value.category,
         typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
-        nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
+        subCategoryDoccument: this.subCategoryDoccument,
+        financialDoccument: this.financialDoccument,
+        nameOfCompany: this.newCategoryForm.value.nameOfCompany,
         addressl1: this.newCategoryForm.value.addressl1,
         addressl2: this.newCategoryForm.value.addressl2,
         state: this.newCategoryForm.value.state,
@@ -802,31 +844,28 @@ export class MemberDashboardComponent implements OnInit {
         pincode: this.newCategoryForm.value.pincode,
         name: this.newCategoryForm.value.name,
         designation: this.newCategoryForm.value.designation,
-        mobileNumber: this.newCategoryForm.value.mobileNumber,
         email: this.newCategoryForm.value.email,
-        sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
+        mobileNumber: this.newCategoryForm.value.mobileNumber,
         panNumber: this.newCategoryForm.value.panNumber,
-        gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
-        dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
-        vendorOrganization1: this.newCategoryForm.value.vendorOrganization1,
-        vendorOrganization2: this.newCategoryForm.value.vendorOrganization2,
-        vendorOrganization3: this.newCategoryForm.value.vendorOrganization3,
-        vendorOrganization4: this.newCategoryForm.value.vendorOrganization4,
-        aboutCompany: this.newCategoryForm.value.vendorOrganization3,
-        achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
-        campareAchivement: this.newCategoryForm.value.campareAchivement,
+        gstinOfCompany: this.newCategoryForm.value.gstinOfCompany,
         documentGstCertificate: this.documentGstCertificate,
-        documentsOfProduct: this.documentsOfProduct,
-        appreciationDocuments: this.appreciationDocuments,
-        briefCompany: this.newCategoryForm.value.briefCompany,
-        awardMatterToCompany: this.newCategoryForm.value.awardMatterToCompany,
-        status: type,
+        dateOfCompany: this.newCategoryForm.value.dateOfCompany,
         sidmMember: this.newCategoryForm.value.sidmMember,
+        sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
         association: this.newCategoryForm.value.association,
-        vendorOrganization: this.newCategoryForm.value.vendorOrganization,
+        associationName: this.newCategoryForm.value.associationName,
+        registeredOrganization: this.newCategoryForm.value.registeredOrganization,
+        nameRegisteredOrganization: this.newCategoryForm.value.nameRegisteredOrganization, 
+        aboutCompany: this.newCategoryForm.value.aboutCompany,
+        sidmChampionAwards: this.newCategoryForm.value.sidmChampionAwards,
         isappreciation: this.newCategoryForm.value.isappreciation,
-
+        appreciationDocuments: this.appreciationDocuments,
+        campareAchivement: this.newCategoryForm.value.campareAchivement,
+        mudp: this.newCategoryForm.value.mudp,
+        productLink: this.newCategoryForm.value.productLink,
+        exhibit1: this.exhibit1,
+        exhibit2: this.exhibit2,
+        status: type,
       }).subscribe(data => {
         this.newCategoryForm.reset();
         this.toast.success(' Successfully Applied');
@@ -853,11 +892,12 @@ export class MemberDashboardComponent implements OnInit {
   newsavedraft(type: string) {
     this.newCategoryForm.get('typeOfApplicant')?.clearValidators()
     this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.newCategoryForm.get('gstinOfOrganization')?.clearValidators()
-    this.newCategoryForm.get('gstinOfOrganization')?.setValidators(Validators.pattern('^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$'))
-    this.newCategoryForm.get('gstinOfOrganization')?.updateValueAndValidity()
-    this.newCategoryForm.get('nameOfOrganisation')?.clearValidators()
-    this.newCategoryForm.get('nameOfOrganisation')?.updateValueAndValidity()
+    this.newCategoryForm.get('subCategoryDoccument')?.clearValidators()
+    this.newCategoryForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('financialDoccument')?.clearValidators()
+    this.newCategoryForm.get('financialDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('nameOfCompany')?.clearValidators()
+    this.newCategoryForm.get('nameOfCompany')?.updateValueAndValidity()
     this.newCategoryForm.get('addressl1')?.clearValidators()
     this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
     this.newCategoryForm.get('state')?.clearValidators()
@@ -869,21 +909,46 @@ export class MemberDashboardComponent implements OnInit {
     this.newCategoryForm.get('pincode')?.updateValueAndValidity()
     this.newCategoryForm.get('name')?.clearValidators()
     this.newCategoryForm.get('name')?.updateValueAndValidity()
+    this.newCategoryForm.get('designation')?.clearValidators()
+    this.newCategoryForm.get('designation')?.updateValueAndValidity()
+    this.newCategoryForm.get('gstinOfCompany')?.clearValidators()
+    this.newCategoryForm.get('gstinOfCompany')?.setValidators( Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
+    this.newCategoryForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('documentGstCertificate')?.clearValidators()
+    this.newCategoryForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.newCategoryForm.get('dateOfCompany')?.clearValidators()
+    this.newCategoryForm.get('dateOfCompany')?.updateValueAndValidity()
     this.newCategoryForm.get('sidmMember')?.clearValidators()
     this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
     this.newCategoryForm.get('association')?.clearValidators()
     this.newCategoryForm.get('association')?.updateValueAndValidity()
-    this.newCategoryForm.get('vendorOrganization')?.clearValidators()
-    this.newCategoryForm.get('vendorOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('registeredOrganization')?.clearValidators()
+    this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('aboutCompany')?.clearValidators()
+    this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmChampionAwards')?.clearValidators()
+    this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.newCategoryForm.get('isappreciation')?.clearValidators()
     this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
+    this.newCategoryForm.get('campareAchivement')?.clearValidators()
+    this.newCategoryForm.get('campareAchivement')?.updateValueAndValidity()
+    this.newCategoryForm.get('mudp')?.clearValidators()
+    this.newCategoryForm.get('mudp')?.updateValueAndValidity()
+    this.newCategoryForm.get('productLink')?.clearValidators()
+    this.newCategoryForm.get('productLink')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit1')?.clearValidators()
+    this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit2')?.clearValidators()
+    this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
     if (this.newCategoryForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
         category: this.newCategoryForm.value.category,
         typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
-        nameOfOrganisation: this.newCategoryForm.value.nameOfOrganisation,
+        subCategoryDoccument: this.subCategoryDoccument,
+        financialDoccument: this.financialDoccument,
+        nameOfCompany: this.newCategoryForm.value.nameOfCompany,
         addressl1: this.newCategoryForm.value.addressl1,
         addressl2: this.newCategoryForm.value.addressl2,
         state: this.newCategoryForm.value.state,
@@ -891,30 +956,28 @@ export class MemberDashboardComponent implements OnInit {
         pincode: this.newCategoryForm.value.pincode,
         name: this.newCategoryForm.value.name,
         designation: this.newCategoryForm.value.designation,
-        mobileNumber: this.newCategoryForm.value.mobileNumber,
         email: this.newCategoryForm.value.email,
-        sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
-        otherAssociationMemberShipNumber: this.newCategoryForm.value.otherAssociationMemberShipNumber,
+        mobileNumber: this.newCategoryForm.value.mobileNumber,
         panNumber: this.newCategoryForm.value.panNumber,
-        gstinOfOrganization: this.newCategoryForm.value.gstinOfOrganization,
-        dateOfOrganization: this.newCategoryForm.value.dateOfOrganization,
-        vendorOrganization1: this.newCategoryForm.value.vendorOrganization1,
-        vendorOrganization2: this.newCategoryForm.value.vendorOrganization2,
-        vendorOrganization3: this.newCategoryForm.value.vendorOrganization3,
-        vendorOrganization4: this.newCategoryForm.value.vendorOrganization4,
-        aboutCompany: this.newCategoryForm.value.vendorOrganization3,
-        achievementsToJustifyApplication: this.newCategoryForm.value.achievementsToJustifyApplication,
-        campareAchivement: this.newCategoryForm.value.campareAchivement,
+        gstinOfCompany: this.newCategoryForm.value.gstinOfCompany,
         documentGstCertificate: this.documentGstCertificate,
-        documentsOfProduct: this.documentsOfProduct,
-        appreciationDocuments: this.appreciationDocuments,
-        briefCompany: this.newCategoryForm.value.briefCompany,
-        awardMatterToCompany: this.newCategoryForm.value.awardMatterToCompany,
-        status: type,
+        dateOfCompany: this.newCategoryForm.value.dateOfCompany,
         sidmMember: this.newCategoryForm.value.sidmMember,
+        sidmMemberShipNumber: this.newCategoryForm.value.sidmMemberShipNumber,
         association: this.newCategoryForm.value.association,
-        vendorOrganization: this.newCategoryForm.value.vendorOrganization,
+        associationName: this.newCategoryForm.value.associationName,
+        registeredOrganization: this.newCategoryForm.value.registeredOrganization,
+        nameRegisteredOrganization: this.newCategoryForm.value.nameRegisteredOrganization, 
+        aboutCompany: this.newCategoryForm.value.aboutCompany,
+        sidmChampionAwards: this.newCategoryForm.value.sidmChampionAwards,
         isappreciation: this.newCategoryForm.value.isappreciation,
+        appreciationDocuments: this.appreciationDocuments,
+        campareAchivement: this.newCategoryForm.value.campareAchivement,
+        mudp: this.newCategoryForm.value.mudp,
+        productLink: this.newCategoryForm.value.productLink,
+        exhibit1: this.exhibit1,
+        exhibit2: this.exhibit2,
+        status: type,
       }).subscribe(data => {
         this.newCategoryForm.reset();
         this.toast.success(' Successfully Applied');

@@ -68,8 +68,19 @@
                     <p>{{memberData?.typeOfApplicant}}</p>
                 </div>
                 <div class="detail">
-                    <h6>Name of the Organization</h6>
-                    <p>{{memberData?.nameOfOrganisation}}</p>
+                    <h6>Document as sub Category Setected</h6>
+                    <p *ngIf='!memberData?.subCategoryDoccument'>you have't upload sub Category Document </p>
+                    <a href="{{memberData?.subCategoryDoccument}}" target="blank" *ngIf='memberData?.subCategoryDoccument' download="subCategory">Sub Category Document</a>
+                   
+                </div>
+                <div class="detail">
+                    <h6>Last Financial Balance sheet </h6>
+                    <p *ngIf='!memberData?.financialDoccument'>you have't upload sub Category Document </p>
+                    <a *ngIf='memberData?.financialDoccument' href="{{memberData?.financialDoccument}}" target="blank" download="financialBalanceSheet">Financial Balance sheet Document</a>
+                </div>
+                <div class="detail">
+                    <h6>Name of the Company</h6>
+                    <p>{{memberData?.nameOfCompany}}</p>
                 </div>
                 <!-- <h4 class="text-left mt-4">Address of your Organization</h4> -->
                 <div class="detail">
@@ -110,12 +121,12 @@
                     <p>{{memberData?.mobileNumber}}</p>
                 </div>
                 <div class="detail">
-                    <h6>PAN of the Organization</h6>
-                    <p>{{memberData?.panNumberOfOrganization}}</p>
+                    <h6>PAN of the Company</h6>
+                    <p>{{memberData?.panNumber}}</p>
                 </div>
                 <div class="detail">
-                    <h6>GSTIN of the Organization</h6>
-                    <p>{{memberData?.gstinOfOrganization}}</p>
+                    <h6>GSTIN of the Company</h6>
+                    <p>{{memberData?.gstinOfCompany}}</p>
                 </div>
                 <div class="detail">
                     <h6>Upload GST Certificate Document</h6>
@@ -124,19 +135,19 @@
 
                         </a> -->
                         <p *ngIf='!memberData?.documentGstCertificate'>you have't upload  GST Certificate Document </p>
-                        <a href="{{memberData?.documentGstCertificate}}" *ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
+                        <a   href="{{memberData?.documentGstCertificate}}"  target="blank" *ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
                         <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
                     </div>
                 </div>
                 <div class="detail">
-                    <h6>Date of Incorporation of the Organization</h6>
-                    <p>{{memberData?.dateOfOrganization}}</p>
+                    <h6>Date of Incorporation of the Company</h6>
+                    <p>{{memberData?.dateOfCompany}}</p>
                 </div>
                 
                 <div class="detail">
-                    <h6>Are you member of SIDM ?</h6>
+                    <h6> Member of SIDM ?</h6>
                     <p >{{memberData?.sidmMember}}</p>
                 </div>
                 <div *ngIf="memberData?.sidmMemberShipNumber" class="detail">
@@ -144,54 +155,39 @@
                     <p>{{memberData?.sidmMemberShipNumber}}</p>
                 </div>
                 <div class="detail">
-                    <h6>Are you member of any other association</h6>
-                    <p>{{memberData?.otherMember}}</p>
+                    <h6> Member of any other association</h6>
+                    <p>{{memberData?.association}}</p>
                 </div>
-                <div *ngIf="memberData?.otherAssociationMemberShipNumber" class="detail">
-                    <h6>Membership number</h6>
-                    <p>{{memberData?.otherAssociationMemberShipNumber}}</p>
-                </div>
-                <div class="detail">
-                    <h6>Are you a registered Vendor of any Defence Organisation such as DPSU/DRDO etc</h6>
-                    <p>{{memberData?.vendorOrganization}}</p>
-                </div>
-                <div class="detail" *ngIf="memberData?.vendorOrganization1">
-                    <h6>Name of the Vendor Organization registered with</h6>
-                    <p >{{memberData?.vendorOrganization1}}</p>
-                </div>
-                <div class="detail" *ngIf="memberData?.vendorOrganization2">
-                    <h6>Name of the Vendor Organization registered with</h6>
-                    <p >{{memberData?.vendorOrganization2}}</p>
-                </div>
-                <div class="detail" *ngIf="memberData?.vendorOrganization3">
-                    <h6>Name of the Vendor Organization registered with</h6>
-                    <p >{{memberData?.vendorOrganization3}}</p>
-                </div>
-                <div class="detail" *ngIf="memberData?.vendorOrganization4">
-                    <h6>Name of the Vendor Organization registered with</h6>
-                    <p >{{memberData?.vendorOrganization4}}</p>
+                <div *ngIf="memberData?.associationName" class="detail">
+                    <h6>Association Name</h6>
+                    <p>{{memberData?.associationName}}</p>
                 </div>
                 <div class="detail">
-                    <h6>Brief About the Company</h6>
-                    <p>{{memberData?.briefCompany}}</p>
+                    <h6>Registered with any Defence Organisation such as DPSU/DRDO etc</h6>
+                    <p>{{memberData?.registeredOrganization}}</p>
                 </div>
+                <div class="detail" *ngFor="let organization of memberData?.nameRegisteredOrganization ">
+                    <h6>Name of the  Organization registered with</h6>
+                    <p >{{organization.name}}</p>
+                </div>
+                
                 <div class="detail">
                     <h6>About the company</h6>
                     <p>{{memberData?.aboutCompany}}</p>
                 </div>
                 <div class="detail">
-                    <h6>Achievements</h6>
-                    <p>{{memberData?.achievementsToJustifyApplication}}</p>
+                    <h6>Achievements being fielded For the SIDM Champion Awards</h6>
+                    <p>{{memberData?.sidmChampionAwards}}</p>
                 </div>
                 <div class="detail">
                     <h6>Have you received any reports of performance / letters of appreciation from customer
                         organization?</h6>
                         <p>{{memberData?.isappreciation}}</p>
                 </div>
-                <div class="detail" *ngIf="memberData?.appreciationDocuments">
+                <div class="detail">
                     <h6> Appreciation Document</h6>
                     <p *ngIf='!memberData?.appreciationDocuments'>you have't upload Appreciation Document </p>
-                    <a  href="{{memberData?.appreciationDocuments}}" download="gst">Appreciation Document</a>
+                    <a *ngIf='memberData?.appreciationDocuments' href="{{memberData?.appreciationDocuments}}" target="blank" download="gst">Appreciation Document</a>
                 </div>
                 <div class="detail">
                     <h6>How does your achievement compare with the other competing options available to the
@@ -199,15 +195,20 @@
                     <p>{{memberData?.campareAchivement}}</p>
                 </div>
                 <div class="detail">
-                    <h6>How, in your opinion, dose this award matter to your company?</h6>
-                    <p>{{memberData?.awardMatterToCompany}}</p>
+                    <h6>Motivation to undertake the development of the Product/Technology/Infrastructure/Exports</h6>
+                    <p>{{memberData?.mudp}}</p>
                 </div>
-                <div class="detail" *ngIf="memberData?.documentsOfProduct">
+                <div class="detail">
                     <h6> Photograph /
                         videos of the products / innovation /
                         facilities, fielded for the awards</h6>
-                    <p *ngIf='!memberData?.documentsOfProduct'>you have't upload Appreciation Document </p>
-                    <a  href="{{memberData?.documentsOfProduct}}" download="gst"> Document</a>
+                    <p *ngIf='!memberData?.exhibit1||!memberData?.exhibit1'>you have't upload  Document </p>
+                    <a *ngIf='memberData?.exhibit1' href="{{memberData?.exhibit1}}" download="exhibit1"> Exhibit 1</a>
+                    <a  *ngIf='memberData?.exhibit2'  href="{{memberData?.exhibit2}}" download="exhibit2"> Exhibit 2</a>
+                </div>
+                <div class="detail" *ngIf="memberData?.productLink">
+                    <h6> Product video Link</h6>
+                    <a  href="{{memberData?.productLink}}" > video Link</a>
                 </div>
                 
             </div>

@@ -620,11 +620,11 @@
                     customer
                     organization?</h5>
                 <div class="mb-3 mt-3">
-                    <input type="radio" formControlName="isappreciation" value="Yes" (click)="changetoggel('isappreciation','Yes')" id="YES">
+                    <input type="radio" formControlName="isappreciation" name="hello" value="Yes" (click)="newChangetoggel('isappreciation','Yes')" id="YES">
                     <label  class="mx-2" for="YES">Yes</label>
         
                   
-                    <input type="radio"  formControlName="isappreciation" (click)="changetoggel('isappreciation','No')" value="No" 
+                    <input type="radio"  formControlName="isappreciation" name="hello" (click)="newChangetoggel('isappreciation','No')" value="No" 
                      id="No">
                     <label class="mx-2" for="No">No</label>
                     <span  style="color: red;" *ngIf="newCategoryForm.get('isappreciation')?.hasError('required')" >

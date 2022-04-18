@@ -70,7 +70,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of allFormsData.forms; let i=
+                            <tr *ngFor="let item of allFormsData?.forms; let i=
                                 index">
                                 <td class="table_content"><span class="font-bold text-theme">{{i+1}}</span></td>
                                 <th scope="row">
@@ -103,13 +103,13 @@
                                 <td scope="row">
                                     <ul class="list-unstyled text-xs">
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">Name:</span>{{item.nameOfOrganisation}}</li>
+                                                text-theme">Name:</span>{{item.nameOfCompany}}</li>
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">Date:</span>{{item.dateOfOrganization}}</li>
+                                                text-theme">Date:</span>{{item.dateOfCompany}}</li>
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">Pan Number:</span>{{item.panNumberOfOrganization}}</li>
+                                                text-theme">Pan Number:</span>{{item.panNumber}}</li>
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">Gst Number:</span>{{item.gstinOfOrganization}}</li>
+                                                text-theme">Gst Number:</span>{{item.gstinOfCompany}}</li>
                                     </ul></td>
                                 <td scope="row">
                                     <ul class="list-unstyled text-xs">
@@ -117,8 +117,8 @@
                                                 text-theme">SIDM
                                                 Membership Number:</span>{{item.sidmMemberShipNumber}}</li>
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">Other Other
-                                                Organisation Membership:</span>{{item.otherAssociationMemberShipNumber}}</li>
+                                                text-theme"> Other Association
+                                                Organisation :</span>{{item.associationName}}</li>
                                     </ul></td>
 
 
