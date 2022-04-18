@@ -101,7 +101,7 @@ export class MemberDashboardComponent implements OnInit {
           mobileNumber: [this.mobilenumber],
           panNumber: [this.pan],
           alterEmail:['',Validators.email],
-          alterMobileNumber:['',[Validators.maxLength(10), CellNumValidation]],
+          alterMobileNumber:['',[Validators.maxLength(10), Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
           gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           documentGstCertificate: [''],
           dateOfCompany: [''],
@@ -311,7 +311,7 @@ export class MemberDashboardComponent implements OnInit {
           campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
           mudp: [this.editData.mudp ? this.editData.mudp : ''],
           productLink: [this.editData.productLink ? this.editData.productLink : ''],
-          alterMobileNumber:[this.editData.alterMobileNumber,[Validators.maxLength(10), CellNumValidation]],
+          alterMobileNumber:[this.editData.alterMobileNumber,[Validators.maxLength(10),  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
           alterEmail:[this.editData.alterEmail,Validators.email],
 
           exhibit1: [''],

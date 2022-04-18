@@ -201,7 +201,7 @@ exports.updateFrom = (req, res, next) => {
   const productLink = req.body.productLink;
   const exhibit1 = req.body.exhibit1;
   const exhibit2 = req.body.exhibit2;
-  const status = req.body.type;
+  const status = req.body.status;
   const alterMobileNumber= req.body.alterMobileNumber;
   const alterEmail= req.body.alterEmail
   RegistrationForm.findById(userID)

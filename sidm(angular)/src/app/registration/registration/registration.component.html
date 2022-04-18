@@ -450,7 +450,7 @@
                                     <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
                                     <input type="text"formControlName='alterMobileNumber'  appBlockCopyPaste (keypress)="keyPressNumbers($event)"
                                    appCpoyPaste maxlength="10">
-                                   <span *ngIf="registrationForm.get('alterMobileNumber')?.hasError('cellNumNotValid')&& (submited || registrationForm.controls['alterMobileNumber'].touched)"
+                                   <span *ngIf="registrationForm.get('alterMobileNumber')?.invalid&& (submited || registrationForm.controls['alterMobileNumber'].touched)"
                                                 style="color: red;">
                                                 please enter  valid Mobile Number
                                             </span>

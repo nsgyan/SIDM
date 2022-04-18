@@ -40,6 +40,7 @@ export class RegistrationComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private httpService: HttpService) {
+      this.localStorage.clearLocalStorage()
     this.getState()
     this.registrationForm = this.formBuilder.group({
       category: ['', Validators.required],
@@ -59,7 +60,7 @@ export class RegistrationComponent implements OnInit {
       alterEmail:['',Validators.email],
       mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
       confirmMobileNumber: ['', Validators.required],
-      alterMobileNumber:['',[Validators.maxLength(10), CellNumValidation]],
+      alterMobileNumber:['',[Validators.maxLength(10), Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       panNumber: ['', [Validators.required, panValidation]],
       confirmPanNumber: ['', [Validators.required]],
       gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
