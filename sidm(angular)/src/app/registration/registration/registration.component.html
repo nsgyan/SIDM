@@ -134,7 +134,7 @@
                                             class="Apply-control-input mt-2
                                             mr-2">
                                         <label class="Apply-control-label font"
-                                            for="ApplyRadio7">S – Small<br>
+                                            for="ApplyRadio7">S – SME/SSI/START-UP<br>
                                             (Annual Turnover FY 2020-21 less
                                             than Rs 75 Crore)
                                         </label>
@@ -156,12 +156,11 @@
                                         <span class="tooltip"><a  title="Click me"> <i class="fa fa-circle"></i></a>
                                             <span class="tooltiptext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</span>
                                           </span> </h5>
-                                    
-                                    <span> Note:- <ul>
+                                      <ul class="mx-5" style="    list-style: disc;">
                                         <li>Company Identification Number (CIN) - Large</li>
                                         <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
                                         <li>DPIIT Certificate -  SME/START-UP</li>
-                                    </ul></span>
+                                    </ul>
                                     <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
                                     <span
                                     *ngIf="registrationForm.get('subCategoryDoccument')?.hasError('required')"
