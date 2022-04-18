@@ -39,7 +39,8 @@ const RegistrationFormSchema = new Schema({
         exhibit2:{ type: String },
         status: { type: String },
         alterMobileNumber:{type:String},
-        alterEmail:{type:String}
+        alterEmail:{type:String,
+            lowercase: true }
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

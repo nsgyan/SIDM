@@ -457,7 +457,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Alternative Email</h5>
-                                    <input type="text"formControlName='alterEmail'  appBlockCopyPaste 
+                                    <input type="text"formControlName='alterEmail' appLowercase  appBlockCopyPaste 
                                    appCpoyPaste >
                                    <span *ngIf="registrationForm.get('alterEmail')?.hasError('email')&& (submited || registrationForm.controls['alterEmail'].touched)"
                                                 style="color: red;">
