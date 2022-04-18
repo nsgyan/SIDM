@@ -33,4 +33,13 @@ select {
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+  }
+  .marathon-header-fixed.header-top.header-scroll {
+    background: #363a7a;
+    top: -142px;
+  }
   
