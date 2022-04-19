@@ -659,7 +659,12 @@ export class RegistrationComponent implements OnInit {
 
     if (conttrolName === 'registeredOrganization' && value == 'Yes') {
       this.registeredOrganization = true
+      
+      let control = <FormArray>this.registrationForm.get('nameRegisteredOrganization');
+    if (control.length<1) {
       this.addRegisteredOrganization()
+      }
+    
       this.registrationForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
       this.registrationForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
 

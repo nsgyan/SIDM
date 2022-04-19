@@ -437,6 +437,11 @@ export class MemberDashboardComponent implements OnInit {
 
     if (conttrolName === 'registeredOrganization' && value == 'Yes') {
       this.registeredOrganization = true
+      let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
+      if (control.length<1) {
+        this.addRegisteredOrganization()
+        }
+      
       this.editForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
 
       this.editForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
@@ -1091,8 +1096,12 @@ export class MemberDashboardComponent implements OnInit {
     if (conttrolName === 'registeredOrganization' && value == 'Yes') {
       this.registeredOrganization = true
       this.newCategoryForm.get('nameRegisteredOrganization')?.setValidators(Validators.required)
-      this.newAddRegisteredOrganization()
+      let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
+      if (control.length<1) {
+        this.newAddRegisteredOrganization()
 
+        }
+     
       this.newCategoryForm.get('nameRegisteredOrganization')?.updateValueAndValidity()
 
     }
