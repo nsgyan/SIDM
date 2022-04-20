@@ -3,8 +3,8 @@
 <section class="registrationForm">
     <div class="maintitle mt-5">
         <div class="container">
-            <p class="font-weight-bold">Please read the brochure carefully before applying. <a href="#"
-                    class="brochure" target="blanck">Click Here</a>
+            <p class="font-weight-bold">Already have an account? <a (click)="registerdUser()"
+                    class="brochure" target="blanck"> Login Here</a>
             </p>
             <!-- <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p> -->
             <div class="mt-4 mb-4"></div>
@@ -27,7 +27,7 @@
 
                             </div>
                             <h5 class="mb-3 mt-3">Please choose the Category
-                                that you wish to Apply for</h5>
+                                that you wish to Apply for*</h5>
                             <div class="">
                                 <div class="checkgroup">
                                     <div class="radioBox Apply-control
@@ -149,7 +149,7 @@
                             </div>
                             <div class="row" >
                                 <div class="col-lg-12">
-                                    <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected
+                                    <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected*
                                          </h5>
                                       <ul class="mx-3" style="    list-style: disc;">
                                         <li class="categoryList">Company Identification Number (CIN) - Large</li>
@@ -168,7 +168,7 @@
                             </div>
                             <div class="row" >
                                 <div class="col-lg-12">
-                                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 </h5>
+                                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 *</h5>
                                     <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="gstpdfOnly($event,'financialDoccument')" >
                                     <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                     
@@ -187,7 +187,7 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h5 class="mt-4 mb-3">Name of the Company</h5>
+                                    <h5 class="mt-4 mb-3">Name of the Company*</h5>
                                     <input formControlName="nameOfCompany"
                                         type="text">
                                         
@@ -533,7 +533,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">GSTIN of the
-                                        Company</h5>
+                                        Company*</h5>
                                     <input appUpperCase formControlName="gstinOfCompany"
                                         type="text" maxlength="16">
                                         <p
@@ -550,7 +550,7 @@
                                         
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-3">Upload GSTIN Certificate
+                                    <h5 class="mt-3 mb-3">Upload GSTIN Certificate*
                                         </h5>
                                     <input
                                         formControlName="documentGstCertificate"
@@ -567,7 +567,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Date of Incorporation
-                                        of the Company</h5>
+                                        of the Company*</h5>
                                     <!-- <input formControlName="dateOfOrganization"
                                         type="date"> -->
                                         <input type="date" formControlName="dateOfCompany"   value="yyyy-mm-dd" class="input-medium search-query" (keypress)="pickclender()">
@@ -585,7 +585,7 @@
 
                         <!-- **********************form part 2************************************************************************ -->
                         <div class="formPart_2">
-                            <h5 class="mt-3 mb-3">Are you member of SIDM ?</h5>
+                            <h5 class="mt-3 mb-3">Are you member of SIDM ?*</h5>
                             <div class="container">
                                 <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
                                     role="tablist"> -->
@@ -621,7 +621,7 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <p class="mt-2 mb-3">Provide the
-                                                    membership number </p>
+                                                    membership number* </p>
                                                 <input
                                                     formControlName="sidmMemberShipNumber"
                                                     type="text">
@@ -641,7 +641,7 @@
                                 </div>
                             
                                         </div>
-                            <h5 class="mt-5 mb-3">Are you Member of any other Association ?</h5>
+                            <h5 class="mt-5 mb-3">Are you Member of any other Association ?*</h5>
                             <div class="container">
                                 <input type="radio" formControlName="association" name="association" value="Yes" (click)="changetoggel('association','Yes')" id="YES">
                                 <label  class="mx-2" for="YES">Yes</label>
@@ -659,7 +659,7 @@
                                             <div class="col-lg-6">
                                                 <p class="mt-2 mb-3">Enter the
                                                     name(s) of the associations
-                                                    separated by comma</p>
+                                                    separated by comma*</p>
                                                 <input
                                                     formControlName="associationName"
                                                     type="text">
@@ -696,7 +696,7 @@
                                     <div *ngIf="registeredOrganization">
                                         
                                                 <div class="col-lg-6" formArrayName="nameRegisteredOrganization">
-                                                    <h6 class="mb-2">Name of the Organization registered with</h6>
+                                                    <h6 class="mb-2">Name of the Organization registered with*</h6>
                                                     <div class="full-width" cellspacing="0">
                                                         <div *ngFor=" let controlName of nameRegisteredOrganization.controls; let i = index" 
                                                         [formGroupName]="i">
@@ -728,7 +728,7 @@
                                     </div>
                                     
                                 </div>
-                                <h5 class="mt-5 mb-4">About the company</h5>
+                                <h5 class="mt-5 mb-4">About the company*</h5>
                                 <div class="">
                                     <textarea formControlName="aboutCompany"
                                         class="form-control mb-3" aria-label="With
@@ -741,7 +741,7 @@
                                 </div>
 
                                 <h5 class="mt-5 mb-4">
-                                    Specific Achievement being fielded for the SIDM Champion Awards (50 Wrods)
+                                    Specific Achievement being fielded for the SIDM Champion Awards (50 Wrods)*
                                 </h5>
                                 <div class="">
                                     <textarea formControlName="sidmChampionAwards"
@@ -757,7 +757,7 @@
                                     performance / letters of appreciation
                                     from
                                     customer
-                                    organization?</h5>
+                                    organization?*</h5>
                                 <div class="mb-3 mt-3">
                                     <input type="radio" formControlName="isappreciation" value="Yes" (click)="changetoggel('isappreciation','Yes')" id="YES">
                                     <label  class="mx-2" for="YES">Yes</label>
@@ -772,7 +772,7 @@
                                     <div class="tab-content" id="pills-tabContent">
                                         <div *ngIf="isappreciation">
                                             <div class="form-group">
-                                                <h5 for="">Upload documents</h5>
+                                                <h5 for="">Upload documents*</h5>
                                                 <input
                                                     formControlName="appreciationDocuments"
                                                     type="file"
@@ -801,7 +801,7 @@
                                 </div>
                                 <h5 class="mt-5 mb-4">How does your achievement
                                     compare with the other competing options
-                                    available to the customer?</h5>
+                                    available to the customer?*</h5>
                                 <div class="">
                                     <textarea formControlName="campareAchivement"
                                         class="form-control mb-5" aria-label="With
@@ -815,7 +815,7 @@
                                 </div>
                      
                             
-                            <h5 class="mt-5 mb-4">What was the motivation to undertake the development of the Product/Technology/Infrastructure/Exports?</h5>
+                            <h5 class="mt-5 mb-4">What was the motivation to undertake the development of the Product/Technology/Infrastructure/Exports?*</h5>
                             <div class="">
                                 <textarea formControlName="mudp"
                                     class="form-control mb-5" aria-label="With
@@ -828,9 +828,9 @@
                             </div>
                             <h5 class="mt-5 mb-4">Please upload Photograph /
                                 videos of the products / innovation /
-                                facilities, fielded for the awards</h5>
+                                facilities, fielded for the awards*</h5>
                             <div class="">
-                                <h5>Exhibit 1 </h5>
+                                <h5>Exhibit 1* </h5>
                                 <input formControlName="exhibit1"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -846,7 +846,7 @@
                                     Exhibit 1  <strong>Required</strong> 
                                 </p>
                                     <br>
-                                    <h5>Exhibit 2</h5>
+                                    <h5>Exhibit 2*</h5>
                                     <input formControlName="exhibit2"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -861,7 +861,7 @@
                                     Exhibit 2  <strong>Required</strong> 
                                 </p>
                                     <br>
-                                    <h5>Product video link (Optiona)</h5>
+                                    <h5>Product video link (Optional)</h5>
                                     <input type="text" formControlName="productLink">
                                 
                             </div>
