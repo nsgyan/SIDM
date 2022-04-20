@@ -3,22 +3,19 @@
 <section class="registrationForm">
     <div class="maintitle mt-5">
         <div class="container">
-            <p class="font-weight-bold">Please read the brochure carefully
-                before applying.
-                <a href="https://troology.in/demo/sidm/assets/img/New_img/SIDM-brochure-2022.pdf"
+            <p class="font-weight-bold">Please read the brochure carefully before applying. <a href="#"
                     class="brochure" target="blanck">Click Here</a>
             </p>
-            <p class="font-weight-bold">All <span class="mandatory">*</span>
-                marked fields are mandatory</p>
-            <div class="bb mt-4 mb-4"></div>
+            <!-- <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p> -->
+            <div class="mt-4 mb-4"></div>
         </div>
     </div>
 
     <div class="formBody">
         <div class="container">
-            <button class="NewBtn mb-5" (click)="registerdUser()">
+            <!-- <button class="NewBtn mb-5" (click)="registerdUser()">
                 Registered User
-            </button>
+            </button> -->
 
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="ApplyOnline"
@@ -85,11 +82,11 @@
                                     <div
                                     *ngIf="registrationForm.controls['category'].invalid && (submited || registrationForm.controls['category'].touched) ">
                                     <br>
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('category')?.hasError('required')"
                                             style="color: red;">
                                            Category <strong>required</strong>
-                                        </span>
+                                        </p>
                                     </div>
                                     </div>
                         
@@ -140,11 +137,11 @@
                                         </label>
                                     </div>
                                    <br>
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('typeOfApplicant')?.hasError('required')"
                                             style="color: red;">
                                             Type Of Applicant <strong>required</strong>
-                                        </span>
+                                        </p>
                                     
                                   
 
@@ -153,32 +150,35 @@
                             <div class="row" >
                                 <div class="col-lg-12">
                                     <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected
-                                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a> </h5>
+                                         </h5>
                                       <ul class="mx-5" style="    list-style: disc;">
                                         <li>Company Identification Number (CIN) - Large</li>
                                         <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
                                         <li>DPIIT Certificate -  SME/START-UP</li>
                                     </ul>
                                     <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
-                                    <span
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                    <p
                                     *ngIf="registrationForm.get('subCategoryDoccument')?.hasError('required')"
                                     style="color: red;">
                                     sub category Documents <strong>required</strong>
-                                </span>
+                                </p>
 
                                 </div> 
                             </div>
                             <div class="row" >
                                 <div class="col-lg-12">
-                                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 <a style="border: none;" title="File should be in pdf. Pdf size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 </h5>
                                     <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="gstpdfOnly($event,'financialDoccument')" >
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                    
                                     <br>
                                         
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('financialDoccument')?.hasError('required')"
                                         style="color: red;">
                                         financial Documents <strong>required</strong>
-                                    </span>
+                                    </p>
     
                                         
 
@@ -191,12 +191,12 @@
                                     <input formControlName="nameOfCompany"
                                         type="text">
                                         
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('nameOfCompany')?.hasError('required')"
                                             style="color: red;">
                                            
                                             Company Name <strong>required</strong>
-                                        </span>
+                                        </p>
                                    
                                         
                                 </div>
@@ -213,11 +213,11 @@
                                         type="text">
                                         
                                   
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('addressl1')?.hasError('required')"
                                             style="color: red;">
                                             Address Line 1 <strong>required</strong>
-                                        </span>
+                                        </p>
                                    
                                 </div>
                                 <div class="col-lg-6">
@@ -236,11 +236,11 @@
                                             value="{{item.state}}">{{item.state}}</option>
                                     </select>
                                 
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('state')?.hasError('required')"
                                             style="color: red;">
                                             State <strong>required</strong>
-                                        </span>
+                                        </p>
                                     
                                 </div>
                                 <div class="col-lg-6">
@@ -248,11 +248,11 @@
                                     <input formControlName="city"
                                         (keypress)="keyPresschar($event)"
                                         type="text">
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('city')?.hasError('required')"
                                             style="color: red;">
                                             City <strong>required</strong>
-                                        </span>
+                                        </p>
                                    
                                 </div>
                             </div>
@@ -263,17 +263,17 @@
                                         (keypress)="keyPressNumbers($event)"
                                         type="text" maxlength="6">
                                     <div> 
-                                            <span
+                                            <p
                                                 *ngIf="registrationForm.get('pincode')?.hasError('required')"
                                                 style="color: red;">
                                                 Pincode <strong>required</strong>
-                                            </span>
-                                            <span style="color: red;"
+                                            </p>
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('pincode')?.invalid
                                                 &&
                                                 !registrationForm.get('pincode')?.hasError('required')">
                                                 Please enter a valid pincode
-                                            </span>
+                                            </p>
                                         
                                     </div>
                                 </div>
@@ -285,22 +285,22 @@
                                     <div *ngIf="registrationForm.controls['name'].invalid
                                         &&
                                         (submited ||registrationForm.controls['name'].touched)">
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('name')?.hasError('required')"
                                             style="color: red;">
                                             Contact Person Name <strong>required</strong>
-                                        </span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Designation*</h5>
                                     <input (keypress)="keyPresschar($event)" formControlName="designation"
                                         type="text">
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('designation')?.hasError('required')"
                                         style="color: red;">
                                         Designation  <strong>required</strong>
-                                    </span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -313,23 +313,23 @@
                                         registrationForm.controls['email'].invalid&& (submited
                                         ||
                                         registrationForm.controls['email'].touched)">
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('email')?.hasError('required')"
                                             style="color: red;">
                                             E-Mail Address <strong>required</strong>
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                             *ngIf="registrationForm.get('email')?.hasError('email')
                                             &&
                                             !registrationForm.get('email')?.hasError('required')">
                                             Please enter a valid E-Mail Address
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                         *ngIf="registrationForm.get('email')?.hasError('isExist')
                                         &&
                                         !registrationForm.get('email')?.hasError('required')&&!registrationForm.get('email')?.hasError('email')">
                                         E-Mail Address already exists 
-                                    </span>
+                                    </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -346,27 +346,27 @@
                                         ||
                                         registrationForm.controls['confirmEmail'].touched))">
                                        
-                                            <span
+                                            <p
                                                 *ngIf="registrationForm.get('confirmEmail')?.hasError('required')"
                                                 style="color: red;">
                                                 please re-enter  E-Mail Address 
-                                            </span>
-                                            <span style="color: red;"
+                                            </p>
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('confirmEmail')?.hasError('email')
                                                 &&
                                                 !registrationForm.get('confirmEmail')?.hasError('required')">
                                                 Please enter a valid E-Mail
                                                 Address
-                                            </span>
+                                            </p>
                                             
-                                            <span style="color: red;"
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('confirmEmail')?.hasError('confirmEmail')
                                                 &&
                                                 !registrationForm.get('confirmEmail')?.hasError('required')&&
                                                 !registrationForm.get('confirmEmail')?.hasError('email')">
                                                 Email
                                                 address mismatch 
-                                            </span>
+                                            </p>
                                         
                                     </div>
                                 </div>
@@ -381,29 +381,29 @@
                                     <div *ngIf="registrationForm.controls['mobileNumber'].invalid
                                         &&(submited||
                                         registrationForm.controls['mobileNumber'].touched)">
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('mobileNumber')?.hasError('required')"
                                             style="color: red;">
                                             Mobile Number <strong>required</strong>
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                             *ngIf="registrationForm.get('mobileNumber')?.hasError('cellNumNotValid')
                                             &&
                                             !registrationForm.get('mobileNumber')?.hasError('required')">
                                             Please enter a valid mobile number
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                             *ngIf="registrationForm.get('mobileNumber')?.invalid
                                             &&(
                                             !registrationForm.get('mobileNumber')?.hasError('required') && !registrationForm.get('mobileNumber')?.hasError('cellNumNotValid')&&!registrationForm.get('mobileNumber')?.hasError('isExist'))">
                                             Mobile Number should be 10 digit  long
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                             *ngIf="registrationForm.get('mobileNumber')?.hasError('isExist')
                                             &&
                                             !registrationForm.get('mobileNumber')?.hasError('required')&& !registrationForm.get('mobileNumber')?.hasError('cellNumNotValid')">
                                             Mobile number already exists 
-                                        </span>
+                                        </p>
 
                                     </div>
                                 </div>
@@ -420,25 +420,25 @@
                                         (submited
                                         ||
                                         registrationForm.controls['confirmMobileNumber'].touched)">
-                                            <span
+                                            <p
                                                 *ngIf="registrationForm.get('confirmMobileNumber')?.hasError('required')"
                                                 style="color: red;">
                                                 please re-enter  mobile number
-                                            </span>
-                                            <span style="color: red;"
+                                            </p>
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('confirmMobileNumber')?.hasError('cellNumNotValid')
                                                 &&
                                                 !registrationForm.get('confirmMobileNumber')?.hasError('required')">
                                                 Please enter a valid mobile
                                                 number
-                                            </span>
-                                            <span style="color: red;"
+                                            </p>
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('confirmMobileNumber')?.hasError('confirmMobileNumber')
                                                 &&
                                                 !registrationForm.get('confirmMobileNumber')?.hasError('required')&&
                                                 !registrationForm.get('confirmMobileNumber')?.hasError('cellNumNotValid')">
                                                 Mobile number mismatch 
-                                            </span>
+                                            </p>
                                     </div>
                                 </div>
                             </div>
@@ -447,19 +447,19 @@
                                     <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
                                     <input type="text"formControlName='alterMobileNumber'  appBlockCopyPaste (keypress)="keyPressNumbers($event)"
                                    appCpoyPaste maxlength="10">
-                                   <span *ngIf="registrationForm.get('alterMobileNumber')?.invalid&& (submited || registrationForm.controls['alterMobileNumber'].touched)"
+                                   <p *ngIf="registrationForm.get('alterMobileNumber')?.invalid&& (submited || registrationForm.controls['alterMobileNumber'].touched)"
                                                 style="color: red;">
                                                 please enter  valid Mobile Number
-                                            </span>
+                                            </p>
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Alternative Email</h5>
                                     <input type="text"formControlName='alterEmail' appLowercase  appBlockCopyPaste 
                                    appCpoyPaste >
-                                   <span *ngIf="registrationForm.get('alterEmail')?.hasError('email')&& (submited || registrationForm.controls['alterEmail'].touched)"
+                                   <p *ngIf="registrationForm.get('alterEmail')?.hasError('email')&& (submited || registrationForm.controls['alterEmail'].touched)"
                                                 style="color: red;">
                                                 please enter  valid Email
-                                            </span>
+                                            </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -473,23 +473,23 @@
                                     <div *ngIf="registrationForm.controls['panNumber'].invalid
                                         &&
                                        (submited|| registrationForm.controls['panNumber'].touched)">
-                                        <span
+                                        <p
                                             *ngIf="registrationForm.get('panNumber')?.hasError('required')"
                                             style="color: red;">
                                             PAN  number <strong>required</strong>
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                             *ngIf="registrationForm.get('panNumber')?.hasError('panValidation')
                                             &&
                                             !registrationForm.get('panNumber')?.hasError('required')">
                                             Please enter a valid Pan number
-                                        </span>
-                                        <span style="color: red;"
+                                        </p>
+                                        <p style="color: red;"
                                             *ngIf="registrationForm.get('panNumber')?.hasError('isExist')
                                             &&
                                             !registrationForm.get('panNumber')?.hasError('required') && ! registrationForm.get('panNumber')?.hasError('panValidation')">
                                             Pan number already exists 
-                                        </span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -507,25 +507,25 @@
                                         ||
                                         registrationForm.controls['confirmPanNumber'].touched)">
                                        
-                                            <span
+                                            <p
                                                 *ngIf="registrationForm.get('confirmPanNumber')?.hasError('required')"
                                                 style="color: red;">
                                                 please re-enter  your PAN Number
-                                            </span>
-                                            <span style="color: red;"
+                                            </p>
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('confirmPanNumber')?.hasError('panValidation')
                                                 &&
                                                 !registrationForm.get('confirmPanNumber')?.hasError('required')">
                                                 Please enter a valid Pan number
-                                            </span>
-                                            <span style="color: red;"
+                                            </p>
+                                            <p style="color: red;"
                                                 *ngIf="registrationForm.get('confirmPanNumber')?.hasError('confirmPanNumber')
                                                 &&
                                                 !registrationForm.get('confirmPanNumber')?.hasError('required')
                                                 &&
                                                 !registrationForm.get('confirmPanNumber')?.hasError('panValidation')">
                                                 Pan number mismatch 
-                                            </span>
+                                            </p>
                                         
                                     </div>
                                 </div>
@@ -536,33 +536,34 @@
                                         Company</h5>
                                     <input appUpperCase formControlName="gstinOfCompany"
                                         type="text" maxlength="16">
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('gstinOfCompany')?.hasError('required')"
                                         style="color: red;">
                                         GSTIN of the
                                         Company <strong>required</strong>
-                                    </span>
-                                        <span style="color: red;"
+                                    </p>
+                                        <p style="color: red;"
                                         *ngIf="registrationForm.get('gstinOfCompany')?.invalid && !registrationForm.get('gstinOfCompany')?.hasError('required')">
                                        Invalid GST
-                                    </span>
+                                    </p>
                                         
                                         
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Upload GSTIN Certificate
-                                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                        </h5>
                                     <input
                                         formControlName="documentGstCertificate"
                                         type="file"
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="changeListener($event,'documentGstCertificate')">
+                                        <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                         <br>
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('documentGstCertificate')?.hasError('required')"
                                         style="color: red;">
                                         GSTIN Certificate Documents <strong>required</strong>
-                                    </span>
+                                    </p>
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Date of Incorporation
@@ -570,11 +571,11 @@
                                     <!-- <input formControlName="dateOfOrganization"
                                         type="date"> -->
                                         <input type="date" formControlName="dateOfCompany"   value="yyyy-mm-dd" class="input-medium search-query" (keypress)="pickclender()">
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('dateOfCompany')?.hasError('required')"
                                         style="color: red;">
                                         Date of Incorporation <strong>required</strong>
-                                    </span>
+                                    </p>
                                         
                                 </div>
                             </div>
@@ -597,9 +598,9 @@
                                          id="No">
                                         <label class="mx-2" for="No">No</label>
 
-                                        <span  style="color: red;" *ngIf="registrationForm.get('sidmMember')?.hasError('required')" >
+                                        <p  style="color: red;" *ngIf="registrationForm.get('sidmMember')?.hasError('required')" >
                                           please select Yes or No
-                                        </span>
+                                        </p>
                                       
                                 <!-- </ul>
                                     <li class="nav-item">
@@ -627,9 +628,9 @@
                                                     <div *ngIf="registrationForm.controls['sidmMemberShipNumber'].invalid
                                                     &&
                                                     (submited  ||registrationForm.controls['sidmMemberShipNumber'].touched)">
-                                                    <span  style="color: red;" *ngIf="registrationForm.get('sidmMemberShipNumber')?.hasError('required')" >
+                                                    <p  style="color: red;" *ngIf="registrationForm.get('sidmMemberShipNumber')?.hasError('required')" >
                                                         membership number required
-                                                    </span>
+                                                    </p>
                                                     </div>
                                             </div>
                                         </div>
@@ -649,9 +650,9 @@
                                 <input type="radio"  formControlName="association"  name="association" (click)="changetoggel('association','No')" value="No" 
                                  id="No">
                                 <label class="mx-2" for="No">No</label>
-                                <span  style="color: red;" *ngIf="registrationForm.get('association')?.hasError('required')" >
+                                <p  style="color: red;" *ngIf="registrationForm.get('association')?.hasError('required')" >
                                     please select Yes or No
-                                  </span>
+                                  </p>
                                 <div class="tab-content" id="pills-tabContent">
                                     <div *ngIf="association">
                                         <div class="row">
@@ -665,9 +666,9 @@
                                                     <div *ngIf="registrationForm.controls['associationName'].invalid
                                                     &&
                                                     (submited ||registrationForm.controls['associationName'].touched)">
-                                                    <span  style="color: red;" *ngIf="registrationForm.get('associationName')?.hasError('required')" >
+                                                    <p  style="color: red;" *ngIf="registrationForm.get('associationName')?.hasError('required')" >
                                                         Associations Name required
-                                                    </span>
+                                                    </p>
                                                     </div>
                                             </div>
                                         </div>
@@ -686,9 +687,9 @@
                                 <input type="radio"  formControlName="registeredOrganization" (click)="changetoggel('registeredOrganization','No')" value="No" 
                                  id="No">
                                 <label class="mx-2" for="No">No</label>
-                                <span  style="color: red;" *ngIf="registrationForm.get('registeredOrganization')?.hasError('required')" >
+                                <p  style="color: red;" *ngIf="registrationForm.get('registeredOrganization')?.hasError('required')" >
                                     please select Yes or No
-                                  </span>
+                                  </p>
                                 
                
                                 <div class="tab-content" id="pills-tabContent">
@@ -709,9 +710,9 @@
                                                               (submited
                                                               ||
                                                               registrationForm.controls['nameRegisteredOrganization'].touched)">
-                                                              <span  style="color: red;" *ngIf="controlName.get('name')?.hasError('required')">
+                                                              <p  style="color: red;" *ngIf="controlName.get('name')?.hasError('required')">
                                                       Registered Organization Name is required
-                                                              </span>
+                                                              </p>
                                                               </div>
                                                               
                                                               <!-- <button *ngIf='i!==0' (click)="removeRegisteredOrganization(i)">Remove Registered  Organization</button>
@@ -732,11 +733,11 @@
                                     <textarea formControlName="aboutCompany"
                                         class="form-control mb-3" aria-label="With
                                         textarea" maxlength="150"></textarea>
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('aboutCompany')?.hasError('required')"
                                         style="color: red;">
                                         About Company <strong>required</strong>
-                                    </span>
+                                    </p>
                                 </div>
 
                                 <h5 class="mt-5 mb-4">
@@ -746,11 +747,11 @@
                                     <textarea formControlName="sidmChampionAwards"
                                         class="form-control mb-3" aria-label="With
                                         textarea" maxlength="50"></textarea>
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('sidmChampionAwards')?.hasError('required')"
                                         style="color: red;">
                                         SIDM Champion Awards  <strong>Required</strong> 
-                                    </span>
+                                    </p>
                                 </div>
                                 <h5 class="mt-5">Have you received any reports of
                                     performance / letters of appreciation
@@ -765,13 +766,13 @@
                                     <input type="radio"  formControlName="isappreciation" (click)="changetoggel('isappreciation','No')" value="No" 
                                      id="No">
                                     <label class="mx-2" for="No">No</label>
-                                    <span  style="color: red;" *ngIf="registrationForm.get('isappreciation')?.hasError('required')" >
+                                    <p  style="color: red;" *ngIf="registrationForm.get('isappreciation')?.hasError('required')" >
                                         please select Yes or No
-                                      </span>
+                                      </p>
                                     <div class="tab-content" id="pills-tabContent">
                                         <div *ngIf="isappreciation">
                                             <div class="form-group">
-                                                <h5 for="">Upload documents <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                                <h5 for="">Upload documents</h5>
                                                 <input
                                                     formControlName="appreciationDocuments"
                                                     type="file"
@@ -783,9 +784,10 @@
                                                     <div *ngIf="registrationForm.controls['appreciationDocuments'].invalid
                                                         &&
                                                         (submited ||registrationForm.controls['appreciationDocuments'].touched)">
-                                                    <span  style="color: red;" *ngIf="registrationForm.get('appreciationDocuments')?.hasError('required')" >
+                                                        <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                                    <p  style="color: red;" *ngIf="registrationForm.get('appreciationDocuments')?.hasError('required')" >
                                                         documents  required
-                                                    </span>
+                                                    </p>
                                                     </div>
                                                     
                                                     <br>
@@ -804,12 +806,12 @@
                                     <textarea formControlName="campareAchivement"
                                         class="form-control mb-5" aria-label="With
                                         textarea"  maxlength="150"></textarea>
-                                        <span
+                                        <p
                                         *ngIf="registrationForm.get('campareAchivement')?.hasError('required')"
                                         style="color: red;">
                                         your achievement
                                     compare   <strong>Required</strong> 
-                                    </span>
+                                    </p>
                                 </div>
                      
                             
@@ -818,17 +820,17 @@
                                 <textarea formControlName="mudp"
                                     class="form-control mb-5" aria-label="With
                                     textarea" maxlength="150"></textarea>
-                                    <span
+                                    <p
                                     *ngIf="registrationForm.get('mudp')?.hasError('required')"
                                     style="color: red;">
                                    please fill the input field
-                                </span>
+                                </p>
                             </div>
                             <h5 class="mt-5 mb-4">Please upload Photograph /
                                 videos of the products / innovation /
                                 facilities, fielded for the awards</h5>
                             <div class="">
-                                <h5>Exhibit 1 <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                <h5>Exhibit 1 </h5>
                                 <input formControlName="exhibit1"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -836,13 +838,15 @@
                                     class="border-light mb-4" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
-                                    <span
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                    
+                                    <p
                                     *ngIf="registrationForm.get('exhibit1')?.hasError('required')"
                                     style="color: red;">
                                     Exhibit 1  <strong>Required</strong> 
-                                </span>
+                                </p>
                                     <br>
-                                    <h5>Exhibit 2<a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                    <h5>Exhibit 2</h5>
                                     <input formControlName="exhibit2"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -850,11 +854,12 @@
                                     class="border-light mb-4" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
-                                    <span
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                    <p
                                     *ngIf="registrationForm.get('exhibit2')?.hasError('required')"
                                     style="color: red;">
                                     Exhibit 2  <strong>Required</strong> 
-                                </span>
+                                </p>
                                     <br>
                                     <h5>Product video link (Optiona)</h5>
                                     <input type="text" formControlName="productLink">
@@ -876,10 +881,10 @@
                         <div class="row">
                             <div class="col-lg-12 mt-5 mb-5 text-center">
                                 <button type="submit" class="NewBtn mx-2"
-                                    (click)="finalSubmit('submit')"><span>Submit</span></button>
+                                    (click)="finalSubmit('submit')">Submit</button>
                                 <button class="save-btn" target="blanck"
-                                    (click)="savedraft('Draft')"><span>Save
-                                        Draft</span></button>
+                                    (click)="savedraft('Draft')">Save
+                                        Draft</button>
                             </div>
                         </div>
                     </div>

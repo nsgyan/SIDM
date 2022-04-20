@@ -1,4 +1,6 @@
-
+a {
+    cursor: pointer;
+}
 /* **************************************index-table css start************************* */
 .Application_Table table{
     width: 100%;
@@ -401,7 +403,7 @@ footer h5 {
     padding: 12px;
     margin-right: 10px;
     border-radius: 3px;
-    background: #f0f5db;
+    background: #363a7a14;
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #fff;
@@ -435,11 +437,11 @@ footer h5 {
     box-shadow: 0px 0px 20px rgb(27 49 168 / 10%);
     background-color: transparent;
     background: #fff;
-    border: 1px solid #4c5d34;
-    color: #4c5d35;
+    border: 1px solid #363a7a;
+    color: #363a7a;
 }
 .to-top {
-    background-color: #4c5d34;
+    background-color: #363a7a;
 }
 .footer-email .fa-envelope,.fa-home,.fa-phone-alt {
     color: #5b7842;
@@ -818,16 +820,19 @@ footer h5 {
     color: #fff;
 }
 .NewBtn {
-    background: #4C5D34;
+    background: #363a7a;
     padding: 10px 20px;
     border: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
     border-radius: 3px;
     color: #fff;
     cursor: pointer;
 }
 .NewBtn:hover {
-    color: #fff;
-    background: #5B7842;
+    color: #363a7a;
+    background: #fded00;
     text-decoration: none;
 }
 .marathon-header-fixed.header-top.header-scroll {
@@ -884,7 +889,9 @@ footer h5 {
     font-weight: 400;
 }
 .page-title:before {
-    background: linear-gradient(#4C5D34, #5B7842);
+    background: url(../img/New_img/Group251.png) right bottom no-repeat;
+    background-size: cover;
+    border-top: 5px solid #feed00;
 }
 .nav-list > li > a:after {
     top: -5px;
@@ -894,7 +901,7 @@ footer h5 {
     border-top: none;
 }
 .brochure {
-    color: #4C5D34;
+    color: #363a7a;
     text-decoration: underline;
 }
 .input[type="text"], input[type="tel"], input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="date"], textarea {

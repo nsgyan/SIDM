@@ -1,3 +1,4 @@
+<!-- ================= HEADER ================= -->
 <header class="marathon-header-fixed header-fixed">
     <a href="javascript:void(0)" class="nav-btn">
         <span></span>
@@ -6,8 +7,14 @@
     </a>
     <div class="top-panel">
         <div class="container">
-            <a href="javascript:void(0)" class="logo"><img src="assets/img/New_img/logo.png" alt="logo"></a>
-            <!-- <a href="registration.html" class="NewBtn"><span>Registration</span></a> -->
+            <a href="javascript:void(0)" class="logo2"><img src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo"
+                style="width: 75px;"></a>
+        <a href="javascript:void(0)" class="logo1"><img src="assets/img/New_img/logo.png" alt="logo"
+                style="width: 150px;"></a>
+
+        <a href="javascript:void(0)" class="logo3"><img
+                src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
+                style="width: 100px;"></a>
         </div>
     </div>
     <!-- <div class="header-nav">
@@ -69,14 +76,14 @@
                 </div>
                 <div class="detail">
                     <h6>Document as sub Category Setected</h6>
-                    <p *ngIf='!memberData?.subCategoryDoccument'>you have't upload sub Category Document </p>
-                    <a href="{{memberData?.subCategoryDoccument}}" target="blank" *ngIf='memberData?.subCategoryDoccument' download="subCategory">Sub Category Document</a>
+                    <p  *ngIf='!memberData?.subCategoryDoccument'>you have't upload sub Category Document </p>
+                    <a class="ml-2" href="{{memberData?.subCategoryDoccument}}" target="blank" *ngIf='memberData?.subCategoryDoccument' download="subCategory">Sub Category Document</a>
                    
                 </div>
                 <div class="detail">
                     <h6>Last Financial Balance sheet </h6>
-                    <p *ngIf='!memberData?.financialDoccument'>you have't upload sub Category Document </p>
-                    <a *ngIf='memberData?.financialDoccument' href="{{memberData?.financialDoccument}}" target="blank" download="financialBalanceSheet">Financial Balance sheet Document</a>
+                    <p  *ngIf='!memberData?.financialDoccument'>you have't upload sub Category Document </p>
+                    <a class="ml-2" *ngIf='memberData?.financialDoccument' href="{{memberData?.financialDoccument}}" target="blank" download="financialBalanceSheet">Financial Balance sheet Document</a>
                 </div>
                 <div class="detail">
                     <h6>Name of the Company</h6>
@@ -143,7 +150,7 @@
 
                         </a> -->
                         <p *ngIf='!memberData?.documentGstCertificate'>you have't upload  GST Certificate Document </p>
-                        <a   href="{{memberData?.documentGstCertificate}}"  target="blank" *ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
+                        <a class="ml-2"  href="{{memberData?.documentGstCertificate}}"  target="blank" *ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
                         <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
@@ -211,12 +218,12 @@
                         videos of the products / innovation /
                         facilities, fielded for the awards</h6>
                     <p *ngIf='!memberData?.exhibit1||!memberData?.exhibit1'>you have't upload  Document </p>
-                    <a *ngIf='memberData?.exhibit1' href="{{memberData?.exhibit1}}" download="exhibit1"> Exhibit 1</a>
-                    <a  *ngIf='memberData?.exhibit2'  href="{{memberData?.exhibit2}}" download="exhibit2"> Exhibit 2</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit1' href="{{memberData?.exhibit1}}" download="exhibit1"> Exhibit 1</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit2'  href="{{memberData?.exhibit2}}" download="exhibit2"> Exhibit 2</a>
                 </div>
                 <div class="detail" *ngIf="memberData?.productLink">
                     <h6> Product video Link</h6>
-                    <a  href="{{memberData?.productLink}}" > video Link</a>
+                    <a class="ml-2" href="{{memberData?.productLink}}" > video Link</a>
                 </div>
                 
             </div>

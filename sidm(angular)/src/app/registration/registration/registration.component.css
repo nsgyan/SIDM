@@ -33,4 +33,37 @@ select {
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+  }
+  .marathon-header-fixed.header-top.header-scroll {
+    background: #363a7a;
+    top: -142px;
+  }
+  span 
+        {
+            position: relative;
+            cursor: pointer;
+            left: -75px;
+            z-index: 9;
+        }
+
+        span:hover::after 
+        {
+            content: attr(data-title);
+            font-size: 13px;
+            font-weight: 400;
+            padding: 10px;
+            width: 250px;
+            /* border: 1px solid rgb(151, 151, 151); */
+            position: absolute;
+            top: 5px;
+            left: 20px;
+            background: rgb(47, 47, 47);
+            border-radius: 2px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
   
