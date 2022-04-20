@@ -1,69 +1,73 @@
 select {
-    display: block;
-    width: 100%;
-    height: 50px;
-    padding: 0 30px;
-    font-size: 18px;
-    font-family: "Red Hat Display", sans-serif;
-    color: #8b8b8b;
-    border: 1px solid #d9d9d9;
-    background-color: white;
-    -webkit-transition: .35s ease;
-    transition: .35s ease;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0 30px;
+  font-size: 18px;
+  font-family: "Red Hat Display", sans-serif;
+  color: #8b8b8b;
+  border: 1px solid #d9d9d9;
+  background-color: white;
+  -webkit-transition: .35s ease;
+  transition: .35s ease;
 
 }
 
 
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 
 
-  }
+}
 
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-  .marathon-header-fixed.header-top {
-    background-color: #363a7a;
-    top: -142px;
-    padding: 1rem 0;
-  }
-  .marathon-header-fixed.header-top.header-scroll {
-    background: #363a7a;
-    top: -142px;
-  }
-  span 
-        {
-            position: relative;
-            cursor: pointer;
-            left: -75px;
-            z-index: 9;
-        }
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
-        span:hover::after 
-        {
-            content: attr(data-title);
-            font-size: 13px;
-            font-weight: 400;
-            padding: 10px;
-            width: 250px;
-            /* border: 1px solid rgb(151, 151, 151); */
-            position: absolute;
-            top: 5px;
-            left: 20px;
-            background: rgb(47, 47, 47);
-            border-radius: 2px;
-            color: rgb(255, 255, 255);
-            cursor: pointer;
-        }
-  
+.marathon-header-fixed.header-top {
+  background-color: #363a7a;
+  top: -142px;
+  padding: 1rem 0;
+}
+
+.marathon-header-fixed.header-top.header-scroll {
+  background: #363a7a;
+  top: -142px;
+}
+
+span {
+  position: relative;
+  cursor: pointer;
+  left: -75px;
+  z-index: 9;
+}
+
+span:hover::after {
+  content: attr(data-title);
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px;
+  width: 250px;
+  /* border: 1px solid rgb(151, 151, 151); */
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  background: rgb(47, 47, 47);
+  border-radius: 2px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.categoryList {
+  font-size: 15px;
+    color: rgb(53, 53, 53);
+}
