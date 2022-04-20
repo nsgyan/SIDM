@@ -63,10 +63,10 @@
                                                     <input type="text"
                                                         class="form-control
                                                         user-bg" id="uername"
-                                                        placeholder="Email" appLowercase
+                                                        placeholder="Email" appLowercase appBlockCopyPaste
                                                         formControlName="email">
                                                         <div *ngIf="submitted||adminLogin.controls['email'].invalid &&  adminLogin.controls['email'].touched">         
-                                                            <span *ngIf="adminLogin.get('email').hasError('required')" style="color: red;">
+                                                            <span *ngIf="adminLogin.get('email')?.hasError('required')" style="color: red;">
                                                                 Email <strong>required</strong>
                                                             </span>                        
                                                     </div>
@@ -78,9 +78,9 @@
                                                         class="form-control
                                                         user-password" id=""
                                                         placeholder="Password"
-                                                        formControlName="password">
+                                                        formControlName="password" appBlockCopyPaste>
                                                         <div *ngIf=" submitted||adminLogin.controls['password'].invalid &&  adminLogin.controls['password'].touched">         
-                                                            <span *ngIf="adminLogin.get('password').hasError('required')" style="color: red;">
+                                                            <span *ngIf="adminLogin.get('password')?.hasError('required')" style="color: red;">
                                                                 Password <strong>required</strong>
                                                             </span>                        
                                                     </div>

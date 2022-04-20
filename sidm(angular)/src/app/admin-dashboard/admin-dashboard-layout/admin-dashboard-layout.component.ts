@@ -33,7 +33,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
     this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
       console.log(data);
 
-      data.forms.map((item: any) => {
+      data?.forms.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = ' Technology /  Product Innovation to address Defence Capability Gaps'
         }
@@ -55,7 +55,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
         else {
           item.typeOfApplicant = 'Annual Turnover FY 2020-21 less than Rs 75 Crore'
         }
-        item.panNumberOfOrganization = item.panNumberOfOrganization.toUpperCase();
+        item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
       this.allFormsData = data
