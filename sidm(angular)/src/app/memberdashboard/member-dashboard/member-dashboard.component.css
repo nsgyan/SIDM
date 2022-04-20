@@ -70,4 +70,38 @@ select {
 .page-title .container {
   padding: 6rem 0;
 }
+.categoryList {
+  font-size: 15px;
+    color: rgb(53, 53, 53);
+}
+span {
+  position: relative;
+  cursor: pointer;
+  left: -75px;
+  z-index: 9;
+}
+
+span:hover::after {
+  content: attr(data-title);
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px;
+  width: 250px;
+  /* border: 1px solid rgb(151, 151, 151); */
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  background: rgb(47, 47, 47);
+  border-radius: 2px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.fa-download, .fa-trash {
+  color: #363a7a;
+}
+.formPart_1 a {
+  border: 1px solid #363a7a;
+  margin: 0 4px 0 0;
+  padding: 2px 7px;
+}
   
