@@ -211,7 +211,7 @@
                             class="Apply-control-input mt-2
                             mr-2">
                         <label class="Apply-control-label font"
-                            for="ApplyRadio7">S – Small<br>
+                            for="ApplyRadio7">S – SME/SSI/START-UP<br>
                             (Annual Turnover FY 2020-21 less
                             than Rs 75 Crore)
                         </label>
@@ -229,16 +229,15 @@
             </div>
             <div class="row" >
                 <div class="col-lg-12">
-                    <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected
-                        <span class="tooltip"><a  title="Click me"> <i class="fa fa-circle"></i></a>
-                            <span class="tooltiptext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</span>
-                          </span> </h5>
-                    
-                    <!-- <span> Note:- <ul>
-                        <li>Company Identification Number (CIN) - Large</li>
-                        <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
-                        <li>DPIIT Certificate -  SME/START-UP</li>
-                    </ul></span> -->
+                    <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected<a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a>
+                          
+                       </h5>
+                     
+                          <ul class="mx-5" style="    list-style: disc;">
+                            <li>Company Identification Number (CIN) - Large</li>
+                            <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
+                            <li>DPIIT Certificate -  SME/START-UP</li>
+                        </ul>
                     <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="newChangeListener($event,'subCategoryDoccument')" >
                     <span
                     *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
@@ -250,10 +249,9 @@
             </div>
             <div class="row" >
                 <div class="col-lg-12">
-                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21</h5>
+                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 <a style="border: none;" title="File should be in pdf. Pdf size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                     <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="newGstpdfOnly($event,'financialDoccument')" >
                     <br>
-                        <span> only accept .pdf</span>
                         <span
                         *ngIf="newCategoryForm.get('financialDoccument')?.hasError('required')"
                         style="color: red;">
@@ -387,14 +385,34 @@
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Primary E-Mail Address *</h5>
                     <input formControlName="email" type="text" readonly>
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-3">Mobile Number *</h5>
-                        <input formControlName="mobileNumber" type="text" readonly>
-                        
-                    </div>
+                    
                   
                 </div>
-                
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                    <input formControlName="mobileNumber" type="text" readonly>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
+                    <input type="text"formControlName='alterMobileNumber'  appBlockCopyPaste (keypress)="keyPressNumbers($event)"
+                   appCpoyPaste maxlength="10">
+                   <span *ngIf="newCategoryForm.get('alterMobileNumber')?.hasError('cellNumNotValid')&& ( newCategoryForm.controls['alterMobileNumber'].touched)"
+                                style="color: red;">
+                                please enter  valid Mobile Number
+                            </span>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Email</h5>
+                    <input type="text"formControlName='alterEmail' appLowercase  appBlockCopyPaste 
+                   appCpoyPaste >
+                   <span *ngIf="newCategoryForm.get('alterEmail')?.invalid && ( newCategoryForm.controls['alterEmail'].touched)"
+                                style="color: red;">
+                                please enter  valid Email
+                            </span>
+                </div>
             </div>
             
             <div class="row">
@@ -422,14 +440,13 @@
                 
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Upload GSTIN Certificate
-                     </h5>
+                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                     <input
                         formControlName="documentGstCertificate"
                         type="file"
-                        accept="application/pdf"
+                        accept=".gif,.jpg,.jpeg,.png,.pdf"
                         (change)="newChangeListener($event,'documentGstCertificate')">
                         <br>
-                        <span> only accept .pdf</span>
                         <span
                         *ngIf="newCategoryForm.get('documentGstCertificate')?.hasError('required')"
                         style="color: red;">
@@ -574,7 +591,7 @@
                                          
                                             
                                               <input type="text" class="mt-4 mb-2"  formControlName="name">
-                                              <a *ngIf='i!==0' (click)="newRemoveRegisteredOrganization(i)"><i class="fa fa-minus-circle"></i> Delete </a>
+                                              <a *ngIf='i!==0' (click)="newRemoveRegisteredOrganization(i)"><i  class="fa fa-trash"></i> Delete </a>
                                               <div
                                               *ngIf="newCategoryForm.controls['nameRegisteredOrganization'].invalid
                                               &&
@@ -604,6 +621,11 @@
                     <textarea formControlName="aboutCompany"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="150"></textarea>
+                        <span
+                        *ngIf="newCategoryForm.get('aboutCompany')?.hasError('required')"
+                        style="color: red;">
+                        About the company <strong>required</strong>
+                    </span>
                 </div>
 
                 <h5 class="mt-5 mb-4">
@@ -613,6 +635,11 @@
                     <textarea formControlName="sidmChampionAwards"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="50"></textarea>
+                        <span
+                        *ngIf="newCategoryForm.get('sidmChampionAwards')?.hasError('required')"
+                        style="color: red;">
+                        SIDM Champion Awards <strong>required</strong>
+                    </span>
                 </div>
                 <h5 class="mt-5">Have you received any reports of
                     performance / letters of appreciation
@@ -620,11 +647,11 @@
                     customer
                     organization?</h5>
                 <div class="mb-3 mt-3">
-                    <input type="radio" formControlName="isappreciation" value="Yes" (click)="changetoggel('isappreciation','Yes')" id="YES">
+                    <input type="radio" formControlName="isappreciation" name="hello" value="Yes" (click)="newChangetoggel('isappreciation','Yes')" id="YES">
                     <label  class="mx-2" for="YES">Yes</label>
         
                   
-                    <input type="radio"  formControlName="isappreciation" (click)="changetoggel('isappreciation','No')" value="No" 
+                    <input type="radio"  formControlName="isappreciation" name="hello" (click)="newChangetoggel('isappreciation','No')" value="No" 
                      id="No">
                     <label class="mx-2" for="No">No</label>
                     <span  style="color: red;" *ngIf="newCategoryForm.get('isappreciation')?.hasError('required')" >
@@ -633,7 +660,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div *ngIf="isappreciation">
                             <div class="form-group">
-                                <h5 for="">Upload documents</h5>
+                                <h5 for="">Upload documents<a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                                 <input
                                     formControlName="appreciationDocuments"
                                     type="file"
@@ -651,7 +678,6 @@
                                     </div>
                                     
                                     <br>
-                            <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
                             </div>
                         </div>
                         <div class="tab-pane fade"
@@ -666,6 +692,11 @@
                     <textarea formControlName="campareAchivement"
                         class="form-control mb-5" aria-label="With
                         textarea"  maxlength="150"></textarea>
+                        <span
+                        *ngIf="newCategoryForm.get('campareAchivement')?.hasError('required')"
+                        style="color: red;">
+                        SIDM Champion Awards <strong>required</strong>
+                    </span>
                 </div>
      
             
@@ -674,28 +705,43 @@
                 <textarea formControlName="mudp"
                     class="form-control mb-5" aria-label="With
                     textarea" maxlength="150"></textarea>
+                    <span
+                    *ngIf="newCategoryForm.get('mudp')?.hasError('required')"
+                    style="color: red;">
+                    SIDM Champion Awards <strong>required</strong>
+                </span>
             </div>
             <h5 class="mt-5 mb-4">Please upload Photograph /
                 videos of the products / innovation /
                 facilities, fielded for the awards</h5>
             <div class="">
-                <h5>Exhibit 1</h5>
+                <h5>Exhibit 1<a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                 <input formControlName="exhibit1"
                     type="file"
-                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
+                    accept=".gif,.jpg,.jpeg,.png.pdf"
                     (change)="newChangeListener($event,'exhibit1')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                    *ngIf="newCategoryForm.get('exhibit1')?.hasError('required')"
+                    style="color: red;">
+                    Exhibit 1 <strong>required</strong>
+                </span>
                     <br>
-                    <h5>Exhibit 2</h5>
+                    <h5>Exhibit 2<a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                     <input formControlName="exhibit2"
                     type="file"
-                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
+                    accept=".gif,.jpg,.jpeg,.png,.pdf"
                     (change)="newChangeListener($event,'exhibit2')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                    *ngIf="newCategoryForm.get('exhibit2')?.hasError('required')"
+                    style="color: red;">
+                    Exhibit 2 <strong>required</strong>
+                </span>
                     <br>
                     <h5>Product video link (Optiona)</h5>
                     <input type="text" formControlName="productLink">
@@ -777,7 +823,7 @@
                             class="Apply-control-input mt-2
                             mr-2">
                         <label class="Apply-control-label font"
-                            for="ApplyRadio7">S – Small<br>
+                            for="ApplyRadio7">S – SME/SSI/START-UP<br>
                             (Annual Turnover FY 2020-21 less
                             than Rs 75 Crore)
                         </label>
@@ -790,30 +836,32 @@
             <div class="row" >
                 <div class="col-lg-12">
                     <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected
-                        <span class="tooltip"><a  title="Click me"> <i class="fa fa-circle"></i></a>
-                            <span class="tooltiptext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</span>
-                          </span> </h5>
+                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a> </h5>
                     
-                     <span> Note:- <ul>
-                        <li>Company Identification Number (CIN) - Large</li>
-                        <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
-                        <li>DPIIT Certificate -  SME/START-UP</li>
-                    </ul></span> 
-                    <input *ngIf="!editData.subCategoryDoccument" type="file" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
+                          <ul class="mx-5" style="    list-style: disc;">
+                            <li>Company Identification Number (CIN) - Large</li>
+                            <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
+                            <li>DPIIT Certificate -  SME/START-UP</li>
+                        </ul>
+                    <input *ngIf="!editData.subCategoryDoccument" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
                     <a *ngIf="editData.subCategoryDoccument" href="{{editData?.subCategoryDoccument}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
-                    <a *ngIf="editData.subCategoryDoccument"(click)="delete('subCategoryDoccument')"><i class="fa fa-delete"></i></a>
-
+                    <a *ngIf="editData.subCategoryDoccument"(click)="delete('subCategoryDoccument')"><i class="fa fa-trash"></i></a>
+                    <span
+                        *ngIf="editForm.get('subCategoryDoccument')?.hasError('required')"
+                        style="color: red;">
+                        Sub category <strong>required</strong>
+                    </span>
                 </div> 
             </div>
             <div class="row" >
                 <div class="col-lg-12">
-                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21</h5>
+                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21   <a style="border: none;" title="File should be in pdf. Pdf size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                     <input type="file" *ngIf="!editData.financialDoccument"  accept="application/pdf" formControlName='financialDoccument'  (change)="gstpdfOnly($event,'financialDoccument')" >
                     <a *ngIf="editData.financialDoccument" href="{{editData?.financialDoccument}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
-                    <a *ngIf="editData.financialDoccument"(click)="delete('financialDoccument')"><i class="fa fa-delete"></i></a>
+                    <a *ngIf="editData.financialDoccument"(click)="delete('financialDoccument')"><i class="fa fa-trash"></i></a>
 
                     <br>
-                        <span> only accept .pdf</span>
+                      
                         <span
                         *ngIf="editForm.get('financialDoccument')?.hasError('required')"
                         style="color: red;">
@@ -957,8 +1005,24 @@
               
             </div>
             <div class="row">
-          
-               
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
+                    <input type="text"formControlName='alterMobileNumber'  appBlockCopyPaste (keypress)="keyPressNumbers($event)"
+                   appCpoyPaste maxlength="10">
+                   <span *ngIf="newCategoryForm.get('alterMobileNumber')?.invalid&& (submited || newCategoryForm.controls['alterMobileNumber'].touched)"
+                                style="color: red;">
+                                please enter  valid Mobile Number
+                            </span>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-3">Alternative Email</h5>
+                    <input type="text"formControlName='alterEmail' appLowercase  appBlockCopyPaste 
+                   appCpoyPaste >
+                   <span *ngIf="newCategoryForm.get('alterEmail')?.hasError('email')&& (submited || newCategoryForm.controls['alterEmail'].touched)"
+                                style="color: red;">
+                                please enter  valid Email
+                            </span>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -984,17 +1048,17 @@
                 </div>
                 <div class="col-lg-6">
                     <h5 class="mt-3 mb-3">Upload GSTIN Certificate
-                     </h5>
+                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                     <input
                     *ngIf="!editData.documentGstCertificate" 
                         formControlName="documentGstCertificate"
                         type="file"
-                        accept="application/pdf"
+                        accept=".gif,.jpg,.jpeg,.png,.pdf"
                         (change)="changeListener($event,'documentGstCertificate')">
                         <a *ngIf="editData.documentGstCertificate" href="{{editData?.documentGstCertificate}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
-                        <a *ngIf="editData.documentGstCertificate"(click)="delete('documentGstCertificate')"><i class="fa fa-delete"></i></a>
+                        <a *ngIf="editData.documentGstCertificate"(click)="delete('documentGstCertificate')"><i class="fa fa-trash"></i></a>
                         <br>
-                        <span> only accept .pdf</span>
+                      
                         <span
                         *ngIf="editForm.get('documentGstCertificate')?.hasError('required')"
                         style="color: red;">
@@ -1139,7 +1203,7 @@
                                          
                                             
                                               <input type="text" class="mt-4 mb-2"  formControlName="name">
-                                              <a *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i class="fa fa-minus-circle"></i> Delete </a>
+                                              <a *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i  class="fa fa-trash"></i> Delete </a>
                                               <div
                                               *ngIf="editForm.controls['nameRegisteredOrganization'].invalid
                                               &&
@@ -1169,6 +1233,11 @@
                     <textarea formControlName="aboutCompany"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="150"></textarea>
+                        <span
+                        *ngIf="editForm.get('aboutCompany')?.hasError('required')"
+                        style="color: red;">
+                        About the company<strong>required</strong>
+                    </span>
                 </div>
 
                 <h5 class="mt-5 mb-4">
@@ -1178,6 +1247,11 @@
                     <textarea formControlName="sidmChampionAwards"
                         class="form-control mb-3" aria-label="With
                         textarea" maxlength="50"></textarea>
+                        <span
+                        *ngIf="editForm.get('sidmChampionAwards')?.hasError('required')"
+                        style="color: red;">
+                        SIDM Champion Awards<strong>required</strong>
+                    </span>
                 </div>
                 <h5 class="mt-5">Have you received any reports of
                     performance / letters of appreciation
@@ -1198,17 +1272,17 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div *ngIf="isappreciation">
                             <div class="form-group">
-                                <h5 for="">Upload documents</h5>
+                                <h5 for="">Upload documents   <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                                 <input  *ngIf="!editData.appreciationDocuments" 
                                     formControlName="appreciationDocuments"
                                     type="file"
-                                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
+                                    accept=".gif,.jpg,.jpeg,.png,.pdf"
                                     (change)="changeListener($event,'appreciationDocuments')"
                                     class="mt-3" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
                                     <a *ngIf="editData.appreciationDocuments" href="{{editData?.appreciationDocuments}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
-                                    <a *ngIf="editData.appreciationDocuments"(click)="delete('appreciationDocuments')"><i class="fa fa-delete"></i></a>
+                                    <a *ngIf="editData.appreciationDocuments"(click)="delete('appreciationDocuments')"><i class="fa fa-trash"></i></a>
                                     
                                     
                                     <div *ngIf="editForm.controls['appreciationDocuments'].invalid
@@ -1220,12 +1294,10 @@
                                     </div>
                                     
                                     <br>
-                            <span> only accept .gif,.jpg,.jpeg,.png,.doc,.docx,.pdf </span>
+                          
                             </div>
                         </div>
-                        <div class="tab-pane fade"
-                            id="pills-noreports" role="tabpanel"
-                            aria-labelledby="pills-noreports-tab"></div>
+                        
                     </div>
                 </div>
                 <h5 class="mt-5 mb-4">How does your achievement
@@ -1235,6 +1307,12 @@
                     <textarea formControlName="campareAchivement"
                         class="form-control mb-5" aria-label="With
                         textarea"  maxlength="150"></textarea>
+                        <span
+                        *ngIf="editForm.get('campareAchivement')?.hasError('required')"
+                        style="color: red;">
+                        your achievement
+                        compare   <strong>Required</strong> 
+                    </span>
                 </div>
      
             
@@ -1243,33 +1321,49 @@
                 <textarea formControlName="mudp"
                     class="form-control mb-5" aria-label="With
                     textarea" maxlength="150"></textarea>
+                    <span
+                        *ngIf="editForm.get('mudp')?.hasError('required')"
+                        style="color: red;">
+                        please fill the input field
+                    </span>
+                    
             </div>
             <h5 class="mt-5 mb-4">Please upload Photograph /
                 videos of the products / innovation /
                 facilities, fielded for the awards</h5>
             <div class="">
-                <h5>Exhibit 1</h5>
+                <h5>Exhibit 1  <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                 <input *ngIf="!editData.exhibit1" formControlName="exhibit1"
                     type="file"
-                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
+                    accept=".gif,.jpg,.jpeg,.png,.pdf"
                     (change)="changeListener($event,'exhibit1')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                        *ngIf="editForm.get('exhibit1')?.hasError('required')"
+                        style="color: red;">
+                        Exhibit 1<strong>required</strong>
+                    </span>
                     <a *ngIf="editData.exhibit1" href="{{editData?.exhibit1}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
-                    <a *ngIf="editData.exhibit1"(click)="delete('exhibit1')"><i class="fa fa-delete"></i></a>
+                    <a *ngIf="editData.exhibit1"(click)="delete('exhibit1')"><i class="fa fa-trash"></i></a>
                     
                     <br>
-                    <h5>Exhibit 2</h5>
+                    <h5>Exhibit 2 <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
                     <input *ngIf="!editData.exhibit2" formControlName="exhibit2"
                     type="file"
-                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf"
+                    accept=".gif,.jpg,.jpeg,.png,.pdf"
                     (change)="changeListener($event,'exhibit2')"
                     class="border-light mb-4" name="" id=""
                     aria-describedby="helpId"
                     placeholder="">
+                    <span
+                    *ngIf="editForm.get('exhibit2')?.hasError('required')"
+                    style="color: red;">
+                    Exhibit 2<strong>required</strong>
+                </span>
                     <a *ngIf="editData.exhibit2" href="{{editData?.exhibit2}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
-                    <a *ngIf="editData.exhibit2"(click)="delete('exhibit2')"><i class="fa fa-delete"></i></a>
+                    <a *ngIf="editData.exhibit2"(click)="delete('exhibit2')"><i class="fa fa-trash"></i></a>
                     
                     <br>
                     <h5>Product video link (Optiona)</h5>

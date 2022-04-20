@@ -68,6 +68,7 @@ export class MemberLoginComponent implements OnInit {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
+          this.localStorage.set('type', 'member')
         this.router.navigate(['/memberDashboard'])
         this.toast.success('Member Successfully login!');
       }, err => {

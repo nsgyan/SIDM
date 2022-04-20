@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'memberDashboard',
     loadChildren: () => import(`./memberdashboard/memberdashboard.module`).then(m => m.MemberdashboardModule),
-    canActivate: [MemberAuthguradService],
+    canActivate:[AdminAuthGuradService]
   },
   {
     path: 'adminDashboard',
@@ -25,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'detail/:id',
-    component: ViewpageComponent
+    component: ViewpageComponent,
+    canActivate:[AdminAuthGuradService]
   }
 ];
 

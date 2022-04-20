@@ -13,8 +13,17 @@ export class AdminAuthGuradService {
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot):
     boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if (!this.localStorage.get('token')) {
-      return this.router.createUrlTree(['login/admin'])
+      if(this.localStorage.get('type')==='admin'){
+      return this.router.createUrlTree(['login/admin'])}
+      else if(!this.localStorage.get('token') && this.localStorage.get('type')==='member'){
+        return this.router.createUrlTree(['login/member'])
+      }
+      return this.router.createUrlTree([''])
+
+      
     }
+   
+ 
     return true
   }
 }
