@@ -399,7 +399,7 @@ export class RegistrationComponent implements OnInit {
   }
   checkPan(event: any) {
     this.registrationForm.get('confirmPanNumber')?.reset()
-    const panNumber = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumber')?.value
+    const panNumber = event.target.value ? event.target.value.toUpperCase() : this.registrationForm.get('panNumber')?.value
     if (panNumber) {
       console.log(panNumber);
       this.httpService.checkPan({ panNumber: panNumber })
