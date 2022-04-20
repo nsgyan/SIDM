@@ -244,30 +244,36 @@ export class MemberDashboardComponent implements OnInit {
           data.category = 'C4- Export Performance of Defence & Aerospace Products'
         }
         if (data.documentGstCertificate) {
-          data.documentGstCertificate = environment.download + data.documentGstCertificate
           this.documentGstCertificate = data.documentGstCertificate
+          data.documentGstCertificate = environment.download + data.documentGstCertificate
+          
         }
         if (data.appreciationDocuments) {
+          this.appreciationDocuments = data.appreciationDocuments
           data.appreciationDocuments = environment.download + data.appreciationDocuments
           console.log(data.appreciationDocuments);
-          this.appreciationDocuments = data.appreciationDocuments
+        
 
         }
         if (data.subCategoryDoccument) {
-          data.subCategoryDoccument = environment.download + data.subCategoryDoccument
           this.subCategoryDoccument = data.subCategoryDoccument
+          data.subCategoryDoccument = environment.download + data.subCategoryDoccument
+         
         }
         if (data.financialDoccument) {
-          data.financialDoccument = environment.download + data.financialDoccument
           this.financialDoccument = data.financialDoccument
+          data.financialDoccument = environment.download + data.financialDoccument
+          
         }
         if (data.exhibit1) {
-          data.exhibit1 = environment.download + data.exhibit1
           this.exhibit1 = data.exhibit1
+          data.exhibit1 = environment.download + data.exhibit1
+          
         }
         if (data.exhibit2) {
-          data.exhibit2 = environment.download + data.exhibit2
           this.exhibit2 = data.exhibit2
+          data.exhibit2 = environment.download + data.exhibit2
+          
         }
 
         data.sidmMember === 'Yes' ? this.sidmMember = true : ''
@@ -644,7 +650,8 @@ export class MemberDashboardComponent implements OnInit {
         status: type,
       }).subscribe(data => {
 
-        this.routes.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
+        this.routes.navigateByUrl(url);
         this.toast.success('successfully applied');
       }, err => {
         console.log(err);
@@ -758,7 +765,8 @@ export class MemberDashboardComponent implements OnInit {
 
       }).subscribe(data => {
         this.editForm.reset();
-        this.routes.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsfewfvbvb'
+        this.routes.navigateByUrl(url);
         this.toast.success('successfully applied');
       },
         error => {
@@ -877,7 +885,8 @@ export class MemberDashboardComponent implements OnInit {
       }).subscribe(data => {
         this.newCategoryForm.reset();
         this.toast.success(' Successfully Applied');
-        this.routes.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
+        this.routes.navigateByUrl(url);
       }, err => {
         console.log(err);
         this.toast.error(err);
@@ -993,7 +1002,8 @@ export class MemberDashboardComponent implements OnInit {
       }).subscribe(data => {
         this.newCategoryForm.reset();
         this.toast.success(' Successfully Applied');
-        this.routes.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsfewfvbvb'
+        this.routes.navigateByUrl(url);
       },
         error => {
           this.toast.error('Email or Mobile or Pan  already exists');

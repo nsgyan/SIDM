@@ -5,7 +5,7 @@ import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component
 
 const routes: Routes = [
   { path: "", component: RegistrationComponent },
-  { path: "thankYou", component: ThankYouPageComponent }
+  { path: "thankYou/:params", component: ThankYouPageComponent }
 ];
 
 @NgModule({

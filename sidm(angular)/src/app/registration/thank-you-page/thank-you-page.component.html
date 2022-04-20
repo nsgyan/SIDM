@@ -72,7 +72,7 @@
 </section> -->
 
 
-<div class="thanku">
+<div class="thanku" *ngIf="type==='dsfffdsdfds'" >
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8">
@@ -80,9 +80,9 @@
                     <div class="card-body RegistrationContent">
                         <!-- <img src="assets/img/New_img/logo.png" alt="" class="mb-3"> -->
                         <!-- <h5 class="NewBtn">Welcome Shahista Naaz</h5> -->
-                        <h2>Thank You!</h2>
-                        <h6>Your application has been submitted.</h6>
-                        <h6>Thank you for submitting your application with CII - SIDM.</h6>
+                        <h2>Registration Successful!</h2>
+                        <h6>Thank you for registering with CII SIDM.</h6>
+                        <h6 *ngIf="type==='dsfffdsdfds'">You may come back and login to complete your application and submit it for review with CII SIDM.</h6>
                         <a class="NewBtn" (click)="registerdUser()">Login Now</a>
                     </div>
                 </div>
@@ -90,7 +90,63 @@
         </div>
     </div>
 </div>
+<div class="thanku" *ngIf=" type==='dsffsdfds'" >
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <div class="card-body RegistrationContent">
+                        <!-- <img src="assets/img/New_img/logo.png" alt="" class="mb-3"> -->
+                        <!-- <h5 class="NewBtn">Welcome Shahista Naaz</h5> -->
+                        <h2>Registration Successful!</h2>
+                        <h6>Thank you for registering with CII SIDM.</h6>
+                        <h6 *ngIf="type==='dsffsdfds'">You may login to your panel to view your application and to apply for additional categories.</h6>
+                        <a class="NewBtn" (click)="registerdUser()">Login Now</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<div class="thanku" *ngIf="type==='dsfffdsdfdfffffds'">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <div class="card-body RegistrationContent">
+                        <!-- <img src="assets/img/New_img/logo.png" alt="" class="mb-3"> -->
+                        <!-- <h5 class="NewBtn">Welcome Shahista Naaz</h5> -->
+                        <h2>Thank you!</h2>
+                        <h6>Your application has been <span *ngIf="type==='dsfffdsdfdfffffds'">submitted</span> </h6>
+                        <h6>You may login to your panel to view your application and to apply for additional categories</h6>
+                        <a class="NewBtn" (click)="registerdUser()">Login Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="thanku" *ngIf=" type==='dsfewfvbvb'">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="card text-center">
+                    <div class="card-body RegistrationContent">
+                        <!-- <img src="assets/img/New_img/logo.png" alt="" class="mb-3"> -->
+                        <!-- <h5 class="NewBtn">Welcome Shahista Naaz</h5> -->
+                        <h2>Thank you!</h2>
+                        <h6>Your application has been  <span *ngIf="type==='dsfewfvbvb'">saved</span>.</h6>
+                        <h6>You may login to your panel to view your application and to apply for additional categories</h6>
+                        <a class="NewBtn" (click)="registerdUser()">Login Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--==================== FOOTER ====================-->
 <!-- <footer id="footer">
  

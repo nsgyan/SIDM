@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-thank-you-page',
@@ -7,7 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./thank-you-page.component.css']
 })
 export class ThankYouPageComponent implements OnInit {
-  constructor(private router: Router,) { }
+  type:any;
+  constructor(private router: Router,
+    private route: ActivatedRoute,) {
+    this.type=this.route.snapshot.paramMap.get('params')
+   }
 
   ngOnInit(): void {
   }

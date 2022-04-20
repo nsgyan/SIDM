@@ -346,7 +346,9 @@ export class RegistrationComponent implements OnInit {
       }).subscribe(data => {
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
-        this.router.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsfffdsdfds'
+        this.router.navigateByUrl(url);
+        // this.router.navigate(['/thankYou'])
         // this.toastr.success('successfully applied');
       },
         error => {
@@ -584,7 +586,9 @@ export class RegistrationComponent implements OnInit {
       }).subscribe(data => {
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
-        this.router.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsffsdfds'
+        this.router.navigateByUrl(url);
+        // this.router.navigate(['/thankYou'])
         // this.toastr.success('successfully applied');
       }, err => {
         this.toast.error(err);
