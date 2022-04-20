@@ -104,4 +104,24 @@ span:hover::after {
   margin: 0 4px 0 0;
   padding: 2px 7px;
 }
+.addBtn {
+  background: #363a7a;
+  padding: 13px 25px;
+  border-radius: 3px;
+  color: #fff!important;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 10px!important;
+}
+.addBtn .fa-plus {
+  color: #fff;
+}
+.fa-trash {
+  color: #fff;
+}
+.addInputBox {
+  width: 80%;
+  display: inline-block;
+  margin-right: 5px;
   
+}

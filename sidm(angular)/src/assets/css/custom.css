@@ -211,6 +211,7 @@ footer {
 }
 .marathon-header-fixed .top-panel {
     padding-top: 18px;
+    padding-bottom: 0;
 }
 .s-our-speaker.team-our-speaker {
     padding-top: 1rem;
