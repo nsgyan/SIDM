@@ -291,6 +291,7 @@
                             <li>DPIIT Certificate -  SME/START-UP</li>
                         </ul>
                     <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="newChangeListener($event,'subCategoryDoccument')" >
+                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                     <span
                     *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
                     style="color: red;">
@@ -896,6 +897,7 @@
                             <li>DPIIT Certificate -  SME/START-UP</li>
                         </ul>
                     <input *ngIf="!editData.subCategoryDoccument" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
+                    <span *ngIf="!editData.subCategoryDoccument" data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                     <a *ngIf="editData.subCategoryDoccument" href="{{editData?.subCategoryDoccument}}"  target="_blank" download="SubCategory" ><i class="fa fa-download"></i></a>
                     <a *ngIf="editData.subCategoryDoccument"(click)="delete('subCategoryDoccument')"><i class="fa fa-trash"></i></a>
                     <span
