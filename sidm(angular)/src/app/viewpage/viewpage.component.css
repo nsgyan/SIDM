@@ -24,7 +24,7 @@
 }
 
 .document {
-    width: 55%;
+    width: 50%;
 }
 
 .detail a {
@@ -53,4 +53,12 @@
 .detail-page .modal-content {
     background-color: transparent;
     border: transparent;
+}
+.marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+}
+.page-title .container {
+    padding: 6rem 0;
 }

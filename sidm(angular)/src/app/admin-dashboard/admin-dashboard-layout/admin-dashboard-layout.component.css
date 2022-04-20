@@ -6,7 +6,7 @@ p {
     cursor: pointer;
   }
   .table .thead-light th {
-    background-color: #566f3d;
+    background-color: #363a7a;
     font-size: 16px;
   }
   .table .thead-light th {
@@ -14,6 +14,7 @@ p {
   }
   .viewBtn {
     border: none;
+    background: #363a7a;
     padding: 2px 16px;
   }
   .table_content {
@@ -21,4 +22,11 @@ p {
     font-size: 13px;
     font-weight: 500;
   }
-  
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+}
+.page-title .container {
+  padding: 6rem 0;
+}

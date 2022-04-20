@@ -13,7 +13,8 @@
 }
 
 .main-bg {
-    background: #f4f9ed;
+    /* background: #363a7a; */
+    background: url(../../../assets/img/New_img/Group251.png) right bottom no-repeat;
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -43,7 +44,7 @@
 }
 
 .left-content {
-    margin: 2.5rem 2.5rem 0 2.5rem;
+    margin: 1.5rem 1.5rem 0 1.5rem;
     position: relative;
     /* min-height: 45rem; */
 }
@@ -66,7 +67,7 @@
 }
 .left-content .Bottom-Content a {
     /* font-size: 18px; */
-    color: #0e5aa5;
+    color: #363a7a;
     font-weight: 600;
 }
 .left-content h6 {
@@ -79,7 +80,7 @@
 
 .left-content h5 {
     font-size: 1.3rem;
-    color: #0e5aa5;
+    color: #363a7a;
     line-height: 1.7rem;
 }
 
@@ -92,10 +93,10 @@
     background: #fff;
     border-radius: 10px;
     border: 1px solid #cfcece;
-    height: 600px;
-    margin: -60px 15px -60px 0;
+    height: 564px;
+    margin: -73px 16px -60px 0;
     position: relative;
-    padding: 2.5rem;
+    padding: 1.5rem;
 }
 
 .login-sec p {
@@ -105,7 +106,7 @@
 }
 
 .login-sec-con .form-control {
-    font-size: 20px;
+    font-size: 1rem;
     margin-bottom: 3%;
     padding: 30px 0 30px 40px;
     height: 42px;
@@ -327,6 +328,23 @@ a {
 .circle-img .circle-1 img {
     width: 50px;
     margin: 0 0 8px 0;
+}
+.NewBtn {
+    background: #363a7a;
+    padding: 10px 20px;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
+    width: 100%;
+    margin-top: 8px;
+}
+.NewBtn:hover {
+    color: #363a7a;
+    background: #fded00;
+    text-decoration: none;
 }
 
 

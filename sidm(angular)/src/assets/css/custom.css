@@ -1,4 +1,6 @@
-
+a {
+    cursor: pointer;
+}
 /* **************************************index-table css start************************* */
 .Application_Table table{
     width: 100%;
@@ -439,7 +441,7 @@ footer h5 {
     color: #363a7a;
 }
 .to-top {
-    background-color: #4c5d34;
+    background-color: #363a7a;
 }
 .footer-email .fa-envelope,.fa-home,.fa-phone-alt {
     color: #5b7842;
@@ -826,6 +828,7 @@ footer h5 {
     text-transform: uppercase;
     border-radius: 3px;
     color: #fff;
+    cursor: pointer;
 }
 .NewBtn:hover {
     color: #363a7a;

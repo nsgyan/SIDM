@@ -150,13 +150,14 @@
                             <div class="row" >
                                 <div class="col-lg-12">
                                     <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected
-                                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a> </h5>
+                                         </h5>
                                       <ul class="mx-5" style="    list-style: disc;">
                                         <li>Company Identification Number (CIN) - Large</li>
                                         <li>Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
                                         <li>DPIIT Certificate -  SME/START-UP</li>
                                     </ul>
                                     <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                     <span
                                     *ngIf="registrationForm.get('subCategoryDoccument')?.hasError('required')"
                                     style="color: red;">
@@ -167,8 +168,9 @@
                             </div>
                             <div class="row" >
                                 <div class="col-lg-12">
-                                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 <a style="border: none;" title="File should be in pdf. Pdf size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                    <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 </h5>
                                     <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="gstpdfOnly($event,'financialDoccument')" >
+                                    <span data-title="File should be in pdf. File size should be less than 2MB">ⓘ</span>
                                     <br>
                                         
                                         <span
@@ -548,12 +550,13 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-3">Upload GSTIN Certificate
-                                        <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                        </h5>
                                     <input
                                         formControlName="documentGstCertificate"
                                         type="file"
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="changeListener($event,'documentGstCertificate')">
+                                        <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                         <br>
                                         <span
                                         *ngIf="registrationForm.get('documentGstCertificate')?.hasError('required')"
@@ -768,7 +771,7 @@
                                     <div class="tab-content" id="pills-tabContent">
                                         <div *ngIf="isappreciation">
                                             <div class="form-group">
-                                                <h5 for="">Upload documents <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                                <h5 for="">Upload documents</h5>
                                                 <input
                                                     formControlName="appreciationDocuments"
                                                     type="file"
@@ -780,6 +783,7 @@
                                                     <div *ngIf="registrationForm.controls['appreciationDocuments'].invalid
                                                         &&
                                                         (submited ||registrationForm.controls['appreciationDocuments'].touched)">
+                                                        <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                                     <span  style="color: red;" *ngIf="registrationForm.get('appreciationDocuments')?.hasError('required')" >
                                                         documents  required
                                                     </span>
@@ -825,7 +829,7 @@
                                 videos of the products / innovation /
                                 facilities, fielded for the awards</h5>
                             <div class="">
-                                <h5>Exhibit 1 <a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                <h5>Exhibit 1 </h5>
                                 <input formControlName="exhibit1"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -833,13 +837,14 @@
                                     class="border-light mb-4" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                     <span
                                     *ngIf="registrationForm.get('exhibit1')?.hasError('required')"
                                     style="color: red;">
                                     Exhibit 1  <strong>Required</strong> 
                                 </span>
                                     <br>
-                                    <h5>Exhibit 2<a style="border: none;" title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB"> <i class="fas fa-info-circle"></i></a></h5>
+                                    <h5>Exhibit 2</h5>
                                     <input formControlName="exhibit2"
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -847,6 +852,7 @@
                                     class="border-light mb-4" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
+                                    <span data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
                                     <span
                                     *ngIf="registrationForm.get('exhibit2')?.hasError('required')"
                                     style="color: red;">
@@ -873,10 +879,10 @@
                         <div class="row">
                             <div class="col-lg-12 mt-5 mb-5 text-center">
                                 <button type="submit" class="NewBtn mx-2"
-                                    (click)="finalSubmit('submit')"><span>Submit</span></button>
+                                    (click)="finalSubmit('submit')">Submit</button>
                                 <button class="save-btn" target="blanck"
-                                    (click)="savedraft('Draft')"><span>Save
-                                        Draft</span></button>
+                                    (click)="savedraft('Draft')">Save
+                                        Draft</button>
                             </div>
                         </div>
                     </div>

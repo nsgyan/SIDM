@@ -45,4 +45,29 @@ select {
     visibility: visible;
     opacity: 2;
   }
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+}
+.footer-email .fa-envelope, .fa-home, .fa-phone-alt {
+  color: #feed00;
+  margin-right: 10px;
+  font-size: 25px;
+}
+.phoneNo {
+  color: #ffffff;
+  font-weight: 500;
+}
+.viewBtn {
+  background: #363a7a;
+  padding: 6px 25px;
+  border-radius: 3px;
+  color: #fff!important;
+  cursor: pointer;
+  border: none;
+}
+.page-title .container {
+  padding: 6rem 0;
+}
   
