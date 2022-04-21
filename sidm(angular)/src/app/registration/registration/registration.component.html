@@ -752,10 +752,10 @@
                                 <div class="">
                                     <textarea formControlName="sidmChampionAwards"
                                         class="form-control mb-3" aria-label="With
-                                        textarea" maxlength="50"></textarea>
+                                        textarea" maxlength="100"></textarea>
                                         <p class="fileSizetext" >Write a about the product/technology/facility/Exports (100 Words). For registering multiple achievements, fill separate applications
-                                        <br>
-                                    Write not more than 150 words</p>
+                                      
+                                  </p>
 
                                         <p
                                         *ngIf="registrationForm.get('sidmChampionAwards')?.hasError('required')"
@@ -819,6 +819,9 @@
                                     <textarea formControlName="campareAchivement"
                                         class="form-control mb-5" aria-label="With
                                         textarea"  maxlength="150"></textarea>
+                                        <p class="fileSizetext" >Write not more than 150 words
+                                      
+                                        </p>
                                         <p
                                         *ngIf="registrationForm.get('campareAchivement')?.hasError('required')"
                                         style="color: red;">
