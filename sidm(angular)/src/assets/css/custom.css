@@ -119,8 +119,9 @@ a {
 /**************************************video sec end*************************************/
 
 .formBody ul li a{
-    border: 1px solid;
-    font-weight:500;
+    border:  1px solid #363a7a;
+        color: #363a7a;
+        font-weight: 500;
 }
 .bb{
     border: 1px solid #4C5D34;
@@ -420,7 +421,7 @@ footer h5 {
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #4C5D34;
+    background-color: #363a7a;
 }
 .nav-pills .nav-link {
     border-radius: 0.25rem;

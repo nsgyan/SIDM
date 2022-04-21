@@ -101,3 +101,8 @@ span:hover::after {
     font-weight: 600;
     text-decoration: underline;
 }
+.fileSizetext {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b3b3b;
+}

@@ -268,8 +268,7 @@
                             </ul>
                             <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'
                                 (change)="newChangeListener($event,'subCategoryDoccument')">
-                            <span
-                                data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                             <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
 
                             <p *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
                                 style="color: red;">
@@ -283,7 +282,7 @@
                             <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21 </h5>
                             <input type="file" accept="application/pdf" formControlName='financialDoccument'
                                 (change)="newGstpdfOnly($event,'financialDoccument')">
-                            <span data-title="File should be in pdf. File size should be less than 2MB">ⓘ</span>
+                                <p class="fileSizetext">File should be in pdf.Pdf size should be less than 2MB</p>
                             <br>
                             <p *ngIf="newCategoryForm.get('financialDoccument')?.hasError('required')"
                                 style="color: red;">
@@ -403,6 +402,11 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-lg-12">
+                            <h3 class="mt-5 mb-3" style="font-size: 20px;">Please give details for additional contact point for ease of reaching out.</h3>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">
                             <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
                             <input type="text" formControlName='alterMobileNumber' appBlockCopyPaste
@@ -449,8 +453,7 @@
                             <input formControlName="documentGstCertificate" type="file"
                                 accept=".gif,.jpg,.jpeg,.png,.pdf"
                                 (change)="newChangeListener($event,'documentGstCertificate')">
-                            <span
-                                data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                             <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                             <br>
                             <p *ngIf="newCategoryForm.get('documentGstCertificate')?.hasError('required')"
                                 style="color: red;">
@@ -624,17 +627,22 @@
                     <div class="">
                         <textarea formControlName="aboutCompany" class="form-control mb-3" aria-label="With
                         textarea" maxlength="150"></textarea>
+                        <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
                         <p *ngIf="newCategoryForm.get('aboutCompany')?.hasError('required')" style="color: red;">
                             About the company <strong>required</strong>
                         </p>
                     </div>
 
                     <h5 class="mt-5 mb-4">
-                        Specific Achievement being fielded for the SIDM Champion Awards (50 Wrods)
+                        Specific Achievement being registered for the Champion Award
                     </h5>
                     <div class="">
                         <textarea formControlName="sidmChampionAwards" class="form-control mb-3" aria-label="With
-                        textarea" maxlength="50"></textarea>
+                        textarea" maxlength="150"></textarea>
+                        <p class="fileSizetext" >Write a about the product/technology/facility/Exports (100 Words). For registering multiple achievements, fill separate applications
+                            <br>
+                        Write not more than 150 words</p>
+                        <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
                         <p *ngIf="newCategoryForm.get('sidmChampionAwards')?.hasError('required')" style="color: red;">
                             SIDM Champion Awards <strong>required</strong>
                         </p>
@@ -664,8 +672,7 @@
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="newChangeListener($event,'appreciationDocuments')" class="mt-3"
                                         name="" id="" aria-describedby="helpId" placeholder="">
-                                    <span
-                                        data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                     <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                                     <div *ngIf="newCategoryForm.controls['appreciationDocuments'].invalid
                                         &&
                                         (submited ||newCategoryForm.controls['appreciationDocuments'].touched)">
@@ -711,8 +718,7 @@
                         <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png.pdf"
                             (change)="newChangeListener($event,'exhibit1')" class="border-light mb-4" name="" id=""
                             aria-describedby="helpId" placeholder="">
-                        <span
-                            data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                            <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="newCategoryForm.get('exhibit1')?.hasError('required')" style="color: red;">
                             Exhibit 1 <strong>required</strong>
                         </p>
@@ -721,8 +727,7 @@
                         <input formControlName="exhibit2" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
                             (change)="newChangeListener($event,'exhibit2')" class="border-light mb-4" name="" id=""
                             aria-describedby="helpId" placeholder="">
-                        <span
-                            data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                            <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="newCategoryForm.get('exhibit2')?.hasError('required')" style="color: red;">
                             Exhibit 2 <strong>required</strong>
                         </p>
@@ -822,8 +827,7 @@
                             <input *ngIf="!editData.subCategoryDoccument" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
                                 formControlName='subCategoryDoccument'
                                 (change)="changeListener($event,'subCategoryDoccument')">
-                            <span *ngIf="!editData.subCategoryDoccument"
-                                data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                <p *ngIf="!editData.subCategoryDoccument" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
 
                             <a *ngIf="editData.subCategoryDoccument" href="{{editData?.subCategoryDoccument}}"
                                 target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
@@ -839,8 +843,7 @@
                             <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21 </h5>
                             <input type="file" *ngIf="!editData.financialDoccument" accept="application/pdf"
                                 formControlName='financialDoccument' (change)="gstpdfOnly($event,'financialDoccument')">
-                            <span *ngIf="!editData.financialDoccument"
-                                data-title="File should be in pdf format. pdf size should be less than 2MB">ⓘ</span>
+                                <p *ngIf="!editData.financialDoccument" class="fileSizetext">File should be in pdf. Pdf size should be less than 2MB</p>
                             <a *ngIf="editData.financialDoccument" href="{{editData?.financialDoccument}}"
                                 target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
                             <a *ngIf="editData.financialDoccument" (click)="delete('financialDoccument')"><i
@@ -965,6 +968,11 @@
 
                     </div>
                     <div class="row">
+                        <div class="col-lg-12">
+                            <h3 class="mt-5 mb-3" style="font-size: 20px;">Please give details for additional contact point for ease of reaching out.</h3>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">
                             <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
                             <input type="text" formControlName='alterMobileNumber' appBlockCopyPaste
@@ -1009,8 +1017,7 @@
                             <input *ngIf="!editData.documentGstCertificate" formControlName="documentGstCertificate"
                                 type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
                                 (change)="changeListener($event,'documentGstCertificate')">
-                            <span
-                                data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                             <p *ngIf="!editData.documentGstCertificate" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                             <a *ngIf="editData.documentGstCertificate" href="{{editData?.documentGstCertificate}}"
                                 target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
                             <a *ngIf="editData.documentGstCertificate" (click)="delete('documentGstCertificate')"><i
@@ -1188,18 +1195,22 @@
                     <h5 class="mt-5 mb-4">About the company</h5>
                     <div class="">
                         <textarea formControlName="aboutCompany" class="form-control mb-3" aria-label="With
-                        textarea" maxlength="150"></textarea>
+                        textarea" maxlength="100"></textarea>
+                        <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
                         <p *ngIf="editForm.get('aboutCompany')?.hasError('required')" style="color: red;">
                             About the company<strong>required</strong>
                         </p>
                     </div>
 
                     <h5 class="mt-5 mb-4">
-                        Specific Achievement being fielded for the SIDM Champion Awards (50 Wrods)
+                        Specific Achievement being registered for the Champion Award
                     </h5>
                     <div class="">
                         <textarea formControlName="sidmChampionAwards" class="form-control mb-3" aria-label="With
-                        textarea" maxlength="50"></textarea>
+                        textarea" maxlength="150"></textarea>
+                        <p class="fileSizetext" >Write a about the product/technology/facility/Exports (100 Words). For registering multiple achievements, fill separate applications
+                            <br>
+                        Write not more than 150 words</p>
                         <p *ngIf="editForm.get('sidmChampionAwards')?.hasError('required')" style="color: red;">
                             SIDM Champion Awards<strong>required</strong>
                         </p>
@@ -1230,8 +1241,7 @@
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="changeListener($event,'appreciationDocuments')" class="mt-3" name=""
                                         id="" aria-describedby="helpId" placeholder="">
-                                    <span
-                                        data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                                     <p *ngIf="editData.appreciationDocuments" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                                     <a *ngIf="editData.appreciationDocuments" href="{{editData?.appreciationDocuments}}"
                                         target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
                                     <a *ngIf="editData.appreciationDocuments"
@@ -1285,8 +1295,7 @@
                         <input *ngIf="!editData.exhibit1" formControlName="exhibit1" type="file"
                             accept=".gif,.jpg,.jpeg,.png,.pdf" (change)="changeListener($event,'exhibit1')"
                             class="border-light mb-4" name="" id="" aria-describedby="helpId" placeholder="">
-                        <span
-                            data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                            <p *ngIf="!editData.exhibit1" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="editForm.get('exhibit1')?.hasError('required')" style="color: red;">
                             Exhibit 1<strong>required</strong>
                         </p>
@@ -1299,8 +1308,7 @@
                         <input *ngIf="!editData.exhibit2" formControlName="exhibit2" type="file"
                             accept=".gif,.jpg,.jpeg,.png,.pdf" (change)="changeListener($event,'exhibit2')"
                             class="border-light mb-4" name="" id="" aria-describedby="helpId" placeholder="">
-                        <span
-                            data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
+                            <p *ngIf="!editData.exhibit2" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="editForm.get('exhibit2')?.hasError('required')" style="color: red;">
                             Exhibit 2<strong>required</strong>
                         </p>
