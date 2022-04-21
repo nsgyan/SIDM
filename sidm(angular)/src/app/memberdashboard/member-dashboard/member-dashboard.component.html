@@ -265,6 +265,8 @@
                             </ul>
                             <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'
                                 (change)="newChangeListener($event,'subCategoryDoccument')">
+                            <span
+                                data-title="File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB">ⓘ</span>
 
                             <p *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
                                 style="color: red;">
@@ -278,7 +280,8 @@
                             <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21 </h5>
                             <input type="file" accept="application/pdf" formControlName='financialDoccument'
                                 (change)="newGstpdfOnly($event,'financialDoccument')">
-
+                            <span
+                                data-title="File should be in pdf. File size should be less than 2MB">ⓘ</span>
                             <br>
                             <p *ngIf="newCategoryForm.get('financialDoccument')?.hasError('required')"
                                 style="color: red;">
@@ -592,7 +595,7 @@
                                             <input type="text" class="mt-4 mb-3 addInputBox" formControlName="name">
                                             <a class="addBtn mb-3" *ngIf='i!==0'
                                                 (click)="newRemoveRegisteredOrganization(i)"><i class="fa fa-trash"></i>
-                                                 </a>
+                                            </a>
                                             <div *ngIf="newCategoryForm.controls['nameRegisteredOrganization'].invalid
                                               &&
                                               (submited
@@ -606,7 +609,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>    
+                                    <div class="clearfix"></div>
                                     <a class="addBtn" (click)="newAddRegisteredOrganization()"><i
                                             class="fa fa-plus"></i> Add</a>
                                 </div>
@@ -1154,7 +1157,7 @@
 
                                             <input type="text" class="mt-4 mb-3 addInputBox" formControlName="name">
                                             <a class="addBtn" *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i
-                                                    class="fa fa-trash"></i>  </a>
+                                                    class="fa fa-trash"></i> </a>
                                             <div *ngIf="editForm.controls['nameRegisteredOrganization'].invalid
                                               &&
                                               (submited
@@ -1170,7 +1173,8 @@
                                            -->
                                         </div>
                                     </div>
-                                    <a class="addBtn" (click)="addRegisteredOrganization()"><i class="fa fa-plus"></i> Add</a>
+                                    <a class="addBtn" (click)="addRegisteredOrganization()"><i class="fa fa-plus"></i>
+                                        Add</a>
                                     <!-- <button (click)="addRegisteredOrganization()">Add new Registered  Organization</button>
                                         -->
                                 </div>

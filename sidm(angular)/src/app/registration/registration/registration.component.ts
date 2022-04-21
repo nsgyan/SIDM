@@ -346,7 +346,9 @@ export class RegistrationComponent implements OnInit {
       }).subscribe(data => {
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
-        this.router.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsfffdsdfds'
+        this.router.navigateByUrl(url);
+        // this.router.navigate(['/thankYou'])
         // this.toastr.success('successfully applied');
       },
         error => {
@@ -399,7 +401,7 @@ export class RegistrationComponent implements OnInit {
   }
   checkPan(event: any) {
     this.registrationForm.get('confirmPanNumber')?.reset()
-    const panNumber = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumber')?.value
+    const panNumber = event.target.value ? event.target.value.toUpperCase() : this.registrationForm.get('panNumber')?.value
     if (panNumber) {
       console.log(panNumber);
       this.httpService.checkPan({ panNumber: panNumber })
@@ -584,7 +586,9 @@ export class RegistrationComponent implements OnInit {
       }).subscribe(data => {
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
-        this.router.navigate(['/thankYou'])
+        let url: string = "/thankYou/" + 'dsffsdfds'
+        this.router.navigateByUrl(url);
+        // this.router.navigate(['/thankYou'])
         // this.toastr.success('successfully applied');
       }, err => {
         this.toast.error(err);
