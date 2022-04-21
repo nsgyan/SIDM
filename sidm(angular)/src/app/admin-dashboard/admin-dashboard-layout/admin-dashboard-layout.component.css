@@ -17,6 +17,14 @@ p {
     background: #363a7a;
     padding: 2px 16px;
   }
+  .pageBtn {
+    border: none;
+    background: #363a7a;
+    padding: 14px 16px;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 10px;
+  }
   .table_content {
     color: #1e1e1e;
     font-size: 13px;

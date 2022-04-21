@@ -702,8 +702,8 @@
                                                         [formGroupName]="i">
                                                          
                                                             
-                                                              <input type="text" class="mt-4 mb-2"  formControlName="name">
-                                                              <a *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i  class="fa fa-trash"></i> Delete </a>
+                                                              <input type="text" class="mt-4 mb-3 addInputBox"  formControlName="name">
+                                                              <a class="addBtn mb-3" *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i  class="fa fa-trash"></i> </a>
                                                               <div
                                                               *ngIf="registrationForm.controls['nameRegisteredOrganization'].invalid
                                                               &&
@@ -719,7 +719,7 @@
                                                            -->
                                                         </div>
                                                       </div>  
-                                                      <a (click)="addRegisteredOrganization()"><i class="fa fa-plus"></i> Add</a>
+                                                      <a class="addBtn mb-3" (click)="addRegisteredOrganization()"><i class="fa fa-plus"></i> Add</a>
                                                       <!-- <button (click)="addRegisteredOrganization()">Add new Registered  Organization</button>
                                                         -->
                                                         </div>

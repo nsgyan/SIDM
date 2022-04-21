@@ -113,11 +113,14 @@ span:hover::after {
   border: none;
   margin-bottom: 10px!important;
 }
-.addBtn .fa-plus {
+.addBtn .fa-plus,.fa-trash {
+  color: #fff;
+}
+.addBtn .fa-trash {
   color: #fff;
 }
 .fa-trash {
-  color: #fff;
+  color: #363a7a;
 }
 .addInputBox {
   width: 80%;
