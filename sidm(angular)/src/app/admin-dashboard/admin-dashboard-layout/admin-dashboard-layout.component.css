@@ -17,13 +17,18 @@ p {
     background: #363a7a;
     padding: 2px 16px;
   }
-  .pageBtn {
+  /* .pagination nav ul li a {
     border: none;
     background: #363a7a;
-    padding: 14px 16px;
+    padding: 10px 13px;
     color: #fff;
-    font-size: 17px;
+    font-size: 15px;
     margin-left: 10px;
+  } */
+   .pagination a {
+    background: #363a7a;
+    color: #fff;
+    font-size: 14px;
   }
   .table_content {
     color: #1e1e1e;

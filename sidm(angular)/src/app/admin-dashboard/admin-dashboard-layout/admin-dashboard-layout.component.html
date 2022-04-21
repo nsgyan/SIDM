@@ -182,15 +182,15 @@
     </div>
 </section>
 
-<section class="pagination  " style="justify-content: flex-end;" >
+<section class="pagination" style="justify-content: flex-end;" >
     <nav aria-label="Page navigation example " style="margin: 1rem;">
         <ul class="pagination justify-content-center">
           <li class="page-item ">
-            <a class="page-link pageBtn"  (click)="perviousPage()" tabindex="-1">Previous Page</a>
+            <a class="page-link"  (click)="perviousPage()" tabindex="-1">Previous Page</a>
           </li>
-          <li class="page-item"  *ngIf="allFormsData?.hasPreviousPage || allFormsData?.hasNextPage "><a class="page-link pageBtn">Current Page</a></li>
-          <li class="page-item" >
-            <a class="page-link pageBtn" (click)="nextpage()">Next Page</a>
+          <li class="page-item"  *ngIf="allFormsData?.hasPreviousPage || allFormsData?.hasNextPage "><a class="page-link ">Current Page</a></li>
+          <li class="page-item " >
+            <a class="page-link" (click)="nextpage()">Next Page</a>
           </li>
         </ul>
       </nav>
