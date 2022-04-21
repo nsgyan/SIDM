@@ -16,13 +16,16 @@
     </a>
     <div class="top-panel">
         <div class="container">
-            <a href="javascript:void(0)" class="logo2"><img src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo"
-                    style="width: 100px;"></a>
-            <a href="javascript:void(0)" class="logo1"><img src="assets/img/New_img/logo.png" alt="logo"
-                    style="width: 200px;"></a>
+            <a href="javascript:void(0)" class="logo2">
+                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo">
+            </a>
+            <a href="javascript:void(0)" class="logo1">
+                <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo">
+            </a>
 
-            <a href="javascript:void(0)" class="logo3"><img src="assets/img/New_img/azadi-ka-amrit-mahotsav.png"
-                    alt="logo" style="width: 110px;"></a>
+            <a href="javascript:void(0)" class="logo3">
+                <img class="headerLogo3" src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo">
+            </a>
         </div>
     </div>
     <!-- <div class="header-nav">
@@ -280,8 +283,7 @@
                             <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21 </h5>
                             <input type="file" accept="application/pdf" formControlName='financialDoccument'
                                 (change)="newGstpdfOnly($event,'financialDoccument')">
-                            <span
-                                data-title="File should be in pdf. File size should be less than 2MB">ⓘ</span>
+                            <span data-title="File should be in pdf. File size should be less than 2MB">ⓘ</span>
                             <br>
                             <p *ngIf="newCategoryForm.get('financialDoccument')?.hasError('required')"
                                 style="color: red;">
@@ -837,7 +839,7 @@
                             <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21 </h5>
                             <input type="file" *ngIf="!editData.financialDoccument" accept="application/pdf"
                                 formControlName='financialDoccument' (change)="gstpdfOnly($event,'financialDoccument')">
-                            <span *ngIf="!editData.financialDoccument" 
+                            <span *ngIf="!editData.financialDoccument"
                                 data-title="File should be in pdf format. pdf size should be less than 2MB">ⓘ</span>
                             <a *ngIf="editData.financialDoccument" href="{{editData?.financialDoccument}}"
                                 target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>

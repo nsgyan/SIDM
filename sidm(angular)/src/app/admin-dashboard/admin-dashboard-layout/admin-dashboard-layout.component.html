@@ -7,14 +7,19 @@
     </a>
     <div class="top-panel">
         <div class="container">
-            <a href="javascript:void(0)" class="logo2"><img src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo"
-                style="width: 75px;"></a>
-        <a href="javascript:void(0)" class="logo1"><img src="assets/img/New_img/logo.png" alt="logo"
-                style="width: 150px;"></a>
+            <a href="javascript:void(0)" class="logo2">
+                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo"
+                    >
+                </a>
+            <a href="javascript:void(0)" class="logo1">
+                <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
+                   >
+                </a>
 
-        <a href="javascript:void(0)" class="logo3"><img
-                src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
-                style="width: 100px;"></a>
+            <a href="javascript:void(0)" class="logo3">
+                <img class="headerLogo3" src="assets/img/New_img/azadi-ka-amrit-mahotsav.png"
+                    alt="logo">
+                </a>
         </div>
     </div>
     <!-- <div class="header-nav">
@@ -129,7 +134,8 @@
                                                 text-theme">Designation:</span>{{item.designation}}</li>
                                     </ul>
                                 </th>
-                                <td><ul class="list-unstyled text-xs">
+                                <td>
+                                    <ul class="list-unstyled text-xs">
                                         <li class="table_content"><span class="font-bold
                                                 text-theme">Address:</span>
                                             {{item.addressl1}}
@@ -140,8 +146,9 @@
                                                 text-theme">State:</span>{{item.state}}</li>
                                         <li class="table_content"><span class="font-bold
                                                 text-theme">PinCode:</span>{{item.pincode}}</li>
-                                    </ul></td>
-                                <td class="table_content"  scope="row">{{item.category}}</td>
+                                    </ul>
+                                </td>
+                                <td class="table_content" scope="row">{{item.category}}</td>
                                 <th class="table_content" scope="row">{{item.typeOfApplicant}}</th>
                                 <td scope="row">
                                     <ul class="list-unstyled text-xs">
@@ -153,7 +160,8 @@
                                                 text-theme">Pan Number:</span>{{item.panNumber}}</li>
                                         <li class="table_content"><span class="font-bold
                                                 text-theme">Gst Number:</span>{{item.gstinOfCompany}}</li>
-                                    </ul></td>
+                                    </ul>
+                                </td>
                                 <td scope="row">
                                     <ul class="list-unstyled text-xs">
                                         <li class="table_content"><span class="font-bold
@@ -162,12 +170,13 @@
                                         <li class="table_content"><span class="font-bold
                                                 text-theme"> Other Association
                                                 Organisation :</span>{{item.associationName}}</li>
-                                    </ul></td>
+                                    </ul>
+                                </td>
 
 
-                                <td><button  class="viewBtn" (click)="viewDetails(item._id)" >
-                                    View
-                                </button></td>
+                                <td><button class="viewBtn" (click)="viewDetails(item._id)">
+                                        View
+                                    </button></td>
                             </tr>
 
                         </tbody>
@@ -182,18 +191,19 @@
     </div>
 </section>
 
-<section class="pagination" style="justify-content: flex-end;" >
+<section class="pagination" style="justify-content: flex-end;">
     <nav aria-label="Page navigation example " style="margin: 1rem;">
         <ul class="pagination justify-content-center">
-          <li class="page-item " *ngIf="allFormsData?.hasPreviousPage" >
-            <a class="page-link"  (click)="perviousPage()" tabindex="-1">Previous Page</a>
-          </li>
-          <li class="page-item"  *ngIf="allFormsData?.hasPreviousPage || allFormsData?.hasNextPage "><a class="page-link ">Current Page</a></li>
-          <li class="page-item " *ngIf="allFormsData?.hasNextPage" >
-            <a class="page-link" (click)="nextpage()">Next Page</a>
-          </li>
+            <li class="page-item " *ngIf="allFormsData?.hasPreviousPage">
+                <a class="page-link" (click)="perviousPage()" tabindex="-1">Previous Page</a>
+            </li>
+            <li class="page-item" *ngIf="allFormsData?.hasPreviousPage || allFormsData?.hasNextPage "><a
+                    class="page-link ">Current Page</a></li>
+            <li class="page-item " *ngIf="allFormsData?.hasNextPage">
+                <a class="page-link" (click)="nextpage()">Next Page</a>
+            </li>
         </ul>
-      </nav>
+    </nav>
     <!-- <nav aria-label="Page navigation example ">
         <ul class="pagination">
           <li class="page-item" *ngIf="allFormsData?.hasPreviousPage">
@@ -211,7 +221,7 @@
           </li>
         </ul>
       </nav> -->
-<!-- <button (click)="perviousPage()" *ngIf="allFormsData?.hasPreviousPage" >Pervious Page</button>
+    <!-- <button (click)="perviousPage()" *ngIf="allFormsData?.hasPreviousPage" >Pervious Page</button>
 <button class="active">Current Page</button>
 <button  (click)="nextpage()" *ngIf="allFormsData?.hasNextPage">Next Page</button> -->
 </section>
@@ -219,7 +229,7 @@
 
 
 <footer id="footer">
-    
+
 </footer>
 <!-- *ngIf="allFormsData?.hasPreviousPage" -->
 <!-- *ngIf="allFormsData?.hasNextPage" -->
