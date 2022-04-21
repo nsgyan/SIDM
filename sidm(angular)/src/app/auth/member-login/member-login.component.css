@@ -3,3 +3,12 @@
     top: -142px;
     padding: 1rem 0;
 }
+.loginLink {
+    font-size: 16px;
+      color: #000;
+  }
+  .loginLink a{
+    color: #363a7e;
+      font-weight: 600;
+      text-decoration: underline;
+  }
