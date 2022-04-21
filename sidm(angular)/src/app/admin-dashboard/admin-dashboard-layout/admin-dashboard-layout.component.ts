@@ -12,13 +12,14 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 export class AdminDashboardLayoutComponent implements OnInit {
   allFormsData: any;
   page = 1;
+  index=0;
   itemPerPage = 10;
 
   constructor(private httpService: HttpService,
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private routes: Router) {
-    this.getdata()
+    this.getdata('')
   
 
   }
@@ -29,7 +30,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  getdata() {
+  getdata(type:string) {
     this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
       console.log(data);
 
@@ -60,7 +61,12 @@ export class AdminDashboardLayoutComponent implements OnInit {
       })
       this.allFormsData = data
 
-      console.log(this.allFormsData);
+     if(type==='pervious'){
+      this.index-=10
+     }
+     else if(type==='next'){
+       this.index+=10
+     }
 
     }, err => {
       this.toast.error(err.error);
@@ -77,11 +83,11 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   perviousPage() {
     this.page = this.page - 1;
-    this.getdata()
+    this.getdata('pervious')
   }
   nextpage() {
     this.page = this.page + 1;
-    this.getdata()
+    this.getdata('next')
   }
 
 }
