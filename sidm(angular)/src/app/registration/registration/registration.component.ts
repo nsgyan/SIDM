@@ -135,7 +135,7 @@ export class RegistrationComponent implements OnInit {
       file[0].type == 'application/pdf'
 
     ) {
-      if (parseInt(file[0].size) > 524280) {
+      if (parseInt(file[0].size) > 2097152) {
         this.registrationForm.get(form)?.reset()
         this.registrationForm.get(form)?.updateValueAndValidity()
         this.toast.error('file to large')
@@ -169,7 +169,7 @@ export class RegistrationComponent implements OnInit {
     ) {
       console.log('jhe');
 
-      if (parseInt(file[0].size) > 524280) {
+      if (parseInt(file[0].size) > 2097152) {
       this.registrationForm.get(form)?.reset()
       this.registrationForm.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')

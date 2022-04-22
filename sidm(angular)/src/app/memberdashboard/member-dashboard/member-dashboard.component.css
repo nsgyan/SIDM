@@ -128,3 +128,10 @@ span:hover::after {
   margin-right: 5px;
   
 }
+
+
+.fileSizetext {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b3b3b;
+}

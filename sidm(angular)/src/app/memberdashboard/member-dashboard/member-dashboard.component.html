@@ -625,7 +625,7 @@
                     </div>
                     <h5 class="mt-5 mb-4">About the company</h5>
                     <div class="">
-                        <textarea formControlName="aboutCompany" class="form-control mb-3" aria-label="With
+                        <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
                         textarea" maxlength="150"></textarea>
                         <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
                         <p *ngIf="newCategoryForm.get('aboutCompany')?.hasError('required')" style="color: red;">
@@ -641,7 +641,6 @@
                         textarea" maxlength="100"></textarea>
                         <p class="fileSizetext" >Write a about the product/technology/facility/Exports (100 Words). For registering multiple achievements, fill separate applications
                            </p>
-                        <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
                         <p *ngIf="newCategoryForm.get('sidmChampionAwards')?.hasError('required')" style="color: red;">
                             SIDM Champion Awards <strong>required</strong>
                         </p>
@@ -669,7 +668,7 @@
                                     <h5 for="">Upload documents</h5>
                                     <input formControlName="appreciationDocuments" type="file"
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
-                                        (change)="newChangeListener($event,'appreciationDocuments')" class="mt-3"
+                                        (change)="newChangeListener($event,'appreciationDocuments')" class="mt-1"
                                         name="" id="" aria-describedby="helpId" placeholder="">
                                      <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                                     <div *ngIf="newCategoryForm.controls['appreciationDocuments'].invalid
@@ -692,7 +691,7 @@
                         compare with the other competing options
                         available to the customer?</h5>
                     <div class="">
-                        <textarea formControlName="campareAchivement" class="form-control mb-5" aria-label="With
+                        <textarea formControlName="campareAchivement" class="form-control mb-1" aria-label="With
                         textarea" maxlength="150"></textarea>
                         <p class="fileSizetext" >Write not more than 150 words
                                       
@@ -718,7 +717,7 @@
                     <div class="">
                         <h5 class="mb-2">Exhibit 1</h5>
                         <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png.pdf"
-                            (change)="newChangeListener($event,'exhibit1')" class="border-light mb-4" name="" id=""
+                            (change)="newChangeListener($event,'exhibit1')" class="border-light mb-1" name="" id=""
                             aria-describedby="helpId" placeholder="">
                             <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="newCategoryForm.get('exhibit1')?.hasError('required')" style="color: red;">
@@ -727,18 +726,18 @@
                         <br>
                         <h5 class="mb-2">Exhibit 2</h5>
                         <input formControlName="exhibit2" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
-                            (change)="newChangeListener($event,'exhibit2')" class="border-light mb-4" name="" id=""
+                            (change)="newChangeListener($event,'exhibit2')" class="border-light mb-1" name="" id=""
                             aria-describedby="helpId" placeholder="">
                             <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="newCategoryForm.get('exhibit2')?.hasError('required')" style="color: red;">
                             Exhibit 2 <strong>required</strong>
                         </p>
                         <br>
-                        <h5>Product video link (Optiona)</h5>
+                        <h5 class="mb-2">Product video link (Optional)</h5>
                         <input type="text" formControlName="productLink">
 
                     </div>
-                    <div class="col-md-12 mt-4">
+                    <div class=" mt-4">
                         <div class="form-group">
                             <re-captcha (resolved)="resolved($event)"
                                 siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
@@ -1196,7 +1195,7 @@
                     </div>
                     <h5 class="mt-5 mb-4">About the company</h5>
                     <div class="">
-                        <textarea formControlName="aboutCompany" class="form-control mb-3" aria-label="With
+                        <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
                         textarea" maxlength="100"></textarea>
                         <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
                         <p *ngIf="editForm.get('aboutCompany')?.hasError('required')" style="color: red;">
@@ -1242,7 +1241,7 @@
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="changeListener($event,'appreciationDocuments')" class="mt-3" name=""
                                         id="" aria-describedby="helpId" placeholder="">
-                                     <p *ngIf="editData.appreciationDocuments" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                     <p *ngIf="!editData.appreciationDocuments" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                                     <a *ngIf="editData.appreciationDocuments" href="{{editData?.appreciationDocuments}}"
                                         target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
                                     <a *ngIf="editData.appreciationDocuments"
@@ -1269,7 +1268,7 @@
                         compare with the other competing options
                         available to the customer?</h5>
                     <div class="">
-                        <textarea formControlName="campareAchivement" class="form-control mb-5" aria-label="With
+                        <textarea formControlName="campareAchivement" class="form-control mb-1" aria-label="With
                         textarea" maxlength="150"></textarea>
                         <p class="fileSizetext" >Write not more than 150 words
                                       
@@ -1298,7 +1297,7 @@
                         <h5 class="mb-2">Exhibit 1 </h5>
                         <input *ngIf="!editData.exhibit1" formControlName="exhibit1" type="file"
                             accept=".gif,.jpg,.jpeg,.png,.pdf" (change)="changeListener($event,'exhibit1')"
-                            class="border-light mb-4" name="" id="" aria-describedby="helpId" placeholder="">
+                            class="border-light mb-1" name="" id="" aria-describedby="helpId" placeholder="">
                             <p *ngIf="!editData.exhibit1" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="editForm.get('exhibit1')?.hasError('required')" style="color: red;">
                             Exhibit 1<strong>required</strong>
@@ -1311,7 +1310,7 @@
                         <h5 class="mb-2">Exhibit 2</h5>
                         <input *ngIf="!editData.exhibit2" formControlName="exhibit2" type="file"
                             accept=".gif,.jpg,.jpeg,.png,.pdf" (change)="changeListener($event,'exhibit2')"
-                            class="border-light mb-4" name="" id="" aria-describedby="helpId" placeholder="">
+                            class="border-light mb-1" name="" id="" aria-describedby="helpId" placeholder="">
                             <p *ngIf="!editData.exhibit2" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                         <p *ngIf="editForm.get('exhibit2')?.hasError('required')" style="color: red;">
                             Exhibit 2<strong>required</strong>
@@ -1321,11 +1320,11 @@
                         <a *ngIf="editData.exhibit2" (click)="delete('exhibit2')"><i class="fa fa-trash"></i></a>
 
                         <br>
-                        <h5>Product video link (Optiona)</h5>
+                        <h5 class="mb-2">Product video link (Optional)</h5>
                         <input type="text" formControlName="productLink">
 
                     </div>
-                    <div class="col-md-12 mt-4">
+                    <div class=" mt-4">
                         <div class="form-group">
                             <re-captcha (resolved)="resolved($event)"
                                 siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>

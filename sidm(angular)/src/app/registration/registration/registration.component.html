@@ -736,7 +736,7 @@
                                 <h5 class="mt-5 mb-4">About the company*</h5>
                                 <div class="">
                                     <textarea formControlName="aboutCompany"
-                                        class="form-control mb-3" aria-label="With
+                                        class="form-control mb-1" aria-label="With
                                         textarea" maxlength="100"></textarea>
                                         <p class="fileSizetext">Please write about your company in not more than 100 words</p>
                                         <p
@@ -751,7 +751,7 @@
                                 </h5>
                                 <div class="">
                                     <textarea formControlName="sidmChampionAwards"
-                                        class="form-control mb-3" aria-label="With
+                                        class="form-control mb-1" aria-label="With
                                         textarea" maxlength="100"></textarea>
                                         <p class="fileSizetext" >Write a about the product/technology/facility/Exports (100 Words). For registering multiple achievements, fill separate applications
                                       
@@ -817,7 +817,7 @@
                                     available to the customer?*</h5>
                                 <div class="">
                                     <textarea formControlName="campareAchivement"
-                                        class="form-control mb-5" aria-label="With
+                                        class="form-control mb-1" aria-label="With
                                         textarea"  maxlength="150"></textarea>
                                         <p class="fileSizetext" >Write not more than 150 words
                                       
@@ -851,7 +851,7 @@
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
                                     (change)="changeListener($event,'exhibit1')"
-                                    class="border-light mb-4" name="" id=""
+                                    class="border-light mb-1" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
                                     <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
@@ -867,7 +867,7 @@
                                     type="file"
                                     accept=".gif,.jpg,.jpeg,.png,.pdf"
                                     (change)="changeListener($event,'exhibit2')"
-                                    class="border-light mb-4" name="" id=""
+                                    class="border-light mb-1" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
                                     <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
@@ -877,11 +877,11 @@
                                     Exhibit 2  <strong>Required</strong> 
                                 </p>
                                     <br>
-                                    <h5>Product video link (Optional)</h5>
+                                    <h5 class="mb-2">Product video link (Optional)</h5>
                                     <input type="text" formControlName="productLink">
                                 
                             </div>
-                            <div class="col-md-12 mt-4">
+                            <div class=" mt-4">
                                 <div class="form-group">
                                     <re-captcha
                                     (resolved)="resolved($event)" 

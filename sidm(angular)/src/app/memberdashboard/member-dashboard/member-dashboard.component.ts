@@ -393,7 +393,7 @@ export class MemberDashboardComponent implements OnInit {
       file[0].type == 'application/pdf'
 
     ) {
-      if (parseInt(file[0].size) > 524280) {
+      if (parseInt(file[0].size) > 2097152) {
         this.editForm.get(form)?.reset()
         this.editForm.get(form)?.updateValueAndValidity()
         this.toast.error('file to large')
@@ -496,7 +496,7 @@ export class MemberDashboardComponent implements OnInit {
     ) {
       console.log('jhe');
 
-      if (parseInt(file[0].size) > 524280) {
+      if (parseInt(file[0].size) > 2097152) {
       this.editForm.get(form)?.reset()
       this.editForm.get(form)?.updateValueAndValidity()
       this.toast.error('file to large')
@@ -1048,7 +1048,7 @@ export class MemberDashboardComponent implements OnInit {
       file[0].type == 'application/pdf'
 
     ) {
-      if (parseInt(file[0].size) > 524280) {
+      if (parseInt(file[0].size) > 2097152) {
         this.newCategoryForm.get(form)?.reset()
         this.newCategoryForm.get(form)?.updateValueAndValidity()
         this.toast.error('file to large')
@@ -1151,7 +1151,7 @@ export class MemberDashboardComponent implements OnInit {
     ) {
       console.log('jhe');
 
-      if (parseInt(file[0].size) > 524280) {
+      if (parseInt(file[0].size) > 2097152) {
         this.newCategoryForm.get(form)?.reset()
         this.newCategoryForm.get(form)?.updateValueAndValidity()
         this.toast.error('file to large')
