@@ -224,12 +224,12 @@
                         videos of the products / innovation /
                         facilities, fielded for the awards</h6>
                     <p *ngIf='!memberData?.exhibit1||!memberData?.exhibit1'>you have't upload  Document </p>
-                    <a class="ml-2" *ngIf='memberData?.exhibit1' href="{{memberData?.exhibit1}}" download="exhibit1"> Exhibit 1</a>
-                    <a class="ml-2" *ngIf='memberData?.exhibit2'  href="{{memberData?.exhibit2}}" download="exhibit2"> Exhibit 2</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit1'  target="blank" href="{{memberData?.exhibit1}}" download="exhibit1"> Exhibit 1</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit2'  target="blank"  href="{{memberData?.exhibit2}}" download="exhibit2"> Exhibit 2</a>
                 </div>
                 <div class="detail" *ngIf="memberData?.productLink">
                     <h6> Product video Link</h6>
-                    <a class="ml-2" href="{{memberData?.productLink}}" > video Link</a>
+                    <a class="ml-2" target="blank" href="{{memberData?.productLink}}" > video Link</a>
                 </div>
                 
             </div>
