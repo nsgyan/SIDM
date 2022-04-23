@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../shared/services/http.service';
 import { environment } from "../../environments/environment.prod";
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-viewpage',
@@ -15,7 +16,8 @@ export class ViewpageComponent implements OnInit {
   cat4 = true
   memberData: any;
   constructor(private route: ActivatedRoute,
-    private httpService: HttpService) {
+    private httpService: HttpService,
+    private location: Location) {
     const id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(id)
       .subscribe((data: any) => {
@@ -71,4 +73,8 @@ export class ViewpageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goBack(){
+    this.location?.back();
+
+  }
 }
