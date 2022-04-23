@@ -13,7 +13,7 @@ var instance = new Razorpay({
   let receipt ;
   let notes;
     const userID = req.params.userID
-    await   RegistrationForm.findById(userID)
+    RegistrationForm.findById(userID)
     .then(data=>{
       if(data ){
           if(data.status === 'submit'){
@@ -65,7 +65,25 @@ var instance = new Razorpay({
               currency='INR';
              amount = parseFloat(amount)*100;
             
-             notes=data;
+           
+             instance.orders.create({
+              amount: amount,
+              currency: "INR",
+              receipt: receipt,
+              account_id:'acc_JKo40ascMj3oEP',
+              notes: {
+                type: data.typeOfApplicant,
+                category:data.category,
+                panNumber:data.panNumber,
+                mobileNumber:data.mobileNumber,
+                email: data.email
+              }},(err, order) => {
+                //STEP 3 & 4:
+                console.log(err,order);
+                if (!err) res.json(order);
+                else res.send(err);
+              }
+            );
          
           }
       }
@@ -76,14 +94,8 @@ var instance = new Razorpay({
     .catch(err=>{
         console.log(err)
     })
-    instance.orders.create(
-        { amount, currency, receipt, notes },
-        (err, order) => {
-          //STEP 3 & 4:
-          if (!err) res.json(order);
-          else res.send(err);
-        }
-      );
+
+    
 
 
 }

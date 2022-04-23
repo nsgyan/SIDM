@@ -5,8 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
-
+ 
 @Component({
   selector: 'app-member-dashboard',
   templateUrl: './member-dashboard.component.html',
@@ -44,11 +45,23 @@ export class MemberDashboardComponent implements OnInit {
   exhibit1: any;
   exhibit2: any;
   registeredOrganization: boolean = false;
+  razorPayOptions={
+    'account_id':'acc_JKo40ascMj3oEP',
+    "amount":1,
+    "currency":"INR",
+    "note":{},
+    "order_id":'',
+    "handler":(res: any)=>{
+      console.log(res);
+      
+    }
+  }
   constructor(private localStroage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
     private httpService: HttpService,
     private routes: Router,
+    private winRef: WindowRefService
   ) {
     this.getState()
     this.httpService.getMemberData().
@@ -1244,12 +1257,20 @@ export class MemberDashboardComponent implements OnInit {
   }
 
   payNow(id:string){
-this.httpService.paynow(id).subscribe(data=>{
-  console.log(data);
-  
-})
-    
+    this.httpService.paynow(id).subscribe((data:any)=>{
+this.razorPayOptions.amount=data.amount
+this.razorPayOptions.order_id=data.id
+this.razorPayOptions.note=data.notes
+this.razorPayOptions.handler= this.razorPayshandler
+const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
+rzp.open();
 
+      
+    })
+  }
+  razorPayshandler(response:any){
+    console.log(response);
+    
   }
 
 }
