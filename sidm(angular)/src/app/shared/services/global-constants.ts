@@ -12,6 +12,7 @@ export class Globals {
         'formsdata':  Globals.server + 'sidm/memberdata',
         'memberdata': Globals.server + 'user/memberdata',
         'memberLogin': Globals.server + 'user/memberLogin',
-        'upload': Globals.server + 'upload'
+        'upload': Globals.server + 'upload',
+        'payment': Globals.server + 'user/payment'
     };
 }

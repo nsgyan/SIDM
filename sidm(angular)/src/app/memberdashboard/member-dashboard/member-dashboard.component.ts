@@ -1243,4 +1243,13 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
+  payNow(id:string){
+this.httpService.paynow(id).subscribe(data=>{
+  console.log(data);
+  
+})
+    
+
+  }
+
 }

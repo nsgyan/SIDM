@@ -139,9 +139,14 @@
                                         <th scope="row">{{i+1}}</th>
                                         <td>{{item.category}}</td>
                                         <td>
+<<<<<<< Updated upstream
                                             <a class="viewBtn mr-3" (click)="viewForm(item)">View</a>
                                             <a class="viewBtn" *ngIf="item.status ==='submit'"> Pay Now</a>
                                         </td>
+=======
+                                            <a class="viewBtn" (click)="viewForm(item)">View</a>
+                                            <a class="viewBtn" *ngIf="item.status ==='submit'" (click)="payNow(item._id)"> Pay Now</a></td>
+>>>>>>> Stashed changes
                                     </tr>
                                 </tbody>
                             </table>

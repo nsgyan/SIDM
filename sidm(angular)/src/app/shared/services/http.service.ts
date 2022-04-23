@@ -36,12 +36,14 @@ export class HttpService {
  updateform(id: string, data: any) {
     return this.httpService.patch(`${Globals.route.update}/${id}`, data)
   }
-
+  
+  paynow(id:String)
+{
+  return this.httpService.get(`${Globals.route.payment}/${id}`)
+  
+}
   getStateList() {
-    console.log('hello');
-    
     return this.httpService.get(Globals.route.getStateList)
-
   }
 
   checkEmail(data: any) {

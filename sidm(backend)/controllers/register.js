@@ -167,7 +167,6 @@ exports.getmemberData = (req, res, next) => {
 
 exports.updateFrom = (req, res, next) => {
   const userID = req.params.userID
-  console.log(userID);
   const createAt = req.body.currentDate;
   const typeOfApplicant = req.body.typeOfApplicant;
   const subCategoryDoccument = req.body.subCategoryDoccument;
