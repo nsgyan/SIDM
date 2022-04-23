@@ -45,20 +45,19 @@ select {
   top: -142px;
 }
 
-span {
+/* span {
   position: relative;
   cursor: pointer;
   left: -75px;
   z-index: 9;
-}
+} */
 
-span:hover::after {
+/* span:hover::after {
   content: attr(data-title);
   font-size: 13px;
   font-weight: 400;
   padding: 10px;
   width: 250px;
-  /* border: 1px solid rgb(151, 151, 151); */
   position: absolute;
   top: 5px;
   left: 20px;
@@ -66,7 +65,7 @@ span:hover::after {
   border-radius: 2px;
   color: rgb(255, 255, 255);
   cursor: pointer;
-}
+} */
 .categoryList {
   font-size: 15px;
     color: rgb(53, 53, 53);
@@ -105,4 +104,8 @@ span:hover::after {
   font-size: 14px;
   font-weight: 500;
   color: #3b3b3b;
+}
+.catBold {
+  font-weight: 600;
+  font-size: 15px;
 }

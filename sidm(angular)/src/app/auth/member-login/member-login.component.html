@@ -114,7 +114,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Pan Number</h5>
+                            <h5 class="mt-3 mb-3">PAN Number</h5>
                             <input appUpperCase formControlName="panNumber" appBlockCopyPaste type="text">
                             <div *ngIf=" memberform.controls['panNumber'].invalid && ( submitted || memberform.controls['panNumber'].touched)">         
                                 <span *ngIf="memberform.get('panNumber')?.hasError('required')" style="color: red;">

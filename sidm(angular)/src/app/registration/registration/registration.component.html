@@ -26,8 +26,8 @@
                             <div class="row">
 
                             </div>
-                            <h5 class="mb-3 mt-3">Please choose the Category
-                                that you wish to Apply for*</h5>
+                            <h5 class="mb-3 mt-3">Please choose the category
+                                that you wish to apply for*</h5>
                             <div class="">
                                 <div class="checkgroup">
                                     <div class="radioBox Apply-control
@@ -91,7 +91,7 @@
                                     </div>
                         
                             </div>
-                            <h5 class="mt-5 mb-3">Type of Applicant company*</h5>
+                            <h5 class="mt-5 mb-3">Type of applicant company*</h5>
                             <div class="row">
                                 <div class="checkgroup">
                                     <div class="radioBox Apply-control
@@ -103,8 +103,8 @@
                                             class="Apply-control-input mt-2
                                             mr-2">
                                         <label class="Apply-control-label font"
-                                            for="ApplyRadio5">L – Large
-                                            <br>(Annual Turnover FY 2020-21 over
+                                            for="ApplyRadio5"><h6 class="catBold">L – Large</h6>
+                                            (Annual Turnover FY 2020-21 over
                                             & above Rs 250 Crore)</label>
                                     </div>
                                     <div class="mr-0 radioBox Apply-control
@@ -116,7 +116,7 @@
                                             class="Apply-control-input mt-2
                                             mr-2" >
                                         <label class="Apply-control-label font"
-                                            for="ApplyRadio6">M – Medium<br>
+                                            for="ApplyRadio6"><h6 class="catBold">M – Medium</h6>
                                             (Annual Turnover FY 2020-21 between
                                             Rs 75 to 250 Crore)
                                         </label>
@@ -131,7 +131,7 @@
                                             class="Apply-control-input mt-2
                                             mr-2">
                                         <label class="Apply-control-label font"
-                                            for="ApplyRadio7">S – SME/SSI/START-UP<br>
+                                            for="ApplyRadio7"><h6 class="catBold">S – SME/SSI/START-UP</h6>
                                             (Annual Turnover FY 2020-21 less
                                             than Rs 75 Crore)
                                         </label>
@@ -152,12 +152,12 @@
                                     <h5 class="mt-5 mb-3"  >Please upload the required documents as sub category selected*
                                          </h5>
                                       <ul class="mx-3" style="    list-style: disc;">
-                                        <li class="categoryList">Company Identification Number (CIN) - Large</li>
-                                        <li class="categoryList">Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  Medium / SSI</li>
-                                        <li class="categoryList">DPIIT Certificate -  SME/START-UP</li>
+                                        <li class="categoryList">Company Identification Number (CIN) - <span class="catBold">Large</span></li>
+                                        <li class="categoryList">Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog-  <span class="catBold">Medium / SSI</span></li>
+                                        <li class="categoryList">DPIIT Certificate -  <span class="catBold">SME/START-UP</span></li>
                                     </ul>
                                     <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'  (change)="changeListener($event,'subCategoryDoccument')" >
-                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should be less than 2MB</p>
                                     <p
                                     *ngIf="registrationForm.get('subCategoryDoccument')?.hasError('required')"
                                     style="color: red;">
@@ -170,7 +170,7 @@
                                 <div class="col-lg-12">
                                     <h5 class="mt-5 mb-3"  >Upload last financial balance sheet for the year 2020-21 *</h5>
                                     <input type="file"  accept="application/pdf" formControlName='financialDoccument'  (change)="gstpdfOnly($event,'financialDoccument')" >
-                                    <p class="fileSizetext">File should be in pdf. Pdf size should be less than 2MB</p>
+                                    <p class="fileSizetext">File should be in pdf. File size should be less than 2MB</p>
                                     
                                     <br>
                                         
@@ -562,7 +562,7 @@
                                         type="file"
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="changeListener($event,'documentGstCertificate')">
-                                        <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                        <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should be less than 2MB</p>
                                         <br>
                                         <p
                                         *ngIf="registrationForm.get('documentGstCertificate')?.hasError('required')"
@@ -753,7 +753,7 @@
                                     <textarea formControlName="sidmChampionAwards"
                                         class="form-control mb-1" aria-label="With
                                         textarea" maxlength="100"></textarea>
-                                        <p class="fileSizetext" >Write a about the product/technology/facility/Exports (100 Words). For registering multiple achievements, fill separate applications
+                                        <p class="fileSizetext" >Write a about the product/technology/facility/exports (100 Words). For registering multiple achievements, fill separate applications
                                       
                                   </p>
 
@@ -791,13 +791,11 @@
                                                     class="mt-3" name="" id=""
                                                     aria-describedby="helpId"
                                                     placeholder="">
-                                                    <p style="font-size: 12px;
-                                                    font-weight: 500;
-                                                    color: #d30a0a;">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should be less than 2MB</p>
                                                     <div *ngIf="registrationForm.controls['appreciationDocuments'].invalid
                                                         &&
                                                         (submited ||registrationForm.controls['appreciationDocuments'].touched)">
-                                                        <p style="font-size: 12px;  font-weight: 500; color: #d30a0a;">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                                        <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should be less than 2MB</p>
                                                     <p  style="color: red;" *ngIf="registrationForm.get('appreciationDocuments')?.hasError('required')" >
                                                         documents  required
                                                     </p>
@@ -843,8 +841,8 @@
                                 </p>
                             </div>
                             <h5 class="mt-5 mb-4">Please upload Photograph /
-                                videos of the products / innovation /
-                                facilities, fielded for the awards*</h5>
+                                Videos of the products / Innovation /
+                                Facilities fielded for the awards*</h5>
                             <div class="">
                                 <h5>Exhibit 1* </h5>
                                 <input formControlName="exhibit1"
@@ -854,7 +852,7 @@
                                     class="border-light mb-1" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
-                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should be less than 2MB</p>
                                     
                                     <p
                                     *ngIf="registrationForm.get('exhibit1')?.hasError('required')"
@@ -870,7 +868,7 @@
                                     class="border-light mb-1" name="" id=""
                                     aria-describedby="helpId"
                                     placeholder="">
-                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
+                                    <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should be less than 2MB</p>
                                     <p
                                     *ngIf="registrationForm.get('exhibit2')?.hasError('required')"
                                     style="color: red;">

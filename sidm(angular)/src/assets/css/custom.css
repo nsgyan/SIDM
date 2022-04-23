@@ -385,6 +385,7 @@ footer h5 {
 .font {
     font-size: 15px;
     color: rgb(53, 53, 53);
+    line-height: 24px;
 }
 .btn-border {
     padding: 15px 35px;
