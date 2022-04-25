@@ -16,6 +16,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./member-dashboard.component.css']
 })
 export class MemberDashboardComponent implements OnInit {
+  paymentDetails:any
   appreciationDocuments: any;
   sidmMember = false
   association = false
@@ -1286,7 +1287,10 @@ rzp.open();
   let currentDate = new Date();
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,currentDate}).subscribe(data=>{
+    this.paymentDetails=data
     this.toast.success(' Payment Successfully ');
+   let currentRouter = this.routes.url;
+    this.routes.navigate([currentRouter])
     // this.location.reload();
 
     
@@ -1295,10 +1299,9 @@ rzp.open();
     this.toast.error('Payment failed');
 
   })
-   
-    
-    
-    
+  }
+  receiptClose(){
+    this.paymentDetails=null
   }
 
 }

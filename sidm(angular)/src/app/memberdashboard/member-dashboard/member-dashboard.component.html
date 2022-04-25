@@ -120,6 +120,45 @@
 
 <section class="">
     <div class="container">
+        <div *ngIf="paymentDetails" class="row">
+            <div class="col-lg-12">
+                <div class="profileSection mb-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col" >Mobile Number</th>
+                                        <th scope="col">Pan Number</th>
+                                        <th scope="col" >Order Id</th>
+                                        <th scope="col">Payment Id</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{{paymentDetails?.amount}}</th>
+                                        <th scope="row">{{paymentDetails?.email}}</th>
+                                        <th scope="row">{{paymentDetails?.mobileNumber}}</th>                                    
+                                        <th scope="row">{{paymentDetails?.panNumber}}</th>                                   
+                                        <th scope="row">{{paymentDetails?.razorpay_order_id}}</th>                                   
+                                        <th scope="row">{{paymentDetails?.razorpay_payment_id}}</th>                              
+                                        <td>
+                                            <a class="viewBtn" (click)="receiptClose()"> Close</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="profileSection mb-6">
