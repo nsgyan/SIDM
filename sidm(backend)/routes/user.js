@@ -17,6 +17,8 @@ router.post('/checkPan', User.getPan);
 router.get('/payment/:userID', Payment.payNow);
 router.post('/verifypayment', Payment.verifypayment);
 
+router.get('/viewPayment/:userID', Payment.viewpayment);
+
 
 
 

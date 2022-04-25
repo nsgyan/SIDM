@@ -129,33 +129,16 @@ res.status(200).send(item)
     res.status(404).send(err)
   })
 
-
-//   const { razorpay_order_id, razorpay_payment_id,amount} =  req.body;
-//   let id=req.body.id
- 
-//  id=new ObjectId(id)
-//   RegistrationForm.findOne({'_id':id}).then(data=>{
-//     console.log(data);
-//   })
-//   .catch(err=>{
-//     console.log(err);
-//   })
-  
-  // let hmac = crypto.createHmac("sha256", key_secret);
-  //      hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
-  //       const generated_signature = hmac.digest("hex")
-  //       if (razorpay_signature === generated_signature) {
-  //       console.log('Payment has been verified')
-  //                 //   let pay = new payment_model(req.body);
-  //                 //   pay.userid=userId;
-  //                 //   pay.amount=(amount>=500?amount*1.1:amount);
-  //                 //   pay.transationid = razorpay_payment_id;
-  //                 //   pay.transation_status="settlement"
-  //                 //   pay.pay_status="deposit"
-  //                 //   pay.save();
-  //                 // res.json({ success: true, message: "Payment has been verified" });
-  //               } else res.json({ success: false, message: "Payment verification failed" });
-
-
 }
+
+exports.viewpayment= async (req,res)=>{
+  const userID = req.params.userID
+  PaymentDb.findById(userID).then(data=>{
+    res.status(200).send(data)
+
+  }).catch(err=>{
+    res.status(404).send(err)
+  })
+}
+
 

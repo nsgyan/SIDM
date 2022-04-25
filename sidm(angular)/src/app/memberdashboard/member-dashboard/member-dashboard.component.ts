@@ -1291,8 +1291,7 @@ rzp.open();
     this.toast.success(' Payment Successfully ');
    let currentRouter = this.routes.url;
     this.routes.navigate([currentRouter])
-    // this.location.reload();
-
+    window.location.reload();
     
     
   },err=>{
@@ -1302,6 +1301,13 @@ rzp.open();
   }
   receiptClose(){
     this.paymentDetails=null
+  }
+  recipt(id:any){
+    this.httpService.ViewPayment(id).subscribe(data=>{
+   this.paymentDetails=data
+      
+    })
+
   }
 
 }
