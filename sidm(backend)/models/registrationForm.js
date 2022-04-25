@@ -40,6 +40,7 @@ const RegistrationFormSchema = new Schema({
         status: { type: String },
         alterMobileNumber:{type:String},
         paymentStatus:{type:String},
+        paymentId:{type:String},
         alterEmail:{type:String,
             lowercase: true }
 })

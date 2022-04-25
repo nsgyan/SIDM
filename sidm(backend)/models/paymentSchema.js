@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const paymentSchema=  new Schema({
-    currentDate:{type:String},
+    createAt:{type:String},
     category:{type:String},
     amount:{type:Number},
     typeOfApplicant:{type:String},

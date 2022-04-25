@@ -107,7 +107,7 @@ exports.verifypayment= async (req,res)=>{
     amount:amount,
     typeOfApplicant:userdata.type,
     category:userdata.category,
-    currentDate: currentDate,
+    createAt: currentDate,
     panNumber:userdata.panNumber,
     mobileNumber:userdata.mobileNumber,
     email: userdata.email,
@@ -115,14 +115,15 @@ exports.verifypayment= async (req,res)=>{
     razorpay_payment_id:razorpay_payment_id,
 
   })
-  payment.save().then(data =>{
+  payment.save().then(item =>{
     RegistrationForm.findOne({ email: userdata.email, mobileNumber:userdata.mobileNumber, typeOfApplicant:userdata.type, panNumber: userdata.panNumber,category:userdata.category })
     .then((data)=>{
       data.paymentStatus='Done'
+      data.paymentId=item._id
       data.save();
     })
    
-res.status(200).send(data)
+res.status(200).send(item)
   
   }).catch(err=>{
     res.status(404).send(err)
