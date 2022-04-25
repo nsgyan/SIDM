@@ -1,6 +1,9 @@
 const Razorpay = require('razorpay');
+
+
 const RegistrationForm = require("../models/registrationForm");
 
+const PaymentDb = require("../models/paymentSchema");
 var instance = new Razorpay({
   key_id: 'rzp_test_partner_EY3aEuNtC4BoNX',
   key_secret: 'gfGVzpQVKiUdLO0v5GuiX8O1',
@@ -79,7 +82,6 @@ var instance = new Razorpay({
                 email: data.email
               }},(err, order) => {
                 //STEP 3 & 4:
-                console.log(err,order);
                 if (!err) res.json(order);
                 else res.send(err);
               }
@@ -92,64 +94,67 @@ var instance = new Razorpay({
       }
     })
     .catch(err=>{
-        console.log(err)
+      res.status(404).send(err)
     })
+}
 
-    
+exports.verifypayment= async (req,res)=>{
+  console.log(req.body);
+  const { currentDate, razorpay_order_id, razorpay_payment_id,amount} =  req.body;
+ 
+  const userdata=req.body.note
+  const payment = new PaymentDb({
+    amount:amount,
+    typeOfApplicant:userdata.type,
+    category:userdata.category,
+    currentDate: currentDate,
+    panNumber:userdata.panNumber,
+    mobileNumber:userdata.mobileNumber,
+    email: userdata.email,
+    razorpay_order_id:razorpay_order_id,
+    razorpay_payment_id:razorpay_payment_id,
+
+  })
+  payment.save().then(data =>{
+    RegistrationForm.findOne({ email: userdata.email, mobileNumber:userdata.mobileNumber, typeOfApplicant:userdata.type, panNumber: userdata.panNumber,category:userdata.category })
+    .then((data)=>{
+      data.paymentStatus='Done'
+      data.save();
+    })
+   
+res.status(200).send(data)
+  
+  }).catch(err=>{
+    res.status(404).send(err)
+  })
+
+
+//   const { razorpay_order_id, razorpay_payment_id,amount} =  req.body;
+//   let id=req.body.id
+ 
+//  id=new ObjectId(id)
+//   RegistrationForm.findOne({'_id':id}).then(data=>{
+//     console.log(data);
+//   })
+//   .catch(err=>{
+//     console.log(err);
+//   })
+  
+  // let hmac = crypto.createHmac("sha256", key_secret);
+  //      hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
+  //       const generated_signature = hmac.digest("hex")
+  //       if (razorpay_signature === generated_signature) {
+  //       console.log('Payment has been verified')
+  //                 //   let pay = new payment_model(req.body);
+  //                 //   pay.userid=userId;
+  //                 //   pay.amount=(amount>=500?amount*1.1:amount);
+  //                 //   pay.transationid = razorpay_payment_id;
+  //                 //   pay.transation_status="settlement"
+  //                 //   pay.pay_status="deposit"
+  //                 //   pay.save();
+  //                 // res.json({ success: true, message: "Payment has been verified" });
+  //               } else res.json({ success: false, message: "Payment verification failed" });
 
 
 }
 
-
-// authController.paymentSave = function (req, res) {
-//     var user = req.session.user,
-//       userId = req.session.userId;
-//     if (userId == null) {
-//       res.render("../views/login");
-//     } else {
-//       if (req.body.amount != "") {
-//           const da = new Date();
-//           let receipt = (da.getMonth() + 1)+""+ da.getDate() +""+ da.getFullYear() +""+ da.getHours() +""+ da.getMinutes()+""+da.getSeconds();
-//           req.body.currency='INR';
-//           req.body.amount = parseFloat(req.body.amount)*100;
-//           // req.body.receipt = '';
-//           req.body.notes=user;
-//            const { amount, currency, notes } = req.body;
-  
-//            // STEP 2:
-//            razorpayInstance.orders.create(
-//              { amount, currency, receipt, notes },
-//              (err, order) => {
-//                //STEP 3 & 4:
-//                if (!err) res.json(order);
-//                else res.send(err);
-//              }
-//            );
-//       } else {
-//         req.flash("toast_error", "Sorry! Something Went wrong.");
-//         res.redirect("/payment");
-//       }
-//     }
-//   };
-  
-//   authController.verifypayment=function(req,res){
-//        var user = req.session.user,
-//          userId = req.session.userId;
-//       const { razorpay_order_id, razorpay_payment_id, razorpay_signature , amount} =  req.body;
-//       const key_secret = 'NeYevC8pUOpBYpbdTmoAzwuK';
-  
-//       let hmac = crypto.createHmac("sha256", key_secret);
-//       hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
-//       const generated_signature = hmac.digest("hex");
-  
-//       if (razorpay_signature === generated_signature) {
-//           let pay = new payment_model(req.body);
-//           pay.userid=userId;
-//           pay.amount=(amount>=500?amount*1.1:amount);
-//           pay.transationid = razorpay_payment_id;
-//           pay.transation_status="settlement"
-//           pay.pay_status="deposit"
-//           pay.save();
-//         res.json({ success: true, message: "Payment has been verified" });
-//       } else res.json({ success: false, message: "Payment verification failed" });
-//   }

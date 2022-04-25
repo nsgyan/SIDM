@@ -76,6 +76,7 @@ exports.postRegistrationForm = (req, res, next) => {
     exhibit1: exhibit1,
     exhibit2: exhibit2,
     status: status,
+    paymentStatus:null,
     alterMobileNumber:alterMobileNumber,
         alterEmail:alterEmail
   });
@@ -245,11 +246,16 @@ exports.updateFrom = (req, res, next) => {
       formData.exhibit1 = exhibit1;
       formData.exhibit2 = exhibit2;
       formData.status = status;
+      formData.paymentStatus=null,
       formData.alterMobileNumber= alterMobileNumber;
       formData.alterEmail= alterEmail
       formData.save((err, success) => {
-        console.log(err, "err");
+        if(err){
+       res.status(404).send(err);
+        }
+        else{
         res.status(200).send(success);
+        }
       });
     })
     .catch((err) => {

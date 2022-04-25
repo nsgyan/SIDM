@@ -15,6 +15,8 @@ router.post('/checkemail', User.getEmail);
 router.post('/checkMobile', User.getMobile);
 router.post('/checkPan', User.getPan);
 router.get('/payment/:userID', Payment.payNow);
+router.post('/verifypayment', Payment.verifypayment);
+
 
 
 

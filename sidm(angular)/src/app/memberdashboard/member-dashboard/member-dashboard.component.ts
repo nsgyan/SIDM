@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,6 +8,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
+import { Location } from '@angular/common'
  
 @Component({
   selector: 'app-member-dashboard',
@@ -46,7 +48,7 @@ export class MemberDashboardComponent implements OnInit {
   exhibit2: any;
   registeredOrganization: boolean = false;
   razorPayOptions={
-    'account_id':'acc_JKo40ascMj3oEP',
+    
     "amount":1,
     "currency":"INR",
     "note":{},
@@ -56,11 +58,12 @@ export class MemberDashboardComponent implements OnInit {
       
     }
   }
-  constructor(private localStroage: LocalStorageService,
+  constructor(private localStorage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
     private httpService: HttpService,
     private routes: Router,
+    private location: Location,
     private winRef: WindowRefService
   ) {
     this.getState()
@@ -1251,25 +1254,50 @@ export class MemberDashboardComponent implements OnInit {
 
 
   logout() {
-    this.localStroage.clearLocalStorage()
+    this.localStorage.clearLocalStorage()
     this.routes.navigate(['login/member'])
 
   }
+  id:any
 
   payNow(id:string){
     this.httpService.paynow(id).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
-this.razorPayOptions.handler= this.razorPayshandler
+this.razorPayOptions.handler=  (response) => {
+  console.log(response);//this returns the expected value
+  this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
+}
+
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
 
       
     })
   }
-  razorPayshandler(response:any){
-    console.log(response);
+  razorPayshandler(response:any,amount:any,note:any){
+
+  
+  
+  
+  let razorpay_payment_id= response.razorpay_payment_id
+  let razorpay_order_id= response.razorpay_order_id
+  let currentDate = new Date();
+
+  this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,currentDate}).subscribe(data=>{
+    this.toast.success(' Payment Successfully ');
+    // this.location.reload();
+
+    
+    
+  },err=>{
+    this.toast.error('Payment failed');
+
+  })
+   
+    
+    
     
   }
 

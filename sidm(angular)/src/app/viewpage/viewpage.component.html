@@ -75,9 +75,10 @@
                     <h6>Status</h6>
                     <p>{{memberData?.status}}</p>
                 </div>
-                <div class="detail">
-                    <h6>Category</h6>
-                    <p>{{memberData?.category}}</p>
+                
+                <div *ngIf="memberData?.paymentStatus" class="detail">
+                    <h6>Payment Status</h6>
+                    <p>{{memberData?.paymentStatus}}</p>
                 </div>
                 <div class="detail">
                     <h6>Type of Applicant company</h6>

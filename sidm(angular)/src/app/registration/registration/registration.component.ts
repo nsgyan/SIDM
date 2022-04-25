@@ -6,6 +6,7 @@ import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidat
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -536,8 +537,6 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
     this.registrationForm.get('mudp')?.setValidators(Validators.required)
     this.registrationForm.get('mudp')?.updateValueAndValidity()
-    this.registrationForm.get('productLink')?.setValidators(Validators.required)
-    this.registrationForm.get('productLink')?.updateValueAndValidity()
     this.registrationForm.get('exhibit1')?.setValidators(Validators.required)
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.setValidators(Validators.required)

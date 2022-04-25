@@ -13,6 +13,7 @@ export class Globals {
         'memberdata': Globals.server + 'user/memberdata',
         'memberLogin': Globals.server + 'user/memberLogin',
         'upload': Globals.server + 'upload',
-        'payment': Globals.server + 'user/payment'
+        'payment': Globals.server + 'user/payment',
+        'verifypayment':Globals.server+'user/verifypayment'
     };
 }

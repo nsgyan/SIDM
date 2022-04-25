@@ -42,7 +42,12 @@ export class HttpService {
   return this.httpService.get(`${Globals.route.payment}/${id}`)
   
 }
-  getStateList() {
+
+verifypayment(data:any){
+  return this.httpService.post(Globals.route.verifypayment,data)
+}
+
+getStateList() {
     return this.httpService.get(Globals.route.getStateList)
   }
 
