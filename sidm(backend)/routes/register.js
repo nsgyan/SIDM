@@ -6,7 +6,7 @@ const auth= require('../controllers/auth')
 router.post('/formsData', Register.postRegistrationForm);
 router.get('/formsData', auth.adminAuth, Register.getForms);
 router.patch('/update/:userID',auth.memberAuth, Register.updateFrom)
-router.post('/memberLogin',auth.memberAuth, Register.getUserData);
+router.post('/memberLogin', Register.getUserData);
 router.get('/memberdata/:memberId',auth.memberAuth, Register.getmemberData);
 
 

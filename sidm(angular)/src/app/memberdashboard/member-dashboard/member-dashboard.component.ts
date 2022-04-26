@@ -1279,8 +1279,7 @@ rzp.open();
   }
   razorPayshandler(response:any,amount:any,note:any){
 
-  
-  
+  if(response){
   
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
@@ -1298,6 +1297,11 @@ rzp.open();
     this.toast.error('Payment failed');
 
   })
+}
+else{
+  this.toast.error('Payment failed');
+
+}
   }
   receiptClose(){
     this.paymentDetails=null
