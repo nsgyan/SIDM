@@ -10,6 +10,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./viewpage.component.css']
 })
 export class ViewpageComponent implements OnInit {
+  paymentDetails:any
   cat1 = true
   cat2 = true
   cat3 = true
@@ -63,11 +64,19 @@ export class ViewpageComponent implements OnInit {
         }
 
         this.memberData = data
-        console.log(data);
-
-
+        if(data.paymentStatus){
+        this.httpService.ViewPayment(data.paymentId).subscribe(paymentdata=>{
+           this.paymentDetails=paymentdata
+            
+          })}
 
       })
+    
+      
+      // this.httpService.ViewPayment(this.memberData?.paymentId).subscribe(data=>{
+      //   console.log(data);
+        
+      // })
   }
 
   ngOnInit(): void {

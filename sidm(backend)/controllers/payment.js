@@ -104,7 +104,7 @@ exports.verifypayment= async (req,res)=>{
  
   const userdata=req.body.note
   const payment = new PaymentDb({
-    amount:amount,
+    amount:amount/100,
     typeOfApplicant:userdata.type,
     category:userdata.category,
     createAt: currentDate,
