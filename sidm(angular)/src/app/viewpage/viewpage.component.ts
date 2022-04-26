@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../shared/services/http.service';
 import { environment } from "../../environments/environment.prod";
-import { Location } from '@angular/common'
+import { formatDate, Location } from '@angular/common'
 
 @Component({
   selector: 'app-viewpage',
@@ -65,7 +65,8 @@ export class ViewpageComponent implements OnInit {
 
         this.memberData = data
         if(data.paymentStatus){
-        this.httpService.ViewPayment(data.paymentId).subscribe(paymentdata=>{
+        this.httpService.ViewPayment(data.paymentId).subscribe((paymentdata:any)=>{
+          paymentdata.createAt  = formatDate(paymentdata.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
            this.paymentDetails=paymentdata
             
           })}

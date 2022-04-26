@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
-import { Location } from '@angular/common'
+import { formatDate, Location } from '@angular/common'
  
 @Component({
   selector: 'app-member-dashboard',
@@ -1307,7 +1307,9 @@ else{
     this.paymentDetails=null
   }
   recipt(id:any){
-    this.httpService.ViewPayment(id).subscribe(data=>{
+    this.httpService.ViewPayment(id).subscribe((data:any)=>{
+     
+data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
    this.paymentDetails=data
       
     })
