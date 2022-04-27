@@ -5,7 +5,6 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class UpperCaseDirective {
   @HostListener('input', ['$event']) onInput(event: { target: { value: string; }; }) {
-    console.log("UpperCaseInputDirective::event",event);
     event.target.value = event.target.value.toUpperCase();
     return true;
   }

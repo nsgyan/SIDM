@@ -76,18 +76,12 @@ export class ViewpageComponent implements OnInit {
           })}
 
       },err=>{
-        console.log(err);
-        
+
         this.toast.error(err);
         this.localStorage.clearLocalStorage()
 
       })
     
-      
-      // this.httpService.ViewPayment(this.memberData?.paymentId).subscribe(data=>{
-      //   console.log(data);
-        
-      // })
   }
 
   ngOnInit(): void {

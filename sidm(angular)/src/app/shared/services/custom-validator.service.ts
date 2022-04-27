@@ -56,12 +56,10 @@ export function GstValidation(
 export function fileSizeValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const file: File = control.value
   var size = file.size
-  console.log(size);
   let forbidden = true
   if (file) {
     const fileSizeInMB = Math.round(size / 1024);
     if (fileSizeInMB < 1024) {
-      //console.log('less than 1024', fileSizeInMB);
       forbidden = false;
     }
 
@@ -79,9 +77,6 @@ export function CrossEmailValidation(
   }
 
   if (email && confirmEmail && email.value !== confirmEmail.value) {
-    console.log('hello');
-
-
     return { crossEmailNotValid: 'email\'s don\'t match.' };
   } else {
     return null;

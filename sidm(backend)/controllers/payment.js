@@ -102,7 +102,6 @@ var instance = new Razorpay({
 }
 
 exports.verifypayment= async (req,res)=>{
-  console.log(req.body);
   const { currentDate, razorpay_order_id, razorpay_payment_id,amount} =  req.body;
  
   const userdata=req.body.note

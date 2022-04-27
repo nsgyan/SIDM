@@ -32,8 +32,6 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   getdata(type:string) {
     this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
-      console.log(data);
-
       data?.forms.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = ' Technology /  Product Innovation to address Defence Capability Gaps'

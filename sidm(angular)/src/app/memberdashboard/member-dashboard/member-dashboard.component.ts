@@ -55,8 +55,7 @@ export class MemberDashboardComponent implements OnInit {
     "note":{},
     "order_id":'',
     "handler":(res: any)=>{
-      console.log(res);
-      
+
     }
   }
   constructor(private localStorage: LocalStorageService,
@@ -86,21 +85,14 @@ export class MemberDashboardComponent implements OnInit {
           else if (item.category === 'cat4') {
             this.cat4 = false
             item.category = 'C4- Export Performance of Defence & Aerospace Products'
-          }
-          console.log(data);
-
+          }  
         })
-        console.log(data);
-
         this.memberData = data;
-
-
         for (let i of this.memberData) {
           this.email = i.email
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumber;
         }
-
         this.newCategoryForm = this.formBuilder.group({
           category: ['', Validators.required],
           typeOfApplicant: [''],
@@ -143,8 +135,6 @@ export class MemberDashboardComponent implements OnInit {
 
         })
       }, err => {
-        console.log(err.error);
-
         this.toast.error(err.error);
         this.routes.navigate(['login/member'])
 
@@ -173,7 +163,6 @@ export class MemberDashboardComponent implements OnInit {
   getState() {
     this.httpService.getStateList()
       .subscribe(data => {
-        console.log(data);
         this.states = data
 
       })
@@ -267,30 +256,23 @@ export class MemberDashboardComponent implements OnInit {
         }
         if (data.appreciationDocuments) {
           this.appreciationDocuments = data.appreciationDocuments
-          data.appreciationDocuments = environment.download + data.appreciationDocuments
-          console.log(data.appreciationDocuments);
-        
-
+          data.appreciationDocuments = environment.download + data.appreciationDocuments   
         }
         if (data.subCategoryDoccument) {
           this.subCategoryDoccument = data.subCategoryDoccument
-          data.subCategoryDoccument = environment.download + data.subCategoryDoccument
-         
+          data.subCategoryDoccument = environment.download + data.subCategoryDoccument         
         }
         if (data.financialDoccument) {
           this.financialDoccument = data.financialDoccument
-          data.financialDoccument = environment.download + data.financialDoccument
-          
+          data.financialDoccument = environment.download + data.financialDoccument         
         }
         if (data.exhibit1) {
           this.exhibit1 = data.exhibit1
-          data.exhibit1 = environment.download + data.exhibit1
-          
+          data.exhibit1 = environment.download + data.exhibit1         
         }
         if (data.exhibit2) {
           this.exhibit2 = data.exhibit2
-          data.exhibit2 = environment.download + data.exhibit2
-          
+          data.exhibit2 = environment.download + data.exhibit2          
         }
 
         data.sidmMember === 'Yes' ? this.sidmMember = true : ''
@@ -358,23 +340,16 @@ export class MemberDashboardComponent implements OnInit {
          this.editData.nameRegisteredOrganization.map((item:any)=>{
           control.push(
             this.formBuilder.group({
-              name: [item.name, Validators.required],
-             
+              name: [item.name, Validators.required],            
             })
           );
            
          })
-         
-         
-         
-
+                          
         }
-
-
       })
     }
     else {
-
       let url: string = "/detail/" + item._id
       this.routes.navigateByUrl(url);
     }
@@ -384,8 +359,7 @@ export class MemberDashboardComponent implements OnInit {
     let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
     control.push(
       this.formBuilder.group({
-        name: ['', Validators.required],
-       
+        name: ['', Validators.required],      
       })
     );
    
@@ -455,7 +429,6 @@ export class MemberDashboardComponent implements OnInit {
 
       this.editForm.get('associationName')?.clearValidators()
       this.editForm.get('associationName')?.updateValueAndValidity()
-
     }
 
     if (conttrolName === 'registeredOrganization' && value == 'Yes') {
@@ -502,17 +475,12 @@ export class MemberDashboardComponent implements OnInit {
 
   changeListener($event: any, form: any) {
     let file = $event.target.files;
-    console.log(file);
-
-
     if (
       file[0].type == 'image/png' ||
       file[0].type == 'image/jpg' ||
       file[0].type == 'image/jpeg' ||
       file[0].type == 'application/pdf'
     ) {
-      console.log('jhe');
-
       if (parseInt(file[0].size) > 2097152) {
       this.editForm.get(form)?.reset()
       this.editForm.get(form)?.updateValueAndValidity()
@@ -521,9 +489,6 @@ export class MemberDashboardComponent implements OnInit {
     else {
       const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
       const time = '7:00 AM';
-
-      console.log(file[0], 'fghj');
-
       this.httpService.upload(file[0]).subscribe((data: any) => {
         if (form === 'subCategoryDoccument') {
           this.subCategoryDoccument = data.body;
@@ -545,7 +510,6 @@ export class MemberDashboardComponent implements OnInit {
         }
         else if (form === 'appreciationDocuments') {
           this.appreciationDocuments = data.body;
-
         }
       })
 
@@ -564,8 +528,6 @@ export class MemberDashboardComponent implements OnInit {
 
 
   finalSubmit(type: string) {
-    console.log(this.financialDoccument);
-
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
     if(!this.editData.subCategoryDoccument){
@@ -607,8 +569,7 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.setValidators(Validators.required)
-    this.editForm.get('isappreciation')?.updateValueAndValidity()
-  
+    this.editForm.get('isappreciation')?.updateValueAndValidity() 
     this.editForm.get('campareAchivement')?.setValidators(Validators.required)
     this.editForm.get('campareAchivement')?.updateValueAndValidity()
     this.editForm.get('mudp')?.setValidators(Validators.required)
@@ -619,7 +580,6 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
@@ -664,11 +624,8 @@ export class MemberDashboardComponent implements OnInit {
         this.routes.navigateByUrl(url);
         this.toast.success('successfully applied');
       }, err => {
-        console.log(err);
         this.toast.error(err.error);
         this.routes.navigate(['login/member'])
-
-
       })
     }
     else if (!this.captcha) {
@@ -679,11 +636,9 @@ export class MemberDashboardComponent implements OnInit {
       this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
-
   }
 
   savedraft(type: String) {
-
     this.editForm.get('typeOfApplicant')?.clearValidators()
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.editForm.get('subCategoryDoccument')?.clearValidators()
@@ -790,7 +745,6 @@ export class MemberDashboardComponent implements OnInit {
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
-
       this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
@@ -896,9 +850,7 @@ export class MemberDashboardComponent implements OnInit {
         let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
         this.routes.navigateByUrl(url);
       }, err => {
-        console.log(err);
         this.toast.error(err);
-
       })
     }
     else if (!this.captcha) {
@@ -906,8 +858,6 @@ export class MemberDashboardComponent implements OnInit {
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
-      console.log(this.newCategoryForm);
-
       this.submited = true;
       this.toast.error('Form invalid');
     }
@@ -915,8 +865,6 @@ export class MemberDashboardComponent implements OnInit {
 
   }
   newsavedraft(type: string) {
-    console.log(this.newCategoryForm);
-    
     this.newCategoryForm.get('typeOfApplicant')?.clearValidators()
     this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.newCategoryForm.get('subCategoryDoccument')?.clearValidators()
@@ -1154,17 +1102,12 @@ export class MemberDashboardComponent implements OnInit {
 
   newChangeListener($event: any, form: any) {
     let file = $event.target.files;
-    console.log(file);
-
-
     if (
       file[0].type == 'image/png' ||
       file[0].type == 'image/jpg' ||
       file[0].type == 'image/jpeg' ||
       file[0].type == 'application/pdf'
     ) {
-      console.log('jhe');
-
       if (parseInt(file[0].size) > 2097152) {
         this.newCategoryForm.get(form)?.reset()
         this.newCategoryForm.get(form)?.updateValueAndValidity()
@@ -1173,9 +1116,6 @@ export class MemberDashboardComponent implements OnInit {
       else {
         const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
         const time = '7:00 AM';
-
-        console.log(file[0], 'fghj');
-
         this.httpService.upload(file[0]).subscribe((data: any) => {
           if (form === 'subCategoryDoccument') {
             this.subCategoryDoccument = data.body;
@@ -1194,7 +1134,6 @@ export class MemberDashboardComponent implements OnInit {
           }
           else if (form === 'appreciationDocuments') {
             this.appreciationDocuments = data.body;
-
           }
         })
 
@@ -1204,7 +1143,6 @@ export class MemberDashboardComponent implements OnInit {
       this.toast.error('File uploaded is invalid!')
       this.newCategoryForm.get(form)?.reset()
       this.newCategoryForm.get(form)?.updateValueAndValidity()
-
     }
   }
 
@@ -1267,7 +1205,6 @@ this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
-  console.log(response);//this returns the expected value
   this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
 

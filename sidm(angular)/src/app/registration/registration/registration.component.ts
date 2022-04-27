@@ -159,7 +159,7 @@ export class RegistrationComponent implements OnInit {
 
   changeListener($event: any, form: any) {
     let file = $event.target.files;
-    console.log(file);
+
 
 
     if (
@@ -168,7 +168,7 @@ export class RegistrationComponent implements OnInit {
       file[0].type == 'image/jpeg' ||
       file[0].type == 'application/pdf'
     ) {
-      console.log('jhe');
+
 
       if (parseInt(file[0].size) > 2097152) {
       this.registrationForm.get(form)?.reset()
@@ -178,9 +178,6 @@ export class RegistrationComponent implements OnInit {
     else {
       const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
       const time = '7:00 AM';
-
-      console.log(file[0], 'fghj');
-
       this.httpService.upload(file[0]).subscribe((data: any) => {
         if (form === 'subCategoryDoccument') {
           this.subCategoryDoccument = data.body;
@@ -219,11 +216,9 @@ export class RegistrationComponent implements OnInit {
 
 
   getState() {
-    console.log('state list');
-    
+
     this.httpService.getStateList()
       .subscribe(data => {
-        console.log(data);
         this.states = data
       })
   }
@@ -253,7 +248,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   savedraft(type: String) {
-    console.log(this.registrationForm);
     this.registrationForm.get('typeOfApplicant')?.clearValidators()
     this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
     this.registrationForm.get('subCategoryDoccument')?.clearValidators()
@@ -372,7 +366,6 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('confirmEmail')?.reset()
     const email = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('email')?.value
     if (email) {
-      console.log(email);
       this.httpService.checkEmail({ email: email })
         .subscribe((data: any) => {
           if (email === data.email) {
@@ -387,10 +380,8 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('confirmMobileNumber')?.reset()
     const mobileNumber = event.target.value ? event.target.value : this.registrationForm.get('mobileNumber')?.value
     if (mobileNumber) {
-      console.log(mobileNumber);
       this.httpService.checkMobile({ mobileNumber: mobileNumber })
         .subscribe((data: any) => {
-          console.log(data);
 
           if (mobileNumber === data.mobileNumber) {
             this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
@@ -404,7 +395,6 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('confirmPanNumber')?.reset()
     const panNumber = event.target.value ? event.target.value.toUpperCase() : this.registrationForm.get('panNumber')?.value
     if (panNumber) {
-      console.log(panNumber);
       this.httpService.checkPan({ panNumber: panNumber })
         .subscribe((data: any) => {
           if (panNumber === data.panNumber) {
@@ -417,17 +407,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   confirmEmail(event: any,) {
-    console.log(event.target.value);
-    console.log(this.registrationForm.value.email);
     if (event.target.value.toLowerCase() !== this.registrationForm.value.email.toLowerCase()) {
-      console.log(event.target.value);
-      console.log(this.registrationForm.value.email);
       this.registrationForm.get('confirmEmail')?.setErrors({ confirmEmail: true })
     }
     else {
       const email = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('email')?.value
       if (email) {
-        console.log(email);
         this.httpService.checkEmail({ email: email })
           .subscribe((data: any) => {
             if (email === data.email) {
@@ -442,21 +427,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   confirmmobile(event: any,) {
-    console.log(event.target.value);
-    console.log(this.registrationForm.value.mobileNumber);
     if (event.target.value !== this.registrationForm.value.mobileNumber) {
-      console.log(event.target.value);
-      console.log(this.registrationForm.value.mobileNumber);
       this.registrationForm.get('confirmMobileNumber')?.setErrors({ confirmMobileNumber: true })
     }
     else {
       const mobileNumber = event.target.value ? event.target.value : this.registrationForm.get('mobileNumber')?.value
       if (mobileNumber) {
-        console.log(mobileNumber);
         this.httpService.checkMobile({ mobileNumber: mobileNumber })
           .subscribe((data: any) => {
-            console.log(data);
-
             if (mobileNumber === data.mobileNumber) {
               this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
             }
@@ -468,17 +446,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   confirmPan(event: any,) {
-    console.log(event.target.value);
-    console.log(this.registrationForm.value.panNumber);
     if (event.target.value.toUpperCase() !== this.registrationForm.value.panNumber.toUpperCase()) {
-      console.log(event.target.value);
-      console.log(this.registrationForm.value.panNumber);
       this.registrationForm.get('confirmPanNumber')?.setErrors({ confirmPanNumber: true })
     }
     else {
       const panNumber = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('panNumber')?.value
       if (panNumber) {
-        console.log(panNumber);
         this.httpService.checkPan({ panNumber: panNumber })
           .subscribe((data: any) => {
             if (panNumber === data.panNumber) {

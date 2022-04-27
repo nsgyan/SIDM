@@ -60,10 +60,9 @@ export class MemberLoginComponent implements OnInit {
 
 
   memberlogin() {
-    console.log(this.memberform);
+
     this.memberform.value.panNumber = this.memberform.value.panNumber.toUpperCase()
-    console.log(this.memberform.value.panNumber);
-    
+ 
     if (this.memberform.valid && this.captcha) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {

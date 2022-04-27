@@ -10,7 +10,6 @@ exports.memberAuth = (req, res, next) => {
     
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
-        console.log(decoded ,' fdetd');
        if (decoded.panNumber) {
            RegistrationForm.findOne({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
                 .then(data => {
@@ -27,7 +26,6 @@ exports.memberAuth = (req, res, next) => {
                 })
        }
        else {
-           console.log(err);
             res.status(401).send('Token expired  please login again')
        }
 
@@ -36,8 +34,6 @@ exports.memberAuth = (req, res, next) => {
 
 exports.adminAuth = (req, res, next) => {
     const token = req.header('authorization');
-    console.log(req, 'dfffffffffff')
-
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
         if (decoded) {
             User.findOne({ email: decoded.email, password: decoded.password })
@@ -51,7 +47,6 @@ exports.adminAuth = (req, res, next) => {
                 })
         }
         else {
-            console.log(err);
             res.status(401).send('Token expired  please login again')
         }
 

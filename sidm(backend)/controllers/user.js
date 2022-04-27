@@ -43,53 +43,53 @@ exports.loginVerify = (req, res, next) => {
 }
 
 exports.getState = (req, res, next) => {
-    console.log('hello');
     State.find()
         .then(data => {
             res.json(data)
         })
         .catch(err => {
-            res.json(err)
+            res.status(404).send(err)
         })
 
 }
 
 exports.getEmail = (req, res, next) => {
-    console.log('email', req.body);
     const email = req.body.email
     Register.findOne({ email: email })
         .then(data => {
             res.status(200).send(data)
+        }).catch(err=>{
+            res.status(404).send(err)
         })
 }
 exports.getMobile = (req, res, next) => {
-    // console.log(req.body);
     const mobileNumber = req.body.mobileNumber
-    console.log('mobile.', mobileNumber);
     Register.findOne({ mobileNumber: mobileNumber })
         .then(data => {
             mobileNumber
             res.status(200).send(data)
         })
+        .catch(err => {
+            res.status(404).send(err)
+        })
 }
+
 exports.getPan = (req, res, next) => {
-    console.log('pan', req.body);
     const panNumber = req.body.panNumber
     Register.findOne({ panNumber: panNumber })
         .then(data => {
             res.status(200).send(data)
         })
+        .catch(err => {
+            res.status(404).send(err)
+        })
 }
 exports.memberLogin = (req, res, next) => {
-    console.log(req.body);
     const email = req.body.email;
      const pan = req.body.panNumber;
     const mobileNumber = req.body.mobileNumber
-    console.log(req.body.panNumber);
     RegistrationForm.findOne({ mobileNumber: mobileNumber, email: email, panNumber: pan })
         .then(data => {
-            console.log(data);
-
             if (data) {
                 const token = jwt.sign({
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -106,7 +106,6 @@ exports.memberLogin = (req, res, next) => {
                 res.status(404).send('user not Found')
             }
         }).catch(err => {
-            console.log('insidesss');
             res.status(404).send('not Found')
         })
 
@@ -132,7 +131,6 @@ exports.memberData = (req, res, next) => {
                 })
         }
         else {
-            console.log(err);
             res.status(401).send('Token expired  please login again')
         }
 

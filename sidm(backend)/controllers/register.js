@@ -85,31 +85,25 @@ exports.postRegistrationForm = (req, res, next) => {
     .save()
     .then((result) => {
       res.status(200).send(result);
-      console.log(result);
     })
     .catch((err) => {
        res.send(err);
-      console.log(err);
     });
 };
 
 exports.getForms = (req, res, next) => {
   const page = req.query.page || 1;
   const itemPerPage = req.query.itemPerPage || 10;
-  console.log(req.query);
   let totalItems;
   RegistrationForm.find()
     .countDocuments()
     .then((numOfForm) => {
       totalItems = numOfForm;
-      // totalItems = numO
-      // console.log(numofForms);
       return RegistrationForm.find()
         .skip((page - 1) * itemPerPage)
         .limit(itemPerPage);
     })
     .then((data) => {
-      console.log(data);
       if (data) {
         res.status(200).send({
           forms: data,
@@ -125,7 +119,7 @@ exports.getForms = (req, res, next) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      res.status(404).send(err);
     });
 };
 
@@ -133,7 +127,6 @@ exports.getUserData = (req, res, next) => {
   const email = req.body.email;
   const mobileNumber = req.body.mobileNumber;
   const panNumber = req.body.panNumber;
-  console.log(req.body);
   RegistrationForm.findOne({
     mobileNumber: mobileNumber,
     email: email,
@@ -153,7 +146,6 @@ exports.getUserData = (req, res, next) => {
 
 exports.getmemberData = (req, res, next) => {
   const memberId = req.params.memberId;
-  console.log(memberId);
   RegistrationForm.findById(memberId)
     .then((data) => {
       if (data) {
@@ -163,7 +155,7 @@ exports.getmemberData = (req, res, next) => {
       }
     })
     .catch((err) => {
-      res.status(404).send("not Found");
+      res.status(404).send(err);
     });
 };
 
@@ -261,7 +253,8 @@ exports.updateFrom = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(404).send(err);
+
     });
 }
 
