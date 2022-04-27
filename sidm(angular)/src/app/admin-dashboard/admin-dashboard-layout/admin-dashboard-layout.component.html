@@ -186,7 +186,8 @@
                                     </div>
                                   </td> -->
 
-                                <td><button class="viewBtn" (click)="viewDetails(item._id)">
+                                <td>
+                                    <button class="viewBtn" (click)="viewDetails(item._id)">
                                         View
                                     </button>
                                     <button class="viewBtn" data-toggle="modal"  *ngIf="item.status==='Pending Approval'"  (click)="modalOpen(item._id)" data-target="#exampleModal">

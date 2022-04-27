@@ -66,7 +66,10 @@ export class ViewpageComponent implements OnInit {
         if (data.exhibit2) {
           data.exhibit2 = environment.download + data.exhibit2
         }
-
+        data.createAt=formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
+        data.updatedAt=formatDate(data.updatedAt , 'MMM d, y, h:mm:ss a', 'en-US');
+        data.approveDate? data.approveDate=formatDate(data.approveDate , 'MMM d, y, h:mm:ss a', 'en-US'):'';
+        data.remarkDate? data.remarkDate=formatDate(data.remarkDate , 'MMM d, y, h:mm:ss a', 'en-US'):'';
         this.memberData = data
         if(data.paymentStatus){
         this.httpService.ViewPayment(data.paymentId).subscribe((paymentdata:any)=>{

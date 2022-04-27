@@ -17,16 +17,16 @@ exports.memberAuth = (req, res, next) => {
                         next()
                     }
                     else {
-                        res.status(401).send('invalid token')
+                        res.status(401).json('invalid token')
                     }
 
                 })
                 .catch(err => {
-                    res.status(401).send('invalid token')
+                    res.status(401).json('invalid token')
                 })
        }
        else {
-            res.status(401).send('Token expired  please login again')
+            res.status(401).json('Token expired  please login again')
        }
 
     })
@@ -42,12 +42,12 @@ exports.adminAuth = (req, res, next) => {
                         next()
                     }
                     else {
-                        res.status(401).send('invalid token')
+                        res.status(401).json('invalid token')
                     }
                 })
         }
         else {
-            res.status(401).send('Token expired  please login again')
+            res.status(401).json('Token expired  please login again')
         }
 
     })

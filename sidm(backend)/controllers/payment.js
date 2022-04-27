@@ -30,7 +30,7 @@ var instance = new Razorpay({
                     amount=35000
                   }
                   else{
-                      res.status(404).send("invalid transaction")
+                      res.status(404).json("invalid transaction")
                   }
               }
              else if(data.typeOfApplicant==='S')
@@ -43,7 +43,7 @@ var instance = new Razorpay({
                     amount=20000
                   }
                   else{
-                      res.status(404).send("invalid transaction")
+                      res.status(404).json("invalid transaction")
                   }
               }
              else if(data.typeOfApplicant==='L')
@@ -56,11 +56,11 @@ var instance = new Razorpay({
                     amount=55000
                   }
                   else{
-                      res.status(404).send("invalid transaction")
+                      res.status(404).json("invalid transaction")
                   }
               }
               else{
-                  res.status(404).send("invalid transaction")
+                  res.status(404).json("invalid transaction")
              
               }
               const da = new Date();
@@ -83,22 +83,22 @@ var instance = new Razorpay({
               }},(err, order) => {
                 //STEP 3 & 4:
                 if (!err) res.json(order);
-                else res.send(err);
+                else res.json(err);
               }
             );
          
           }
           else{
-            res.status(404).send("invalid transaction")
+            res.status(404).json("invalid transaction")
           }
       }
       else{
         
-        res.status(404).send("invalid transaction")
+        res.status(404).json("invalid transaction")
       }
     })
     .catch(err=>{
-      res.status(404).send(err)
+      res.status(404).json(err)
     })
 }
 
@@ -126,10 +126,10 @@ exports.verifypayment= async (req,res)=>{
       data.save();
     })
    
-res.status(200).send(item)
+res.status(200).json(item)
   
   }).catch(err=>{
-    res.status(404).send(err)
+    res.status(404).json(err)
   })
 
 }
@@ -137,9 +137,9 @@ res.status(200).send(item)
 exports.viewpayment= async (req,res)=>{
   const userID = req.params.userID
   PaymentDb.findById(userID).then(data=>{
-    res.status(200).send(data)
+    res.status(200).json(data)
   }).catch(err=>{
-    res.status(404).send(err)
+    res.status(404).json(err)
   })
 }
 
