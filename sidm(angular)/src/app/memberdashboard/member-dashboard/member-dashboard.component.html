@@ -180,8 +180,8 @@
                                         <td>{{item.category}}</td>
                                         <td>
                                             <a class="viewBtn mr-3" (click)="viewForm(item)">View</a>
-                                            <a class="viewBtn" *ngIf="!item.paymentStatus&&item.status==='submit'" (click)="payNow(item._id)"> Pay Now</a>
-                                            <a class="viewBtn" *ngIf="item.paymentStatus" (click)="recipt(item.paymentId)"> View Payment  </a></td>
+                                            <a class="viewBtn" *ngIf="item.paymentStatus==='Unpaid'&&item.status==='approve'" (click)="payNow(item._id)"> Pay Now</a>
+                                            <a class="viewBtn" *ngIf="item.paymentStatus==='Paid'" (click)="recipt(item.paymentId)"> View Payment  </a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -811,7 +811,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 mt-5 mb-5 text-center">
-                        <button type="submit" class="NewBtn mr-2" (click)="newSubmit('submit')">
+                        <button type="submit" class="NewBtn mr-2" (click)="newSubmit('Pending Approval')">
                             <p>Submit form</p>
                         </button>
                         <button class="save-btn" target="blanck" (click)="newsavedraft('Draft')">
@@ -1414,7 +1414,7 @@
 
                 <div class="row">
                     <div class="col-lg-12 mt-5 mb-5 text-center">
-                        <button type="submit" class="NewBtn mx-2" (click)="finalSubmit('submit')">
+                        <button type="submit" class="NewBtn mx-2" (click)="finalSubmit('Pending Approval')">
                             <p>Submit</p>
                         </button>
                         <button class="save-btn" target="blanck" (click)="savedraft('Draft')">

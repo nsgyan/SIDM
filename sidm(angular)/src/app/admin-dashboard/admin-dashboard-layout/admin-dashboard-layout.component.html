@@ -189,7 +189,8 @@
                                 <td><button class="viewBtn" (click)="viewDetails(item._id)">
                                         View
                                     </button>
-                                    <button class="viewBtn" (click)="approve(item._id)">
+                                    
+                                    <button class="viewBtn" *ngIf="item.status!=='approve'" (click)="approve(item._id)">
                                         Approve
                                     </button></td>
                             </tr>

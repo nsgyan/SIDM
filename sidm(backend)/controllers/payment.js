@@ -19,7 +19,7 @@ var instance = new Razorpay({
     RegistrationForm.findById(userID)
     .then(data=>{
       if(data ){
-          if(data.status === 'submit'){
+          if(data.status === 'approve'){
               if(data.typeOfApplicant==='M')
               {
                   if(data.sidmMember==='Yes' && data.sidmMemberShipNumber ){
@@ -120,7 +120,7 @@ exports.verifypayment= async (req,res)=>{
   payment.save().then(item =>{
     RegistrationForm.findOne({ email: userdata.email, mobileNumber:userdata.mobileNumber, typeOfApplicant:userdata.type, panNumber: userdata.panNumber,category:userdata.category })
     .then((data)=>{
-      data.paymentStatus='Done'
+      data.paymentStatus='Paid'
       data.paymentId=item._id
       data.save();
     })
@@ -137,7 +137,6 @@ exports.viewpayment= async (req,res)=>{
   const userID = req.params.userID
   PaymentDb.findById(userID).then(data=>{
     res.status(200).send(data)
-
   }).catch(err=>{
     res.status(404).send(err)
   })

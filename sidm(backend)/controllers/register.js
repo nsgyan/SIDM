@@ -263,12 +263,15 @@ exports.changeStatus = (req, res, next) => {
   const userID = req.params.userID;
   const status=req.body.status
   RegistrationForm.findById(userID).then(data=>{
+    if(status==='approve'){
    data.status=status;
+  data.paymentStatus='Unpaid'}
    data.save((err, success) => {
     if(err){
    res.status(404).send(err);
     }
     else{
+      console.log(success);
     res.status(200).send(success);
     }
   });

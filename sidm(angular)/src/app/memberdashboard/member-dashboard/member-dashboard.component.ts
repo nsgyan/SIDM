@@ -1197,7 +1197,6 @@ export class MemberDashboardComponent implements OnInit {
     this.routes.navigate(['login/member'])
 
   }
-  id:any
 
   payNow(id:string){
     this.httpService.paynow(id).subscribe((data:any)=>{
@@ -1217,7 +1216,6 @@ rzp.open();
   razorPayshandler(response:any,amount:any,note:any){
 
   if(response){
-  
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let currentDate = new Date();
@@ -1249,6 +1247,8 @@ else{
 data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
    this.paymentDetails=data
       
+    },err=>{
+      this.toast.error(err);
     })
 
   }
