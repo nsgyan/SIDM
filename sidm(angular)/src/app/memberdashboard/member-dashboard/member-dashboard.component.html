@@ -181,7 +181,7 @@
                                         <td>
                                             <a class="viewBtn mr-3" (click)="viewForm(item)">View</a>
                                             <a class="viewBtn" *ngIf="!item.paymentStatus&&item.status==='submit'" (click)="payNow(item._id)"> Pay Now</a>
-                                            <a class="viewBtn" *ngIf="item.paymentStatus" (click)="recipt(item.paymentId)"> View Payment Details </a></td>
+                                            <a class="viewBtn" *ngIf="item.paymentStatus" (click)="recipt(item.paymentId)"> View Payment  </a></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -88,6 +88,9 @@ var instance = new Razorpay({
             );
          
           }
+          else{
+            res.status(404).send("invalid transaction")
+          }
       }
       else{
         res.status(404).send("invalid transaction")

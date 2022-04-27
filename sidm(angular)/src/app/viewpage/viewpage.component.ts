@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../shared/services/http.service';
 import { environment } from "../../environments/environment.prod";
 import { formatDate, Location } from '@angular/common'
+import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from '../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-viewpage',
@@ -18,6 +20,8 @@ export class ViewpageComponent implements OnInit {
   memberData: any;
   constructor(private route: ActivatedRoute,
     private httpService: HttpService,
+    private localStorage: LocalStorageService,
+    private toast: ToastrService,
     private location: Location) {
     const id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(id)
@@ -70,6 +74,12 @@ export class ViewpageComponent implements OnInit {
            this.paymentDetails=paymentdata
             
           })}
+
+      },err=>{
+        console.log(err);
+        
+        this.toast.error(err);
+        this.localStorage.clearLocalStorage()
 
       })
     
