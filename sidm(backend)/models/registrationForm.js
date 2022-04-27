@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const RegistrationFormSchema = new Schema({
-    createAt: { type: String },
+        createAt: { type: Date,default:new Date() },
+        updatedAt: { type: Date ,default:new Date()},
         category:{ type: String },
         typeOfApplicant:{ type: String },
         subCategoryDoccument:{ type: String },
@@ -41,8 +42,7 @@ const RegistrationFormSchema = new Schema({
         alterMobileNumber:{type:String},
         paymentStatus:{type:String},
         paymentId:{type:String},
-        alterEmail:{type:String,
-            lowercase: true },
+        alterEmail:{type:String, lowercase: true },
         remark:{type:String},
         remarkDate:{type:String},
         approveDate:{type:String}

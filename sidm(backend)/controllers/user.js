@@ -62,6 +62,7 @@ exports.getEmail = (req, res, next) => {
             res.status(404).send(err)
         })
 }
+
 exports.getMobile = (req, res, next) => {
     const mobileNumber = req.body.mobileNumber
     Register.findOne({ mobileNumber: mobileNumber })

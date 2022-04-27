@@ -41,7 +41,6 @@ exports.postRegistrationForm = (req, res, next) => {
  const alterMobileNumber= req.body.alterMobileNumber;
   const alterEmail= req.body.alterEmail
   const form = new RegistrationForm({
-    createAt: createAt,
     category: category,
     typeOfApplicant: typeOfApplicant,
     subCategoryDoccument: subCategoryDoccument,
@@ -84,10 +83,10 @@ exports.postRegistrationForm = (req, res, next) => {
   form
     .save()
     .then((result) => {
-      res.status(200).send('successfully sumbit');
+      res.status(200).json('successfully sumbit');
     })
     .catch((err) => {
-       res.send(err);
+       res.json(err);
     });
 };
 
@@ -105,7 +104,7 @@ exports.getForms = (req, res, next) => {
     })
     .then((data) => {
       if (data) {
-        res.status(200).send({
+        res.status(200).json({
           forms: data,
           currentPage: page,
           hasNextPage: itemPerPage * page < totalItems,
@@ -115,11 +114,11 @@ exports.getForms = (req, res, next) => {
           lastPage: Math.ceil(totalItems / itemPerPage),
         });
       } else {
-        res.status(404).send("not Found");
+        res.status(404).json("not Found");
       }
     })
     .catch((err) => {
-      res.status(404).send(err);
+      res.status(404).json(err);
     });
 };
 
@@ -134,13 +133,13 @@ exports.getUserData = (req, res, next) => {
   })
     .then((data) => {
       if (data) {
-        res.status(200).send(data);
+        res.status(200).json(data);
       } else {
-        res.status(404).send("not Found user Data");
+        res.status(404).json("not Found user Data");
       }
     })
     .catch((err) => {
-      res.status(404).send("not Found");
+      res.status(404).json("not Found");
     });
 };
 
@@ -149,13 +148,13 @@ exports.getmemberData = (req, res, next) => {
   RegistrationForm.findById(memberId)
     .then((data) => {
       if (data) {
-        res.status(200).send(data);
+        res.status(200).json(data);
       } else {
-        res.status(404).send("not Found");
+        res.status(404).json("not Found");
       }
     })
     .catch((err) => {
-      res.status(404).send(err);
+      res.status(404).json(err);
     });
 };
 
@@ -245,15 +244,15 @@ exports.updateFrom = (req, res, next) => {
       formData.remark=null
       formData.save((err, success) => {
         if(err){
-       res.status(404).send(err);
+       res.status(404).json(err);
         }
         else{
-          res.status(200).send('successfully sumbit');
+          res.status(200).json('successfully sumbit');
         }
       });
     })
     .catch((err) => {
-      res.status(404).send(err);
+      res.status(404).json(err);
 
     });
 }
@@ -277,19 +276,19 @@ exports.changeStatus = (req, res, next) => {
     data.remarkDate=createAt
   }
   else{
-    res.status(404).send('not Found')
+    res.status(404).json('not Found')
   }
    data.save((err, success) => {
     if(err){
-   res.status(404).send(err);
+   res.status(404).json(err);
     }
     else{
       console.log(success);
-      res.status(200).send('successfully status change');
+      res.status(200).json('successfully status change');
     }
   });
   }).catch(err=>{
-    res.status(404).send(err)
+    res.status(404).json(err)
   })
 
 }

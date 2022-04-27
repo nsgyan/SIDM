@@ -107,15 +107,24 @@
         <div class="container">
             <!-- <h2>This is heading</h2> -->
             <div class="formPart_1 mt-4 mb-4" >
-                <div class="detail">
+                <div class="detail" *ngIf="memberData?.remark">
                     <h6>Remark</h6>
-                    <p style="color: red;">{{memberData?.remark}}</p>
+                    <p style="color: red !important;">{{memberData?.remark}}</p>
                 </div>
                 
                 <div class="detail">
                     <h6>Status</h6>
                     <p>{{memberData?.status}}</p>
                 </div>
+                <div class="detail">
+                    <h6>create Date</h6>
+                    <p>{{memberData?.createAt}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Last update Date</h6>
+                    <p>{{memberData?.updatedAt}}</p>
+                </div>
+                
                 
                 <div *ngIf="memberData?.paymentStatus" class="detail">
                     <h6>Payment Status</h6>

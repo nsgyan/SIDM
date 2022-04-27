@@ -143,7 +143,7 @@ export class RegistrationComponent implements OnInit {
       }
       else {
         this.httpService.upload(file[0]).subscribe((data: any) => {
-          this.financialDoccument=data.body;
+          this.financialDoccument=data?.body;
         })
 
       }
@@ -180,25 +180,25 @@ export class RegistrationComponent implements OnInit {
       const time = '7:00 AM';
       this.httpService.upload(file[0]).subscribe((data: any) => {
         if (form === 'subCategoryDoccument') {
-          this.subCategoryDoccument = data.body;
+          this.subCategoryDoccument = data?.body;
         }
         else if(form === 'documentGstCertificate')
         {
-          this.documentGstCertificate = data.body;
+          this.documentGstCertificate = data?.body;
         }
         else if(form === 'exhibit1')
         {
-          this.exhibit1=data.body;
+          this.exhibit1=data?.body;
         }
         else if(form === 'exhibit2')
         {
-          this.exhibit2=data.body;
+          this.exhibit2=data?.body;
         }
         else if (form === 'documentsOfProduct') {
-          this.documentsOfProduct = data.body;
+          this.documentsOfProduct = data?.body;
         }
         else if (form === 'appreciationDocuments') {
-          this.appreciationDocuments = data.body;
+          this.appreciationDocuments = data?.body;
 
         }
       })
@@ -301,7 +301,6 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
-        createAt: currentDate,
         category: this.registrationForm.value.category,
         typeOfApplicant: this.registrationForm.value.typeOfApplicant,
         subCategoryDoccument:this.subCategoryDoccument,
@@ -339,17 +338,12 @@ export class RegistrationComponent implements OnInit {
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
       }).subscribe(data => {
+        console.log(' Successfully Applied');
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
         let url: string = "/thankYou/" + 'dsfffdsdfds'
         this.router.navigateByUrl(url);
-        // this.router.navigate(['/thankYou'])
-        // this.toastr.success('successfully applied');
-      },
-        error => {
-          this.toast.error('Email or Mobile or Pan  already exists');
-        }
-      )
+      })
     }
     else if (!this.captcha) {
       this.submited = true;
@@ -362,13 +356,15 @@ export class RegistrationComponent implements OnInit {
     }
 
   }
+
   checkemail(event: any) {
+    console.log('pandggg');
     this.registrationForm.get('confirmEmail')?.reset()
     const email = event.target.value ? event.target.value.toLowerCase() : this.registrationForm.get('email')?.value
     if (email) {
       this.httpService.checkEmail({ email: email })
         .subscribe((data: any) => {
-          if (email === data.email) {
+          if (email === data?.email) {
             this.registrationForm.get('email')?.setErrors({ isExist: true });
           }
 
@@ -377,13 +373,15 @@ export class RegistrationComponent implements OnInit {
     }
   }
   checkMobile(event: any) {
+    console.log('mobile');
+    
     this.registrationForm.get('confirmMobileNumber')?.reset()
     const mobileNumber = event.target.value ? event.target.value : this.registrationForm.get('mobileNumber')?.value
     if (mobileNumber) {
       this.httpService.checkMobile({ mobileNumber: mobileNumber })
         .subscribe((data: any) => {
 
-          if (mobileNumber === data.mobileNumber) {
+          if (mobileNumber === data?.mobileNumber) {
             this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
           }
 
@@ -392,12 +390,14 @@ export class RegistrationComponent implements OnInit {
     }
   }
   checkPan(event: any) {
+    console.log('pan');
+    
     this.registrationForm.get('confirmPanNumber')?.reset()
     const panNumber = event.target.value ? event.target.value.toUpperCase() : this.registrationForm.get('panNumber')?.value
     if (panNumber) {
       this.httpService.checkPan({ panNumber: panNumber })
         .subscribe((data: any) => {
-          if (panNumber === data.panNumber) {
+          if (panNumber === data?.panNumber) {
             this.registrationForm.get('panNumber')?.setErrors({ isExist: true });
           }
 
@@ -415,7 +415,7 @@ export class RegistrationComponent implements OnInit {
       if (email) {
         this.httpService.checkEmail({ email: email })
           .subscribe((data: any) => {
-            if (email === data.email) {
+            if (email === data?.email) {
               this.registrationForm.get('email')?.setErrors({ isExist: true });
             }
 
@@ -427,6 +427,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   confirmmobile(event: any,) {
+ 
     if (event.target.value !== this.registrationForm.value.mobileNumber) {
       this.registrationForm.get('confirmMobileNumber')?.setErrors({ confirmMobileNumber: true })
     }
@@ -435,7 +436,7 @@ export class RegistrationComponent implements OnInit {
       if (mobileNumber) {
         this.httpService.checkMobile({ mobileNumber: mobileNumber })
           .subscribe((data: any) => {
-            if (mobileNumber === data.mobileNumber) {
+            if (mobileNumber === data?.mobileNumber) {
               this.registrationForm.get('mobileNumber')?.setErrors({ isExist: true });
             }
 
@@ -446,6 +447,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   confirmPan(event: any,) {
+
     if (event.target.value.toUpperCase() !== this.registrationForm.value.panNumber.toUpperCase()) {
       this.registrationForm.get('confirmPanNumber')?.setErrors({ confirmPanNumber: true })
     }
@@ -454,7 +456,7 @@ export class RegistrationComponent implements OnInit {
       if (panNumber) {
         this.httpService.checkPan({ panNumber: panNumber })
           .subscribe((data: any) => {
-            if (panNumber === data.panNumber) {
+            if (panNumber === data?.panNumber) {
               this.registrationForm.get('panNumber')?.setErrors({ isExist: true });
             }
 
@@ -554,15 +556,13 @@ export class RegistrationComponent implements OnInit {
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
-
       }).subscribe(data => {
         this.registrationForm.reset();
         this.toast.success(' Successfully Applied');
         let url: string = "/thankYou/" + 'dsffsdfds'
         this.router.navigateByUrl(url);
       }, err => {
-        this.toast.success(err);
-
+        this.toast.error(err);
       })
     }
     else if (!this.captcha) {
