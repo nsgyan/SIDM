@@ -43,7 +43,10 @@ const RegistrationFormSchema = new Schema({
         paymentId:{type:String},
         alterEmail:{type:String,
             lowercase: true },
-        remark:{type:String}
+        remark:{type:String},
+        remarkDate:{type:String},
+        approveDate:{type:String}
+
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

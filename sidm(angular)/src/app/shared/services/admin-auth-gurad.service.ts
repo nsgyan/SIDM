@@ -18,9 +18,7 @@ export class AdminAuthGuradService {
       else if(!this.localStorage.get('token') && this.localStorage.get('type')==='member'){
         return this.router.createUrlTree(['login/member'])
       }
-      return this.router.createUrlTree([''])
-
-      
+      return this.router.createUrlTree([''])   
     }
    
  

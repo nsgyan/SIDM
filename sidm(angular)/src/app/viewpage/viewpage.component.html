@@ -66,7 +66,7 @@
 <div class="container">
     <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-arrow-left"></i>Back</button>
 </div>
-<div *ngIf="paymentDetails" class="row">
+<div *ngIf="paymentDetails&& memberData.paymentStatus==='Paid'&&memberData.status==='approve'" class="row">
     <div class="col-lg-12">
         <div class="profileSection mb-6">
             <div class="container">
@@ -107,6 +107,11 @@
         <div class="container">
             <!-- <h2>This is heading</h2> -->
             <div class="formPart_1 mt-4 mb-4" >
+                <div class="detail">
+                    <h6>Remark</h6>
+                    <p style="color: red;">{{memberData?.remark}}</p>
+                </div>
+                
                 <div class="detail">
                     <h6>Status</h6>
                     <p>{{memberData?.status}}</p>

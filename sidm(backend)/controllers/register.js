@@ -84,7 +84,7 @@ exports.postRegistrationForm = (req, res, next) => {
   form
     .save()
     .then((result) => {
-      res.status(200).send(result);
+      res.status(200).send('successfully sumbit');
     })
     .catch((err) => {
        res.send(err);
@@ -248,7 +248,7 @@ exports.updateFrom = (req, res, next) => {
        res.status(404).send(err);
         }
         else{
-        res.status(200).send(success);
+          res.status(200).send('successfully sumbit');
         }
       });
     })
@@ -262,17 +262,30 @@ exports.updateFrom = (req, res, next) => {
 exports.changeStatus = (req, res, next) => {
   const userID = req.params.userID;
   const status=req.body.status
+  const createAt= req.body.createAt
   RegistrationForm.findById(userID).then(data=>{
     if(status==='approve'){
    data.status=status;
-  data.paymentStatus='Unpaid'}
+  data.paymentStatus='Unpaid'
+  data.approveDate=createAt
+}
+  else if(status==='Request Info')
+  {
+    data.paymentStatus=null
+    data.status=status
+    data.remark=req.body.message ?req.body.message : '';
+    data.remarkDate=createAt
+  }
+  else{
+    res.status(404).send('not Found')
+  }
    data.save((err, success) => {
     if(err){
    res.status(404).send(err);
     }
     else{
       console.log(success);
-    res.status(200).send(success);
+      res.status(200).send('successfully status change');
     }
   });
   }).catch(err=>{

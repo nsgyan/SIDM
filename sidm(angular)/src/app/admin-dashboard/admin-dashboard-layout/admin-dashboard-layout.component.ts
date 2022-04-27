@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
@@ -10,16 +11,22 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./admin-dashboard-layout.component.css']
 })
 export class AdminDashboardLayoutComponent implements OnInit {
+  requestInfo:FormGroup
   allFormsData: any;
   page = 1;
   index=0;
   itemPerPage = 10;
+  id: any;
 
   constructor(private httpService: HttpService,
     private toast: ToastrService,
     private localStorage: LocalStorageService,
-    private routes: Router) {
+    private routes: Router,
+    private fb: FormBuilder) {
     this.getdata('')
+    this.requestInfo=this.fb.group({
+      remark:['']
+    })
   
 
   }
@@ -88,12 +95,26 @@ export class AdminDashboardLayoutComponent implements OnInit {
     this.getdata('next')
   }
   approve(id:string){
-    this.httpService.changeStatus(id,{status:'approve'}).subscribe(data=>{
-      console.log(data);
-      window.location.reload()
-      
-    })
+    let createAt = new Date();
+    this.httpService.changeStatus(id,{status:'approve',createAt:createAt}).subscribe(data=>{
+      window.location.reload()    
+      this.toast.success('successfully status change');
+    },err=>{
+      this.toast.error('Please try again');
 
+    })
+  }
+  modalOpen(id:any){
+    this.id=id;
+  }
+  remark(){
+    let createAt = new Date();
+
+    this.httpService.changeStatus(this.id,{status:'Request Info',message:this.requestInfo.value.remark,createAt:createAt}).subscribe(data=>{
+      this.toast.success('successfully status change');
+    },err=>{
+      this.toast.error('Please try again');
+    })
   }
 
 }

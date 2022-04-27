@@ -27,7 +27,11 @@ const routes: Routes = [
     path: 'detail/:id',
     component: ViewpageComponent,
     canActivate:[AdminAuthGuradService]
-  }
+  },
+  {
+    path: '**',
+    redirectTo:''
+  },
 ];
 
 @NgModule({

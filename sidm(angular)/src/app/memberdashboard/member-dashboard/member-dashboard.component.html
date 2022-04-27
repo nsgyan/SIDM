@@ -170,6 +170,7 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Category Name</th>
+                                        
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -181,7 +182,7 @@
                                         <td>
                                             <a class="viewBtn mr-3" (click)="viewForm(item)">View</a>
                                             <a class="viewBtn" *ngIf="item.paymentStatus==='Unpaid'&&item.status==='approve'" (click)="payNow(item._id)"> Pay Now</a>
-                                            <a class="viewBtn" *ngIf="item.paymentStatus==='Paid'" (click)="recipt(item.paymentId)"> View Payment  </a></td>
+                                            <a class="viewBtn" *ngIf="item.paymentStatus==='Paid'&&item.status==='approve'" (click)="recipt(item.paymentId)"> View Payment  </a></td>
                                     </tr>
                                 </tbody>
                             </table>

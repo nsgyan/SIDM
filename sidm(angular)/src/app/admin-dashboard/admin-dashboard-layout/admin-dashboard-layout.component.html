@@ -189,8 +189,10 @@
                                 <td><button class="viewBtn" (click)="viewDetails(item._id)">
                                         View
                                     </button>
-                                    
-                                    <button class="viewBtn" *ngIf="item.status!=='approve'" (click)="approve(item._id)">
+                                    <button class="viewBtn" data-toggle="modal"  (click)="modalOpen(item._id)" data-target="#exampleModal">
+                                        Request Info
+                                      </button>
+                                    <button class="viewBtn" *ngIf="item.status==='Pending Approval'" (click)="approve(item._id)">
                                         Approve
                                     </button></td>
                             </tr>
@@ -249,3 +251,37 @@
 </footer>
 <!-- *ngIf="allFormsData?.hasPreviousPage" -->
 <!-- *ngIf="allFormsData?.hasNextPage" -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request Info</h5>
+         
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="requestInfo" >
+                <div class="">
+                    <div class="form-group">
+                        <input type="textbox"
+                            class="form-control
+                            user-bg" id="uername"
+                            placeholder="remark"
+                            formControlName="remark">
+                    </div>
+                </div>
+              
+             
+              
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="remark()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

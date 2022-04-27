@@ -102,14 +102,14 @@ var instance = new Razorpay({
 }
 
 exports.verifypayment= async (req,res)=>{
-  const { currentDate, razorpay_order_id, razorpay_payment_id,amount} =  req.body;
+  const { createAt, razorpay_order_id, razorpay_payment_id,amount} =  req.body;
  
   const userdata=req.body.note
   const payment = new PaymentDb({
     amount:amount/100,
     typeOfApplicant:userdata.type,
     category:userdata.category,
-    createAt: currentDate,
+    createAt: createAt,
     panNumber:userdata.panNumber,
     mobileNumber:userdata.mobileNumber,
     email: userdata.email,

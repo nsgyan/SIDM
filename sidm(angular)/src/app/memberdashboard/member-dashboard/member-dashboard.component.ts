@@ -136,6 +136,8 @@ export class MemberDashboardComponent implements OnInit {
         })
       }, err => {
         this.toast.error(err.error);
+        this.localStorage.clearLocalStorage()
+        window.location.reload()
         this.routes.navigate(['login/member'])
 
       })
@@ -165,6 +167,10 @@ export class MemberDashboardComponent implements OnInit {
       .subscribe(data => {
         this.states = data
 
+      },err=>{
+        this.toast.error('Please Login Again');
+        this.localStorage.clearLocalStorage()
+        window.location.reload()
       })
   }
 
@@ -347,6 +353,10 @@ export class MemberDashboardComponent implements OnInit {
          })
                           
         }
+      },err=>{
+        this.toast.error('oops no internet connection login again');
+        this.localStorage.clearLocalStorage()
+        window.location.reload()
       })
     }
     else {
@@ -392,6 +402,10 @@ export class MemberDashboardComponent implements OnInit {
       else {
         this.httpService.upload(file[0]).subscribe((data: any) => {
           this.financialDoccument=data.body;
+        },err=>{
+          this.toast.error('Please try again');
+          window.location.reload()
+
         })
 
       }
@@ -511,9 +525,11 @@ export class MemberDashboardComponent implements OnInit {
         else if (form === 'appreciationDocuments') {
           this.appreciationDocuments = data.body;
         }
+      },err=>{
+        this.toast.error('Please try again');
+        window.location.reload()
       })
-
-      }
+ }
     }
     else {
       this.toast.error('File uploaded is invalid!')
@@ -625,6 +641,8 @@ export class MemberDashboardComponent implements OnInit {
         this.toast.success('successfully applied');
       }, err => {
         this.toast.error(err.error);
+        this.localStorage.clearLocalStorage();
+        window.location.reload()
         this.routes.navigate(['login/member'])
       })
     }
@@ -735,7 +753,9 @@ export class MemberDashboardComponent implements OnInit {
         this.toast.success('successfully applied');
       },
         error => {
-          this.toast.error(error.error);
+          this.toast.error('Please Login again');
+          this.localStorage.clearLocalStorage()
+          window.location.reload()
           this.routes.navigate(['login/member'])
         }
       )
@@ -851,6 +871,10 @@ export class MemberDashboardComponent implements OnInit {
         this.routes.navigateByUrl(url);
       }, err => {
         this.toast.error(err);
+        this.toast.error('Please login again');
+        this.localStorage.clearLocalStorage()
+        window.location.reload()
+
       })
     }
     else if (!this.captcha) {
@@ -962,7 +986,9 @@ export class MemberDashboardComponent implements OnInit {
         this.routes.navigateByUrl(url);
       },
         error => {
-          this.toast.error('Email or Mobile or Pan  already exists');
+          this.toast.error('Please login again');
+          this.localStorage.clearLocalStorage()
+          window.location.reload()
         }
       )
     }
@@ -1194,6 +1220,7 @@ export class MemberDashboardComponent implements OnInit {
 
   logout() {
     this.localStorage.clearLocalStorage()
+    window.location.reload()
     this.routes.navigate(['login/member'])
 
   }
@@ -1213,14 +1240,15 @@ rzp.open();
       
     })
   }
+
   razorPayshandler(response:any,amount:any,note:any){
 
   if(response){
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
-  let currentDate = new Date();
+  let createAt = new Date();
 
-  this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,currentDate}).subscribe(data=>{
+  this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.paymentDetails=data
     this.toast.success(' Payment Successfully ');
    let currentRouter = this.routes.url;
@@ -1238,9 +1266,11 @@ else{
 
 }
   }
+
   receiptClose(){
     this.paymentDetails=null
   }
+
   recipt(id:any){
     this.httpService.ViewPayment(id).subscribe((data:any)=>{
      
@@ -1248,7 +1278,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
    this.paymentDetails=data
       
     },err=>{
-      this.toast.error(err);
+      this.toast.error('No Data Found');
     })
 
   }

@@ -10,7 +10,7 @@ exports.memberAuth = (req, res, next) => {
     
 
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
-       if (decoded.panNumber) {
+       if (decoded?.panNumber) {
            RegistrationForm.findOne({ mobileNumber: decoded.mobileNumber, email: decoded.email, panNumber: decoded.panNumber })
                 .then(data => {
                     if (data.panNumber) {

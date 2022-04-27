@@ -560,10 +560,8 @@ export class RegistrationComponent implements OnInit {
         this.toast.success(' Successfully Applied');
         let url: string = "/thankYou/" + 'dsffsdfds'
         this.router.navigateByUrl(url);
-        // this.router.navigate(['/thankYou'])
-        // this.toastr.success('successfully applied');
       }, err => {
-        this.toast.error(err);
+        this.toast.success(err);
 
       })
     }
