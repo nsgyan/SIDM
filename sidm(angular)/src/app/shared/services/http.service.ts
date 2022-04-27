@@ -32,7 +32,9 @@ export class HttpService {
       params: queryParams
     })
   }
-
+  changeStatus(id:string,data:any){
+    return this.httpService.patch(`${Globals.route.changeStatus}/${id}`,data)
+  }
  updateform(id: string, data: any) {
     return this.httpService.patch(`${Globals.route.update}/${id}`, data)
   }

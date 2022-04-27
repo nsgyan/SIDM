@@ -42,7 +42,8 @@ const RegistrationFormSchema = new Schema({
         paymentStatus:{type:String},
         paymentId:{type:String},
         alterEmail:{type:String,
-            lowercase: true }
+            lowercase: true },
+        remark:{type:String}
 })
 
 module.exports = mongoose.model('RegistrationForm', RegistrationFormSchema);

@@ -6,6 +6,7 @@ export class Globals {
         'login': Globals.server + 'user/login',
         'getStateList': Globals.server + 'user/getStateList',
         'update': Globals.server + 'sidm/update',
+        'changeStatus': Globals.server + 'sidm/changeStatus',
         'checkEmail': Globals.server + 'user/checkemail',
         'checkMobile': Globals.server + 'user/checkMobile',
         'checkPan': Globals.server + 'user/checkPan',
@@ -15,7 +16,6 @@ export class Globals {
         'upload': Globals.server + 'upload',
         'payment': Globals.server + 'user/payment',
         'verifypayment':Globals.server+'user/verifypayment',
-
         'viewPayment':Globals.server+'user/viewPayment'
     };
 }

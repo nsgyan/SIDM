@@ -78,7 +78,8 @@ exports.postRegistrationForm = (req, res, next) => {
     status: status,
     paymentStatus:null,
     alterMobileNumber:alterMobileNumber,
-        alterEmail:alterEmail
+    alterEmail:alterEmail,
+    remark:null
   });
   form
     .save()
@@ -249,6 +250,7 @@ exports.updateFrom = (req, res, next) => {
       formData.paymentStatus=null,
       formData.alterMobileNumber= alterMobileNumber;
       formData.alterEmail= alterEmail
+      formData.remark=null
       formData.save((err, success) => {
         if(err){
        res.status(404).send(err);
@@ -263,68 +265,22 @@ exports.updateFrom = (req, res, next) => {
     });
 }
 
-  // RegistrationForm.findById(userID)
-  //     .then(formData => {
-  //         formData.nameOfOrganisation = updateNameOfOrganisation;
-  //         formData.addressl1 = updateAddressl1;
-  //         formData.addressl2 = updateAddressl2;
-  //         formData.state = updateState;
-  //         formData.city = updateCity;
-  //         formData.pincode = updatePincode;
-  //         formData.name = updateName;
-  //         formData.designation = updateDesignation;
-  //         if (updateDocumentGstCertificate) {
-  //             formData.documentGstCertificate = updateDocumentGstCertificate
-  //         }
-  //         formData.typeOfApplicant = typeOfApplicant;
-  //         formData.sidmMemberShipNumber = sidmMemberShipNumber;
-  //         formData.otherAssociationMemberShipNumber = otherAssociationMemberShipNumber;
-  //         formData.gstinOfOrganization = gstinOfOrganization;
-  //         formData.dateOfOrganization = dateOfOrganization;
-  //         formData.vendorOrganization1 = vendorOrganization1;
-  //         formData.vendorOrganization2 = vendorOrganization2;
-  //         formData.vendorOrganization3 = vendorOrganization3;
-  //         formData.aboutCompany = aboutCompany;
-  //         formData.achievementsToJustifyApplication = achievementsToJustifyApplication;
-  //         if (documentsOfProduct) {
-  //             formData.documentsOfProduct = documentsOfProduct;
-  //         }
-  //         formData.campareAchivement = compareAchivement;
-  //         if (appreciationDocuments) {
-  //             formData.appreciationDocuments = appreciationDocuments;
-  //         }
+ 
+exports.changeStatus = (req, res, next) => {
+  const userID = req.params.userID;
+  const status=req.body.status
+  RegistrationForm.findById(userID).then(data=>{
+   data.status=status;
+   data.save((err, success) => {
+    if(err){
+   res.status(404).send(err);
+    }
+    else{
+    res.status(200).send(success);
+    }
+  });
+  }).catch(err=>{
+    res.status(404).send(err)
+  })
 
-  //         formData.briefCompany = briefCompany;
-  //         formData.save().then(result => {
-  //             console.log('sdj');
-  //             console.log(result, 'wertt543');
-  //         })
-  //             .catch(err => {
-  //                 console.log(err, 'err');
-  //             })
-  //     })
-  //     .then(result => {
-  //         console.log(result, 'sdfdg');
-  //         // res.status(200).send(result)
-  //     })
-  //     .catch(error => {
-  //         // res.status(404).send(error)
-  //     })
-
-// const multer  = require('multer');
-// const fileStroage = multer.diskStorage({
-//     destination: (req, file, cb)=>{
-//       cb(null, "public/uploadForm");
-//     },
-//     filename: (req, file, cb) =>{
-//         // console.log(file);
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-//   });
-// const upload = multer({ storage:fileStroage });
-
-// router.post('/uploadImage', upload.single('uploadForm'), (req, res) => {
-//     res.send(req.file)
-//   }, (error, req, res, next) => {
-//     res.status(400).send({ error: error.message })
-//   });
+}

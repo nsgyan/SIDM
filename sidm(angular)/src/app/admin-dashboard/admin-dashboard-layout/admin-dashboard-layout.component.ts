@@ -89,5 +89,12 @@ export class AdminDashboardLayoutComponent implements OnInit {
     this.page = this.page + 1;
     this.getdata('next')
   }
+  approve(id:string){
+    this.httpService.changeStatus(id,'approve').subscribe(data=>{
+      console.log(data);
+      
+    })
+
+  }
 
 }
