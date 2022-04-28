@@ -112,6 +112,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
 
     this.httpService.changeStatus(this.id,{status:'Request Info',message:this.requestInfo.value.remark,createAt:createAt}).subscribe(data=>{
       this.toast.success('successfully status change');
+      window.location.reload()   
     },err=>{
       this.toast.error('Please try again');
     })

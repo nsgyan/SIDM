@@ -40,7 +40,7 @@ const RegistrationFormSchema = new Schema({
         exhibit2:{ type: String },
         status: { type: String },
         alterMobileNumber:{type:String},
-        paymentStatus:{type:String},
+        paymentStatus:{type:String, default:'Unpaid'},
         paymentId:{type:String},
         alterEmail:{type:String, lowercase: true },
         remark:{type:String},

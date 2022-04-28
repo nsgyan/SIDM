@@ -19,50 +19,8 @@ var instance = new Razorpay({
     RegistrationForm.findById(userID)
     .then(data=>{
       if(data ){
-          if(data.status === 'approve'){
-              if(data.typeOfApplicant==='M')
-              {
-                  if(data.sidmMember==='Yes' && data.sidmMemberShipNumber ){
-                amount=25000
-                  }
-                  else if(data.sidmMember==='No')
-                  {
-                    amount=35000
-                  }
-                  else{
-                      res.status(404).json("invalid transaction")
-                  }
-              }
-             else if(data.typeOfApplicant==='S')
-              {
-                  if(data.sidmMember==='Yes' && data.sidmMemberShipNumber ){
-                amount=15000
-                  }
-                  else if(data.sidmMember==='No')
-                  {
-                    amount=20000
-                  }
-                  else{
-                      res.status(404).json("invalid transaction")
-                  }
-              }
-             else if(data.typeOfApplicant==='L')
-              {
-                  if(data.sidmMember==='Yes' && data.sidmMemberShipNumber ){
-                amount=45000
-                  }
-                  else if(data.sidmMember==='No')
-                  {
-                    amount=55000
-                  }
-                  else{
-                      res.status(404).json("invalid transaction")
-                  }
-              }
-              else{
-                  res.status(404).json("invalid transaction")
-             
-              }
+          if(data.paymentStatus==='Unpaid'){
+            amount=5000
               const da = new Date();
                receipt = (da.getMonth() + 1)+""+ da.getDate() +""+ da.getFullYear() +""+ da.getHours() +""+ da.getMinutes()+""+da.getSeconds();
               currency='INR';

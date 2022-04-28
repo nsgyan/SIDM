@@ -3,7 +3,6 @@ const fs = require("fs");
 
 exports.postRegistrationForm = (req, res, next) => {
 
-  const createAt = req.body.currentDate;
   const category = req.body.category;
   const typeOfApplicant = req.body.typeOfApplicant;
   const subCategoryDoccument = req.body.subCategoryDoccument;
@@ -75,7 +74,6 @@ exports.postRegistrationForm = (req, res, next) => {
     exhibit1: exhibit1,
     exhibit2: exhibit2,
     status: status,
-    paymentStatus:null,
     alterMobileNumber:alterMobileNumber,
     alterEmail:alterEmail,
     remark:null
@@ -238,10 +236,8 @@ exports.updateFrom = (req, res, next) => {
       formData.exhibit1 = exhibit1;
       formData.exhibit2 = exhibit2;
       formData.status = status;
-      formData.paymentStatus=null,
       formData.alterMobileNumber= alterMobileNumber;
       formData.alterEmail= alterEmail
-      formData.remark=null
       formData.save((err, success) => {
         if(err){
        res.status(404).json(err);
@@ -265,12 +261,11 @@ exports.changeStatus = (req, res, next) => {
   RegistrationForm.findById(userID).then(data=>{
     if(status==='approve'){
    data.status=status;
-  data.paymentStatus='Unpaid'
   data.approveDate=createAt
 }
   else if(status==='Request Info')
   {
-    data.paymentStatus=null
+  
     data.status=status
     data.remark=req.body.message ?req.body.message : '';
     data.remarkDate=createAt
