@@ -77,15 +77,22 @@
 </div>
 <!--================= PAGE-TITLE END =================-->
 
-<div class="row">
+<div class="row" *ngIf="remark">
     <div class="col-lg-12">
         <div class="container">
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Remark ! : </strong>{{remark}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <!-- <div class="alert alert-danger alert-warning alert-dismissible fade show" role="alert">
                 <div class="alertContent">
                     <h6>Remark!</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    <p>{{remark}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -123,7 +130,7 @@
                                         <th scope="row">{{paymentDetails?.razorpay_order_id}}</th>
                                         <th scope="row">{{paymentDetails?.razorpay_payment_id}}</th>
                                         <td>
-                                            <a class="viewBtn" (click)="receiptClose()"> Close</a>
+                                            <a class="viewBtn" (click)="receiptClose('paymentDetails')"> Close</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -141,27 +148,23 @@
                             <table class="table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col">Date</th>
+                                        <th scope="col">Date Of Payment</th>
                                         <th scope="col">Amount</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Mobile Number</th>
-                                        <th scope="col">Pan Number</th>
-                                        <th scope="col">Order Id</th>
-                                        <th scope="col">Payment Id</th>
+                                        <th scope="col">Transaction Details</th>
+                                        <th scope="col">Mode Of Payment</th>
+                                        <th scope="col">Name Of Bank</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">{{paymentDetails?.createAt}}</th>
-                                        <th scope="row">{{paymentDetails?.amount}}</th>
-                                        <th scope="row">{{paymentDetails?.email}}</th>
-                                        <th scope="row">{{paymentDetails?.mobileNumber}}</th>
-                                        <th scope="row">{{paymentDetails?.panNumber}}</th>
-                                        <th scope="row">{{paymentDetails?.razorpay_order_id}}</th>
-                                        <th scope="row">{{paymentDetails?.razorpay_payment_id}}</th>
+                                        <th scope="row">{{OfflinepaymentDetails?.dateOfPayment}}</th>
+                                        <th scope="row">{{OfflinepaymentDetails?.amount}}</th>
+                                        <th scope="row">{{OfflinepaymentDetails?.transactionDetails}}</th>
+                                        <th scope="row">{{OfflinepaymentDetails?.modeOfPayment}}</th>
+                                        <th scope="row">{{OfflinepaymentDetails?.nameOfBank}}</th>
                                         <td>
-                                            <a class="viewBtn" (click)="receiptClose()"> Close</a>
+                                            <a class="viewBtn" (click)="receiptClose('OfflinepaymentDetails')"> Close</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -182,9 +185,11 @@
                         <div class="col-lg-12">
                             <table class="table">
                                 <thead class="thead-light">
-                                    <tr>
+                                    <tr  *ngFor="let item of memberData;let i=
+                                    index">
                                         <th scope="col">#</th>
                                         <th scope="col">Category Name</th>
+                                        <th scope="col" *ngIf="item.remark">Remark</th>
 
                                         <th scope="col">Action</th>
                                     </tr>
@@ -194,6 +199,7 @@
                                             index">
                                         <th scope="row">{{i+1}}</th>
                                         <td>{{item.category}}</td>
+                                        <td  *ngIf="item.remark" ><a (click)="viewRemark(item.remark)" class="badge badge-light"><i aria-hidden="true" class="fas fa-info-circle mr-0"></i></a></td>
                                         <td class="text-center">
                                             <div class="dropBtn dropdown">
                                                 <button class="paymentsDropdwn  dropdown-toggle" type="button"

@@ -206,3 +206,13 @@ select {
 .dropBtn .dropdown-menu {
   margin: 0.125rem -136px 0;
 }
+
+.badge-light {
+  color: #dd1010 !important;
+  margin-left: 10px;
+  background-color: #ffffff;
+  font-size: large;
+}
+.fa-info-circle {
+  color: #cc1d2c;
+}

@@ -111,6 +111,8 @@
                                 <th scope="col">Type Of Applicant</th>
                                 <th scope="col">Organisation</th>
                                 <th scope="col">Membership Number</th>
+                                <th scope="col">Registration fee</th>
+                                <th scope="col">Membership fee</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -169,6 +171,15 @@
                                                 Organisation :</span>{{item.associationName}}</li>
                                     </ul>
                                 </td>
+                                <td class="table_content">{{item.paymentStatus}}</td>
+                                <td scope="row">
+                                    <ul class="list-unstyled text-xs">
+                                        <li class="table_content"><span class="font-bold
+                                                text-theme">Status:</span>{{item.offlinePaymentDetails ? 'Paid':'Pending'}}</li>
+                                        <li class="table_content" *ngIf="item.offlinePaymentDetails"><span class="font-bold
+                                                text-theme"> Amount :</span>{{item.memberShipAmount}}</li>
+                                    </ul>
+                                </td>
 
                                 <td class="text-center">
                                     <div class="dropBtn dropdown">
@@ -179,9 +190,9 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" (click)="viewDetails(item._id)"><i aria-hidden="true"
                                                     class="fas fa-eye"></i> View</a>
-                                            <a class="dropdown-item"(click)="approve(item._id)"><i aria-hidden="true"
+                                            <a class="dropdown-item"  *ngIf="item.paymentStatus==='Paid' && item.status!=='approve'"> (click)="approve(item._id)"><i aria-hidden="true"
                                                     class="fas fa-check"></i> Approve</a>
-                                            <a class="dropdown-item"data-toggle="modal" (click)="modalOpen(item._id)"
+                                            <a class="dropdown-item"data-toggle="modal"  *ngIf="item.paymentStatus==='Paid' && item.status!=='approve'" (click)="modalOpen(item._id)"
                                             data-target="#exampleModal"><i aria-hidden="true"
                                                     class="fas fa-info-circle"></i> Request Info</a>
                                             <a class="dropdown-item" href="#"><i aria-hidden="true"

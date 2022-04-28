@@ -61,6 +61,7 @@ export class MemberDashboardComponent implements OnInit {
   }
   modeofPayment: string[] | undefined;
   OfflinepaymentDetails: any;
+  remark: any;
   constructor(private localStorage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
@@ -1275,11 +1276,16 @@ else{
 }
   }
 
-  receiptClose(){
-    this.paymentDetails=null
+  receiptClose(type:any){
+    if(type==='paymentDetails'){
+    this.paymentDetails=null}
+    else {
+    this.OfflinepaymentDetails=null}
   }
 
   recipt(OnlinepaymentId:any,OfflineOnlinepaymentId:any){
+    this.paymentDetails=null
+    this.OfflinepaymentDetails=null
     this.httpService.ViewPayment(OnlinepaymentId).subscribe((data:any)=>{
      
 data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
@@ -1322,6 +1328,10 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
     this.toast.error('Please Fill Required Field');
    }
     
+  }
+  viewRemark(remark:any){
+    this.remark=remark
+
   }
 
 }

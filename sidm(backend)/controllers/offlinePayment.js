@@ -22,6 +22,7 @@ const RegistrationForm = require("../models/registrationForm");
       if(data){
           payment.save().then(item=>{
             data.offlinePaymentDetails=item._id
+            data.memberShipAmount=item.amount
             data.save()
             res.status(202).json("Payment Details Successfuly save")
           })
@@ -37,15 +38,16 @@ const RegistrationForm = require("../models/registrationForm");
 
  exports.getPaymentDetails=(req,res)=>{
     const  offlinePaymentDetails= req.params.userID;
-  RegistrationForm.findOne(offlinePaymentDetails).then(data=>{
+    PaymentDb.findById(offlinePaymentDetails).then(data=>{
       if(data){
-        res.status(202).json(data)
+        res.status(200).json(data)
       }
       else{
         res.status(404).json("Payment Details Not Found")
       }
 
   }).catch(err=>{
+    console.log(err);
     res.status(404).json("Server Unable to understand request")
   })
  }

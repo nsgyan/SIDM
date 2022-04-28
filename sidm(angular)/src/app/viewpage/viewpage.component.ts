@@ -18,6 +18,7 @@ export class ViewpageComponent implements OnInit {
   cat3 = true
   cat4 = true
   memberData: any;
+  OfflinepaymentDetails: any;
   constructor(private route: ActivatedRoute,
     private httpService: HttpService,
     private localStorage: LocalStorageService,
@@ -77,6 +78,12 @@ export class ViewpageComponent implements OnInit {
            this.paymentDetails=paymentdata
             
           })}
+          if(data.offlinePaymentDetails)
+          this.httpService.getOflinePayment(data.offlinePaymentDetails).subscribe((data:any)=>{
+            data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
+         this.OfflinepaymentDetails=data
+          })
+
 
       },err=>{
 
