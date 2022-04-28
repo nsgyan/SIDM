@@ -8,18 +8,15 @@
     <div class="top-panel">
         <div class="container">
             <a href="javascript:void(0)" class="logo2">
-                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo"
-                    >
-                </a>
+                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo">
+            </a>
             <a href="javascript:void(0)" class="logo1">
-                <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
-                   >
-                </a>
+                <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo">
+            </a>
 
             <a href="javascript:void(0)" class="logo3">
-                <img class="headerLogo3" src="assets/img/New_img/azadi-ka-amrit-mahotsav.png"
-                    alt="logo">
-                </a>
+                <img class="headerLogo3" src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo">
+            </a>
         </div>
     </div>
     <!-- <div class="header-nav">
@@ -173,29 +170,38 @@
                                     </ul>
                                 </td>
 
-                                <!-- <td class="text-center">
-                                    <div class="btn-group dropdown">
-                                      <button class="btn btn-default w-xxs btn-sm r-2x" data-toggle="dropdown"
-                                        aria-expanded="false"><i class="fa fa-cog g-px-5  text-info text-sm"></i> <span class=""><i
-                                            class="fa fa-caret-down"></i></span></button>
-                                      <ul class="dropdown-menu">
-                                        <li><a (click)="viewDetails(item._id)"><i class="fa fa-edit"></i>  View</a></li>
-                                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete </a></li>
-                                        <li><a href="#"><i class="fa fa-lock"></i> Lock </a> </li>
-                                      </ul>
+                                <td class="text-center">
+                                    <div class="dropBtn dropdown">
+                                        <button class="paymentsDropdwn  dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                            <i aria-hidden="true" class="fas fa-cog"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" (click)="viewDetails(item._id)"><i aria-hidden="true"
+                                                    class="fas fa-eye"></i> View</a>
+                                            <a class="dropdown-item"(click)="approve(item._id)"><i aria-hidden="true"
+                                                    class="fas fa-check"></i> Approve</a>
+                                            <a class="dropdown-item"data-toggle="modal" (click)="modalOpen(item._id)"
+                                            data-target="#exampleModal"><i aria-hidden="true"
+                                                    class="fas fa-info-circle"></i> Request Info</a>
+                                            <a class="dropdown-item" href="#"><i aria-hidden="true"
+                                                    class="fas fa-edit"></i> Edit</a>
+                                        </div>
                                     </div>
-                                  </td> -->
+                                </td>
 
-                                <td>
-                                    <button class="viewBtn" (click)="viewDetails(item._id)">
+                                <!-- <td>
+                                    <button class="viewBtn" (click)="viewDetails(item._id">
                                         View
                                     </button>
-                                    <button class="viewBtn" data-toggle="modal"  *ngIf="item.status==='Pending Approval'"  (click)="modalOpen(item._id)" data-target="#exampleModal">
+                                    <button class="viewBtn" data-toggle="modal" (click)="modalOpen(item._id)"
+                                        data-target="#exampleModal">
                                         Request Info
-                                      </button>
-                                    <button class="viewBtn" *ngIf="item.status==='Pending Approval'" (click)="approve(item._id)">
+                                    </button>
+                                    <button class="viewBtn" (click)="approve(item._id)">
                                         Approve
-                                    </button></td>
+                                    </button> 
+                                </td> -->
                             </tr>
 
                         </tbody>
@@ -203,10 +209,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 </section>
 
@@ -253,36 +255,30 @@
 <!-- *ngIf="allFormsData?.hasPreviousPage" -->
 <!-- *ngIf="allFormsData?.hasNextPage" -->
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Request Info</h5>
-         
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="requestInfo" >
-                <div class="">
-                    <div class="form-group">
-                        <input type="textbox"
-                            class="form-control
-                            user-bg" id="uername"
-                            placeholder="remark"
-                            formControlName="remark">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Request Info</h5>
+
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="requestInfo">
+                    <div class="">
+                        <div class="form-group">
+                            <input type="textbox" class="form-control
+                            user-bg" id="uername" placeholder="remark" formControlName="remark">
+                        </div>
                     </div>
-                </div>
-              
-             
-              
-                
-            </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="NewBtn" data-dismiss="modal">Close</button>
+                <button type="button" class="NewBtn" (click)="remark()">Submit</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="remark()">Submit</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
