@@ -18,10 +18,10 @@ router.post('/checkPan', User.getPan);
 router.get('/payment/:userID', auth.memberAuth, Payment.payNow);
 router.post('/verifypayment', auth.memberAuth, Payment.verifypayment);
 
-router.get('/viewPayment/:userID', Payment.viewpayment);
-router.post('/offlinePayment', offlinePayment.postPaymentDetails);
+router.get('/viewPayment/:userID',auth.auth, Payment.viewpayment);
+router.post('/offlinePayment' ,auth.auth, offlinePayment.postPaymentDetails);
 
-router.get('/getPaymentDetails/:userID',  offlinePayment.getPaymentDetails);
+router.get('/getPaymentDetails/:userID',auth.auth,  offlinePayment.getPaymentDetails);
 
 
 
