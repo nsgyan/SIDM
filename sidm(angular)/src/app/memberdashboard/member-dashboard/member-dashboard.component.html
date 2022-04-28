@@ -91,49 +91,49 @@
 </div>
 
 <!--===================== DASHBOARD =====================-->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="">
-                    <div class="row">
-                        <!-- <div class="col-lg-3">
-                                <img class="profile_Img" src="assets/img/New_img/building.png" alt="">
-                            </div> -->
-                        <!-- <div class="col-lg-12" *ngFor="let item of memberData;let i=
-                            index">
-                                <h1 class="profile-title">{{item.nameOfOrganisation}}</h1>
-                                <ul class="footer-contacts d-flex mt-3 pb-2 profile-info">
-                                    <li class="footer-phone">
-                                        <i aria-hidden="true" class="fas fa-phone-alt"></i>
-                                        <a href="tel:+91 11 45771000" class="phoneNo">+91 11 45771000</a>
-                                        <p> / </p>
-                                        <a href="tel:24629994"  class="phoneNo">24629994 – 7</a>
-                                    </li>
-                                    <li class="footer-email ml-3">
-                                        <i aria-hidden="true" class="fas fa-envelope"></i>
-                                        <a href="mailto:membership@sidm.in" class="phoneNo mt-2">membership@sidm.in</a>
-                                    </li>
-                                </ul>
-                                <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis,
-                                    quam quas illum repudiandae dolor deserunt aut iure debitis laborum minus soluta,
-                                    repellendus ipsa sequi, quos consectetur voluptate. Facilis, deserunt corporis.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quam quas
-                                    illum repudiandae dolor deserunt aut iure debitis laborum minus soluta, repellendus
-                                    ipsa sequi, quos consectetur voluptate. Facilis, deserunt corporis laborum minus
-                                    soluta, repellendus ipsa sequi, quos consectetur voluptate. Facilis, deserunt
-                                    corporis</p>
-                            </div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <section class="">
     <div class="container">
         <div *ngIf="paymentDetails" class="row">
+            <div class="col-lg-12">
+                <div class="profileSection mb-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Mobile Number</th>
+                                        <th scope="col">Pan Number</th>
+                                        <th scope="col">Order Id</th>
+                                        <th scope="col">Payment Id</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{{paymentDetails?.createAt}}</th>
+                                        <th scope="row">{{paymentDetails?.amount}}</th>
+                                        <th scope="row">{{paymentDetails?.email}}</th>
+                                        <th scope="row">{{paymentDetails?.mobileNumber}}</th>
+                                        <th scope="row">{{paymentDetails?.panNumber}}</th>
+                                        <th scope="row">{{paymentDetails?.razorpay_order_id}}</th>
+                                        <th scope="row">{{paymentDetails?.razorpay_payment_id}}</th>
+                                        <td>
+                                            <a class="viewBtn" (click)="receiptClose()"> Close</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="OfflinepaymentDetails" class="row">
             <div class="col-lg-12">
                 <div class="profileSection mb-6">
                     <div class="row">
@@ -194,10 +194,27 @@
                                             index">
                                         <th scope="row">{{i+1}}</th>
                                         <td>{{item.category}}</td>
-                                        <td>
-                                            <a class="viewBtn mr-3" (click)="viewForm(item)">View</a>
-                                            <a class="viewBtn" *ngIf="item.paymentStatus==='Unpaid'" (click)="payNow(item._id)"> Pay Now</a>
-                                            <a class="viewBtn" *ngIf="item.paymentStatus==='Paid'" (click)="recipt(item.paymentId)"> View Payment  </a></td>
+                                        <td class="text-center">
+                                            <div class="dropBtn dropdown">
+                                                <button class="paymentsDropdwn  dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                                    <i aria-hidden="true" class="fas fa-cog"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" (click)="viewForm(item)"><i aria-hidden="true"
+                                                            class="fas fa-eye"></i> View</a>
+                                                    <a class="dropdown-item"*ngIf="item.paymentStatus==='Unpaid'" (click)="payNow(item._id)"><i aria-hidden="true"
+                                                            class="fas fa-check"></i> Pay Now</a>
+                                                    <a class="dropdown-item"data-toggle="modal"
+                                                    data-target="#exampleModal" *ngIf="!item.offlinePaymentDetails && item.paymentStatus==='Paid'" (click)="offlinePaymentDetails(item._id)"><i aria-hidden="true"
+                                                            class="fas fa-info-circle"></i>Offline Payment Details</a>
+                                                    <a class="dropdown-item" *ngIf="item.paymentStatus==='Paid'" (click)="recipt(item.paymentId,item.offlinePaymentDetails)"><i aria-hidden="true"
+                                                            class="fas fa-edit"></i> View Payment </a>
+                                                </div>
+                                            </div>
+                                        </td>
+        
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -1447,3 +1464,82 @@
 <footer id="footer">
 
 </footer>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Offline Payment Details</h5>
+         
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="OfflinePayment">
+                <div class="">
+                   <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="mt-3 mb-3">Name of Bank *</h5>
+                                <input formControlName="nameOfBank" type="text" >
+                                <p *ngIf="OfflinePayment.get('nameOfBank')?.hasError('required') && (  OfflinePayment.controls['nameOfBank'].touched || submited )" style="color: red;">
+                                    Name of Bank <strong>required</strong>
+                                </p>
+    
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="mt-3 mb-3"> Mode of Payment</h5>
+                                <select formControlName="modeOfPayment" class="select">
+                                    <option *ngFor="let item of modeofPayment" value="{{item}}">{{item}}</option>
+                                </select>
+                                <p *ngIf="OfflinePayment.get('modeOfPayment')?.hasError('required') && (  OfflinePayment.controls['modeOfPayment'].touched || submited )" style="color: red;">
+                                    Mode of Payment <strong>required</strong>
+                                </p>
+                                
+                            </div>
+    
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="mt-3 mb-3"> Amount *</h5>
+                                <input formControlName="amount" type="text" (keypress)="keyPressNumbers($event)">
+                                <p *ngIf="OfflinePayment.get('amount')?.hasError('required') && (  OfflinePayment.controls['amount'].touched || submited )" style="color: red;">
+                                    Amount <strong>required</strong>
+                                </p>
+                                
+    
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="mt-3 mb-3"> Date of Payment</h5>
+                                <input formControlName="dateOfPayment" type="date"  value="yyyy-mm-dd"
+                                class="input-medium search-query" (keypress)="pickclender()" maxlength="16">
+                                <p *ngIf="OfflinePayment.get('dateOfPayment')?.hasError('required') && (  OfflinePayment.controls['dateOfPayment'].touched || submited )" style="color: red;">
+                                    Date of Payment <strong>required</strong>
+                                </p>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="mt-3 mb-3">Transaction details *</h5>
+                                <input formControlName="transactionDetails" type="text" >
+                                <p *ngIf="OfflinePayment.get('transactionDetails')?.hasError('required') && (  OfflinePayment.controls['transactionDetails'].touched || submited )"style="color: red;">
+                                    Transaction details  <strong>required</strong>
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div> -
+                </div>
+              
+             
+              
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="submitOfflinePaymentDetails()" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

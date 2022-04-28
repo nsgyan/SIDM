@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('../controllers/auth')
 const User = require('../controllers/user')
 const Payment= require('../controllers/payment')
+const offlinePayment= require('../controllers/offlinePayment')
 router.post('/addAdmin', User.addAdminUser);
 
 router.post('/login', User.loginVerify);
@@ -18,6 +19,9 @@ router.get('/payment/:userID', auth.memberAuth, Payment.payNow);
 router.post('/verifypayment', auth.memberAuth, Payment.verifypayment);
 
 router.get('/viewPayment/:userID', auth.memberAuth, Payment.viewpayment);
+router.post('/offlinePayment', offlinePayment.postPaymentDetails);
+
+router.get('/getPaymentDetails/:userID',  offlinePayment.getPaymentDetails);
 
 
 

@@ -45,7 +45,8 @@ const RegistrationFormSchema = new Schema({
         alterEmail:{type:String, lowercase: true },
         remark:{type:String},
         remarkDate:{type:String},
-        approveDate:{type:String}
+        approveDate:{type:String},
+        offlinePaymentDetails:{type:String,default:null}
 
 })
 

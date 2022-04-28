@@ -29,6 +29,7 @@ export class MemberDashboardComponent implements OnInit {
   EditForm = true
   newCategory = false
   newCategoryForm!: FormGroup;
+  OfflinePayment!:FormGroup ;
   editForm!: FormGroup;
   cat1 = true
   cat2 = true
@@ -58,6 +59,8 @@ export class MemberDashboardComponent implements OnInit {
 
     }
   }
+  modeofPayment: string[] | undefined;
+  OfflinepaymentDetails: any;
   constructor(private localStorage: LocalStorageService,
     private formBuilder: FormBuilder,
     private toast: ToastrService,
@@ -66,6 +69,14 @@ export class MemberDashboardComponent implements OnInit {
     private location: Location,
     private winRef: WindowRefService
   ) {
+    this.OfflinePayment=this.formBuilder.group({
+      id:['',Validators.required],
+      nameOfBank:['',Validators.required],
+      modeOfPayment:['',Validators.required],
+      amount:['',Validators.required],
+      dateOfPayment:['',Validators.required],
+      transactionDetails:['',Validators.required]
+    })
     this.getState()
     this.httpService.getMemberData().
       subscribe((data: any) => {
@@ -141,6 +152,8 @@ export class MemberDashboardComponent implements OnInit {
         this.routes.navigate(['login/member'])
 
       })
+
+     
   }
 
   ngOnInit(): void {
@@ -239,7 +252,7 @@ export class MemberDashboardComponent implements OnInit {
     this.isappreciation = false
     this.submited = false
     this.newCategory = false
-    if (item.status === "Draft" || item.status==='Request Info') {
+    if (item.status !== 'approve') {
       this.EditForm = !this.EditForm
 
       this.httpService.getdetails(item._id).subscribe((data: any) => {
@@ -365,6 +378,7 @@ export class MemberDashboardComponent implements OnInit {
     }
 
   }
+
   addRegisteredOrganization() {
     let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
     control.push(
@@ -383,6 +397,7 @@ export class MemberDashboardComponent implements OnInit {
   getRegisteredOrganizationControls(){
     return this.editForm.get('nameRegisteredOrganization') as FormArray;
   }
+
   get nameRegisteredOrganization(): FormArray {
     return this.editForm.get('nameRegisteredOrganization') as FormArray;
   }
@@ -538,10 +553,6 @@ export class MemberDashboardComponent implements OnInit {
 
     }
   }
-
-
-
-
 
   finalSubmit(type: string) {
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
@@ -771,11 +782,7 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
-
-
-
-
-  newSubmit(type: string) {
+ newSubmit(type: string) {
     this.newCategoryForm.get('category')?.setValidators(Validators.required)
     this.newCategoryForm.get('category')?.updateValueAndValidity()
     this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
@@ -888,6 +895,7 @@ export class MemberDashboardComponent implements OnInit {
 
 
   }
+
   newsavedraft(type: string) {
     this.newCategoryForm.get('typeOfApplicant')?.clearValidators()
     this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
@@ -1005,7 +1013,6 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
-
   newAddRegisteredOrganization() {
     let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
     control.push(
@@ -1025,6 +1032,7 @@ export class MemberDashboardComponent implements OnInit {
   gewGetRegisteredOrganizationControls() {
     return this.newCategoryForm.get('nameRegisteredOrganization') as FormArray;
   }
+
   get newNameRegisteredOrganization(): FormArray {
     return this.newCategoryForm.get('nameRegisteredOrganization') as FormArray;
   }
@@ -1271,8 +1279,8 @@ else{
     this.paymentDetails=null
   }
 
-  recipt(id:any){
-    this.httpService.ViewPayment(id).subscribe((data:any)=>{
+  recipt(OnlinepaymentId:any,OfflineOnlinepaymentId:any){
+    this.httpService.ViewPayment(OnlinepaymentId).subscribe((data:any)=>{
      
 data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
    this.paymentDetails=data
@@ -1280,7 +1288,40 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
     },err=>{
       this.toast.error('No Data Found');
     })
+    this.httpService.getOflinePayment(OfflineOnlinepaymentId).subscribe((data:any)=>{
+      data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
+   this.OfflinepaymentDetails=data
+    })
+  }
 
+
+  offlinePaymentDetails(id:any){
+    this.submited=false
+    this.OfflinePayment.get('id')?.setValue(id)
+    this.modeofPayment=['Cheque','Bank Draft',"NEFT",'IMPS','UPI']
+
+  }
+  submitOfflinePaymentDetails(){
+   this.submited=true
+   if(this.OfflinePayment.valid)
+   {
+     this.httpService.postOflinePayment({
+      registrationId:this.OfflinePayment.value.id,
+      dateOfPayment:this.OfflinePayment.value.dateOfPayment,
+      amount:this.OfflinePayment.value.amount,
+      transactionDetails:this.OfflinePayment.value.transactionDetails,
+      modeOfPayment:this.OfflinePayment.value.modeOfPayment,
+      nameOfBank:this.OfflinePayment.value.nameOfBank,
+     }).subscribe((data:any)=>{
+      this.toast.success(data)
+     },err=>{
+      this.toast.error(err)
+     })
+   }
+   else{
+    this.toast.error('Please Fill Required Field');
+   }
+    
   }
 
 }

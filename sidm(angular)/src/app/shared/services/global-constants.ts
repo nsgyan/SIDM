@@ -16,6 +16,8 @@ export class Globals {
         'upload': Globals.server + 'upload',
         'payment': Globals.server + 'user/payment',
         'verifypayment':Globals.server+'user/verifypayment',
-        'viewPayment':Globals.server+'user/viewPayment'
+        'viewPayment':Globals.server+'user/viewPayment',
+        'offlinePayment':Globals.server+'user/offlinePayment',
+        'getPaymentDetails':Globals.server+'user/getPaymentDetails'
     };
 }

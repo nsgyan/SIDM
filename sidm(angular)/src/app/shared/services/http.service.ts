@@ -42,7 +42,15 @@ export class HttpService {
   paynow(id:String)
 {
   return this.httpService.get(`${Globals.route.payment}/${id}`)
-  
+}
+
+postOflinePayment(data:any){
+  return this.httpService.post(Globals.route.offlinePayment,data)
+
+}
+getOflinePayment(id:any){
+  return this.httpService.get(`${Globals.route.getPaymentDetails}/${id}`)
+
 }
 
 verifypayment(data:any){
