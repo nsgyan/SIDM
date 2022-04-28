@@ -82,7 +82,7 @@
         <div class="container">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Remark ! : </strong>{{remark}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="close"  (click)="closeRemark()" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -208,11 +208,11 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" (click)="viewForm(item)"><i aria-hidden="true"
                                                             class="fas fa-eye"></i> View</a>
-                                                    <a class="dropdown-item"*ngIf="item.paymentStatus==='Unpaid'" (click)="payNow(item._id)"><i aria-hidden="true"
-                                                            class="fas fa-check"></i> Pay Now</a>
+                                                    <a class="dropdown-item"*ngIf="item.paymentStatus==='Unpaid'" (click)="payNow(item._id)"><i aria-hidden="true" class="fas fa-rupee-sign"></i> Pay Now</a>
                                                     <a class="dropdown-item"data-toggle="modal"
-                                                    data-target="#exampleModal" *ngIf="!item.offlinePaymentDetails && item.paymentStatus==='Paid'" (click)="offlinePaymentDetails(item._id)"><i aria-hidden="true"
-                                                            class="fas fa-info-circle"></i>Offline Payment Details</a>
+                                                    data-target="#exampleModal" *ngIf="!item.offlinePaymentDetails && item.paymentStatus==='Paid'" (click)="offlinePaymentDetails(item._id)">
+                                                    <i aria-hidden="true" class="fas fa-file-alt"></i>
+                                                    Offline Payment Details</a>
                                                     <a class="dropdown-item" *ngIf="item.paymentStatus==='Paid'" (click)="recipt(item.paymentId,item.offlinePaymentDetails)"><i aria-hidden="true"
                                                             class="fas fa-edit"></i> View Payment </a>
                                                 </div>

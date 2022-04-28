@@ -190,7 +190,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" (click)="viewDetails(item._id)"><i aria-hidden="true"
                                                     class="fas fa-eye"></i> View</a>
-                                            <a class="dropdown-item"  *ngIf="item.paymentStatus==='Paid' && item.status!=='approve'"> (click)="approve(item._id)"><i aria-hidden="true"
+                                            <a class="dropdown-item"  *ngIf="item.paymentStatus==='Paid' && item.status!=='approve'" (click)="approve(item._id)"><i aria-hidden="true"
                                                     class="fas fa-check"></i> Approve</a>
                                             <a class="dropdown-item"data-toggle="modal"  *ngIf="item.paymentStatus==='Paid' && item.status!=='approve'" (click)="modalOpen(item._id)"
                                             data-target="#exampleModal"><i aria-hidden="true"

@@ -1335,5 +1335,8 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
     this.remark=remark
 
   }
+  closeRemark(){
+    this.remark=null;
+  }
 
 }
