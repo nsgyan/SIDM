@@ -185,11 +185,10 @@
                         <div class="col-lg-12">
                             <table class="table">
                                 <thead class="thead-light">
-                                    <tr  *ngFor="let item of memberData;let i=
-                                    index">
+                                    <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Category Name</th>
-                                        <th scope="col" *ngIf="item.remark">Remark</th>
+                                        <th scope="col">Remark</th>
 
                                         <th scope="col">Action</th>
                                     </tr>
@@ -199,7 +198,7 @@
                                             index">
                                         <th scope="row">{{i+1}}</th>
                                         <td>{{item.category}}</td>
-                                        <td  *ngIf="item.remark" ><a (click)="viewRemark(item.remark)" class="badge badge-light"><i aria-hidden="true" class="fas fa-info-circle mr-0"></i></a></td>
+                                        <td  ><a *ngIf="item.remark"  (click)="viewRemark(item.remark)" class="badge badge-light"><i aria-hidden="true" class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a></td>
                                         <td class="text-center">
                                             <div class="dropBtn dropdown">
                                                 <button class="paymentsDropdwn  dropdown-toggle" type="button"

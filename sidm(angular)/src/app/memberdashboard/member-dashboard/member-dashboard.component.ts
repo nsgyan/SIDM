@@ -1319,9 +1319,11 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
       modeOfPayment:this.OfflinePayment.value.modeOfPayment,
       nameOfBank:this.OfflinePayment.value.nameOfBank,
      }).subscribe((data:any)=>{
+       window.location.reload()
       this.toast.success(data)
      },err=>{
       this.toast.error(err)
+      window.location.reload()
      })
    }
    else{

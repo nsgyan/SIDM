@@ -951,3 +951,6 @@ footer h5 {
 .headerLogo3 {
     width: 110px;
 }
+footer {
+    z-index: 0;
+}

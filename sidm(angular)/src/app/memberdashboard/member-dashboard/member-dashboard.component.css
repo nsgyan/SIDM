@@ -179,7 +179,7 @@ select {
   margin-left: 14px;
 }
 .dropBtn .dropdown-menu {
-  width: 9.5rem!important;
+  /* width: 9.5rem!important; */
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   border: none;
@@ -187,7 +187,7 @@ select {
   box-shadow: 1px 1px 10px #e9e9e9!important;
   background-color: #fffdfd!important;
 }
-.dropBtn .fa-eye, .fa-check, .fa-envelope, .fa-edit, .fa-info-circle {
+.dropBtn .fa-eye, .fa-check, .fa-envelope, .fa-edit, .fa-info-circle  {
   color: #363a7a;
   margin-right: 7px;
 }
@@ -213,6 +213,6 @@ select {
   background-color: #ffffff;
   font-size: large;
 }
-.fa-info-circle {
+/* .fa-info-circle {
   color: #cc1d2c;
-}
+} */
