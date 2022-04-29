@@ -85,3 +85,8 @@ p {
 .dropBtn .dropdown-menu {
   margin: 0.125rem -136px 0;
 }
+h5 {
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+}

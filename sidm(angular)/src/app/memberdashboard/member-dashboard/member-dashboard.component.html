@@ -257,7 +257,7 @@
 
                     </div>
                     <h5 class="mb-2 mt-3">Please choose the Category
-                        that you wish to Apply for</h5>
+                        that you wish to Apply for *</h5>
                     <div class="">
                         <div class="checkgroup">
                             <div *ngIf="cat1" class="radioBox Apply-control
@@ -354,7 +354,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-5 mb-2">Please upload the required documents as sub category selected
+                            <h5 class="mt-5 mb-2">Please upload the required documents as sub category selected *
 
                             </h5>
 
@@ -381,7 +381,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-5 mb-2">Upload last financial balance sheet for the year 2020-21 </h5>
+                            <h5 class="mt-5 mb-2">Upload last financial balance sheet for the year 2020-21 * </h5>
                             <input type="file" accept="application/pdf" formControlName='financialDoccument'
                                 (change)="newGstpdfOnly($event,'financialDoccument')">
                             <p class="fileSizetext">File should be in pdf.Pdf size should be less than 2MB</p>
@@ -398,7 +398,7 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-4 mb-2">Name of the Company</h5>
+                            <h5 class="mt-4 mb-2">Name of the Company*</h5>
                             <input formControlName="nameOfCompany" type="text">
 
                             <p *ngIf="newCategoryForm.get('nameOfCompany')?.hasError('required')" style="color: red;">
@@ -411,7 +411,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="mt-3 mb-2 heading"> Company Address </h3>
+                            <h3 class="mt-3 mb-2 heading"> Company Address* </h3>
                         </div>
                     </div>
                     <div class="row">
@@ -535,7 +535,7 @@
                         </div>
                         <div class="col-lg-6">
                             <h5 class="mt-3 mb-2">GSTIN of the
-                                Company</h5>
+                                Company*</h5>
                             <input appUpperCase formControlName="gstinOfCompany" type="text" maxlength="16">
 
 
@@ -555,7 +555,7 @@
                     <div class="row">
 
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-2">Upload GSTIN Certificate
+                            <h5 class="mt-3 mb-2">Upload GSTIN Certificate*
                             </h5>
                             <input formControlName="documentGstCertificate" type="file"
                                 accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -570,7 +570,7 @@
                         </div>
                         <div class="col-lg-6">
                             <h5 class="mt-3 mb-2">Date of Incorporation
-                                of the Company</h5>
+                                of the Company*</h5>
                             <!-- <input formControlName="dateOfOrganization"
                         type="date"> -->
                             <input type="date" formControlName="dateOfCompany" value="yyyy-mm-dd"
@@ -587,7 +587,7 @@
 
                 <!-- **********************form part 2************************************************************************ -->
                 <div class="formPart_2">
-                    <h5 class="mt-3 mb-2">Are you member of SIDM ?</h5>
+                    <h5 class="mt-3 mb-2">Are you member of SIDM ?*</h5>
                     <div class="container">
                         <!-- <ul class="nav nav-pills mb-2" id="pills-tab"
                     role="tablist"> -->
@@ -624,7 +624,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <p class="mt-2 mb-2">Provide the
-                                            membership number </p>
+                                            membership number* </p>
                                         <input formControlName="sidmMemberShipNumber" type="text">
                                         <div *ngIf="newCategoryForm.controls['sidmMemberShipNumber'].invalid
                                     &&
@@ -642,7 +642,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-3 mb-2">Are you Member of any other Association ?</h5>
+                    <h5 class="mt-3 mb-2">Are you Member of any other Association ?*</h5>
                     <div class="container">
                         <input type="radio" formControlName="association" name="association" value="Yes"
                             (click)="newChangetoggel('association','Yes')" id="YES">
@@ -661,7 +661,7 @@
                                     <div class="col-lg-6">
                                         <p class="mt-2 mb-2">Enter the
                                             name(s) of the associations
-                                            separated by comma</p>
+                                            separated by comma*</p>
                                         <input formControlName="associationName" type="text">
                                         <div *ngIf="newCategoryForm.controls['associationName'].invalid
                                     &&
@@ -699,7 +699,7 @@
                             <div *ngIf="registeredOrganization">
 
                                 <div class="col-lg-6" formArrayName="nameRegisteredOrganization">
-                                    <h6 class="mb-2">Name of the Organization registered with</h6>
+                                    <h6 class="mb-2">Name of the Organization registered with*</h6>
                                     <div class="full-width" cellspacing="0">
                                         <div *ngFor=" let controlName of newNameRegisteredOrganization.controls; let i = index"
                                             [formGroupName]="i">
@@ -731,7 +731,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-3 mb-4">About the company</h5>
+                    <h5 class="mt-3 mb-4">About the company*</h5>
                     <div class="">
                         <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
                         textarea" maxlength="150"></textarea>
@@ -742,7 +742,7 @@
                     </div>
 
                     <h5 class="mt-3 mb-4">
-                        Specific Achievement being registered for the Champion Award
+                        Specific Achievement being registered for the Champion Award*
                     </h5>
                     <div class="">
                         <textarea formControlName="sidmChampionAwards" class="form-control mb-2" aria-label="With
@@ -758,7 +758,7 @@
                         performance / letters of appreciation
                         from
                         customer
-                        organization?</h5>
+                        organization?*</h5>
                     <div class="mb-2 mt-3">
                         <input type="radio" formControlName="isappreciation" name="hello" value="Yes"
                             (click)="newChangetoggel('isappreciation','Yes')" id="YES">
@@ -774,7 +774,7 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div *ngIf="isappreciation">
                                 <div class="form-group">
-                                    <h5 for="">Upload documents</h5>
+                                    <h5 for="">Upload documents*</h5>
                                     <input formControlName="appreciationDocuments" type="file"
                                         accept=".gif,.jpg,.jpeg,.png,.pdf"
                                         (change)="newChangeListener($event,'appreciationDocuments')" class="mt-1"
@@ -799,7 +799,7 @@
                     </div>
                     <h5 class="mt-3 mb-4">How does your achievement
                         compare with the other competing options
-                        available to the customer?</h5>
+                        available to the customer?*</h5>
                     <div class="">
                         <textarea formControlName="campareAchivement" class="form-control mb-1" aria-label="With
                         textarea" maxlength="150"></textarea>
@@ -813,7 +813,7 @@
 
 
                     <h5 class="mt-3 mb-4">What was the motivation to undertake the development of the
-                        Product/Technology/Infrastructure/Exports?</h5>
+                        Product/Technology/Infrastructure/Exports?*</h5>
                     <div class="">
                         <textarea formControlName="mudp" class="form-control mb-1" aria-label="With
                     textarea" maxlength="150"></textarea>
@@ -823,9 +823,9 @@
                     </div>
                     <h5 class="mt-3 mb-4">Please upload Photograph /
                         Videos of the Products / Innovation /
-                        Facilities fielded for the awards</h5>
+                        Facilities fielded for the awards*</h5>
                     <div class="">
-                        <h5 class="mb-2">Exhibit 1</h5>
+                        <h5 class="mb-2">Exhibit 1*</h5>
                         <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png.pdf"
                             (change)="newChangeListener($event,'exhibit1')" class="border-light mb-1" name="" id=""
                             aria-describedby="helpId" placeholder="">
@@ -835,7 +835,7 @@
                             Exhibit 1 <strong>required</strong>
                         </p>
                         <br>
-                        <h5 class="mb-2">Exhibit 2</h5>
+                        <h5 class="mb-2">Exhibit 2*</h5>
                         <input formControlName="exhibit2" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
                             (change)="newChangeListener($event,'exhibit2')" class="border-light mb-1" name="" id=""
                             aria-describedby="helpId" placeholder="">
