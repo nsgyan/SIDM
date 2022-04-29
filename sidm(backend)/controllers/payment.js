@@ -19,7 +19,7 @@ var instance = new Razorpay({
     RegistrationForm.findById(userID)
     .then(data=>{
       if(data ){
-          if(data.paymentStatus==='Unpaid'){
+          if(data.paymentStatus==='Pending'){
             amount=5000
               const da = new Date();
                receipt = (da.getMonth() + 1)+""+ da.getDate() +""+ da.getFullYear() +""+ da.getHours() +""+ da.getMinutes()+""+da.getSeconds();

@@ -253,7 +253,7 @@ export class MemberDashboardComponent implements OnInit {
     this.isappreciation = false
     this.submited = false
     this.newCategory = false
-    if (item.status !== 'approve') {
+    if (item.status !== 'Approved') {
       this.EditForm = !this.EditForm
 
       this.httpService.getdetails(item._id).subscribe((data: any) => {

@@ -259,7 +259,7 @@ exports.changeStatus = (req, res, next) => {
   const status=req.body.status
   const createAt= req.body.createAt
   RegistrationForm.findById(userID).then(data=>{
-    if(status==='approve'){
+    if(status==='Approved'){
    data.status=status;
   data.approveDate=createAt
 }

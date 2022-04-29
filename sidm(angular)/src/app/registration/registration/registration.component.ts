@@ -581,7 +581,7 @@ export class RegistrationComponent implements OnInit {
     if (type === 'submit') {
       this.finalSubmit(type)
     }
-    else if (type === 'Draft') {
+    else if (type === 'Pending') {
       this.savedraft(type)
     }
 

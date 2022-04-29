@@ -63,7 +63,7 @@
                                                     <input type="text"
                                                         class="form-control
                                                         user-bg" id="uername"
-                                                        placeholder="Email" appLowercase appBlockCopyPaste
+                                                        placeholder="Email" appLowercase 
                                                         formControlName="email">
                                                         <div *ngIf="submitted||adminLogin.controls['email'].invalid &&  adminLogin.controls['email'].touched">         
                                                             <span *ngIf="adminLogin.get('email')?.hasError('required')" style="color: red;">
@@ -78,7 +78,7 @@
                                                         class="form-control
                                                         user-password" id=""
                                                         placeholder="Password"
-                                                        formControlName="password" appBlockCopyPaste>
+                                                        formControlName="password" >
                                                         <div *ngIf=" submitted||adminLogin.controls['password'].invalid &&  adminLogin.controls['password'].touched">         
                                                             <span *ngIf="adminLogin.get('password')?.hasError('required')" style="color: red;">
                                                                 Password <strong>required</strong>

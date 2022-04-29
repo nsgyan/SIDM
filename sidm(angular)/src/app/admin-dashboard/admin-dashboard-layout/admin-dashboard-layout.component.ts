@@ -41,25 +41,25 @@ export class AdminDashboardLayoutComponent implements OnInit {
     this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
       data?.forms.map((item: any) => {
         if (item.category === 'cat1') {
-          item.category = ' Technology /  Product Innovation to address Defence Capability Gaps'
+          item.category = 'C1 '
         }
         else if (item.category === 'cat2') {
-          item.category = 'Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+          item.category = 'C2'
         }
         else if (item.category === 'cat3') {
-          item.category = '  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+          item.category = 'C3'
         }
         else {
-          item.category = 'Export Performance of Defence & Aerospace Products'
+          item.category = 'C4'
         }
         if (item.typeOfApplicant === 'L') {
-          item.typeOfApplicant = 'Annual Turnover FY 2020-21 over & above Rs 250 Crore'
+          item.typeOfApplicant = 'Large'
         }
         else if (item.typeOfApplicant === 'M') {
-          item.typeOfApplicant = 'Annual Turnover FY 2020-21 between Rs 75 to 250 Crore'
+          item.typeOfApplicant = 'Medium'
         }
         else {
-          item.typeOfApplicant = 'Annual Turnover FY 2020-21 less than Rs 75 Crore'
+          item.typeOfApplicant = 'SME/SSI/START-UP'
         }
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
@@ -96,7 +96,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   approve(id:string){
     let createAt = new Date();
-    this.httpService.changeStatus(id,{status:'approve',createAt:createAt}).subscribe(data=>{
+    this.httpService.changeStatus(id,{status:'Approved',createAt:createAt}).subscribe(data=>{
       window.location.reload()    
       this.toast.success('successfully status change');
     },err=>{
