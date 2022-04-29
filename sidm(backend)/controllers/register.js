@@ -1,5 +1,14 @@
 const RegistrationForm = require("../models/registrationForm");
 const fs = require("fs");
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'awardsidm@gmail.com',
+    pass: 'gllznygeziabftrf'
+  }
+});
 
 
 exports.postRegistrationForm = (req, res, next) => {
@@ -82,6 +91,19 @@ exports.postRegistrationForm = (req, res, next) => {
   form
     .save()
     .then((result) => {
+      var mailOptions = {
+        from: 'awardsidm@gmail.com',
+        to: result.email,
+        subject: 'SIDM Champion Award 2022',
+        text: 'That was easy!'
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
       res.status(200).json('successfully sumbit');
     })
     .catch((err) => {
