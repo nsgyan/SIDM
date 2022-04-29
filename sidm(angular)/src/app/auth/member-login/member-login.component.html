@@ -1,165 +1,124 @@
 
- <!-- =============== PRELOADER =============== -->
-    <!-- <div class="page-preloader-cover">
-        <div class="cssload-loader">
-            <div class="cssload-inner cssload-one"></div>
-            <div class="cssload-inner cssload-two"></div>
-            <div class="cssload-inner cssload-three"></div>
-        </div>
-    </div> -->
-    <!-- ============== PRELOADER END ============== -->
-    <!-- ================= HEADER ================= -->
-    <header class="marathon-header-fixed header-fixed">
-        <a href="javascript:void(0)" class="nav-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </a>
-        <div class="top-panel">
-            <div class="container">
-                <a href="javascript:void(0)" class="logo2">
-                    <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.svg" alt="logo"
-                    >
-                </a>
-            <a href="javascript:void(0)" class="logo1">
-                <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
-                    >
-                </a>
-
-            <a href="javascript:void(0)" class="logo3">
-                <img class="headerLogo3"
-                    src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
-                    >
-                </a>
-            </div>
-        </div>
-        <!-- <div class="header-nav">
-            <div class="container">
-                <div class="header-nav-cover">
-                    <nav class="nav-menu menu">
-                        <ul class="nav-list">
-                            <li class="active-page">
-                                <a href="index.html">home</a>
-                            </li>
-                            <li><a href="#about">about sidm</a></li>
-                            <li><a href="#Objective">OBJECTIVE</a></li>
-                            <li><a href="#categories">categories</a></li>
-                            <li><a href="#committee">AWARDS COMMITTEE</a></li>
-                            <li><a href="#process">process</a></li>
-                            <li><a href="#testimonial">testimonials</a></li>
-                            <li><a href="#faq">faqs</a></li>
-                            <li><a href="#award2020">AWARDS 2020</a></li>
-                            <li><a href="#footer">Contact Us</a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-            </div>
-        </div> -->
-    </header>
-    <!-- =============== HEADER END =============== -->
-
-    <!--=================== PAGE-TITLE ===================-->
-    <div class="page-title" style="background: #175AA5;">
-        <div class="container">
-           
-            <h1 class="title">Registered User</h1>
-        </div>
-    </div>
 
 
 
-<section class="registrationForm">
-    <div class="maintitle mt-5">
-        <div class="container">
-            <p class="loginLink">Not Registered yet. <a (click)="applyNow()"
-                   target="blanck">Register Here</a>
-            </p>
-            <!-- <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p> -->
-            <div class="mt-4 mb-4"></div>
-        </div>
-    </div>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+  function validateForm() {
 
-    <div class="formBody">
-        <div class="container">
-            <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="" role="tab"
-                        aria-controls="pills-home" aria-selected="true">Apply Online</a>
-                </li>
-               
-            </ul> -->
-            
-            <form [formGroup]="memberform">
-                <div class="formPart_1">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h5 class="mt-1 mb-3">Email</h5>
-                            <input formControlName="email" appLowercase  type="text">
-                            <div *ngIf="memberform.controls['email'].invalid && (submitted|| memberform.controls['email'].touched)">         
-                                <span *ngIf="memberform.get('email')?.hasError('required')" style="color: red;">
-                                    E-Mail Address <strong>required</strong>
-                                </span>                        
-                        </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <h5 class="mt-1 mb-3">Mobile Number</h5>
-                            <input formControlName="mobileNumber" type="text"  (keypress)="keyPressNumbers($event)" maxlength="10">
-                            <div *ngIf=" memberform.controls['mobileNumber'].invalid &&  (submitted || memberform.controls['mobileNumber'].touched)">         
-                                <span *ngIf="memberform.get('mobileNumber')?.hasError('required')" style="color: red;">
-                                    Mobile Number <strong>required</strong>
-                                </span>                        
-                        </div>
-                        </div>
+    let x = document.forms["adminLogin"]["g-recaptcha-response"].value;
+    if (x == "") {
+      alert("Captcha must be filled out");
+      return false;
+    }
+  }
+</script>
+
+<!-- content1 -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff"
+    type="timer" [fullScreen]="true">
+    <p style="color: white"> Hold on while we take you to your CII FACE Account!
+    </p>
+</ngx-spinner>
+
+<section class="main-bg">
+    <a href="javascript:void(0)" target="blanck" class="qr-img"></a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="food-img-bg">
+                    <div class="top-logo">
+                        <!-- <img src="./assets/img/troology-logo.png" alt="" class="">  -->
+                        <img src="./assets/img/srlm-logo.png" alt=""
+                            class="UPSRLM">
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">PAN Number</h5>
-                            <input appUpperCase formControlName="panNumber"  type="text">
-                            <div *ngIf=" memberform.controls['panNumber'].invalid && ( submitted || memberform.controls['panNumber'].touched)">         
-                                <span *ngIf="memberform.get('panNumber')?.hasError('required')" style="color: red;">
-                                    Pan Number <strong>required</strong>
-                                </span>                        
-                        </div>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="form-group">
-                            <re-captcha
-                            (resolved)="resolved($event)"
-                                siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
-                        </div>
+                    <div class="main-bg-con">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="left-content">
+                                    <h3>Welcome to<br> Annual Session 2021 & SIDM Champion Award</h3>
+                                    <!-- <span>2021</span> -->
+                                    <div class="clearfix"></div>
+                                    <div class="Bottom-Content mt-5">
+                                      <p class="mb-2">SIDM’s vision is to catalyse the Indian defence industry to effectively
+                                        contribute to India’s national security and become a trustworthy global
+                                        partner. Its mission is to work closely with the Government towards enabling
+                                        the growth of the defence industry and collaborate with experts from the Armed
+                                        forces, Academia and Defence industry to optimize the industry’s development
+                                        capabilities.</p>
+                                        <p class="mb-2">Please <a href="#">login </a>to continue.</p>
+                                        <h5 class="mb-2">Awarding excellence in Defence Manufacturing!</h5>
+                                        <p>For more details, please contact:</p>
+                                        <p>Society of Indian Defence Manufacturing</p>
+                                        <a href="#" class="manojurl">manoj.mishra@sidm.in</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="login-sec">
+                                    <h2>Login</h2>
+                                    <p>Login to your SIDM system portal</p>
+                                    <div class="login-sec-con">
+                                        <form [formGroup]="memberform">
+                                            <div class="formPart_1">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <h5 class="mt-1 mb-3">Email</h5>
+                                                        <input formControlName="email" appLowercase  type="text">
+                                                        <div *ngIf="memberform.controls['email'].invalid && (submitted|| memberform.controls['email'].touched)">         
+                                                            <span *ngIf="memberform.get('email')?.hasError('required')" style="color: red;">
+                                                                E-Mail Address <strong>required</strong>
+                                                            </span>                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h5 class="mt-1 mb-3">Mobile Number</h5>
+                                                        <input formControlName="mobileNumber" type="text"  (keypress)="keyPressNumbers($event)" maxlength="10">
+                                                        <div *ngIf=" memberform.controls['mobileNumber'].invalid &&  (submitted || memberform.controls['mobileNumber'].touched)">         
+                                                            <span *ngIf="memberform.get('mobileNumber')?.hasError('required')" style="color: red;">
+                                                                Mobile Number <strong>required</strong>
+                                                            </span>                        
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <h5 class="mt-3 mb-3">PAN Number</h5>
+                                                        <input appUpperCase formControlName="panNumber"  type="text">
+                                                        <div *ngIf=" memberform.controls['panNumber'].invalid && ( submitted || memberform.controls['panNumber'].touched)">         
+                                                            <span *ngIf="memberform.get('panNumber')?.hasError('required')" style="color: red;">
+                                                                Pan Number <strong>required</strong>
+                                                            </span>                        
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <div class="form-group">
+                                                        <re-captcha
+                                                        (resolved)="resolved($event)"
+                                                            siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+                                                    </div>
+                            
+                                                </div>
+                                            </div>
+                                           
+                                        </form>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-5 mb-5 text-center">
+                                                    <button type="submit" class="NewBtn" (click)="memberlogin()"><span>Submit</span></button>
+                                                    <!-- <button class="save-btn ml-2" target="blanck" (click)="reset()"><span>Reset</span></button> -->
+                                                </div>
+                                            </div>
+                                        </div>
 
-                    </div>
-                </div>
-               
-            </form>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 mt-5 mb-5 text-center">
-                        <button type="submit" class="NewBtn" (click)="memberlogin()"><span>Submit</span></button>
-                        <button class="save-btn ml-2" target="blanck" (click)="reset()"><span>Reset</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
-
-       
-
-
-<!-- <app-login-footer></app-login-footer> -->
-
-
-<footer id="footer">
-
-</footer>
-<!--================== FOOTER END ==================-->
-
-<!--=================== TO TOP ===================-->
-<a class="to-top" href="#home">
-	<i class="fa fa-angle-double-up" aria-hidden="true"></i>
-</a>
-

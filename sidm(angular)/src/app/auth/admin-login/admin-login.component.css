@@ -14,7 +14,7 @@
 
 .main-bg {
     /* background: #363a7a; */
-    background: url(../../../assets/img/New_img/Group251.png) right bottom no-repeat;
+    background: url(../../../assets/img/New_img/Group251.png) right bottom  no-repeat;
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -126,27 +126,27 @@
 }
 
 .login-sec .user-bg {
-    background: url(../../../assets/img/user-t.png)no-repeat 3%;
+    background: url(../../../assets/img/user-t.png) no-repeat 3%;
     background-size: 1.2rem;
 }
 
 .login-sec .user-password {
-    background: url(../../../assets/img/key.png)no-repeat 3%;
+    background: url(../../../assets/img/key.png) no-repeat 3%;
     background-size: 1.2rem;
 }
 
 .login-sec .email-bg {
-    background: url(../../../assets/img/email.png)no-repeat 3%;
+    background: url(../../../assets/img/email.png) no-repeat 3%;
     background-size: 1.2rem;
 }
 
 .login-sec .mobile-bg {
-    background: url(../../../assets/img/cell-phone.png)no-repeat 3%;
+    background: url(../../../assets/img/cell-phone.png) no-repeat 3%;
     background-size: 1.2rem;
 }
 
 .login-sec .confirm-password {
-    background: url(../../../assets/img/padlock.png)no-repeat 3%;
+    background: url(../../../assets/img/padlock.png) no-repeat 3%;
     background-size: 1.2rem;
 }
 
@@ -392,27 +392,27 @@ a {
     }
 
     .login-sec .user-bg {
-        background: url(../../../assets/img/user-t.png)no-repeat 1%;
+        background: url(../../../assets/img/user-t.png) no-repeat 1%;
         background-size: 2.2rem;
     }
 
     .login-sec .user-password {
-        background: url(../../../assets/img/key.png)no-repeat 1%;
+        background: url(../../../assets/img/key.png) no-repeat 1%;
         background-size: 16px;
     }
 
     .login-sec .email-bg {
-        background: url(../../../assets/img/email.png)no-repeat 1%;
+        background: url(../../../assets/img/email.png) no-repeat 1%;
         background-size: 16px;
     }
 
     .login-sec .mobile-bg {
-        background: url(../../../assets/img/cell-phone.png)no-repeat 1%;
+        background: url(../../../assets/img/cell-phone.png)  no-repeat 1%;
         background-size: 16px;
     }
 
     .login-sec .confirm-password {
-        background: url(../../../assets/img/padlock.png)no-repeat 1%;
+        background: url(../../../assets/img/padlock.png)  no-repeat 1%;
         background-size: 16px;
     }
 
@@ -487,27 +487,27 @@ a {
     }
 
     .login-sec .user-bg {
-        background: url(../../../assets/img/user-t.png)no-repeat 4%;
+        background: url(../../../assets/img/user-t.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .user-password {
-        background: url(../../../assets/img/key.png)no-repeat 4%;
+        background: url(../../../assets/img/key.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .email-bg {
-        background: url(../../../assets/img/email.png)no-repeat 4%;
+        background: url(../../../assets/img/email.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .mobile-bg {
-        background: url(../../../assets/img/cell-phone.png)no-repeat 4%;
+        background: url(../../../assets/img/cell-phone.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .confirm-password {
-        background: url(../../../assets/img/padlock.png)no-repeat 4%;
+        background: url(../../../assets/img/padlock.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
@@ -520,27 +520,27 @@ a {
     }
 
     .login-sec .user-bg {
-        background: url(../../../assets/img/user-t.png)no-repeat 4%;
+        background: url(../../../assets/img/user-t.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .user-password {
-        background: url(../../../assets/img/key.png)no-repeat 4%;
+        background: url(../../../assets/img/key.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .email-bg {
-        background: url(../../../assets/img/email.png)no-repeat 4%;
+        background: url(../../../assets/img/email.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .mobile-bg {
-        background: url(../../../assets/img/cell-phone.png)no-repeat 4%;
+        background: url(../../../assets/img/cell-phone.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 
     .login-sec .confirm-password {
-        background: url(../../../assets/img/padlock.png)no-repeat 4%;
+        background: url(../../../assets/img/padlock.png) no-repeat 4%;
         background-size: 1.7rem;
     }
 }
