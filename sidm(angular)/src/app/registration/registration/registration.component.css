@@ -101,9 +101,10 @@ select {
     text-decoration: underline;
 }
 .fileSizetext {
-  font-size: 14px;
-  font-weight: 500;
-  color: #3b3b3b;
+  font-size: 13px;
+    font-weight: 500;
+    font-style: italic;
+    color: #3b3b3b;
 }
 .catBold {
   font-weight: 600;
