@@ -204,7 +204,12 @@
                                             index">
                                         <th scope="row">{{i+1}}</th>
                                         <td>{{item.category}}</td>
-                                        <td>{{item.status}}</td>
+                                        <td>
+                                            <span *ngIf="item.status==='Pending'" style="color: #cc1d2c;">{{item.status}} </span>
+                                            <span *ngIf="item.status==='Approved'" style="color: green;">{{item.status}} </span>
+                                            <span *ngIf="item.status!=='Approved'&&item.status!=='Pending'">{{item.status}} </span>
+
+                                        </td>
                                         <td  ><a *ngIf="item.remark"  (click)="viewRemark(item.remark)" class="badge badge-light"><i aria-hidden="true" class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a></td>
                                         <td class="text-center">
                                             <div class="dropBtn dropdown">

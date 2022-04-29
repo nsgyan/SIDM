@@ -171,11 +171,17 @@
                                                 Organisation :</span>{{item.associationName}}</li>
                                     </ul>
                                 </td>
-                                <td class="table_content">{{item.paymentStatus}}</td>
+                                <td class="table_content">
+                                    <span style="color: red;" *ngIf="item.paymentStatus==='Pending'">{{item.paymentStatus}}</span>
+                                    <span style="color: green;" *ngIf="item.paymentStatus==='Paid'">{{item.paymentStatus}}</span>
+                                </td>
                                 <td scope="row">
                                     <ul class="list-unstyled text-xs">
                                         <li class="table_content"><span class="font-bold
-                                                text-theme"></span>{{item.offlinePaymentDetails ? 'Paid':'Pending'}}</li>
+                                                text-theme"></span>
+                                                <span style="color: red;" *ngIf="!item.offlinePaymentDetails">Pending</span>
+                                                <span style="color: green;" *ngIf="item.offlinePaymentDetails">Paid</span>
+                                            </li>
                                         <li class="table_content" *ngIf="item.memberShipAmount  "><span class="font-bold
                                                 text-theme"> Amount :</span>{{item.memberShipAmount}}</li>
                                     </ul>
