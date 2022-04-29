@@ -941,7 +941,7 @@
                                 jpeg & png format. Image size should be less than 2MB</p>
 
                             <a *ngIf="editData.subCategoryDoccument" href="{{editData?.subCategoryDoccument}}"
-                                target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
+                                target="_blank" ><i class="fas fa-eye"></i></a>
                             <a *ngIf="editData.subCategoryDoccument" (click)="delete('subCategoryDoccument')"><i
                                     class="fa fa-trash"></i></a>
                             <p *ngIf="editForm.get('subCategoryDoccument')?.hasError('required')" style="color: red;">
@@ -957,7 +957,7 @@
                             <p *ngIf="!editData.financialDoccument" class="fileSizetext">File should be in pdf. Pdf size
                                 should be less than 2MB</p>
                             <a *ngIf="editData.financialDoccument" href="{{editData?.financialDoccument}}"
-                                target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
+                                target="_blank"><i class="fas fa-eye"></i></a>
                             <a *ngIf="editData.financialDoccument" (click)="delete('financialDoccument')"><i
                                     class="fa fa-trash"></i></a>
 
@@ -1135,7 +1135,7 @@
                             <p *ngIf="!editData.documentGstCertificate" class="fileSizetext">File should be in pdf, jpg,
                                 jpeg & png format. Image size should be less than 2MB</p>
                             <a *ngIf="editData.documentGstCertificate" href="{{editData?.documentGstCertificate}}"
-                                target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
+                                target="_blank"><i class="fas fa-eye"></i></a>
                             <a *ngIf="editData.documentGstCertificate" (click)="delete('documentGstCertificate')"><i
                                     class="fa fa-trash"></i></a>
 
@@ -1360,7 +1360,7 @@
                                     <p *ngIf="!editData.appreciationDocuments" class="fileSizetext">File should be in
                                         pdf, jpg, jpeg & png format. Image size should be less than 2MB</p>
                                     <a *ngIf="editData.appreciationDocuments" href="{{editData?.appreciationDocuments}}"
-                                        target="_blank" download="SubCategory"><i class="fa fa-download"></i></a>
+                                        target="_blank"><i class="fas fa-eye"></i></a>
                                     <a *ngIf="editData.appreciationDocuments"
                                         (click)="delete('appreciationDocuments')"><i class="fa fa-trash"></i></a>
 
@@ -1421,7 +1421,7 @@
                             Exhibit 1<strong>required</strong>
                         </p>
                         <a *ngIf="editData.exhibit1" href="{{editData?.exhibit1}}" targe t="_blank"
-                            download="SubCategory"><i class="fa fa-download"></i></a>
+                         ><i class="fas fa-eye"></i></a>
                         <a *ngIf="editData.exhibit1" (click)="delete('exhibit1')"><i class="fa fa-trash"></i></a>
 
                         <br>
@@ -1435,7 +1435,7 @@
                             Exhibit 2<strong>required</strong>
                         </p>
                         <a *ngIf="editData.exhibit2" href="{{editData?.exhibit2}}" target="_blank"
-                            download="SubCategory"><i class="fa fa-download"></i></a>
+                           ><i class="fas fa-eye"></i></a>
                         <a *ngIf="editData.exhibit2" (click)="delete('exhibit2')"><i class="fa fa-trash"></i></a>
 
                         <br>

@@ -174,13 +174,13 @@
                 <div class="detail">
                     <h6>Document as sub Category Setected</h6>
                     <p  *ngIf='!memberData?.subCategoryDoccument'>you have't upload sub Category Document </p>
-                    <a class="ml-2" href="{{memberData?.subCategoryDoccument}}" target="blank" *ngIf='memberData?.subCategoryDoccument' download="subCategory">Sub Category Document</a>
+                    <a class="ml-2" href="{{memberData?.subCategoryDoccument}}" target="blank" *ngIf='memberData?.subCategoryDoccument'>Sub Category Document</a>
                    
                 </div>
                 <div class="detail">
                     <h6>Last Financial Balance sheet </h6>
                     <p  *ngIf='!memberData?.financialDoccument'>you have't upload sub Category Document </p>
-                    <a class="ml-2" *ngIf='memberData?.financialDoccument' href="{{memberData?.financialDoccument}}" target="blank" download="financialBalanceSheet">Financial Balance sheet Document</a>
+                    <a class="ml-2" *ngIf='memberData?.financialDoccument' href="{{memberData?.financialDoccument}}" target="blank" >Financial Balance sheet Document</a>
                 </div>
                 <div class="detail">
                     <h6>Name of the Company</h6>
@@ -247,7 +247,7 @@
 
                         </a> -->
                         <p *ngIf='!memberData?.documentGstCertificate'>you have't upload  GST Certificate Document </p>
-                        <a class="ml-2"  href="{{memberData?.documentGstCertificate}}"  target="blank" *ngIf='memberData?.documentGstCertificate' download="gst">Gst Document</a>
+                        <a class="ml-2"  href="{{memberData?.documentGstCertificate}}"  target="blank" *ngIf='memberData?.documentGstCertificate'>Gst Document</a>
                         <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
                         <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
@@ -299,7 +299,7 @@
                 <div class="detail">
                     <h6> Appreciation Document</h6>
                     <p *ngIf='!memberData?.appreciationDocuments'>you have't upload Appreciation Document </p>
-                    <a *ngIf='memberData?.appreciationDocuments' href="{{memberData?.appreciationDocuments}}" target="blank" download="gst">Appreciation Document</a>
+                    <a *ngIf='memberData?.appreciationDocuments' href="{{memberData?.appreciationDocuments}}" target="blank" >Appreciation Document</a>
                 </div>
                 <div class="detail">
                     <h6>How does your achievement compare with the other competing options available to the
@@ -315,8 +315,8 @@
                         videos of the products / innovation /
                         facilities, fielded for the awards</h6>
                     <p *ngIf='!memberData?.exhibit1||!memberData?.exhibit1'>you have't upload  Document </p>
-                    <a class="ml-2" *ngIf='memberData?.exhibit1'  target="blank" href="{{memberData?.exhibit1}}" download="exhibit1"> Exhibit 1</a>
-                    <a class="ml-2" *ngIf='memberData?.exhibit2'  target="blank"  href="{{memberData?.exhibit2}}" download="exhibit2"> Exhibit 2</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit1'  target="blank" href="{{memberData?.exhibit1}}"> Exhibit 1</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit2'  target="blank"  href="{{memberData?.exhibit2}}"> Exhibit 2</a>
                 </div>
                 <div class="detail" *ngIf="memberData?.productLink">
                     <h6> Product video Link</h6>
