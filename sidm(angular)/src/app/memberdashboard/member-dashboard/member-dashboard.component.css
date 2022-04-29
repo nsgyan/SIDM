@@ -187,9 +187,12 @@ select {
   box-shadow: 1px 1px 10px #e9e9e9!important;
   background-color: #fffdfd!important;
 }
-.dropBtn .fa-eye, .fa-check, .fa-envelope, .fa-edit, .fa-info-circle, .fa-rupee-sign  {
+.dropBtn .fa-eye, .fa-check, .fa-envelope, .fa-edit, .fa-info-circle, .fa-rupee-sign, .fa-eye  {
   color: #363a7a;
   margin-right: 7px;
+}
+.fa-eye {
+  margin-right: 2px;
 }
 .fa-cog {
   color: #363a7a;
