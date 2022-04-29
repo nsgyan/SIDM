@@ -346,6 +346,20 @@ a {
     background: #fded00;
     text-decoration: none;
 }
+h5 {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+  }
+  input[type="text"] {
+    height: 40px;
+    padding: 0 13px;
+  }
+  .loginLink a {
+    color: #363a7e;
+    font-weight: 600;
+    text-decoration: underline;
+}
 
 
 /* -------------------Media Query Start--------------- */

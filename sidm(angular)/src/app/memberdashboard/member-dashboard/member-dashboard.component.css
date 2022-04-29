@@ -216,3 +216,15 @@ select {
 /* .fa-info-circle {
   color: #cc1d2c;
 } */
+h5 {
+  font-weight: 500;
+  font-size: 17px;
+  color: #000;
+}
+.border_b {
+  border-bottom: 1px solid #e5e0e0;
+  padding-bottom: 31px;
+}
+.heading {
+  font-size: 25px;
+}

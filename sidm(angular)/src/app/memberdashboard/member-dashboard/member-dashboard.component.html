@@ -251,7 +251,7 @@
                     <div class="row">
 
                     </div>
-                    <h5 class="mb-3 mt-3">Please choose the Category
+                    <h5 class="mb-2 mt-3">Please choose the Category
                         that you wish to Apply for</h5>
                     <div class="">
                         <div class="checkgroup">
@@ -304,7 +304,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-5 mb-3">Type of applicant company*</h5>
+                    <h5 class="mt-5 mb-2">Type of applicant company*</h5>
                     <div class="row">
                         <div class="checkgroup">
                             <div class="radioBox Apply-control
@@ -349,7 +349,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-5 mb-3">Please upload the required documents as sub category selected
+                            <h5 class="mt-5 mb-2">Please upload the required documents as sub category selected
 
                             </h5>
 
@@ -359,7 +359,7 @@
                                 <li class="categoryList">Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog- <span
                                         class="catBold">Medium / SSI</span>
                                 </li>
-                                <li class="categoryList mb-3">DPIIT Certificate - <span
+                                <li class="categoryList mb-2">DPIIT Certificate - <span
                                         class="catBold">SME/START-UP</span></li>
                             </ul>
                             <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'
@@ -376,7 +376,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21 </h5>
+                            <h5 class="mt-5 mb-2">Upload last financial balance sheet for the year 2020-21 </h5>
                             <input type="file" accept="application/pdf" formControlName='financialDoccument'
                                 (change)="newGstpdfOnly($event,'financialDoccument')">
                             <p class="fileSizetext">File should be in pdf.Pdf size should be less than 2MB</p>
@@ -393,7 +393,7 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-4 mb-3">Name of the Company</h5>
+                            <h5 class="mt-4 mb-2">Name of the Company</h5>
                             <input formControlName="nameOfCompany" type="text">
 
                             <p *ngIf="newCategoryForm.get('nameOfCompany')?.hasError('required')" style="color: red;">
@@ -406,12 +406,12 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="mt-5 mb-3"> Company Address </h3>
+                            <h3 class="mt-3 mb-2 heading"> Company Address </h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Address Line 1 *</h5>
+                            <h5 class="mt-3 mb-2">Address Line 1 *</h5>
                             <input formControlName="addressl1" type="text">
 
 
@@ -421,14 +421,14 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Address Line 2 </h5>
+                            <h5 class="mt-3 mb-2">Address Line 2 </h5>
                             <input formControlName="addressl2" type="text">
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">State *</h5>
+                            <h5 class="mt-3 mb-2">State *</h5>
                             <select formControlName="state" class="select">
                                 <option *ngFor="let item of states" value="{{item.state}}">{{item.state}}</option>
                             </select>
@@ -439,7 +439,7 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">City *</h5>
+                            <h5 class="mt-3 mb-2">City *</h5>
                             <input formControlName="city" (keypress)="keyPresschar($event)" type="text">
                             <p *ngIf="newCategoryForm.get('city')?.hasError('required')" style="color: red;">
                                 City <strong>required</strong>
@@ -447,9 +447,9 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border_b">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Pincode *</h5>
+                            <h5 class="mt-3 mb-2">Pincode *</h5>
                             <input formControlName="pincode" (keypress)="keyPressNumbers($event)" type="text"
                                 maxlength="6">
                             <div>
@@ -465,9 +465,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
+                    <div class="row mt-3">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Contact Person Name *</h5>
+                            <h5 class="mt-3 mb-2">Contact Person Name *</h5>
                             <input formControlName="name" type="text">
 
                             <p *ngIf="newCategoryForm.get('name')?.hasError('required')" style="color: red;">
@@ -476,35 +476,35 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Designation*</h5>
+                            <h5 class="mt-3 mb-2">Designation*</h5>
                             <input (keypress)="keyPresschar($event)" formControlName="designation" type="text">
                             <p *ngIf="newCategoryForm.get('designation')?.hasError('required')" style="color: red;">
                                 Designation <strong>required</strong>
                             </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border_b">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Primary E-Mail Address *</h5>
+                            <h5 class="mt-3 mb-2">Primary E-Mail Address *</h5>
                             <input formControlName="email" type="text" readonly>
 
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                            <h5 class="mt-3 mb-2">Mobile Number *</h5>
                             <input formControlName="mobileNumber" type="text" readonly>
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="mt-5 mb-3" style="font-size: 20px;">Please give details for additional contact
+                            <h3 class="mt- mb-2" style="font-size: 21px; font-style: italic;">Please give details for additional contact
                                 point for ease of reaching out.</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
+                            <h5 class="mt-3 mb-2">Alternative Mobile number</h5>
                             <input type="text" formControlName='alterMobileNumber' appBlockCopyPaste
                                 (keypress)="keyPressNumbers($event)" appCpoyPaste maxlength="10">
                             <p *ngIf="newCategoryForm.get('alterMobileNumber')?.hasError('cellNumNotValid')&& ( newCategoryForm.controls['alterMobileNumber'].touched)"
@@ -513,7 +513,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Alternative Email</h5>
+                            <h5 class="mt-3 mb-2">Alternative Email</h5>
                             <input type="text" formControlName='alterEmail' appLowercase appBlockCopyPaste appCpoyPaste>
                             <p *ngIf="newCategoryForm.get('alterEmail')?.invalid && ( newCategoryForm.controls['alterEmail'].touched)"
                                 style="color: red;">
@@ -524,12 +524,12 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Company PAN *</h5>
+                            <h5 class="mt-3 mb-2">Company PAN *</h5>
                             <input formControlName="panNumber" type="text" readonly>
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">GSTIN of the
+                            <h5 class="mt-3 mb-2">GSTIN of the
                                 Company</h5>
                             <input appUpperCase formControlName="gstinOfCompany" type="text" maxlength="16">
 
@@ -550,7 +550,7 @@
                     <div class="row">
 
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Upload GSTIN Certificate
+                            <h5 class="mt-3 mb-2">Upload GSTIN Certificate
                             </h5>
                             <input formControlName="documentGstCertificate" type="file"
                                 accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -564,7 +564,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Date of Incorporation
+                            <h5 class="mt-3 mb-2">Date of Incorporation
                                 of the Company</h5>
                             <!-- <input formControlName="dateOfOrganization"
                         type="date"> -->
@@ -582,9 +582,9 @@
 
                 <!-- **********************form part 2************************************************************************ -->
                 <div class="formPart_2">
-                    <h5 class="mt-3 mb-3">Are you member of SIDM ?</h5>
+                    <h5 class="mt-3 mb-2">Are you member of SIDM ?</h5>
                     <div class="container">
-                        <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
+                        <!-- <ul class="nav nav-pills mb-2" id="pills-tab"
                     role="tablist"> -->
 
                         <input type="radio" formControlName="sidmMember" name="sidmMember" value="Yes"
@@ -618,7 +618,7 @@
                             <div *ngIf="sidmMember">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="mt-2 mb-3">Provide the
+                                        <p class="mt-2 mb-2">Provide the
                                             membership number </p>
                                         <input formControlName="sidmMemberShipNumber" type="text">
                                         <div *ngIf="newCategoryForm.controls['sidmMemberShipNumber'].invalid
@@ -637,7 +637,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-5 mb-3">Are you Member of any other Association ?</h5>
+                    <h5 class="mt-3 mb-2">Are you Member of any other Association ?</h5>
                     <div class="container">
                         <input type="radio" formControlName="association" name="association" value="Yes"
                             (click)="newChangetoggel('association','Yes')" id="YES">
@@ -654,7 +654,7 @@
                             <div *ngIf="association">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="mt-2 mb-3">Enter the
+                                        <p class="mt-2 mb-2">Enter the
                                             name(s) of the associations
                                             separated by comma</p>
                                         <input formControlName="associationName" type="text">
@@ -673,7 +673,7 @@
                                 aria-labelledby="pills-false-tab"></div>
                         </div>
                     </div>
-                    <h5 class="mt-5 mb-3">Are you registered with any Defence Organization (such as DPSU/DRDO etc.)? *
+                    <h5 class="mt-3 mb-2">Are you registered with any Defence Organization (such as DPSU/DRDO etc.)? *
                     </h5>
                     <div class="container">
                         <input type="radio" formControlName="registeredOrganization" value="Yes"
@@ -700,8 +700,8 @@
                                             [formGroupName]="i">
 
 
-                                            <input type="text" class="mt-4 mb-3 addInputBox" formControlName="name">
-                                            <a class="addBtn mb-3" *ngIf='i!==0'
+                                            <input type="text" class="mt-4 mb-2 addInputBox" formControlName="name">
+                                            <a class="addBtn mb-2" *ngIf='i!==0'
                                                 (click)="newRemoveRegisteredOrganization(i)"><i class="fa fa-trash"></i>
                                             </a>
                                             <div *ngIf="newCategoryForm.controls['nameRegisteredOrganization'].invalid
@@ -709,7 +709,7 @@
                                               (submited
                                               ||
                                               newCategoryForm.controls['nameRegisteredOrganization'].touched)">
-                                                <p class="mb-3" style="color: red; "
+                                                <p class="mb-2" style="color: red; "
                                                     *ngIf="controlName.get('name')?.hasError('required')">
                                                     Registered Organization Name is required
                                                 </p>
@@ -726,7 +726,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-5 mb-4">About the company</h5>
+                    <h5 class="mt-3 mb-4">About the company</h5>
                     <div class="">
                         <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
                         textarea" maxlength="150"></textarea>
@@ -736,11 +736,11 @@
                         </p>
                     </div>
 
-                    <h5 class="mt-5 mb-4">
+                    <h5 class="mt-3 mb-4">
                         Specific Achievement being registered for the Champion Award
                     </h5>
                     <div class="">
-                        <textarea formControlName="sidmChampionAwards" class="form-control mb-3" aria-label="With
+                        <textarea formControlName="sidmChampionAwards" class="form-control mb-2" aria-label="With
                         textarea" maxlength="100"></textarea>
                         <p class="fileSizetext">Write a about the product/technology/facility/exports (100 Words). For
                             registering multiple achievements, fill separate applications
@@ -749,12 +749,12 @@
                             SIDM Champion Awards <strong>required</strong>
                         </p>
                     </div>
-                    <h5 class="mt-5">Have you received any reports of
+                    <h5 class="mt-3">Have you received any reports of
                         performance / letters of appreciation
                         from
                         customer
                         organization?</h5>
-                    <div class="mb-3 mt-3">
+                    <div class="mb-2 mt-3">
                         <input type="radio" formControlName="isappreciation" name="hello" value="Yes"
                             (click)="newChangetoggel('isappreciation','Yes')" id="YES">
                         <label class="mx-2" for="YES">Yes</label>
@@ -792,7 +792,7 @@
                                 aria-labelledby="pills-noreports-tab"></div>
                         </div>
                     </div>
-                    <h5 class="mt-5 mb-4">How does your achievement
+                    <h5 class="mt-3 mb-4">How does your achievement
                         compare with the other competing options
                         available to the customer?</h5>
                     <div class="">
@@ -807,7 +807,7 @@
                     </div>
 
 
-                    <h5 class="mt-5 mb-4">What was the motivation to undertake the development of the
+                    <h5 class="mt-3 mb-4">What was the motivation to undertake the development of the
                         Product/Technology/Infrastructure/Exports?</h5>
                     <div class="">
                         <textarea formControlName="mudp" class="form-control mb-1" aria-label="With
@@ -816,7 +816,7 @@
                             SIDM Champion Awards <strong>required</strong>
                         </p>
                     </div>
-                    <h5 class="mt-5 mb-4">Please upload Photograph /
+                    <h5 class="mt-3 mb-4">Please upload Photograph /
                         Videos of the Products / Innovation /
                         Facilities fielded for the awards</h5>
                     <div class="">
@@ -874,9 +874,9 @@
 
                     </div>
                     <h3 class="mainHeading">Category applied for</h3>
-                    <h5 class="mb-3 mt-3">{{editData.category}}</h5>
+                    <h5 class="mb-2 mt-3">{{editData.category}}</h5>
 
-                    <h5 class="mt-3 mb-3">Type of applicant company*</h5>
+                    <h5 class="mt-3 mb-2">Type of applicant company*</h5>
                     <div class="row">
                         <div class="checkgroup">
                             <div class="radioBox Apply-control
@@ -922,7 +922,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-5 mb-3">Please upload the required documents as sub category selected*
+                            <h5 class="mt-2 mb-2">Please upload the required documents as sub category selected*
                             </h5>
 
                             <ul class="mx-3" style="    list-style: disc;">
@@ -931,7 +931,7 @@
                                 <li class="categoryList">Udhyog Aadhaar Number/Aadhaar Number /MSME/Udhyog- <span
                                         class="catBold">Medium / SSI</span>
                                 </li>
-                                <li class="categoryList mb-3">DPIIT Certificate - <span
+                                <li class="categoryList mb-2">DPIIT Certificate - <span
                                         class="catBold">SME/START-UP</span></li>
                             </ul>
                             <input *ngIf="!editData.subCategoryDoccument" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -951,7 +951,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-5 mb-3">Upload last financial balance sheet for the year 2020-21* </h5>
+                            <h5 class="mt-2 mb-2">Upload last financial balance sheet for the year 2020-21* </h5>
                             <input type="file" *ngIf="!editData.financialDoccument" accept="application/pdf"
                                 formControlName='financialDoccument' (change)="gstpdfOnly($event,'financialDoccument')">
                             <p *ngIf="!editData.financialDoccument" class="fileSizetext">File should be in pdf. Pdf size
@@ -974,7 +974,7 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="mt-4 mb-3">Name of the Company*</h5>
+                            <h5 class="mt-4 mb-2">Name of the Company*</h5>
                             <input formControlName="nameOfCompany" type="text">
 
                             <p *ngIf="editForm.get('nameOfCompany')?.hasError('required')" style="color: red;">
@@ -987,12 +987,12 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="mt-5 mb-3"> Company Address </h3>
+                            <h3 class="mt-3 mb-2 heading"> Company Address </h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Address Line 1 *</h5>
+                            <h5 class="mt-3 mb-2">Address Line 1 *</h5>
                             <input formControlName="addressl1" type="text">
 
 
@@ -1002,14 +1002,14 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Address Line 2 </h5>
+                            <h5 class="mt-3 mb-2">Address Line 2 </h5>
                             <input formControlName="addressl2" type="text">
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">State *</h5>
+                            <h5 class="mt-3 mb-2">State *</h5>
                             <select formControlName="state" class="select">
                                 <option *ngFor="let item of states" value="{{item.state}}">{{item.state}}</option>
                             </select>
@@ -1020,7 +1020,7 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">City *</h5>
+                            <h5 class="mt-3 mb-2">City *</h5>
                             <input formControlName="city" (keypress)="keyPresschar($event)" type="text">
                             <p *ngIf="editForm.get('city')?.hasError('required')" style="color: red;">
                                 City <strong>required</strong>
@@ -1028,9 +1028,9 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border_b">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Pincode *</h5>
+                            <h5 class="mt-3 mb-2">Pincode *</h5>
                             <input formControlName="pincode" (keypress)="keyPressNumbers($event)" type="text"
                                 maxlength="6">
                             <div>
@@ -1046,9 +1046,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
+                    <div class="row mt-3">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Contact Person Name *</h5>
+                            <h5 class="mt-3 mb-2">Contact Person Name *</h5>
                             <input formControlName="name" type="text">
 
                             <p *ngIf="editForm.get('name')?.hasError('required')" style="color: red;">
@@ -1057,21 +1057,21 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Designation*</h5>
+                            <h5 class="mt-3 mb-2">Designation*</h5>
                             <input (keypress)="keyPresschar($event)" formControlName="designation" type="text">
                             <p *ngIf="editForm.get('designation')?.hasError('required')" style="color: red;">
                                 Designation <strong>required</strong>
                             </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border_b">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Primary E-Mail Address *</h5>
+                            <h5 class="mt-3 mb-2">Primary E-Mail Address *</h5>
                             <input formControlName="email" type="text" readonly>
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Mobile Number *</h5>
+                            <h5 class="mt-3 mb-2">Mobile Number *</h5>
                             <input formControlName="mobileNumber" type="text" readonly>
 
                         </div>
@@ -1079,13 +1079,13 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="mt-5 mb-3" style="font-size: 20px;">Please give details for additional contact
+                            <h3 class="mt-3 mb-2" style="font-size: 21px; font-style: italic;">Please give details for additional contact
                                 point for ease of reaching out.</h3>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row border_b">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Alternative Mobile number</h5>
+                            <h5 class="mt-3 mb-2">Alternative Mobile number</h5>
                             <input type="text" formControlName='alterMobileNumber' appBlockCopyPaste
                                 (keypress)="keyPressNumbers($event)" appCpoyPaste maxlength="10">
                             <p *ngIf="newCategoryForm.get('alterMobileNumber')?.invalid&& (submited || newCategoryForm.controls['alterMobileNumber'].touched)"
@@ -1094,7 +1094,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Alternative Email</h5>
+                            <h5 class="mt-3 mb-2">Alternative Email</h5>
                             <input type="text" formControlName='alterEmail' appLowercase appBlockCopyPaste appCpoyPaste>
                             <p *ngIf="newCategoryForm.get('alterEmail')?.hasError('email')&& (submited || newCategoryForm.controls['alterEmail'].touched)"
                                 style="color: red;">
@@ -1104,7 +1104,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Company PAN *</h5>
+                            <h5 class="mt-3 mb-2">Company PAN *</h5>
                             <input formControlName="panNumber" type="text" readonly>
 
                         </div>
@@ -1112,7 +1112,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">GSTIN of the
+                            <h5 class="mt-3 mb-2">GSTIN of the
                                 Company*</h5>
                             <input appUpperCase formControlName="gstinOfCompany" type="text" maxlength="16">
 
@@ -1127,7 +1127,7 @@
 
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Upload GSTIN Certificate*
+                            <h5 class="mt-3 mb-2">Upload GSTIN Certificate*
                             </h5>
                             <input *ngIf="!editData.documentGstCertificate" formControlName="documentGstCertificate"
                                 type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
@@ -1145,7 +1145,7 @@
                             </p>
                         </div>
                         <div class="col-lg-6">
-                            <h5 class="mt-3 mb-3">Date of Incorporation
+                            <h5 class="mt-3 mb-2">Date of Incorporation
                                 of the Company*</h5>
                             <!-- <input formControlName="dateOfOrganization"
                         type="date"> -->
@@ -1163,9 +1163,9 @@
 
                 <!-- **********************form part 2************************************************************************ -->
                 <div class="formPart_2">
-                    <h5 class="mt-3 mb-3">Are you member of SIDM ?*</h5>
+                    <h5 class="mt-3 mb-2">Are you member of SIDM ?*</h5>
                     <div class="container">
-                        <!-- <ul class="nav nav-pills mb-3" id="pills-tab"
+                        <!-- <ul class="nav nav-pills mb-2" id="pills-tab"
                     role="tablist"> -->
 
                         <input type="radio" formControlName="sidmMember" name="sidmMember" value="Yes"
@@ -1199,7 +1199,7 @@
                             <div *ngIf="sidmMember">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="mt-2 mb-3">Provide the
+                                        <p class="mt-2 mb-2">Provide the
                                             membership number* </p>
                                         <input formControlName="sidmMemberShipNumber" type="text">
                                         <div *ngIf="editForm.controls['sidmMemberShipNumber'].invalid
@@ -1218,7 +1218,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-5 mb-3">Are you Member of any other Association ?*</h5>
+                    <h5 class="mt-3 mb-2">Are you Member of any other Association ?*</h5>
                     <div class="container">
                         <input type="radio" formControlName="association" name="association" value="Yes"
                             (click)="changetoggel('association','Yes')" id="YES">
@@ -1235,7 +1235,7 @@
                             <div *ngIf="association">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="mt-2 mb-3">Enter the
+                                        <p class="mt-2 mb-2">Enter the
                                             name(s) of the associations
                                             separated by comma*</p>
                                         <input formControlName="associationName" type="text">
@@ -1254,7 +1254,7 @@
                                 aria-labelledby="pills-false-tab"></div>
                         </div>
                     </div>
-                    <h5 class="mt-5 mb-3">Are you registered with any Defence Organization (such as DPSU/DRDO etc.)? *
+                    <h5 class="mt-3 mb-2">Are you registered with any Defence Organization (such as DPSU/DRDO etc.)? *
                     </h5>
                     <div class="container">
                         <input type="radio" formControlName="registeredOrganization" value="Yes"
@@ -1280,7 +1280,7 @@
                                             [formGroupName]="i">
 
 
-                                            <input type="text" class="mt-4 mb-3 addInputBox" formControlName="name">
+                                            <input type="text" class="mt-4 mb-2 addInputBox" formControlName="name">
                                             <a class="addBtn" *ngIf='i!==0' (click)="removeRegisteredOrganization(i)"><i
                                                     class="fa fa-trash"></i> </a>
                                             <div *ngIf="editForm.controls['nameRegisteredOrganization'].invalid
@@ -1288,7 +1288,7 @@
                                               (submited
                                               ||
                                               editForm.controls['nameRegisteredOrganization'].touched)">
-                                                <p class="mb-3" style="color: red;"
+                                                <p class="mb-2" style="color: red;"
                                                     *ngIf="controlName.get('name')?.hasError('required')">
                                                     Registered Organization Name is required
                                                 </p>
@@ -1308,7 +1308,7 @@
                         </div>
 
                     </div>
-                    <h5 class="mt-5 mb-4">About the company*</h5>
+                    <h5 class="mt-3 mb-4">About the company*</h5>
                     <div class="">
                         <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
                         textarea" maxlength="100"></textarea>
@@ -1318,11 +1318,11 @@
                         </p>
                     </div>
 
-                    <h5 class="mt-5 mb-4">
+                    <h5 class="mt-3 mb-4">
                         Specific Achievement being registered for the Champion Award*
                     </h5>
                     <div class="">
-                        <textarea formControlName="sidmChampionAwards" class="form-control mb-3" aria-label="With
+                        <textarea formControlName="sidmChampionAwards" class="form-control mb-2" aria-label="With
                         textarea" maxlength="100"></textarea>
                         <p class="fileSizetext">Write a about the product/technology/facility/exports (100 Words). For
                             registering multiple achievements, fill separate applications
@@ -1331,12 +1331,12 @@
                             SIDM Champion Awards<strong>required</strong>
                         </p>
                     </div>
-                    <h5 class="mt-5">Have you received any reports of
+                    <h5 class="mt-3">Have you received any reports of
                         performance / letters of appreciation
                         from
                         customer
                         organization?*</h5>
-                    <div class="mb-3 mt-3">
+                    <div class="mb-2 mt-3">
                         <input type="radio" formControlName="isappreciation" value="Yes"
                             (click)="changetoggel('isappreciation','Yes')" id="YES">
                         <label class="mx-2" for="YES">Yes</label>
@@ -1381,7 +1381,7 @@
 
                         </div>
                     </div>
-                    <h5 class="mt-5 mb-4">How does your achievement
+                    <h5 class="mt-3 mb-4">How does your achievement
                         compare with the other competing options
                         available to the customer?*</h5>
                     <div class="">
@@ -1397,7 +1397,7 @@
                     </div>
 
 
-                    <h5 class="mt-5 mb-4">What was the motivation to undertake the development of the
+                    <h5 class="mt-3 mb-4">What was the motivation to undertake the development of the
                         Product/Technology/Infrastructure/Exports?*</h5>
                     <div class="">
                         <textarea formControlName="mudp" class="form-control mb-1" aria-label="With
@@ -1407,7 +1407,7 @@
                         </p>
 
                     </div>
-                    <h5 class="mt-5 mb-4">Please upload Photograph /
+                    <h5 class="mt-3 mb-4">Please upload Photograph /
                         Videos of the products / Innovation /
                         Facilities fielded for the awards*</h5>
                     <div class="">
@@ -1492,7 +1492,7 @@
                    <div class="form-group">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5 class="mt-3 mb-3">Name of Bank *</h5>
+                                <h5 class="mt-3 mb-2">Name of Bank *</h5>
                                 <input formControlName="nameOfBank" type="text" >
                                 <p *ngIf="OfflinePayment.get('nameOfBank')?.hasError('required') && (  OfflinePayment.controls['nameOfBank'].touched || submited )" style="color: red;">
                                     Name of Bank <strong>required</strong>
@@ -1500,7 +1500,7 @@
     
                             </div>
                             <div class="col-lg-6">
-                                <h5 class="mt-3 mb-3"> Mode of Payment</h5>
+                                <h5 class="mt-3 mb-2"> Mode of Payment</h5>
                                 <select formControlName="modeOfPayment" class="select">
                                     <option *ngFor="let item of modeofPayment" value="{{item}}">{{item}}</option>
                                 </select>
@@ -1513,7 +1513,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5 class="mt-3 mb-3"> Amount *</h5>
+                                <h5 class="mt-3 mb-2"> Amount *</h5>
                                 <input formControlName="amount" type="text" (keypress)="keyPressNumbers($event)">
                                 <p *ngIf="OfflinePayment.get('amount')?.hasError('required') && (  OfflinePayment.controls['amount'].touched || submited )" style="color: red;">
                                     Amount <strong>required</strong>
@@ -1522,7 +1522,7 @@
     
                             </div>
                             <div class="col-lg-6">
-                                <h5 class="mt-3 mb-3"> Date of Payment</h5>
+                                <h5 class="mt-3 mb-2"> Date of Payment</h5>
                                 <input formControlName="dateOfPayment" type="date"  value="yyyy-mm-dd"
                                 class="input-medium search-query" (keypress)="pickclender()" maxlength="16">
                                 <p *ngIf="OfflinePayment.get('dateOfPayment')?.hasError('required') && (  OfflinePayment.controls['dateOfPayment'].touched || submited )" style="color: red;">
@@ -1533,7 +1533,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5 class="mt-3 mb-3">Transaction details *</h5>
+                                <h5 class="mt-3 mb-2">Transaction details *</h5>
                                 <input formControlName="transactionDetails" type="text" >
                                 <p *ngIf="OfflinePayment.get('transactionDetails')?.hasError('required') && (  OfflinePayment.controls['transactionDetails'].touched || submited )"style="color: red;">
                                     Transaction details  <strong>required</strong>
