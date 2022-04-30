@@ -1,11 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CellNumValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
+import { formatDate, Location } from '@angular/common'
+ 
 
 @Component({
   selector: 'app-admin-edit',
@@ -35,7 +39,7 @@ export class AdminEditComponent implements OnInit {
   submited: boolean = true;
   captcha: any;
   states: any;
-  editData: any;
+  formData: any;
   catagery: any;
   email: any;
   mobilenumber: any;
@@ -57,10 +61,22 @@ export class AdminEditComponent implements OnInit {
       debugger
       const id = this.route.snapshot.paramMap.get('id')
       this.viewForm(id)
+      this.getState()
 
      }
 
   ngOnInit(): void {
+  }
+  getState() {
+    this.httpService.getStateList()
+      .subscribe(data => {
+        this.states = data
+
+      },err=>{
+        this.toast.error('Please Login Again');
+        this.localStorage.clearLocalStorage()
+        window.location.reload()
+      })
   }
 
 
@@ -119,64 +135,64 @@ export class AdminEditComponent implements OnInit {
         data.registeredOrganization === 'Yes' ? this.registeredOrganization = true : '';
         data.isappreciation === 'Yes' ? this.isappreciation = true : ''
 
-        this.editData = data
-        this.catagery = this.editData.catagery
-        this.editData.panNumber = this.editData.panNumber
+        this.formData = data
+        this.catagery = this.formData.catagery
+        this.formData.panNumber = this.formData.panNumber
         this.editForm = this.formBuilder.group({
-         // isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
+         // isappreciation: [this.formData.isappreciation ? this.formData.isappreciation : ''],
 
-          typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
+          typeOfApplicant: [this.formData.typeOfApplicant ? this.formData.typeOfApplicant : ''],
           subCategoryDoccument: [''],
           financialDoccument: [''],
-          nameOfCompany: [this.editData.nameOfCompany ? this.editData.nameOfCompany : ''],
-          addressl1: [this.editData.addressl1 ? this.editData.addressl1 : ''],
-          addressl2: [this.editData.addressl2 ? this.editData.addressl2 : ''],
-          state: [this.editData.state ? this.editData.state : ''],
-          city: [this.editData.city ? this.editData.city : ''],
-          pincode: [this.editData.pincode ? this.editData.pincode : '', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
-          name: [this.editData.name ? this.editData.name : ''],
-          designation: [this.editData.designation ? this.editData.designation : ''],
-          email: [this.editData.email ? this.editData.email : ''],
-          mobileNumber: [this.editData.mobileNumber ? this.editData.mobileNumber : ''],
-          panNumber: [this.editData.panNumber ? this.editData.panNumber : ''],
-          gstinOfCompany: [this.editData.gstinOfCompany ? this.editData.gstinOfCompany : '', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
+          nameOfCompany: [this.formData.nameOfCompany ? this.formData.nameOfCompany : ''],
+          addressl1: [this.formData.addressl1 ? this.formData.addressl1 : ''],
+          addressl2: [this.formData.addressl2 ? this.formData.addressl2 : ''],
+          state: [this.formData.state ? this.formData.state : ''],
+          city: [this.formData.city ? this.formData.city : ''],
+          pincode: [this.formData.pincode ? this.formData.pincode : '', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
+          name: [this.formData.name ? this.formData.name : ''],
+          designation: [this.formData.designation ? this.formData.designation : ''],
+          email: [this.formData.email ? this.formData.email : ''],
+          mobileNumber: [this.formData.mobileNumber ? this.formData.mobileNumber : ''],
+          panNumber: [this.formData.panNumber ? this.formData.panNumber : ''],
+          gstinOfCompany: [this.formData.gstinOfCompany ? this.formData.gstinOfCompany : '', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
           documentGstCertificate: [''],
-          dateOfCompany: [this.editData.dateOfCompany ? this.editData.dateOfCompany : ''],
-          sidmMember: [this.editData.sidmMember ? this.editData.sidmMember : ''],
-          sidmMemberShipNumber: [this.editData.sidmMemberShipNumber ? this.editData.sidmMemberShipNumber : ''],
-          association: [this.editData.association ? this.editData.association : ''],
-          associationName: [this.editData.associationName ? this.editData.associationName : ''],
-          registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization : ''],
+          dateOfCompany: [this.formData.dateOfCompany ? this.formData.dateOfCompany : ''],
+          sidmMember: [this.formData.sidmMember ? this.formData.sidmMember : ''],
+          sidmMemberShipNumber: [this.formData.sidmMemberShipNumber ? this.formData.sidmMemberShipNumber : ''],
+          association: [this.formData.association ? this.formData.association : ''],
+          associationName: [this.formData.associationName ? this.formData.associationName : ''],
+          registeredOrganization: [this.formData.registeredOrganization ? this.formData.registeredOrganization : ''],
           nameRegisteredOrganization: this.formBuilder.array([ ]),
-          aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
-          sidmChampionAwards: [this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards : ''],
-          isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
+          aboutCompany: [this.formData.aboutCompany ? this.formData.aboutCompany : ''],
+          sidmChampionAwards: [this.formData.sidmChampionAwards ? this.formData.sidmChampionAwards : ''],
+          isappreciation: [this.formData.isappreciation ? this.formData.isappreciation : ''],
           appreciationDocuments: [''],
-          campareAchivement: [this.editData.campareAchivement ? this.editData.campareAchivement : ''],
-          mudp: [this.editData.mudp ? this.editData.mudp : ''],
-          productLink: [this.editData.productLink ? this.editData.productLink : ''],
-          alterMobileNumber:[this.editData.alterMobileNumber,[Validators.maxLength(10),  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-          alterEmail:[this.editData.alterEmail,Validators.email],
+          campareAchivement: [this.formData.campareAchivement ? this.formData.campareAchivement : ''],
+          mudp: [this.formData.mudp ? this.formData.mudp : ''],
+          productLink: [this.formData.productLink ? this.formData.productLink : ''],
+          alterMobileNumber:[this.formData.alterMobileNumber,[Validators.maxLength(10),  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+          alterEmail:[this.formData.alterEmail,Validators.email],
 
           exhibit1: [''],
           exhibit2: [''],
 
          
         })
-        if (this.editData.sidmMember === 'Yes') {
+        if (this.formData.sidmMember === 'Yes') {
           this.editForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
           this.editForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
 
         }
-        if (this.editData.association === 'Yes') {
+        if (this.formData.association === 'Yes') {
           this.editForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
 
           this.editForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
 
         }
-        if (this.editData.registeredOrganization === 'Yes') {
+        if (this.formData.registeredOrganization === 'Yes') {
           let control = <FormArray>this.editForm.get('nameRegisteredOrganization');
-         this.editData.nameRegisteredOrganization.map((item:any)=>{
+         this.formData.nameRegisteredOrganization.map((item:any)=>{
           control.push(
             this.formBuilder.group({
               name: [item.name, Validators.required],            
@@ -253,38 +269,38 @@ export class AdminEditComponent implements OnInit {
       this.documentGstCertificate = null
       this.editForm.get('documentGstCertificate')?.reset()
       this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
-      this.editData.documentGstCertificate = null
+      this.formData.documentGstCertificate = null
 
     }
     else if (conttrolName === 'exhibit1') {
       this.exhibit1 = null;
       this.editForm.get('exhibit1')?.reset()
       this.editForm.get('exhibit1')?.updateValueAndValidity()
-      this.editData.exhibit1 = null
+      this.formData.exhibit1 = null
     }
     else if (conttrolName === 'exhibit2') {
       this.exhibit2 = null;
       this.editForm.get('exhibit2')?.reset()
       this.editForm.get('exhibit2')?.updateValueAndValidity()
-      this.editData.exhibit2 = null
+      this.formData.exhibit2 = null
     }
     else if (conttrolName === 'subCategoryDoccument') {
       this.subCategoryDoccument = null;
       this.editForm.get('subCategoryDoccument')?.reset()
       this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
-      this.editData.subCategoryDoccument = null
+      this.formData.subCategoryDoccument = null
     }
     else if (conttrolName === 'financialDoccument') {
       this.financialDoccument = null;
       this.editForm.get('financialDoccument')?.reset()
       this.editForm.get('financialDoccument')?.updateValueAndValidity()
-      this.editData.financialDoccument = null
+      this.formData.financialDoccument = null
     }
     else if (conttrolName === 'appreciationDocuments') {
       this.appreciationDocuments = null;
       this.editForm.get('appreciationDocuments')?.reset()
       this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
-      this.editData.appreciationDocuments = null
+      this.formData.appreciationDocuments = null
       this.editForm.get('isappreciation')?.setValue('No')
       this.isappreciation = false
 
@@ -440,13 +456,14 @@ export class AdminEditComponent implements OnInit {
     }
   }
 
+
   finalSubmit(type: string) {
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
-    if(!this.editData.subCategoryDoccument){
+    if(!this.formData.subCategoryDoccument){
     this.editForm.get('subCategoryDoccument')?.setValidators(Validators.required)
     this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()}
-    if(!this.editData.financialDoccument){
+    if(!this.formData.financialDoccument){
     this.editForm.get('financialDoccument')?.setValidators(Validators.required)
     this.editForm.get('financialDoccument')?.updateValueAndValidity()}
     this.editForm.get('nameOfCompany')?.setValidators(Validators.required)
@@ -466,7 +483,7 @@ export class AdminEditComponent implements OnInit {
     this.editForm.get('designation')?.updateValueAndValidity()
     this.editForm.get('gstinOfCompany')?.setValidators([Validators.required,Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
     this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
-    if(!this.editData.documentGstCertificate){
+    if(!this.formData.documentGstCertificate){
     this.editForm.get('documentGstCertificate')?.setValidators(Validators.required)
     this.editForm.get('documentGstCertificate')?.updateValueAndValidity()}
     this.editForm.get('dateOfCompany')?.setValidators(Validators.required)
@@ -487,15 +504,14 @@ export class AdminEditComponent implements OnInit {
     this.editForm.get('campareAchivement')?.updateValueAndValidity()
     this.editForm.get('mudp')?.setValidators(Validators.required)
     this.editForm.get('mudp')?.updateValueAndValidity()
-    if(!this.editData.exhibit1){
+    if(!this.formData.exhibit1){
     this.editForm.get('exhibit1')?.setValidators(Validators.required)
     this.editForm.get('exhibit1')?.updateValueAndValidity()}
-    if(!this.editData.exhibit2){
+    if(!this.formData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
     if (this.editForm.valid && this.captcha) {
-      this.httpService.updateform(this.editData._id, {
-        userType:'admin',
+      this.httpService.updateform(this.formData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
         financialDoccument: this.financialDoccument,

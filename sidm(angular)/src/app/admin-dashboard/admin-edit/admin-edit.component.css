@@ -1,0 +1,233 @@
+select {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-family: "Red Hat Display", sans-serif;
+    color: #8b8b8b;
+    border: 1px solid #d9d9d9;
+    background-color: white;
+    -webkit-transition: .35s ease;
+    transition: .35s ease;
+
+}
+.documentBtn {
+    background: #5b7842;;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 12px;
+    text-decoration: none;
+  }
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  
+
+
+  }
+  .tooltip{
+      opacity: 2;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 2;
+  }
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+}
+.footer-email .fa-envelope, .fa-home, .fa-phone-alt {
+  color: #feed00;
+  margin-right: 10px;
+  font-size: 25px;
+}
+.phoneNo {
+  color: #ffffff;
+  font-weight: 500;
+}
+.viewBtn {
+  background: #363a7a;
+  padding: 6px 25px;
+  border-radius: 3px;
+  color: #fff!important;
+  cursor: pointer;
+  border: none;
+}
+.page-title .container {
+  padding: 6rem 0;
+}
+.categoryList {
+  font-size: 15px;
+    color: rgb(53, 53, 53);
+}
+/* span {
+  position: relative;
+  cursor: pointer;
+  left: -75px;
+  z-index: 9;
+} */
+
+/* span:hover::after {
+  content: attr(data-title);
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px;
+  width: 250px;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  background: rgb(47, 47, 47);
+  border-radius: 2px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+} */
+.fa-download, .fa-trash {
+  color: #363a7a;
+}
+.formPart_1 a {
+  border: 1px solid #363a7a;
+  margin: 0 4px 0 0;
+  padding: 2px 7px;
+}
+.addBtn {
+  background: #363a7a;
+  padding: 13px 25px;
+  border-radius: 3px;
+  color: #fff!important;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 10px!important;
+}
+.addBtn .fa-plus,.fa-trash {
+  color: #fff;
+}
+.addBtn .fa-trash {
+  color: #fff;
+}
+.fa-trash {
+  color: #363a7a;
+}
+.addInputBox {
+  width: 80%;
+  display: inline-block;
+  margin-right: 5px;
+  
+}
+.fileSizetext {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b3b3b;
+}
+.mainHeading {
+  font-size: 28px;
+}
+.catBold {
+  font-weight: 600;
+  font-size: 15px;
+}
+.profileSection {
+  margin: 1rem 0 2rem;
+}
+.alert {
+  margin: 2rem 0 0;
+}
+.alertContent {
+  display: flex;
+  align-items: flex-start;
+}
+.alertContent p {
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.alertContent h6 {
+  font-size: 15px;
+  margin-top: 2px;
+  color: #721c24;
+  line-height: 21px;
+}
+/* DropDown */
+
+.page-title .container {
+  padding: 6rem 0;
+}
+.paymentsDropdwn {
+  background: none;
+  border: 1px solid #363a7a;
+  color: #363a7a!important;
+  border-radius: 3px!important;
+  padding: 0 12px!important;
+}
+.dropBtn .dropdown-toggle::after {
+  display: inline;
+  position: relative;
+  top: 16px;
+  margin-left: 14px;
+}
+.dropBtn .dropdown-menu {
+  /* width: 9.5rem!important; */
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  border: none;
+  color: #212529;
+  box-shadow: 1px 1px 10px #e9e9e9!important;
+  background-color: #fffdfd!important;
+}
+.dropBtn .fa-eye, .fa-check, .fa-envelope, .fa-edit, .fa-info-circle, .fa-rupee-sign, .fa-eye, .fa-file-alt  {
+  color: #363a7a;
+  margin-right: 7px;
+}
+.fa-eye {
+  margin-right: 2px;
+}
+.fa-cog {
+  color: #363a7a;
+}
+.dropBtn .dropdown-item {
+  font-size: 14px;
+  font-weight: 500;
+}
+.badge-light {
+  color: #363a7a;
+  margin-left: 10px;
+  background-color: #ffffff;
+}
+.dropBtn .dropdown-menu {
+  margin: 0.125rem -136px 0;
+}
+
+.badge-light {
+  color: #dd1010 !important;
+  margin-left: 10px;
+  background-color: #ffffff;
+  font-size: large;
+}
+/* .fa-info-circle {
+  color: #cc1d2c;
+} */
+h5 {
+  font-weight: 500;
+  font-size: 17px;
+  color: #000;
+}
+.border_b {
+  border-bottom: 1px solid #e5e0e0;
+  padding-bottom: 31px;
+}
+.heading {
+  font-size: 25px;
+}

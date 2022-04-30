@@ -97,11 +97,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   approve(id:string){
     let createAt = new Date();
-<<<<<<< Updated upstream
     this.httpService.changeStatus(id,{status:'Approved',createAt:createAt}).subscribe(data=>{
-=======
-    this.httpService.changeStatus(id,{status:'approved',createAt:createAt}).subscribe(data=>{
->>>>>>> Stashed changes
       window.location.reload()    
       this.toast.success('successfully status change');
     },err=>{
@@ -125,9 +121,9 @@ export class AdminDashboardLayoutComponent implements OnInit {
 
   editForm(id:any){
  
-    this.routes.navigate(['adminDashboard/edit/',id]);
-    // let url: string = "/adminDashboard/edit/" +id
-    // this.router.navigateByUrl(url);
+    // this.routes.navigate(['/adminEdit/edit/',id]);
+    let url: string = "/adminDashboard/edit/" +id
+    this.routes.navigateByUrl(url);
     // this.routes.navigateByUrl(url);
     // window.location.href=url
   }

@@ -304,11 +304,7 @@ exports.changeStatus = (req, res, next) => {
   const status=req.body.status
   const createAt= req.body.createAt
   RegistrationForm.findById(userID).then(data=>{
-<<<<<<< Updated upstream
     if(status==='Approved'){
-=======
-    if(status==='approved'){
->>>>>>> Stashed changes
    data.status=status;
   data.approveDate=createAt
 }
