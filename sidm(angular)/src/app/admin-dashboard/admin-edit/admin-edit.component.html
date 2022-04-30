@@ -141,7 +141,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="mt-2 mb-2">Upload last financial balance sheet for the year 2020-21* </h5>
+                        <h5 class="mt-3 mb-2">Upload last financial balance sheet for the year 2020-21* </h5>
                         <input type="file" *ngIf="!formData.financialDoccument" accept="application/pdf"
                             formControlName='financialDoccument' (change)="gstpdfOnly($event,'financialDoccument')">
                         <p *ngIf="!formData.financialDoccument" class="fileSizetext">File should be in pdf. Pdf size
@@ -498,7 +498,7 @@
                     </div>
     
                 </div>
-                <h5 class="mt-3 mb-4">About the company*</h5>
+                <h5 class="mt-3 mb-2">About the company*</h5>
                 <div class="">
                     <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
                     textarea" maxlength="100"></textarea>
@@ -508,7 +508,7 @@
                     </p>
                 </div>
     
-                <h5 class="mt-3 mb-4">
+                <h5 class="mt-3 mb-2">
                     Specific Achievement being registered for the Champion Award*
                 </h5>
                 <div class="">
@@ -526,7 +526,7 @@
                     from
                     customer
                     organization?*</h5>
-                <div class="mb-2 mt-3">
+                <div class="mb-2 mt-2">
                     <input type="radio" formControlName="isappreciation" value="Yes"
                         (click)="changetoggel('isappreciation','Yes')" id="YES">
                     <label class="mx-2" for="YES">Yes</label>
@@ -571,7 +571,7 @@
     
                     </div>
                 </div>
-                <h5 class="mt-3 mb-4">How does your achievement
+                <h5 class="mt-3 mb-2">How does your achievement
                     compare with the other competing options
                     available to the customer?*</h5>
                 <div class="">
@@ -587,7 +587,7 @@
                 </div>
     
     
-                <h5 class="mt-3 mb-4">What was the motivation to undertake the development of the
+                <h5 class="mt-3 mb-2">What was the motivation to undertake the development of the
                     Product/Technology/Infrastructure/Exports?*</h5>
                 <div class="">
                     <textarea formControlName="mudp" class="form-control mb-1" aria-label="With
@@ -597,7 +597,7 @@
                     </p>
     
                 </div>
-                <h3 class="mt-3 mb-4 heading">Please upload Photograph /
+                <h3 class="mt-4 mb-2 heading">Please upload Photograph /
                     Videos of the products / Innovation /
                     Facilities fielded for the awards*</h3>
                 <div class="">
@@ -615,7 +615,7 @@
                     <a *ngIf="formData.exhibit1" (click)="delete('exhibit1')"><i class="fa fa-trash"></i></a>
     
                     <br>
-                    <h5 class="mb-2">Exhibit 2*</h5>
+                    <h5 class="mb-2 mt-3">Exhibit 2*</h5>
                     <input *ngIf="!formData.exhibit2" formControlName="exhibit2" type="file"
                         accept=".gif,.jpg,.jpeg,.png,.pdf" (change)="changeListener($event,'exhibit2')"
                         class="border-light mb-1" name="" id="" aria-describedby="helpId" placeholder="">
@@ -629,7 +629,7 @@
                     <a *ngIf="formData.exhibit2" (click)="delete('exhibit2')"><i class="fa fa-trash"></i></a>
     
                     <br>
-                    <h5 class="mb-2">Product video link (Optional)</h5>
+                    <h5 class="mb-2 mt-3">Product video link (Optional)</h5>
                     <input type="text" formControlName="productLink">
     
                 </div>

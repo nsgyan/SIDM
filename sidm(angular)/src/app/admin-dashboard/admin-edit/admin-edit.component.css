@@ -128,7 +128,8 @@ select {
   
 }
 .fileSizetext {
-  font-size: 14px;
+  font-size: 13px;
+  font-style: italic;
   font-weight: 500;
   color: #3b3b3b;
 }
@@ -229,5 +230,5 @@ h5 {
   padding-bottom: 31px;
 }
 .heading {
-  font-size: 25px;
+  font-size: 21px;
 }
