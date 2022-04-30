@@ -128,7 +128,8 @@ select {
   
 }
 .fileSizetext {
-  font-size: 14px;
+  font-size: 13px;
+  font-style: italic;
   font-weight: 500;
   color: #3b3b3b;
 }
@@ -229,5 +230,17 @@ h5 {
   padding-bottom: 31px;
 }
 .heading {
+  font-size: 21px;
+}
+.fa-pen {
+  color: #fff;
   font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  top: -5px;
+  left: 9px;
+}
+#deletepopup .modal-content {
+  text-align: center;
+  padding: 25px;
 }
