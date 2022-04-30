@@ -208,19 +208,9 @@ export class MemberDashboardComponent implements OnInit {
     this.captcha = captchaResponse;
   }
 
-
-
-
-
-
-
-
   pickclender() {
     return false
   }
-
-
-
 
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
@@ -253,7 +243,11 @@ export class MemberDashboardComponent implements OnInit {
     this.isappreciation = false
     this.submited = false
     this.newCategory = false
+<<<<<<< Updated upstream
     if (item.status !== 'Approved') {
+=======
+    if (item.status !== 'approved') {
+>>>>>>> Stashed changes
       this.EditForm = !this.EditForm
 
       this.httpService.getdetails(item._id).subscribe((data: any) => {

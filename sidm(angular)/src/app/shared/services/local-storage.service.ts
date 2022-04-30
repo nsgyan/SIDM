@@ -31,7 +31,7 @@ export class LocalStorageService {
   clearLocalStorage() {
 
    
-    this.localStorage.removeItem("token")
+    this.localStorage.clear()
     return true
 
   }

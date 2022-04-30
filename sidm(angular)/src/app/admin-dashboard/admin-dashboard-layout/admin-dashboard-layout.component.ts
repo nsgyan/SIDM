@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -96,7 +97,11 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   approve(id:string){
     let createAt = new Date();
+<<<<<<< Updated upstream
     this.httpService.changeStatus(id,{status:'Approved',createAt:createAt}).subscribe(data=>{
+=======
+    this.httpService.changeStatus(id,{status:'approved',createAt:createAt}).subscribe(data=>{
+>>>>>>> Stashed changes
       window.location.reload()    
       this.toast.success('successfully status change');
     },err=>{
@@ -118,4 +123,12 @@ export class AdminDashboardLayoutComponent implements OnInit {
     })
   }
 
+  editForm(id:any){
+ 
+    this.routes.navigate(['adminDashboard/edit/',id]);
+    // let url: string = "/adminDashboard/edit/" +id
+    // this.router.navigateByUrl(url);
+    // this.routes.navigateByUrl(url);
+    // window.location.href=url
+  }
 }
