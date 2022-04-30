@@ -101,7 +101,8 @@ exports.postRegistrationForm = (req, res, next) => {
       const replacements = {
         email: result.email,
         mobileNumber:result.mobileNumber,
-        PanNumber:result.panNumber
+        PanNumber:result.panNumber,
+        date:result.createAt,
 
       };
       const htmlToSend = template(replacements);
