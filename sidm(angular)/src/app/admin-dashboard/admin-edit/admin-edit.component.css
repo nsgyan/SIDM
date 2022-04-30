@@ -232,3 +232,11 @@ h5 {
 .heading {
   font-size: 21px;
 }
+.fa-pen {
+  color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    top: -5px;
+    left: 9px;
+}
