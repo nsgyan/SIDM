@@ -68,8 +68,10 @@
 .left-content .Bottom-Content a {
     /* font-size: 18px; */
     color: #363a7a;
+    text-decoration: underline;
     font-weight: 600;
 }
+
 .left-content h6 {
     font-size: 1.9rem;
     color: #768F31;
@@ -359,6 +361,10 @@ h5 {
     color: #363a7e;
     font-weight: 600;
     text-decoration: underline;
+}
+.Registrationform {
+    font-size: 17px;
+    font-weight: 500;
 }
 
 

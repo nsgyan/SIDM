@@ -120,5 +120,37 @@ h5 {
   padding-bottom: 31px;
 }
 .heading {
-  font-size: 25px;
+  font-size: 21px;
+}
+
+/* --------------choose btn file css-------------- */
+
+.input-file-trigger {
+  display: block;
+  padding: 9px 45px;
+  width: 200px;
+  background: #363a7a;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.input-file {
+  opacity: 0;
+}
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
 }
