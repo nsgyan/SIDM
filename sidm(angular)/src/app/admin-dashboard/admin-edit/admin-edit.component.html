@@ -132,8 +132,9 @@
     
                         <a *ngIf="formData.subCategoryDoccument" href="{{formData?.subCategoryDoccument}}"
                             target="_blank" ><i class="fas fa-eye"></i></a>
-                        <a *ngIf="formData.subCategoryDoccument" (click)="delete('subCategoryDoccument')"><i
+                        <a *ngIf="formData.subCategoryDoccument" data-toggle="modal" data-target="#deletepopup" (click)="delete('subCategoryDoccument')"><i
                                 class="fa fa-trash"></i></a>
+
                         <p *ngIf="editForm.get('subCategoryDoccument')?.hasError('required')" style="color: red;">
                             Sub category <strong>required</strong>
                         </p>
@@ -326,7 +327,7 @@
                             jpeg & png format. Image size should be less than 2MB</p>
                         <a *ngIf="formData.documentGstCertificate" href="{{formData?.documentGstCertificate}}"
                             target="_blank"><i class="fas fa-eye"></i></a>
-                        <a *ngIf="formData.documentGstCertificate" (click)="delete('documentGstCertificate')"><i
+                        <a *ngIf="formData.documentGstCertificate" data-toggle="modal" data-target="#staticBackdrop" (click)="delete('documentGstCertificate')"><i
                                 class="fa fa-trash"></i></a>
     
     
@@ -552,7 +553,7 @@
                                 <a *ngIf="formData.appreciationDocuments" href="{{formData?.appreciationDocuments}}"
                                     target="_blank"><i class="fas fa-eye"></i></a>
                                 <a *ngIf="formData.appreciationDocuments"
-                                    (click)="delete('appreciationDocuments')"><i class="fa fa-trash"></i></a>
+                                    data-toggle="modal" data-target="#staticBackdrop" (click)="delete('appreciationDocuments')"><i class="fa fa-trash"></i></a>
     
     
                                 <div *ngIf="editForm.controls['appreciationDocuments'].invalid
@@ -612,7 +613,7 @@
                     </p>
                     <a *ngIf="formData.exhibit1" href="{{formData?.exhibit1}}" targe t="_blank"
                      ><i class="fas fa-eye"></i></a>
-                    <a *ngIf="formData.exhibit1" (click)="delete('exhibit1')"><i class="fa fa-trash"></i></a>
+                    <a *ngIf="formData.exhibit1" data-toggle="modal" data-target="#staticBackdrop" (click)="delete('exhibit1')"><i class="fa fa-trash"></i></a>
     
                     <br>
                     <h5 class="mb-2 mt-3">Exhibit 2*</h5>
@@ -626,7 +627,7 @@
                     </p>
                     <a *ngIf="formData.exhibit2" href="{{formData?.exhibit2}}" target="_blank"
                        ><i class="fas fa-eye"></i></a>
-                    <a *ngIf="formData.exhibit2" (click)="delete('exhibit2')"><i class="fa fa-trash"></i></a>
+                    <a *ngIf="formData.exhibit2" data-toggle="modal" data-target="#staticBackdrop" (click)="delete('exhibit2')"><i class="fa fa-trash"></i></a>
     
                     <br>
                     <h5 class="mb-2 mt-3">Product video link (Optional)</h5>

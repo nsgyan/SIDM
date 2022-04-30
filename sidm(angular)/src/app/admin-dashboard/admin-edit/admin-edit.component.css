@@ -234,9 +234,13 @@ h5 {
 }
 .fa-pen {
   color: #fff;
-    font-size: 25px;
-    font-weight: 600;
-    position: relative;
-    top: -5px;
-    left: 9px;
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  top: -5px;
+  left: 9px;
+}
+#deletepopup .modal-content {
+  text-align: center;
+  padding: 25px;
 }
