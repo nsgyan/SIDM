@@ -125,8 +125,11 @@ h5 {
 
 /* --------------choose btn file css-------------- */
 
-.input-file-trigger {
+/* .input-file-trigger {
   display: block;
+  position: relative;
+  top: -2.3rem;
+  margin-bottom: -2.3rem;
   padding: 9px 45px;
   width: 200px;
   background: #363a7a;
@@ -137,6 +140,14 @@ h5 {
 }
 .input-file {
   opacity: 0;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
 }
 .file-return {
   margin: 0;
@@ -153,4 +164,4 @@ h5 {
   content: "Selected file: ";
   font-style: normal;
   font-weight: normal;
-}
+} */

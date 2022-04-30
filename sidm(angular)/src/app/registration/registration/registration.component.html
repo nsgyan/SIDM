@@ -784,12 +784,14 @@
                             <div class="">
                                 <h5 class="mb-2">Exhibit 1* </h5>
                                 
-                                    <!-- <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
-                                    (change)="changeListener($event,'exhibit1')" class="border-light mb-1" name="" id="my-file"
-                                    aria-describedby="helpId" placeholder=""> -->
-                                    <input class="input-file" id="my-file" type="file">
-                                    <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
-                                    <p class="file-return"></p>
+                                    <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
+                                    (change)="changeListener($event,'exhibit1')" class="border-light mb-1" name="" id=""
+                                    aria-describedby="helpId" placeholder="">
+                                    <!-- <input formControlName="exhibit1" accept=".gif,.jpg,.jpeg,.png,.pdf"
+                                    (change)="changeListener($event,'exhibit1')"
+                                    class="input-file" name="" id="my-file" type="file" aria-describedby="helpId" placeholder=""> -->
+                                    <!-- <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label> -->
+                                    <!-- <p class="file-return"></p> -->
                                     
                                 <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should
                                     be less than 2MB</p>
