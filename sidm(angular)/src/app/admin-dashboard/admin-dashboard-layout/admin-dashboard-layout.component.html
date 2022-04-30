@@ -96,23 +96,23 @@
     </div>
 </section> -->
 
+<button (click)="exportAsXLSX()">export to Excel</button>
 <section class="">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="profileSection mb-6">
-                    <table class="table">
+                    <table class="table" id="excel-table">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">S.No</th>
                                 <th scope="col">Personal Information</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Type Of Applicant</th>
+                                <th scope="col">Applied For</th>
                                 <th scope="col">Organisation</th>
-                                <th scope="col">Membership Number</th>
                                 <th scope="col">Registration fee</th>
                                 <th scope="col">Membership fee</th>
+                                
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -122,55 +122,32 @@
                                 <td class="table_content"><span class="font-bold text-theme">{{i+1+index}}</span></td>
                                 <th scope="row">
                                     <ul class="list-unstyled text-xs">
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Name:</span>{{item.name}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Mobile
-                                                Number:</span>{{item.mobileNumber}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Email:</span>{{item.email}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Designation:</span>{{item.designation}}</li>
+                                        <li class="table_content" > <strong>{{item.name}}</strong> </li>
+                                        <li class="table_content">{{item.mobileNumber}}</li>
+                                        <li class="table_content">{{item.email}}</li>
+                                        <li class="table_content">{{item.panNumber}}</li>
                                     </ul>
                                 </th>
-                                <td>
+                               
+                                <td class="table_content" scope="row">
                                     <ul class="list-unstyled text-xs">
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">Address:</span>
-                                            {{item.addressl1}}
-                                            {{item.addressl2}}</li>
+                                            text-theme">Category: </span>{{item.category}}</li>
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">City:</span>{{item.city}}</li>
+                                            text-theme">Type: </span>{{item.typeOfApplicant}}</li>
                                         <li class="table_content"><span class="font-bold
-                                                text-theme">State:</span>{{item.state}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">PinCode:</span>{{item.pincode}}</li>
-                                    </ul>
-                                </td>
-                                <td class="table_content" scope="row">{{item.category}}</td>
-                                <th class="table_content" scope="row">{{item.typeOfApplicant}}</th>
-                                <td scope="row">
-                                    <ul class="list-unstyled text-xs">
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Name:</span>{{item.nameOfCompany}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Date:</span>{{item.dateOfCompany}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Pan Number:</span>{{item.panNumber}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">Gst Number:</span>{{item.gstinOfCompany}}</li>
+                                                text-theme">SIDM Member: </span>{{item.sidmMember}}</li>
+                                       
                                     </ul>
                                 </td>
                                 <td scope="row">
                                     <ul class="list-unstyled text-xs">
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme">SIDM
-                                                Membership Number:</span>{{item.sidmMemberShipNumber}}</li>
-                                        <li class="table_content"><span class="font-bold
-                                                text-theme"> Other Association
-                                                Organisation :</span>{{item.associationName}}</li>
+                                        <li class="table_content">{{item.nameOfCompany}}</li>
+                                        <li class="table_content">{{item.dateOfCompany}}</li>
+                                        <li class="table_content">{{item.gstinOfCompany}}</li>
                                     </ul>
                                 </td>
+                               
                                 <td class="table_content">
                                     <span style="color: red;" *ngIf="item.paymentStatus==='Pending'">{{item.paymentStatus}}</span>
                                     <span style="color: green;" *ngIf="item.paymentStatus==='Paid'">{{item.paymentStatus}}</span>
@@ -185,6 +162,11 @@
                                         <li class="table_content" *ngIf="item.memberShipAmount  "><span class="font-bold
                                                 text-theme"> Amount :</span>{{item.memberShipAmount}}</li>
                                     </ul>
+                                </td>
+                                <td scope="row">
+                                    <span *ngIf="item.status==='Pending'" style="color: #cc1d2c;">{{item.status}} </span>
+                                    <span *ngIf="item.status==='Approved'" style="color: green;">{{item.status}} </span>
+                                    <span *ngIf="item.status!=='Approved'&&item.status!=='Pending'">{{item.status}} </span>
                                 </td>
 
                                 <td class="text-center">

@@ -5,6 +5,8 @@ import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { ExportToExccelService } from 'src/app/shared/services/export-to-exccel.service';
+import * as XLSX from 'xlsx'; 
 
 @Component({
   selector: 'app-admin-dashboard-layout',
@@ -23,7 +25,8 @@ export class AdminDashboardLayoutComponent implements OnInit {
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private routes: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private excelService:ExportToExccelService ) {
     this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']
@@ -126,5 +129,18 @@ export class AdminDashboardLayoutComponent implements OnInit {
     this.routes.navigateByUrl(url);
     // this.routes.navigateByUrl(url);
     // window.location.href=url
+  }
+  fileName= 'ExcelSheet.xlsx'; 
+  exportAsXLSX():void {
+     /* table id is passed over here */   
+     let element = document.getElementById('excel-table'); 
+     const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+     /* generate workbook and add the worksheet */
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+     /* save to file */
+     XLSX.writeFile(wb, this.fileName);
   }
 }
