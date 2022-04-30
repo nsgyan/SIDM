@@ -201,7 +201,7 @@
                                             <a class="dropdown-item"data-toggle="modal"  *ngIf="item.paymentStatus==='Paid' &&( item.status==='Pending Approval'||item.status==='Request Info')" (click)="modalOpen(item._id)"
                                             data-target="#exampleModal"><i aria-hidden="true"
                                                     class="fas fa-info-circle"></i> Request Info</a>
-                                            <a class="dropdown-item" href="#"><i aria-hidden="true"
+                                            <a class="dropdown-item" *ngIf="item.status==='Approved'" (click)="editForm(item._id)"><i aria-hidden="true"
                                                     class="fas fa-edit"></i> Edit</a>
                                         </div>
                                     </div>

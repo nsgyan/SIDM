@@ -196,6 +196,7 @@ exports.getmemberData = (req, res, next) => {
 };
 
 exports.updateFrom = (req, res, next) => {
+  const usertype=req.body.userType ?req.body.userType:'';
   const userID = req.params.userID
   const createAt = req.body.currentDate;
   const typeOfApplicant = req.body.typeOfApplicant;
@@ -235,8 +236,8 @@ exports.updateFrom = (req, res, next) => {
   const alterEmail= req.body.alterEmail
   RegistrationForm.findById(userID)
     .then((formData) => {
-    
-      formData.createAt = createAt;
+    if(formData.status!=='approved'||usertype==='admin')
+    {  formData.createAt = createAt;
           formData.typeOfApplicant= typeOfApplicant;
           if (subCategoryDoccument !== formData.subCategoryDoccument) {
             formData.subCategoryDoccument = subCategoryDoccument;
@@ -284,7 +285,12 @@ exports.updateFrom = (req, res, next) => {
         else{
           res.status(200).json('successfully sumbit');
         }
-      });
+      });}
+      else
+      {
+        res.status(404).json('user cannot update form');
+
+      }
     })
     .catch((err) => {
       res.status(404).json(err);

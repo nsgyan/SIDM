@@ -208,19 +208,9 @@ export class MemberDashboardComponent implements OnInit {
     this.captcha = captchaResponse;
   }
 
-
-
-
-
-
-
-
   pickclender() {
     return false
   }
-
-
-
 
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {

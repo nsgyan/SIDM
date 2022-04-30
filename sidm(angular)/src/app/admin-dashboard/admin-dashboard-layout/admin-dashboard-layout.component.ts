@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -118,4 +119,12 @@ export class AdminDashboardLayoutComponent implements OnInit {
     })
   }
 
+  editForm(id:any){
+ 
+    // this.routes.navigate(['/adminEdit/edit/',id]);
+    let url: string = "/adminDashboard/edit/" +id
+    this.routes.navigateByUrl(url);
+    // this.routes.navigateByUrl(url);
+    // window.location.href=url
+  }
 }
