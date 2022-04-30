@@ -1,6 +1,9 @@
 const RegistrationForm = require("../models/registrationForm");
 const fs = require("fs");
 var nodemailer = require('nodemailer');
+const path = require('path')
+var handlebars = require('handlebars');
+
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -88,22 +91,35 @@ exports.postRegistrationForm = (req, res, next) => {
     alterEmail:alterEmail,
     remark:null
   });
+ 
   form
     .save()
     .then((result) => {
+      const filePath = path.join(__dirname, '../view/email.html');
+      const source = fs.readFileSync(filePath, 'utf-8').toString();
+      const template = handlebars.compile(source);
+      const replacements = {
+        email: result.email,
+        mobileNumber:result.mobileNumber,
+        PanNumber:result.panNumber,
+        date:result.createAt,
+
+      };
+      const htmlToSend = template(replacements);
       var mailOptions = {
         from: 'awardsidm@gmail.com',
         to: result.email,
         subject: 'SIDM Champion Award 2022',
-        text: 'That was easy!'
+        html: htmlToSend
       };
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
+          res.json(error);
         } else {
-          console.log('Email sent: ' + info.response);
+          res.status(200).json('Please check your email');
         }
       });
+  
       res.status(200).json('successfully sumbit');
     })
     .catch((err) => {
