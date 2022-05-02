@@ -236,7 +236,7 @@ exports.updateFrom = (req, res, next) => {
   const alterEmail= req.body.alterEmail
   RegistrationForm.findById(userID)
     .then((formData) => {
-    if(formData.status!=='approved'||usertype==='admin')
+    if(formData.status!=='Approved'||usertype==='admin')
     {  formData.createAt = createAt;
           formData.typeOfApplicant= typeOfApplicant;
           if (subCategoryDoccument !== formData.subCategoryDoccument) {
