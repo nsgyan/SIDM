@@ -3,6 +3,7 @@ const fs = require("fs");
 var nodemailer = require('nodemailer');
 const path = require('path')
 var handlebars = require('handlebars');
+const date = require('date-and-time')
 
 
 var transporter = nodemailer.createTransport({
@@ -91,10 +92,12 @@ exports.postRegistrationForm = (req, res, next) => {
     alterEmail:alterEmail,
     remark:null
   });
+
  
   form
     .save()
     .then((result) => {
+      const Date= date.format(result.createAt,'DD/MM/YYYY HH:mm');
       const filePath = path.join(__dirname, '../view/email.html');
       const source = fs.readFileSync(filePath, 'utf-8').toString();
       const template = handlebars.compile(source);
@@ -102,7 +105,7 @@ exports.postRegistrationForm = (req, res, next) => {
         email: result.email,
         mobileNumber:result.mobileNumber,
         PanNumber:result.panNumber,
-        date:result.createAt,
+        date:Date
 
       };
       const htmlToSend = template(replacements);
