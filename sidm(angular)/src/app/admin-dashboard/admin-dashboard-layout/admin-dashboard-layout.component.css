@@ -10,3 +10,31 @@ table {
 td, th {
   width: 25%;
 }
+
+.top-filter{
+  padding: 0 2rem;
+  border: 1px solid;
+  width: 15rem;
+}
+mat-cell{
+  display: inline-block !important;
+  font-size: 13px;
+  color: #000000;
+  font-weight: 500;
+}
+mat-header-row{
+  text-align: center;
+  background-color: #363a7a;
+  font-size: 16px;
+  color: #fff;
+}
+mat-row{
+  text-align: center;
+}
+.mat-sort-header-content,mat-header-cell{
+font-size: 16px;
+}
+.table{
+  border: 1px solid;
+  width: 100%;
+}
