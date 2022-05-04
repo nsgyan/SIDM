@@ -104,9 +104,13 @@
         <mat-form-field class="mb-4" appearance="standard">
           <input class="top-filter" matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
         </mat-form-field>
+        <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
+  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+  <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
+  <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button>
 
         <div class="mat-elevation-z8">
-          <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+          <mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
             <!-- ID Column -->
             <ng-container class="m-2" matColumnDef="createAt">
               <mat-header-cell *matHeaderCellDef mat-sort-header>
