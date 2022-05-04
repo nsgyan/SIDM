@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-admin-dashboard-layout',
@@ -13,6 +16,11 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 })
 export class AdminDashboardLayoutComponent implements OnInit {
   requestInfo:FormGroup
+  displayedColumns: string[] = ['createAt','name', 'email', 'mobileNumber', 'panNumber','category','typeOfApplicant','nameOfCompany','sidmMember','paymentStatus','offlinePaymentDetails','status','actions'];
+  dataSource !: MatTableDataSource<any> ;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   allFormsData: any;
   page = 1;
   index=0;
@@ -65,14 +73,10 @@ export class AdminDashboardLayoutComponent implements OnInit {
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
-      this.allFormsData = data
+      this.dataSource = new MatTableDataSource(data.forms);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
-     if(type==='pervious'){
-      this.index-=10
-     }
-     else if(type==='next'){
-       this.index+=10
-     }
 
     }, err => {
       this.toast.error(err.error);
@@ -127,4 +131,14 @@ export class AdminDashboardLayoutComponent implements OnInit {
     // this.routes.navigateByUrl(url);
     // window.location.href=url
   }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 }
