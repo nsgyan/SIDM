@@ -187,14 +187,18 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header>
                 Registration fees
               </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{ row.paymentStatus }} </mat-cell>
+              <mat-cell *matCellDef="let row"> 
+                <span *ngIf="row.paymentStatus==='Paid'" style="color: green;">Paid</span>
+                <span *ngIf="row.paymentStatus==='Pending'" style="color: red;">Pending</span>
+              </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="offlinePaymentDetails">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Membership fees
               </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                {{ row.offlinePaymentDetails ? "Paid" : "Pending" }}
+                <span *ngIf="row.offlinePaymentDetails" style="color: green;">Paid</span>
+                <span *ngIf="!row.offlinePaymentDetails" style="color: red;">Pending</span>
               </mat-cell>
             </ng-container>
 
@@ -202,7 +206,11 @@
             <ng-container matColumnDef="status">
               <mat-header-cell *matHeaderCellDef mat-sort-header>status
               </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
+              <mat-cell *matCellDef="let row"> 
+                <span *ngIf="row.status==='Approved'" style="color: green;">{{ row.status }}</span>
+                <span *ngIf="row.status==='Pending'" style="color: red;">{{ row.status }}</span> 
+                <span *ngIf="row.status==='Pending Approval'||row.status==='Request Info'" style="color: rgb(167, 162, 162);">{{ row.status }}</span> 
+              </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="actions">
