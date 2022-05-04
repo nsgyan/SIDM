@@ -97,17 +97,11 @@ export class AdminDashboardLayoutComponent implements OnInit {
     this.routes.navigateByUrl(url);
 
   }
-  perviousPage() {
-    this.page = this.page - 1;
-    this.getdata('pervious')
-  }
-  nextpage() {
-    this.page = this.page + 1;
-    this.getdata('next')
-  }
-  approve(id:string){
+
+
+  approve() {
     let createAt = new Date();
-    this.httpService.changeStatus(id,{status:'Approved',createAt:createAt}).subscribe(data=>{
+    this.httpService.changeStatus(this.id, { status: 'Approved', createAt: createAt }).subscribe(data => {
       window.location.reload()    
       this.toast.success('successfully status change');
     },err=>{

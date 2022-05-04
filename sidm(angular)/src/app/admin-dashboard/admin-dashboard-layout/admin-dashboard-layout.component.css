@@ -1,3 +1,37 @@
+p {
+  font-family: Lato;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.table .thead-light th {
+  background-color: #363a7a;
+  font-size: 16px;
+}
+.table .thead-light th {
+  color: #fff;
+}
+.viewBtn {
+  border: none;
+  background: #363a7a;
+  padding: 2px 16px;
+}
+.table_content {
+  color: #1e1e1e;
+  font-size: 13px;
+  font-weight: 500;
+}
+.marathon-header-fixed.header-top {
+  background-color: #363a7a;
+  top: -142px;
+  padding: 1rem 0;
+}
+.page-title .container {
+padding: 6rem 0;
+}
+
+
 table {
   width: 100%;
 }
@@ -30,12 +64,12 @@ mat-header-row{
 }
 mat-row{
   text-align: center;
+  border: none;
 }
 .mat-sort-header-content,mat-header-cell{
 font-size: 16px;
 }
 .table{
-  border: 1px solid;
   width: 100%;
 }
 .mat-row:nth-child(even){
