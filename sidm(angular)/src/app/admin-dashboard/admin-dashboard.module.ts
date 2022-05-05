@@ -15,12 +15,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { ListViewComponent } from './list-view/list-view.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardLayoutComponent,
-    AdminEditComponent
+    AdminEditComponent,
+    ListViewComponent
   ],
   imports: [
     CommonModule,

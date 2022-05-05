@@ -5,7 +5,7 @@ p {
 .clickable {
   cursor: pointer;
 }
-.table .thead-light th {
+thead {
   background-color: #363a7a;
   font-size: 16px;
 }

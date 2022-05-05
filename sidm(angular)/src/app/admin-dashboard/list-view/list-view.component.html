@@ -1,0 +1,242 @@
+<!-- ================= HEADER ================= -->
+<header class="marathon-header-fixed header-fixed">
+    <a href="javascript:void(0)" class="nav-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    <div class="top-panel">
+      <div class="container">
+        <a href="javascript:void(0)" class="logo2">
+          <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.svg"
+            alt="logo" />
+        </a>
+        <a href="javascript:void(0)" class="logo1">
+          <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo" />
+        </a>
+  
+        <a href="javascript:void(0)" class="logo3">
+          <img class="headerLogo3"
+            src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo" />
+        </a>
+      </div>
+    </div>
+    <!-- <div class="header-nav">
+          <div class="container">
+              <div class="header-nav-cover">
+                  <nav class="nav-menu menu">
+                      <ul class="nav-list">
+                          <li class="active-page">
+                              <a href="index.html">home</a>
+                          </li>
+                          <li><a href="#about">about sidm</a></li>
+                          <li><a href="#Objective">OBJECTIVE</a></li>
+                          <li><a href="#categories">categories</a></li>
+                          <li><a href="#committee">AWARDS COMMITTEE</a></li>
+                          <li><a href="#process">process</a></li>
+                          <li><a href="#testimonial">testimonials</a></li>
+                          <li><a href="#faq">faqs</a></li>
+                          <li><a href="#award2020">AWARDS 2020</a></li>
+                          <li><a href="#footer">Contact Us</a></li>
+                      </ul>
+                  </nav>
+  
+              </div>
+          </div>
+      </div> -->
+  </header>
+  <!-- =============== HEADER END =============== -->
+  <!--=================== PAGE-TITLE ===================-->
+  <div class="page-title">
+    <div class="container">
+      <h1 class="title">Dashboard</h1>
+      <div class="breadcrumbs">
+        <ul>
+          <li>
+            <a (click)="logout()"><i aria-hidden="true" class="fa fa-sign-out"></i>
+              Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+
+    <div class="d-flex">
+    <button mat-raised-button (click)="exporter.exportTable('xlsx',
+    {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
+          
+<mat-form-field class="top-filter" appearance="standard">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+  </mat-form-field>
+  </div>
+ 
+
+  
+  <div class="mat-elevation-z8">
+    <table mat-table  matTableExporter [dataSource]="dataSource"
+    #exporter="matTableExporter" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="createAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.createAt}} </td>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="mobileNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No. </th>
+        <td mat-cell *matCellDef="let row"> {{row.mobileNumber}} </td>
+      </ng-container>
+      <ng-container matColumnDef="panNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PAN No. </th>
+        <td mat-cell *matCellDef="let row"> {{row.panNumber}} </td>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+      </ng-container>
+      <ng-container matColumnDef="typeOfApplicant">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Applicant  Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.typeOfApplicant}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nameOfCompany">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.nameOfCompany}} </td>
+      </ng-container>
+      <ng-container matColumnDef="sidmMember">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  SIDM Member </th>
+        <td mat-cell *matCellDef="let row"> {{row.sidmMember}} </td>
+      </ng-container>
+      <ng-container matColumnDef="paymentStatus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Registration fees </th>
+        <td mat-cell *matCellDef="let row"> <span *ngIf="row.paymentStatus==='Paid'" style="color: green;">Paid</span>
+            <span *ngIf="row.paymentStatus==='Pending'" style="color: red;">Pending</span> </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="offlinePaymentDetails">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Membership fees </th>
+        <td mat-cell *matCellDef="let row"> <span *ngIf="row.offlinePaymentDetails" style="color: green;">Paid</span>
+            <span *ngIf="!row.offlinePaymentDetails" style="color: red;">Pending</span> </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+        <td mat-cell *matCellDef="let row">  <span *ngIf="row.status==='Approved'" style="color: green;">{{
+            row.status }}</span>
+          <span *ngIf="row.status==='Pending'" style="color: red;">{{
+            row.status }}</span>
+          <span *ngIf="row.status==='Pending
+            Approval'||row.status==='Request Info'" style="color: rgb(167,
+            162, 162);">{{ row.status }}</span> </td>
+      </ng-container>
+  
+  
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+        <td mat-cell *matCellDef="let row">    <div class="dropBtn dropdown">
+            <button class="paymentsDropdwn  dropdown-toggle" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                <i aria-hidden="true" class="fas fa-cog"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item"><i aria-hidden="true"
+                        class="fas fa-eye"></i> View</a>
+                        <a class="dropdown-item"><i aria-hidden="true"
+                            class="fas fa-edit"></i> Edit</a>
+                <a class="dropdown-item"><i aria-hidden="true" class="fas fa-rupee-sign"></i> Pay Now</a>
+                <a class="dropdown-item"data-toggle="modal"
+                data-target="#exampleModal">
+                <i aria-hidden="true" class="fas fa-file-alt"></i>
+                Offline Payment Details</a>
+                <a class="dropdown-item" ><i aria-hidden="true"
+                        class="fas fa-edit"></i> View Payment </a>
+            </div>
+        </div> </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  
+    <mat-paginator aria-label="Select page of users"></mat-paginator>
+  </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  
+<footer id="footer"></footer>
+<!-- *ngIf="allFormsData?.hasPreviousPage" -->
+<!-- *ngIf="allFormsData?.hasNextPage" -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request Info</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="requestInfo">
+          <div class="">
+            <div class="form-group">
+              <input type="textbox" class="form-control user-bg" id="uername"
+                placeholder="remark"
+                formControlName="remark" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="NewBtn" data-dismiss="modal">Close</button>
+        <button type="button" class="NewBtn" (click)="remark()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- approve model -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button"  (click)="approve()" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

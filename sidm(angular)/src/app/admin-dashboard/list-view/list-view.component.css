@@ -1,0 +1,77 @@
+p {
+    font-family: Lato;
+  }
+  
+  .clickable {
+    cursor: pointer;
+  }
+  .mat-header-cell {
+    background-color: #363a7a;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .table .thead-light th {
+    color: #fff;
+  }
+  .viewBtn {
+    border: none;
+    background: #363a7a;
+    padding: 2px 16px;
+  }
+  .table_content {
+    color: #1e1e1e;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+  }
+  .page-title .container {
+  padding: 6rem 0;
+  }
+  
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  
+  .top-filter{
+    padding: 0 2rem;
+    border: 1px solid;
+    width: 15rem;
+  }
+ 
+  .mat-sort-header-content,mat-header-cell{
+  font-size: 16px;
+  }
+  .table{
+    width: 100%;
+  }
+  .mat-row:nth-child(even){
+    background-color: #F0ECE3
+  }
+          
+  .mat-row:nth-child(odd){
+    background-color: #F3F1F5
+  } 
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .top-filter{
+    padding: 0 2rem;
+    border: 1px solid;
+    width: 15rem;
+  }

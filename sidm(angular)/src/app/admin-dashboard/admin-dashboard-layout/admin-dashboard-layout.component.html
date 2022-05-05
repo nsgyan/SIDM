@@ -229,22 +229,27 @@
               <mat-header-cell *matHeaderCellDef
                 class="mat-sort-header-content">Actions </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <a (click)="viewDetails(row._id)"><i aria-hidden="true"
-                    class="fas fa-eye"></i>
-                  View</a>
-                <a  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-                  
-                  (click)="modalOpen(row._id)"><i aria-hidden="true" class="fas
-                    fa-check"></i>
-                  Approve</a>
-                <a data-toggle="modal"
-                  *ngIf="row.paymentStatus==='Paid' &&( row.status==='Pending
-                  Approval'||row.status==='Request Info')"
-                  (click)="modalOpen(row._id)" data-target="#exampleModal"><i
-                    aria-hidden="true" class="fas fa-info-circle"></i> Request
-                  Info</a>
-                <a *ngIf="row.status==='Approved'" (click)="editForm(row._id)"><i
-                    aria-hidden="true" class="fas fa-edit"></i> Edit</a>
+                <td class="text-center">
+                  <div class="dropBtn dropdown">
+                      <button class="paymentsDropdwn  dropdown-toggle" type="button"
+                          id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                          <i aria-hidden="true" class="fas fa-cog"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item"><i aria-hidden="true"
+                                  class="fas fa-eye"></i> View</a>
+                                  <a class="dropdown-item"><i aria-hidden="true"
+                                      class="fas fa-edit"></i> Edit</a>
+                          <a class="dropdown-item"><i aria-hidden="true" class="fas fa-rupee-sign"></i> Pay Now</a>
+                          <a class="dropdown-item"data-toggle="modal"
+                          data-target="#exampleModal">
+                          <i aria-hidden="true" class="fas fa-file-alt"></i>
+                          Offline Payment Details</a>
+                          <a class="dropdown-item" ><i aria-hidden="true"
+                                  class="fas fa-edit"></i> View Payment </a>
+                      </div>
+                  </div>
+              </td>
               </mat-cell>
             </ng-container>
 
