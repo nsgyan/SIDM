@@ -132,24 +132,9 @@ exports.getForms = (req, res, next) => {
   const itemPerPage = req.query.itemPerPage || 10;
   let totalItems;
   RegistrationForm.find()
-    .countDocuments()
-    .then((numOfForm) => {
-      totalItems = numOfForm;
-      return RegistrationForm.find()
-        .skip((page - 1) * itemPerPage)
-        .limit(itemPerPage);
-    })
     .then((data) => {
       if (data) {
-        res.status(200).json({
-          forms: data,
-          currentPage: page,
-          hasNextPage: itemPerPage * page < totalItems,
-          hasPreviousPage: page > 1,
-          nextPage: page + 1,
-          previousPage: page - 1,
-          lastPage: Math.ceil(totalItems / itemPerPage),
-        });
+        res.status(200).json({ data });
       } else {
         res.status(404).json("not Found");
       }

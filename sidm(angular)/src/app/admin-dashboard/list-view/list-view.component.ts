@@ -17,7 +17,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 export class ListViewComponent implements OnInit {
 
   requestInfo:FormGroup
-  displayedColumns: string[] = ['createAt','name', 'email', 'mobileNumber', 'panNumber','category','typeOfApplicant','nameOfCompany','sidmMember','paymentStatus','offlinePaymentDetails','status','actions'];
+  displayedColumns: string[] = ['index','createAt','name', 'email', 'mobileNumber', 'panNumber','category','typeOfApplicant','nameOfCompany','sidmMember','paymentStatus','offlinePaymentDetails','status','actions'];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -49,7 +49,7 @@ export class ListViewComponent implements OnInit {
   }
   getdata(type:string) {
     this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
-      data?.forms.map((item: any) => {
+      data?.data.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = 'C1 '
         }
@@ -71,7 +71,7 @@ export class ListViewComponent implements OnInit {
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         }
-        const format = ' dd MMM, y, HH:mm,';
+        const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
         // console.log(data.createAt.type);
@@ -80,7 +80,7 @@ export class ListViewComponent implements OnInit {
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
-      this.dataSource = new MatTableDataSource(data.forms);
+      this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 

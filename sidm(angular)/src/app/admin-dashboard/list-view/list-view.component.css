@@ -31,7 +31,7 @@ p {
   .page-title .container {
   padding: 6rem 0;
   }
-  
+ 
   
   table {
     width: 100%;
@@ -42,17 +42,24 @@ p {
     width: 100%;
   }
   
-  td, th {
-    width: 25%;
+  td, th{
+    width: 6%;
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    color: #000000;
   }
-  
-  .top-filter{
-    padding: 0 2rem;
-    border: 1px solid;
-    width: 15rem;
+  td.mat-cell:first-of-type{
+    padding-left: 0% ;
   }
- 
-  .mat-sort-header-content,mat-header-cell{
+  td.mat-cell:last-of-type{
+    padding-right: 0%;
+  }
+  td.mat-cell{
+    border: none;
+  }
+
+  .mat-sort-header-content, .mat-header-cell{
   font-size: 16px;
   }
   .table{
@@ -71,7 +78,35 @@ p {
     width: 100%;
   }
   .top-filter{
-    padding: 0 2rem;
-    border: 1px solid;
     width: 15rem;
+    border: 1px solid #8b8b8b;
+    padding: 0px 1rem;
+      border-radius: 5px;
   }
+  .paymentsDropdwn{
+    border-color: #363a7a;
+    padding: 0 1rem;
+    border-radius: 5px;
+  }
+  .paymentsDropdwn i{
+    margin-right: 9px;
+  }
+  .dropdown-menu{
+    position: absolute !important;
+    min-width: 0 !important;
+    left: -37px !important;
+  }
+  th.mat-header-cell:last-of-type{
+    padding-left: 1%;
+  }
+ th.mat-header-cell{
+padding-left: 15px;
+ }
+ /* .mat-input-element{
+      border: 1px solid #8b8b8b;
+      padding: 2px 1rem;
+      width: 15rem;
+ } */
+ table{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+ }
