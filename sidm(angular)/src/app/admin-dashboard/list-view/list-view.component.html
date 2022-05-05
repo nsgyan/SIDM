@@ -73,8 +73,8 @@
 
 
 
-      <div class="mat-elevation-z8">
-        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
+      <div class="table-responsive">
+        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort style="overflow-x: auto;">
           <!-- ID Column -->
           <ng-container matColumnDef="index">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> S No. </th>
@@ -183,9 +183,10 @@
           </tr>
         </table>
 
-        <mat-paginator aria-label="Select page of users"></mat-paginator>
+       
       </div>
 
+      <mat-paginator aria-label="Select page of users"></mat-paginator>
 
     </div>
   </div>
