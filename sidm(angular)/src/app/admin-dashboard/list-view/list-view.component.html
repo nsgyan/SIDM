@@ -152,17 +152,15 @@
                 <i aria-hidden="true" class="fas fa-cog"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item"><i aria-hidden="true"
-                        class="fas fa-eye"></i> View</a>
-                        <a class="dropdown-item"><i aria-hidden="true"
-                            class="fas fa-edit"></i> Edit</a>
-                <a class="dropdown-item"><i aria-hidden="true" class="fas fa-rupee-sign"></i> Pay Now</a>
-                <a class="dropdown-item"data-toggle="modal"
-                data-target="#exampleModal">
-                <i aria-hidden="true" class="fas fa-file-alt"></i>
-                Offline Payment Details</a>
-                <a class="dropdown-item" ><i aria-hidden="true"
-                        class="fas fa-edit"></i> View Payment </a>
+              <a class="dropdown-item" (click)="viewDetails(row._id)"><i aria-hidden="true"
+                class="fas fa-eye"></i> View</a>
+        <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter"  *ngIf="row.paymentStatus==='Paid' && (row.status==='Pending Approval' || row.status==='Request Info')" (click)="modalOpen(row._id)"><i aria-hidden="true"
+                class="fas fa-check"></i> Approve</a>
+        <a class="dropdown-item" data-toggle="modal"  *ngIf="row.paymentStatus==='Paid' &&( row.status==='Pending Approval'||row.status==='Request Info')" (click)="modalOpen(row._id)"
+        data-target="#exampleModal"><i aria-hidden="true"
+                class="fas fa-info-circle"></i> Request Info</a>
+        <a class="dropdown-item" *ngIf="row.status==='Approved'" (click)="editForm(row._id)"><i aria-hidden="true"
+                class="fas fa-edit"></i> Edit</a>
             </div>
         </div> </td>
       </ng-container>
