@@ -56,6 +56,7 @@ export class AdminEditComponent implements OnInit {
     private httpService: HttpService,
     private route: ActivatedRoute,
     private routes: Router,
+    private router: Router,
     private location: Location,
     private winRef: WindowRefService) {
       debugger
@@ -550,9 +551,8 @@ export class AdminEditComponent implements OnInit {
         status: type,
       }).subscribe(data => {
 
-        let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
-        this.routes.navigateByUrl(url);
-        this.toast.success('successfully applied');
+        this.router.navigate(['/adminDashboard'])
+        this.toast.success('successfully update');
       }, err => {
         this.toast.error(err.error);
         this.localStorage.clearLocalStorage();
