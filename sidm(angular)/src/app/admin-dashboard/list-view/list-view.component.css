@@ -115,23 +115,7 @@ table {
   text-align: center !important;
   width: 100%;
 }
- .mat-column-typeOfApplicant,.mat-column-email,
-.mat-column-sidmMember ,.mat-column-mobileNumber{
-  word-wrap: break-word !important;
-  white-space: nowrap !important;
-padding:0 12px;
-  width: 3% !important;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
 
-  word-break: break-word;
-
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-;
-}
  
 .table-responsive {
  
@@ -142,8 +126,7 @@ padding:0 12px;
       width: 100%;
       max-width: 100%;
       margin-bottom: 1rem;
-      display: table;
-      border-collapse: collapse;
+      display: table; 
       margin: 0px;
   }
 
@@ -160,19 +143,12 @@ footer {
 
 
 
-.mat-column-createAt,.mat-column-index, .mat-column-paymentStatus ,.mat-column-offlinePaymentDetails{
+.mat-column-createAt,.mat-column-index, .mat-column-typeOfApplicant,.mat-column-email,.mat-column-mobileNumber ,.mat-column-status,.mat-column-name{
   padding:0 12px;
-  word-wrap: break-word !important;
   white-space: nowrap !important;
-  flex: 0 0 10% !important;
-  width: 12% !important;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  word-break: break-word;
-
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
 }
+.mat-column-sidmMember{
+  padding:0 12px;
+}
+
+
