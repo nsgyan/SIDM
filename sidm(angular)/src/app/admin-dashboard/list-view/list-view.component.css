@@ -55,13 +55,9 @@ p {
   td.mat-cell:last-of-type{
     padding-right: 0%;
   }
-  td.mat-cell{
-    border: none;
-  }
+ 
 
-  .mat-sort-header-content, .mat-header-cell{
-  font-size: 16px;
-  }
+ 
   .table{
     width: 100%;
   }
@@ -99,9 +95,7 @@ p {
   th.mat-header-cell:last-of-type{
     padding-left: 1%;
   }
- th.mat-header-cell{
-padding-left: 15px;
- }
+
  /* .mat-input-element{
       border: 1px solid #8b8b8b;
       padding: 2px 1rem;
@@ -134,6 +128,7 @@ table {
   display: block;
   width: 100%;
   overflow-x: auto;
+}
   .mat-table {
       width: 100%;
       max-width: 100%;
@@ -142,19 +137,17 @@ table {
       border-collapse: collapse;
       margin: 0px;
   }
-  .mat-row,
-  .mat-header-row {
-      display: table-row;
-  }
+
   .mat-cell,
   .mat-header-cell {
-      word-wrap: initial;
-      display: table-cell;
       padding: 0px 5px;
-      line-break: unset;
-      width: auto;
+      border: none;
+    
       white-space: nowrap;
-      overflow: hidden;
-      vertical-align: middle;
+
+
   }
+
+footer {
+  position:absolute  ;
 }

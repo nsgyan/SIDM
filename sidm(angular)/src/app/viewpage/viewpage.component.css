@@ -75,3 +75,6 @@
 .profileSection tr {
     border-bottom: none;
 }
+footer {
+    position:absolute !important ;
+  }
