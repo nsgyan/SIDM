@@ -115,17 +115,26 @@ table {
   text-align: center !important;
   width: 100%;
 }
- .mat-column-nameOfCompany ,.mat-column-typeOfApplicant,.mat-column-email,
- .mat-column-paymentStatus ,.mat-column-offlinePaymentDetails,.mat-column-sidmMember {
-   justify-content: center;
+ .mat-column-typeOfApplicant,.mat-column-email,
+.mat-column-sidmMember ,.mat-column-mobileNumber{
+  word-wrap: break-word !important;
+  white-space: nowrap !important;
+padding:0 12px;
+  width: 3% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
- 
-  width: 9% !important;
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 ;
 }
  
 .table-responsive {
-  display: block;
+ 
   width: 100%;
   overflow-x: auto;
 }
@@ -140,14 +149,30 @@ table {
 
   .mat-cell,
   .mat-header-cell {
-      padding: 0px 5px;
       border: none;
     
-      white-space: nowrap;
-
-
+      white-space:pre-line;
   }
 
 footer {
   position:absolute  ;
+}
+
+
+
+.mat-column-createAt,.mat-column-index, .mat-column-paymentStatus ,.mat-column-offlinePaymentDetails{
+  padding:0 12px;
+  word-wrap: break-word !important;
+  white-space: nowrap !important;
+  flex: 0 0 10% !important;
+  width: 12% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
