@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = express()
 const Register = require('./routes/register')
 const User = require('./routes/user')
+const Questionnaire = require('./routes/questionnaires')
 
 const path = require('path')
 const fileUpload = require('express-fileupload');
@@ -20,6 +21,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 
 app.use('/sidm', Register)
 app.use('/user', User)
+app.use('/questionnaire', Questionnaire)
 app.use('/upload', UploadFile)
 
 
