@@ -8,6 +8,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ExportToExccelService } from 'src/app/shared/services/export-to-exccel.service';
 
 @Component({
   selector: 'app-admin-dashboard-layout',
@@ -31,7 +32,8 @@ export class AdminDashboardLayoutComponent implements OnInit {
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private routes: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private excelService:ExportToExccelService ) {
     this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']

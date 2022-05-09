@@ -513,6 +513,7 @@ export class AdminEditComponent implements OnInit {
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
     if (this.editForm.valid && this.captcha) {
       this.httpService.updateform(this.formData._id, {
+        userType:'admin',
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
         financialDoccument: this.financialDoccument,
