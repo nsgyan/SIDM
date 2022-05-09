@@ -38,10 +38,25 @@
                 [formGroupName]="i"
                 style="border: 1px solid blue; padding: 10px; width: 600px; margin: 5px;"
               >
-              Parameter:
+              <div>
+                Parameter:
                 <input type="text" (keypress)="keyPresschar($event)"  formControlName="parameter" />
-               Max Weightage:
+                <p style="color: red;"
+                *ngIf="employee.get('parameter')?.hasError('required')">
+                parameter are required
+            </p>
+              </div>
+            
+              <div>
+                Max Score:
                 <input type="text" (keypress)="keyPressNumbers($event)" formControlName="maxWeightage" />
+                <p style="color: red;"
+                *ngIf="employee.get('parameter')?.hasError('required')">
+                Max Score is required
+            </p>
+
+              </div>
+               
         
                 <button *ngIf="i!==0" (click)="removeQuestion(i)">Remove</button>
         
@@ -53,12 +68,23 @@
                     "
                   >
                     <div [formGroupName]="y">
-                   
-                     Answers :
-                      <input type="text" (keypress)="keyPresschar($event)" formControlName="answers" />
+                   <div>
+                    Answers :
+                    <input type="text" (keypress)="keyPresschar($event)" formControlName="answers" />
+                    <p style="color: red;"
+                    *ngIf="option.get('answers')?.hasError('required')">
+                    Answers is required
+                </p>
+                   </div>
+                    <div>
                       Score:
                       <input type="text" (keypress)="keyPressNumbers($event)" formControlName="score" />
-        
+                      <p style="color: red;"
+                      *ngIf="option.get('score')?.hasError('required')">
+                      score is required
+                  </p>
+                    </div>
+                     
                       <button *ngIf="y!==0" (click)="removeQuestionOption(i, y)">
                         Remove
                       </button>
@@ -75,6 +101,13 @@
             <button type="button" (click)="addQuestion()">Add Questions</button>
           </p>
     </div>
+    <div class=" mt-4">
+      <div class="form-group">
+          <re-captcha (resolved)="resolved($event)"
+              siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+      </div>
+
+  </div>
    
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

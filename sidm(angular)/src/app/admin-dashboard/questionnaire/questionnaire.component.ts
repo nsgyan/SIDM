@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
@@ -12,10 +13,12 @@ export class QuestionnaireComponent implements OnInit {
   title = 'Nested FormArray Example Add Form Fields Dynamically';
  
   questionnaire:FormGroup;
+  captcha: any;
  
  
   constructor(private fb:FormBuilder,
-    private httpService: HttpService) {
+    private httpService: HttpService,
+    private toast: ToastrService,) {
  
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
@@ -54,6 +57,9 @@ export class QuestionnaireComponent implements OnInit {
  
   removeQuestion(quesIndex:number) {
     this.question().removeAt(quesIndex);
+  }
+  resolved(captchaResponse: any) {
+    this.captcha = captchaResponse;
   }
  
 
@@ -103,14 +109,20 @@ export class QuestionnaireComponent implements OnInit {
       category:this.questionnaire.value.category,
        typeOfApplicant:this.questionnaire.value.typeOfApplicant,
       question:this.questionnaire.value.question, 
-      }).subscribe(data=>{
+      }).subscribe((data:any)=>{
         console.log(data);
+        this.toast.success(data);
         
       })
-    
-     
+    }
+    else if (!this.captcha) {
+      this.toast.error('Please verify that you are not a robot.');
+    }
+    else {
+      this.toast.error('Please Fill Required Field');
     }
   }
+
   selectChangeHandler(){
     this.addQuestion()
     this.addQuestionOption(0)
