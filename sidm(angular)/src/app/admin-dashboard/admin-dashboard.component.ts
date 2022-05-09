@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { Observable, map } from 'rxjs';
+import { SideNavService } from '../shared/services/side-nav.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
 
-  constructor() { }
+  @ViewChild('panel', { static: true }) private sidePanel!: MatSidenav;
+  @ViewChild('content', { static: true, read: ViewContainerRef }) private vcf!: ViewContainerRef;
 
-  ngOnInit(): void {
+  constructor(private breakpointObserver: BreakpointObserver, private sidenavService: SideNavService) {}
+
+  ngOnInit() {
+    this.sidenavService.setPanel(this.sidePanel);
+    this.sidenavService.setContentVcf(this.vcf);
   }
-
 }
