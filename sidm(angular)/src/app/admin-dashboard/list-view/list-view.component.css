@@ -1,0 +1,139 @@
+p {
+    font-family: Lato;
+  }
+  
+  .clickable {
+    cursor: pointer;
+  }
+  .mat-header-cell {
+    background-color: #363a7a;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .table .thead-light th {
+    color: #fff;
+  }
+  .viewBtn {
+    border: none;
+    background: #363a7a;
+    padding: 2px 16px;
+  }
+  .table_content {
+    color: #1e1e1e;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .marathon-header-fixed.header-top {
+    background-color: #363a7a;
+    top: -142px;
+    padding: 1rem 0;
+  }
+  .page-title .container {
+  padding: 6rem 0;
+  }
+ 
+  
+  table {
+    width: 100%;
+  }
+  
+
+  
+  td, th{
+    width: 6%;
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    color: #000000;
+  }
+  td.mat-cell:first-of-type{
+    padding-left: 0% ;
+  }
+  td.mat-cell:last-of-type{
+    padding-right: 0%;
+  }
+ 
+
+ 
+  .table{
+    width: 100%;
+  }
+  .mat-row:nth-child(even){
+    background-color: #F0ECE3
+  }
+          
+  .mat-row:nth-child(odd){
+    background-color: #F3F1F5
+  } 
+  
+
+  .paymentsDropdwn{
+    border-color: #363a7a;
+    padding: 0 1rem;
+    border-radius: 5px;
+  }
+  .paymentsDropdwn i{
+    margin-right: 9px;
+  }
+  .dropdown-menu{
+    position: absolute !important;
+    min-width: 0 !important;
+    left: -37px !important;
+  }
+  th.mat-header-cell:last-of-type{
+    padding-left: 1%;
+  }
+
+ /* .mat-input-element{
+      border: 1px solid #8b8b8b;
+      padding: 2px 1rem;
+      width: 15rem;
+ } */
+ table{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+ }
+
+
+ :host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  text-align: center !important;
+  width: 100%;
+}
+
+ 
+.table-responsive {
+ 
+  width: 100%;
+  overflow-x: auto;
+}
+  .mat-table {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 1rem;
+      display: table; 
+      margin: 0px;
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+      border: none;
+    
+      white-space:pre-line;
+  }
+
+
+
+
+.mat-column-createAt,.mat-column-index, .mat-column-typeOfApplicant,.mat-column-email,.mat-column-mobileNumber ,.mat-column-status,.mat-column-name{
+  padding:0 12px;
+  white-space: nowrap !important;
+}
+.mat-column-sidmMember{
+  padding:0 12px;
+}
+
+

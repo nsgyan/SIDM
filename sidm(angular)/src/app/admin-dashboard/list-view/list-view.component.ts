@@ -1,23 +1,23 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { formatDate, Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { ExportToExccelService } from 'src/app/shared/services/export-to-exccel.service';
 
 @Component({
-  selector: 'app-admin-dashboard-layout',
-  templateUrl: './admin-dashboard-layout.component.html',
-  styleUrls: ['./admin-dashboard-layout.component.css']
+  selector: 'app-list-view',
+  templateUrl: './list-view.component.html',
+  styleUrls: ['./list-view.component.css']
 })
-export class AdminDashboardLayoutComponent implements OnInit {
+export class ListViewComponent implements OnInit {
+
   requestInfo:FormGroup
-  displayedColumns: string[] = ['createAt','name', 'email', 'mobileNumber', 'panNumber','category','typeOfApplicant','nameOfCompany','sidmMember','paymentStatus','offlinePaymentDetails','status','actions'];
+  displayedColumns: string[] = ['index','createAt','name', 'email', 'mobileNumber', 'panNumber','category','typeOfApplicant','nameOfCompany','sidmMember','paymentStatus','offlinePaymentDetails','status','actions'];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -32,8 +32,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private routes: Router,
-    private fb: FormBuilder,
-    private excelService:ExportToExccelService ) {
+    private fb: FormBuilder) {
     this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']
@@ -50,7 +49,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
   }
   getdata(type:string) {
     this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
-      data?.forms.map((item: any) => {
+      data?.data.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = 'C1 '
         }
@@ -72,7 +71,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         }
-        const format = ' dd MMM, y, HH:mm,';
+        const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
         // console.log(data.createAt.type);
@@ -81,7 +80,7 @@ export class AdminDashboardLayoutComponent implements OnInit {
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
-      this.dataSource = new MatTableDataSource(data.forms);
+      this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
