@@ -37,10 +37,7 @@ p {
     width: 100%;
   }
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+
   
   td, th{
     width: 6%;
@@ -69,16 +66,7 @@ p {
     background-color: #F3F1F5
   } 
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  .top-filter{
-    width: 15rem;
-    border: 1px solid #8b8b8b;
-    padding: 0px 1rem;
-      border-radius: 5px;
-  }
+
   .paymentsDropdwn{
     border-color: #363a7a;
     padding: 0 1rem;
@@ -137,9 +125,6 @@ table {
       white-space:pre-line;
   }
 
-footer {
-  position:absolute  ;
-}
 
 
 
