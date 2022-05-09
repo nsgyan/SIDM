@@ -15,6 +15,10 @@
             Performance of Defence & Aerospace
             Products</option>
         </select>
+         <p style="color: red;"
+         *ngIf="questionnaire.get('category')?.hasError('required') && submited">
+         Category is required
+                  </p>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect2">Type of applicant</label>
@@ -30,6 +34,10 @@
             than Rs 75 Crore)</option>
        
         </select>
+        <p style="color: red;"
+        *ngIf="questionnaire.get('typeOfApplicant')?.hasError('required') && submited">
+        Type Of Applicant is required
+                 </p>
       </div>
     <div class="form-group">
         <div formArrayName="question">
@@ -42,7 +50,7 @@
                 Parameter:
                 <input type="text" (keypress)="keyPresschar($event)"  formControlName="parameter" />
                 <p style="color: red;"
-                *ngIf="employee.get('parameter')?.hasError('required')">
+                *ngIf="employee.get('parameter')?.hasError('required') && submited">
                 parameter are required
             </p>
               </div>
@@ -51,7 +59,7 @@
                 Max Score:
                 <input type="text" (keypress)="keyPressNumbers($event)" formControlName="maxWeightage" />
                 <p style="color: red;"
-                *ngIf="employee.get('parameter')?.hasError('required')">
+                *ngIf="employee.get('parameter')?.hasError('required') && submited">
                 Max Score is required
             </p>
 
@@ -72,7 +80,7 @@
                     Answers :
                     <input type="text" (keypress)="keyPresschar($event)" formControlName="answers" />
                     <p style="color: red;"
-                    *ngIf="option.get('answers')?.hasError('required')">
+                    *ngIf="option.get('answers')?.hasError('required') && submited">
                     Answers is required
                 </p>
                    </div>
@@ -80,7 +88,7 @@
                       Score:
                       <input type="text" (keypress)="keyPressNumbers($event)" formControlName="score" />
                       <p style="color: red;"
-                      *ngIf="option.get('score')?.hasError('required')">
+                      *ngIf="option.get('score')?.hasError('required') && submited">
                       score is required
                   </p>
                     </div>

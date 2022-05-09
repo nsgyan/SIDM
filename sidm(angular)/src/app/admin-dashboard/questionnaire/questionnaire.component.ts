@@ -14,6 +14,7 @@ export class QuestionnaireComponent implements OnInit {
  
   questionnaire:FormGroup;
   captcha: any;
+  submited: boolean=false;
  
  
   constructor(private fb:FormBuilder,
@@ -116,9 +117,11 @@ export class QuestionnaireComponent implements OnInit {
       })
     }
     else if (!this.captcha) {
+      this.submited = true;
       this.toast.error('Please verify that you are not a robot.');
     }
     else {
+      this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
   }
