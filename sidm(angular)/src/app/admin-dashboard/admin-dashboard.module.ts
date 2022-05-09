@@ -16,13 +16,15 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { ListViewComponent } from './list-view/list-view.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 
 @NgModule({
   declarations: [
     AdminEditComponent,
     ListViewComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    QuestionnaireComponent
   ],
   imports: [
     CommonModule,
