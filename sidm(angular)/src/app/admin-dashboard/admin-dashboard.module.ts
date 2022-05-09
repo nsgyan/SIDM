@@ -17,6 +17,11 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { ListViewComponent } from './list-view/list-view.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -41,7 +46,13 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
     MatMenuModule,
     MatButtonModule,
     MatSelectModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule ,
+    MatIconModule
+    
+  
   ]
 })
 export class AdminDashboardModule { }
