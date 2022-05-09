@@ -1,0 +1,82 @@
+
+<form [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Category</label>
+        <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
+          <option>C1 – Technology /
+            Product Innovation to address Defence Capability Gaps </option>
+          <option>C2 – Import
+            Substitution for Mission
+            Critical Parts / Sub-Systems / Systems</option>
+          <option>C3 – Creation of
+            Niche, Technological Capability for
+            Design, Manufacturing or Testing</option>
+          <option>C4 – Export
+            Performance of Defence & Aerospace
+            Products</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Type of applicant</label>
+        <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect2">
+          <option>L – Large
+            (Annual Turnover FY 2020-21 over
+            & above Rs 250 Crore) </option>
+          <option>>M – Medium
+            (Annual Turnover FY 2020-21 between
+            Rs 75 to 250 Crore)</option>
+          <option>S – SME/SSI/START-UP
+            (Annual Turnover FY 2020-21 less
+            than Rs 75 Crore)</option>
+       
+        </select>
+      </div>
+    <div class="form-group">
+        <div formArrayName="question">
+            <div *ngFor="let employee of questions.controls; let i = index">
+              <div
+                [formGroupName]="i"
+                style="border: 1px solid blue; padding: 10px; width: 600px; margin: 5px;"
+              >
+              Parameter:
+                <input type="text" formControlName="parameter" />
+               Max Weightage:
+                <input type="text" formControlName="maxWeightage" />
+        
+                <button (click)="removeQuestion(i)">Remove</button>
+        
+                <div formArrayName="option">
+                  <div
+                    *ngFor="
+                      let option of QuestionOptions(i).controls;
+                      let y = index
+                    "
+                  >
+                    <div [formGroupName]="y">
+                   
+                     Answers :
+                      <input type="text" formControlName="answers" />
+                      Score:
+                      <input type="text" formControlName="score" />
+        
+                      <button (click)="removeQuestionOption(i, y)">
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                  <button type="button" (click)="addQuestionOption(i)">
+                    Add Options
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>
+            <button type="button" (click)="addQuestion()">Add Questions</button>
+          </p>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
