@@ -1,12 +1,14 @@
 .questionnaireForm {
     padding: 3rem 0;
 }
+
 .questionnaireForm .questionnaireLabel {
     font-weight: 500;
     font-size: 17px;
     color: #000;
     margin-bottom: .5rem;
 }
+
 .questionnaireForm select {
     display: block;
     width: 100%;
@@ -19,13 +21,16 @@
     -webkit-transition: .35s ease;
     transition: .35s ease;
 }
+
 .questionnaireForm .form-control:focus {
     box-shadow: none;
 }
+
 .save-btn .fa-plus {
     color: #363A7A;
     /* margin-right: .5rem; */
 }
+
 .position {
     float: right;
     margin-top: -55px;
@@ -34,6 +39,35 @@
     display: flex;
 } */
 .savePosition {
-    margin-top: 46px;
+    margin-top: 27px;
     padding: 13px 21px;
+}
+.savePosition .fa-minus {
+    color: #363A7A;
+}
+table {
+    width: 100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+td,
+th {
+    width: 25%;
+}
+.heading {
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 20px;
+    color: #202020;
+}
+.topHeader {
+    background: #363A7A;
+    padding: 20px 0 10px;
+}
+.topHeader h2 {
+    margin: 0 0 9px 64px;
+    font-size: 24px;
+    color: #fff;
 }
