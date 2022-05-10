@@ -6,7 +6,7 @@ const QuestionnairesSchema = new Schema({
         category:{ type: String },
         parameter:{type:String},
         weightage:{type:String},
-        option:[], 
+        options:[], 
 })
 
 module.exports = mongoose.model('Questionnaires', QuestionnairesSchema);

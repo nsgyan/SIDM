@@ -66,7 +66,7 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
   }
  
  
-  removeQuestion(quesIndex:number) {
+  removeOptions(quesIndex:number) {
     this.options().removeAt(quesIndex);
   }
   resolved(captchaResponse: any) {
