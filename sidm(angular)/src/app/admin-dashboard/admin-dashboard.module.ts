@@ -22,6 +22,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
+import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
 
 
 
@@ -31,7 +32,8 @@ import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-l
     ListViewComponent,
     AdminDashboardComponent,
     QuestionnaireComponent,
-    QuestionnaireListComponent
+    QuestionnaireListComponent,
+    EditQuestionnaireComponent
   ],
   imports: [
     CommonModule,

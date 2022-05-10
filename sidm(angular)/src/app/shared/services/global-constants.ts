@@ -22,5 +22,6 @@ export class Globals {
         'postQuestionnaire':Globals.server+'questionnaire/add',
         'getQuestionnaire':Globals.server+'questionnaire',
         'getQuestionnaireById':Globals.server+'questionnaire/get',
+        'updateQuestionnaireById':Globals.server+'questionnaire/update',
     };
 }
