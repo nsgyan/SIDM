@@ -4,22 +4,33 @@
         [opened]="!(isHandset$ | async)">
         <mat-toolbar>
             <img src="assets/img/New_img/logo.png" alt="">
+
         </mat-toolbar>
         <mat-nav-list>
             <ul>
-                <li class=""><a href=""><i aria-hidden="true" class="fas fa-th-large" style="color: #fff;"></i>DASHBOARD</a></li>
+                <li class=""><a href=""><i aria-hidden="true" class="fas fa-th-large"
+                            style="color: #fff;"></i>DASHBOARD</a></li>
                 <span><i aria-hidden="true" class="fas fa-address-book mr-2" style="color: #fff;"></i> APPLICANT</span>
-                <li class=""><a href=""><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> a. Applicant List</a></li>
-                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> b. Add New Applicant</a></li>
+                <li class="ml-2"><a href=""><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> a.
+                        Applicant List</a></li>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> b. Add
+                        New Applicant</a></li>
                 <span><i aria-hidden="true" class="fas fa-address-book mr-2" style="color: #fff;"></i> ASSESSER</span>
-                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> a. Assessor List</a></li>
-                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> b. Add New Assessor</a></li>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> a.
+                        Assessor List</a></li>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> b. Add
+                        New Assessor</a></li>
                 <span><i aria-hidden="true" class="fas fa-id-card mr-2" style="color: #fff;"></i> ASSESSMENT</span>
-                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i> a. View Assessments</a></li>
-                <span><i aria-hidden="true" class="fas fa-desktop mr-2" style="color: #fff;"></i> SYSTEM CONFIGURATION</span>
-                <li class="ml-2"><a href="adminDashboard/questionnaire"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> a. Questionnaire Setup</a></li>
-                <li class="ml-2"><a href="adminDashboard/questionnaireList"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> a. Questionnaire List</a></li>
-                <li class=""><a href=""><i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>LOGOUT</a></li>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i> a. View
+                        Assessments</a></li>
+                <span><i aria-hidden="true" class="fas fa-desktop mr-2" style="color: #fff;"></i> SYSTEM
+                    CONFIGURATION</span>
+                <li class="ml-2"><a href="adminDashboard/questionnaire"><i aria-hidden="true" class="fas fa-file-alt"
+                            style="color: #fff;"></i> a. Questionnaire Setup</a></li>
+                <li class="ml-2"><a href="adminDashboard/questionnaireList"><i aria-hidden="true"
+                            class="fas fa-file-alt" style="color: #fff;"></i> a. Questionnaire List</a></li>
+                <li class=""><a href=""><i aria-hidden="true" class="fas fa-power-off mr-2"
+                            style="color: #fff;"></i>LOGOUT</a></li>
             </ul>
         </mat-nav-list>
     </mat-sidenav>
@@ -29,6 +40,20 @@
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
+            <div class="profile">
+                <div class="btn-group">
+                    <img class="profilePic" src="assets/img/New_img/member-n.png" alt="">
+                    <button type="button" class="profileBtn dropdown-toggle" data-toggle="dropdown"
+                        aria-expanded="false">
+                        
+                        Naaz
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">Logout</button>
+                        <button class="dropdown-item" type="button">Change Password</button>
+                    </div>
+                </div>
+            </div>
             <!-- <span>MyApp</span> -->
         </mat-toolbar>
         <router-outlet></router-outlet>
