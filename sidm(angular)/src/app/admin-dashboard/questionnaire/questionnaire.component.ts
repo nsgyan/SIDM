@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 
@@ -10,7 +13,12 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class QuestionnaireComponent implements OnInit {
     
-  title = 'Nested FormArray Example Add Form Fields Dynamically';
+  displayedColumns: string[] = ['createAt', 'category', 'parameter', 'weightage','action'];
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
  
   questionnaire:FormGroup;
   captcha: any;
@@ -20,68 +28,64 @@ export class QuestionnaireComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
     private toast: ToastrService,) {
+this.httpService.getQuestionnaire().subscribe((data:any)=>{
+  this.dataSource = new MatTableDataSource(data);
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+})
  
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
-      typeOfApplicant:['',Validators.required],
-      question: this.fb.array([
-        
-      ]) ,
+      parameter:['',Validators.required],
+      maxWeightage:['',Validators.required],
+      options: this.fb.array([]),
     })
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
  
  
-  question(): FormArray {
-    return this.questionnaire.get("question") as FormArray
+  options(): FormArray {
+    return this.questionnaire.get("options") as FormArray
   }
  
- get questions(): FormArray {
-    return this.questionnaire.get("question") as FormArray
+ get option(): FormArray {
+    return this.questionnaire.get("options") as FormArray
   }
  
-  newQuestion(): FormGroup {
+  newoptions(): FormGroup {
     return this.fb.group({
-      parameter: ['',Validators.required],
-      maxWeightage: ['',Validators.required],
-      option:this.fb.array([])
+      answer: ['',Validators.required],
+      weightage: ['',Validators.required],
     })
   }
  
  
-  addQuestion() {
-    this.question().push(this.newQuestion());
+  addoptions() {
+    this.options().push(this.options());
   }
  
  
   removeQuestion(quesIndex:number) {
-    this.question().removeAt(quesIndex);
+    this.options().removeAt(quesIndex);
   }
   resolved(captchaResponse: any) {
     this.captcha = captchaResponse;
   }
  
 
-  QuestionOptions(quesIndex:number) : FormArray {
-    return this.question().at(quesIndex).get("option") as FormArray
+ 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
  
-  newOption(): FormGroup {
-    return this.fb.group({
-      answers: ['',Validators.required],
-      score: ['',Validators.required],
-    })
-  }
- 
-  addQuestionOption(quesIndex:number) {
-    this.QuestionOptions(quesIndex).push(this.newOption());
-  }
- 
-  removeQuestionOption(quesIndex:number,optIndex:number) {
-    this.QuestionOptions(quesIndex).removeAt(optIndex);
-  }
+
+
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
     const charCode = (event.which) ? event.which : event.keyCode;
     if ((charCode < 48 || charCode > 57)) {
@@ -127,8 +131,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   selectChangeHandler(){
-    this.addQuestion()
-    this.addQuestionOption(0)
+    this.addoptions()
 
   }
  

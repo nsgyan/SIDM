@@ -15,3 +15,11 @@ exports.addQuestionnaires= (req,res,next)=>{
         res.json(err);
     })
 }
+exports.addQuestionnaires= (req,res,next)=>{
+     Questionnaires.find()
+    Questionnaire.save().then(data=>{
+        res.status(200).send(data);
+    }).catch(err=>{
+        res.json(err);
+    })
+}

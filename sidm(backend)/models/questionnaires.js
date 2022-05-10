@@ -4,11 +4,9 @@ const QuestionnairesSchema = new Schema({
         createAt: { type: Date,default:new Date() },
         updatedAt: { type: Date ,default:new Date()},
         category:{ type: String },
-        typeOfApplicant:{ type: String },
-        question:[], 
-
-       
-
+        parameter:{type:String},
+        weightage:{type:String},
+        option:[], 
 })
 
 module.exports = mongoose.model('Questionnaires', QuestionnairesSchema);
