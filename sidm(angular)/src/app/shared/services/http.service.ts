@@ -54,11 +54,16 @@ postQuestionnaire(data:any){
 getQuestionnaire(){
   return this.httpService.get(Globals.route.getQuestionnaire)
 }
+getQuestionnaireById(id:any){
+  return this.httpService.get(`${Globals.route.getQuestionnaireById}/${id}`)
+}
+
 
 getOflinePayment(id:any){
   return this.httpService.get(`${Globals.route.getPaymentDetails}/${id}`)
 
 }
+
 
 verifypayment(data:any){
   return this.httpService.post(Globals.route.verifypayment,data)
