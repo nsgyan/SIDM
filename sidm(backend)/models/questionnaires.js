@@ -5,7 +5,7 @@ const QuestionnairesSchema = new Schema({
         updatedAt: { type: Date ,default:new Date()},
         category:{ type: String },
         parameter:{type:String},
-        weightage:{type:String},
+        maxWeightage:{type:String},
         options:[], 
 })
 

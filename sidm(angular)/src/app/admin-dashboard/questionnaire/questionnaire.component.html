@@ -29,7 +29,7 @@
         </div> -->
       </div>
       <div class="form-group">
-        <div formArrayName="option">
+        <div formArrayName="options">
           <div *ngFor="let employee of options.controls; let i = index">
             <div [formGroupName]="i" >
               <label class="questionnaireLabel mt-2" for="">Answer:</label>
@@ -143,10 +143,6 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- ID Column -->
-    <ng-container matColumnDef="createAt">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let row"> {{row.createAt}} </td>
-    </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="category">
@@ -161,13 +157,25 @@
     </ng-container>
 
     <!-- Fruit Column -->
-    <ng-container matColumnDef="weightage">
+    <ng-container matColumnDef="maxWeightage">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Weightage </th>
-      <td mat-cell *matCellDef="let row"> {{row.weightage}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.maxWeightage}} </td>
     </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-      <td mat-cell *matCellDef="let row"> {{row.action}} </td>
+      <td mat-cell *matCellDef="let row"> <div class="dropBtn dropdown">
+        <button class="paymentsDropdwn  dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-expanded="false">
+          <i aria-hidden="true" class="fas fa-cog" style="color:#363a7a"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" ><i aria-hidden="true" class="fas fa-eye" style="color:#363a7a"></i>
+            View</a>
+        
+          <a class="dropdown-item"  ><i
+              aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> Edit</a>
+        </div>
+      </div> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

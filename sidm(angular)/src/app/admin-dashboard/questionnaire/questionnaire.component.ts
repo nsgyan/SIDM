@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class QuestionnaireComponent implements OnInit {
     
-  displayedColumns: string[] = ['createAt', 'category', 'parameter', 'weightage','action'];
+  displayedColumns: string[] = [ 'category', 'parameter', 'maxWeightage','action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,7 +36,7 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
       category:['',Validators.required],
       parameter:['',Validators.required],
       maxWeightage:['',Validators.required],
-      option: this.fb.array([]) ,
+      options: this.fb.array([]) ,
     })
   }
   ngOnInit(): void {
@@ -44,11 +44,11 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
  
  
   option(): FormArray {
-    return this.questionnaire.get("option") as FormArray
+    return this.questionnaire.get("options") as FormArray
   }
  
  get options(): FormArray {
-    return this.questionnaire.get("option") as FormArray
+    return this.questionnaire.get("options") as FormArray
   }
  
   newOption(): FormGroup {
@@ -87,8 +87,9 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
     if(this.questionnaire.valid){
       this.httpService.postQuestionnaire({
       category:this.questionnaire.value.category,
-       typeOfApplicant:this.questionnaire.value.typeOfApplicant,
-      question:this.questionnaire.value.question, 
+      parameter:this.questionnaire.value.parameter,
+      maxWeightage:this.questionnaire.value.maxWeightage, 
+      options:this.questionnaire.value.options, 
       }).subscribe((data:any)=>{
         console.log(data);
         this.toast.success(data);
