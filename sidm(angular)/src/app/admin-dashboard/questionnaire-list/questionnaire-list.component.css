@@ -16,7 +16,21 @@ th {
     margin-top: 4rem;
 }
 .topHeader h2 {
-    margin: 0 0 9px 64px;
+    margin: 0 0 9px 19px;
     font-size: 20px;
     color: #fff;
+}
+.mat-form-field-wrapper {
+    position: relative;
+    padding: 1rem 0 1rem 1rem!important;
+}
+.mainPadding {
+    padding: 22px;
+}
+.mainPadding thead {
+    background: #363a7a!important;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 17%;
 }
