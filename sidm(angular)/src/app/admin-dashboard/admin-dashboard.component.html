@@ -1,32 +1,41 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav
-      #drawer
-      class="sidenav"
-      fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)"
-    >
-      <mat-toolbar>Menu</mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item [routerLink]="['/comp-a']">Routed Component A</a>
-        <a mat-list-item [routerLink]="['/comp-b']">Routed Component B</a>
-      </mat-nav-list>
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+        <mat-toolbar>
+            <img src="assets/img/New_img/logo.png" alt="">
+        </mat-toolbar>
+        <mat-nav-list>
+            <ul>
+                <li class=""><a href=""><i aria-hidden="true" class="fas fa-th-large" style="color: #fff;"></i>DASHBOARD</a></li>
+                <span><i aria-hidden="true" class="fas fa-address-book mr-2" style="color: #fff;"></i> APPLICANT</span>
+                <li class=""><a href=""><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> a. Applicant List</a></li>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> b. Add New Applicant</a></li>
+                <span><i aria-hidden="true" class="fas fa-address-book mr-2" style="color: #fff;"></i> ASSESSER</span>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> a. Assessor List</a></li>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> b. Add New Assessor</a></li>
+                <span><i aria-hidden="true" class="fas fa-id-card mr-2" style="color: #fff;"></i> ASSESSMENT</span>
+                <li class="ml-2 "><a href=""><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i> a. View Assessments</a></li>
+                <span><i aria-hidden="true" class="fas fa-desktop mr-2" style="color: #fff;"></i> SYSTEM CONFIGURATION</span>
+                <li class="ml-2"><a href=""><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> a. Questionnaire Setup</a></li>
+                <li class=""><a href=""><i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>LOGOUT</a></li>
+            </ul>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        <span>MyApp</span>
-      </mat-toolbar>
-      <router-outlet></router-outlet>
+        <mat-toolbar color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <!-- <span>MyApp</span> -->
+        </mat-toolbar>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
-  
+
     <!-- this is the sidenav we are concerned with -->
     <mat-sidenav #panel class="panel" position="end">
-      <!-- this is where i want to load different components dynamically -->
-      <ng-container #content></ng-container>
+        <!-- this is where i want to load different components dynamically -->
+        <ng-container #content></ng-container>
     </mat-sidenav>
-  </mat-sidenav-container>
-  
+</mat-sidenav-container>

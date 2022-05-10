@@ -1,12 +1,36 @@
 .sidenav-container {
-    height: 100%;
-  }
-  
-  .sidenav {
-    width: 200px;
-  }
-  
-  .panel {
-    width: 50%;
-  }
-  
+  height: 100%;
+}
+
+.sidenav {
+  width: 18%;
+}
+
+.mat-drawer-content {
+  margin-left: 254px!important;
+}
+.panel {
+  width: 50%;
+}
+
+.mat-drawer.mat-drawer-side {
+  background: #363A7A;
+}
+.mat-toolbar.mat-primary {
+  background: #363a7a;
+  color: #fff;
+}
+mat-toolbar img {
+  width: 58%;
+    margin-left: 40px;
+}
+.mat-list-base {
+  padding: 25px;
+  color: #fff;
+}
+.mat-list-base ul li {
+  margin: 25px 0;
+}
+.mat-list-base ul li i {
+  margin-right: 10px;
+}

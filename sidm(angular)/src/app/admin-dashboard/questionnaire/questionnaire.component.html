@@ -1,128 +1,109 @@
-
-<form [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
+<div class="container">
+  <form class="questionnaireForm" [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Category</label>
-        <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
-          <option value="cat1">C1 – Technology /
-            Product Innovation to address Defence Capability Gaps </option>
-          <option value="cat2">C2 – Import
-            Substitution for Mission
-            Critical Parts / Sub-Systems / Systems</option>
-          <option value="cat3">C3 – Creation of
-            Niche, Technological Capability for
-            Design, Manufacturing or Testing</option>
-          <option value="cat4">C4 – Export
-            Performance of Defence & Aerospace
-            Products</option>
-        </select>
-         <p style="color: red;"
-         *ngIf="questionnaire.get('category')?.hasError('required') && submited">
-         Category is required
-                  </p>
-      </div>
-      <div class="form-group">
-        <label for="example1">Parameter</label>
-        <input type="text" id="example1" formControlName="parameter">
-      </div>
-      <div class="form-group">
-        <label for="example1">max Weightage</label>
-        <input type="text" id="example1" formControlName="maxWeightage">
-      </div>
-   
+      <label class="questionnaireLabel" for="exampleFormControlSelect1">Category</label>
+      <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
+        <option>C1 – Technology /
+          Product Innovation to address Defence Capability Gaps </option>
+        <option>C2 – Import
+          Substitution for Mission
+          Critical Parts / Sub-Systems / Systems</option>
+        <option>C3 – Creation of
+          Niche, Technological Capability for
+          Design, Manufacturing or Testing</option>
+        <option>C4 – Export
+          Performance of Defence & Aerospace
+          Products</option>
+      </select>
+    </div>
     <div class="form-group">
-        <div formArrayName="question">
-            <div *ngFor="let employee of option.controls; let i = index">
-              <div
-                [formGroupName]="i"
-                style="border: 1px solid blue; padding: 10px; width: 600px; margin: 5px;"
-              >
-              <div>
-                Parameter:
-                <input type="text" (keypress)="keyPresschar($event)"  formControlName="answer" />
-                <p style="color: red;"
-                *ngIf="employee.get('parameter')?.hasError('required') && submited">
-                parameter are required
-            </p>
-              </div>
-            
-              <div>
-                Max Score:
-                <input type="text" (keypress)="keyPressNumbers($event)" formControlName="weightage" />
-                <p style="color: red;"
-                *ngIf="employee.get('parameter')?.hasError('required') && submited">
-                Max Score is required
-            </p>
+      <label class="questionnaireLabel" for="exampleFormControlSelect2">Type of applicant</label>
+      <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect2">
+        <option>L – Large
+          (Annual Turnover FY 2020-21 over
+          & above Rs 250 Crore) </option>
+        <option>M – Medium
+          (Annual Turnover FY 2020-21 between
+          Rs 75 to 250 Crore)</option>
+        <option>S – SME/SSI/START-UP
+          (Annual Turnover FY 2020-21 less
+          than Rs 75 Crore)</option>
 
-              </div>
-               
-        
-                <button *ngIf="i!==0" (click)="removeQuestion(i)">Remove</button>
-        
-             
-              </div>
+      </select>
+    </div>
+    <div class="form-group">
+      <div formArrayName="question">
+        <div *ngFor="let employee of option.controls; let i = index">
+          <div [formGroupName]="i" style="border: 1px solid #363A7A; padding: 10px; width: 600px; margin: 5px;">
+            <label class="questionnaireLabel mt-2" for="">Parameter:</label>
+
+            <input type="text" formControlName="parameter" />
+            <label class="questionnaireLabel mt-3" for="">Max Weightage:</label>
+
+            <input type="text" formControlName="maxWeightage" />
+
+            <div class="RemoveAddOption">
+              <button class="NewBtn mt-2 mb-2" (click)="removeOptions(i)">Remove</button>
+
+           
             </div>
           </div>
-          <p>
-            <button type="button" (click)="addoptions()">Add Questions</button>
-          </p>
-    </div>
-    <div class=" mt-4">
-      <div class="form-group">
-          <re-captcha (resolved)="resolved($event)"
-              siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS"></re-captcha>
+        </div>
       </div>
+      <p>
+        <button class="save-btn" type="button" (click)="addoptions()"><i aria-hidden="true" class="fas fa-plus"></i>Add
+          Questions</button>
+      </p>
+    </div>
 
-  </div>
-   
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="NewBtn position">Submit</button>
   </form>
+</div>
 
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
 
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
 
-  <mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-  </mat-form-field>
-  
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-  
-      <!-- ID Column -->
-      <ng-container matColumnDef="createAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let row"> {{row.createAt}} </td>
-      </ng-container>
-  
-      <!-- Progress Column -->
-      <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-        <td mat-cell *matCellDef="let row"> {{row.category}}</td>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="parameter">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Parameter </th>
-        <td mat-cell *matCellDef="let row"> {{row.parameter}} </td>
-      </ng-container>
-  
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="weightage">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Weightage </th>
-        <td mat-cell *matCellDef="let row"> {{row.weightage}} </td>
-      </ng-container>
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-        <td mat-cell *matCellDef="let row"> {{row.action}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-  </div>
+    <!-- ID Column -->
+    <ng-container matColumnDef="createAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let row"> {{row.createAt}} </td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+      <td mat-cell *matCellDef="let row"> {{row.category}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="parameter">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Parameter </th>
+      <td mat-cell *matCellDef="let row"> {{row.parameter}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="weightage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weightage </th>
+      <td mat-cell *matCellDef="let row"> {{row.weightage}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let row"> {{row.action}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
