@@ -57,6 +57,9 @@ getQuestionnaire(){
 getQuestionnaireById(id:any){
   return this.httpService.get(`${Globals.route.getQuestionnaireById}/${id}`)
 }
+updateQuestionnaireById(id:any,data:any){
+  return this.httpService.patch(`${Globals.route.updateQuestionnaireById}/${id}`,data)
+}
 
 
 getOflinePayment(id:any){

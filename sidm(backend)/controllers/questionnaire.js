@@ -27,11 +27,37 @@ exports.getQuestionnaires= (req,res,next)=>{
     })
 }
 exports.getQuestionnairesByID= (req,res,next)=>{
-    const id = req.params.id
+    const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
        res.status(200).send(data);
    }).catch(err=>{
        res.json(err);
    })
+}
+exports.updateQuestionnaires=(req,res)=>{
+    const category = req.body.category;
+    const parameter = req.body.parameter;
+    const maxWeightage = req.body.maxWeightage;
+    const options = req.body.options;
+    const id = req.params.userID
+    Questionnaires.findById(id)
+    .then(data=>{
+        data.category =category,
+        data.parameter = parameter,
+        data.maxWeightage = maxWeightage,
+        data.options=options
+       data.save((err, success) => {
+            if(err){
+           res.status(404).json(err);
+            }
+            else{
+                console.log(success);
+              res.status(200).json('successfully update');
+            }
+          });
+   }).catch(err=>{
+       res.json(err);
+   })
+
 }

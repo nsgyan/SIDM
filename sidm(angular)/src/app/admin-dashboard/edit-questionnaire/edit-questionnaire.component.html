@@ -1,0 +1,81 @@
+<div class="topHeader">
+    <h2>Dashboard</h2>
+  </div>
+  
+  <div class="container">
+    <form class="questionnaireForm" [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="questionnaireLabel" for="exampleFormControlSelect1">Category</label>
+        <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
+          <option value="cat1">C1 – Technology /
+            Product Innovation to address Defence Capability Gaps </option>
+          <option value="cat2">C2 – Import
+            Substitution for Mission
+            Critical Parts / Sub-Systems / Systems</option>
+          <option value="cat1">C3 – Creation of
+            Niche, Technological Capability for
+            Design, Manufacturing or Testing</option>
+          <option>C4 – Export
+            Performance of Defence & Aerospace
+            Products</option>
+        </select>
+        <div class="row">
+          <div class="col-lg-9">
+            <label class="questionnaireLabel mt-3" for="">Parameter:</label>
+            <textarea name="" id="" cols="30" rows="10" formControlName="parameter"></textarea>
+            <!-- <input type="text" formControlName="parameter" /> -->
+          </div>
+          <div class="col-lg-3">
+            <label class="questionnaireLabel mt-3" for="">Max Weightage:</label>
+            <input type="text" formControlName="maxWeightage" />
+          </div>
+          <!-- <div class="col-lg-1">
+            <button class="save-btn savePosition" type="button"><i aria-hidden="true" class="fas fa-plus"></i></button>
+          </div> -->
+        </div>
+        <div class="form-group">
+          <div formArrayName="options">
+            <div *ngFor="let employee of options.controls; let i = index">
+              <div [formGroupName]="i">
+                <h1 class="heading">Answers:</h1>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <label class="questionnaireLabel" for="">Option:</label>
+                    <textarea name="" id="" cols="30" rows="10" formControlName="answer"></textarea>
+                    <!-- <input type="text" formControlName="answer" /> -->
+                  </div>
+                  <div class="col-lg-3">
+                    <label class="questionnaireLabel" for=""> Score:</label>
+                    <input type="text" formControlName="weightage" />
+                  </div>
+                  <div class="col-lg-1">
+                    <div class="RemoveAddOption" *ngIf="i!==0">
+                      <button class="save-btn savePosition" (click)="removeOption(i)"><i aria-hidden="true"
+                          class="fas fa-minus"></i></button>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+          <div>
+            <button class="save-btn mt-3" (click)="addOptions()" type="button"><i aria-hidden="true"
+                class="fas fa-plus"></i> Add Answers</button>
+          </div>
+  
+        </div>
+       
+      </div>
+  
+  
+      <div class="form-group">
+        
+      </div>
+     
+  
+      <button type="submit" class="NewBtn ">Submit</button>
+    </form>
+  </div>
+  

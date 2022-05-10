@@ -1,42 +1,54 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
-  selector: 'app-questionnaire',
-  templateUrl: './questionnaire.component.html',
-  styleUrls: ['./questionnaire.component.css']
+  selector: 'app-edit-questionnaire',
+  templateUrl: './edit-questionnaire.component.html',
+  styleUrls: ['./edit-questionnaire.component.css']
 })
-export class QuestionnaireComponent implements OnInit {
-    
+export class EditQuestionnaireComponent implements OnInit {
 
  
-  questionnaire:FormGroup;
+  questionnaire!:FormGroup;
   editQuestionnaire!:FormGroup;
   captcha: any;
   submited: boolean=false;
  
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
-    private toast: ToastrService,
-    private routes: Router,) {
+    private routes: Router,
+    private route: ActivatedRoute,
+    private toast: ToastrService,) {
+      const id = this.route.snapshot.paramMap.get('id')
+      this.httpService.getQuestionnaireById(id).subscribe((data:any)=>{
+        console.log(data);
+        
+        this.questionnaire=this.fb.group({
+          category:[data.category,Validators.required],
+          parameter:[data.parameter,Validators.required],
+          maxWeightage:[data.maxWeightage,Validators.required],
+          options: this.fb.array([]) ,
+        })
+        let control = <FormArray>this.questionnaire.get('options');
+        data.options.map((item:any)=>{
+         control.push(
+           this.fb.group({
+            answer: [item.answer,Validators.required],
+      weightage:[item.weightage,Validators.required],
+           })
+         );
+          
+        })
 
-    this.questionnaire=this.fb.group({
-      category:['',Validators.required],
-      parameter:['',Validators.required],
-      maxWeightage:['',Validators.required],
-      options: this.fb.array([]) ,
-    })
+      })
+
+
   }
   ngOnInit(): void {
   }
- 
- 
   option(): FormArray {
     return this.questionnaire.get("options") as FormArray
   }
@@ -68,19 +80,18 @@ export class QuestionnaireComponent implements OnInit {
  
  
   onSubmit() {
-    
+    const id = this.route.snapshot.paramMap.get('id')
     if(this.questionnaire.valid){
-      this.httpService.postQuestionnaire({
+      this.httpService.updateQuestionnaireById(id,{
       category:this.questionnaire.value.category,
       parameter:this.questionnaire.value.parameter,
       maxWeightage:this.questionnaire.value.maxWeightage, 
       options:this.questionnaire.value.options, 
       }).subscribe((data:any)=>{
-        console.log(data);
+      
         this.toast.success(data);
         let url: string = "/adminDashboard/questionnaireList"
         this.routes.navigateByUrl(url);
-        
       })
     }
     else if (!this.captcha) {
@@ -94,8 +105,6 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   
-  
  
  
 }
- 
