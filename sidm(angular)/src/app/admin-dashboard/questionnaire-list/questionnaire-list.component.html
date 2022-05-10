@@ -1,8 +1,9 @@
 <div class="topHeader">
-  <h2>Dashboard</h2>
+  <h2>Questionnaire List</h2>
 </div>
 
-<mat-form-field appearance="standard">
+<div class="mainPadding">
+  <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
@@ -31,19 +32,21 @@
       </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-        <td mat-cell *matCellDef="let row"> <div class="dropBtn dropdown">
-          <button class="paymentsDropdwn  dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-expanded="false">
-            <i aria-hidden="true" class="fas fa-cog" style="color:#363a7a"></i>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" ><i aria-hidden="true" class="fas fa-eye" style="color:#363a7a"></i>
-              View</a>
-          
-            <a class="dropdown-item" (click)="editQuestionnaire(row._id)" ><i
-                aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> Edit</a>
+        <td mat-cell *matCellDef="let row">
+          <div class="dropBtn dropdown">
+            <button class="paymentsDropdwn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-expanded="false">
+              <i aria-hidden="true" class="fas fa-cog" style="color:#363a7a"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item"><i aria-hidden="true" class="fas fa-eye" style="color:#363a7a"></i>
+                View</a>
+  
+              <a class="dropdown-item" (click)="editQuestionnaire(row._id)"><i aria-hidden="true" class="fas fa-edit"
+                  style="color:#363a7a"></i> Edit</a>
+            </div>
           </div>
-        </div> </td>
+        </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -57,3 +60,4 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
+</div>

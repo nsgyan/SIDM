@@ -33,13 +33,14 @@ mat-toolbar img {
   color: #fff;
 }
 .mat-list-base ul li {
-  margin: 25px 0;
+  margin: 17px 0;
 }
 .mat-list-base ul li i {
   margin-right: 10px;
 }
 .profile {
-  margin-left: 85%;
+  position: absolute;
+  right: 17px;
 }
 .profile .profileBtn {
   border: none;
@@ -49,4 +50,7 @@ mat-toolbar img {
 .profilePic {
   width: 40px;
     height: 40px;
+}
+.fontSize {
+  font-size: 11px;
 }
