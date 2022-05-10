@@ -66,82 +66,14 @@
         </div>
 
       </div>
-      <!-- <div class="row">
-        <div class="col-lg-8">
-          <label class="questionnaireLabel mt-3" for="">Answers:</label>
-          <input type="text" />
-        </div>
-        <div class="col-lg-3">
-          <label class="questionnaireLabel mt-3" for="">Score:</label>
-          <input type="text" />
-        </div>
-        <div class="col-lg-1">
-          <button class="save-btn savePosition" type="button"><i aria-hidden="true" class="fas fa-plus"></i></button>
-        </div>
-      </div> -->
+     
     </div>
 
 
     <div class="form-group">
-      <!-- <label class="questionnaireLabel" for="exampleFormControlSelect2">Type of applicant</label> -->
-      <!-- <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect2">
-        <option>L – Large
-          (Annual Turnover FY 2020-21 over
-          & above Rs 250 Crore) </option>
-        <option>M – Medium
-          (Annual Turnover FY 2020-21 between
-          Rs 75 to 250 Crore)</option>
-        <option>S – SME/SSI/START-UP
-          (Annual Turnover FY 2020-21 less
-          than Rs 75 Crore)</option>
-
-      </select> -->
+      
     </div>
-    <!-- <div class="form-group">
-      <div formArrayName="question">
-        <div *ngFor="let employee of option.controls; let i = index">
-          <div [formGroupName]="i" style="border: 1px solid #363A7A; padding: 10px; width: 600px; margin: 5px;">
-            <label class="questionnaireLabel mt-2" for="">Parameter:</label>
-
-            <input type="text" formControlName="parameter" />
-            <label class="questionnaireLabel mt-3" for="">Max Weightage:</label>
-
-            <input type="text" formControlName="maxWeightage" />
-
-            <div class="RemoveAddOption">
-              <button class="NewBtn mt-2 mb-2" (click)="removeOptions(i)">Remove</button>
-
-              <div formArrayName="option">
-                <div *ngFor="
-                        let option of QuestionOptions(i).controls;
-                        let y = index
-                      ">
-                  <div [formGroupName]="y">
-                    <label class="questionnaireLabel mt-3" for="">Answers :</label>
-
-                    <input type="text" formControlName="answers" />
-                    <label class="questionnaireLabel mt-3" for=""> Score:</label>
-
-                    <input type="text" formControlName="score" />
-
-                    <button class="NewBtn mt-2 mb-2" (click)="removeQuestionOption(i, y)">
-                      Remove
-                    </button>
-                  </div>
-                </div>
-                <button class="NewBtn mb-2" type="button" (click)="addQuestionOption(i)">
-                  Add Options
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p>
-        <button class="save-btn" type="button" (click)="addoptions()"><i aria-hidden="true" class="fas fa-plus"></i>Add
-          Questions</button>
-      </p>
-    </div>  -->
+   
 
     <button type="submit" class="NewBtn ">Submit</button>
   </form>

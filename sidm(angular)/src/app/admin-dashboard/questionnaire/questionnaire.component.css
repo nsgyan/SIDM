@@ -45,17 +45,6 @@
 .savePosition .fa-minus {
     color: #363A7A;
 }
-table {
-    width: 100%;
-}
-.mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
-td,
-th {
-    width: 25%;
-}
 .heading {
     font-size: 25px;
     font-weight: 500;

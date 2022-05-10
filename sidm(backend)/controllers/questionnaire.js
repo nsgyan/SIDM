@@ -26,3 +26,12 @@ exports.getQuestionnaires= (req,res,next)=>{
         res.json(err);
     })
 }
+exports.getQuestionnairesByID= (req,res,next)=>{
+    const id = req.params.id
+    Questionnaires.findById(id)
+    .then(data=>{
+       res.status(200).send(data);
+   }).catch(err=>{
+       res.json(err);
+   })
+}

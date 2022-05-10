@@ -21,6 +21,7 @@ export class QuestionnaireComponent implements OnInit {
 
  
   questionnaire:FormGroup;
+  editQuestionnaire!:FormGroup;
   captcha: any;
   submited: boolean=false;
  
@@ -69,15 +70,6 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
   }
  
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
- 
 
  
  
@@ -106,6 +98,7 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
     }
   }
 
+  
   
  
  
