@@ -42,21 +42,6 @@
     margin-top: 27px;
     padding: 13px 21px;
 }
-<<<<<<< HEAD
-
-table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 25%;
-  }
-=======
 .savePosition .fa-minus {
     color: #363A7A;
 }
@@ -86,4 +71,3 @@ th {
     font-size: 24px;
     color: #fff;
 }
->>>>>>> c96f29f4cc023021535d7923cc25a31c3404e92a
