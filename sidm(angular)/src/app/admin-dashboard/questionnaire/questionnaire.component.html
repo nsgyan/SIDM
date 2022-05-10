@@ -1,11 +1,10 @@
 <div class="topHeader">
-  <h2>Dashboard</h2>
+  <h2>Add  New Questionnaire </h2>
 </div>
-
 <div class="container">
   <form class="questionnaireForm" [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="questionnaireLabel" for="exampleFormControlSelect1">Category</label>
+      <label class="questionnaireLabel" for="exampleFormControlSelect1">Category*</label>
       <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
         <option value="cat1">C1 – Technology /
           Product Innovation to address Defence Capability Gaps </option>
@@ -19,15 +18,25 @@
           Performance of Defence & Aerospace
           Products</option>
       </select>
+      <p *ngIf="questionnaire.get('category')?.hasError('required') &&(submited) " style="color: red;">
+        Category <strong>required</strong>
+    </p>
+    </div>
       <div class="row">
         <div class="col-lg-9">
-          <label class="questionnaireLabel mt-3" for="">Parameter/Question:</label>
+          <label class="questionnaireLabel mt-3" for="">Parameter/Question*:</label>
           <textarea name="" id="" cols="30" rows="10" formControlName="parameter"></textarea>
+          <p *ngIf="questionnaire.get('parameter')?.hasError('required') &&(submited)" style="color: red;">
+            Parameter/Question <strong>required</strong>
+        </p>
           <!-- <input type="text" formControlName="parameter" /> -->
         </div>
         <div class="col-lg-3">
           <label class="questionnaireLabel mt-3" for="">Max Weightage:</label>
           <input type="text" formControlName="maxWeightage" />
+          <p *ngIf="questionnaire.get('maxWeightage')?.hasError('required') &&(submited)" style="color: red;">
+            Max Weightage <strong>required</strong>
+        </p>
         </div>
         <!-- <div class="col-lg-1">
           <button class="save-btn savePosition" type="button"><i aria-hidden="true" class="fas fa-plus"></i></button>
@@ -35,22 +44,30 @@
       </div>
       <div class="form-group">
         <div formArrayName="options">
-          <div *ngFor="let employee of options.controls; let i = index">
+          <div *ngFor="let opt of options.controls; let i = index">
             <!-- <h1 class="heading">Answers:</h1> -->
             <div [formGroupName]="i">
               <div class="row">
                 <div class="col-lg-8">
-                  <label class="questionnaireLabel" for="">Option:</label>
+                  <label class="questionnaireLabel" for="">Option {{i+1}}:</label>
                   <textarea class="mb-2" name="" id="" cols="30" rows="10" formControlName="answer"></textarea>
+                  <p class="mb-2" style="color: red;"
+                  *ngIf="opt.get('answer')?.hasError('required') &&(submited)">
+                  Option {{i+1}}  required
+              </p>
                   <!-- <input type="text" formControlName="answer" /> -->
                 </div>
                 <div class="col-lg-3">
                   <label class="questionnaireLabel" for=""> Score:</label>
                   <input class="mb-2" type="text" formControlName="weightage" />
+                  <p class="mb-2" style="color: red;"
+                  *ngIf="opt.get('weightage')?.hasError('required') &&(submited)">
+                  Score {{i+1}}  required
+              </p>
                 </div>
                 <div class="col-lg-1">
                   <div class="RemoveAddOption mb-2">
-                    <button class="save-btn savePosition" (click)="removeOption(i)"><i aria-hidden="true"
+                    <button class="save-btn savePosition" *ngIf="i!==0" (click)="removeOption(i)"><i aria-hidden="true"
                         class="fas fa-minus"></i></button>
                   </div>
                 </div>
@@ -66,13 +83,10 @@
         </div>
 
       </div>
-     
-    </div>
+   
 
 
-    <div class="form-group">
-      
-    </div>
+    
    
 
     <button type="submit" class="NewBtn ">Submit</button>

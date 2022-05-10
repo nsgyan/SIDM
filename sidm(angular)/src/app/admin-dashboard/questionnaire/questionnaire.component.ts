@@ -32,6 +32,7 @@ export class QuestionnaireComponent implements OnInit {
       maxWeightage:['',Validators.required],
       options: this.fb.array([]) ,
     })
+    this.addOptions()
   }
   ngOnInit(): void {
   }
@@ -47,8 +48,8 @@ export class QuestionnaireComponent implements OnInit {
  
   newOption(): FormGroup {
     return this.fb.group({
-      answer: '',
-      weightage: '',
+      answer: ['',Validators.required],
+      weightage:['',Validators.required],
     })
   }
  

@@ -23,10 +23,25 @@ export class QuestionnaireListComponent implements OnInit {
     private toast: ToastrService,
     private routes: Router,) {
 this.httpService.getQuestionnaire().subscribe((data:any)=>{
+  data.map((item:any)=>{
+    if (item.category === 'cat1') {
+      item.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+    }
+    else if (item.category === 'cat2') {
+      item.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+    }
+    else if (item.category === 'cat3') {
+      item.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+    }
+    else if (item.category === 'cat4') {
+      item.category = 'C4- Export Performance of Defence & Aerospace Products'
+    }
+  })
   this.dataSource = new MatTableDataSource(data);
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
-}) }
+}) 
+}
 
   ngOnInit(): void {
   }

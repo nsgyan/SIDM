@@ -59,8 +59,8 @@ export class EditQuestionnaireComponent implements OnInit {
  
   newOption(): FormGroup {
     return this.fb.group({
-      answer: '',
-      weightage: '',
+      answer: ['',Validators.required],
+      weightage: ['',Validators.required],
     })
   }
  
