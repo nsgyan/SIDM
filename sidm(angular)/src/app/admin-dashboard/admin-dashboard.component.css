@@ -3,11 +3,11 @@
 }
 
 .sidenav {
-  width: 17%;
+  width: 18%;
 }
 
 .mat-drawer-content {
-  margin-left: 270px;
+  margin-left: 254px!important;
 }
 .panel {
   width: 50%;
