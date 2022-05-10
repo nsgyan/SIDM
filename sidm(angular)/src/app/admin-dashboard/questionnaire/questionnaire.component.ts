@@ -24,7 +24,6 @@ export class QuestionnaireComponent implements OnInit {
   captcha: any;
   submited: boolean=false;
  
- 
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
     private toast: ToastrService,) {
@@ -33,48 +32,43 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
 })
- 
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
       parameter:['',Validators.required],
       maxWeightage:['',Validators.required],
-      options: this.fb.array([]),
+      option: this.fb.array([]) ,
     })
   }
   ngOnInit(): void {
   }
  
  
-  options(): FormArray {
-    return this.questionnaire.get("options") as FormArray
+  option(): FormArray {
+    return this.questionnaire.get("option") as FormArray
   }
  
- get option(): FormArray {
-    return this.questionnaire.get("options") as FormArray
+ get options(): FormArray {
+    return this.questionnaire.get("option") as FormArray
   }
  
-  newoptions(): FormGroup {
+  newOption(): FormGroup {
     return this.fb.group({
-      answer: ['',Validators.required],
-      weightage: ['',Validators.required],
+      answer: '',
+      weightage: '',
     })
   }
  
  
-  addoptions() {
-    this.options().push(this.options());
+  addOptions() {
+    this.option().push(this.newOption());
   }
  
  
-  removeOptions(quesIndex:number) {
-    this.options().removeAt(quesIndex);
-  }
-  resolved(captchaResponse: any) {
-    this.captcha = captchaResponse;
+  removeOption(quesIndex:number) {
+    this.option().removeAt(quesIndex);
   }
  
 
- 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -85,27 +79,8 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
   }
  
 
-
-  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if ((charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  keyPresschar(evt: any) {
-    evt = (evt) ? evt : event;
-    const charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
-      ((evt.which) ? evt.which : 0));
-    if (charCode > 31 && (charCode < 65 || charCode > 90) &&
-      (charCode < 97 || charCode > 122)) {
-      return false;
-    }
-    return true;
-  }
+ 
+ 
  
   onSubmit() {
     
@@ -130,10 +105,7 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
     }
   }
 
-  selectChangeHandler(){
-    this.addoptions()
-
-  }
+  
  
  
 }
