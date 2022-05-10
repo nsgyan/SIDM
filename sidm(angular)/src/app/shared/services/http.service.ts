@@ -46,8 +46,15 @@ export class HttpService {
 
 postOflinePayment(data:any){
   return this.httpService.post(Globals.route.offlinePayment,data)
-
 }
+
+postQuestionnaire(data:any){
+  return this.httpService.post(Globals.route.postQuestionnaire,data)
+}
+getQuestionnaire(){
+  return this.httpService.get(Globals.route.getQuestionnaire)
+}
+
 getOflinePayment(id:any){
   return this.httpService.get(`${Globals.route.getPaymentDetails}/${id}`)
 

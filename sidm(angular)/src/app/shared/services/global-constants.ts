@@ -18,6 +18,8 @@ export class Globals {
         'verifypayment':Globals.server+'user/verifypayment',
         'viewPayment':Globals.server+'user/viewPayment',
         'offlinePayment':Globals.server+'user/offlinePayment',
-        'getPaymentDetails':Globals.server+'user/getPaymentDetails'
+        'getPaymentDetails':Globals.server+'user/getPaymentDetails',
+        'postQuestionnaire':Globals.server+'questionnaire/add',
+        'getQuestionnaire':Globals.server+'questionnaire'
     };
 }
