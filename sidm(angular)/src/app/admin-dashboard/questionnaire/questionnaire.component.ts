@@ -14,11 +14,13 @@ export class QuestionnaireComponent implements OnInit {
  
  
   constructor(private fb:FormBuilder) {
+   
  
     this.questionnaire=this.fb.group({
-      category:'',
-      typeOfApplicant:'',
-      question: this.fb.array([]) ,
+      category:['',Validators.required],
+      parameter:['',Validators.required],
+      maxWeightage:['',Validators.required],
+      option: this.fb.array([]) ,
     })
   }
   ngOnInit(): void {
@@ -26,51 +28,37 @@ export class QuestionnaireComponent implements OnInit {
   }
  
  
-  question(): FormArray {
-    return this.questionnaire.get("question") as FormArray
+  option(): FormArray {
+    return this.questionnaire.get("option") as FormArray
   }
  
- get questions(): FormArray {
-    return this.questionnaire.get("question") as FormArray
-  }
- 
-  newQuestion(): FormGroup {
-    return this.fb.group({
-      parameter: '',
-      maxWeightage: '',
-      option:this.fb.array([])
-    })
-  }
- 
- 
-  addQuestion() {
-    this.question().push(this.newQuestion());
-  }
- 
- 
-  removeQuestion(quesIndex:number) {
-    this.question().removeAt(quesIndex);
-  }
- 
-
-  QuestionOptions(quesIndex:number) : FormArray {
-    return this.question().at(quesIndex).get("option") as FormArray
+ get options(): FormArray {
+    return this.questionnaire.get("option") as FormArray
   }
  
   newOption(): FormGroup {
     return this.fb.group({
-      answers: '',
-      score: '',
+      answer: '',
+      weightage: '',
     })
   }
  
-  addQuestionOption(quesIndex:number) {
-    this.QuestionOptions(quesIndex).push(this.newOption());
+ 
+  addOptions() {
+    this.option().push(this.newOption());
   }
  
-  removeQuestionOption(quesIndex:number,optIndex:number) {
-    this.QuestionOptions(quesIndex).removeAt(optIndex);
+ 
+  removeOption(quesIndex:number) {
+    this.option().removeAt(quesIndex);
   }
+ 
+
+ 
+ 
+
+ 
+ 
  
   onSubmit() {
     console.log(this.questionnaire.value);

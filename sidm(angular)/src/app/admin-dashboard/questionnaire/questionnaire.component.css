@@ -1,5 +1,5 @@
 .questionnaireForm {
-    padding: 3rem 0 0;
+    padding: 3rem 0;
 }
 .questionnaireForm .questionnaireLabel {
     font-weight: 500;
@@ -24,7 +24,7 @@
 }
 .save-btn .fa-plus {
     color: #363A7A;
-    margin-right: .5rem;
+    /* margin-right: .5rem; */
 }
 .position {
     float: right;
@@ -33,3 +33,7 @@
 /* .RemoveAddOption {
     display: flex;
 } */
+.savePosition {
+    margin-top: 46px;
+    padding: 13px 21px;
+}
