@@ -5,7 +5,7 @@ import { MemberDashboardComponent } from './member-dashboard/member-dashboard.co
 
 
 const routes: Routes = [
-  { path: '', component: MemberDashboardComponent },
+  { path: 'view/:id', component: MemberDashboardComponent },
   { path: 'applyNew', component: ApplyNewCategoryComponent },
 ];
 

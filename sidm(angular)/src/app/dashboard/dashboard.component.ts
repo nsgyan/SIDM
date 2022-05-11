@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
 this.type='member'
     this.httpService.getMemberData().
     subscribe((data: any) => {
+      
       data.map((item:any)=>{
         if (item.category === 'cat1') {
           this.cat1 = true
@@ -54,7 +55,8 @@ this.type='member'
       })
  console.log(data);
  this.memberdata=data
- 
+ const url='/dashboard/member/view/'+data[0]._id
+ this.routes.navigateByUrl(url);
   
 
     }, err => {
@@ -64,6 +66,7 @@ this.type='member'
       this.routes.navigate(['login/member'])
 
     })}
+
     
   }
 
@@ -73,5 +76,28 @@ this.type='member'
   }
   navigate(url:any){
     this.routes.navigateByUrl(url);
+  }
+  navigateTo(url:string,type:string){
+  
+    
+// for(let item of this.memberdata)
+// {  console.log(item);
+//   if(item.catagery===type){
+//     console.log('hello');
+    
+//   }
+// }
+    
+    this.memberdata.map((item:any)=>{
+   
+      
+      if(item.category===type)
+      {
+        console.log('hello');
+        url=url+item._id
+        this.routes.navigateByUrl(url);
+      }
+
+    })
   }
 }
