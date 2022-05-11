@@ -92,10 +92,8 @@ this.type='member'
       
       if(item.category===type)
       {
-        console.log('hello');
         url=url+item._id
         window.location.href=url
-        // this.routes.navigateByUrl(url);
       }
 
     })

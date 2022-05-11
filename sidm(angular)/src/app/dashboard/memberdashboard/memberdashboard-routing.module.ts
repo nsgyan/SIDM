@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'view/:id', component: MemberDashboardComponent },
   { path: '', component: ApplyNewCategoryComponent },
   { path: 'applyNew', component: ApplyNewCategoryComponent },
-  { path: 'questionnaire', component:QuestionnaireFormComponent },
+  { path: 'questionnaire/:id', component:QuestionnaireFormComponent },
 ];
 
 @NgModule({
