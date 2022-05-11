@@ -15,7 +15,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { ListViewComponent } from './list-view/list-view.component';
-import { AdminDashboardComponent } from './admin-dashboard.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -30,7 +29,6 @@ import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionna
   declarations: [
     AdminEditComponent,
     ListViewComponent,
-    AdminDashboardComponent,
     QuestionnaireComponent,
     QuestionnaireListComponent,
     EditQuestionnaireComponent
