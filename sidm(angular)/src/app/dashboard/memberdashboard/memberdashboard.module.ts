@@ -9,12 +9,14 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
+import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-form.component';
 
 
 @NgModule({
   declarations: [
     MemberDashboardComponent,
     ApplyNewCategoryComponent,
+    QuestionnaireFormComponent,
   ],
   imports: [
     CommonModule,
