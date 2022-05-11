@@ -8,7 +8,7 @@ p {
 
 .mat-header-cell {
   background-color: #363a7a;
-  font-size: 16px;
+  font-size: 12px;
   color: #ffffff;
 }
 
@@ -165,4 +165,10 @@ table {
 }
 .mat-form-field-infix {
   border: 1px solid #000 !important;
+}
+.table-btn {
+  border: 1px solid #363a7a;
+    padding: 5px 10px;
+    background: none;
+    border-radius: 3px;
 }
