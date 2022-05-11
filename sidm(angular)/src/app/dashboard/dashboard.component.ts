@@ -55,8 +55,7 @@ this.type='member'
       })
  console.log(data);
  this.memberdata=data
- const url='/dashboard/member/view/'+data[0]._id
- this.routes.navigateByUrl(url);
+
   
 
     }, err => {
@@ -95,7 +94,8 @@ this.type='member'
       {
         console.log('hello');
         url=url+item._id
-        this.routes.navigateByUrl(url);
+        window.location.href=url
+        // this.routes.navigateByUrl(url);
       }
 
     })

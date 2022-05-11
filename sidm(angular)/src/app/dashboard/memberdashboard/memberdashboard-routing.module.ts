@@ -7,7 +7,7 @@ import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-f
 
 const routes: Routes = [
   { path: 'view/:id', component: MemberDashboardComponent },
-  { path: 'applyNew', component: ApplyNewCategoryComponent },
+  { path: '', component: ApplyNewCategoryComponent },
   { path: 'applyNew', component: ApplyNewCategoryComponent },
   { path: 'questionnaire', component:QuestionnaireFormComponent },
 ];
