@@ -61,3 +61,18 @@ exports.updateQuestionnaires=(req,res)=>{
    })
 
 }
+exports.findByCategory=(req,res)=>{
+    const category =req.body.category
+    Questionnaires.find({category:category}).then(data=>{
+        if (data) {
+            res.status(200).send(data)
+        }
+        else {
+            res.status(404).send('not Found Questionnaire in that category')
+        }
+
+    })
+    .catch(err => {
+        res.send(err)
+    })
+}

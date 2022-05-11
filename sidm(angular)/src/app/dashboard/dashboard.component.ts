@@ -1,7 +1,11 @@
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
+import { HttpService } from '../shared/services/http.service';
+import { LocalStorageService } from '../shared/services/local-storage.service';
 import { SideNavService } from '../shared/services/side-nav.service';
 
 @Component({
@@ -10,12 +14,58 @@ import { SideNavService } from '../shared/services/side-nav.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  type='admin'
+  memberdata:any
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
 
   @ViewChild('panel', { static: true }) private sidePanel!: MatSidenav;
   @ViewChild('content', { static: true, read: ViewContainerRef }) private vcf!: ViewContainerRef;
+  cat2!: boolean;
+  cat1!: boolean;
+  cat3!: boolean;
+  cat4!: boolean;
 
-  constructor(private breakpointObserver: BreakpointObserver, private sidenavService: SideNavService) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+    private localStorage: LocalStorageService,
+     private sidenavService: SideNavService,
+     private toast: ToastrService,
+     private httpService: HttpService,
+     private routes: Router,) {
+     if(this.localStorage.get('type')==='member'){
+this.type='member'
+    this.httpService.getMemberData().
+    subscribe((data: any) => {
+      data.map((item:any)=>{
+        if (item.category === 'cat1') {
+          this.cat1 = true
+          
+        }
+        else if (item.category === 'cat2') {
+          this.cat2 = true
+         
+        }
+        else if (item.category === 'cat3') {
+          this.cat3 = true
+          
+        }
+        else if (item.category === 'cat4') {
+          this.cat4 = true
+        }  
+      })
+ console.log(data);
+ this.memberdata=data
+ 
+  
+
+    }, err => {
+      this.toast.error(err.error);
+      this.localStorage.clearLocalStorage()
+      window.location.reload()
+      this.routes.navigate(['login/member'])
+
+    })}
+    
+  }
 
   ngOnInit() {
     this.sidenavService.setPanel(this.sidePanel);

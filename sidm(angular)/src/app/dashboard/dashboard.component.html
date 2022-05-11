@@ -7,7 +7,7 @@
 
         </mat-toolbar>
         <mat-nav-list>
-            <ul>
+            <ul *ngIf="type==='admin'">
                 <span class="fontSize">NAVIGATION</span>
                 <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
                 <span class="fontSize">APPLICANT</span>
@@ -28,6 +28,29 @@
                             class="fas fa-file-alt" style="color: #fff;"></i> a. Questionnaire List</a></li>
                 <span class="fontSize">LOGOUT</span>
                 <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-power-off mr-2"
+                            style="color: #fff;"></i>Logout</a></li>
+            </ul>
+            <ul *ngIf="type==='member'">
+                
+                <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
+                <li class="" ><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Apply for new category +</a></li>
+            
+                <li class="ml-2" *ngIf="cat1"><a href="dashboard/admin"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Category C1</a></li>
+                <li class="ml-2 " *ngIf="cat1"><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> Category C1
+                    Questionnaire </a></li>
+                    <li class="ml-2" *ngIf="cat2"><a href="dashboard/admin"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Category C2</a></li>
+                    <li class="ml-2 " *ngIf="cat2"><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> Category C2
+                        Questionnaire </a></li>
+                        <li class="ml-2" *ngIf="cat3"><a href="dashboard/admin"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Category C3</a></li>
+                        <li class="ml-2 " *ngIf="cat3"><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> Category C3
+                            Questionnaire </a></li>
+                            <li class="ml-2" *ngIf="cat4"><a href="dashboard/admin"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Category C4</a></li>
+                            <li class="ml-2 " *ngIf="cat4"><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> Category C4
+                                Questionnaire </a></li>
+                   
+        
+           
+                <li class=""><a href=""><i aria-hidden="true" class="fas fa-power-off mr-2"
                             style="color: #fff;"></i>Logout</a></li>
             </ul>
         </mat-nav-list>

@@ -39,7 +39,7 @@
     display: flex;
 } */
 .savePosition {
-    margin-top: 27px;
+    margin-top: 45px;
     padding: 13px 21px;
 }
 .savePosition .fa-minus {
@@ -57,11 +57,10 @@
     margin-top: 4rem;
 }
 .topHeader h2 {
-    margin: 0 0 9px 64px;
+    margin: 0 0 9px 19px;
     font-size: 20px;
     color: #fff;
 }
-
-.questionnaireForm  {
-    margin-top: 2rem;
+textarea {
+    padding: 13px 30px;
 }

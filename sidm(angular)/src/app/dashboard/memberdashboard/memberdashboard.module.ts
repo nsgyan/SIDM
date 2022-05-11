@@ -8,11 +8,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
 
 
 @NgModule({
   declarations: [
     MemberDashboardComponent,
+    ApplyNewCategoryComponent,
   ],
   imports: [
     CommonModule,
