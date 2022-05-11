@@ -27,10 +27,26 @@ th {
 .mainPadding {
     padding: 22px;
 }
-.mainPadding thead {
+/* .mainPadding thead {
     background: #363a7a!important;
-}
+} */
 .mat-form-field {
     font-size: 14px;
     width: 17%;
+}
+tr th {
+    background: #363a7a !important;
+    color: #fff;
+}
+td {
+    border: none!important;
+}
+.table-btn {
+    border: 1px solid #363a7a;
+    padding: 5px 10px;
+    /* color: #000; */
+    border-radius: 3px;
+}
+.table-btn .fa-cog {
+    color: #363A7A;
 }
