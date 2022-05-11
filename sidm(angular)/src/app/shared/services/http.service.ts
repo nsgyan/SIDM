@@ -38,6 +38,9 @@ export class HttpService {
  updateform(id: string, data: any) {
     return this.httpService.patch(`${Globals.route.update}/${id}`, data)
   }
+  findByCategory(category:any){
+    return this.httpService.get(`${Globals.route.findByCategory}/${category}`)
+  }
   
   paynow(id:String)
 {

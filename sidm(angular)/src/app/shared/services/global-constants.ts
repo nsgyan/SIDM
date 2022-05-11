@@ -23,5 +23,6 @@ export class Globals {
         'getQuestionnaire':Globals.server+'questionnaire',
         'getQuestionnaireById':Globals.server+'questionnaire/get',
         'updateQuestionnaireById':Globals.server+'questionnaire/update',
+        'findByCategory':Globals.server+'questionnaire/findByCategory',
     };
 }

@@ -64,6 +64,47 @@ export class ApplyNewCategoryComponent implements OnInit {
   
  this.applyNew()
     this.getState()
+    this.newCategoryForm = this.formBuilder.group({
+      category: ['', Validators.required],
+      typeOfApplicant: [''],
+      subCategoryDoccument: [''],
+      financialDoccument: [''],
+      nameOfCompany: [''],
+      addressl1: [''],
+      addressl2: [''],
+      state: [''],
+      city: [''],
+      pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
+      name: [''],
+      designation: [''],
+      email: [this.email],
+      mobileNumber: [this.mobilenumber],
+      panNumber: [this.pan],
+      alterEmail:['',Validators.email],
+      alterMobileNumber:['',[Validators.maxLength(10), Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+      gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
+      documentGstCertificate: [''],
+      dateOfCompany: [''],
+      sidmMember: [''],
+      sidmMemberShipNumber: [''],
+      association: [''],
+      associationName: [''],
+      registeredOrganization: [''],
+      nameRegisteredOrganization: this.formBuilder.array([]),
+      aboutCompany: [''],
+      sidmChampionAwards: [''],
+      isappreciation: [''],
+      appreciationDocuments: [''],
+      campareAchivement: [''],
+      mudp: [''],
+      productLink: [''],
+
+      exhibit1: [''],
+      exhibit2: [''],
+
+
+
+    })
     this.httpService.getMemberData().
       subscribe((data: any) => {
         data.map((item: any) => {
@@ -90,51 +131,19 @@ export class ApplyNewCategoryComponent implements OnInit {
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumber;
         }
-        this.newCategoryForm = this.formBuilder.group({
-          category: ['', Validators.required],
-          typeOfApplicant: [''],
-          subCategoryDoccument: [''],
-          financialDoccument: [''],
-          nameOfCompany: [''],
-          addressl1: [''],
-          addressl2: [''],
-          state: [''],
-          city: [''],
-          pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
-          name: [''],
-          designation: [''],
-          email: [this.email],
-          mobileNumber: [this.mobilenumber],
-          panNumber: [this.pan],
-          alterEmail:['',Validators.email],
-          alterMobileNumber:['',[Validators.maxLength(10), Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-          gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
-          documentGstCertificate: [''],
-          dateOfCompany: [''],
-          sidmMember: [''],
-          sidmMemberShipNumber: [''],
-          association: [''],
-          associationName: [''],
-          registeredOrganization: [''],
-          nameRegisteredOrganization: this.formBuilder.array([]),
-          aboutCompany: [''],
-          sidmChampionAwards: [''],
-          isappreciation: [''],
-          appreciationDocuments: [''],
-          campareAchivement: [''],
-          mudp: [''],
-          productLink: [''],
-    
-          exhibit1: [''],
-          exhibit2: [''],
-    
-    
-    
-        })
+        
+this.newCategoryForm.get('email')?.setValue(this.email)
+this.newCategoryForm.get('email')?.updateValueAndValidity()
+        
+this.newCategoryForm.get('mobileNumber')?.setValue(this.mobilenumber)
+this.newCategoryForm.get('mobileNumber')?.updateValueAndValidity()
+        
+this.newCategoryForm.get('panNumber')?.setValue(this.pan)
+this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
+      
       
         if(!this.cat1&&!this.cat2&&!this.cat3&&!this.cat4){
           const url='/dashboard/member/view/'+data[0]._id
-
           this.routes.navigateByUrl(url);
         }
       }, err => {
