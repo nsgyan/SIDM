@@ -79,7 +79,7 @@ export class QuestionnaireComponent implements OnInit {
       }).subscribe((data:any)=>{
         console.log(data);
         this.toast.success(data);
-        let url: string = "/adminDashboard/questionnaireList"
+        let url: string = "/dashboard/admin/questionnaireList"
         this.routes.navigateByUrl(url);
         
       })

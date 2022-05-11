@@ -39,7 +39,7 @@ export class AdminLoginComponent implements OnInit {
     }).subscribe((data: any) => {
       this.localStorage.set('token', data.token)
       this.localStorage.set('type', 'admin')
-      this.router.navigate(['/adminDashboard'])
+      this.router.navigate(['/dashboard/admin'])
       this.toast.success('Admin Successfully login!');
       this.snackBar.open('Successfully login', 'close', {
         duration: 1500

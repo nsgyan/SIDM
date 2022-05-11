@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminAuthGuradService } from './shared/services/admin-auth-gurad.service';
 import { MemberAuthguradService } from './shared/services/member-authgurad.service';
 import { ViewpageComponent } from './viewpage/viewpage.component';
@@ -15,15 +15,9 @@ const routes: Routes = [
     loadChildren: () => import(`./auth/auth.module`).then(m => m.AuthModule)
   },
   {
-    path: 'memberDashboard',
-    loadChildren: () => import(`./memberdashboard/memberdashboard.module`).then(m => m.MemberdashboardModule),
-    canActivate:[AdminAuthGuradService]
-  },
-  {
-    path: 'adminDashboard',
-    component:AdminDashboardComponent,
-    loadChildren: () => import(`./admin-dashboard/admin-dashboard.module`).then(m => m.AdminDashboardModule),
-    canActivate:[AdminAuthGuradService]
+    path: 'dashboard',
+    component:DashboardComponent,
+    loadChildren: () => import(`./dashboard/dashboard.module`).then(m => m.DashboardModule),
   },
   {
     path: 'detail/:id',

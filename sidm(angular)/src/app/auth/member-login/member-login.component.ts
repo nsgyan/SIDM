@@ -68,7 +68,7 @@ export class MemberLoginComponent implements OnInit {
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
           this.localStorage.set('type', 'member')
-        this.router.navigate(['/memberDashboard'])
+        this.router.navigate(['/dashboard/member'])
         this.toast.success('Member Successfully login!');
       }, err => {
         this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');

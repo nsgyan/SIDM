@@ -127,7 +127,7 @@ export class ListViewComponent implements OnInit {
   editForm(id:any){
  
     // this.routes.navigate(['/adminEdit/edit/',id]);
-    let url: string = "/adminDashboard/edit/" +id
+    let url: string = "/dashboard/admin/edit/" +id
     this.routes.navigateByUrl(url);
     // this.routes.navigateByUrl(url);
     // window.location.href=url

@@ -2,7 +2,8 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Observable, map } from 'rxjs';
-import { SideNavService } from '../shared/services/side-nav.service';
+import { SideNavService } from 'src/app/shared/services/side-nav.service';
+
 
 @Component({
   selector: 'app-admin-dashboard',

@@ -90,7 +90,7 @@ export class EditQuestionnaireComponent implements OnInit {
       }).subscribe((data:any)=>{
       
         this.toast.success(data);
-        let url: string = "/adminDashboard/questionnaireList"
+        let url: string = "/dashboard/admin/questionnaireList"
         this.routes.navigateByUrl(url);
       })
     }
