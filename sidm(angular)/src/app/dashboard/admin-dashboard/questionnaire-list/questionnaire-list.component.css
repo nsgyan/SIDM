@@ -40,6 +40,10 @@ tr th {
 }
 td {
     border: none!important;
+    padding: 25px 15px 8px 0px!important;
+}
+tr td:first-child {
+    padding-left: 23px !important;
 }
 .table-btn {
     border: 1px solid #363a7a;

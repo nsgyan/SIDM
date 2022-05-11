@@ -158,3 +158,6 @@ table {
 .margin {
   margin-top: 5rem;
 }
+.mat-form-field-infix {
+  border: 1px solid #000 !important;
+}
