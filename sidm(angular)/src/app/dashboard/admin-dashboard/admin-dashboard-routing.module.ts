@@ -5,6 +5,7 @@ import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionna
 import { ListViewComponent } from './list-view/list-view.component';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 
 const routes: Routes = [
   { path: '', component: ListViewComponent ,
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'edit/:id', component:AdminEditComponent },
   { path: 'questionnaire', component:QuestionnaireComponent },
   { path: 'questionnaireList', component:QuestionnaireListComponent },
-  { path: 'questionnaireList/edit/:id', component:EditQuestionnaireComponent }
+  { path: 'questionnaireList/edit/:id', component:EditQuestionnaireComponent },
+  { path: 'viewQuestionnaire/:id', component:ViewQuestionnaireComponent }
   
 ];
 

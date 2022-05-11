@@ -59,6 +59,9 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
     this.routes.navigateByUrl(url);
 
   }
- 
+  view(id:any){
+    let url: string = "/dashboard/admin/viewQuestionnaire/"+id
+    this.routes.navigateByUrl(url);
+  }
 
 }

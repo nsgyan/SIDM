@@ -71,4 +71,7 @@ this.type='member'
     this.sidenavService.setPanel(this.sidePanel);
     this.sidenavService.setContentVcf(this.vcf);
   }
+  navigate(url:any){
+    this.routes.navigateByUrl(url);
+  }
 }
