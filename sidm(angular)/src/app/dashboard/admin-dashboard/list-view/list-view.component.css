@@ -43,9 +43,6 @@ p {
 table {
   width: 100%;
 }
-
-
-
 td,
 th {
   width: 6%;
@@ -62,8 +59,6 @@ td.mat-cell:first-of-type {
 td.mat-cell:last-of-type {
   padding-right: 0%;
 }
-
-
 
 .table {
   width: 100%;
@@ -171,4 +166,7 @@ table {
     padding: 5px 10px;
     background: none;
     border-radius: 3px;
+}
+.mat-form-field-flex {
+  border: 1px solid #000;
 }
