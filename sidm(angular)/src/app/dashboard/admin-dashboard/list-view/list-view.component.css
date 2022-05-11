@@ -140,14 +140,19 @@ table {
   white-space: pre-line;
 }
 
-.mat-column-createAt,
-.mat-column-index,
+
 .mat-column-typeOfApplicant,
 .mat-column-email,
 .mat-column-mobileNumber,
 .mat-column-status,
 .mat-column-name {
   padding: 0 12px;
+  white-space: nowrap !important;
+}
+
+.mat-column-createAt,
+.mat-column-index {
+ 
   white-space: nowrap !important;
 }
 
