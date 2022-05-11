@@ -40,11 +40,16 @@ tr th {
 }
 td {
     border: none!important;
+    padding: 25px 15px 8px 0px!important;
+}
+tr td:first-child {
+    padding-left: 23px !important;
 }
 .table-btn {
     border: 1px solid #363a7a;
     padding: 5px 10px;
     /* color: #000; */
+    background: none;
     border-radius: 3px;
 }
 .table-btn .fa-cog {

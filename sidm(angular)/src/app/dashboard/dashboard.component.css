@@ -53,4 +53,14 @@
   }
   .fontSize {
     font-size: 11px;
+    color: #b3b3b3;
   }
+  .mat-form-field-infix {
+    display: block;
+    position: relative;
+    /* flex: auto; */
+    min-width: 0;
+    width: 184px;
+    padding-left: 10px!important;
+    border: 1px solid #000 !important;
+}
