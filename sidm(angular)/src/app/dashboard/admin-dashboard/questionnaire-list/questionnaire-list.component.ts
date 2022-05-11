@@ -55,7 +55,7 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
     }
   }
   editQuestionnaire(id:any){
-    let url: string = "/adminDashboard/questionnaireList/edit/" +id
+    let url: string = "/dashboard/admin/questionnaireList/edit/" +id
     this.routes.navigateByUrl(url);
 
   }
