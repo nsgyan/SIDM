@@ -61,3 +61,6 @@
     font-size: 20px;
     color: #fff;
 }
+textarea {
+    padding: 13px 30px;
+}
