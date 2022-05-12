@@ -47,3 +47,8 @@
     border-radius: 3px!important;
     padding: 6px 12px!important;
 }
+.save-btn {
+    padding: 8px 14px;
+    float: right;
+    margin-bottom: 1rem;
+}

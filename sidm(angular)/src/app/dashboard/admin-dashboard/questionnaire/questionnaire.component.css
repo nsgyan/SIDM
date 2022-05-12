@@ -1,10 +1,10 @@
 .questionnaireForm {
-    padding: 3rem 0;
+    padding: 2rem 7rem 3rem 0rem;
 }
 
 .questionnaireForm .questionnaireLabel {
     font-weight: 500;
-    font-size: 17px;
+    font-size: 14px;
     color: #000;
     margin-bottom: .5rem;
 }
@@ -30,7 +30,12 @@
     color: #363A7A;
     /* margin-right: .5rem; */
 }
-
+.save-btn {
+    padding: 6px 12px;;
+}
+.NewBtn {
+    padding: 8px 17px;
+}
 .position {
     float: right;
     margin-top: -55px;
@@ -40,7 +45,7 @@
 } */
 .savePosition {
     margin-top: 45px;
-    padding: 13px 21px;
+    padding: 6px 21px;
 }
 .savePosition .fa-minus {
     color: #363A7A;
@@ -62,5 +67,15 @@
     color: #fff;
 }
 textarea {
-    padding: 13px 30px;
+    padding: 6px 30px;
+}
+.questionnaireForm select {
+    height: 35px;
+    font-weight: 400;
+}
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"], textarea {
+    height: 35px;
+}
+.form-group {
+    margin-bottom: 0;
 }
