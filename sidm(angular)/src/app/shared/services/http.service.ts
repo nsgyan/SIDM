@@ -46,6 +46,9 @@ export class HttpService {
   questionnaireAissment(data:any){
     return this.httpService.post(Globals.route.questionnaireAissment,data)
   }
+  getQuestionnaireAissment(id:any){
+    return this.httpService.get(`${Globals.route.questionnaireAissment}/${id}`)
+  }
   paynow(id:String)
 {
   return this.httpService.get(`${Globals.route.payment}/${id}`)

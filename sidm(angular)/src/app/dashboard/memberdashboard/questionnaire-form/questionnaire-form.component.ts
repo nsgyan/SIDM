@@ -42,7 +42,7 @@ getquestion(category:any){
  this.questionnaireData.map((item:any)=>{
   control.push(
     this.fb.group({
-      quesgion: [item.parameter, Validators.required],      
+      question: [item.parameter, Validators.required],      
       answer:['',Validators.required]   ,
       score:[''] ,
       maxScore:['']    
@@ -70,7 +70,7 @@ addAissment() {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   control.push(
     this.fb.group({
-      quesgion: ['', Validators.required],      
+      question: ['', Validators.required],      
       answer:['',Validators.required],
       score:[''],
       maxScore:['']    

@@ -141,5 +141,10 @@ export class ListViewComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  viewQuestionnaire(id:any){
+    let url: string = "/dashboard/admin/ViewApplicantQuestionnaire/" +id
+    this.routes.navigateByUrl(url);
+
+  }
 
 }

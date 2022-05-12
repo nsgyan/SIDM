@@ -154,6 +154,8 @@
                       class="fas fa-info-circle" style="color:#363a7a"></i> Request Info</a>
                   <a class="dropdown-item" *ngIf="row.status==='Approved'" (click)="editForm(row._id)"><i
                       aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> Edit</a>
+                      <a class="dropdown-item" *ngIf="row.questionnaireStatus==='sumbit'" (click)="viewQuestionnaire(row._id)"><i
+                        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</a>
                 </div>
               </div>
             </td>

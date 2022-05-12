@@ -1,5 +1,6 @@
 const Questionnaires = require("../models/questionnaires")
 const questionnaireAissment= require("../models/questionnaireAissment")
+const RegistrationForm = require("../models/registrationForm");
 exports.addQuestionnaires= (req,res,next)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
@@ -13,6 +14,7 @@ exports.addQuestionnaires= (req,res,next)=>{
         options:options
     })
     Questionnaire.save().then(data=>{
+    
         res.status(200).json('successfully sumbit');
     }).catch(err=>{
         res.json(err);
@@ -89,8 +91,30 @@ exports.aissmentQuestionnaire=(req,res)=>{
         category:category
     })
     aissment.save().then(data=>{
-        res.status(200).json('successfully sumbit');
+        RegistrationForm.findById(userId).then(data=>{
+            data.questionnaireStatus='sumbit'
+            data.save().then(data=>{
+                res.status(200).json('successfully sumbit');
+            })})
     }).catch(err=>{
         res.json(err);
     })
+}
+
+exports.getAissmentQuestionnaire=(req,res)=>{
+    const userId= req.params.userId
+    questionnaireAissment.find({userId:userId}).then(data=>{
+        if (data) {
+            res.status(200).send(data)
+        }
+        else {
+            res.status(404).send('not Found Questionnaire in that category')
+        }
+
+    })
+    .catch(err => {
+        res.send(err)
+    })
+ 
+ 
 }

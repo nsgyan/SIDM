@@ -1,1 +1,26 @@
-<p>applicant-questionnaire works!</p>
+<div class="topHeader">
+    <h2> Questionnaire  View</h2>
+</div>
+
+<div class="questionnaireForm">
+    <h3>A1 Lorem ipsum dolor sit amet</h3>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Qs.</th>
+            <th scope="col">Questions</th>
+            <th scope="col">Answers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
+            <th scope="row">{{i+1}}</th>
+            <td class="">{{item.question}}</td>
+            <td>
+                {{item.answer}}
+            </td>
+          </tr>
+         
+        </tbody>
+    </table>
+</div>
