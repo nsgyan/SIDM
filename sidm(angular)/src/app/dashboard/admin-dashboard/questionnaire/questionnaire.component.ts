@@ -29,7 +29,7 @@ export class QuestionnaireComponent implements OnInit {
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
       parameter:['',Validators.required],
-      maxWeightage:['',Validators.required],
+      maxScore:['',Validators.required],
       options: this.fb.array([]) ,
     })
     this.addOptions()
@@ -49,7 +49,7 @@ export class QuestionnaireComponent implements OnInit {
   newOption(): FormGroup {
     return this.fb.group({
       answer: ['',Validators.required],
-      weightage:['',Validators.required],
+      score:['',Validators.required],
     })
   }
  
@@ -74,7 +74,7 @@ export class QuestionnaireComponent implements OnInit {
       this.httpService.postQuestionnaire({
       category:this.questionnaire.value.category,
       parameter:this.questionnaire.value.parameter,
-      maxWeightage:this.questionnaire.value.maxWeightage, 
+      maxScore:this.questionnaire.value.maxScore, 
       options:this.questionnaire.value.options, 
       }).subscribe((data:any)=>{
         console.log(data);
@@ -91,6 +91,17 @@ export class QuestionnaireComponent implements OnInit {
     else {
       this.submited = true;
       this.toast.error('Please Fill Required Field');
+    }
+  }
+
+  
+  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
     }
   }
 

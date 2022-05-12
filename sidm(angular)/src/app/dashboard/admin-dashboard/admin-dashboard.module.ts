@@ -22,6 +22,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
 import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
+import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 
 
@@ -33,7 +34,8 @@ import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionna
     QuestionnaireComponent,
     QuestionnaireListComponent,
     EditQuestionnaireComponent,
-    ViewQuestionnaireComponent
+    ViewQuestionnaireComponent,
+    ApplicantQuestionnaireComponent
   ],
   imports: [
     CommonModule,

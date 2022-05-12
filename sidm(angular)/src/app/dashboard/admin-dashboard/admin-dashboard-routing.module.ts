@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
 import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'questionnaire', component:QuestionnaireComponent },
   { path: 'questionnaireList', component:QuestionnaireListComponent },
   { path: 'questionnaireList/edit/:id', component:EditQuestionnaireComponent },
-  { path: 'viewQuestionnaire/:id', component:ViewQuestionnaireComponent }
+  { path: 'viewQuestionnaire/:id', component:ViewQuestionnaireComponent },
+  {path:'ViewApplicantQuestionnaire/:id',component:ApplicantQuestionnaireComponent}
   
 ];
 

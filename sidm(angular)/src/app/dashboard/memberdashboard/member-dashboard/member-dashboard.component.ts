@@ -231,8 +231,7 @@ export class MemberDashboardComponent implements OnInit {
         this.catagery = this.editData.catagery
         this.editData.panNumber = this.editData.panNumber
         this.editForm = this.formBuilder.group({
-         // isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
-
+       
           typeOfApplicant: [this.editData.typeOfApplicant ? this.editData.typeOfApplicant : ''],
           subCategoryDoccument: [''],
           financialDoccument: [''],

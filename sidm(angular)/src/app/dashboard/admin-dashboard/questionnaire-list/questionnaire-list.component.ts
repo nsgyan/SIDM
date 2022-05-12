@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
   styleUrls: ['./questionnaire-list.component.css']
 })
 export class QuestionnaireListComponent implements OnInit {
-  displayedColumns: string[] = [ 'category', 'parameter', 'maxWeightage','action'];
+  displayedColumns: string[] = [ 'category', 'parameter', 'maxScore','action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -4,6 +4,7 @@
 
 <div class="questionnaireForm">
     <h3>A1 Lorem ipsum dolor sit amet</h3>
+    <form [formGroup]="questionnaireForm" >
     <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -12,12 +13,21 @@
             <th scope="col">Answers</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+        <tbody formArrayName="aissment">
+          <tr  *ngFor=" let controlName of nameAissment.controls; let i = index"
+          [formGroupName]="i">
+            <th scope="row">{{i+1}}</th>
+            <td class="">{{questionnaireData[i].parameter}}</td>
             <td>
-                <div class="dropdown">
+              
+                <select class="select"   [ngStyle]="{'border':submited ?  ' 1px solid #FF0000' :  '  1px solid #000'}" formControlName="answer"  >
+                  <option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">{{option.answer}}</option>
+                </select>
+                <p class="mb-2" style="color: red;"
+                                                *ngIf="controlName.get('answer')?.hasError('required') &&(submited)">
+                                               Please select  one option
+                                            </p>
+                <!-- <div class="dropdown">
                     <button class="paymentsDropdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Answers
                     </button>
@@ -26,43 +36,25 @@
                       <a class="dropdown-item" href="#">Answer 2</a>
                       <a class="dropdown-item" href="#">Answer 3</a>
                     </div>
-                  </div>
+                  </div> -->
             </td>
           </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-            <td>
-                <div class="dropdown">
-                    <button class="paymentsDropdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Answers
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Answer 1</a>
-                      <a class="dropdown-item" href="#">Answer 2</a>
-                      <a class="dropdown-item" href="#">Answer 3</a>
-                    </div>
-                  </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-            <td>
-                <div class="dropdown">
-                    <button class="paymentsDropdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Answers
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Answer 1</a>
-                      <a class="dropdown-item" href="#">Answer 2</a>
-                      <a class="dropdown-item" href="#">Answer 3</a>
-                    </div>
-                  </div>
-            </td>
-          </tr>
-          <tr>
+         
+   
         </tbody>
     </table>
+  </form>
+
+    <button class="paymentsDropdwn" (click)="submitQuestionnaire()">Submit</button>
 </div>
 
+<!-- 
+<div *ngFor=" let controlName of nameAissment.controls; let i = index"
+[formGroupName]="i">
+
+
+<input type="text" class="mt-4 mb-2 addInputBox" formControlName="name"> -->
+
+
+<!-- <button *ngIf='i!==0' (click)="removeRegisteredOrganization(i)">Remove Registered  Organization</button>
+-->
