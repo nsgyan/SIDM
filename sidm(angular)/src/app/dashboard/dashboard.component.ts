@@ -16,6 +16,14 @@ import { SideNavService } from '../shared/services/side-nav.service';
 export class DashboardComponent implements OnInit {
   type='admin'
   memberdata:any
+  Quescat1!:any
+  Quescat2!:any
+  Quescat3!:any
+  Quescat4!:any
+  QuesStatusCat1!:any
+  QuesStatusCat2!:any
+  QuesStatusCat3!:any
+  QuesStatusCat4!:any
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
 
   @ViewChild('panel', { static: true }) private sidePanel!: MatSidenav;
@@ -39,18 +47,34 @@ this.type='member'
       data.map((item:any)=>{
         if (item.category === 'cat1') {
           this.cat1 = true
+          this.getQuestionnaire('cat1')
+          if(item.questionnaireStatus==='sumbit'){
+            this.QuesStatusCat1=true
+          }
+
           
         }
         else if (item.category === 'cat2') {
           this.cat2 = true
+          this.getQuestionnaire('cat2')
+          if(item.questionnaireStatus==='sumbit'){
+            this.QuesStatusCat2=true
+          }
          
         }
         else if (item.category === 'cat3') {
           this.cat3 = true
-          
+          this.getQuestionnaire('cat3')
+          if(item.questionnaireStatus==='sumbit'){
+            this.QuesStatusCat3=true
+          }
         }
         else if (item.category === 'cat4') {
           this.cat4 = true
+          this.getQuestionnaire('cat4')
+          if(item.questionnaireStatus==='sumbit'){
+            this.QuesStatusCat4=true
+          }
         }  
       })
  console.log(data);
@@ -65,7 +89,7 @@ this.type='member'
       this.routes.navigate(['login/member'])
 
     })}
-
+    
     
   }
 
@@ -78,14 +102,7 @@ this.type='member'
   }
   navigateTo(url:string,type:string){
   
-    
-// for(let item of this.memberdata)
-// {  console.log(item);
-//   if(item.catagery===type){
-//     console.log('hello');
-    
-//   }
-// }
+
     
     this.memberdata.map((item:any)=>{
    
@@ -96,6 +113,24 @@ this.type='member'
         window.location.href=url
       }
 
+    })
+  }
+
+  getQuestionnaire(category:any){
+    this.httpService.findByCategory(category).subscribe((data:any)=>{
+      if(data[0]?.category==='cat1' ){
+        this.Quescat1=true
+      } 
+      else  if(data[0]?.category==='cat2'){
+        this.Quescat2=true
+      } 
+      else  if(data[0]?.category==='cat3'){
+        this.Quescat3=true
+      } 
+      else  if(data[0]?.category==='cat4'){
+        this.Quescat4=true
+      } 
+      
     })
   }
 }
