@@ -112,6 +112,8 @@ submitQuestionnaire(){
   }).subscribe((data:any)=>{
     console.log(data);
     this.toast.success(data);
+    const url='dashboard/member/viewQuestionnaire/'+this.id
+    window.location.href=url
   })
   }
   else if (!this.captcha) {
