@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -24,7 +25,8 @@ export class QuestionnaireComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
     private toast: ToastrService,
-    private routes: Router,) {
+    private routes: Router,
+    private localStorage: LocalStorageService,) {
 
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
@@ -82,6 +84,11 @@ export class QuestionnaireComponent implements OnInit {
         let url: string = "/dashboard/admin/questionnaireList"
         this.routes.navigateByUrl(url);
         
+      },error => {
+        this.toast.error('Please Login again');
+        this.localStorage.clearLocalStorage()
+        window.location.reload()
+        this.routes.navigate(['login/member'])
       })
     }
     else if (!this.captcha) {

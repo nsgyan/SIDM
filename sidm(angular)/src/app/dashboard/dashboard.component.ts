@@ -115,6 +115,13 @@ this.type='member'
 
     })
   }
+  
+  logout() {
+    this.localStorage.clearLocalStorage()
+    window.location.reload()
+    this.routes.navigate(['login/member'])
+
+  }
 
   getQuestionnaire(category:any){
     this.httpService.findByCategory(category).subscribe((data:any)=>{

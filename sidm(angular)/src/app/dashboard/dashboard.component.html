@@ -27,7 +27,7 @@
                 <li class="ml-2"><a   (click)="navigate('dashboard/admin/questionnaireList')"><i aria-hidden="true"
                             class="fas fa-file-alt" style="color: #fff;"></i>Questionnaire List</a></li>
                 <span class="fontSize">LOGOUT</span>
-                <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-power-off mr-2"
+                <li class=""><a (click)="logout()"><i aria-hidden="true" class="fas fa-power-off mr-2"
                             style="color: #fff;"></i>Logout</a></li>
             </ul>
             <ul *ngIf="type==='member'">
@@ -59,7 +59,7 @@
                    
         
            
-                <li class=""><a href=""><i aria-hidden="true" class="fas fa-power-off mr-2"
+                <li class=""><a (click)="logout()"><i aria-hidden="true" class="fas fa-power-off mr-2"
                             style="color: #fff;"></i>Logout</a></li>
             </ul>
         </mat-nav-list>
@@ -79,7 +79,7 @@
                         Naaz
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">Logout</button>
+                        <button class="dropdown-item" type="button" (click)="logout()">Logout</button>
                         <button class="dropdown-item" type="button">Change Password</button>
                     </div>
                 </div>
