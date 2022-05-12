@@ -1,26 +1,34 @@
 <div class="topHeader">
-    <h2> Questionnaire  View</h2>
+  <h2> Questionnaire  List  View</h2>
 </div>
 
 <div class="questionnaireForm">
-    <h3>A1 Lorem ipsum dolor sit amet</h3>
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Qs.</th>
-            <th scope="col">Questions</th>
-            <th scope="col">Answers</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
-            <th scope="row">{{i+1}}</th>
-            <td class="">{{item.question}}</td>
-            <td>
-                {{item.answer}}
-            </td>
-          </tr>
-         
-        </tbody>
-    </table>
+  <h3>A1 Lorem ipsum dolor sit amet</h3>
+  <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Qs.</th>
+          <th scope="col">Questions</th>
+          <th scope="col">Answers</th>
+          <th scope="col">Score</th>
+          <th scope="col"> Max Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
+          <th scope="row">{{i+1}}</th>
+          <td class="">{{item.question}}</td>
+          <td>
+              {{item.answer}}
+          </td>
+          <td>
+              {{item.score}}
+          </td>
+          <td>
+              {{item.maxScore}}
+          </td>
+        </tr>
+       
+      </tbody>
+  </table>
 </div>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
 import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
 import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-form.component';
+import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: '', component: ApplyNewCategoryComponent },
   { path: 'applyNew', component: ApplyNewCategoryComponent },
   { path: 'questionnaire/:id', component:QuestionnaireFormComponent },
+  { path: 'viewQuestionnaire/:id', component:ViewQuestionnaireComponent },
 ];
 
 @NgModule({

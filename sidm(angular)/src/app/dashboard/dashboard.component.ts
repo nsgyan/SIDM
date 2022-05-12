@@ -77,7 +77,7 @@ this.type='member'
           }
         }  
       })
- console.log(data);
+
  this.memberdata=data
 
   
