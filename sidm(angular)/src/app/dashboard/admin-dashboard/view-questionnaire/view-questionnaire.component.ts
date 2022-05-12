@@ -25,11 +25,10 @@ export class ViewQuestionnaireComponent implements OnInit {
     private toast: ToastrService,) {
       const id = this.route.snapshot.paramMap.get('id')
       this.httpService.getQuestionnaireById(id).subscribe((data:any)=>{
-        console.log(data);
-        
+
         this.questionnaire=this.fb.group({
           category:[data.category,Validators.required],
-          parameter:[data.parameter,Validators.required],
+          parameter:[data.category,Validators.required],
           maxScore:[data.maxScore,Validators.required],
           options: this.fb.array([]) ,
         })
@@ -45,10 +44,7 @@ export class ViewQuestionnaireComponent implements OnInit {
           
         })
         
-
-
       })
-
 
   }
   ngOnInit(): void {
