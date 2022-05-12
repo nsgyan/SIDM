@@ -24,7 +24,7 @@
     </div>
       <div class="row">
         <div class="col-lg-9">
-          <label class="questionnaireLabel mt-3" for="">Parameter/Question*:</label>
+          <label class="questionnaireLabel mt-2" for="">Parameter/Question*:</label>
           <textarea name="" id="" cols="30" rows="10" formControlName="parameter"></textarea>
           <p *ngIf="questionnaire.get('parameter')?.hasError('required') &&(submited)" style="color: red;">
             Parameter/Question <strong>required</strong>
@@ -32,7 +32,7 @@
           <!-- <input type="text" formControlName="parameter" /> -->
         </div>
         <div class="col-lg-3">
-          <label class="questionnaireLabel mt-3" for="">Max score*:</label>
+          <label class="questionnaireLabel mt-2" for="">Max score*:</label>
           <input type="text" formControlName="maxScore" (keypress)="keyPressNumbers($event)" />
           <p *ngIf="questionnaire.get('maxScore')?.hasError('required') &&(submited)" style="color: red;">
             Max score <strong>required</strong>
@@ -49,7 +49,7 @@
             <div [formGroupName]="i">
               <div class="row">
                 <div class="col-lg-8">
-                  <label class="questionnaireLabel mt-3" for="">Option {{i+1}}*:</label>
+                  <label class="questionnaireLabel mt-2" for="">Option {{i+1}}*:</label>
                   <textarea class="mb-2" name="" id="" cols="30" rows="10" formControlName="answer"></textarea>
                   <p class="mb-2" style="color: red;"
                   *ngIf="opt.get('answer')?.hasError('required') &&(submited)">
@@ -58,7 +58,7 @@
                   <!-- <input type="text" formControlName="answer" /> -->
                 </div>
                 <div class="col-lg-3">
-                  <label class="questionnaireLabel mt-3" for=""> Score*:</label>
+                  <label class="questionnaireLabel mt-2" for=""> Score*:</label>
                   <input class="mb-2" type="text" formControlName="score"  (keypress)="keyPressNumbers($event)"/>
                   <p class="mb-2" style="color: red;"
                   *ngIf="opt.get('score')?.hasError('required') &&(submited)">
@@ -78,7 +78,7 @@
         </div>
 
         <div>
-          <button class="save-btn mt-3" (click)="addOptions()" type="button"><i aria-hidden="true"
+          <button class="save-btn mt-3 mb-3" (click)="addOptions()" type="button"><i aria-hidden="true"
               class="fas fa-plus"></i> Add Option</button>
         </div>
 
