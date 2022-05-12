@@ -8,6 +8,7 @@ router.post('/add', auth.adminAuth,questionnaires.addQuestionnaires);
 router.get('/get/:userID', auth.adminAuth, questionnaires.getQuestionnairesByID)
 router.patch('/update/:userID', auth.adminAuth, questionnaires.updateQuestionnaires)
 router.get('/findByCategory/:category',questionnaires.findByCategory)
+router.post('/questionnaireAissment',questionnaires.aissmentQuestionnaire)
 
 
 

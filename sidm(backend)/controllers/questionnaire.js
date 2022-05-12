@@ -1,15 +1,15 @@
 const Questionnaires = require("../models/questionnaires")
-
+const questionnaireAissment= require("../models/questionnaireAissment")
 exports.addQuestionnaires= (req,res,next)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
-    const maxWeightage = req.body.maxWeightage;
+    const maxScore = req.body.maxScore;
     const options = req.body.options;
 
     const Questionnaire= new  Questionnaires({
         category :category,
         parameter : parameter,
-        maxWeightage : maxWeightage,
+        maxScore : maxScore,
         options:options
     })
     Questionnaire.save().then(data=>{
@@ -38,14 +38,14 @@ exports.getQuestionnairesByID= (req,res,next)=>{
 exports.updateQuestionnaires=(req,res)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
-    const maxWeightage = req.body.maxWeightage;
+    const maxScore = req.body.maxScore;
     const options = req.body.options;
     const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
         data.category =category,
         data.parameter = parameter,
-        data.maxWeightage = maxWeightage,
+        data.maxScore = maxScore,
         data.options=options
        data.save((err, success) => {
             if(err){
@@ -62,7 +62,8 @@ exports.updateQuestionnaires=(req,res)=>{
 
 }
 exports.findByCategory=(req,res)=>{
-    const category =req.body.category
+    
+    const category =req.params.category
     Questionnaires.find({category:category}).then(data=>{
         if (data) {
             res.status(200).send(data)
@@ -74,5 +75,22 @@ exports.findByCategory=(req,res)=>{
     })
     .catch(err => {
         res.send(err)
+    })
+}
+exports.aissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const aissment= new questionnaireAissment({
+        userId:userId,
+        totalScore:totalScore,
+        questionAns:questionAns,
+        category:category
+    })
+    aissment.save().then(data=>{
+        res.status(200).json('successfully sumbit');
+    }).catch(err=>{
+        res.json(err);
     })
 }

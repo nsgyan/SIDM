@@ -32,6 +32,7 @@ export class HttpService {
       params: queryParams
     })
   }
+   
   changeStatus(id:string,data:any){
     return this.httpService.patch(`${Globals.route.changeStatus}/${id}`,data)
   }
@@ -42,6 +43,9 @@ export class HttpService {
     return this.httpService.get(`${Globals.route.findByCategory}/${category}`)
   }
   
+  questionnaireAissment(data:any){
+    return this.httpService.post(Globals.route.questionnaireAissment,data)
+  }
   paynow(id:String)
 {
   return this.httpService.get(`${Globals.route.payment}/${id}`)

@@ -32,10 +32,10 @@
             <!-- <input type="text" formControlName="parameter" /> -->
           </div>
           <div class="col-lg-3">
-            <label class="questionnaireLabel mt-3" for="">Max Weightage*:</label>
-            <input type="text" formControlName="maxWeightage" readonly/>
-            <p *ngIf="questionnaire.get('maxWeightage')?.hasError('required') &&(submited)" style="color: red;">
-              Max Weightage <strong>required</strong>
+            <label class="questionnaireLabel mt-3" for="">Max score*:</label>
+            <input type="text" formControlName="maxScore" readonly/>
+            <p *ngIf="questionnaire.get('maxScore')?.hasError('required') &&(submited)" style="color: red;">
+              Max score <strong>required</strong>
           </p>
           </div>
           <!-- <div class="col-lg-1">
@@ -59,9 +59,9 @@
                   </div>
                   <div class="col-lg-3">
                     <label class="questionnaireLabel mt-3" for=""> Score*:</label>
-                    <input class="mb-2" type="text" formControlName="weightage" readonly />
+                    <input class="mb-2" type="text" formControlName="score" readonly />
                     <p class="mb-2" style="color: red;"
-                    *ngIf="opt.get('weightage')?.hasError('required') &&(submited)">
+                    *ngIf="opt.get('score')?.hasError('required') &&(submited)">
                     Score {{i+1}}  required
                 </p>
                   </div>

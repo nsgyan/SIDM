@@ -30,7 +30,7 @@ export class ViewQuestionnaireComponent implements OnInit {
         this.questionnaire=this.fb.group({
           category:[data.category,Validators.required],
           parameter:[data.parameter,Validators.required],
-          maxWeightage:[data.maxWeightage,Validators.required],
+          maxScore:[data.maxScore,Validators.required],
           options: this.fb.array([]) ,
         })
         
@@ -39,7 +39,7 @@ export class ViewQuestionnaireComponent implements OnInit {
          control.push(
            this.fb.group({
             answer: [item.answer,Validators.required],
-      weightage:[item.weightage,Validators.required],
+      score:[item.score,Validators.required],
            })
          );
           
@@ -64,7 +64,7 @@ export class ViewQuestionnaireComponent implements OnInit {
   newOption(): FormGroup {
     return this.fb.group({
       answer: ['',Validators.required],
-      weightage: ['',Validators.required],
+      score: ['',Validators.required],
     })
   }
  
@@ -89,7 +89,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       this.httpService.updateQuestionnaireById(id,{
       category:this.questionnaire.value.category,
       parameter:this.questionnaire.value.parameter,
-      maxWeightage:this.questionnaire.value.maxWeightage, 
+      maxScore:this.questionnaire.value.maxScore, 
       options:this.questionnaire.value.options, 
       }).subscribe((data:any)=>{
       
