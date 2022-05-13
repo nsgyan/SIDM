@@ -64,3 +64,16 @@
     padding-left: 10px!important;
     border: 1px solid #000 !important;
 }
+@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 768px) {
+  
+}
+@media only screen and (max-width: 425px) {
+  
+}
+
+@media only screen and (max-width: 375px) {}
+
+@media only screen and (max-width: 320px) {
+  
+}
