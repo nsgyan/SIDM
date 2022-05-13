@@ -1,116 +1,114 @@
-<div *ngIf="data.type==='offlinePayment'">
+<div *ngIf="data.type==='offlinePayment'"  class="paymentPopup">
 
 
-<h1 mat-dialog-title>   <h5 class="modal-title" id="exampleModalLabel">Offline Payment Details</h5>
-</h1>
-<div mat-dialog-content>
-    <form [formGroup]="OfflinePayment">
-        <div class="">
-           <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-2">Name of Bank *</h5>
-                        <input formControlName="nameOfBank" type="text" >
-                        <p *ngIf="OfflinePayment.get('nameOfBank')?.hasError('required') && (  OfflinePayment.controls['nameOfBank'].touched || submited )" style="color: red;">
-                            Name of Bank <strong>required</strong>
-                        </p>
+    <div mat-dialog-title>
+        <h2 class="modal-title" id="exampleModalLabel">Offline Payment Details</h2>
+    </div>
+    <div mat-dialog-content>
+        <form [formGroup]="OfflinePayment">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h5 class="mt-3 mb-2">Name of Bank *</h5>
+                            <input formControlName="nameOfBank" type="text">
+                            <p *ngIf="OfflinePayment.get('nameOfBank')?.hasError('required') && (  OfflinePayment.controls['nameOfBank'].touched || submited )"
+                                style="color: red;">
+                                Name of Bank <strong>required</strong>
+                            </p>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 class="mt-3 mb-2"> Mode of Payment</h5>
+                            <select formControlName="modeOfPayment" class="select">
+                                <option *ngFor="let item of modeofPayment" value="{{item}}">{{item}}</option>
+                            </select>
+                            <p *ngIf="OfflinePayment.get('modeOfPayment')?.hasError('required') && (  OfflinePayment.controls['modeOfPayment'].touched || submited )"
+                                style="color: red;">
+                                Mode of Payment <strong>required</strong>
+                            </p>
+
+                        </div>
 
                     </div>
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-2"> Mode of Payment</h5>
-                        <select formControlName="modeOfPayment" class="select">
-                            <option *ngFor="let item of modeofPayment" value="{{item}}">{{item}}</option>
-                        </select>
-                        <p *ngIf="OfflinePayment.get('modeOfPayment')?.hasError('required') && (  OfflinePayment.controls['modeOfPayment'].touched || submited )" style="color: red;">
-                            Mode of Payment <strong>required</strong>
-                        </p>
-                        
-                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h5 class="mt-3 mb-2"> Amount *</h5>
+                            <input formControlName="amount" type="text" (keypress)="keyPressNumbers($event)">
+                            <p *ngIf="OfflinePayment.get('amount')?.hasError('required') && (  OfflinePayment.controls['amount'].touched || submited )"
+                                style="color: red;">
+                                Amount <strong>required</strong>
+                            </p>
 
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-2"> Amount *</h5>
-                        <input formControlName="amount" type="text" (keypress)="keyPressNumbers($event)">
-                        <p *ngIf="OfflinePayment.get('amount')?.hasError('required') && (  OfflinePayment.controls['amount'].touched || submited )" style="color: red;">
-                            Amount <strong>required</strong>
-                        </p>
-                        
 
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 class="mt-3 mb-2"> Date of Payment</h5>
+                            <input formControlName="dateOfPayment" type="date" value="yyyy-mm-dd"
+                                class="input-medium search-query" (keypress)="pickclender()" maxlength="16">
+                            <p *ngIf="OfflinePayment.get('dateOfPayment')?.hasError('required') && (  OfflinePayment.controls['dateOfPayment'].touched || submited )"
+                                style="color: red;">
+                                Date of Payment <strong>required</strong>
+                            </p>
+
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <h5 class="mt-3 mb-2"> Date of Payment</h5>
-                        <input formControlName="dateOfPayment" type="date"  value="yyyy-mm-dd"
-                        class="input-medium search-query" (keypress)="pickclender()" maxlength="16">
-                        <p *ngIf="OfflinePayment.get('dateOfPayment')?.hasError('required') && (  OfflinePayment.controls['dateOfPayment'].touched || submited )" style="color: red;">
-                            Date of Payment <strong>required</strong>
-                        </p>
-                        
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="mt-3 mb-2">Transaction details *</h5>
+                            <input formControlName="transactionDetails" type="text">
+                            <p *ngIf="OfflinePayment.get('transactionDetails')?.hasError('required') && (  OfflinePayment.controls['transactionDetails'].touched || submited )"
+                                style="color: red;">
+                                Transaction details <strong>required</strong>
+                            </p>
+
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h5 class="mt-3 mb-2">Transaction details *</h5>
-                        <input formControlName="transactionDetails" type="text" >
-                        <p *ngIf="OfflinePayment.get('transactionDetails')?.hasError('required') && (  OfflinePayment.controls['transactionDetails'].touched || submited )"style="color: red;">
-                            Transaction details  <strong>required</strong>
-                        </p>
-                        
-                    </div>
-                </div>
-            </div> -
-        </div>
-      
-     
-      
-        
-    </form>
-  
+                </div> -
+            </div>
+
+
+
+
+        </form>
+
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="NewBtn" (click)="onNoClick()">Close</button>
+        <button type="button" class="NewBtn ml-2" (click)="submitOfflinePaymentDetails()">Submit</button>
+    </div>
+
 </div>
-<div mat-dialog-actions>
-    <button type="button" class="NewBtn" (click)="onNoClick()">Close</button>
-    <button type="button" class="NewBtn" (click)="submitOfflinePaymentDetails()" >Submit</button>
-</div>
 
-</div>
-
-<div *ngIf="data.type==='requestInfo'">
-
-
+<div *ngIf="data.type==='requestInfo'" class="requestInfoPopup">
     <h5 class="modal-title" id="exampleModalLabel">Request Info</h5>
-<div mat-dialog-content>
-  
-    <form [formGroup]="requestInfo">
-        <div class="">
-          <div class="form-group">
-            <input type="textbox" class="form-control user-bg" id="uername" placeholder="remark"
-              formControlName="remark" />
-          </div>
-        </div>
-      </form>
-</div>
-<div mat-dialog-actions>
-    <button type="button" class="NewBtn" (click)="onNoClick()">Close</button>
-        <button type="button" class="NewBtn" (click)="remark()">Submit</button>
-</div>
+    <div mat-dialog-content>
+        <form [formGroup]="requestInfo">
+            <div class="">
+                <div class="form-group">
+                    <input type="textbox" class="form-control user-bg" id="uername" placeholder="remark"
+                        formControlName="remark" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="NewBtn" (click)="onNoClick()">Close</button>
+        <button type="button" class="NewBtn ml-2" (click)="remark()">Submit</button>
+    </div>
 
 </div>
 
 
 
-<div *ngIf="data.type==='approve'">
-
-
+<div *ngIf="data.type==='approve'" class="requestInfoPopup">
     <h5 class="modal-title" id="exampleModalLabel">Approval</h5>
-<div mat-dialog-content>
-  
-    Are you Sure You want to Approve?
+    <div mat-dialog-content>
+        Are you Sure You want to Approve?
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="NewBtn mt-3" (click)="onNoClick()" data-dismiss="modal">Close</button>
+        <button type="button" (click)="approve()" class="NewBtn ml-2 mt-3">OK</button>
+    </div>
+    <p class="Note">Note: After Approval Member Application form will be locked</p>
 </div>
-<div mat-dialog-actions>
-    <button type="button" class="btn btn-secondary" (click)="onNoClick()" data-dismiss="modal">Close</button>
-    <button type="button" (click)="approve()" class="btn btn-primary">OK</button>
-</div>
-
-</div>
-
-

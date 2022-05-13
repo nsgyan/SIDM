@@ -837,7 +837,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
   openDialog(id:any){
     this.submited=false
     const dialogRef = this.dialog.open(ModelComponent, {
-      width: '250px',
+      width: '500px',
       data: {id: id,type:'offlinePayment'},
     });
 

@@ -150,7 +150,7 @@
                     (click)="modalOpen(row._id,'approve')"><i aria-hidden="true" class="fas fa-check" style="color:#363a7a"></i> Approve</a>
                   <a class="dropdown-item" 
                     *ngIf="row.paymentStatus==='Paid' &&( row.status==='Pending Approval'||row.status==='Request Info')"
-                    (click)="modalOpen(row._id,'requestInfo')" data-target="#exampleModal"><i aria-hidden="true"
+                    (click)="modalOpen(row._id,'requestInfo')" ><i aria-hidden="true"
                       class="fas fa-info-circle" style="color:#363a7a"></i> Request Info</a>
                   <a class="dropdown-item" *ngIf="row.status==='Approved'" (click)="editForm(row._id)"><i
                       aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> Edit</a>
