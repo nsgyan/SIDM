@@ -97,7 +97,7 @@ exports.postRegistrationForm = (req, res, next) => {
   form
     .save()
     .then((result) => {
-       const Date= date.format(result.createAt,'YYYY/MM/DD HH:mm:ss');
+       const Date= date.format(result.createAt,'YYYY/MM/DD HH:mm');
       const filePath = path.join(__dirname, '../view/email.html');
       const source = fs.readFileSync(filePath, 'utf-8').toString();
       const template = handlebars.compile(source);

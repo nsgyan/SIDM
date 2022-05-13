@@ -821,7 +821,7 @@ else{
     this.OfflinepaymentDetails=null
     this.httpService.ViewPayment(OnlinepaymentId).subscribe((data:any)=>{
      
-data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
+data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
    this.paymentDetails=data
       
     },err=>{
