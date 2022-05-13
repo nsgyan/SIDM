@@ -170,3 +170,16 @@ table {
 .mat-form-field-flex {
   border: 1px solid #000;
 }
+
+@media only screen and (max-width: 320px) {
+  .table-btn {
+    padding: 5px 10px;
+    width: 104px;
+  }
+
+  .viewBtn {
+    padding: 0px 8px;
+    font-size: 11px;
+    margin-right: 10px;
+  }
+}

@@ -1,79 +1,132 @@
 .sidenav-container {
-    height: 100%;
-  }
-  
+  height: 100%;
+}
+
+.sidenav {
+  width: 18%;
+}
+
+.mat-drawer-content {
+  margin-left: 246px !important;
+}
+
+.panel {
+  width: 50%;
+}
+
+.mat-drawer.mat-drawer-side {
+  background: #363A7A;
+}
+
+.mat-toolbar.mat-primary {
+  background: #f1f1f1 !important;
+  color: #fff !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 999;
+}
+
+mat-toolbar img {
+  width: 58%;
+  margin-left: 40px;
+}
+
+.mat-list-base {
+  padding: 25px;
+  color: #fff;
+}
+
+.mat-list-base ul li {
+  margin: 17px 0;
+}
+
+.mat-list-base ul li i {
+  margin-right: 10px;
+}
+
+.profile {
+  position: absolute;
+  right: 17px;
+}
+
+.profile .profileBtn {
+  border: none;
+  background: none;
+  font-size: 17px;
+}
+
+.profilePic {
+  width: 40px;
+  height: 40px;
+}
+
+.fontSize {
+  font-size: 11px;
+  color: #b3b3b3;
+}
+
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  /* flex: auto; */
+  min-width: 0;
+  width: 184px;
+  padding-left: 10px !important;
+  border: 1px solid #000 !important;
+}
+
+@media only screen and (max-width: 1024px) {
   .sidenav {
-    width: 18%;
+    width: 24%;
   }
-  
-  .mat-drawer-content {
-    margin-left: 246px!important;
+
+}
+
+@media only screen and (max-width: 768px) {
+  .mat-icon {
+    margin-top: 5px;
   }
-  .panel {
-    width: 50%;
-  }
-  
-  .mat-drawer.mat-drawer-side {
-    background: #363A7A;
-  }
-  .mat-toolbar.mat-primary {
-    background: #f1f1f1!important;
-    color: #fff!important;
-    position: fixed!important;
-    top: 0!important;
-    left: 0!important;
-    z-index: 999;
-  }
-  mat-toolbar img {
-    width: 58%;
-      margin-left: 40px;
-  }
-  .mat-list-base {
-    padding: 25px;
+
+  .ng-star-inserted {
+    border: none;
+    background: #363a7a;
     color: #fff;
   }
-  .mat-list-base ul li {
-    margin: 17px 0;
+
+  .mat-drawer-content {
+    margin-left: 0 !important;
   }
-  .mat-list-base ul li i {
-    margin-right: 10px;
+
+  .sidenav {
+    width: 31%;
   }
-  .profile {
-    position: absolute;
-    right: 17px;
-  }
-  .profile .profileBtn {
-    border: none;
-    background: none;
-    font-size: 17px;
-  }
-  .profilePic {
-    width: 40px;
-      height: 40px;
-  }
-  .fontSize {
-    font-size: 11px;
-    color: #b3b3b3;
-  }
-  .mat-form-field-infix {
-    display: block;
-    position: relative;
-    /* flex: auto; */
-    min-width: 0;
-    width: 184px;
-    padding-left: 10px!important;
-    border: 1px solid #000 !important;
-}
-@media only screen and (max-width: 1024px) {}
-@media only screen and (max-width: 768px) {
-  
-}
-@media only screen and (max-width: 425px) {
-  
 }
 
-@media only screen and (max-width: 375px) {}
+@media only screen and (max-width: 425px) {
+  .sidenav {
+    width: 52%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .sidenav {
+    width: 60%;
+  }
+}
 
 @media only screen and (max-width: 320px) {
-  
+  .sidenav {
+    width: 70%;
+  }
+  .table-btn {
+    padding: 5px 10px;
+    width: 104px;
+  }
+
+  .viewBtn {
+    padding: 0px 8px;
+    font-size: 11px;
+    margin-right: 10px;
+  }
 }
