@@ -113,15 +113,16 @@ export class ListViewComponent implements OnInit {
 
     })
   }
+
   modalOpen(id:any,type:any){
-   
     const dialogRef = this.dialog.open(ModelComponent, {
-      width: '250px',
+      width: '500px',
       data: {id: id,type:type},
     });
 
 
   }
+  
   remark(){
     let createAt = new Date();
 
