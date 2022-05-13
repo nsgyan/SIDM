@@ -12,6 +12,7 @@
     /* margin-right: 10rem; */
     line-height: 1.9;
     width: 50%;
+    font-size: 13px;
 }
 
 .detail p {
@@ -78,3 +79,8 @@
 footer {
     position:absolute !important ;
   }
+  .table .thead-light th {
+    color: #222222;
+    font-size: 16px;
+    font-weight: 400;
+}
