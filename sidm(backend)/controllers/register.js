@@ -184,9 +184,9 @@ exports.getmemberData = (req, res, next) => {
 };
 
 exports.updateFrom = (req, res, next) => {
-  const usertype=req.body.userType ?req.body.userType:'';
-  const userID = req.params.userID
-  const createAt = req.body.currentDate;
+  const usertype=req.body.userType ?req.body.userType:''; 
+  const userID = req.params.userID;
+  const updatedAt=new Date();
   const typeOfApplicant = req.body.typeOfApplicant;
   const subCategoryDoccument = req.body.subCategoryDoccument;
   const financialDoccument = req.body.financialDoccument;
@@ -225,7 +225,7 @@ exports.updateFrom = (req, res, next) => {
   RegistrationForm.findById(userID)
     .then((formData) => {
     if(formData.status!=='Approved'||usertype==='admin')
-    {  formData.createAt = createAt;
+    {  
           formData.typeOfApplicant= typeOfApplicant;
           if (subCategoryDoccument !== formData.subCategoryDoccument) {
             formData.subCategoryDoccument = subCategoryDoccument;
@@ -233,7 +233,7 @@ exports.updateFrom = (req, res, next) => {
           if (financialDoccument !== formData.financialDoccument) {
             formData.financialDoccument = financialDoccument;
           }
-         
+          formData.updatedAt=updatedAt
           formData.nameOfCompany= nameOfCompany;
           formData.addressl1= addressl1;
           formData.addressl2= addressl2;
