@@ -11,7 +11,8 @@ import { HttpService } from '../http.service';
   styleUrls: ['./model.component.css']
 })
 export class ModelComponent implements OnInit {
-  OfflinePayment!:FormGroup
+  OfflinePayment!:FormGroup;
+  requestInfo !:FormGroup ;
   modeofPayment=['Cheque','Bank Draft',"NEFT",'IMPS','UPI']
   submited!: boolean;
   constructor(
@@ -23,13 +24,24 @@ export class ModelComponent implements OnInit {
   ) {
 if(data.type==='offlinePayment')
 {
+  this.submited=false
   this.offlinePayment()
+}
+else if(data.type==='requestInfo')
+{
+  this.submited=false
+  this.requestInfoStatus()
+}
+else if(data.type==='approve')
+{
+  this.submited=false
 }
     
   }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+
   offlinePayment()
   {
     this.OfflinePayment=this.formBuilder.group({
@@ -41,6 +53,7 @@ if(data.type==='offlinePayment')
       transactionDetails:['',Validators.required]
     })
   }
+
   pickclender() {
     return false
   }
@@ -66,6 +79,7 @@ if(data.type==='offlinePayment')
        modeOfPayment:this.OfflinePayment.value.modeOfPayment,
        nameOfBank:this.OfflinePayment.value.nameOfBank,
       }).subscribe((data:any)=>{
+        this.dialogRef.close();
         window.location.reload()
        this.toast.success(data)
       },err=>{
@@ -78,7 +92,36 @@ if(data.type==='offlinePayment')
     }
      
    }
+   remark(){
+    let createAt = new Date();
 
+    this.httpService.changeStatus(this.data.id,{status:'Request Info',message:this.requestInfo.value.remark,createAt:createAt}).subscribe(data=>{
+      this.toast.success('successfully status change');
+      this.dialogRef.close();
+      window.location.reload()   
+    },err=>{
+      this.toast.error('Please try again');
+    })
+  }
+
+
+   requestInfoStatus(){
+    this.requestInfo=this.formBuilder.group({
+      remark:['']
+    })
+   }
+
+   approve() {
+    let createAt = new Date();
+    this.httpService.changeStatus(this.data.id, { status: 'Approved', createAt: createAt }).subscribe(data => {
+      window.location.reload()    
+      this.toast.success('successfully status change');
+      this.dialogRef.close();
+    },err=>{
+      this.toast.error('Please try again');
+
+    })
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

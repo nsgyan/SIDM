@@ -145,12 +145,12 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" (click)="viewDetails(row._id)"><i aria-hidden="true" class="fas fa-eye" style="color:#363a7a"></i>
                     View</a>
-                  <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter"
+                  <a class="dropdown-item" 
                     *ngIf="row.paymentStatus==='Paid' && (row.status==='Pending Approval' || row.status==='Request Info')"
-                    (click)="modalOpen(row._id)"><i aria-hidden="true" class="fas fa-check" style="color:#363a7a"></i> Approve</a>
-                  <a class="dropdown-item" data-toggle="modal"
+                    (click)="modalOpen(row._id,'approve')"><i aria-hidden="true" class="fas fa-check" style="color:#363a7a"></i> Approve</a>
+                  <a class="dropdown-item" 
                     *ngIf="row.paymentStatus==='Paid' &&( row.status==='Pending Approval'||row.status==='Request Info')"
-                    (click)="modalOpen(row._id)" data-target="#exampleModal"><i aria-hidden="true"
+                    (click)="modalOpen(row._id,'requestInfo')" data-target="#exampleModal"><i aria-hidden="true"
                       class="fas fa-info-circle" style="color:#363a7a"></i> Request Info</a>
                   <a class="dropdown-item" *ngIf="row.status==='Approved'" (click)="editForm(row._id)"><i
                       aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> Edit</a>
@@ -187,49 +187,5 @@
 <!-- *ngIf="allFormsData?.hasNextPage" -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Request Info</h5>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="requestInfo">
-          <div class="">
-            <div class="form-group">
-              <input type="textbox" class="form-control user-bg" id="uername" placeholder="remark"
-                formControlName="remark" />
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="NewBtn" data-dismiss="modal">Close</button>
-        <button type="button" class="NewBtn" (click)="remark()">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- approve model -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-
-
-        <h5 class="modal-title" id="exampleModalLabel">Approval</h5>
-
-      </div>
-      <div class="modal-body">
-        Are you Sure You want to Approve?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" (click)="approve()" class="btn btn-primary">OK</button>
-      </div>
-    </div>
-  </div>
-</div>

@@ -840,8 +840,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
       width: '250px',
       data: {id: id,type:'offlinePayment'},
     });
-    this.OfflinePayment.get('id')?.setValue(id)
-    this.modeofPayment=['Cheque','Bank Draft',"NEFT",'IMPS','UPI']
+
 
   }
   submitOfflinePaymentDetails(){

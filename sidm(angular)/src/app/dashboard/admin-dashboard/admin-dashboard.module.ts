@@ -24,6 +24,7 @@ import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-l
 import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
 import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -56,7 +57,8 @@ import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionna
     MatSidenavModule,
     MatToolbarModule,
     MatListModule ,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
     
   
   ]

@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
 
 @Component({
   selector: 'app-list-view',
@@ -32,7 +34,8 @@ export class ListViewComponent implements OnInit {
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private routes: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public dialog: MatDialog) {
     this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']
@@ -110,8 +113,14 @@ export class ListViewComponent implements OnInit {
 
     })
   }
-  modalOpen(id:any){
-    this.id=id;
+  modalOpen(id:any,type:any){
+   
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '250px',
+      data: {id: id,type:type},
+    });
+
+
   }
   remark(){
     let createAt = new Date();
