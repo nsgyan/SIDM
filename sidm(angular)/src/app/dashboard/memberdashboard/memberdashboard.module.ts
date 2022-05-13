@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
 import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-f
     RecaptchaModule,
     NgxSpinnerModule,
     MatSnackBarModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule
   ]
 })
 export class MemberdashboardModule { }

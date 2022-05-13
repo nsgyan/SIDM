@@ -9,6 +9,8 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
 import { formatDate, Location } from '@angular/common'
+import { MatDialog } from '@angular/material/dialog';
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
  
 @Component({
   selector: 'app-member-dashboard',
@@ -69,6 +71,7 @@ export class MemberDashboardComponent implements OnInit {
     private location: Location,
     private winRef: WindowRefService,
     private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
     const id = this.route.snapshot.paramMap.get('id')
     this.OfflinePayment=this.formBuilder.group({
@@ -831,8 +834,12 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
   }
 
 
-  offlinePaymentDetails(id:any){
+  openDialog(id:any){
     this.submited=false
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '250px',
+      data: {id: id,type:'offlinePayment'},
+    });
     this.OfflinePayment.get('id')?.setValue(id)
     this.modeofPayment=['Cheque','Bank Draft',"NEFT",'IMPS','UPI']
 
