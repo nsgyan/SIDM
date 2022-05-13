@@ -8,7 +8,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field> -->
 
-  <input type="sarch" placeholder="Search" class="table-btn mb-2">
+  <input type="sarch" placeholder="Search" (keyup)="applyFilter($event)" class="table-btn mb-2">
   
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>

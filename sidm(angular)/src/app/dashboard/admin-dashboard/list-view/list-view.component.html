@@ -55,7 +55,7 @@
               <input matInput placeholder="Search" value="">
             </mat-form-field>
           </form> -->
-          <input type="sarch" placeholder="Search" class="table-btn">
+          <input type="sarch" (keyup)="applyFilter($event)"  placeholder="Search" class="table-btn">
       </div>
 
 
