@@ -37,6 +37,15 @@ exports.getQuestionnairesByID= (req,res,next)=>{
        res.json(err);
    })
 }
+exports.deleteQuestionnairesByID= (req,res,next)=>{
+    const id = req.params.userID
+    Questionnaires.findByIdAndRemove(id)
+    .then(data=>{
+       res.status(200).send(data);
+   }).catch(err=>{
+       res.json(err);
+   })
+}
 exports.updateQuestionnaires=(req,res)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;

@@ -70,7 +70,10 @@ getQuestionnaireById(id:any){
 updateQuestionnaireById(id:any,data:any){
   return this.httpService.patch(`${Globals.route.updateQuestionnaireById}/${id}`,data)
 }
-
+ 
+deleteQuestionnaire(id:any){
+  return this.httpService.delete(`${Globals.route.deleteQuestionnaire}/${id}`)
+}
 
 getOflinePayment(id:any){
   return this.httpService.get(`${Globals.route.getPaymentDetails}/${id}`)
