@@ -28,7 +28,7 @@ export class ViewQuestionnaireComponent implements OnInit {
 
         this.questionnaire=this.fb.group({
           category:[data.category,Validators.required],
-          parameter:[data.category,Validators.required],
+          parameter:[data.parameter,Validators.required],
           maxScore:[data.maxScore,Validators.required],
           options: this.fb.array([]) ,
         })
@@ -44,6 +44,8 @@ export class ViewQuestionnaireComponent implements OnInit {
           
         })
         
+      },err=>{
+        this.routes.navigate(['login/admin'])
       })
 
   }

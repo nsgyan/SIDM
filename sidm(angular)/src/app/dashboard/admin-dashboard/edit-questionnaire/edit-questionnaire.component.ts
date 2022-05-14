@@ -92,6 +92,8 @@ export class EditQuestionnaireComponent implements OnInit {
         this.toast.success(data);
         let url: string = "/dashboard/admin/questionnaireList"
         this.routes.navigateByUrl(url);
+      },err=>{
+        this.routes.navigate(['login/admin'])
       })
     }
     else if (!this.captcha) {

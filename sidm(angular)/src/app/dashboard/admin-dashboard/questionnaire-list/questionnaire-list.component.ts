@@ -40,6 +40,8 @@ this.httpService.getQuestionnaire().subscribe((data:any)=>{
   this.dataSource = new MatTableDataSource(data);
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
+},err=>{
+  this.routes.navigate(['login/admin'])
 }) 
 }
 
