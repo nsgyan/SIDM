@@ -1,34 +1,34 @@
 <div class="topHeader">
-    <h2> Questionnaire </h2>
+  <h2> Questionnaire </h2>
 </div>
 
 
 <div class="questionnaireForm">
-  
-    <form [formGroup]="questionnaireForm" >
+
+  <form [formGroup]="questionnaireForm">
     <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Qs.</th>
-            <th scope="col">Questions</th>
-            <th scope="col">Answers</th>
-          </tr>
-        </thead>
-        <tbody formArrayName="aissment">
-          <tr  *ngFor=" let controlName of nameAissment.controls; let i = index"
-          [formGroupName]="i">
-            <th scope="row">{{i+1}}</th>
-            <td class="">{{questionnaireData[i].parameter}}</td>
-            <td>
-              
-                <select class="select"   [ngStyle]="{'border':submited ?  ' 1px solid #FF0000' :  '  1px solid #000'}" formControlName="answer"  >
-                  <option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">{{option.answer}}</option>
-                </select>
-                <p class="mb-2" style="color: red;"
-                                                *ngIf="controlName.get('answer')?.hasError('required') &&(submited)">
-                                               Please select  one option
-                                            </p>
-                <!-- <div class="dropdown">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Qs.</th>
+          <th scope="col">Questions</th>
+          <th scope="col">Answers</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="aissment">
+        <tr *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+          <th scope="row">{{i+1}}</th>
+          <td class="">{{questionnaireData[i].parameter}}</td>
+          <td>
+
+            <select class="paymentsDropdwn  select" [ngStyle]="{'border':submited ?  ' 1px solid #FF0000' :  '  1px solid #363a7a'}"
+              formControlName="answer">
+              <option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">{{option.answer}}
+              </option>
+            </select>
+            <p class="mb-2" style="color: red;" *ngIf="controlName.get('answer')?.hasError('required') &&(submited)">
+              Please select one option
+            </p>
+            <!-- <div class="dropdown">
                     <button class="paymentsDropdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Answers
                     </button>
@@ -38,15 +38,15 @@
                       <a class="dropdown-item" href="#">Answer 3</a>
                     </div>
                   </div> -->
-            </td>
-          </tr>
-         
-   
-        </tbody>
+          </td>
+        </tr>
+
+
+      </tbody>
     </table>
   </form>
 
-    <button class="paymentsDropdwn" (click)="submitQuestionnaire()">Submit</button>
+  <button class="paymentsDropdwn" (click)="submitQuestionnaire()">Submit</button>
 </div>
 
 <!-- 
