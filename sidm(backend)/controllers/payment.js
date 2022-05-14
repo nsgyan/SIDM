@@ -56,7 +56,7 @@ var instance = new Razorpay({
       }
     })
     .catch(err=>{
-      res.status(404).json(err)
+      res.json("internal server error");
     })
 }
 
@@ -87,7 +87,7 @@ exports.verifypayment= async (req,res)=>{
 res.status(200).json(item)
   
   }).catch(err=>{
-    res.status(404).json(err)
+    res.json("internal server error");
   })
 
 }
@@ -97,7 +97,7 @@ exports.viewpayment= async (req,res)=>{
   PaymentDb.findById(userID).then(data=>{
     res.status(200).json(data)
   }).catch(err=>{
-    res.status(404).json(err)
+    res.json("internal server error");
   })
 }
 

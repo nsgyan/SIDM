@@ -15,7 +15,7 @@ exports.addAdminUser = (req, res, next) => {
             res.status(200).send(Data)
 
         }).catch(err => {
-            res.send(err)
+            res.json("internal server error");
         })
 }
 
@@ -38,7 +38,7 @@ exports.loginVerify = (req, res, next) => {
                 res.status(404).send({ message: 'User does not exist' })
             }
         }).catch(err => {
-            res.status(404).send(err)
+            res.json("internal server error");
         })
 }
 
@@ -48,7 +48,7 @@ exports.getState = (req, res, next) => {
             res.json(data)
         })
         .catch(err => {
-            res.status(404).send(err)
+            res.json("internal server error");
         })
 
 }
@@ -59,7 +59,7 @@ exports.getEmail = (req, res, next) => {
         .then(data => {
             res.status(200).send(data)
         }).catch(err=>{
-            res.status(404).send(err)
+            res.json("internal server error");
         })
 }
 
@@ -71,7 +71,7 @@ exports.getMobile = (req, res, next) => {
             res.status(200).send(data)
         })
         .catch(err => {
-            res.status(404).send(err)
+            res.json("internal server error");
         })
 }
 
@@ -82,7 +82,7 @@ exports.getPan = (req, res, next) => {
             res.status(200).send(data)
         })
         .catch(err => {
-            res.status(404).send(err)
+            res.json("internal server error");
         })
 }
 exports.memberLogin = (req, res, next) => {
@@ -128,7 +128,7 @@ exports.memberData = (req, res, next) => {
 
                 })
                 .catch(err => {
-                    res.send(err)
+                    res.json("internal server error");
                 })
         }
         else {

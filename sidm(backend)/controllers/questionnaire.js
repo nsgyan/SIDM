@@ -17,7 +17,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     
         res.status(200).json('successfully sumbit');
     }).catch(err=>{
-        res.json(err);
+        res.json("internal server error");
     })
 }
 exports.getQuestionnaires= (req,res,next)=>{
@@ -25,7 +25,7 @@ exports.getQuestionnaires= (req,res,next)=>{
      .then(data=>{
         res.status(200).send(data);
     }).catch(err=>{
-        res.json(err);
+        res.json("internal server error");
     })
 }
 exports.getQuestionnairesByID= (req,res,next)=>{
@@ -34,7 +34,7 @@ exports.getQuestionnairesByID= (req,res,next)=>{
     .then(data=>{
        res.status(200).send(data);
    }).catch(err=>{
-       res.json(err);
+    res.json("internal server error");
    })
 }
 exports.deleteQuestionnairesByID= (req,res,next)=>{
@@ -43,7 +43,7 @@ exports.deleteQuestionnairesByID= (req,res,next)=>{
     .then(data=>{
        res.status(200).send(data);
    }).catch(err=>{
-       res.json(err);
+    res.json("internal server error");
    })
 }
 exports.updateQuestionnaires=(req,res)=>{
@@ -68,7 +68,7 @@ exports.updateQuestionnaires=(req,res)=>{
             }
           });
    }).catch(err=>{
-       res.json(err);
+    res.json("internal server error");
    })
 
 }
@@ -85,7 +85,7 @@ exports.findByCategory=(req,res)=>{
 
     })
     .catch(err => {
-        res.send(err)
+        res.json("internal server error");
     })
 }
 exports.aissmentQuestionnaire=(req,res)=>{
@@ -106,7 +106,7 @@ exports.aissmentQuestionnaire=(req,res)=>{
                 res.status(200).json('successfully sumbit');
             })})
     }).catch(err=>{
-        res.json(err);
+        res.json("internal server error");
     })
 }
 
@@ -122,7 +122,7 @@ exports.getAissmentQuestionnaire=(req,res)=>{
 
     })
     .catch(err => {
-        res.send(err)
+        res.json("internal server error");
     })
  
  

@@ -126,7 +126,7 @@ exports.postRegistrationForm = (req, res, next) => {
       res.status(200).json('successfully sumbit');
     })
     .catch((err) => {
-       res.json(err);
+      res.json("internal server error");
     });
 };
 
@@ -143,7 +143,7 @@ exports.getForms = (req, res, next) => {
       }
     })
     .catch((err) => {
-      res.status(404).json(err);
+      res.json("internal server error");
     });
 };
 
@@ -179,7 +179,7 @@ exports.getmemberData = (req, res, next) => {
       }
     })
     .catch((err) => {
-      res.status(404).json(err);
+      res.json("internal server error");
     });
 };
 
@@ -268,7 +268,7 @@ exports.updateFrom = (req, res, next) => {
       formData.alterEmail= alterEmail
       formData.save((err, success) => {
         if(err){
-       res.status(404).json(err);
+          res.json("internal server error");
         }
         else{
           res.status(200).json('successfully sumbit');
@@ -281,7 +281,7 @@ exports.updateFrom = (req, res, next) => {
       }
     })
     .catch((err) => {
-      res.status(404).json(err);
+      res.json("internal server error");
 
     });
 }
@@ -308,7 +308,7 @@ exports.changeStatus = (req, res, next) => {
   }
    data.save((err, success) => {
     if(err){
-   res.status(404).json(err);
+      res.json("internal server error");
     }
     else{
       console.log(success);
@@ -316,7 +316,7 @@ exports.changeStatus = (req, res, next) => {
     }
   });
   }).catch(err=>{
-    res.status(404).json(err)
+    res.json("internal server error");
   })
 
 }
