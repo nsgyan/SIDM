@@ -722,13 +722,13 @@
                         <p *ngIf="editForm.get('exhibit1')?.hasError('required')" style="color: red;">
                             Exhibit 1<strong>required</strong>
                         </p>
-                        <a *ngIf="editData.exhibit1" href="{{editData?.exhibit1}}" targe t="_blank"
+                        <a *ngIf="editData.exhibit1" target="_blank" href="{{editData?.exhibit1}}" targe t="_blank"
                          ><i class="fas fa-eye"></i></a>
                         <a *ngIf="editData.exhibit1" (click)="delete('exhibit1')"><i class="fa fa-trash"></i></a>
 
                         <br>
                         <h5 class="mb-2">Exhibit 2*</h5>
-                        <input *ngIf="!editData.exhibit2" formControlName="exhibit2" type="file"
+                        <input *ngIf="!editData.exhibit2"  formControlName="exhibit2" type="file"
                             accept=".gif,.jpg,.jpeg,.png,.pdf" (change)="changeListener($event,'exhibit2')"
                             class="border-light mb-1" name="" id="" aria-describedby="helpId" placeholder="">
                         <p *ngIf="!editData.exhibit2" class="fileSizetext">File should be in pdf, jpg, jpeg & png

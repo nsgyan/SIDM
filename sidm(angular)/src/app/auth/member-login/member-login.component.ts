@@ -11,7 +11,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./member-login.component.css']
 })
 export class MemberLoginComponent implements OnInit {
-
+id:any
   memberform: FormGroup;
   submitted: boolean = false;
   captcha: any;
@@ -63,12 +63,16 @@ export class MemberLoginComponent implements OnInit {
 
     this.memberform.value.panNumber = this.memberform.value.panNumber.toUpperCase()
  
-    if (this.memberform.valid&& this.captcha) {
+    if (this.memberform.valid) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
           this.localStorage.set('type', 'member')
-        this.router.navigate(['/dashboard/member'])
+         this.router.navigate(['/dashboard/member'])
+        
+      //   this.getmemberData()
+      //   const url='/dashboard/member/view/'+this.id
+      // window.location.href=url
         this.toast.success('Member Successfully login!');
       }, err => {
         this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');
@@ -94,6 +98,20 @@ export class MemberLoginComponent implements OnInit {
   resolved(captchaResponse: any) {
     this.captcha = captchaResponse;
   }
+  getmemberData(){
+    this.httpService.getMemberData().
+    subscribe((data: any) => {
+    this.id=data[0].__id;
+      
+  
+
+    }, err => {
+      this.toast.error(err.error);
+      this.localStorage.clearLocalStorage()
+      window.location.reload()
+     
+    })}
+  }
 
 
-}
+
