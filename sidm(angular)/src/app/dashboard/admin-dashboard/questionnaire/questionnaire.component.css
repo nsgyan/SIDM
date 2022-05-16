@@ -66,14 +66,16 @@
     font-size: 20px;
     color: #fff;
 }
+
 textarea {
     padding: 6px 30px;
+    height: 55px;
 }
 .questionnaireForm select {
     height: 35px;
     font-weight: 400;
 }
-input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"], textarea {
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"] {
     height: 35px;
 }
 .form-group {
