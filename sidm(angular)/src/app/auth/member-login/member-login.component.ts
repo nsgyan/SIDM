@@ -21,6 +21,7 @@ id:any
     private localStorage: LocalStorageService,
     private toast: ToastrService,
     private router: Router,
+    private routes: Router,
     private httpService: HttpService) {
       this.localStorage.clearLocalStorage()
 
@@ -63,16 +64,17 @@ id:any
 
     this.memberform.value.panNumber = this.memberform.value.panNumber.toUpperCase()
  
-    if (this.memberform.valid) {
+    if (this.memberform.valid && this.captcha) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
           this.localStorage.set('type', 'member')
-         this.router.navigate(['/dashboard/member'])
+        //  this.router.navigate(['/dashboard/member'])
         
       //   this.getmemberData()
-      //   const url='/dashboard/member/view/'+this.id
-      // window.location.href=url
+         const url='/dashboard/member/view/'+data.data._id
+         this.routes.navigateByUrl(url);
+       window.location.href=url
         this.toast.success('Member Successfully login!');
       }, err => {
         this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');
@@ -103,7 +105,8 @@ id:any
     subscribe((data: any) => {
     this.id=data[0].__id;
       
-  
+    let url: string = "/detail/" + data[0].id
+    this.routes.navigateByUrl(url);
 
     }, err => {
       this.toast.error(err.error);

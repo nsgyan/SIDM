@@ -100,7 +100,7 @@ exports.memberLogin = (req, res, next) => {
                 }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
                 );
 
-                res.status(200).send({ token: token })
+                res.status(200).send({ token: token,data:data })
             }
             else {
 
