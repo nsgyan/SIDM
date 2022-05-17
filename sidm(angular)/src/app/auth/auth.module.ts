@@ -9,6 +9,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MemberLoginComponent } from './member-login/member-login.component';
 import { SharedModule } from '../shared/shared.module';
+import { AssessorLoginComponent } from './assessor-login/assessor-login.component';
 
 
 
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AdminLoginComponent,
     MemberLoginComponent,
+    AssessorLoginComponent,
   ],
   imports: [
     CommonModule,

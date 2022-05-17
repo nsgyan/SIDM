@@ -4,6 +4,7 @@ export class Globals {
     public static readonly route = {
         'formsData': Globals.server + 'sidm/formsData',
         'login': Globals.server + 'user/login',
+        'loginAssessor': Globals.server + 'user/login/assessor',
         'getStateList': Globals.server + 'user/getStateList',
         'update': Globals.server + 'sidm/update',
         'changeStatus': Globals.server + 'sidm/changeStatus',

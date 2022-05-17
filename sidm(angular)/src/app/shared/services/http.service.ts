@@ -18,6 +18,9 @@ export class HttpService {
   adminlogin(adminData: any) {
     return this.httpService.post(Globals.route.login, adminData)
   }
+  assessorLogin(assessordata:any){
+    return this.httpService.post(Globals.route.loginAssessor,assessordata)
+  }
   // memberlogin(memberLoginData: any) {
   //   return this.httpService.post(Globals.route.memberLogin, memberLoginData)
   // }
