@@ -20,11 +20,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 
 
 @NgModule({
   declarations: [
-    ApplicantListComponent
+    ApplicantListComponent,
+    ViewQuestionnaireComponent
   ],
   imports: [
     CommonModule,
