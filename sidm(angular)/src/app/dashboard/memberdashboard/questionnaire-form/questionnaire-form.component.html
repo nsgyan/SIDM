@@ -18,7 +18,7 @@
         <tr *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
           <th scope="row">{{i+1}}</th>
           <td class="">{{questionnaireData[i].parameter}}</td>
-          <td>
+          <td style="width:100px; overflow:hidden">
 
             <select class="paymentsDropdwn  select" [ngStyle]="{'border':submited ?  ' 1px solid #FF0000' :  '  1px solid #363a7a'}"
               formControlName="answer">

@@ -13,7 +13,7 @@ import { HttpService } from '../http.service';
 export class ModelComponent implements OnInit {
   OfflinePayment!:FormGroup;
   requestInfo !:FormGroup ;
-  modeofPayment=['Cheque','Bank Draft',"NEFT",'IMPS','UPI']
+  modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   submited!: boolean;
   constructor(
     private  formBuilder :FormBuilder,
