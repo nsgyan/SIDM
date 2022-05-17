@@ -5,8 +5,8 @@ const RegistrationForm = require("../models/registrationForm");
 
 const PaymentDb = require("../models/paymentSchema");
 var instance = new Razorpay({
-  key_id: 'rzp_test_partner_EY3aEuNtC4BoNX',
-  key_secret: 'gfGVzpQVKiUdLO0v5GuiX8O1',
+  key_id: 'rzp_test_DXNpoNMGmHrPoO',
+  key_secret: 'ROwMeHInG0Ir6QDm0cNqYeWK',
 });
 
 
