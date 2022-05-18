@@ -72,12 +72,19 @@ exports.verifypayment= async (req,res)=>{
   payment.save().then(item =>{
     RegistrationForm.findOne({ email: userdata.email, mobileNumber:userdata.mobileNumber, typeOfApplicant:userdata.type, panNumber: userdata.panNumber,category:userdata.category })
     .then((data)=>{
+      if (data) {
       data.paymentStatus='Paid'
+        data.status = 'Pending Approval'
       data.paymentId=item._id
-      data.save();
+        data.save().then(data => {
+          res.status(200).json(item)
+        });
+      }
+      else {
+        res.json("internal server error");
+      }
     })
-   
-res.status(200).json(item)
+
   
   }).catch(err=>{
     res.json("internal server error");

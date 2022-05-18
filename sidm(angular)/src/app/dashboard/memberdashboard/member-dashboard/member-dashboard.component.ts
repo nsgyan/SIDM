@@ -19,6 +19,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./member-dashboard.component.css']
 })
 export class MemberDashboardComponent implements OnInit {
+
+
   paymentDetails:any
   appreciationDocuments: any;
   sidmMember = false
@@ -42,7 +44,7 @@ export class MemberDashboardComponent implements OnInit {
   captcha: any;
   states: any;
   editData: any;
-  catagery: any;
+  category: any;
   email: any;
   mobilenumber: any;
   pan: any;
@@ -88,8 +90,9 @@ export class MemberDashboardComponent implements OnInit {
     this.getState()
     this.httpService.getdetails(id).
       subscribe((data: any) => {
-        
+        this.category = data.category
           if (data.category === 'cat1') {
+
             this.cat1 = false
             data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
           }
@@ -233,7 +236,7 @@ export class MemberDashboardComponent implements OnInit {
         data.isappreciation === 'Yes' ? this.isappreciation = true : ''
 
         this.editData = data
-        this.catagery = this.editData.catagery
+
         this.editData.panNumber = this.editData.panNumber
         this.editForm = this.formBuilder.group({
        
@@ -539,7 +542,7 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid && this.captcha) {
+    if (type === 'finalSubmit' || (this.editForm.valid && this.captcha)) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -774,11 +777,11 @@ if(type==='changeStatus'){
 
   payNow(){
     this.httpService.paynow({
-      typeOfApplicant:this.editForm.value.typeOfApplicantm,
-      category:this.editForm.value.category,
-      panNumber:this.editForm.value.typeOfApplicantm,
-      mobileNumber:this.editForm.value.category,
-      email:this.editForm.value.category,
+      typeOfApplicant: this.editForm.value.typeOfApplicant,
+      category: this.category,
+      panNumber: this.editForm.value.panNumber,
+      mobileNumber: this.editForm.value.mobileNumber,
+      email: this.editForm.value.email,
       
     }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
