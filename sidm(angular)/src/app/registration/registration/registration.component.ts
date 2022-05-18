@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation, GstValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 
 
 @Component({
@@ -28,6 +29,16 @@ export class RegistrationComponent implements OnInit {
   panMatch: boolean = false;
   mobileMatch: Boolean = false
   emailMatch: Boolean = false
+  razorPayOptions={
+    
+    "amount":1,
+    "currency":"INR",
+    "note":{},
+    "order_id":'',
+    "handler":(res: any)=>{
+
+    }
+  }
 
   memberform: FormGroup;
   registrationForm: FormGroup
@@ -40,7 +51,8 @@ export class RegistrationComponent implements OnInit {
     private localStorage: LocalStorageService,
     private toast: ToastrService,
     private router: Router,
-    private httpService: HttpService) {
+    private httpService: HttpService,
+    private winRef: WindowRefService,) {
       this.localStorage.clearLocalStorage()
     this.getState()
     this.registrationForm = this.formBuilder.group({
@@ -556,11 +568,8 @@ export class RegistrationComponent implements OnInit {
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
-      }).subscribe(data => {
-        this.registrationForm.reset();
-        this.toast.success(' Successfully Applied');
-        let url: string = "/thankYou/" + 'dsffsdfds'
-        this.router.navigateByUrl(url);
+      }).subscribe((data:any) => {
+        this.payNow(data.id)
       }, err => {
         this.toast.error(err);
       })
@@ -670,6 +679,45 @@ export class RegistrationComponent implements OnInit {
       this.appreciationDocuments = null
 
     }
+  }
+
+  payNow(id:string){
+    this.httpService.paynow(id).subscribe((data:any)=>{
+this.razorPayOptions.amount=data.amount
+this.razorPayOptions.order_id=data.id
+this.razorPayOptions.note=data.notes
+this.razorPayOptions.handler=  (response) => {
+  this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
+}
+
+const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
+rzp.open();
+
+      
+    })
+  }
+
+  razorPayshandler(response:any,amount:any,note:any){
+
+  if(response){
+  let razorpay_payment_id= response.razorpay_payment_id
+  let razorpay_order_id= response.razorpay_order_id
+  let createAt = new Date();
+
+  this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
+    this.registrationForm.reset();
+    this.toast.success(' Successfully Applied');
+    let url: string = "/thankYou/" + 'dsffsdfds'
+    this.router.navigateByUrl(url);
+  },err=>{
+    this.toast.error('Payment failed');
+
+  })
+}
+else{
+  this.toast.error('Payment failed');
+
+}
   }
 
 }

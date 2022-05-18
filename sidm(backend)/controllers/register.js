@@ -122,8 +122,12 @@ exports.postRegistrationForm = (req, res, next) => {
           res.status(200).json('Please check your email');
         }
       });
-  
-      res.status(200).json('successfully sumbit');
+  if(status==='Pending Approval'){
+      res.status(200).json({message:'successfully sumbit',
+    id:result._id});}
+      else{
+        res.status(200).json({message:'successfully sumbit'});
+      }
     })
     .catch((err) => {
       res.json("internal server error");
@@ -134,7 +138,7 @@ exports.getForms = (req, res, next) => {
   const page = req.query.page || 1;
   const itemPerPage = req.query.itemPerPage || 10;
   let totalItems;
-  RegistrationForm.find()
+  RegistrationForm.find().sort({"updatedAt": 1})
     .then((data) => {
       if (data) {
         res.status(200).json({ data });
