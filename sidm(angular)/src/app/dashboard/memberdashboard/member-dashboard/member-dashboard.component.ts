@@ -583,7 +583,7 @@ if(type==='changeStatus'){
         this.routes.navigateByUrl(url);
         this.toast.success('successfully applied');}
         else{
-          this.payNow(data.id)
+     
         }
       }, err => {
         this.toast.error(err.error);
@@ -772,15 +772,21 @@ if(type==='changeStatus'){
 
   }
 
-  payNow(id:string){
-    this.httpService.paynow(id).subscribe((data:any)=>{
+  payNow(){
+    this.httpService.paynow({
+      typeOfApplicant:this.editForm.value.typeOfApplicantm,
+      category:this.editForm.value.category,
+      panNumber:this.editForm.value.typeOfApplicantm,
+      mobileNumber:this.editForm.value.category,
+      email:this.editForm.value.category,
+      
+    }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
   this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
-
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
 
@@ -794,7 +800,7 @@ rzp.open();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-
+  this.finalSubmit('Pending Approval' ,'finalSubmit')
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.paymentDetails=data
     this.spinner.show();
@@ -810,6 +816,7 @@ rzp.open();
   })
 }
 else{
+  this.savedraft('Pending')
   this.toast.error('Payment failed');
 
 }
@@ -945,7 +952,8 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.finalSubmit('Pending Approval' ,'finalSubmit')
+      this.payNow()
+    
     }
      
     });

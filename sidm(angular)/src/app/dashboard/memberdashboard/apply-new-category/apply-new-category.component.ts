@@ -651,7 +651,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.payNow(data.id)
+        this.newCategoryForm.reset();
       }, err => {
         this.toast.error(err);
         this.toast.error('Please login again');
@@ -1009,15 +1009,21 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
 
   }
 
-  payNow(id:string){
-    this.httpService.paynow(id).subscribe((data:any)=>{
+  payNow(){
+    this.httpService.paynow({
+      typeOfApplicant:this.newCategoryForm.value.typeOfApplicantm,
+      category:this.newCategoryForm.value.category,
+      panNumber:this.newCategoryForm.value.typeOfApplicantm,
+      mobileNumber:this.newCategoryForm.value.category,
+      email:this.newCategoryForm.value.category,
+      
+    }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
   this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
-
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
 
@@ -1031,9 +1037,9 @@ rzp.open();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-
+  this.newSubmit('Pending Approval')
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
-    this.newCategoryForm.reset();
+
     this.spinner.hide();
     this.toast.success(' Successfully Applied');
     let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
@@ -1045,6 +1051,7 @@ rzp.open();
 }
 else{
   this.toast.error('Payment failed');
+  this.newsavedraft('Pending')
 
 }
   }
@@ -1111,7 +1118,8 @@ else{
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.newSubmit('Pending Approval')
+      this.payNow()
+   
     }
      
     });

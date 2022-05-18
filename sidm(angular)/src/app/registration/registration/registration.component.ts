@@ -574,7 +574,9 @@ export class RegistrationComponent implements OnInit {
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.payNow(data.id)
+        this.registrationForm.reset();
+
+       
       }, err => {
         this.toast.error(err);
       })
@@ -686,16 +688,21 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  payNow(id:string){
-    this.httpService.paynow(id).subscribe((data:any)=>{
+  payNow(){
+    this.httpService.paynow({
+      typeOfApplicant:this.registrationForm.value.typeOfApplicantm,
+      category:this.registrationForm.value.category,
+      panNumber:this.registrationForm.value.typeOfApplicantm,
+      mobileNumber:this.registrationForm.value.category,
+      email:this.registrationForm.value.category,
+      
+    }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
-
   this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
-
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
 
@@ -704,14 +711,15 @@ rzp.open();
   }
 
   razorPayshandler(response:any,amount:any,note:any){
-    this.spinner.show();
+  
   if(response){
+    this.spinner.show();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
+  this.finalSubmit('Pending Approval')
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
-    this.registrationForm.reset();
     this.spinner.hide();
     this.toast.success(' Successfully Applied');
     let url: string = "/thankYou/" + 'dsffsdfds'
@@ -722,6 +730,7 @@ rzp.open();
   })
 }
 else{
+  this.savedraft('Pending')
   this.toast.error('Payment failed');
 
 }
@@ -791,7 +800,7 @@ else{
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.finalSubmit('Pending Approval')
+      this.payNow()
     }
      
     });

@@ -147,7 +147,6 @@
                                                             class="fas fa-eye"></i> View</a>
                                                             <a class="dropdown-item" *ngIf="memberData?.status!=='Approved'"  (click)="viewForm(memberData)"><i aria-hidden="true"
                                                                 class="fas fa-edit"></i> Edit</a>
-                                                    <a class="dropdown-item"*ngIf="memberData?.paymentStatus==='Pending'" (click)="payNow(memberData._id)"><i aria-hidden="true" class="fas fa-rupee-sign"></i> Pay Now</a>
                                                     <a class="dropdown-item" *ngIf="!memberData?.offlinePaymentDetails && memberData?.paymentStatus==='Paid'" (click)="openDialog(memberData?._id)">
                                                     <i aria-hidden="true" class="fas fa-file-alt"></i>
                                                     Offline Payment Details</a>

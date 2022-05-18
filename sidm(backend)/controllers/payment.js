@@ -5,8 +5,8 @@ const RegistrationForm = require("../models/registrationForm");
 
 const PaymentDb = require("../models/paymentSchema");
 var instance = new Razorpay({
-  key_id: 'rzp_live_Zu1ExXrsDrcwKq',
-  key_secret: 'KVc4fjpnn8xe8PWNXDQsUrpt',
+  key_id: 'rzp_test_DXNpoNMGmHrPoO',
+  key_secret: 'ROwMeHInG0Ir6QDm0cNqYeWK',
 });
 
 
@@ -15,11 +15,14 @@ var instance = new Razorpay({
   let currency;
   let receipt ;
   let notes;
-    const userID = req.params.userID
-    RegistrationForm.findById(userID)
-    .then(data=>{
-      if(data ){
-          if(data.paymentStatus==='Pending'){
+  const typeOfApplicant= req.body.typeOfApplicant
+  const category= req.body.category
+  const panNumber = req.body.panNumber
+  const mobileNumber= req.body.mobileNumber
+  const email = req.body.email
+   
+  
+
             amount=5000
               const da = new Date();
                receipt = (da.getMonth() + 1)+""+ da.getDate() +""+ da.getFullYear() +""+ da.getHours() +""+ da.getMinutes()+""+da.getSeconds();
@@ -33,11 +36,11 @@ var instance = new Razorpay({
               receipt: receipt,
               account_id:'acc_JKo40ascMj3oEP',
               notes: {
-                type: data.typeOfApplicant,
-                category:data.category,
-                panNumber:data.panNumber,
-                mobileNumber:data.mobileNumber,
-                email: data.email
+                type: typeOfApplicant,
+                category:category,
+                panNumber:panNumber,
+                mobileNumber:mobileNumber,
+                email:email
               }},(err, order) => {
                 //STEP 3 & 4:
                 if (!err) res.json(order);
@@ -45,19 +48,9 @@ var instance = new Razorpay({
               }
             );
          
-          }
-          else{
-            res.status(404).json("invalid transaction")
-          }
-      }
-      else{
-        
-        res.status(404).json("invalid transaction")
-      }
-    })
-    .catch(err=>{
-      res.json("internal server error");
-    })
+          
+      
+ 
 }
 
 exports.verifypayment= async (req,res)=>{
