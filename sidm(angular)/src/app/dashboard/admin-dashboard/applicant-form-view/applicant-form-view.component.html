@@ -1,0 +1,272 @@
+
+<div class="topHeader">
+    <h2>Applicant Detail </h2>
+  </div>
+<!--================= PAGE-TITLE END =================-->
+
+<div class="container mt-4">
+    <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-arrow-left"></i>Back</button>
+</div>
+<div *ngIf="paymentDetails">
+    <div class="container">
+        <div class="profileSection mb-6">
+            
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col" >Mobile Number</th>
+                                    <th scope="col">Pan Number</th>
+                                    <th scope="col" >Order Id</th>
+                                    <th scope="col">Payment Id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">{{paymentDetails?.createAt}}</th>
+                                    <th scope="row">{{paymentDetails?.amount}}</th>
+                                    <th scope="row">{{paymentDetails?.email}}</th>
+                                    <th scope="row">{{paymentDetails?.mobileNumber}}</th>                                    
+                                    <th scope="row">{{paymentDetails?.panNumber}}</th>                                   
+                                    <th scope="row">{{paymentDetails?.razorpay_order_id}}</th>                                   
+                                    <th scope="row">{{paymentDetails?.razorpay_payment_id}}</th>                              
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+<div *ngIf="OfflinepaymentDetails">
+    <div class="container">
+        <div class="profileSection mb-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date Of Payment</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Transaction Details</th>
+                                <th scope="col">Mode Of Payment</th>
+                                <th scope="col">Name Of Bank</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{OfflinepaymentDetails?.dateOfPayment}}</th>
+                                <th scope="row">{{OfflinepaymentDetails?.amount}}</th>
+                                <th scope="row">{{OfflinepaymentDetails?.transactionDetails}}</th>
+                                <th scope="row">{{OfflinepaymentDetails?.modeOfPayment}}</th>
+                                <th scope="row">{{OfflinepaymentDetails?.nameOfBank}}</th>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="registrationForm" >
+    <div class="formBody">
+        <div class="container">
+            <!-- <h2>This is heading</h2> -->
+            <div class="formPart_1 mt-4 mb-4" >
+                <div class="detail" *ngIf="memberData?.remark">
+                    <h6>Remark</h6>
+                    <p style="color: red !important;">{{memberData?.remark}}</p>
+                </div>
+                 <div class="detail" *ngIf="memberData?.remark">
+                    <h6>Remark Date</h6> 
+                    <p style="color: red !important;">{{memberData?.remarkDate}}</p>
+                </div>
+                
+                <div class="detail">
+                    <h6>Status</h6>
+                    <p>{{memberData?.status}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Created Date</h6>
+                    <p>{{memberData?.createAt}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Last updated Date</h6>
+                    <p>{{memberData?.updatedAt}}</p>
+                </div>
+                
+                
+                <div *ngIf="memberData?.paymentStatus" class="detail">
+                    <h6>Payment Status</h6>
+                    <p>{{memberData?.paymentStatus}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Type of Applicant company</h6>
+                    <p>{{memberData?.typeOfApplicant}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Document as sub Category Setected</h6>
+                    <p  *ngIf='!memberData?.subCategoryDoccument'>you have't upload sub Category Document </p>
+                    <a class="ml-2" href="{{memberData?.subCategoryDoccument}}" target="blank" *ngIf='memberData?.subCategoryDoccument'>Sub Category Document</a>
+                   
+                </div>
+                <div class="detail">
+                    <h6>Last Financial Balance sheet </h6>
+                    <p  *ngIf='!memberData?.financialDoccument'>you have't upload sub Category Document </p>
+                    <a class="ml-2" *ngIf='memberData?.financialDoccument' href="{{memberData?.financialDoccument}}" target="blank" >Financial Balance sheet Document</a>
+                </div>
+                <div class="detail">
+                    <h6>Name of the Company</h6>
+                    <p>{{memberData?.nameOfCompany}}</p>
+                </div>
+                <!-- <h4 class="text-left mt-4">Address of your Organization</h4> -->
+                <div class="detail">
+                    <h6>Address Line 1</h6>
+                    <p>{{memberData?.addressl1}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Address Line 2</h6>
+                    <p>{{memberData?.addressl2}}</p>
+                </div>
+                <div class="detail">
+                    <h6>State</h6>
+                    <p>{{memberData?.state}}</p>
+                </div>
+                <div class="detail">
+                    <h6>City</h6>
+                    <p>{{memberData?.city}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Pincode</h6>
+                    <p>{{memberData?.pincode}}</p>
+                </div>
+
+                <div class="detail">
+                    <h6>Contact Person Name</h6>
+                    <p>{{memberData?.name}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Designation</h6>
+                    <p>{{memberData?.designation}}</p>
+                </div>
+                <div class="detail">
+                    <h6>E-Mail Address</h6>
+                    <p>{{memberData?.email}}</p>
+                </div>
+                <div class="detail">
+                    <h6> Alternative E-Mail Address</h6>
+                    <p>{{memberData?.alterEmail}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Mobile Number</h6>
+                    <p>{{memberData?.mobileNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Alternative Mobile Number</h6>
+                    <p>{{memberData?.alterMobileNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6>PAN of the Company</h6>
+                    <p>{{memberData?.panNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6>GSTIN of the Company</h6>
+                    <p>{{memberData?.gstinOfCompany}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Upload GST Certificate Document</h6>
+                    <div class="document">
+                        <!-- <a [href]="{{memberData?.documentGstCertificate}}" [download]="filename">
+
+                        </a> -->
+                        <p *ngIf='!memberData?.documentGstCertificate'>you have't upload  GST Certificate Document </p>
+                        <a class="ml-2"  href="{{memberData?.documentGstCertificate}}"  target="blank" *ngIf='memberData?.documentGstCertificate'>Gst Document</a>
+                        <!-- <a href="javascript:void(0)" download><img src="assets/img/New_img/pdf.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/word.png" alt=""></a>
+                        <a href="javascript:void(0)" download><img src="assets/img/New_img/noimage.png" alt=""></a> -->
+                    </div>
+                </div>
+                <div class="detail">
+                    <h6>Date of Incorporation of the Company</h6>
+                    <p>{{memberData?.dateOfCompany}}</p>
+                </div>
+                
+                <div class="detail">
+                    <h6> Member of SIDM ?</h6>
+                    <p >{{memberData?.sidmMember}}</p>
+                </div>
+                <div *ngIf="memberData?.sidmMemberShipNumber" class="detail">
+                    <h6>Membership number</h6>
+                    <p>{{memberData?.sidmMemberShipNumber}}</p>
+                </div>
+                <div class="detail">
+                    <h6> Member of any other association</h6>
+                    <p>{{memberData?.association}}</p>
+                </div>
+                <div *ngIf="memberData?.associationName" class="detail">
+                    <h6>Association Name</h6>
+                    <p>{{memberData?.associationName}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Registered with any Defence Organisation such as DPSU/DRDO etc</h6>
+                    <p>{{memberData?.registeredOrganization}}</p>
+                </div>
+                <div class="detail" *ngFor="let organization of memberData?.nameRegisteredOrganization ">
+                    <h6>Name of the  Organization registered with</h6>
+                    <p >{{organization.name}}</p>
+                </div>
+                
+                <div class="detail">
+                    <h6>About the company</h6>
+                    <p>{{memberData?.aboutCompany}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Achievements being fielded For the SIDM Champion Awards</h6>
+                    <p>{{memberData?.sidmChampionAwards}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Have you received any reports of performance / letters of appreciation from customer
+                        organization?</h6>
+                        <p>{{memberData?.isappreciation}}</p>
+                </div>
+                <div class="detail">
+                    <h6> Appreciation Document</h6>
+                    <p *ngIf='!memberData?.appreciationDocuments'>you have't upload Appreciation Document </p>
+                    <a *ngIf='memberData?.appreciationDocuments' href="{{memberData?.appreciationDocuments}}" target="blank" >Appreciation Document</a>
+                </div>
+                <div class="detail">
+                    <h6>How does your achievement compare with the other competing options available to the
+                        customer?</h6>
+                    <p>{{memberData?.campareAchivement}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Motivation to undertake the development of the Product/Technology/Infrastructure/Exports</h6>
+                    <p>{{memberData?.mudp}}</p>
+                </div>
+                <div class="detail">
+                    <h6> Photograph /
+                        videos of the products / innovation /
+                        facilities, fielded for the awards</h6>
+                    <p *ngIf='!memberData?.exhibit1||!memberData?.exhibit1'>you have't upload  Document </p>
+                    <a class="ml-2" *ngIf='memberData?.exhibit1'  target="blank" href="{{memberData?.exhibit1}}"> Exhibit 1</a>
+                    <a class="ml-2" *ngIf='memberData?.exhibit2'  target="blank"  href="{{memberData?.exhibit2}}"> Exhibit 2</a>
+                </div>
+                <div class="detail" *ngIf="memberData?.productLink">
+                    <h6> Product video Link</h6>
+                    <a class="ml-2" target="blank" href="{{memberData?.productLink}}" > video Link</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+<div> <button  (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
+     <button (click)="modalOpen(memberData._id,'approve')" > Approve</button></div>
+</div>

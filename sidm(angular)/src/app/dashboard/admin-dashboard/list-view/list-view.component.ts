@@ -97,7 +97,7 @@ export class ListViewComponent implements OnInit {
   }
 
   viewDetails(id: string) {
-    let url: string = "/detail/" + id
+    let url: string = "/dashboard/admin/applicantForm/" + id
     this.routes.navigateByUrl(url);
 
   }

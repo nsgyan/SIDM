@@ -25,6 +25,7 @@ import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionna
 import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form-view.component';
 
 
 
@@ -36,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     QuestionnaireListComponent,
     EditQuestionnaireComponent,
     ViewQuestionnaireComponent,
-    ApplicantQuestionnaireComponent
+    ApplicantQuestionnaireComponent,
+    ApplicantFormViewComponent
   ],
   imports: [
     CommonModule,
