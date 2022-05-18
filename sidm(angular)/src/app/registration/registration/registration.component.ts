@@ -485,55 +485,7 @@ export class RegistrationComponent implements OnInit {
 
   finalSubmit(type: string) {
 
-    this.registrationForm.get('category')?.setValidators(Validators.required)
-    this.registrationForm.get('category')?.updateValueAndValidity()
-    this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
-    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.registrationForm.get('subCategoryDoccument')?.setValidators(Validators.required)
-    this.registrationForm.get('subCategoryDoccument')?.updateValueAndValidity()
-    this.registrationForm.get('financialDoccument')?.setValidators(Validators.required)
-    this.registrationForm.get('financialDoccument')?.updateValueAndValidity()
-    this.registrationForm.get('nameOfCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('nameOfCompany')?.updateValueAndValidity()
-    this.registrationForm.get('addressl1')?.setValidators(Validators.required)
-    this.registrationForm.get('addressl1')?.updateValueAndValidity()
-    this.registrationForm.get('state')?.setValidators(Validators.required)
-    this.registrationForm.get('state')?.updateValueAndValidity()
-    this.registrationForm.get('city')?.setValidators(Validators.required)
-    this.registrationForm.get('city')?.updateValueAndValidity()
-    this.registrationForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
-    this.registrationForm.get('pincode')?.updateValueAndValidity()
-    this.registrationForm.get('name')?.setValidators(Validators.required)
-    this.registrationForm.get('name')?.updateValueAndValidity()
-    this.registrationForm.get('designation')?.setValidators(Validators.required)
-    this.registrationForm.get('designation')?.updateValueAndValidity()
-    this.registrationForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
-    this.registrationForm.get('gstinOfCompany')?.updateValueAndValidity()
-    this.registrationForm.get('documentGstCertificate')?.setValidators(Validators.required)
-    this.registrationForm.get('documentGstCertificate')?.updateValueAndValidity()
-    this.registrationForm.get('dateOfCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('dateOfCompany')?.updateValueAndValidity()
-    this.registrationForm.get('sidmMember')?.setValidators(Validators.required)
-    this.registrationForm.get('sidmMember')?.updateValueAndValidity()
-    this.registrationForm.get('association')?.setValidators(Validators.required)
-    this.registrationForm.get('association')?.updateValueAndValidity()
-    this.registrationForm.get('registeredOrganization')?.setValidators(Validators.required)
-    this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
-    this.registrationForm.get('aboutCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
-    this.registrationForm.get('sidmChampionAwards')?.setValidators(Validators.required)
-    this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
-    this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
-    this.registrationForm.get('isappreciation')?.updateValueAndValidity()
-    this.registrationForm.get('campareAchivement')?.setValidators(Validators.required)
-    this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
-    this.registrationForm.get('mudp')?.setValidators(Validators.required)
-    this.registrationForm.get('mudp')?.updateValueAndValidity()
-    this.registrationForm.get('exhibit1')?.setValidators(Validators.required)
-    this.registrationForm.get('exhibit1')?.updateValueAndValidity()
-    this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
-    this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.registrationForm.valid && this.captcha) {
+    if (this.registrationForm.valid) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -690,18 +642,62 @@ export class RegistrationComponent implements OnInit {
 
   payNow(){
     this.httpService.paynow({
-      typeOfApplicant:this.registrationForm.value.typeOfApplicantm,
+      typeOfApplicant: this.registrationForm.value.typeOfApplicant,
       category:this.registrationForm.value.category,
-      panNumber:this.registrationForm.value.typeOfApplicantm,
-      mobileNumber:this.registrationForm.value.category,
-      email:this.registrationForm.value.category,
+      panNumber: this.registrationForm.value.panNumber,
+      mobileNumber: this.registrationForm.value.mobileNumber,
+      email: this.registrationForm.value.email,
       
     }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
-  this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
+  this.httpService.postregistrationForm({
+
+    category: this.registrationForm.value.category,
+    typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+    subCategoryDoccument: this.subCategoryDoccument,
+    financialDoccument: this.financialDoccument,
+    nameOfCompany: this.registrationForm.value.nameOfCompany,
+    addressl1: this.registrationForm.value.addressl1,
+    addressl2: this.registrationForm.value.addressl2,
+    state: this.registrationForm.value.state,
+    city: this.registrationForm.value.city,
+    pincode: this.registrationForm.value.pincode,
+    name: this.registrationForm.value.name,
+    designation: this.registrationForm.value.designation,
+    email: this.registrationForm.value.email,
+    mobileNumber: this.registrationForm.value.mobileNumber,
+    panNumber: this.registrationForm.value.panNumber,
+    gstinOfCompany: this.registrationForm.value.gstinOfCompany,
+    documentGstCertificate: this.documentGstCertificate,
+    dateOfCompany: this.registrationForm.value.dateOfCompany,
+    sidmMember: this.registrationForm.value.sidmMember,
+    sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
+    association: this.registrationForm.value.association,
+    associationName: this.registrationForm.value.associationName,
+    registeredOrganization: this.registrationForm.value.registeredOrganization,
+    nameRegisteredOrganization: this.registrationForm.value.nameRegisteredOrganization,
+    aboutCompany: this.registrationForm.value.aboutCompany,
+    sidmChampionAwards: this.registrationForm.value.sidmChampionAwards,
+    isappreciation: this.registrationForm.value.isappreciation,
+    appreciationDocuments: this.appreciationDocuments,
+    campareAchivement: this.registrationForm.value.campareAchivement,
+    mudp: this.registrationForm.value.mudp,
+    productLink: this.registrationForm.value.productLink,
+    exhibit1: this.exhibit1,
+    exhibit2: this.exhibit2,
+    alterMobileNumber: this.registrationForm.value.alterMobileNumber,
+    alterEmail: this.registrationForm.value.alterEmail,
+    status: 'Pending Approval',
+  }).subscribe((data: any) => {
+    this.razorPayshandler(response, this.razorPayOptions.amount, this.razorPayOptions.note);
+
+  }, err => {
+    this.toast.error(err);
+  })
+  //does not work as cannot identify 'this'
 }
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
@@ -717,7 +713,7 @@ rzp.open();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-  this.finalSubmit('Pending Approval')
+
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.spinner.hide();
