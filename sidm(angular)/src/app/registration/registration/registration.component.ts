@@ -485,7 +485,6 @@ export class RegistrationComponent implements OnInit {
 
   finalSubmit(type: string) {
 
-    if (this.registrationForm.valid) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -532,16 +531,7 @@ export class RegistrationComponent implements OnInit {
       }, err => {
         this.toast.error(err);
       })
-    }
-    else if (!this.captcha) {
-      this.submited = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
-    else {
 
-      this.submited = true;
-      this.toast.error('Form invalid');
-    }
 
   }
 
@@ -642,7 +632,7 @@ export class RegistrationComponent implements OnInit {
 
   payNow(){
     this.httpService.paynow({
-      typeOfApplicant: this.registrationForm.value.typeOfApplicant,
+      typeOfApplicant: this.registrationForm.value.Pending,
       category:this.registrationForm.value.category,
       panNumber: this.registrationForm.value.panNumber,
       mobileNumber: this.registrationForm.value.mobileNumber,
@@ -653,51 +643,7 @@ this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
-  this.httpService.postregistrationForm({
-
-    category: this.registrationForm.value.category,
-    typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-    subCategoryDoccument: this.subCategoryDoccument,
-    financialDoccument: this.financialDoccument,
-    nameOfCompany: this.registrationForm.value.nameOfCompany,
-    addressl1: this.registrationForm.value.addressl1,
-    addressl2: this.registrationForm.value.addressl2,
-    state: this.registrationForm.value.state,
-    city: this.registrationForm.value.city,
-    pincode: this.registrationForm.value.pincode,
-    name: this.registrationForm.value.name,
-    designation: this.registrationForm.value.designation,
-    email: this.registrationForm.value.email,
-    mobileNumber: this.registrationForm.value.mobileNumber,
-    panNumber: this.registrationForm.value.panNumber,
-    gstinOfCompany: this.registrationForm.value.gstinOfCompany,
-    documentGstCertificate: this.documentGstCertificate,
-    dateOfCompany: this.registrationForm.value.dateOfCompany,
-    sidmMember: this.registrationForm.value.sidmMember,
-    sidmMemberShipNumber: this.registrationForm.value.sidmMemberShipNumber,
-    association: this.registrationForm.value.association,
-    associationName: this.registrationForm.value.associationName,
-    registeredOrganization: this.registrationForm.value.registeredOrganization,
-    nameRegisteredOrganization: this.registrationForm.value.nameRegisteredOrganization,
-    aboutCompany: this.registrationForm.value.aboutCompany,
-    sidmChampionAwards: this.registrationForm.value.sidmChampionAwards,
-    isappreciation: this.registrationForm.value.isappreciation,
-    appreciationDocuments: this.appreciationDocuments,
-    campareAchivement: this.registrationForm.value.campareAchivement,
-    mudp: this.registrationForm.value.mudp,
-    productLink: this.registrationForm.value.productLink,
-    exhibit1: this.exhibit1,
-    exhibit2: this.exhibit2,
-    alterMobileNumber: this.registrationForm.value.alterMobileNumber,
-    alterEmail: this.registrationForm.value.alterEmail,
-    status: 'Pending Approval',
-  }).subscribe((data: any) => {
-    this.razorPayshandler(response, this.razorPayOptions.amount, this.razorPayOptions.note);
-
-  }, err => {
-    this.toast.error(err);
-  })
-  //does not work as cannot identify 'this'
+  this.razorPayshandler(response, this.razorPayOptions.amount, this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
@@ -713,7 +659,7 @@ rzp.open();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-
+    this.finalSubmit('Pending')
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.spinner.hide();
