@@ -138,7 +138,7 @@ exports.getForms = (req, res, next) => {
   const page = req.query.page || 1;
   const itemPerPage = req.query.itemPerPage || 10;
   let totalItems;
-  RegistrationForm.find().sort({"updatedAt": 1})
+  RegistrationForm.find().sort({"createAt": -1})
     .then((data) => {
       if (data) {
         res.status(200).json({ data });

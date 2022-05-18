@@ -5,13 +5,13 @@
 <!--================= PAGE-TITLE END =================-->
 
 <div class="container mt-4">
-    <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-arrow-left"></i>Back</button>
+    <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button>
 </div>
 <div *ngIf="paymentDetails">
     <div class="container">
         <div class="profileSection mb-6">
             
-                <div class="row">
+                <div class="memberData">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead class="thead-light">
@@ -26,13 +26,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><th scope="row">{{paymentDetails?.createAt}}</th>
-                                    <th scope="row">{{paymentDetails?.amount}}</th>
-                                    <th scope="row">{{paymentDetails?.email}}</th>
-                                    <th scope="row">{{paymentDetails?.mobileNumber}}</th>                                    
-                                    <th scope="row">{{paymentDetails?.panNumber}}</th>                                   
-                                    <th scope="row">{{paymentDetails?.razorpay_order_id}}</th>                                   
-                                    <th scope="row">{{paymentDetails?.razorpay_payment_id}}</th>                              
+                                <tr><th scope="memberData">{{paymentDetails?.createAt}}</th>
+                                    <th scope="memberData">{{paymentDetails?.amount}}</th>
+                                    <th scope="memberData">{{paymentDetails?.email}}</th>
+                                    <th scope="memberData">{{paymentDetails?.mobileNumber}}</th>                                    
+                                    <th scope="memberData">{{paymentDetails?.panNumber}}</th>                                   
+                                    <th scope="memberData">{{paymentDetails?.razorpay_order_id}}</th>                                   
+                                    <th scope="memberData">{{paymentDetails?.razorpay_payment_id}}</th>                              
                                 
                                 </tr>
                             </tbody>
@@ -46,7 +46,7 @@
 <div *ngIf="OfflinepaymentDetails">
     <div class="container">
         <div class="profileSection mb-6">
-            <div class="row">
+            <div class="memberData">
                 <div class="col-lg-12">
                     <table class="table">
                         <thead class="thead-light">
@@ -61,11 +61,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">{{OfflinepaymentDetails?.dateOfPayment}}</th>
-                                <th scope="row">{{OfflinepaymentDetails?.amount}}</th>
-                                <th scope="row">{{OfflinepaymentDetails?.transactionDetails}}</th>
-                                <th scope="row">{{OfflinepaymentDetails?.modeOfPayment}}</th>
-                                <th scope="row">{{OfflinepaymentDetails?.nameOfBank}}</th>
+                                <th scope="memberData">{{OfflinepaymentDetails?.dateOfPayment}}</th>
+                                <th scope="memberData">{{OfflinepaymentDetails?.amount}}</th>
+                                <th scope="memberData">{{OfflinepaymentDetails?.transactionDetails}}</th>
+                                <th scope="memberData">{{OfflinepaymentDetails?.modeOfPayment}}</th>
+                                <th scope="memberData">{{OfflinepaymentDetails?.nameOfBank}}</th>
                                 
                             </tr>
                         </tbody>
@@ -267,6 +267,6 @@
             </div>
         </div>
     </div>
-<div> <button  (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
-     <button (click)="modalOpen(memberData._id,'approve')" > Approve</button></div>
+<div class="container " *ngIf="memberData.paymentStatus==='Paid' &&( memberData.status==='Pending Approval'||memberData.status==='Request Info')"> <button  class="viewBtn mx-2" (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
+     <button class="viewBtn" (click)="modalOpen(memberData._id,'approve')" > Approve</button></div>
 </div>
