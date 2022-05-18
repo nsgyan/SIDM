@@ -651,7 +651,6 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.newCategoryForm.reset()
         this.payNow(data.id)
       }, err => {
         this.toast.error(err);

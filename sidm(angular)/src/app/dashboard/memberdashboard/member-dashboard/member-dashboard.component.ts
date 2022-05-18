@@ -578,7 +578,6 @@ export class MemberDashboardComponent implements OnInit {
         
         status: status,
       }).subscribe((data:any) => {
-        this.editForm.reset()
 if(type==='changeStatus'){
         let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
         this.routes.navigateByUrl(url);
