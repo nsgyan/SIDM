@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 import { formatDate, Location } from '@angular/common'
 import { MatDialog } from '@angular/material/dialog';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
+import { NgxSpinnerService } from 'ngx-spinner';
  
 @Component({
   selector: 'app-member-dashboard',
@@ -71,7 +72,8 @@ export class MemberDashboardComponent implements OnInit {
     private location: Location,
     private winRef: WindowRefService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
     const id = this.route.snapshot.paramMap.get('id')
     this.OfflinePayment=this.formBuilder.group({
@@ -788,7 +790,7 @@ rzp.open();
   }
 
   razorPayshandler(response:any,amount:any,note:any){
-
+    this.spinner.show();
   if(response){
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
@@ -796,6 +798,7 @@ rzp.open();
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.paymentDetails=data
+    this.spinner.show();
     this.toast.success(' Payment Successfully ');
    let currentRouter = this.routes.url;
     this.routes.navigate([currentRouter])

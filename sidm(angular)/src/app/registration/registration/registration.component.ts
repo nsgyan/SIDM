@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Event, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation, GstValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
@@ -55,7 +56,8 @@ export class RegistrationComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private httpService: HttpService,
-    private winRef: WindowRefService,) {
+    private winRef: WindowRefService,
+    private spinner: NgxSpinnerService) {
       this.localStorage.clearLocalStorage()
     this.getState()
     this.registrationForm = this.formBuilder.group({
@@ -691,6 +693,7 @@ this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
+
   this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
 
@@ -702,7 +705,7 @@ rzp.open();
   }
 
   razorPayshandler(response:any,amount:any,note:any){
-
+    this.spinner.show();
   if(response){
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
@@ -710,6 +713,7 @@ rzp.open();
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.registrationForm.reset();
+    this.spinner.hide();
     this.toast.success(' Successfully Applied');
     let url: string = "/thankYou/" + 'dsffsdfds'
     this.router.navigateByUrl(url);
@@ -726,6 +730,7 @@ else{
 
 
   openModel(type:any){
+
     this.registrationForm.get('category')?.setValidators(Validators.required)
     this.registrationForm.get('category')?.updateValueAndValidity()
     this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)

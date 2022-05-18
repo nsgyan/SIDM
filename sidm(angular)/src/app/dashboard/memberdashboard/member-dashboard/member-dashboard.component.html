@@ -764,7 +764,7 @@
                             <p> Submit for  approval
                             </p>
                         </button>
-                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'" (click)="finalSubmit('Pending Approval' ,'finalSubmit')">Final Submit and pay
+                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'" (click)="openModel('submitAndPay')">Final Submit and pay
                         </button>
                         <button class="save-btn" target="blanck" (click)="savedraft('Pending')">
                             <p>Save</p>
@@ -853,3 +853,4 @@
       </div>
     </div>
   </div>
+  <ngx-spinner type="ball-scale-multiple"></ngx-spinner>

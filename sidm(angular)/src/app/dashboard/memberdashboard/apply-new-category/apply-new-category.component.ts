@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 import { formatDate, Location } from '@angular/common'
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
  
 @Component({
   selector: 'app-apply-new-category',
@@ -73,6 +74,7 @@ export class ApplyNewCategoryComponent implements OnInit {
     private location: Location,
     private winRef: WindowRefService,
     public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
   
  this.applyNew()
@@ -1025,7 +1027,7 @@ rzp.open();
   }
 
   razorPayshandler(response:any,amount:any,note:any){
-
+    this.spinner.show();
   if(response){
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
@@ -1033,6 +1035,7 @@ rzp.open();
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.newCategoryForm.reset();
+    this.spinner.hide();
     this.toast.success(' Successfully Applied');
     let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
     this.routes.navigateByUrl(url);

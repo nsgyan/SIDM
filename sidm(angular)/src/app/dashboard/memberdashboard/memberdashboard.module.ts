@@ -30,7 +30,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     NgxSpinnerModule,
     MatSnackBarModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule,
   ]
 })
 export class MemberdashboardModule { }
