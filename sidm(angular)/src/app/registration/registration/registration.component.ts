@@ -569,6 +569,7 @@ export class RegistrationComponent implements OnInit {
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
+        this.registrationForm.reset()
         this.payNow(data.id)
       }, err => {
         this.toast.error(err);

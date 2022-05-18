@@ -275,7 +275,8 @@ exports.updateFrom = (req, res, next) => {
           res.json("internal server error");
         }
         else{
-          res.status(200).json('successfully sumbit');
+          res.status(200).json({message:'successfully sumbit',
+        id:success._id});
         }
       });}
       else

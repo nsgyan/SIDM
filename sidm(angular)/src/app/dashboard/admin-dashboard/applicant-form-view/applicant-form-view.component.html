@@ -267,6 +267,6 @@
             </div>
         </div>
     </div>
-<div class="container " *ngIf="memberData.paymentStatus==='Paid' &&( memberData.status==='Pending Approval'||memberData.status==='Request Info')"> <button  class="viewBtn mx-2" (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
+<div class="container mb-3 " *ngIf="memberData.paymentStatus==='Paid' &&( memberData.status==='Pending Approval'||memberData.status==='Request Info')"> <button  class="viewBtn mx-2" (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
      <button class="viewBtn" (click)="modalOpen(memberData._id,'approve')" > Approve</button></div>
 </div>

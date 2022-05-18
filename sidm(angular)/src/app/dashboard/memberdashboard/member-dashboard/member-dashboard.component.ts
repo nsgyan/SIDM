@@ -484,7 +484,7 @@ export class MemberDashboardComponent implements OnInit {
     }
   }
 
-  finalSubmit(type: string) {
+  finalSubmit(status: string,type:any) {
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
     if(!this.editData.subCategoryDoccument){
@@ -574,12 +574,16 @@ export class MemberDashboardComponent implements OnInit {
         alterMobileNumber:this.editForm.value.alterMobileNumber,
         alterEmail:this.editForm.value.alterEmail,
         
-        status: type,
-      }).subscribe(data => {
-
+        status: status,
+      }).subscribe((data:any) => {
+        this.editForm.reset()
+if(type==='changeStatus'){
         let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
         this.routes.navigateByUrl(url);
-        this.toast.success('successfully applied');
+        this.toast.success('successfully applied');}
+        else{
+          this.payNow(data.id)
+        }
       }, err => {
         this.toast.error(err.error);
         this.localStorage.clearLocalStorage();

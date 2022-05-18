@@ -760,9 +760,11 @@
 
                 <div class="row">
                     <div class="col-lg-12 mt-5 mb-5 text-center">
-                        <button *ngIf="editData.paymentStatus==='Paid'" type="submit" class="NewBtn mx-2" (click)="finalSubmit('Pending Approval')">
+                        <button *ngIf="editData.paymentStatus==='Paid'" type="submit"  class="save-btn mx-2" (click)="finalSubmit('Pending Approval','changeStatus')">
                             <p> Submit for  approval
                             </p>
+                        </button>
+                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'" (click)="finalSubmit('Pending Approval' ,'finalSubmit')">Final Submit and pay
                         </button>
                         <button class="save-btn" target="blanck" (click)="savedraft('Pending')">
                             <p>Save</p>
