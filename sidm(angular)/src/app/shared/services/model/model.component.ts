@@ -126,4 +126,7 @@ else if(data.type==='approve')
   onNoClick(): void {
     this.dialogRef.close();
   }
+  noClick(type:any){
+    this.dialogRef.close(type);
+  }
 }

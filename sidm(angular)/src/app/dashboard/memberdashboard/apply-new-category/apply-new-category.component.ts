@@ -9,6 +9,8 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
 import { formatDate, Location } from '@angular/common'
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
+import { MatDialog } from '@angular/material/dialog';
  
 @Component({
   selector: 'app-apply-new-category',
@@ -70,6 +72,7 @@ export class ApplyNewCategoryComponent implements OnInit {
     private routes: Router,
     private location: Location,
     private winRef: WindowRefService,
+    public dialog: MatDialog,
   ) {
   
  this.applyNew()
@@ -1042,6 +1045,84 @@ else{
   this.toast.error('Payment failed');
 
 }
+  }
+
+  openModel(type:any){
+    this.newCategoryForm.get('category')?.setValidators(Validators.required)
+    this.newCategoryForm.get('category')?.updateValueAndValidity()
+    this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.newCategoryForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.newCategoryForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.newCategoryForm.get('financialDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('nameOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('addressl1')?.setValidators(Validators.required)
+    this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
+    this.newCategoryForm.get('state')?.setValidators(Validators.required)
+    this.newCategoryForm.get('state')?.updateValueAndValidity()
+    this.newCategoryForm.get('city')?.setValidators(Validators.required)
+    this.newCategoryForm.get('city')?.updateValueAndValidity()
+    this.newCategoryForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
+    this.newCategoryForm.get('pincode')?.updateValueAndValidity()
+    this.newCategoryForm.get('name')?.setValidators(Validators.required)
+    this.newCategoryForm.get('name')?.updateValueAndValidity()
+    this.newCategoryForm.get('designation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('designation')?.updateValueAndValidity()
+    this.newCategoryForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
+    this.newCategoryForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.newCategoryForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.newCategoryForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('dateOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmMember')?.setValidators(Validators.required)
+    this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('association')?.setValidators(Validators.required)
+    this.newCategoryForm.get('association')?.updateValueAndValidity()
+    this.newCategoryForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
+    this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
+    this.newCategoryForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.newCategoryForm.get('campareAchivement')?.updateValueAndValidity()
+    this.newCategoryForm.get('mudp')?.setValidators(Validators.required)
+    this.newCategoryForm.get('mudp')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit1')?.setValidators(Validators.required)
+    this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
+    this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
+    if (this.newCategoryForm.valid && this.captcha) {
+
+
+
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '500px',
+      data: {type:type},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    if(result==='no'){
+      console.log('no'); 
+    }
+    else if(result==='ok'){
+      this.newSubmit('Pending Approval')
+    }
+     
+    });
+  }
+  else if (!this.captcha) {
+    this.submited = true;
+    this.toast.error('Please verify that you are not a robot.');
+  }
+  else {
+
+    this.submited = true;
+    this.toast.error('Form invalid');
+  }
   }
 
 

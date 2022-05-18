@@ -112,3 +112,22 @@
     </div>
     <p class="Note">Note: After approval member application form will be locked</p>
 </div>
+
+
+
+
+
+
+
+
+<div *ngIf="data.type==='submitAndPay'" class="requestInfoPopup">
+    <h5 class="modal-title" id="exampleModalLabel">Final Submit and pay</h5>
+    <div mat-dialog-content>
+        Are you sure you want to submit the application
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="NewBtn mt-3"  (click)="noClick('no')" data-dismiss="modal">Close</button>
+        <button type="button"(click)="noClick('ok')" class="NewBtn ml-2 mt-3">OK</button>
+    </div>
+    <p class="Note">Note: Your application sent for admin approval</p>
+</div>

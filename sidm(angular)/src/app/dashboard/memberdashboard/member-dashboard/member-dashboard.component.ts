@@ -878,5 +878,86 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
   closeRemark(){
     this.remark=null;
   }
+  openModel(type:any){
+    this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
+    if(!this.editData.subCategoryDoccument){
+    this.editForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()}
+    if(!this.editData.financialDoccument){
+    this.editForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.editForm.get('financialDoccument')?.updateValueAndValidity()}
+    this.editForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('nameOfCompany')?.updateValueAndValidity()
+    this.editForm.get('addressl1')?.setValidators(Validators.required)
+    this.editForm.get('addressl1')?.updateValueAndValidity()
+    this.editForm.get('state')?.setValidators(Validators.required)
+    this.editForm.get('state')?.updateValueAndValidity()
+    this.editForm.get('city')?.setValidators(Validators.required)
+    this.editForm.get('city')?.updateValueAndValidity()
+    this.editForm.get('pincode')?.setValidators(Validators.required)
+    this.editForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6),Validators.required])
+    this.editForm.get('pincode')?.updateValueAndValidity()
+    this.editForm.get('name')?.setValidators(Validators.required)
+    this.editForm.get('name')?.updateValueAndValidity()
+    this.editForm.get('designation')?.setValidators(Validators.required)
+    this.editForm.get('designation')?.updateValueAndValidity()
+    this.editForm.get('gstinOfCompany')?.setValidators([Validators.required,Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
+    this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
+    if(!this.editData.documentGstCertificate){
+    this.editForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()}
+    this.editForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('dateOfCompany')?.updateValueAndValidity()
+    this.editForm.get('sidmMember')?.setValidators(Validators.required)
+    this.editForm.get('sidmMember')?.updateValueAndValidity()
+    this.editForm.get('association')?.setValidators(Validators.required)
+    this.editForm.get('association')?.updateValueAndValidity()
+    this.editForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.editForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.editForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
+    this.editForm.get('isappreciation')?.setValidators(Validators.required)
+    this.editForm.get('isappreciation')?.updateValueAndValidity() 
+    this.editForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.editForm.get('campareAchivement')?.updateValueAndValidity()
+    this.editForm.get('mudp')?.setValidators(Validators.required)
+    this.editForm.get('mudp')?.updateValueAndValidity()
+    if(!this.editData.exhibit1){
+    this.editForm.get('exhibit1')?.setValidators(Validators.required)
+    this.editForm.get('exhibit1')?.updateValueAndValidity()}
+    if(!this.editData.exhibit2){
+    this.editForm.get('exhibit2')?.setValidators(Validators.required)
+    this.editForm.get('exhibit2')?.updateValueAndValidity()}
+    if (this.editForm.valid && this.captcha) {
+
+
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '500px',
+      data: {type:type},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    if(result==='no'){
+      console.log('no'); 
+    }
+    else if(result==='ok'){
+      this.finalSubmit('Pending Approval' ,'finalSubmit')
+    }
+     
+    });
+  }
+  else if (!this.captcha) {
+    this.submited = true;
+    this.toast.error('Please verify that you are not a robot.');
+  }
+  else {
+
+    this.submited = true;
+    this.toast.error('Form invalid');
+  }
+  }
+
 
 }
