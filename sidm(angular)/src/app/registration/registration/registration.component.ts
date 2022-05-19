@@ -632,7 +632,7 @@ export class RegistrationComponent implements OnInit {
 
   payNow(){
     this.httpService.paynow({
-      typeOfApplicant: this.registrationForm.value.Pending,
+      typeOfApplicant: this.registrationForm.value.typeOfApplicant,
       category:this.registrationForm.value.category,
       panNumber: this.registrationForm.value.panNumber,
       mobileNumber: this.registrationForm.value.mobileNumber,
