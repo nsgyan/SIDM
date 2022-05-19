@@ -603,7 +603,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.payNow(data.typeOfApplicant,data.category,data.panNumber,data.mobileNumber,data.email)
+        this.payNow(this.newCategoryForm.value.typeOfApplicant,this.newCategoryForm.value.category,this.newCategoryForm.value.panNumber,this.newCategoryForm.value.mobileNumber,this.newCategoryForm.value.email)
         this.toast.success('successfully applied');
         this.newCategoryForm.reset()
   

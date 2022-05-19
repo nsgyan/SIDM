@@ -586,7 +586,7 @@ if(type==='changeStatus'){
         this.routes.navigateByUrl(url);
         this.toast.success('successfully applied');}
         else if(type==='finalSubmit'){
-          this.payNow(data.typeOfApplicant,data.category,data.panNumber,data.mobileNumber,data.email)
+          this.payNow(this.editForm.value.typeOfApplicant,this.category,this.editForm.value.panNumber,this.editForm.value.mobileNumber,this.editForm.value.email)
           this.toast.success('successfully applied');
           this.editForm.reset()
           
@@ -948,7 +948,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid && this.captcha) {
+    if (this.editForm.valid ) {
 
 
     const dialogRef = this.dialog.open(ModelComponent, {
@@ -960,7 +960,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.finalSubmit('Pending Approval' ,'finalSubmit')
+      this.finalSubmit('Pending' ,'finalSubmit')
   
     
     }

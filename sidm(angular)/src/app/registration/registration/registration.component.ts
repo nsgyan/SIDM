@@ -525,7 +525,7 @@ export class RegistrationComponent implements OnInit {
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.payNow(data.typeOfApplicant,data.category,data.panNumber,data.mobileNumber,data.email)
+        this.payNow(this.registrationForm.value.typeOfApplicant,this.registrationForm.value.category,this.registrationForm.value.panNumber,this.registrationForm.value.mobileNumber,this.registrationForm.value.email)
         this.toast.success('successfully applied');
         this.registrationForm.reset()
   

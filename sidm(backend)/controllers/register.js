@@ -314,74 +314,8 @@ exports.updateFrom = (req, res, next) => {
           res.json("internal server error");
         }
         else{
-          if(success.status==='Pending')
-          {  const Date= date.format(success.createAt,'YYYY/MM/DD HH:mm');
-           const filePath = path.join(__dirname, '../view/email.html');
-           const source = fs.readFileSync(filePath, 'utf-8').toString();
-           const template = handlebars.compile(source);
-           const replacements = {
-             email: success.email,
-             mobileNumber:success.mobileNumber,
-             PanNumber:success.panNumber,
-             date:Date
-     
-           };
-           var maillist = [
-            success.email,
-             'bharat.jain@sidm.in',
-           ];
-           
-           maillist.toString();
-           const htmlToSend = template(replacements);
-           var mailOptions = {
-             from: 'awardsidm@gmail.com',
-             to: maillist,
-             subject: 'SIDM Champion Award 2022',
-             html: htmlToSend
-           };
-           transporter.sendMail(mailOptions, function(error, info){
-             if (error) {
-               res.json(error);
-             } else {
-              res.status(200).json({message:'successfully sumbit',
-              id:success._id});
-             }
-           });}
-           else if(result.status==='Pending Approval')
-           {
-             const Date= date.format(result.createAt,'YYYY/MM/DD HH:mm');
-             const filePath = path.join(__dirname, '../view/finalEmail.html');
-             const source = fs.readFileSync(filePath, 'utf-8').toString();
-             const template = handlebars.compile(source);
-             const replacements = {
-               email: result.email,
-               mobileNumber:result.mobileNumber,
-               PanNumber:result.panNumber,
-               date:Date
-       
-             };
-             var maillist = [
-               result.email,
-               'bharat.jain@sidm.in',
-             ];
-             
-             maillist.toString();
-             const htmlToSend = template(replacements);
-             var mailOptions = {
-               from: 'awardsidm@gmail.com',
-               to: maillist,
-               subject: 'SIDM Champion Award 2022',
-               html: htmlToSend
-             };
-             transporter.sendMail(mailOptions, function(error, info){
-               if (error) {
-                 res.json(error);
-               } else {
-                res.status(200).json({message:'successfully sumbit',
-                id:success._id});
-               }
-             })
-           }
+          res.status(200).json({message:'successfully sumbit',
+          id:success._id});
         
         }
       });}
