@@ -55,7 +55,7 @@ exports.adminAuth = (req, res, next) => {
 exports.auth=(req,res,next)=>{
     const token = req.header('authorization');
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
-        if (decoded.email) {
+        if (decoded) {
            
                next()
         }
