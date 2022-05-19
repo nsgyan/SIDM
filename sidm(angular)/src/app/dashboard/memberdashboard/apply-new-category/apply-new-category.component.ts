@@ -19,6 +19,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./apply-new-category.component.css']
 })
 export class ApplyNewCategoryComponent implements OnInit {
+  action:any
   razorPayOptions={
     
     "amount":1,
@@ -605,7 +606,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
       }).subscribe((data:any) => {
         this.payNow(this.newCategoryForm.value.typeOfApplicant,this.newCategoryForm.value.category,this.newCategoryForm.value.panNumber,this.newCategoryForm.value.mobileNumber,this.newCategoryForm.value.email)
         this.toast.success('successfully applied');
-        this.newCategoryForm.reset()
+   
   
    
       }, err => {
@@ -1054,7 +1055,7 @@ else{
     this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
     if (this.newCategoryForm.valid && this.captcha) {
-
+this.action=true
 
 
     const dialogRef = this.dialog.open(ModelComponent, {

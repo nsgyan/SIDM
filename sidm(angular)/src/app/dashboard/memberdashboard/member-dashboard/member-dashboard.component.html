@@ -763,9 +763,9 @@
                             <p> Submit for  approval
                             </p>
                         </button>
-                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'" (click)="openModel('submitAndPay')">Final Submit and pay
+                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'" (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay
                         </button>
-                        <button class="save-btn" target="blanck" (click)="savedraft('Pending')">
+                        <button class="save-btn" target="blanck" (click)="savedraft('Pending')" [disabled]="action">
                             <p>Save</p>
                         </button>
                     </div>

@@ -17,6 +17,7 @@ import { WindowRefService } from 'src/app/shared/services/window-ref.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  action:any
   registeredFieldIndexs=1;
   sidmMember = false
   association = false
@@ -527,7 +528,6 @@ export class RegistrationComponent implements OnInit {
       }).subscribe((data:any) => {
         this.payNow(this.registrationForm.value.typeOfApplicant,this.registrationForm.value.category,this.registrationForm.value.panNumber,this.registrationForm.value.mobileNumber,this.registrationForm.value.email)
         this.toast.success('successfully applied');
-        this.registrationForm.reset()
   
        
 
@@ -733,7 +733,8 @@ else{
     this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
     if (this.registrationForm.valid && this.captcha) {
-
+      
+      this.action=true
 
 
     const dialogRef = this.dialog.open(ModelComponent, {

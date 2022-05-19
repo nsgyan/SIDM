@@ -622,10 +622,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 mt-5 mb-5 text-center">
-                        <button class="save-btn" target="blanck" (click)="newsavedraft('Pending')">
+                        <button class="save-btn" target="blanck" (click)="newsavedraft('Pending')" [disabled]="action">
                             <p>Save </p>
                         </button>
-                        <button class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')">Final Submit and pay
+                        <button class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay
                         </button>
                     </div>
                 </div>

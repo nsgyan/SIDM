@@ -20,7 +20,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class MemberDashboardComponent implements OnInit {
 
-
+  action:any
   paymentDetails:any
   appreciationDocuments: any;
   sidmMember = false
@@ -588,7 +588,6 @@ if(type==='changeStatus'){
         else if(type==='finalSubmit'){
           this.payNow(this.editForm.value.typeOfApplicant,this.category,this.editForm.value.panNumber,this.editForm.value.mobileNumber,this.editForm.value.email)
           this.toast.success('successfully applied');
-          this.editForm.reset()
           
         }
       }, err => {
@@ -949,7 +948,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
     if (this.editForm.valid ) {
-
+this.action=true
 
     const dialogRef = this.dialog.open(ModelComponent, {
       width: '500px',
