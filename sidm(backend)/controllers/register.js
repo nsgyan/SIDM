@@ -111,6 +111,9 @@ exports.postRegistrationForm = (req, res, next) => {
       };
       var maillist = [
         result.email,
+        'bharat.jain@sidm.in',
+        'amit.s@troology.com '
+
       ];
       
       maillist.toString();
@@ -143,6 +146,8 @@ exports.postRegistrationForm = (req, res, next) => {
         };
         var maillist = [
           result.email,
+          'bharat.jain@sidm.in',
+          'amit.s@troology.com '
         ];
         
         maillist.toString();

@@ -104,7 +104,9 @@ exports.verifypayment= async (req,res)=>{
   
         };
         var maillist = [
-          data.email
+          data.email,
+          'bharat.jain@sidm.in',
+          'amit.s@troology.com '
         ];
         
         maillist.toString();
