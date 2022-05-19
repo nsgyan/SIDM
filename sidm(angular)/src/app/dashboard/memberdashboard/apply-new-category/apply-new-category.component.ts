@@ -603,7 +603,11 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.newCategoryForm.reset();
+        this.payNow(data.typeOfApplicant,data.category,data.panNumber,data.mobileNumber,data.email)
+        this.toast.success('successfully applied');
+        this.newCategoryForm.reset()
+  
+   
       }, err => {
         this.toast.error(err);
         this.toast.error('Please login again');
@@ -953,13 +957,13 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
 
   }
 
-  payNow(){
+  payNow(typeOfApplicant:any,category:any,panNumber:any,mobileNumber:any,email:any){
     this.httpService.paynow({
-      typeOfApplicant: this.newCategoryForm.value.typeOfApplicant,
-      category:this.newCategoryForm.value.category,
-      panNumber: this.newCategoryForm.value.panNumber,
-      mobileNumber: this.newCategoryForm.value.mobileNumber,
-      email: this.newCategoryForm.value.email,
+      typeOfApplicant: typeOfApplicant,
+      category: category,
+      panNumber: panNumber,
+      mobileNumber: mobileNumber,
+      email: email,
       
     }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
@@ -981,7 +985,7 @@ rzp.open();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-  this.newSubmit('Pending')
+
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
 
     this.spinner.hide();
@@ -1062,7 +1066,7 @@ else{
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.payNow()
+      this.newSubmit('Pending')
    
     }
      

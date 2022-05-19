@@ -1,5 +1,19 @@
 const Razorpay = require('razorpay');
 
+const fs = require("fs");
+var nodemailer = require('nodemailer');
+const path = require('path')
+var handlebars = require('handlebars');
+const date = require('date-and-time')
+
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'awardsidm@gmail.com',
+    pass: 'gllznygeziabftrf'
+  }
+});
 
 const RegistrationForm = require("../models/registrationForm");
 
@@ -77,6 +91,36 @@ exports.verifypayment= async (req,res)=>{
         data.status = 'Pending Approval'
       data.paymentId=item._id
         data.save().then(data => {
+          const Date= date.format(data.createAt,'YYYY/MM/DD HH:mm');
+        const filePath = path.join(__dirname, '../view/finalEmail.html');
+        const source = fs.readFileSync(filePath, 'utf-8').toString();
+        const template = handlebars.compile(source);
+        const replacements = {
+          email: data.email,
+          mobileNumber:data.mobileNumber,
+          PanNumber:data.panNumber,
+          date:Date
+  
+        };
+        var maillist = [
+          data.email
+        ];
+        
+        maillist.toString();
+        const htmlToSend = template(replacements);
+        var mailOptions = {
+          from: 'awardsidm@gmail.com',
+          to: maillist,
+          subject: 'SIDM Champion Award 2022',
+          html: htmlToSend
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            res.json(error);
+          } else {
+            res.status(200).json('Please check your email');
+          }
+        })
           res.status(200).json(item)
         });
       }

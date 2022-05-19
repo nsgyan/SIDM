@@ -525,7 +525,11 @@ export class RegistrationComponent implements OnInit {
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
       }).subscribe((data:any) => {
-        this.registrationForm.reset();
+        this.payNow(data.typeOfApplicant,data.category,data.panNumber,data.mobileNumber,data.email)
+        this.toast.success('successfully applied');
+        this.registrationForm.reset()
+  
+       
 
        
       }, err => {
@@ -630,13 +634,13 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  payNow(){
+  payNow(typeOfApplicant:any,category:any,panNumber:any,mobileNumber:any,email:any){
     this.httpService.paynow({
-      typeOfApplicant: this.registrationForm.value.typeOfApplicant,
-      category:this.registrationForm.value.category,
-      panNumber: this.registrationForm.value.panNumber,
-      mobileNumber: this.registrationForm.value.mobileNumber,
-      email: this.registrationForm.value.email,
+      typeOfApplicant: typeOfApplicant,
+      category: category,
+      panNumber: panNumber,
+      mobileNumber: mobileNumber,
+      email: email,
       
     }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
@@ -659,7 +663,6 @@ rzp.open();
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-    this.finalSubmit('Pending')
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.spinner.hide();
@@ -742,7 +745,8 @@ else{
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.payNow()
+      this.finalSubmit('Pending')
+ 
     }
      
     });

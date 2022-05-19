@@ -585,8 +585,11 @@ if(type==='changeStatus'){
         let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
         this.routes.navigateByUrl(url);
         this.toast.success('successfully applied');}
-        else{
-     
+        else if(type==='finalSubmit'){
+          this.payNow(data.typeOfApplicant,data.category,data.panNumber,data.mobileNumber,data.email)
+          this.toast.success('successfully applied');
+          this.editForm.reset()
+          
         }
       }, err => {
         this.toast.error(err.error);
@@ -775,20 +778,20 @@ if(type==='changeStatus'){
 
   }
 
-  payNow(){
+  payNow(typeOfApplicant:any,category:any,panNumber:any,mobileNumber:any,email:any){
     this.httpService.paynow({
-      typeOfApplicant: this.editForm.value.typeOfApplicant,
-      category: this.category,
-      panNumber: this.editForm.value.panNumber,
-      mobileNumber: this.editForm.value.mobileNumber,
-      email: this.editForm.value.email,
+      typeOfApplicant: typeOfApplicant,
+      category: category,
+      panNumber: panNumber,
+      mobileNumber: mobileNumber,
+      email: email,
       
     }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
-  this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
+  this.razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
@@ -798,12 +801,14 @@ rzp.open();
   }
 
   razorPayshandler(response:any,amount:any,note:any){
+    console.log(response);
+    
     this.spinner.show();
   if(response){
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
   let createAt = new Date();
-  this.finalSubmit('Pending Approval' ,'finalSubmit')
+
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.paymentDetails=data
     this.spinner.show();
@@ -955,7 +960,8 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
       console.log('no'); 
     }
     else if(result==='ok'){
-      this.payNow()
+      this.finalSubmit('Pending Approval' ,'finalSubmit')
+  
     
     }
      
