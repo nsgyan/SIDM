@@ -106,6 +106,9 @@ exports.verifypayment= async (req,res)=>{
         var maillist = [
           data.email,
           'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
            
         ];
         
