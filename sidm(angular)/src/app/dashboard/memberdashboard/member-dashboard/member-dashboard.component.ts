@@ -947,7 +947,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid ) {
+    if (this.editForm.valid  && this.captcha) {
 this.action=true
 
     const dialogRef = this.dialog.open(ModelComponent, {
