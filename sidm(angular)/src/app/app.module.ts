@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthModule } from './auth/auth.module';
 import { ViewpageComponent } from './viewpage/viewpage.component';
 import { InterceptorService } from './shared/services/interceptor.service';
+import { ApiHandlerInterceptor } from './shared/services/api-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,11 @@ import { InterceptorService } from './shared/services/interceptor.service';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiHandlerInterceptor,
     multi: true
   }],
   bootstrap: [AppComponent]
