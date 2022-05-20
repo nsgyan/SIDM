@@ -2,8 +2,59 @@
   <h2> Questionnaire </h2>
 </div>
 
+<form [formGroup]="questionnaireForm">
+  <mat-stepper #stepper>
+    <div formArrayName="aissment">
+      <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+        <mat-step  errorMessage="Name is required.">
+          <ng-template matStepLabel>{{questionnaireData[i].parameter}}</ng-template>
+          <h2>{{questionnaireData[i].parameter}}</h2>
+          <mat-form-field *ngIf="questionnaireData[i].inputType==='dropdown'" appearance="fill">
+            <mat-label>Answer Type</mat-label>
+            <mat-select formControlName="answer" >
+        <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="questionnaireData[i].inputType==='multiSelect'" appearance="fill">
+            <mat-label>Answer Type</mat-label>
+            <mat-select formControlName="answer" multiple >
+        <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field *ngIf="questionnaireData[i].textBox" appearance="fill">
+            <mat-label></mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="description" required>
+          </mat-form-field>
+          <div *ngIf="questionnaireData[i].upload" appearance="fill">
+           
+            <input type="file"   (change)="changeListener($event,i)" required>
+          </div>
+          <div>
+            <p>Go to a different step to see the error state</p>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+    
+      </mat-step>
+      </div>
+    </div>
+   
+   
+    
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="submitQuestionnaire()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  
+</form>
 
-<div class="questionnaireForm">
+
+<!-- <div class="questionnaireForm">
 
   <form [formGroup]="questionnaireForm">
     <table class="table">
@@ -28,16 +79,7 @@
             <p class="mb-2" style="color: red;" *ngIf="controlName.get('answer')?.hasError('required') &&(submited)">
               Please select one option
             </p>
-            <!-- <div class="dropdown">
-                    <button class="paymentsDropdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Answers
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Answer 1</a>
-                      <a class="dropdown-item" href="#">Answer 2</a>
-                      <a class="dropdown-item" href="#">Answer 3</a>
-                    </div>
-                  </div> -->
+    
           </td>
         </tr>
 
@@ -47,7 +89,7 @@
   </form>
 
   <button class="paymentsDropdwn" (click)="submitQuestionnaire()">Submit</button>
-</div>
+</div> -->
 
 <!-- 
 <div *ngFor=" let controlName of nameAissment.controls; let i = index"

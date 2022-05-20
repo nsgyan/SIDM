@@ -12,6 +12,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 
 export class QuestionnaireFormComponent implements OnInit {
   questionnaireData:any
+  uploadDocuments:any
  totalScore=0
  id:any;
 questionnaireForm:FormGroup
@@ -35,6 +36,8 @@ questionnaireForm:FormGroup
 
   ngOnInit(): void {
   }
+
+
 getquestion(category:any){
   this.httpService.findByCategory(category).subscribe(data=>{
  this.questionnaireData=data
@@ -43,7 +46,9 @@ getquestion(category:any){
   control.push(
     this.fb.group({
       question: [item.parameter, Validators.required],      
-      answer:['',Validators.required]   ,
+      answer:[''],
+      uploadDocuments:[''],
+      description:[''],
       score:[''] ,
       maxScore:['']    
     })
@@ -71,7 +76,9 @@ addAissment() {
   control.push(
     this.fb.group({
       question: ['', Validators.required],      
-      answer:['',Validators.required],
+      answer:[''],
+      uploadDocuments:[''],
+      description:[''],
       score:[''],
       maxScore:['']    
     })
@@ -83,11 +90,63 @@ resolved(captchaResponse: any) {
 }
 
 
+changeListener($event: any,index:any) {
+  let file = $event.target.files;
+
+
+
+  if (
+    file[0].type == 'image/png' ||
+    file[0].type == 'image/jpg' ||
+    file[0].type == 'image/jpeg' ||
+    file[0].type == 'application/pdf'
+  ) {
+
+
+    if (parseInt(file[0].size) > 2097152) {
+    this.toast.error('file to large')
+  }
+  else {
+    const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+    const time = '7:00 AM';
+    this.httpService.upload(file[0]).subscribe((data: any) => {
+      let control = <FormArray>this.questionnaireForm.get('aissment');
+      control.at(index).get('uploadDocuments')?.setValue(data.body)
+      control.at(index).get('uploadDocuments')?.updateValueAndValidity()
+    })
+
+    }
+  }
+  else {
+    this.toast.error('File uploaded is invalid!')
+  }
+}
+
+
 submitQuestionnaire(){
+let j=0;
+console.log(this.questionnaireForm);
+
+// for(let item of this.questionnaireData){ 
+//   let control = <FormArray>this.questionnaireForm.get('aissment');
+//   if(item.textBox)
+//   {    control.at(j).get('description')?.setValidators(Validators.required)
+//       control.at(j).get('description')?.updateValueAndValidity()}    
+//    if(item.textBox){
+//         control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
+//         control.at(j).get('uploadDocuments')?.updateValueAndValidity()
+//       }
+//    if(item.dropdown){
+//         control.at(j).get('answer')?.setValidators(Validators.required)
+//         control.at(j).get('answer')?.updateValueAndValidity()
+//        }
+//        j++;
+// }
   if (this.questionnaireForm.valid ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
+    if(item.dropdown){
     let control = <FormArray>this.questionnaireForm.get('aissment');
     item.options.map((data:any)=>{
       if(data.answer=== control.at(i).get('answer')?.value){
@@ -99,7 +158,7 @@ submitQuestionnaire(){
    this.totalScore+=data.score;
       }
     })
-    i++;   
+      }i++;
   }
 
 
@@ -107,7 +166,8 @@ submitQuestionnaire(){
     userId:this.id,
     totalScore:this.totalScore,
     category:this.questionnaireData[0].category,
-    questionAns:this.questionnaireForm.value.aissment
+    questionAns:this.questionnaireForm.value.aissment,
+
 
   }).subscribe((data:any)=>{
     console.log(data);
@@ -115,10 +175,6 @@ submitQuestionnaire(){
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })
-  }
-  else if (!this.captcha) {
-    this.submited = true;
-    this.toast.error('Please verify that you are not a robot.');
   }
   else {
 

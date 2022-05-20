@@ -12,6 +12,12 @@ import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionna
 import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
 import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -32,6 +38,14 @@ import {MatDialogModule} from '@angular/material/dialog';
     SharedModule,
     MatDialogModule,
     NgxSpinnerModule,
+    MatStepperModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatSelectModule,
+    
+    
   ]
 })
 export class MemberdashboardModule { }
