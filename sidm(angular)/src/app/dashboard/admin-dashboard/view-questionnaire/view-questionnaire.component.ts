@@ -32,16 +32,16 @@ multiSelect:boolean=false
           parameter:[data.parameter,Validators.required],
           maxScore:[data.maxScore,Validators.required],
           inputType:[data.inputType],
+          upload:[data.upload],
+          textBox:[data.textBox],
           options: this.fb.array([]) ,
         })
-data.inputType.map((item:any)=>{
-  if(item==='dropdown'){
-    this.dropdown=true;
-  }
-  else if(item==='multiSelect'){
-    this.multiSelect=true
-  }
-})
+        if(data.inputType==='dropdown'){
+          this.dropdown=true;
+        }
+        else if(data.inputType==='multiSelect'){
+          this.multiSelect=true
+        }
         let control = <FormArray>this.questionnaire.get('options');
         data.options.map((item:any)=>{
          control.push(

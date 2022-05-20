@@ -35,6 +35,8 @@ multiSelect:boolean=false
       parameter:['',Validators.required],
       maxScore:['',Validators.required],
       inputType:['',Validators.required],
+      upload:['',Validators.required],
+      textBox:['',Validators.required],
       options: this.fb.array([]) ,
     })
   }
@@ -94,14 +96,28 @@ multiSelect:boolean=false
  
  
   onSubmit() {
+    if(this.questionnaire.value.textBox||this.questionnaire.value.upload)
+    {
+      this.questionnaire.get('inputType')?.clearValidators()
+      this.questionnaire.get('inputType')?.updateValueAndValidity()
+    }else if(this.questionnaire.value.inputType)
+    {
+      this.questionnaire.get('textBox')?.clearValidators()
+      this.questionnaire.get('textBox')?.updateValueAndValidity()
+      this.questionnaire.get('upload')?.clearValidators()
+      this.questionnaire.get('upload')?.updateValueAndValidity()
+    }
     
     if(this.questionnaire.valid){
       this.httpService.postQuestionnaire({
       category:this.questionnaire.value.category,
       parameter:this.questionnaire.value.parameter,
       maxScore:this.questionnaire.value.maxScore, 
-      options: this.dropdown ?this.questionnaire.value.options:null, 
-      inputType:this.questionnaire.value.inputType
+      options:this.questionnaire.value.options, 
+      inputType:this.questionnaire.value.inputType,
+      textBox:this.questionnaire.value.textBox ? true:false,
+      upload:this.questionnaire.value.upload?true:false
+
       }).subscribe((data:any)=>{
         console.log(data);
         this.toast.success(data);
@@ -115,11 +131,14 @@ multiSelect:boolean=false
         this.routes.navigate(['login/member'])
       })
     }
-    else if (!this.captcha) {
-      this.submited = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
+    
     else {
+      this.questionnaire.get('inputType')?.setValidators(Validators.required)
+      this.questionnaire.get('inputType')?.updateValueAndValidity()
+      this.questionnaire.get('textBox')?.setValidators(Validators.required)
+      this.questionnaire.get('textBox')?.updateValueAndValidity()
+      this.questionnaire.get('upload')?.setValidators(Validators.required)
+      this.questionnaire.get('upload')?.updateValueAndValidity()
       this.submited = true;
       this.toast.error('Please Fill Required Field');
     }

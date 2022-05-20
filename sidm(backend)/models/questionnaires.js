@@ -6,8 +6,11 @@ const QuestionnairesSchema = new Schema({
         category:{ type: String },
         parameter:{type:String},
         maxScore:{type:Number},
-        inputType:[],
+        inputType:{type:String},
         options:[], 
+        upload:{type:Boolean,default:false},
+        textBox:{type:Boolean,default:false},
+
 })
 
 module.exports = mongoose.model('Questionnaires', QuestionnairesSchema);

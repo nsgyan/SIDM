@@ -1,5 +1,6 @@
+
 <div class="topHeader">
-  <h2>Add  New Questionnaire </h2>
+  <h2>Edit Questionnaire </h2>
 </div>
 <div class="container">
   <form class="questionnaireForm" [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
@@ -25,14 +26,23 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Answer Type</mat-label>
-        <mat-select formControlName="inputType" multiple>
-         
-          <mat-option value="textBox"  >TextBox </mat-option>
-    <mat-option value="upload" >Upload </mat-option>
+        <mat-select formControlName="inputType" >
     <mat-option value="dropdown" (click)="optionType('dropdown')"  >Dropdown </mat-option>
     <mat-option value="multiSelect" (click)="optionType('multiSelect')" >MultiSelect </mat-option>
         </mat-select>
       </mat-form-field>
+      <div class="form-check">
+        <input class="form-check-input" formControlName="upload" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Upload
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" formControlName="textBox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          TextBox
+        </label>
+      </div>
     </div>
       <div class="row">
         <div class="col-lg-9">
@@ -104,3 +114,6 @@
     <button type="submit" class="NewBtn mt-2">Submit</button>
   </form>
 </div>
+
+
+

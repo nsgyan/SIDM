@@ -7,13 +7,17 @@ exports.addQuestionnaires= (req,res,next)=>{
     const maxScore = req.body.maxScore;
     const options = req.body.options;
     const inputType= req.body.inputType
+    const upload= req.body.upload;
+    const textBox=req.body.textBox
 
     const Questionnaire= new  Questionnaires({
         category :category,
         parameter : parameter,
         maxScore : maxScore,
         options:options,
-        inputType:inputType
+        inputType:inputType,
+        upload:upload,
+        textBox:textBox
     })
     Questionnaire.save().then(data=>{
     
@@ -53,13 +57,20 @@ exports.updateQuestionnaires=(req,res)=>{
     const parameter = req.body.parameter;
     const maxScore = req.body.maxScore;
     const options = req.body.options;
+    const inputType= req.body.inputType
+    const upload= req.body.upload;
+    const textBox=req.body.textBox
+
     const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
         data.category =category,
         data.parameter = parameter,
         data.maxScore = maxScore,
-        data.options=options
+        data.options=options,
+        data.inputType=inputType,
+        data.upload=upload,
+        data.textBox=textBox
        data.save((err, success) => {
             if(err){
            res.status(404).json(err);

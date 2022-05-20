@@ -25,14 +25,23 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Answer Type</mat-label>
-        <mat-select formControlName="inputType" multiple>
-         
-          <mat-option value="textBox"  >TextBox </mat-option>
-    <mat-option value="upload" >Upload </mat-option>
+        <mat-select formControlName="inputType" >
     <mat-option value="dropdown" (click)="optionType('dropdown')"  >Dropdown </mat-option>
     <mat-option value="multiSelect" (click)="optionType('multiSelect')" >MultiSelect </mat-option>
         </mat-select>
       </mat-form-field>
+      <div class="form-check">
+        <input class="form-check-input" formControlName="upload" type="checkbox" value="Upload" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Upload
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" formControlName="textBox" value="TextBox" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          TextBox
+        </label>
+      </div>
     </div>
       <div class="row">
         <div class="col-lg-9">

@@ -5,7 +5,10 @@ const questionnaireAissmentSchema = new Schema({
         userId:{ type: String },
         totalScore:{type:String},
         category:{ type: String },
-        questionAns:[], 
+        dropdownAns:[], 
+        multiSelectAns:[],
+        document:{ type: String },
+        textBoxAns:{type: String},
 })
 
 module.exports = mongoose.model('questionnaireAissment', questionnaireAissmentSchema);
