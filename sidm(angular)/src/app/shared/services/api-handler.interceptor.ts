@@ -42,7 +42,7 @@ export class ApiHandlerInterceptor implements HttpInterceptor {
           window.location.href="/login/member"
           return throwError(errorMessage);
          }
-        window.location.href="/login"
+      
         return throwError(errorMessage);
       })
     );

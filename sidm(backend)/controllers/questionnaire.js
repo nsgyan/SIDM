@@ -6,12 +6,14 @@ exports.addQuestionnaires= (req,res,next)=>{
     const parameter = req.body.parameter;
     const maxScore = req.body.maxScore;
     const options = req.body.options;
+    const inputType= req.body.inputType
 
     const Questionnaire= new  Questionnaires({
         category :category,
         parameter : parameter,
         maxScore : maxScore,
-        options:options
+        options:options,
+        inputType:inputType
     })
     Questionnaire.save().then(data=>{
     

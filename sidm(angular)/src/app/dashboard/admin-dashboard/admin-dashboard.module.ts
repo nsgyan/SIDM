@@ -29,6 +29,7 @@ import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form
 
 
 
+
 @NgModule({
   declarations: [
     AdminEditComponent,

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,9 +14,11 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./questionnaire.component.css']
 })
 export class QuestionnaireComponent implements OnInit {
-    
+  dropdown:boolean=false
+multiSelect:boolean=false
+  toppings = new FormControl();
 
- 
+  toppingList: string[] = ['textBox', 'upload', 'dropdown','multiSelect'];
   questionnaire:FormGroup;
   editQuestionnaire!:FormGroup;
   captcha: any;
@@ -32,9 +34,9 @@ export class QuestionnaireComponent implements OnInit {
       category:['',Validators.required],
       parameter:['',Validators.required],
       maxScore:['',Validators.required],
+      inputType:['',Validators.required],
       options: this.fb.array([]) ,
     })
-    this.addOptions()
   }
   ngOnInit(): void {
   }
@@ -43,7 +45,9 @@ export class QuestionnaireComponent implements OnInit {
   option(): FormArray {
     return this.questionnaire.get("options") as FormArray
   }
- 
+  inputType(): FormArray {
+    return this.questionnaire.get("inputType") as FormArray
+  }
  get options(): FormArray {
     return this.questionnaire.get("options") as FormArray
   }
@@ -67,7 +71,26 @@ export class QuestionnaireComponent implements OnInit {
  
 
 
- 
+  optionType(type:any)
+  {
+    if(type==='dropdown'){
+      this.dropdown=!this.dropdown
+      this.removeAllOption()
+      if(this.dropdown)
+      {
+        this.addOptions()
+      }
+    }
+    else if(type==='multiSelect'){
+      this.multiSelect=!this.multiSelect
+      this.removeAllOption()
+      if(this.multiSelect)
+      {
+        this.addOptions()
+      }
+    }
+    
+  }
  
  
   onSubmit() {
@@ -77,7 +100,8 @@ export class QuestionnaireComponent implements OnInit {
       category:this.questionnaire.value.category,
       parameter:this.questionnaire.value.parameter,
       maxScore:this.questionnaire.value.maxScore, 
-      options:this.questionnaire.value.options, 
+      options: this.dropdown ?this.questionnaire.value.options:null, 
+      inputType:this.questionnaire.value.inputType
       }).subscribe((data:any)=>{
         console.log(data);
         this.toast.success(data);
@@ -111,7 +135,23 @@ export class QuestionnaireComponent implements OnInit {
       return true;
     }
   }
+ removeAllOption(){
 
+  if(!this.dropdown || !this.multiSelect){
+    console.log('hello');
+    
+let i=this.option().length
+while(i>0){
+  --i;
+  this.option().removeAt(i)
+  
+ 
+  
+
+}
+
+  }
+ }
   
   
  

@@ -1,5 +1,5 @@
 const Razorpay = require('razorpay');
-
+var ObjectId = require('mongodb').ObjectID;
 const fs = require("fs");
 var nodemailer = require('nodemailer');
 const path = require('path')
@@ -143,7 +143,7 @@ exports.verifypayment= async (req,res)=>{
 }
 
 exports.viewpayment= async (req,res)=>{
-  const userID = req.params.userID
+  const userID = new ObjectId( req.params.userID)
   PaymentDb.findById(userID).then(data=>{
     res.status(200).json(data)
   }).catch(err=>{
