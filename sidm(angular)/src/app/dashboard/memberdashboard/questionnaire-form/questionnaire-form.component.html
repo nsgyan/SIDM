@@ -32,7 +32,9 @@
           </div>
           <div>
             <p>Go to a different step to see the error state</p>
+            <button *ngIf="i!==0" mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
+          
           </div>
     
       </mat-step>

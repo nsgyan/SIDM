@@ -127,21 +127,21 @@ submitQuestionnaire(){
 let j=0;
 console.log(this.questionnaireForm);
 
-// for(let item of this.questionnaireData){ 
-//   let control = <FormArray>this.questionnaireForm.get('aissment');
-//   if(item.textBox)
-//   {    control.at(j).get('description')?.setValidators(Validators.required)
-//       control.at(j).get('description')?.updateValueAndValidity()}    
-//    if(item.textBox){
-//         control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
-//         control.at(j).get('uploadDocuments')?.updateValueAndValidity()
-//       }
-//    if(item.dropdown){
-//         control.at(j).get('answer')?.setValidators(Validators.required)
-//         control.at(j).get('answer')?.updateValueAndValidity()
-//        }
-//        j++;
-// }
+for(let item of this.questionnaireData){ 
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  if(!item.textBox)
+  {    control.at(j).get('description')?.setValidators(Validators.required)
+      control.at(j).get('description')?.updateValueAndValidity()}    
+   if(item.upload){
+        control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
+        control.at(j).get('uploadDocuments')?.updateValueAndValidity()
+      }
+   if(item.dropdown==='multiSelect'|| item.dropdown==='dropdown'){
+        control.at(j).get('answer')?.setValidators(Validators.required)
+        control.at(j).get('answer')?.updateValueAndValidity()
+       }
+       j++;
+}
   if (this.questionnaireForm.valid ) {
     let  i=0;
  
