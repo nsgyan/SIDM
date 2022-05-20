@@ -16,6 +16,8 @@ export class EditQuestionnaireComponent implements OnInit {
   editQuestionnaire!:FormGroup;
   captcha: any;
   submited: boolean=false;
+  dropdown: boolean=false;
+  multiSelect: boolean=false;
  
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
@@ -30,10 +32,12 @@ export class EditQuestionnaireComponent implements OnInit {
           category:[data.category,Validators.required],
           parameter:[data.parameter,Validators.required],
           maxScore:[data.maxScore,Validators.required],
+          inputType:[data.inputType,Validators.required],
           options: this.fb.array([]) ,
         })
+        
         let control = <FormArray>this.questionnaire.get('options');
-        data.options.map((item:any)=>{
+        data.options?.map((item:any)=>{
          control.push(
            this.fb.group({
             answer: [item.answer,Validators.required],
@@ -47,6 +51,28 @@ export class EditQuestionnaireComponent implements OnInit {
 
 
   }
+
+  optionType(type:any)
+  {
+    if(type==='dropdown'){
+      this.dropdown=!this.dropdown
+      this.removeAllOption()
+      if(this.dropdown)
+      {
+        this.addOptions()
+      }
+    }
+    else if(type==='multiSelect'){
+      this.multiSelect=!this.multiSelect
+      this.removeAllOption()
+      if(this.multiSelect)
+      {
+        this.addOptions()
+      }
+    }
+    
+  }
+  
   ngOnInit(): void {
   }
   option(): FormArray {
@@ -105,8 +131,33 @@ export class EditQuestionnaireComponent implements OnInit {
       this.toast.error('Please Fill Required Field');
     }
   }
+  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
 
+  removeAllOption(){
+
+    if(!this.dropdown || !this.multiSelect){
+      console.log('hello');
+      
+  let i=this.option().length
+  while(i>0){
+    --i;
+    this.option().removeAt(i)
+    
+   
+    
   
+  }
+  
+    }
+   }
  
  
 }

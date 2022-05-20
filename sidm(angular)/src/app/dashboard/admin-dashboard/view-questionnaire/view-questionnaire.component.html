@@ -18,9 +18,19 @@
             Performance of Defence & Aerospace
             Products</option>
         </select>
-        <p *ngIf="questionnaire.get('category')?.hasError('required') &&(submited) " style="color: red;">
-          Category <strong>required</strong>
-      </p>
+      
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Answer Type</mat-label>
+          <mat-select formControlName="inputType" multiple>
+           
+            <mat-option value="textBox" [disabled]="true"  >TextBox </mat-option>
+      <mat-option value="upload" [disabled]="true"  >Upload </mat-option>
+      <mat-option value="dropdown" [disabled]="true"   >Dropdown </mat-option>
+      <mat-option value="multiSelect" [disabled]="true"   >MultiSelect </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
         <div class="row">
           <div class="col-lg-9">

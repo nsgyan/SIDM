@@ -12,7 +12,8 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
- 
+  dropdown:boolean=false
+multiSelect:boolean=false
   questionnaire!:FormGroup;
   editQuestionnaire!:FormGroup;
   captcha: any;
@@ -30,9 +31,17 @@ export class ViewQuestionnaireComponent implements OnInit {
           category:[data.category,Validators.required],
           parameter:[data.parameter,Validators.required],
           maxScore:[data.maxScore,Validators.required],
+          inputType:[data.inputType],
           options: this.fb.array([]) ,
         })
-        
+data.inputType.map((item:any)=>{
+  if(item==='dropdown'){
+    this.dropdown=true;
+  }
+  else if(item==='multiSelect'){
+    this.multiSelect=true
+  }
+})
         let control = <FormArray>this.questionnaire.get('options');
         data.options.map((item:any)=>{
          control.push(
