@@ -7,7 +7,50 @@
     <div>
         <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
       </div>
-    <table class="table">
+        
+      <!-- <form [formGroup]="questionnaireForm">
+        <mat-stepper #stepper>
+          <div formArrayName="aissment">
+            <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+              <mat-step  errorMessage="Name is required.">
+               
+                <h2>{{questionnaireData[i].parameter}}</h2>
+                <mat-form-field *ngIf="questionnaireData[i].inputType==='dropdown'" appearance="fill">
+                  <mat-label>Answer Type</mat-label>
+                  <mat-select formControlName="answer" >
+              <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="questionnaireData[i].inputType==='multiSelect'" appearance="fill">
+                  <mat-label>Answer Type</mat-label>
+                  <mat-select formControlName="answer" multiple >
+              <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-form-field *ngIf="questionnaireData[i].textBox" appearance="fill">
+                  <mat-label></mat-label>
+                  <input matInput placeholder="Last name, First name" formControlName="description" required>
+                </mat-form-field>
+                <div *ngIf="questionnaireData[i].upload" appearance="fill">
+                 
+                  <input type="file"   (change)="changeListener($event,i)" required>
+                </div>
+                <div>
+               
+                  <button *ngIf="i!==0" mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                
+                </div>
+          
+            </mat-step>
+            </div>
+          </div>
+         
+        </mat-stepper>
+        
+      </form> -->
+    <!-- <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Qs.</th>
@@ -33,5 +76,5 @@
           </tr>
          
         </tbody>
-    </table>
+    </table> -->
 </div>

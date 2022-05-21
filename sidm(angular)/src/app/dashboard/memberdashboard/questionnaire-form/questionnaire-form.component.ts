@@ -50,6 +50,8 @@ getquestion(category:any){
       uploadDocuments:[''],
       description:[''],
       score:[''] ,
+      inputType:[''],
+      option:[],
       maxScore:['']    
     })
   );
@@ -80,6 +82,8 @@ addAissment() {
       uploadDocuments:[''],
       description:[''],
       score:[''],
+      inputType:[''],
+      option:[''],
       maxScore:['']    
     })
   );
@@ -136,7 +140,7 @@ for(let item of this.questionnaireData){
         control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
         control.at(j).get('uploadDocuments')?.updateValueAndValidity()
       }
-   if(item.dropdown==='multiSelect'|| item.dropdown==='dropdown'){
+   if(item.inputType==='multiSelect'|| item.inputType==='dropdown'){
         control.at(j).get('answer')?.setValidators(Validators.required)
         control.at(j).get('answer')?.updateValueAndValidity()
        }
@@ -146,19 +150,48 @@ for(let item of this.questionnaireData){
     let  i=0;
  
   for(let item of this.questionnaireData){
-    if(item.dropdown){
+   
     let control = <FormArray>this.questionnaireForm.get('aissment');
+    control.at(i).get('maxScore')?.setValue(item.maxScore)
+    control.at(i).get('maxScore')?.updateValueAndValidity()
+    if(item.inputType==='dropdown'){
     item.options.map((data:any)=>{
       if(data.answer=== control.at(i).get('answer')?.value){
-        control.at(i).get('score')?.setValue(data.score)
-        control.at(i).get('score')?.updateValueAndValidity()
-        control.at(i).get('maxScore')?.setValue(item.maxScore)
-        control.at(i).get('maxScore')?.updateValueAndValidity()
         data.score= Number( data.score);
+        control.at(i).get('score')?.setValue(data.score)
+        control.at(i).get('score')?.updateValueAndValidity()   
+      
    this.totalScore+=data.score;
       }
     })
-      }i++;
+    control.at(i).get('inputType')?.setValue(item.options)
+    control.at(i).get('inputType')?.updateValueAndValidity()
+    control.at(i).get('option')?.setValue(item.options)
+    control.at(i).get('option')?.updateValueAndValidity()
+  }
+    else if(item.inputType==='multiSelect'){
+      let score=0;
+const multiSelectDropDown=control.at(i).get('answer')?.value;
+multiSelectDropDown.map((options:any)=>{
+  item.options.map((optionItems:any)=>{
+if(optionItems.answer===options){
+  optionItems.score=Number( optionItems.score);
+score=score+optionItems.score
+this.totalScore+=optionItems.score;
+}
+
+  })
+}
+
+)
+control.at(i).get('inputType')?.setValue(item.inputType)
+control.at(i).get('inputType')?.updateValueAndValidity()
+control.at(i).get('option')?.setValue(item.options)
+control.at(i).get('option')?.updateValueAndValidity()
+control.at(i).get('score')?.setValue(score)
+control.at(i).get('score')?.updateValueAndValidity()
+    }
+      i++;  
   }
 
 
@@ -167,6 +200,7 @@ for(let item of this.questionnaireData){
     totalScore:this.totalScore,
     category:this.questionnaireData[0].category,
     questionAns:this.questionnaireForm.value.aissment,
+
 
 
   }).subscribe((data:any)=>{
