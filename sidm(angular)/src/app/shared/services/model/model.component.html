@@ -131,3 +131,11 @@
     </div>
     <p class="Note">Note: Your application sent for admin approval. <br> Membership fees(Rs)= 5000/-</p>
 </div>
+
+<div *ngIf="data.type==='ViewQuestionnaire'" class="requestInfoPopup">
+    <h1 mat-dialog-title>Description</h1>
+    <div mat-dialog-content>{{data.data}}</div>
+    <div mat-dialog-actions>
+      <button type="button" class="NewBtn mt-3"  (click)="noClick('no')" data-dismiss="modal">Close</button>
+    </div>
+</div>

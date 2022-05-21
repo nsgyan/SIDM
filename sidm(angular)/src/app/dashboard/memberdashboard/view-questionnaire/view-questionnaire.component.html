@@ -50,13 +50,15 @@
         </mat-stepper>
         
       </form> -->
-    <!-- <table class="table">
+    <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Qs.</th>
             <th scope="col">Questions</th>
-            <th scope="col">Answers</th>
+            <th scope="col">Response</th>
+            <th scope="col">Attachment</th>
             <th scope="col">Score</th>
+            <th scope="col"> Assessor Score</th>
             <th scope="col"> Max Score</th>
           </tr>
         </thead>
@@ -65,16 +67,20 @@
             <th scope="row">{{i+1}}</th>
             <td class="">{{item.question}}</td>
             <td>
-                {{item.answer}}
+                {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Read Me</a>
             </td>
+            <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'  target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
             <td>
                 {{item.score}}
             </td>
+            <td>
+             
+          </td>
             <td>
                 {{item.maxScore}}
             </td>
           </tr>
          
         </tbody>
-    </table> -->
+    </table>
 </div>
