@@ -7,7 +7,7 @@
     <div formArrayName="aissment">
       <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
         <mat-step  errorMessage="Name is required.">
-          <ng-template matStepLabel>{{questionnaireData[i].parameter}}</ng-template>
+         
           <h2>{{questionnaireData[i].parameter}}</h2>
           <mat-form-field *ngIf="questionnaireData[i].inputType==='dropdown'" appearance="fill">
             <mat-label>Answer Type</mat-label>
@@ -31,7 +31,7 @@
             <input type="file"   (change)="changeListener($event,i)" required>
           </div>
           <div>
-            <p>Go to a different step to see the error state</p>
+         
             <button *ngIf="i!==0" mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           

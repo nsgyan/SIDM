@@ -75,7 +75,7 @@ multiSelect:boolean=false
 
   optionType(type:any)
   {
-    if(type==='dropdown'){
+    if(type==='dropdown' &&! this.dropdown&&!this.multiSelect){
       this.dropdown=!this.dropdown
       this.removeAllOption()
       if(this.dropdown)
@@ -83,7 +83,7 @@ multiSelect:boolean=false
         this.addOptions()
       }
     }
-    else if(type==='multiSelect'){
+    else if(type==='multiSelect'&&! this.dropdown&&!this.multiSelect){
       this.multiSelect=!this.multiSelect
       this.removeAllOption()
       if(this.multiSelect)
@@ -96,11 +96,12 @@ multiSelect:boolean=false
  
  
   onSubmit() {
-    if(this.questionnaire.value.textBox||this.questionnaire.value.upload)
+    if(this.questionnaire.value.textBox|| this.questionnaire.value.upload)
     {
       this.questionnaire.get('inputType')?.clearValidators()
       this.questionnaire.get('inputType')?.updateValueAndValidity()
-    }else if(this.questionnaire.value.inputType)
+    }
+     if(this.questionnaire.value.inputType)
     {
       this.questionnaire.get('textBox')?.clearValidators()
       this.questionnaire.get('textBox')?.updateValueAndValidity()

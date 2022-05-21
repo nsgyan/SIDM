@@ -129,7 +129,7 @@ console.log(this.questionnaireForm);
 
 for(let item of this.questionnaireData){ 
   let control = <FormArray>this.questionnaireForm.get('aissment');
-  if(!item.textBox)
+  if(item.textBox)
   {    control.at(j).get('description')?.setValidators(Validators.required)
       control.at(j).get('description')?.updateValueAndValidity()}    
    if(item.upload){
