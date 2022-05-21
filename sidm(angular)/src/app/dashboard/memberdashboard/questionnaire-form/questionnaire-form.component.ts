@@ -29,7 +29,7 @@ questionnaireForm:FormGroup
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
       console.log(data);
-      this.getquestion(data?.category)
+      this.getquestion(data?.category,data?.typeOfApplicant)
       
     })
    }
@@ -38,8 +38,9 @@ questionnaireForm:FormGroup
   }
 
 
-getquestion(category:any){
-  this.httpService.findByCategory(category).subscribe(data=>{
+getquestion(category:any,typeOfApplicant:any){
+  this.httpService.findByCategory({category:category,
+    typeOfApplicant:typeOfApplicant}).subscribe(data=>{
  this.questionnaireData=data
  let control = <FormArray>this.questionnaireForm.get('aissment');
  this.questionnaireData.map((item:any)=>{

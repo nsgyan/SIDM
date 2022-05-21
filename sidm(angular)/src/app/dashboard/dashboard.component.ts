@@ -45,9 +45,11 @@ this.type='member'
     subscribe((data: any) => {
       
       data.map((item:any)=>{
+        console.log(item.typeOfApplicant);
+        
         if (item.category === 'cat1') {
           this.cat1 = true
-          this.getQuestionnaire('cat1')
+          this.getQuestionnaire('cat1',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat1=true
           }
@@ -56,7 +58,7 @@ this.type='member'
         }
         else if (item.category === 'cat2') {
           this.cat2 = true
-          this.getQuestionnaire('cat2')
+          this.getQuestionnaire('cat2',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat2=true
           }
@@ -64,14 +66,14 @@ this.type='member'
         }
         else if (item.category === 'cat3') {
           this.cat3 = true
-          this.getQuestionnaire('cat3')
+          this.getQuestionnaire('cat3',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat3=true
           }
         }
         else if (item.category === 'cat4') {
           this.cat4 = true
-          this.getQuestionnaire('cat4')
+          this.getQuestionnaire('cat4',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat4=true
           }
@@ -123,8 +125,8 @@ this.type='member'
 
   }
 
-  getQuestionnaire(category:any){
-    this.httpService.findByCategory(category).subscribe((data:any)=>{
+  getQuestionnaire(category:any,typeOfApplicant:any){
+    this.httpService.findByCategory({category:category,typeOfApplicant:typeOfApplicant}).subscribe((data:any)=>{
       if(data[0]?.category==='cat1' ){
         this.Quescat1=true
       } 

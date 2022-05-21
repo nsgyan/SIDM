@@ -40,7 +40,7 @@ export class HttpService {
     return this.httpService.patch(`${Globals.route.update}/${id}`, data)
   }
   findByCategory(category:any){
-    return this.httpService.get(`${Globals.route.findByCategory}/${category}`)
+    return this.httpService.post(`${Globals.route.findByCategory}`,category)
   }
   
   questionnaireAissment(data:any){

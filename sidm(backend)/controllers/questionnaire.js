@@ -9,6 +9,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     const inputType= req.body.inputType
     const upload= req.body.upload;
     const textBox=req.body.textBox
+    const typeOfApplicant = req.body.typeOfApplicant;
 
     const Questionnaire= new  Questionnaires({
         category :category,
@@ -17,7 +18,8 @@ exports.addQuestionnaires= (req,res,next)=>{
         options:options,
         inputType:inputType,
         upload:upload,
-        textBox:textBox
+        textBox:textBox,
+        typeOfApplicant:typeOfApplicant
     })
     Questionnaire.save().then(data=>{
     
@@ -86,9 +88,11 @@ exports.updateQuestionnaires=(req,res)=>{
 
 }
 exports.findByCategory=(req,res)=>{
-    
-    const category =req.params.category
-    Questionnaires.find({category:category}).then(data=>{
+    // console.log(req.params)
+    console.log(req.body)
+    const category =req.body.category
+    const typeOfApplicant =req.body.typeOfApplicant
+    Questionnaires.find( {$or:[{typeOfApplicant: typeOfApplicant},{typeOfApplicant:'A'}],category:category}).then(data=>{
         if (data) {
             res.status(200).send(data)
         }

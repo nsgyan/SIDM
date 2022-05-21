@@ -32,6 +32,7 @@ multiSelect:boolean=false
 
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
+      typeOfApplicant:['',Validators.required],
       parameter:['',Validators.required],
       maxScore:['',Validators.required],
       inputType:['',Validators.required],
@@ -113,6 +114,7 @@ multiSelect:boolean=false
       this.httpService.postQuestionnaire({
       category:this.questionnaire.value.category,
       parameter:this.questionnaire.value.parameter,
+      typeOfApplicant:this.questionnaire.value.typeOfApplicant,
       maxScore:this.questionnaire.value.maxScore, 
       options:this.questionnaire.value.options, 
       inputType:this.questionnaire.value.inputType,

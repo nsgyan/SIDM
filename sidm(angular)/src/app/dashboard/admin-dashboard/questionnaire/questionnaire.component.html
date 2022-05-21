@@ -22,6 +22,31 @@
         Category <strong>required</strong>
     </p>
     </div>
+    <div class="form-group">
+      <label class="questionnaireLabel" for="exampleFormControlSelect1">Type Of Applicant*</label>
+      <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect1">
+        <option value="A">For All Type Of Applicant</option>
+        <option value="L">  <label class="Apply-control-label font" for="ApplyRadio5">
+          <h6 class="catBold">L – Large</h6>
+          (Annual Turnover FY 2020-21 over
+          & above Rs 250 Crore)
+      </label> </option>
+        <option value="M"><label class="Apply-control-label font" for="ApplyRadio6">
+          <h6 class="catBold">M – Medium</h6>
+          (Annual Turnover FY 2020-21 between
+          Rs 75 to 250 Crore)
+      </label></option>
+        <option value="S">   <label class="Apply-control-label font" for="ApplyRadio7">
+          <h6 class="catBold">S – SME/SSI/START-UP</h6>
+          (Annual Turnover FY 2020-21 less
+          than Rs 75 Crore)
+      </label></option>
+      
+      </select>
+      <p *ngIf="questionnaire.get('category')?.hasError('required') &&(submited) " style="color: red;">
+        Category <strong>required</strong>
+    </p>
+    </div>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Answer Type</mat-label>
