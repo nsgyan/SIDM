@@ -23,8 +23,8 @@
     </p>
     </div>
     <div class="form-group">
-      <label class="questionnaireLabel" for="exampleFormControlSelect1">Type Of Applicant*</label>
-      <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect1">
+      <label class="questionnaireLabel" for="exampleFormControlSelect2">Type Of Applicant*</label>
+      <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect2">
         <option value="A">For All Type Of Applicant</option>
         <option value="L">  <label class="Apply-control-label font" for="ApplyRadio5">
           <h6 class="catBold">L – Large</h6>
@@ -43,16 +43,16 @@
       </label></option>
       
       </select>
-      <p *ngIf="questionnaire.get('category')?.hasError('required') &&(submited) " style="color: red;">
-        Category <strong>required</strong>
+      <p *ngIf="questionnaire.get('typeOfApplicant')?.hasError('required') &&(submited) " style="color: red;">
+        Type Of Applicant <strong>required</strong>
     </p>
     </div>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Answer Type</mat-label>
         <mat-select formControlName="inputType" >
-    <mat-option value="dropdown" (click)="optionType('dropdown')"  >Dropdown </mat-option>
-    <mat-option value="multiSelect" (click)="optionType('multiSelect')" >MultiSelect </mat-option>
+    <mat-option value="singleSelect" (click)="optionType('singleSelect')"  >Single Select </mat-option>
+    <mat-option value="multiSelect" (click)="optionType('multiSelect')" >Multi Select </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="form-check">
@@ -89,7 +89,7 @@
         </div> -->
       </div>
       <div class="form-group">
-        <div *ngIf="dropdown||multiSelect" formArrayName="options">
+        <div *ngIf="singleSelect||multiSelect" formArrayName="options">
           <div  *ngFor="let opt of options.controls; let i = index">
             <!-- <h1 class="heading">Answers:</h1> -->
             <div [formGroupName]="i">
@@ -123,7 +123,7 @@
           </div>
         </div>
 
-        <div *ngIf="dropdown||multiSelect">
+        <div *ngIf="singleSelect||multiSelect">
           <button class="save-btn mt-3 mb-3" (click)="addOptions()" type="button"><i aria-hidden="true"
               class="fas fa-plus"></i> Add Option</button>
         </div>

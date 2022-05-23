@@ -16,7 +16,7 @@ export class EditQuestionnaireComponent implements OnInit {
   editQuestionnaire!:FormGroup;
   captcha: any;
   submited: boolean=false;
-  dropdown: boolean=false;
+  singleSelect: boolean=false;
   multiSelect: boolean=false;
  
   constructor(private fb:FormBuilder,
@@ -29,16 +29,17 @@ export class EditQuestionnaireComponent implements OnInit {
         console.log(data);
         
         this.questionnaire=this.fb.group({
-          category:[data.category,Validators.required],
+          category:[data?.category,Validators.required],
           parameter:[data.parameter,Validators.required],
+          typeOfApplicant:[data.typeOfApplicant,Validators.required],
           maxScore:[data.maxScore,Validators.required],
           inputType:[data.inputType,Validators.required],
           upload:[data.upload,Validators.required],
           textBox:[data.textBox,Validators.required],
           options: this.fb.array([]) ,
         })
-        if(data.inputType==='dropdown'){
-          this.dropdown=true;
+        if(data.inputType==='singleSelect'){
+          this.singleSelect=true;
         }
         else if(data.inputType==='multiSelect'){
           this.multiSelect=true
@@ -61,10 +62,10 @@ export class EditQuestionnaireComponent implements OnInit {
 
   optionType(type:any)
   {
-    if(type==='dropdown'){
-      this.dropdown=!this.dropdown
+    if(type==='singleSelect'){
+      this.singleSelect=!this.singleSelect
       this.removeAllOption()
-      if(this.dropdown)
+      if(this.singleSelect)
       {
         this.addOptions()
       }
@@ -130,6 +131,7 @@ export class EditQuestionnaireComponent implements OnInit {
       this.httpService.updateQuestionnaireById(id,{
         category:this.questionnaire.value.category,
         parameter:this.questionnaire.value.parameter,
+        typeOfApplicant:this.questionnaire.value.typeOfApplicant,
         maxScore:this.questionnaire.value.maxScore, 
         options: this.questionnaire.value.options, 
         inputType:this.questionnaire.value.inputType,
@@ -167,7 +169,7 @@ export class EditQuestionnaireComponent implements OnInit {
 
   removeAllOption(){
 
-    if(!this.dropdown || !this.multiSelect){
+    if(!this.singleSelect || !this.multiSelect){
       console.log('hello');
       
   let i=this.option().length

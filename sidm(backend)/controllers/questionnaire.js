@@ -57,6 +57,7 @@ exports.deleteQuestionnairesByID= (req,res,next)=>{
 exports.updateQuestionnaires=(req,res)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
+    const typeOfApplicant = req.body.typeOfApplicant;
     const maxScore = req.body.maxScore;
     const options = req.body.options;
     const inputType= req.body.inputType
@@ -68,6 +69,7 @@ exports.updateQuestionnaires=(req,res)=>{
     .then(data=>{
         data.category =category,
         data.parameter = parameter,
+        data.typeOfApplicant = typeOfApplicant,
         data.maxScore = maxScore,
         data.options=options,
         data.inputType=inputType,

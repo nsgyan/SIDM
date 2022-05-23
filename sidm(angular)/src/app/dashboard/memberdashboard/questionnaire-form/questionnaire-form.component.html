@@ -9,7 +9,7 @@
         <mat-step  errorMessage="Name is required.">
          
           <h2>{{questionnaireData[i].parameter}}</h2>
-          <mat-form-field *ngIf="questionnaireData[i].inputType==='dropdown'" appearance="fill">
+          <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
             <mat-label>Answer Type</mat-label>
             <mat-select formControlName="answer" >
         <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
@@ -24,7 +24,7 @@
           <br>
           <mat-form-field *ngIf="questionnaireData[i].textBox" appearance="fill">
             <mat-label></mat-label>
-            <input matInput placeholder="Last name, First name" formControlName="description" required>
+            <input matInput  formControlName="description" required>
           </mat-form-field>
           <div *ngIf="questionnaireData[i].upload" appearance="fill">
            

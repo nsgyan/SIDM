@@ -141,7 +141,7 @@ for(let item of this.questionnaireData){
         control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
         control.at(j).get('uploadDocuments')?.updateValueAndValidity()
       }
-   if(item.inputType==='multiSelect'|| item.inputType==='dropdown'){
+   if(item.inputType==='multiSelect'|| item.inputType==='singleSelect'){
         control.at(j).get('answer')?.setValidators(Validators.required)
         control.at(j).get('answer')?.updateValueAndValidity()
        }
@@ -155,7 +155,7 @@ for(let item of this.questionnaireData){
     let control = <FormArray>this.questionnaireForm.get('aissment');
     control.at(i).get('maxScore')?.setValue(item.maxScore)
     control.at(i).get('maxScore')?.updateValueAndValidity()
-    if(item.inputType==='dropdown'){
+    if(item.inputType==='singleSelect'){
     item.options.map((data:any)=>{
       if(data.answer=== control.at(i).get('answer')?.value){
         data.score= Number( data.score);
@@ -172,8 +172,8 @@ for(let item of this.questionnaireData){
   }
     else if(item.inputType==='multiSelect'){
       let score=0;
-const multiSelectDropDown=control.at(i).get('answer')?.value;
-multiSelectDropDown.map((options:any)=>{
+const multiSelectsingleSelect=control.at(i).get('answer')?.value;
+multiSelectsingleSelect.map((options:any)=>{
   item.options.map((optionItems:any)=>{
 if(optionItems.answer===options){
   optionItems.score=Number( optionItems.score);
