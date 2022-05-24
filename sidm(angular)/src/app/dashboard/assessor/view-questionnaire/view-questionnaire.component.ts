@@ -102,8 +102,11 @@ export class ViewQuestionnaireComponent implements OnInit {
         questionAns:this.assessor.value.aissment,
         assessorStatus:'submited'
       }).subscribe(data=>{
-        console.log();
+        this.toast.success('Assessor Score Updated');
+        this.routes.navigate(['/dashboard/assessor'])
         
+      },err=>{
+        this.toast.error(err);
       })
     }
     else {

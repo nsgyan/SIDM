@@ -65,7 +65,7 @@ export class AssessorLoginComponent implements OnInit {
 
     this.assessorform.value.panNumber = this.assessorform.value.panNumber.toUpperCase()
  
-    if (this.assessorform.valid) {
+    if (this.assessorform.valid &&this.captcha ) {
       this.httpService.assessorLogin({ email: this.assessorform.value.email, mobile: this.assessorform.value.mobileNumber, panNumber: this.assessorform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
