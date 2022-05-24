@@ -6,12 +6,20 @@ exports.addQuestionnaires= (req,res,next)=>{
     const parameter = req.body.parameter;
     const maxScore = req.body.maxScore;
     const options = req.body.options;
+    const inputType= req.body.inputType
+    const upload= req.body.upload;
+    const textBox=req.body.textBox
+    const typeOfApplicant = req.body.typeOfApplicant;
 
     const Questionnaire= new  Questionnaires({
         category :category,
         parameter : parameter,
         maxScore : maxScore,
-        options:options
+        options:options,
+        inputType:inputType,
+        upload:upload,
+        textBox:textBox,
+        typeOfApplicant:typeOfApplicant
     })
     Questionnaire.save().then(data=>{
     
@@ -49,15 +57,24 @@ exports.deleteQuestionnairesByID= (req,res,next)=>{
 exports.updateQuestionnaires=(req,res)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
+    const typeOfApplicant = req.body.typeOfApplicant;
     const maxScore = req.body.maxScore;
     const options = req.body.options;
+    const inputType= req.body.inputType
+    const upload= req.body.upload;
+    const textBox=req.body.textBox
+
     const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
         data.category =category,
         data.parameter = parameter,
+        data.typeOfApplicant = typeOfApplicant,
         data.maxScore = maxScore,
-        data.options=options
+        data.options=options,
+        data.inputType=inputType,
+        data.upload=upload,
+        data.textBox=textBox
        data.save((err, success) => {
             if(err){
            res.status(404).json(err);
@@ -73,9 +90,11 @@ exports.updateQuestionnaires=(req,res)=>{
 
 }
 exports.findByCategory=(req,res)=>{
-    
-    const category =req.params.category
-    Questionnaires.find({category:category}).then(data=>{
+    // console.log(req.params)
+    console.log(req.body)
+    const category =req.body.category
+    const typeOfApplicant =req.body.typeOfApplicant
+    Questionnaires.find( {$or:[{typeOfApplicant: typeOfApplicant},{typeOfApplicant:'A'}],category:category}).then(data=>{
         if (data) {
             res.status(200).send(data)
         }

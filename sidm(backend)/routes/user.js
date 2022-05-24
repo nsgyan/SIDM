@@ -17,8 +17,8 @@ router.get('/getStateList', User.getState);
 router.post('/checkemail', User.getEmail);
 router.post('/checkMobile', User.getMobile);
 router.post('/checkPan', User.getPan);
-router.get('/payment/:userID', auth.memberAuth, Payment.payNow);
-router.post('/verifypayment', auth.memberAuth, Payment.verifypayment);
+router.post('/payment', Payment.payNow);
+router.post('/verifypayment', Payment.verifypayment);
 
 router.get('/viewPayment/:userID',auth.auth, Payment.viewpayment);
 router.post('/offlinePayment' ,auth.auth, offlinePayment.postPaymentDetails);

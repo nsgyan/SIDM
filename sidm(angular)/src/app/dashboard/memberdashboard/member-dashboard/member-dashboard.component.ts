@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 import { formatDate, Location } from '@angular/common'
 import { MatDialog } from '@angular/material/dialog';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
+import { NgxSpinnerService } from 'ngx-spinner';
  
 @Component({
   selector: 'app-member-dashboard',
@@ -18,6 +19,8 @@ import { ModelComponent } from 'src/app/shared/services/model/model.component';
   styleUrls: ['./member-dashboard.component.css']
 })
 export class MemberDashboardComponent implements OnInit {
+
+  action:any
   paymentDetails:any
   appreciationDocuments: any;
   sidmMember = false
@@ -41,7 +44,7 @@ export class MemberDashboardComponent implements OnInit {
   captcha: any;
   states: any;
   editData: any;
-  catagery: any;
+  category: any;
   email: any;
   mobilenumber: any;
   pan: any;
@@ -71,7 +74,8 @@ export class MemberDashboardComponent implements OnInit {
     private location: Location,
     private winRef: WindowRefService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
     const id = this.route.snapshot.paramMap.get('id')
     this.OfflinePayment=this.formBuilder.group({
@@ -86,8 +90,9 @@ export class MemberDashboardComponent implements OnInit {
     this.getState()
     this.httpService.getdetails(id).
       subscribe((data: any) => {
-        
+        this.category = data.category
           if (data.category === 'cat1') {
+
             this.cat1 = false
             data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
           }
@@ -231,7 +236,7 @@ export class MemberDashboardComponent implements OnInit {
         data.isappreciation === 'Yes' ? this.isappreciation = true : ''
 
         this.editData = data
-        this.catagery = this.editData.catagery
+
         this.editData.panNumber = this.editData.panNumber
         this.editForm = this.formBuilder.group({
        
@@ -484,7 +489,7 @@ export class MemberDashboardComponent implements OnInit {
     }
   }
 
-  finalSubmit(type: string) {
+  finalSubmit(status: string,type:any) {
     this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
     this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
     if(!this.editData.subCategoryDoccument){
@@ -537,7 +542,7 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid && this.captcha) {
+    if (type === 'finalSubmit' || (this.editForm.valid &&this.captcha )) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -574,12 +579,17 @@ export class MemberDashboardComponent implements OnInit {
         alterMobileNumber:this.editForm.value.alterMobileNumber,
         alterEmail:this.editForm.value.alterEmail,
         
-        status: type,
-      }).subscribe(data => {
-
+        status: status,
+      }).subscribe((data:any) => {
+if(type==='changeStatus'){
         let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
         this.routes.navigateByUrl(url);
-        this.toast.success('successfully applied');
+        this.toast.success('successfully applied');}
+        else if(type==='finalSubmit'){
+          this.payNow(this.editForm.value.typeOfApplicant,this.category,this.editForm.value.panNumber,this.editForm.value.mobileNumber,this.editForm.value.email)
+          this.toast.success('successfully applied');
+          
+        }
       }, err => {
         this.toast.error(err.error);
         this.localStorage.clearLocalStorage();
@@ -649,7 +659,7 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('exhibit2')?.clearValidators()
     this.editForm.get('exhibit2')?.updateValueAndValidity()
 
-    if (this.editForm.valid && this.captcha) {
+    if (this.editForm.valid &&this.captcha ) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -767,15 +777,21 @@ export class MemberDashboardComponent implements OnInit {
 
   }
 
-  payNow(id:string){
-    this.httpService.paynow(id).subscribe((data:any)=>{
+  payNow(typeOfApplicant:any,category:any,panNumber:any,mobileNumber:any,email:any){
+    this.httpService.paynow({
+      typeOfApplicant: typeOfApplicant,
+      category: category,
+      panNumber: panNumber,
+      mobileNumber: mobileNumber,
+      email: email,
+      
+    }).subscribe((data:any)=>{
 this.razorPayOptions.amount=data.amount
 this.razorPayOptions.order_id=data.id
 this.razorPayOptions.note=data.notes
 this.razorPayOptions.handler=  (response) => {
-  this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
+  this.razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
 }
-
 const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
 rzp.open();
 
@@ -784,7 +800,9 @@ rzp.open();
   }
 
   razorPayshandler(response:any,amount:any,note:any){
-
+    console.log(response);
+    
+    this.spinner.show();
   if(response){
   let razorpay_payment_id= response.razorpay_payment_id
   let razorpay_order_id= response.razorpay_order_id
@@ -792,6 +810,7 @@ rzp.open();
 
   this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
     this.paymentDetails=data
+    this.spinner.show();
     this.toast.success(' Payment Successfully ');
    let currentRouter = this.routes.url;
     this.routes.navigate([currentRouter])
@@ -804,6 +823,7 @@ rzp.open();
   })
 }
 else{
+  this.savedraft('Pending')
   this.toast.error('Payment failed');
 
 }
@@ -827,10 +847,11 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     },err=>{
       this.toast.error('No Data Found');
     })
+    if(OfflineOnlinepaymentId){
     this.httpService.getOflinePayment(OfflineOnlinepaymentId).subscribe((data:any)=>{
       data.createAt  = formatDate(data.createAt , 'MMM d, y, h:mm:ss a', 'en-US');
    this.OfflinepaymentDetails=data
-    })
+    })}
   }
 
 
@@ -874,5 +895,88 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
   closeRemark(){
     this.remark=null;
   }
+  openModel(type:any){
+    this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
+    if(!this.editData.subCategoryDoccument){
+    this.editForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()}
+    if(!this.editData.financialDoccument){
+    this.editForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.editForm.get('financialDoccument')?.updateValueAndValidity()}
+    this.editForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('nameOfCompany')?.updateValueAndValidity()
+    this.editForm.get('addressl1')?.setValidators(Validators.required)
+    this.editForm.get('addressl1')?.updateValueAndValidity()
+    this.editForm.get('state')?.setValidators(Validators.required)
+    this.editForm.get('state')?.updateValueAndValidity()
+    this.editForm.get('city')?.setValidators(Validators.required)
+    this.editForm.get('city')?.updateValueAndValidity()
+    this.editForm.get('pincode')?.setValidators(Validators.required)
+    this.editForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6),Validators.required])
+    this.editForm.get('pincode')?.updateValueAndValidity()
+    this.editForm.get('name')?.setValidators(Validators.required)
+    this.editForm.get('name')?.updateValueAndValidity()
+    this.editForm.get('designation')?.setValidators(Validators.required)
+    this.editForm.get('designation')?.updateValueAndValidity()
+    this.editForm.get('gstinOfCompany')?.setValidators([Validators.required,Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
+    this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
+    if(!this.editData.documentGstCertificate){
+    this.editForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()}
+    this.editForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.editForm.get('dateOfCompany')?.updateValueAndValidity()
+    this.editForm.get('sidmMember')?.setValidators(Validators.required)
+    this.editForm.get('sidmMember')?.updateValueAndValidity()
+    this.editForm.get('association')?.setValidators(Validators.required)
+    this.editForm.get('association')?.updateValueAndValidity()
+    this.editForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.editForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.editForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
+    this.editForm.get('isappreciation')?.setValidators(Validators.required)
+    this.editForm.get('isappreciation')?.updateValueAndValidity() 
+    this.editForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.editForm.get('campareAchivement')?.updateValueAndValidity()
+    this.editForm.get('mudp')?.setValidators(Validators.required)
+    this.editForm.get('mudp')?.updateValueAndValidity()
+    if(!this.editData.exhibit1){
+    this.editForm.get('exhibit1')?.setValidators(Validators.required)
+    this.editForm.get('exhibit1')?.updateValueAndValidity()}
+    if(!this.editData.exhibit2){
+    this.editForm.get('exhibit2')?.setValidators(Validators.required)
+    this.editForm.get('exhibit2')?.updateValueAndValidity()}
+    if (this.editForm.valid &&this.captcha  ) {
+this.action=true
+
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '500px',
+      data: {type:type},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    if(result==='no'){
+      console.log('no'); 
+    }
+    else if(result==='ok'){
+      this.finalSubmit('Pending' ,'finalSubmit')
+  
+    
+    }
+     
+    });
+  }
+  else if (!this.captcha) {
+    this.submited = true;
+    this.toast.error('Please verify that you are not a robot.');
+  }
+  else {
+
+    this.submited = true;
+    this.toast.error('Form invalid');
+  }
+  }
+
 
 }

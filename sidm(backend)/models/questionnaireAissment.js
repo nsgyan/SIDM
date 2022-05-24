@@ -6,6 +6,7 @@ const questionnaireAissmentSchema = new Schema({
         totalScore:{type:String},
         category:{ type: String },
         questionAns:[], 
+        
 })
 
 module.exports = mongoose.model('questionnaireAissment', questionnaireAissmentSchema);

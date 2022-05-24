@@ -11,6 +11,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SharedModule } from '../shared/shared.module';
     RecaptchaModule,
     NgxSpinnerModule,
     MatSnackBarModule,
-    SharedModule
+    SharedModule,
+    MatIconModule,
+    MatDialogModule
   ]
 })
 export class RegistrationModule { }

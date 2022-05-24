@@ -12,7 +12,8 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
- 
+  singleSelect:boolean=false
+multiSelect:boolean=false
   questionnaire!:FormGroup;
   editQuestionnaire!:FormGroup;
   captcha: any;
@@ -28,11 +29,20 @@ export class ViewQuestionnaireComponent implements OnInit {
 
         this.questionnaire=this.fb.group({
           category:[data.category,Validators.required],
+          typeOfApplicant:[data.typeOfApplicant,Validators.required],
           parameter:[data.parameter,Validators.required],
           maxScore:[data.maxScore,Validators.required],
+          inputType:[data.inputType],
+          upload:[data.upload],
+          textBox:[data.textBox],
           options: this.fb.array([]) ,
         })
-        
+        if(data.inputType==='singleSelect'){
+          this.singleSelect=true;
+        }
+        else if(data.inputType==='multiSelect'){
+          this.multiSelect=true
+        }
         let control = <FormArray>this.questionnaire.get('options');
         data.options.map((item:any)=>{
          control.push(

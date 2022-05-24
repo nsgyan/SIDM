@@ -67,73 +67,6 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: max-content"> S No. </th>
             <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
           </ng-container>
-          <ng-container id="date" matColumnDef="createAt">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-            <td mat-cell *matCellDef="let row"> {{row.createAt}} </td>
-          </ng-container>
-
-          <!-- Progress Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-          </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-          </ng-container>
-          <ng-container matColumnDef="mobileNumber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile No.</th>
-            <td mat-cell *matCellDef="let row"> {{row.mobileNumber}} </td>
-          </ng-container>
-          <ng-container matColumnDef="panNumber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> PAN No. </th>
-            <td mat-cell *matCellDef="let row"> {{row.panNumber}} </td>
-          </ng-container>
-          <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-            <td mat-cell *matCellDef="let row" style="color:cornflowerblue;font-weight: 500;"> {{row.category}} </td>
-          </ng-container>
-          <ng-container matColumnDef="typeOfApplicant">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Applicant Type </th>
-            <td mat-cell *matCellDef="let row" style="color:cornflowerblue;font-weight: 500;"> {{row.typeOfApplicant}} </td>
-          </ng-container>
-          <ng-container matColumnDef="nameOfCompany">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.nameOfCompany}} </td>
-          </ng-container>
-          <ng-container matColumnDef="sidmMember">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> SIDM Member </th>
-            <td mat-cell *matCellDef="let row"> {{row.sidmMember}} </td>
-          </ng-container>
-          <ng-container matColumnDef="paymentStatus">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Registration fees </th>
-            <td mat-cell *matCellDef="let row"> <span *ngIf="row.paymentStatus==='Paid'"
-                style="color: green;">Paid</span>
-              <span *ngIf="row.paymentStatus==='Pending'" style="color: red;">Pending</span>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="offlinePaymentDetails">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Membership fees </th>
-            <td mat-cell *matCellDef="let row"> <span *ngIf="row.offlinePaymentDetails"
-                style="color: green;">Paid</span>
-              <span *ngIf="!row.offlinePaymentDetails" style="color: red;">Pending</span>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-            <td mat-cell *matCellDef="let row"> <span *ngIf="row.status==='Approved'" style="color: green;">{{
-                row.status }}</span>
-              <span *ngIf="row.status==='Pending'" style="color: red;">{{
-                row.status }}</span>
-              <span *ngIf="row.status==='Pending Approval'||row.status==='Request Info'" style="color:#33b5e5">{{ row.status }}</span>
-            </td>
-          </ng-container>
-
-
-          <!-- Fruit Column -->
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
             <td mat-cell *matCellDef="let row">
@@ -160,6 +93,69 @@
               </div>
             </td>
           </ng-container>
+          <ng-container id="date" matColumnDef="createAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.createAt}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nameOfCompany">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.nameOfCompany}} </td>
+          </ng-container>
+
+          
+          <!-- Name Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+          </ng-container>
+          <!-- Progress Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+
+        
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+            <td mat-cell *matCellDef="let row" style="color:cornflowerblue;font-weight: 500;"> {{row.category}} </td>
+          </ng-container>
+          <ng-container matColumnDef="typeOfApplicant">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Applicant Type </th>
+            <td mat-cell *matCellDef="let row" style="color:cornflowerblue;font-weight: 500;"> {{row.typeOfApplicant}} </td>
+          </ng-container>
+       
+          <ng-container matColumnDef="sidmMember">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SIDM Member </th>
+            <td mat-cell *matCellDef="let row"> {{row.sidmMember}} </td>
+          </ng-container>
+          <ng-container matColumnDef="paymentStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Registration fees </th>
+            <td mat-cell *matCellDef="let row"> <span *ngIf="row.paymentStatus==='Paid'"
+                style="color: green;">Paid</span>
+              <span *ngIf="row.paymentStatus==='Pending'" style="color: red;">Pending</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="offlinePaymentDetails">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Participation Fee </th>
+            <td mat-cell *matCellDef="let row"> <span *ngIf="row.offlinePaymentDetails"
+                style="color: green;">Paid</span>
+              <span *ngIf="!row.offlinePaymentDetails" style="color: red;">Pending</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row"> <span *ngIf="row.status==='Approved'" style="color: green;">{{
+                row.status }}</span>
+              <span *ngIf="row.status==='Pending'" style="color: red;">{{
+                row.status }}</span>
+              <span *ngIf="row.status==='Pending Approval'||row.status==='Request Info'" style="color:#33b5e5">{{ row.status }}</span>
+            </td>
+          </ng-container>
+
+
+          <!-- Fruit Column -->
+       
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -173,7 +169,11 @@
        
       </div>
 
+<<<<<<< HEAD
       <mat-paginator [pageSizeOptions]="[15, 35, 100]" aria-label="Select page of users"></mat-paginator>
+=======
+      <mat-paginator [pageSizeOptions]="[15, 45, 100]" aria-label="Select page of users"></mat-paginator>
+>>>>>>> b107e37d8da75f41c9db3f6d3e8a7ebb1ea90b6e
 
     </div>
   </div>

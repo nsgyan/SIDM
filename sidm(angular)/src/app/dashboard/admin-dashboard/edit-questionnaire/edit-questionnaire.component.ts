@@ -16,6 +16,8 @@ export class EditQuestionnaireComponent implements OnInit {
   editQuestionnaire!:FormGroup;
   captcha: any;
   submited: boolean=false;
+  singleSelect: boolean=false;
+  multiSelect: boolean=false;
  
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
@@ -27,13 +29,23 @@ export class EditQuestionnaireComponent implements OnInit {
         console.log(data);
         
         this.questionnaire=this.fb.group({
-          category:[data.category,Validators.required],
+          category:[data?.category,Validators.required],
           parameter:[data.parameter,Validators.required],
+          typeOfApplicant:[data.typeOfApplicant,Validators.required],
           maxScore:[data.maxScore,Validators.required],
+          inputType:[data.inputType,Validators.required],
+          upload:[data.upload,Validators.required],
+          textBox:[data.textBox,Validators.required],
           options: this.fb.array([]) ,
         })
+        if(data.inputType==='singleSelect'){
+          this.singleSelect=true;
+        }
+        else if(data.inputType==='multiSelect'){
+          this.multiSelect=true
+        }
         let control = <FormArray>this.questionnaire.get('options');
-        data.options.map((item:any)=>{
+        data.options?.map((item:any)=>{
          control.push(
            this.fb.group({
             answer: [item.answer,Validators.required],
@@ -47,6 +59,28 @@ export class EditQuestionnaireComponent implements OnInit {
 
 
   }
+
+  optionType(type:any)
+  {
+    if(type==='singleSelect'){
+      this.singleSelect=!this.singleSelect
+      this.removeAllOption()
+      if(this.singleSelect)
+      {
+        this.addOptions()
+      }
+    }
+    else if(type==='multiSelect'){
+      this.multiSelect=!this.multiSelect
+      this.removeAllOption()
+      if(this.multiSelect)
+      {
+        this.addOptions()
+      }
+    }
+    
+  }
+  
   ngOnInit(): void {
   }
   option(): FormArray {
@@ -81,12 +115,28 @@ export class EditQuestionnaireComponent implements OnInit {
  
   onSubmit() {
     const id = this.route.snapshot.paramMap.get('id')
+    if(this.questionnaire.value.textBox||this.questionnaire.value.upload)
+    {
+      this.questionnaire.get('inputType')?.clearValidators()
+      this.questionnaire.get('inputType')?.updateValueAndValidity()
+    }else if(this.questionnaire.value.inputType)
+    {
+      this.questionnaire.get('textBox')?.clearValidators()
+      this.questionnaire.get('textBox')?.updateValueAndValidity()
+      this.questionnaire.get('upload')?.clearValidators()
+      this.questionnaire.get('upload')?.updateValueAndValidity()
+    }
+    
     if(this.questionnaire.valid){
       this.httpService.updateQuestionnaireById(id,{
-      category:this.questionnaire.value.category,
-      parameter:this.questionnaire.value.parameter,
-      maxScore:this.questionnaire.value.maxScore, 
-      options:this.questionnaire.value.options, 
+        category:this.questionnaire.value.category,
+        parameter:this.questionnaire.value.parameter,
+        typeOfApplicant:this.questionnaire.value.typeOfApplicant,
+        maxScore:this.questionnaire.value.maxScore, 
+        options: this.questionnaire.value.options, 
+        inputType:this.questionnaire.value.inputType,
+        textBox:this.questionnaire.value.textBox ? true:false,
+        upload:this.questionnaire.value.upload?true:false
       }).subscribe((data:any)=>{
       
         this.toast.success(data);
@@ -96,17 +146,44 @@ export class EditQuestionnaireComponent implements OnInit {
         this.routes.navigate(['login/admin'])
       })
     }
-    else if (!this.captcha) {
-      this.submited = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
     else {
+      this.questionnaire.get('inputType')?.setValidators(Validators.required)
+      this.questionnaire.get('inputType')?.updateValueAndValidity()
+      this.questionnaire.get('textBox')?.setValidators(Validators.required)
+      this.questionnaire.get('textBox')?.updateValueAndValidity()
+      this.questionnaire.get('upload')?.setValidators(Validators.required)
+      this.questionnaire.get('upload')?.updateValueAndValidity()
       this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
   }
+  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
 
+  removeAllOption(){
+
+    if(!this.singleSelect || !this.multiSelect){
+      console.log('hello');
+      
+  let i=this.option().length
+  while(i>0){
+    --i;
+    this.option().removeAt(i)
+    
+   
+    
   
+  }
+  
+    }
+   }
  
  
 }

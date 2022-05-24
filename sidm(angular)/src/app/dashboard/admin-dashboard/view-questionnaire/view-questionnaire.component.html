@@ -18,9 +18,51 @@
             Performance of Defence & Aerospace
             Products</option>
         </select>
-        <p *ngIf="questionnaire.get('category')?.hasError('required') &&(submited) " style="color: red;">
-          Category <strong>required</strong>
+      
+      </div>
+      <div class="form-group">
+        <label class="questionnaireLabel" for="exampleFormControlSelect1">Type Of Applicant*</label>
+        <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect1">
+          <option value="A">For All Type Of Applicant</option>
+          <option value="L">  <label class="Apply-control-label font" for="ApplyRadio5">
+            <h6 class="catBold">L – Large</h6>
+            (Annual Turnover FY 2020-21 over
+            & above Rs 250 Crore)
+        </label> </option>
+          <option value="M"><label class="Apply-control-label font" for="ApplyRadio6">
+            <h6 class="catBold">M – Medium</h6>
+            (Annual Turnover FY 2020-21 between
+            Rs 75 to 250 Crore)
+        </label></option>
+          <option value="S">   <label class="Apply-control-label font" for="ApplyRadio7">
+            <h6 class="catBold">S – SME/SSI/START-UP</h6>
+            (Annual Turnover FY 2020-21 less
+            than Rs 75 Crore)
+        </label></option>
+        
+        </select>
+        <p *ngIf="questionnaire.get('typeOfApplicant')?.hasError('required') &&(submited) " style="color: red;">
+          Type Of Applicant <strong>required</strong>
       </p>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer Type</mat-label>
+        <mat-select formControlName="inputType" >
+    <mat-option value="singleSelect" [disabled]="true"  >singleSelect </mat-option>
+    <mat-option value="multiSelect" [disabled]="true"  >MultiSelect </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="form-check">
+        <input [disabled]="true"  formControlName="upload" type="checkbox" value=""  id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Upload
+        </label>
+      </div>
+      <div class="form-check">
+        <input  [disabled]="true" type="checkbox" formControlName="textBox" value="" readonly id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          TextBox
+        </label>
       </div>
         <div class="row">
           <div class="col-lg-9">

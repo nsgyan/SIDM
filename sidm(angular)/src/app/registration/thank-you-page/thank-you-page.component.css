@@ -22,7 +22,7 @@
     width: 33%;
     margin-left: 17rem;
 }
-
+ 
 .thanku .RegistrationContent h2 {
     color: #303476;
     font-weight: 500;
@@ -34,6 +34,7 @@
     font-weight: 500;
     margin-bottom: 10px;
     color: #666464;
+    margin: 20px;
 }
 
 .thanku .RegistrationContent p {

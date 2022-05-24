@@ -85,7 +85,7 @@
     <div mat-dialog-content>
         <form [formGroup]="requestInfo">
             <div class="">
-                <div class="form-group">
+                <div class="form-group   m-4">
                     <input type="textbox" class="form-control user-bg" id="uername" placeholder="remark"
                         formControlName="remark" />
                 </div>
@@ -111,4 +111,31 @@
         <button type="button" (click)="approve()" class="NewBtn ml-2 mt-3">OK</button>
     </div>
     <p class="Note">Note: After approval member application form will be locked</p>
+</div>
+
+
+
+
+
+
+
+
+<div *ngIf="data.type==='submitAndPay'" class="requestInfoPopup">
+    <h5 class="modal-title" id="exampleModalLabel">Final Submit and pay</h5>
+    <div mat-dialog-content>
+        Are you sure you want to submit the application
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="NewBtn mt-3"  (click)="noClick('no')" data-dismiss="modal">Close</button>
+        <button type="button"(click)="noClick('ok')" class="NewBtn ml-2 mt-3">OK</button>
+    </div>
+    <p class="Note">Note: Your application sent for admin approval. <br> Membership fees(Rs)= 5000/-</p>
+</div>
+
+<div *ngIf="data.type==='ViewQuestionnaire'" class="requestInfoPopup">
+    <h1 mat-dialog-title>Description</h1>
+    <div mat-dialog-content>{{data.data}}</div>
+    <div mat-dialog-actions>
+      <button type="button" class="NewBtn mt-3"  (click)="noClick('no')" data-dismiss="modal">Close</button>
+    </div>
 </div>

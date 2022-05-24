@@ -43,7 +43,7 @@ export class HttpService {
     return this.httpService.patch(`${Globals.route.update}/${id}`, data)
   }
   findByCategory(category:any){
-    return this.httpService.get(`${Globals.route.findByCategory}/${category}`)
+    return this.httpService.post(`${Globals.route.findByCategory}`,category)
   }
   
   questionnaireAissment(data:any){
@@ -52,9 +52,9 @@ export class HttpService {
   getQuestionnaireAissment(id:any){
     return this.httpService.get(`${Globals.route.questionnaireAissment}/${id}`)
   }
-  paynow(id:String)
+  paynow(id:any)
 {
-  return this.httpService.get(`${Globals.route.payment}/${id}`)
+  return this.httpService.post(Globals.route.payment,id)
 }
 
 postOflinePayment(data:any){

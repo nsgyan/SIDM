@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Event, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation, CrossPanValidation, CrossEmailValidation, GstValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
+import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 
 
 @Component({
@@ -13,6 +17,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  action:any
   registeredFieldIndexs=1;
   sidmMember = false
   association = false
@@ -28,6 +33,16 @@ export class RegistrationComponent implements OnInit {
   panMatch: boolean = false;
   mobileMatch: Boolean = false
   emailMatch: Boolean = false
+  razorPayOptions={
+    
+    "amount":1,
+    "currency":"INR",
+    "note":{},
+    "order_id":'',
+    "handler":(res: any)=>{
+
+    }
+  }
 
   memberform: FormGroup;
   registrationForm: FormGroup
@@ -38,9 +53,12 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private localStorage: LocalStorageService,
+    public dialog: MatDialog,
     private toast: ToastrService,
     private router: Router,
-    private httpService: HttpService) {
+    private httpService: HttpService,
+    private winRef: WindowRefService,
+    private spinner: NgxSpinnerService) {
       this.localStorage.clearLocalStorage()
     this.getState()
     this.registrationForm = this.formBuilder.group({
@@ -298,7 +316,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.clearValidators()
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.registrationForm.valid && this.captcha) {
+    if (this.registrationForm.valid &&this.captcha ) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
@@ -468,55 +486,6 @@ export class RegistrationComponent implements OnInit {
 
   finalSubmit(type: string) {
 
-    this.registrationForm.get('category')?.setValidators(Validators.required)
-    this.registrationForm.get('category')?.updateValueAndValidity()
-    this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
-    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.registrationForm.get('subCategoryDoccument')?.setValidators(Validators.required)
-    this.registrationForm.get('subCategoryDoccument')?.updateValueAndValidity()
-    this.registrationForm.get('financialDoccument')?.setValidators(Validators.required)
-    this.registrationForm.get('financialDoccument')?.updateValueAndValidity()
-    this.registrationForm.get('nameOfCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('nameOfCompany')?.updateValueAndValidity()
-    this.registrationForm.get('addressl1')?.setValidators(Validators.required)
-    this.registrationForm.get('addressl1')?.updateValueAndValidity()
-    this.registrationForm.get('state')?.setValidators(Validators.required)
-    this.registrationForm.get('state')?.updateValueAndValidity()
-    this.registrationForm.get('city')?.setValidators(Validators.required)
-    this.registrationForm.get('city')?.updateValueAndValidity()
-    this.registrationForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
-    this.registrationForm.get('pincode')?.updateValueAndValidity()
-    this.registrationForm.get('name')?.setValidators(Validators.required)
-    this.registrationForm.get('name')?.updateValueAndValidity()
-    this.registrationForm.get('designation')?.setValidators(Validators.required)
-    this.registrationForm.get('designation')?.updateValueAndValidity()
-    this.registrationForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
-    this.registrationForm.get('gstinOfCompany')?.updateValueAndValidity()
-    this.registrationForm.get('documentGstCertificate')?.setValidators(Validators.required)
-    this.registrationForm.get('documentGstCertificate')?.updateValueAndValidity()
-    this.registrationForm.get('dateOfCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('dateOfCompany')?.updateValueAndValidity()
-    this.registrationForm.get('sidmMember')?.setValidators(Validators.required)
-    this.registrationForm.get('sidmMember')?.updateValueAndValidity()
-    this.registrationForm.get('association')?.setValidators(Validators.required)
-    this.registrationForm.get('association')?.updateValueAndValidity()
-    this.registrationForm.get('registeredOrganization')?.setValidators(Validators.required)
-    this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
-    this.registrationForm.get('aboutCompany')?.setValidators(Validators.required)
-    this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
-    this.registrationForm.get('sidmChampionAwards')?.setValidators(Validators.required)
-    this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
-    this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
-    this.registrationForm.get('isappreciation')?.updateValueAndValidity()
-    this.registrationForm.get('campareAchivement')?.setValidators(Validators.required)
-    this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
-    this.registrationForm.get('mudp')?.setValidators(Validators.required)
-    this.registrationForm.get('mudp')?.updateValueAndValidity()
-    this.registrationForm.get('exhibit1')?.setValidators(Validators.required)
-    this.registrationForm.get('exhibit1')?.updateValueAndValidity()
-    this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
-    this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.registrationForm.valid && this.captcha) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -556,24 +525,17 @@ export class RegistrationComponent implements OnInit {
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
         status: type,
-      }).subscribe(data => {
-        this.registrationForm.reset();
-        this.toast.success(' Successfully Applied');
-        let url: string = "/thankYou/" + 'dsffsdfds'
-        this.router.navigateByUrl(url);
+      }).subscribe((data:any) => {
+        this.payNow(this.registrationForm.value.typeOfApplicant,this.registrationForm.value.category,this.registrationForm.value.panNumber,this.registrationForm.value.mobileNumber,this.registrationForm.value.email)
+        this.toast.success('successfully applied');
+  
+       
+
+       
       }, err => {
         this.toast.error(err);
       })
-    }
-    else if (!this.captcha) {
-      this.submited = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
-    else {
 
-      this.submited = true;
-      this.toast.error('Form invalid');
-    }
 
   }
 
@@ -670,6 +632,135 @@ export class RegistrationComponent implements OnInit {
       this.appreciationDocuments = null
 
     }
+  }
+
+  payNow(typeOfApplicant:any,category:any,panNumber:any,mobileNumber:any,email:any){
+    this.httpService.paynow({
+      typeOfApplicant: typeOfApplicant,
+      category: category,
+      panNumber: panNumber,
+      mobileNumber: mobileNumber,
+      email: email,
+      
+    }).subscribe((data:any)=>{
+this.razorPayOptions.amount=data.amount
+this.razorPayOptions.order_id=data.id
+this.razorPayOptions.note=data.notes
+this.razorPayOptions.handler=  (response) => {
+  this.razorPayshandler(response, this.razorPayOptions.amount, this.razorPayOptions.note); //does not work as cannot identify 'this'
+}
+const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
+rzp.open();
+
+      
+    })
+  }
+
+  razorPayshandler(response:any,amount:any,note:any){
+  
+  if(response){
+    this.spinner.show();
+  let razorpay_payment_id= response.razorpay_payment_id
+  let razorpay_order_id= response.razorpay_order_id
+  let createAt = new Date();
+
+  this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
+    this.spinner.hide();
+    this.toast.success(' Successfully Applied');
+    let url: string = "/thankYou/" + 'dsffsdfds'
+    this.router.navigateByUrl(url);
+  },err=>{
+    this.toast.error('Payment failed');
+
+  })
+}
+else{
+  this.savedraft('Pending')
+  this.toast.error('Payment failed');
+
+}
+  }
+
+
+  openModel(type:any){
+
+    this.registrationForm.get('category')?.setValidators(Validators.required)
+    this.registrationForm.get('category')?.updateValueAndValidity()
+    this.registrationForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.registrationForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.registrationForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.registrationForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.registrationForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.registrationForm.get('financialDoccument')?.updateValueAndValidity()
+    this.registrationForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('nameOfCompany')?.updateValueAndValidity()
+    this.registrationForm.get('addressl1')?.setValidators(Validators.required)
+    this.registrationForm.get('addressl1')?.updateValueAndValidity()
+    this.registrationForm.get('state')?.setValidators(Validators.required)
+    this.registrationForm.get('state')?.updateValueAndValidity()
+    this.registrationForm.get('city')?.setValidators(Validators.required)
+    this.registrationForm.get('city')?.updateValueAndValidity()
+    this.registrationForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
+    this.registrationForm.get('pincode')?.updateValueAndValidity()
+    this.registrationForm.get('name')?.setValidators(Validators.required)
+    this.registrationForm.get('name')?.updateValueAndValidity()
+    this.registrationForm.get('designation')?.setValidators(Validators.required)
+    this.registrationForm.get('designation')?.updateValueAndValidity()
+    this.registrationForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
+    this.registrationForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.registrationForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.registrationForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.registrationForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('dateOfCompany')?.updateValueAndValidity()
+    this.registrationForm.get('sidmMember')?.setValidators(Validators.required)
+    this.registrationForm.get('sidmMember')?.updateValueAndValidity()
+    this.registrationForm.get('association')?.setValidators(Validators.required)
+    this.registrationForm.get('association')?.updateValueAndValidity()
+    this.registrationForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.registrationForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
+    this.registrationForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
+    this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
+    this.registrationForm.get('isappreciation')?.updateValueAndValidity()
+    this.registrationForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.registrationForm.get('campareAchivement')?.updateValueAndValidity()
+    this.registrationForm.get('mudp')?.setValidators(Validators.required)
+    this.registrationForm.get('mudp')?.updateValueAndValidity()
+    this.registrationForm.get('exhibit1')?.setValidators(Validators.required)
+    this.registrationForm.get('exhibit1')?.updateValueAndValidity()
+    this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
+    this.registrationForm.get('exhibit2')?.updateValueAndValidity()
+    if (this.registrationForm.valid&&this.captcha  ) {
+      
+      this.action=true
+
+
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '500px',
+      data: {type:type},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    if(result==='no'){
+      console.log('no'); 
+    }
+    else if(result==='ok'){
+      this.finalSubmit('Pending')
+ 
+    }
+     
+    });
+  }
+  else if (!this.captcha) {
+    this.submited = true;
+    this.toast.error('Please verify that you are not a robot.');
+  }
+  else {
+
+    this.submited = true;
+    this.toast.error('Form invalid');
+  }
   }
 
 }

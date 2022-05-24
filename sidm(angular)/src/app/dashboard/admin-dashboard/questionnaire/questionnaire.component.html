@@ -22,6 +22,52 @@
         Category <strong>required</strong>
     </p>
     </div>
+    <div class="form-group">
+      <label class="questionnaireLabel" for="exampleFormControlSelect2">Type Of Applicant*</label>
+      <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect2">
+        <option value="A">For All Type Of Applicant</option>
+        <option value="L">  <label class="Apply-control-label font" for="ApplyRadio5">
+          <h6 class="catBold">L – Large</h6>
+          (Annual Turnover FY 2020-21 over
+          & above Rs 250 Crore)
+      </label> </option>
+        <option value="M"><label class="Apply-control-label font" for="ApplyRadio6">
+          <h6 class="catBold">M – Medium</h6>
+          (Annual Turnover FY 2020-21 between
+          Rs 75 to 250 Crore)
+      </label></option>
+        <option value="S">   <label class="Apply-control-label font" for="ApplyRadio7">
+          <h6 class="catBold">S – SME/SSI/START-UP</h6>
+          (Annual Turnover FY 2020-21 less
+          than Rs 75 Crore)
+      </label></option>
+      
+      </select>
+      <p *ngIf="questionnaire.get('typeOfApplicant')?.hasError('required') &&(submited) " style="color: red;">
+        Type Of Applicant <strong>required</strong>
+    </p>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Answer Type</mat-label>
+        <mat-select formControlName="inputType" >
+    <mat-option value="singleSelect" (click)="optionType('singleSelect')"  >Single Select </mat-option>
+    <mat-option value="multiSelect" (click)="optionType('multiSelect')" >Multi Select </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="form-check">
+        <input class="form-check-input" formControlName="upload" type="checkbox" value="Upload" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Upload
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" formControlName="textBox" value="TextBox" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          TextBox
+        </label>
+      </div>
+    </div>
       <div class="row">
         <div class="col-lg-9">
           <label class="questionnaireLabel mt-2" for="">Parameter/Question*:</label>
@@ -43,8 +89,8 @@
         </div> -->
       </div>
       <div class="form-group">
-        <div formArrayName="options">
-          <div *ngFor="let opt of options.controls; let i = index">
+        <div *ngIf="singleSelect||multiSelect" formArrayName="options">
+          <div  *ngFor="let opt of options.controls; let i = index">
             <!-- <h1 class="heading">Answers:</h1> -->
             <div [formGroupName]="i">
               <div class="row">
@@ -77,7 +123,7 @@
           </div>
         </div>
 
-        <div>
+        <div *ngIf="singleSelect||multiSelect">
           <button class="save-btn mt-3 mb-3" (click)="addOptions()" type="button"><i aria-hidden="true"
               class="fas fa-plus"></i> Add Option</button>
         </div>
@@ -89,7 +135,7 @@
     
    
 
-    <button type="submit" class="NewBtn ">Submit</button>
+    <button type="submit" class="NewBtn mt-2">Submit</button>
   </form>
 </div>
 

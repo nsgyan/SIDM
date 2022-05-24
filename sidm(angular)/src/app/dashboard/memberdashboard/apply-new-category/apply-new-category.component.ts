@@ -9,6 +9,9 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 import { environment } from 'src/environments/environment.prod';
 import { formatDate, Location } from '@angular/common'
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
  
 @Component({
   selector: 'app-apply-new-category',
@@ -16,7 +19,17 @@ import { formatDate, Location } from '@angular/common'
   styleUrls: ['./apply-new-category.component.css']
 })
 export class ApplyNewCategoryComponent implements OnInit {
+  action:any
+  razorPayOptions={
+    
+    "amount":1,
+    "currency":"INR",
+    "note":{},
+    "order_id":'',
+    "handler":(res: any)=>{
 
+    }
+  }
   paymentDetails:any
   appreciationDocuments: any;
   sidmMember = false
@@ -59,7 +72,10 @@ export class ApplyNewCategoryComponent implements OnInit {
     private toast: ToastrService,
     private httpService: HttpService,
     private routes: Router,
-    private location: Location
+    private location: Location,
+    private winRef: WindowRefService,
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) {
   
  this.applyNew()
@@ -545,284 +561,9 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
     }
   }
 
-  finalSubmit(type: string) {
-    this.editForm.get('typeOfApplicant')?.setValidators(Validators.required)
-    this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
-    if(!this.editData.subCategoryDoccument){
-    this.editForm.get('subCategoryDoccument')?.setValidators(Validators.required)
-    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()}
-    if(!this.editData.financialDoccument){
-    this.editForm.get('financialDoccument')?.setValidators(Validators.required)
-    this.editForm.get('financialDoccument')?.updateValueAndValidity()}
-    this.editForm.get('nameOfCompany')?.setValidators(Validators.required)
-    this.editForm.get('nameOfCompany')?.updateValueAndValidity()
-    this.editForm.get('addressl1')?.setValidators(Validators.required)
-    this.editForm.get('addressl1')?.updateValueAndValidity()
-    this.editForm.get('state')?.setValidators(Validators.required)
-    this.editForm.get('state')?.updateValueAndValidity()
-    this.editForm.get('city')?.setValidators(Validators.required)
-    this.editForm.get('city')?.updateValueAndValidity()
-    this.editForm.get('pincode')?.setValidators(Validators.required)
-    this.editForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6),Validators.required])
-    this.editForm.get('pincode')?.updateValueAndValidity()
-    this.editForm.get('name')?.setValidators(Validators.required)
-    this.editForm.get('name')?.updateValueAndValidity()
-    this.editForm.get('designation')?.setValidators(Validators.required)
-    this.editForm.get('designation')?.updateValueAndValidity()
-    this.editForm.get('gstinOfCompany')?.setValidators([Validators.required,Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
-    this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
-    if(!this.editData.documentGstCertificate){
-    this.editForm.get('documentGstCertificate')?.setValidators(Validators.required)
-    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()}
-    this.editForm.get('dateOfCompany')?.setValidators(Validators.required)
-    this.editForm.get('dateOfCompany')?.updateValueAndValidity()
-    this.editForm.get('sidmMember')?.setValidators(Validators.required)
-    this.editForm.get('sidmMember')?.updateValueAndValidity()
-    this.editForm.get('association')?.setValidators(Validators.required)
-    this.editForm.get('association')?.updateValueAndValidity()
-    this.editForm.get('registeredOrganization')?.setValidators(Validators.required)
-    this.editForm.get('registeredOrganization')?.updateValueAndValidity()
-    this.editForm.get('aboutCompany')?.setValidators(Validators.required)
-    this.editForm.get('aboutCompany')?.updateValueAndValidity()
-    this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
-    this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
-    this.editForm.get('isappreciation')?.setValidators(Validators.required)
-    this.editForm.get('isappreciation')?.updateValueAndValidity() 
-    this.editForm.get('campareAchivement')?.setValidators(Validators.required)
-    this.editForm.get('campareAchivement')?.updateValueAndValidity()
-    this.editForm.get('mudp')?.setValidators(Validators.required)
-    this.editForm.get('mudp')?.updateValueAndValidity()
-    if(!this.editData.exhibit1){
-    this.editForm.get('exhibit1')?.setValidators(Validators.required)
-    this.editForm.get('exhibit1')?.updateValueAndValidity()}
-    if(!this.editData.exhibit2){
-    this.editForm.get('exhibit2')?.setValidators(Validators.required)
-    this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid && this.captcha) {
-      this.httpService.updateform(this.editData._id, {
-        typeOfApplicant: this.editForm.value.typeOfApplicant,
-        subCategoryDoccument: this.subCategoryDoccument,
-        financialDoccument: this.financialDoccument,
-        nameOfCompany: this.editForm.value.nameOfCompany,
-        addressl1: this.editForm.value.addressl1,
-        addressl2: this.editForm.value.addressl2,
-        state: this.editForm.value.state,
-        city: this.editForm.value.city,
-        pincode: this.editForm.value.pincode,
-        name: this.editForm.value.name,
-        designation: this.editForm.value.designation,
-        email: this.editForm.value.email,
-        mobileNumber: this.editForm.value.mobileNumber,
-        panNumber: this.editForm.value.panNumber,
-        gstinOfCompany: this.editForm.value.gstinOfCompany,
-        documentGstCertificate: this.documentGstCertificate,
-        dateOfCompany: this.editForm.value.dateOfCompany,
-        sidmMember: this.editForm.value.sidmMember,
-        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
-        association: this.editForm.value.association,
-        associationName: this.editForm.value.associationName,
-        registeredOrganization: this.editForm.value.registeredOrganization,
-        nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization,
-        aboutCompany: this.editForm.value.aboutCompany,
-        sidmChampionAwards: this.editForm.value.sidmChampionAwards,
-        isappreciation: this.editForm.value.isappreciation,
-        appreciationDocuments: this.appreciationDocuments,
-        campareAchivement: this.editForm.value.campareAchivement,
-        mudp: this.editForm.value.mudp,
-        productLink: this.editForm.value.productLink,
-        exhibit1: this.exhibit1,
-        exhibit2: this.exhibit2,
-        alterMobileNumber:this.editForm.value.alterMobileNumber,
-        alterEmail:this.editForm.value.alterEmail,
-        
-        status: type,
-      }).subscribe(data => {
-
-        let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
-        this.routes.navigateByUrl(url);
-        this.toast.success('successfully applied');
-      }, err => {
-        this.toast.error(err.error);
-        this.localStorage.clearLocalStorage();
-        window.location.reload()
-        this.routes.navigate(['login/member'])
-      })
-    }
-    else if (!this.captcha) {
-      this.toast.error('Please verify that you are not a robot.');
-    }
-    else {
-
-      this.submited = true;
-      this.toast.error('Please Fill Required Field');
-    }
-  }
-
-  savedraft(type: String) {
-    this.editForm.get('typeOfApplicant')?.clearValidators()
-    this.editForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.editForm.get('subCategoryDoccument')?.clearValidators()
-    this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
-    this.editForm.get('financialDoccument')?.clearValidators()
-    this.editForm.get('financialDoccument')?.updateValueAndValidity()
-    this.editForm.get('nameOfCompany')?.clearValidators()
-    this.editForm.get('nameOfCompany')?.updateValueAndValidity()
-    this.editForm.get('addressl1')?.clearValidators()
-    this.editForm.get('addressl1')?.updateValueAndValidity()
-    this.editForm.get('state')?.clearValidators()
-    this.editForm.get('state')?.updateValueAndValidity()
-    this.editForm.get('city')?.clearValidators()
-    this.editForm.get('city')?.updateValueAndValidity()
-    this.editForm.get('pincode')?.clearValidators()
-    this.editForm.get('pincode')?.setValidators([Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
-    this.editForm.get('pincode')?.updateValueAndValidity()
-    this.editForm.get('name')?.clearValidators()
-    this.editForm.get('name')?.updateValueAndValidity()
-    this.editForm.get('designation')?.clearValidators()
-    this.editForm.get('designation')?.updateValueAndValidity()
-    this.editForm.get('gstinOfCompany')?.clearValidators()
-    this.editForm.get('gstinOfCompany')?.setValidators(Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/))
-    this.editForm.get('gstinOfCompany')?.updateValueAndValidity()
-    this.editForm.get('documentGstCertificate')?.clearValidators()
-    this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
-    this.editForm.get('dateOfCompany')?.clearValidators()
-    this.editForm.get('dateOfCompany')?.updateValueAndValidity()
-    this.editForm.get('sidmMember')?.clearValidators()
-    this.editForm.get('sidmMember')?.updateValueAndValidity()
-    this.editForm.get('association')?.clearValidators()
-    this.editForm.get('association')?.updateValueAndValidity()
-    this.editForm.get('registeredOrganization')?.clearValidators()
-    this.editForm.get('registeredOrganization')?.updateValueAndValidity()
-    this.editForm.get('aboutCompany')?.clearValidators()
-    this.editForm.get('aboutCompany')?.updateValueAndValidity()
-    this.editForm.get('sidmChampionAwards')?.clearValidators()
-    this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
-    this.editForm.get('isappreciation')?.clearValidators()
-    this.editForm.get('isappreciation')?.updateValueAndValidity()
-    this.editForm.get('campareAchivement')?.clearValidators()
-    this.editForm.get('campareAchivement')?.updateValueAndValidity()
-    this.editForm.get('mudp')?.clearValidators()
-    this.editForm.get('mudp')?.updateValueAndValidity()
-    this.editForm.get('productLink')?.clearValidators()
-    this.editForm.get('productLink')?.updateValueAndValidity()
-    this.editForm.get('exhibit1')?.clearValidators()
-    this.editForm.get('exhibit1')?.updateValueAndValidity()
-    this.editForm.get('exhibit2')?.clearValidators()
-    this.editForm.get('exhibit2')?.updateValueAndValidity()
-
-    if (this.editForm.valid && this.captcha) {
-      this.httpService.updateform(this.editData._id, {
-        typeOfApplicant: this.editForm.value.typeOfApplicant,
-        subCategoryDoccument: this.subCategoryDoccument,
-        financialDoccument: this.financialDoccument,
-        nameOfCompany: this.editForm.value.nameOfCompany,
-        addressl1: this.editForm.value.addressl1,
-        addressl2: this.editForm.value.addressl2,
-        state: this.editForm.value.state,
-        city: this.editForm.value.city,
-        pincode: this.editForm.value.pincode,
-        name: this.editForm.value.name,
-        designation: this.editForm.value.designation,
-        email: this.editForm.value.email,
-        mobileNumber: this.editForm.value.mobileNumber,
-        panNumber: this.editForm.value.panNumber,
-        gstinOfCompany: this.editForm.value.gstinOfCompany,
-        documentGstCertificate: this.documentGstCertificate,
-        dateOfCompany: this.editForm.value.dateOfCompany,
-        sidmMember: this.editForm.value.sidmMember,
-        sidmMemberShipNumber: this.editForm.value.sidmMemberShipNumber,
-        association: this.editForm.value.association,
-        associationName: this.editForm.value.associationName,
-        registeredOrganization: this.editForm.value.registeredOrganization,
-        nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization, 
-        aboutCompany: this.editForm.value.aboutCompany,
-        sidmChampionAwards: this.editForm.value.sidmChampionAwards,
-        isappreciation: this.editForm.value.isappreciation,
-        appreciationDocuments: this.appreciationDocuments,
-        campareAchivement: this.editForm.value.campareAchivement,
-        mudp: this.editForm.value.mudp,
-        productLink: this.editForm.value.productLink,
-        exhibit1: this.exhibit1,
-        exhibit2: this.exhibit2,
-        alterMobileNumber:this.editForm.value.alterMobileNumber,
-        alterEmail:this.editForm.value.alterEmail,
-        status: type,
-
-      }).subscribe(data => {
-        this.editForm.reset();
-        let url: string = "/thankYou/" + 'dsfewfvbvb'
-        this.routes.navigateByUrl(url);
-        this.toast.success('successfully applied');
-      },
-        error => {
-          this.toast.error('Please Login again');
-          this.localStorage.clearLocalStorage()
-          window.location.reload()
-          this.routes.navigate(['login/member'])
-        }
-      )
-    }
-    else if (!this.captcha) {
-      this.submited = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
-    else {
-      this.submited = true;
-      this.toast.error('Please Fill Required Field');
-    }
-
-  }
 
  newSubmit(type: string) {
-    this.newCategoryForm.get('category')?.setValidators(Validators.required)
-    this.newCategoryForm.get('category')?.updateValueAndValidity()
-    this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
-    this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
-    this.newCategoryForm.get('subCategoryDoccument')?.setValidators(Validators.required)
-    this.newCategoryForm.get('subCategoryDoccument')?.updateValueAndValidity()
-    this.newCategoryForm.get('financialDoccument')?.setValidators(Validators.required)
-    this.newCategoryForm.get('financialDoccument')?.updateValueAndValidity()
-    this.newCategoryForm.get('nameOfCompany')?.setValidators(Validators.required)
-    this.newCategoryForm.get('nameOfCompany')?.updateValueAndValidity()
-    this.newCategoryForm.get('addressl1')?.setValidators(Validators.required)
-    this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
-    this.newCategoryForm.get('state')?.setValidators(Validators.required)
-    this.newCategoryForm.get('state')?.updateValueAndValidity()
-    this.newCategoryForm.get('city')?.setValidators(Validators.required)
-    this.newCategoryForm.get('city')?.updateValueAndValidity()
-    this.newCategoryForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
-    this.newCategoryForm.get('pincode')?.updateValueAndValidity()
-    this.newCategoryForm.get('name')?.setValidators(Validators.required)
-    this.newCategoryForm.get('name')?.updateValueAndValidity()
-    this.newCategoryForm.get('designation')?.setValidators(Validators.required)
-    this.newCategoryForm.get('designation')?.updateValueAndValidity()
-    this.newCategoryForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
-    this.newCategoryForm.get('gstinOfCompany')?.updateValueAndValidity()
-    this.newCategoryForm.get('documentGstCertificate')?.setValidators(Validators.required)
-    this.newCategoryForm.get('documentGstCertificate')?.updateValueAndValidity()
-    this.newCategoryForm.get('dateOfCompany')?.setValidators(Validators.required)
-    this.newCategoryForm.get('dateOfCompany')?.updateValueAndValidity()
-    this.newCategoryForm.get('sidmMember')?.setValidators(Validators.required)
-    this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
-    this.newCategoryForm.get('association')?.setValidators(Validators.required)
-    this.newCategoryForm.get('association')?.updateValueAndValidity()
-    this.newCategoryForm.get('registeredOrganization')?.setValidators(Validators.required)
-    this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
-    this.newCategoryForm.get('aboutCompany')?.setValidators(Validators.required)
-    this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
-    this.newCategoryForm.get('sidmChampionAwards')?.setValidators(Validators.required)
-    this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
-    this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)
-    this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
-    this.newCategoryForm.get('campareAchivement')?.setValidators(Validators.required)
-    this.newCategoryForm.get('campareAchivement')?.updateValueAndValidity()
-    this.newCategoryForm.get('mudp')?.setValidators(Validators.required)
-    this.newCategoryForm.get('mudp')?.updateValueAndValidity()
-    this.newCategoryForm.get('exhibit1')?.setValidators(Validators.required)
-    this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
-    this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
-    this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.valid && this.captcha) {
+
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -862,11 +603,12 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
         alterEmail:this.newCategoryForm.value.alterEmail,
         status: type,
-      }).subscribe(data => {
-        this.newCategoryForm.reset();
-        this.toast.success(' Successfully Applied');
-        let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
-        this.routes.navigateByUrl(url);
+      }).subscribe((data:any) => {
+        this.payNow(this.newCategoryForm.value.typeOfApplicant,this.newCategoryForm.value.category,this.newCategoryForm.value.panNumber,this.newCategoryForm.value.mobileNumber,this.newCategoryForm.value.email)
+        this.toast.success('successfully applied');
+   
+  
+   
       }, err => {
         this.toast.error(err);
         this.toast.error('Please login again');
@@ -874,15 +616,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         window.location.reload()
 
       })
-    }
-    else if (!this.captcha) {
-      this.submited = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
-    else {
-      this.submited = true;
-      this.toast.error('Form invalid');
-    }
+
 
 
   }
@@ -938,7 +672,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.clearValidators()
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.valid && this.captcha) {
+    if (this.newCategoryForm.valid&&this.captcha  ) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -1224,7 +958,131 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
 
   }
 
+  payNow(typeOfApplicant:any,category:any,panNumber:any,mobileNumber:any,email:any){
+    this.httpService.paynow({
+      typeOfApplicant: typeOfApplicant,
+      category: category,
+      panNumber: panNumber,
+      mobileNumber: mobileNumber,
+      email: email,
+      
+    }).subscribe((data:any)=>{
+this.razorPayOptions.amount=data.amount
+this.razorPayOptions.order_id=data.id
+this.razorPayOptions.note=data.notes
+this.razorPayOptions.handler=  (response) => {
+  this. razorPayshandler(response,this.razorPayOptions.amount,this.razorPayOptions.note); //does not work as cannot identify 'this'
+}
+const rzp = new this.winRef.nativeWindow.Razorpay(this.razorPayOptions);
+rzp.open();
 
+      
+    })
+  }
+
+  razorPayshandler(response:any,amount:any,note:any){
+    this.spinner.show();
+  if(response){
+  let razorpay_payment_id= response.razorpay_payment_id
+  let razorpay_order_id= response.razorpay_order_id
+  let createAt = new Date();
+
+  this.httpService.verifypayment({note,razorpay_payment_id,razorpay_order_id,amount,createAt}).subscribe(data=>{
+
+    this.spinner.hide();
+    this.toast.success(' Successfully Applied');
+    let url: string = "/thankYou/" + 'dsfffdsdfdfffffds'
+    this.routes.navigateByUrl(url);
+  },err=>{
+    this.toast.error('Payment failed');
+
+  })
+}
+else{
+  this.toast.error('Payment failed');
+  this.newsavedraft('Pending')
+
+}
+  }
+
+  openModel(type:any){
+    this.newCategoryForm.get('category')?.setValidators(Validators.required)
+    this.newCategoryForm.get('category')?.updateValueAndValidity()
+    this.newCategoryForm.get('typeOfApplicant')?.setValidators(Validators.required)
+    this.newCategoryForm.get('typeOfApplicant')?.updateValueAndValidity()
+    this.newCategoryForm.get('subCategoryDoccument')?.setValidators(Validators.required)
+    this.newCategoryForm.get('subCategoryDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('financialDoccument')?.setValidators(Validators.required)
+    this.newCategoryForm.get('financialDoccument')?.updateValueAndValidity()
+    this.newCategoryForm.get('nameOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('nameOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('addressl1')?.setValidators(Validators.required)
+    this.newCategoryForm.get('addressl1')?.updateValueAndValidity()
+    this.newCategoryForm.get('state')?.setValidators(Validators.required)
+    this.newCategoryForm.get('state')?.updateValueAndValidity()
+    this.newCategoryForm.get('city')?.setValidators(Validators.required)
+    this.newCategoryForm.get('city')?.updateValueAndValidity()
+    this.newCategoryForm.get('pincode')?.setValidators([Validators.required,Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)])
+    this.newCategoryForm.get('pincode')?.updateValueAndValidity()
+    this.newCategoryForm.get('name')?.setValidators(Validators.required)
+    this.newCategoryForm.get('name')?.updateValueAndValidity()
+    this.newCategoryForm.get('designation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('designation')?.updateValueAndValidity()
+    this.newCategoryForm.get('gstinOfCompany')?.setValidators([Validators.required, Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)])
+    this.newCategoryForm.get('gstinOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('documentGstCertificate')?.setValidators(Validators.required)
+    this.newCategoryForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.newCategoryForm.get('dateOfCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('dateOfCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmMember')?.setValidators(Validators.required)
+    this.newCategoryForm.get('sidmMember')?.updateValueAndValidity()
+    this.newCategoryForm.get('association')?.setValidators(Validators.required)
+    this.newCategoryForm.get('association')?.updateValueAndValidity()
+    this.newCategoryForm.get('registeredOrganization')?.setValidators(Validators.required)
+    this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
+    this.newCategoryForm.get('aboutCompany')?.setValidators(Validators.required)
+    this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('sidmChampionAwards')?.setValidators(Validators.required)
+    this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
+    this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)
+    this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
+    this.newCategoryForm.get('campareAchivement')?.setValidators(Validators.required)
+    this.newCategoryForm.get('campareAchivement')?.updateValueAndValidity()
+    this.newCategoryForm.get('mudp')?.setValidators(Validators.required)
+    this.newCategoryForm.get('mudp')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit1')?.setValidators(Validators.required)
+    this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
+    this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
+    this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
+    if (this.newCategoryForm.valid &&this.captcha ) {
+this.action=true
+
+
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '500px',
+      data: {type:type},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    if(result==='no'){
+      console.log('no'); 
+    }
+    else if(result==='ok'){
+      this.newSubmit('Pending')
+   
+    }
+     
+    });
+  }
+  else if (!this.captcha) {
+    this.submited = true;
+    this.toast.error('Please verify that you are not a robot.');
+  }
+  else {
+
+    this.submited = true;
+    this.toast.error('Form invalid');
+  }
+  }
 
 
 

@@ -81,3 +81,9 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
 .form-group {
     margin-bottom: 0;
 }
+
+
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
