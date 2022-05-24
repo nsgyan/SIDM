@@ -143,7 +143,7 @@ exports.verifypayment= async (req,res)=>{
 }
 
 exports.viewpayment= async (req,res)=>{
-  const userID = new ObjectId( req.params.userID)
+  const userID = req.params.userID
   PaymentDb.findById(userID).then(data=>{
     res.status(200).json(data)
   }).catch(err=>{
