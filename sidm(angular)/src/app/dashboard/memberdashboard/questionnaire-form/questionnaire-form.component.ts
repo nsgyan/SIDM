@@ -78,7 +78,8 @@ addAissment() {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   control.push(
     this.fb.group({
-      question: ['', Validators.required],      
+      question: ['', Validators.required], 
+      assessorScore:[''],     
       answer:[''],
       uploadDocuments:[''],
       description:[''],

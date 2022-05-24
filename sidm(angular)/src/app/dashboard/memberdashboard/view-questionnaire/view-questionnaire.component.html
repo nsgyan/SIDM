@@ -58,7 +58,7 @@
             <th scope="col">Response</th>
             <th scope="col">Attachment</th>
             <th scope="col">Score ({{aissmentdata[0]?.totalScore}})</th>
-            <th scope="col"> Assessor Score</th>
+            <th scope="col"> Assessor Score <span>{{assessorScore ?assessorScore:''}} </span> </th>
             <th scope="col"> Max Score ({{maxScore}})</th>
           </tr>
         </thead>
@@ -74,7 +74,7 @@
                 {{item.score}}
             </td>
             <td>
-             
+              {{item.assessorScore}}
           </td>
             <td>
                 {{item.maxScore}}

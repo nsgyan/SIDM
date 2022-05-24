@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ViewQuestionnaireComponent implements OnInit {
   id:any
   maxScore:any=0;
+ assessorScore:any=0;
   questionnaireForm:FormGroup
   aissmentdata:any
   constructor(
@@ -32,6 +33,9 @@ export class ViewQuestionnaireComponent implements OnInit {
       data[0].questionAns.map((item:any)=>{
         item.maxScore= Number( item.maxScore);
         this.maxScore=this.maxScore+item.maxScore
+        item.assessorScore= Number( item.assessorScore);
+        this.assessorScore=this.assessorScore+item.assessorScore
+        
         
         if(item.uploadDocuments){
           item.uploadDocuments = environment.download + item.uploadDocuments

@@ -27,5 +27,6 @@ export class Globals {
         'findByCategory':Globals.server+'questionnaire/findByCategory',
         'questionnaireAissment':Globals.server+'questionnaire/questionnaireAissment',
         'deleteQuestionnaire':Globals.server+'questionnaire/deleteQuestionnaire',
+        'updateQuestionnaire':Globals.server+'questionnaire/assessorScore'
     };
 }

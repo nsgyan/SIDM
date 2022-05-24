@@ -146,3 +146,17 @@ exports.getAissmentQuestionnaire=(req,res)=>{
  
  
 }
+exports.assessorScore=(req,res)=>{
+    const userId= req.body.id
+    const questionAns= req.body.questionAns
+    const assessorStatus= req.body.assessorStatus
+    questionnaireAissment.findById(userId).then(data=>{
+data.assessorStatus=assessorStatus
+        data.questionAns=questionAns
+        data.save().then(item=>{
+            res.status(200).send(item)
+        })
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}

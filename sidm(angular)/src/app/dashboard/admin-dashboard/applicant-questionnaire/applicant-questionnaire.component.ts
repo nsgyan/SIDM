@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ApplicantQuestionnaireComponent implements OnInit {
   id:any
+  assessorScore:any=0;
   maxScore:number=0;
   aissmentdata:any
   constructor(
@@ -30,6 +31,8 @@ export class ApplicantQuestionnaireComponent implements OnInit {
       data[0].questionAns.map((item:any)=>{
         item.maxScore= Number( item.maxScore);
         this.maxScore=this.maxScore+item.maxScore
+        item.assessorScore= Number( item.assessorScore);
+        this.assessorScore=this.assessorScore+item.assessorScore
         
         if(item.uploadDocuments){
           item.uploadDocuments = environment.download + item.uploadDocuments
