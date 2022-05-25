@@ -4,10 +4,7 @@
 
 
 <div class="questionnaireForm">
-    <div>
-        <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
-      </div>
-        
+   
       <!-- <form [formGroup]="questionnaireForm">
         <mat-stepper #stepper>
           <div formArrayName="aissment">
@@ -58,7 +55,7 @@
             <th scope="col">Response</th>
             <th scope="col">Attachment</th>
             <th scope="col">Score ({{aissmentdata[0]?.totalScore}})</th>
-            <th scope="col"> Assessor Score <span>{{assessorScore ?assessorScore:''}} </span> </th>
+            <th scope="col"> Assessor Score <span>{{assessorScore ?'('+assessorScore+')':''}} </span> </th>
             <th scope="col"> Max Score ({{maxScore}})</th>
           </tr>
         </thead>
@@ -74,7 +71,7 @@
                 {{item.score}}
             </td>
             <td>
-              {{item.assessorScore}}
+              {{item.assessorScore?item.assessorScore:'pending'}}
           </td>
             <td>
                 {{item.maxScore}}
