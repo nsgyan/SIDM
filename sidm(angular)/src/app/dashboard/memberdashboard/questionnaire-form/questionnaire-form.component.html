@@ -11,14 +11,14 @@
 
             <h2>{{questionnaireData[i].parameter}}</h2>
             <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
-              <mat-label>Answer Type</mat-label>
+              <mat-label>Select Answer</mat-label>
               <mat-select formControlName="answer">
                 <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
                   {{option.answer}} </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field *ngIf="questionnaireData[i].inputType==='multiSelect'" appearance="fill">
-              <mat-label>Answer Type</mat-label>
+              <mat-label>Select Answer</mat-label>
               <mat-select formControlName="answer" multiple>
                 <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
                   {{option.answer}} </mat-option>
