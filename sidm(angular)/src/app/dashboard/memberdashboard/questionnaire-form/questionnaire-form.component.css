@@ -3,48 +3,116 @@
     padding: 5px 0 1px;
     margin-top: 4rem;
 }
+
 .topHeader h2 {
     margin: 0 0 9px 19px;
     font-size: 20px;
     color: #fff;
 }
+
 .questionnaireForm {
     margin: 1rem;
 }
+
 .questionnaireForm h3 {
     font-size: 20px;
     font-weight: 500;
     color: #4c4c4c;
 }
+
 .table th {
     border-top: none;
 }
+
 .table .thead-dark th {
     background-color: #e5e7fb;
     color: #000;
 }
+
 .paymentsDropdwn {
     background: none;
     border: 1px solid #363a7a;
-    color: #363a7a!important;
-    border-radius: 3px!important;
-    padding: 7px!important;
+    color: #363a7a !important;
+    border-radius: 3px !important;
+    padding: 7px !important;
 }
+
 .table td {
     vertical-align: middle;
 }
+
 .table th {
     vertical-align: middle;
 }
+
 .table {
     margin-bottom: 1rem;
     box-shadow: 1px 1px 10px #d9d9d9;
 }
+
 .paymentsDropdwn {
     background: none;
     border: 1px solid #363a7a;
-    color: #363a7a!important;
-    border-radius: 3px!important;
-    padding: 6px 12px!important;
+    color: #363a7a !important;
+    border-radius: 3px !important;
+    padding: 6px 12px !important;
     width: 193px;
+}
+
+
+
+.mat-stepper-horizontal {
+    /* border: 8px solid rgb(232, 232, 232); */
+    padding: 8px;
+    background: rgb(232, 232, 232);
+    height: 333px;
+
+}
+::ng-deep .mat-horizontal-stepper-header-container {
+    background-color: #fff;
+    width: 25%;
+    float: left;
+    height: 316px;
+    align-items: flex-start !important;
+    padding: 1rem;
+    margin-right: 10px;
+}
+form {
+    margin: 1rem 0;
+}
+::ng-deep .mat-stepper-horizontal-line {
+    border-top-width: none !important;
+    border-top-style: none !important;
+    flex: auto;
+    height: 0;
+    margin: 0 -16px;
+    min-width: 32px;
+}
+.RegistrationBtn {
+    background: #363a7a;
+    padding: 0px 15px;
+    border: none;
+    margin: 1rem 1rem 0 0;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
+    float: right;
+}
+::ng-deep .mat-horizontal-content-container {
+    overflow: hidden;
+    padding: 0 24px 24px 24px;
+    background: #fff;
+    height: 316px;
+    padding: 1.5rem !important;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: #363a7a;
+}
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+    background-color: #363a7a;
+}
+::ng-deep .mat-step-text-label {
+    display: none;
 }
