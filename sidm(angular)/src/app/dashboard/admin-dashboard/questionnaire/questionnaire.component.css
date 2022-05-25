@@ -69,7 +69,7 @@
 
 textarea {
     padding: 6px 30px;
-    height: 55px;
+    height: 75px;
 }
 .questionnaireForm select {
     height: 35px;
@@ -82,8 +82,14 @@ input[type="text"], input[type="tel"], input[type="email"], input[type="password
     margin-bottom: 0;
 }
 
-
 .example-additional-selection {
     opacity: 0.75;
     font-size: 0.75em;
-  }
+}
+.checkFeild {
+    display: flex;
+    align-items: center;
+}
+.form-check {
+    padding-left: 3rem;
+}
