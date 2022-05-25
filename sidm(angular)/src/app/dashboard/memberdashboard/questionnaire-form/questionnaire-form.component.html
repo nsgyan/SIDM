@@ -12,14 +12,9 @@
             <h2>{{questionnaireData[i].parameter}}</h2>
             <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
               <mat-label>Answer Type</mat-label>
-<<<<<<< HEAD
-              <mat-select formControlName="answer" >
-          <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
-=======
               <mat-select formControlName="answer">
                 <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
                   {{option.answer}} </mat-option>
->>>>>>> 3aa7e320333c626ce9f387b294be9f074c36a46c
               </mat-select>
             </mat-form-field>
             <mat-form-field *ngIf="questionnaireData[i].inputType==='dropdown'" appearance="fill">
