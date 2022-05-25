@@ -52,3 +52,13 @@
     float: right;
     margin-bottom: 1rem;
 }
+.RegistrationBtn {
+    background: #363a7a;
+    padding: 10px 20px;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
+}

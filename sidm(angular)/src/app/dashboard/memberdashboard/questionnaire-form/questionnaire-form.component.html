@@ -7,7 +7,7 @@
 
       <div formArrayName="aissment">
         <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
-          <mat-step  [stepControl]="nameAissment?.get([i])!">
+          <mat-step [stepControl]="nameAissment?.get([i])!">
 
             <h2>{{questionnaireData[i].parameter}}</h2>
             <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
@@ -30,7 +30,7 @@
             <br>
             <mat-form-field *ngIf="questionnaireData[i].textBox" appearance="fill">
               <mat-label></mat-label>
-              <input matInput  formControlName="description" required>
+              <input matInput formControlName="description" required>
             </mat-form-field>
             <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')">
               Answer Description required
