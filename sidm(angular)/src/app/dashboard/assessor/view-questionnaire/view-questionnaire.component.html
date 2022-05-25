@@ -24,24 +24,32 @@
           </tr>
         </thead>
         <tbody  formArrayName="aissment">
-          <tr *ngFor=" let item of aissmentdata?.questionAns; let i = index"  [formGroupName]="i" >
+          <tr *ngFor="let controlName of nameAissment.controls; let i = index"  [formGroupName]="i" >
             <th scope="row">{{i+1}}</th>
-            <td class="">{{item.question}}</td>
+            <td class="">{{aissmentdata?.questionAns.at(i).question}}</td>
             <td>
-                {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Description</a>
+                {{aissmentdata?.questionAns.at(i).answer}} <a *ngIf="aissmentdata?.questionAns.at(i).description" (click)="openModel(aissmentdata?.questionAns.at(i).description)">Description</a>
             </td>
-            <td>   <a class="ml-2" *ngIf='item.uploadDocuments'  target="blank"  href="{{item.uploadDocuments}}"> View Documents</a></td>
+            <td>   <a class="ml-2" *ngIf='aissmentdata?.questionAns.at(i).uploadDocuments'  target="blank"  href="{{aissmentdata?.questionAns.at(i).uploadDocuments}}"> View Documents</a></td>
             <td>
-                {{item.score}}
+                {{aissmentdata?.questionAns.at(i).score}}
             </td>
             <td *ngIf="!aissmentdata.assessorStatus">
              <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)">
+             <p style="color: red;"
+             *ngIf="controlName.get('assessorScore')?.hasError('required')&& this.submitted">
+             Assessor Score  is required
+         </p>
+         <p style="color: red;"
+         *ngIf="controlName.get('assessorScore')?.invalid && !controlName.get('assessorScore')?.hasError('required')&& this.submitted">
+         Assessor Score should not Gratter then  {{aissmentdata?.questionAns.at(i).maxScore}}
+     </p>
           </td>
           <td *ngIf="aissmentdata.assessorStatus">
-            {{item.assessorScore}}
+            {{aissmentdata?.questionAns.at(i).assessorScore}}
          </td>
             <td>
-                {{item.maxScore}}
+                {{aissmentdata?.questionAns.at(i).maxScore}}
             </td>
           </tr>
          
