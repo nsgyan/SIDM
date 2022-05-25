@@ -1,120 +1,133 @@
 <div class="topHeader">
-    <h2>Add  New Questionnaire </h2>
-  </div>
-  <div class="container">
-    <form class="questionnaireForm" [formGroup]="questionnaire" >
-      <div class="form-group">
-        <label class="questionnaireLabel" for="exampleFormControlSelect1">Category*</label>
-        <select class="form-control " formControlName="category" id="exampleFormControlSelect1" >
-          <option value="cat1" >C1 – Technology /
-            Product Innovation to address Defence Capability Gaps </option>
-          <option value="cat2" >C2 – Import
-            Substitution for Mission
-            Critical Parts / Sub-Systems / Systems</option>
-          <option value="cat3"  >C3 – Creation of
-            Niche, Technological Capability for
-            Design, Manufacturing or Testing</option>
-          <option value="cat4"  >C4 – Export
-            Performance of Defence & Aerospace
-            Products</option>
-        </select>
-      
+  <h2>Add New Questionnaire </h2>
+</div>
+<div class="container">
+  <form class="questionnaireForm" [formGroup]="questionnaire">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="questionnaireLabel" for="exampleFormControlSelect1">Category*</label>
+          <select class="form-control " formControlName="category" id="exampleFormControlSelect1">
+            <option value="cat1">C1 – Technology /
+              Product Innovation to address Defence Capability Gaps </option>
+            <option value="cat2">C2 – Import
+              Substitution for Mission
+              Critical Parts / Sub-Systems / Systems</option>
+            <option value="cat3">C3 – Creation of
+              Niche, Technological Capability for
+              Design, Manufacturing or Testing</option>
+            <option value="cat4">C4 – Export
+              Performance of Defence & Aerospace
+              Products</option>
+          </select>
+
+        </div>
       </div>
-      <div class="form-group">
-        <label class="questionnaireLabel" for="exampleFormControlSelect1">Type Of Applicant*</label>
-        <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect1">
-          <option value="A">For All Type Of Applicant</option>
-          <option value="L">  <label class="Apply-control-label font" for="ApplyRadio5">
-            <h6 class="catBold">L – Large</h6>
-            (Annual Turnover FY 2020-21 over
-            & above Rs 250 Crore)
-        </label> </option>
-          <option value="M"><label class="Apply-control-label font" for="ApplyRadio6">
-            <h6 class="catBold">M – Medium</h6>
-            (Annual Turnover FY 2020-21 between
-            Rs 75 to 250 Crore)
-        </label></option>
-          <option value="S">   <label class="Apply-control-label font" for="ApplyRadio7">
-            <h6 class="catBold">S – SME/SSI/START-UP</h6>
-            (Annual Turnover FY 2020-21 less
-            than Rs 75 Crore)
-        </label></option>
-        
-        </select>
-        <p *ngIf="questionnaire.get('typeOfApplicant')?.hasError('required') &&(submited) " style="color: red;">
-          Type Of Applicant <strong>required</strong>
-      </p>
-      </div>
-      <mat-form-field appearance="fill">
-        <mat-label>Answer Type</mat-label>
-        <mat-select formControlName="inputType" >
-    <mat-option value="singleSelect" [disabled]="true"  >singleSelect </mat-option>
-    <mat-option value="multiSelect" [disabled]="true"  >MultiSelect </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div class="form-check">
-        <input [disabled]="true"  formControlName="upload" type="checkbox" value=""  id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          Upload
-        </label>
-      </div>
-      <div class="form-check">
-        <input  [disabled]="true" type="checkbox" formControlName="textBox" value="" readonly id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          TextBox
-        </label>
-      </div>
-        <div class="row">
-          <div class="col-lg-9">
-            <label class="questionnaireLabel mt-3" for="">Parameter/Question*:</label>
-            <textarea name="" id="" cols="30" rows="10" formControlName="parameter" readonly></textarea>
-            <p *ngIf="questionnaire.get('parameter')?.hasError('required') &&(submited)" style="color: red;">
-              Parameter/Question <strong>required</strong>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="questionnaireLabel" for="exampleFormControlSelect1">Type Of Applicant*</label>
+          <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect1">
+            <option value="A">For All Type Of Applicant</option>
+            <option value="L"> <label class="Apply-control-label font" for="ApplyRadio5">
+                <h6 class="catBold">L – Large</h6>
+                (Annual Turnover FY 2020-21 over
+                & above Rs 250 Crore)
+              </label> </option>
+            <option value="M"><label class="Apply-control-label font" for="ApplyRadio6">
+                <h6 class="catBold">M – Medium</h6>
+                (Annual Turnover FY 2020-21 between
+                Rs 75 to 250 Crore)
+              </label></option>
+            <option value="S"> <label class="Apply-control-label font" for="ApplyRadio7">
+                <h6 class="catBold">S – SME/SSI/START-UP</h6>
+                (Annual Turnover FY 2020-21 less
+                than Rs 75 Crore)
+              </label></option>
+
+          </select>
+          <p *ngIf="questionnaire.get('typeOfApplicant')?.hasError('required') &&(submited) " style="color: red;">
+            Type Of Applicant <strong>required</strong>
           </p>
-            <!-- <input type="text" formControlName="parameter" /> -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 mt-2">
+        <mat-form-field appearance="fill">
+          <mat-label>Answer Type</mat-label>
+          <mat-select formControlName="inputType">
+            <mat-option value="singleSelect" [disabled]="true">singleSelect </mat-option>
+            <mat-option value="multiSelect" [disabled]="true">MultiSelect </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3 mt-4">
+        <div class="checkFeild">
+          <div class="form-check">
+            <input [disabled]="true" formControlName="upload" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Upload
+            </label>
           </div>
-          <div class="col-lg-3">
-            <label class="questionnaireLabel mt-3" for="">Max score*:</label>
-            <input type="text" formControlName="maxScore" readonly/>
-            <p *ngIf="questionnaire.get('maxScore')?.hasError('required') &&(submited)" style="color: red;">
-              Max score <strong>required</strong>
-          </p>
+          <div class="form-check">
+            <input [disabled]="true" type="checkbox" formControlName="textBox" value="" readonly id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              TextBox
+            </label>
           </div>
-          <!-- <div class="col-lg-1">
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="row">
+      <div class="col-lg-10">
+        <label class="questionnaireLabel mt-3" for="">Parameter/Question*:</label>
+        <textarea name="" id="" cols="30" rows="10" formControlName="parameter" readonly></textarea>
+        <p *ngIf="questionnaire.get('parameter')?.hasError('required') &&(submited)" style="color: red;">
+          Parameter/Question <strong>required</strong>
+        </p>
+        <!-- <input type="text" formControlName="parameter" /> -->
+      </div>
+      <div class="col-lg-2">
+        <label class="questionnaireLabel mt-3" for="">Max score*:</label>
+        <input type="text" formControlName="maxScore" readonly />
+        <p *ngIf="questionnaire.get('maxScore')?.hasError('required') &&(submited)" style="color: red;">
+          Max score <strong>required</strong>
+        </p>
+      </div>
+      <!-- <div class="col-lg-1">
             <button class="save-btn savePosition" type="button"><i aria-hidden="true" class="fas fa-plus"></i></button>
           </div> -->
-        </div>
-        <div class="form-group">
-          <div formArrayName="options">
-            <div *ngFor="let opt of options.controls; let i = index">
-              <!-- <h1 class="heading">Answers:</h1> -->
-              <div [formGroupName]="i">
-                <div class="row">
-                  <div class="col-lg-8">
-                    <label class="questionnaireLabel mt-3" for="">Option {{i+1}}*:</label>
-                    <textarea class="mb-2" name="" id="" cols="30" rows="10" formControlName="answer" readonly></textarea>
-                    <p class="mb-2" style="color: red;"
-                    *ngIf="opt.get('answer')?.hasError('required') &&(submited)">
-                    Option {{i+1}}  required
+    </div>
+    <div class="form-group">
+      <div formArrayName="options">
+        <div *ngFor="let opt of options.controls; let i = index">
+          <!-- <h1 class="heading">Answers:</h1> -->
+          <div [formGroupName]="i">
+            <div class="row">
+              <div class="col-lg-8">
+                <label class="questionnaireLabel mt-3" for="">Option {{i+1}}*:</label>
+                <textarea class="OptionField mb-2" name="" id="" cols="30" rows="10" formControlName="answer" readonly></textarea>
+                <p class="mb-2" style="color: red;" *ngIf="opt.get('answer')?.hasError('required') &&(submited)">
+                  Option {{i+1}} required
                 </p>
-                    <!-- <input type="text" formControlName="answer" /> -->
-                  </div>
-                  <div class="col-lg-3">
-                    <label class="questionnaireLabel mt-3" for=""> Score*:</label>
-                    <input class="mb-2" type="text" formControlName="score" readonly />
-                    <p class="mb-2" style="color: red;"
-                    *ngIf="opt.get('score')?.hasError('required') &&(submited)">
-                    Score {{i+1}}  required
-                </p>
-                  </div>
-               
-                </div>
-  
+                <!-- <input type="text" formControlName="answer" /> -->
               </div>
+              <div class="col-lg-3">
+                <label class="questionnaireLabel mt-3" for=""> Score*:</label>
+                <input class="mb-2" type="text" formControlName="score" readonly />
+                <p class="mb-2" style="color: red;" *ngIf="opt.get('score')?.hasError('required') &&(submited)">
+                  Score {{i+1}} required
+                </p>
+              </div>
+
             </div>
+
           </div>
         </div>
+      </div>
+    </div>
 
-    </form>
-  </div>
-  
+  </form>
+</div>

@@ -65,14 +65,14 @@
     /* border: 8px solid rgb(232, 232, 232); */
     padding: 8px;
     background: rgb(232, 232, 232);
-    height: 333px;
+    height: 486px;
 
 }
 ::ng-deep .mat-horizontal-stepper-header-container {
     background-color: #fff;
     width: 25%;
     float: left;
-    height: 316px;
+    height: 468px;
     align-items: flex-start !important;
     padding: 1rem;
     margin-right: 10px;
@@ -104,7 +104,7 @@ form {
     overflow: hidden;
     padding: 0 24px 24px 24px;
     background: #fff;
-    height: 316px;
+    height: 466px;
     padding: 1.5rem !important;
 }
 ::ng-deep .mat-step-header .mat-step-icon-selected {
