@@ -91,7 +91,9 @@ this.type='member'
       this.routes.navigate(['login/member'])
 
     })}
-    
+    else if(this.localStorage.get('type')==='assessor'){
+      this.type='assessor'
+    }
     
   }
 

@@ -617,8 +617,8 @@
                     <h5 class="mt-3 mb-4">About the company*</h5>
                     <div class="">
                         <textarea formControlName="aboutCompany" class="form-control mb-1" aria-label="With
-                        textarea" maxlength="100"></textarea>
-                        <p class="fileSizetext"> Please write about your company in not more than 100 words</p>
+                        textarea" maxlength="1000"></textarea>
+                        <p class="fileSizetext"> Please write about your company in not more than 150 words</p>
                         <p *ngIf="editForm.get('aboutCompany')?.hasError('required')" style="color: red;">
                             About the company<strong>required</strong>
                         </p>
@@ -629,8 +629,8 @@
                     </h5>
                     <div class="">
                         <textarea formControlName="sidmChampionAwards" class="form-control mb-2" aria-label="With
-                        textarea" maxlength="100"></textarea>
-                        <p class="fileSizetext">Write a about the product/technology/facility/exports (100 Words). For
+                        textarea" maxlength="800"></textarea>
+                        <p class="fileSizetext">Write a about the product/technology/facility/exports (120 Words). For
                             registering multiple achievements, fill separate applications
                         </p>
                         <p *ngIf="editForm.get('sidmChampionAwards')?.hasError('required')" style="color: red;">
@@ -692,7 +692,7 @@
                         available to the customer?*</h5>
                     <div class="">
                         <textarea formControlName="campareAchivement" class="form-control mb-1" aria-label="With
-                        textarea" maxlength="150"></textarea>
+                        textarea" maxlength="1000"></textarea>
                         <p class="fileSizetext">Write not more than 150 words
 
                         </p>
@@ -707,7 +707,7 @@
                         Product/Technology/Infrastructure/Exports?*</h5>
                     <div class="">
                         <textarea formControlName="mudp" class="form-control mb-1" aria-label="With
-                    textarea" maxlength="150"></textarea>
+                    textarea" maxlength="1000"></textarea>
                         <p *ngIf="editForm.get('mudp')?.hasError('required')" style="color: red;">
                             Please fill the input field
                         </p>

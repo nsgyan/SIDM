@@ -4,8 +4,10 @@ const auth = require('../controllers/auth')
 const User = require('../controllers/user')
 const Payment= require('../controllers/payment')
 const offlinePayment= require('../controllers/offlinePayment')
+const Assessor= require('../controllers/assessor')
 router.post('/addAdmin', User.addAdminUser);
-
+router.post('/login/assessor',Assessor.login);
+router.post('/signup/assessor',Assessor.signup);
 router.post('/login', User.loginVerify);
 router.post('/memberLogin', User.memberLogin);
 

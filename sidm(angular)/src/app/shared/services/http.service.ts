@@ -18,6 +18,9 @@ export class HttpService {
   adminlogin(adminData: any) {
     return this.httpService.post(Globals.route.login, adminData)
   }
+  assessorLogin(assessordata:any){
+    return this.httpService.post(Globals.route.loginAssessor,assessordata)
+  }
   // memberlogin(memberLoginData: any) {
   //   return this.httpService.post(Globals.route.memberLogin, memberLoginData)
   // }
@@ -49,6 +52,9 @@ export class HttpService {
   getQuestionnaireAissment(id:any){
     return this.httpService.get(`${Globals.route.questionnaireAissment}/${id}`)
   }
+  updateQuestionnaireAissment(data:any){
+    return this.httpService.post(Globals.route.updateQuestionnaire,data)
+  }
   paynow(id:any)
 {
   return this.httpService.post(Globals.route.payment,id)
@@ -79,6 +85,7 @@ getOflinePayment(id:any){
   return this.httpService.get(`${Globals.route.getPaymentDetails}/${id}`)
 
 }
+
 
 
 verifypayment(data:any){

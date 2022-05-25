@@ -5,7 +5,5 @@ export const environment = {
 serverUrl: 'http://sidm-staging.evalue8.info/',
 // download: 'http://sidm.evalue8.info/uploads/'
 //  download: 'http://localhost:3000/uploads/'
- download: 'http://sidm-staging.evalue8.info/'
-
-
+ download: 'http://sidm-staging.evalue8.info/uploads/'
 };

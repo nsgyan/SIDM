@@ -7,34 +7,41 @@
 
 
 <div class="questionnaireForm">
-  <div>
+  <!-- <div>
       <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
-    </div>
+    </div> -->
+
   <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Qs.</th>
-          <th scope="col">Questions</th>
-          <th scope="col">Answers</th>
-          <th scope="col">Score</th>
-          <th scope="col"> Max Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
-          <th scope="row">{{i+1}}</th>
-          <td class="">{{item.question}}</td>
-          <td>
-              {{item.answer}}
-          </td>
-          <td>
-              {{item.score}}
-          </td>
-          <td>
-              {{item.maxScore}}
-          </td>
-        </tr>
-       
-      </tbody>
-  </table>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Qs.</th>
+        <th scope="col">Questions</th>
+        <th scope="col">Response</th>
+        <th scope="col">Attachment</th>
+        <th scope="col">Score ({{aissmentdata[0]?.totalScore}})</th>
+        <th scope="col"> Assessor Score <span>{{assessorScore ?assessorScore:''}} </span></th>
+        <th scope="col"> Max Score ({{maxScore}})</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
+        <th scope="row">{{i+1}}</th>
+        <td class="">{{item.question}}</td>
+        <td>
+            {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Description</a>
+        </td>
+        <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'  target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
+        <td>
+            {{item.score}}
+        </td>
+        <td>
+          {{item.assessorScore}}
+      </td>
+        <td>
+            {{item.maxScore}}
+        </td>
+      </tr>
+     
+    </tbody>
+</table>
 </div>

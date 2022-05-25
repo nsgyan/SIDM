@@ -57,6 +57,7 @@ exports.deleteQuestionnairesByID= (req,res,next)=>{
 exports.updateQuestionnaires=(req,res)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
+    const typeOfApplicant = req.body.typeOfApplicant;
     const maxScore = req.body.maxScore;
     const options = req.body.options;
     const inputType= req.body.inputType
@@ -68,6 +69,7 @@ exports.updateQuestionnaires=(req,res)=>{
     .then(data=>{
         data.category =category,
         data.parameter = parameter,
+        data.typeOfApplicant = typeOfApplicant,
         data.maxScore = maxScore,
         data.options=options,
         data.inputType=inputType,
@@ -143,4 +145,18 @@ exports.getAissmentQuestionnaire=(req,res)=>{
     })
  
  
+}
+exports.assessorScore=(req,res)=>{
+    const userId= req.body.id
+    const questionAns= req.body.questionAns
+    const assessorStatus= req.body.assessorStatus
+    questionnaireAissment.findById(userId).then(data=>{
+data.assessorStatus=assessorStatus
+        data.questionAns=questionAns
+        data.save().then(item=>{
+            res.status(200).send(item)
+        })
+    }).catch(err=>{
+        res.json("internal server error");
+    })
 }

@@ -316,7 +316,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.clearValidators()
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.registrationForm.valid  ) {
+    if (this.registrationForm.valid &&this.captcha ) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
@@ -732,7 +732,7 @@ else{
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.registrationForm.valid  ) {
+    if (this.registrationForm.valid&&this.captcha  ) {
       
       this.action=true
 

@@ -18,9 +18,9 @@
                 <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Assessor List</a></li>
                 <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> Add
                         New Assessor</a></li>
-                <span class="fontSize">ASSESSMENT</span>
+                <!-- <span class="fontSize">ASSESSMENT</span>
                 <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>View
-                        Assessments</a></li>
+                        Assessments</a></li> -->
                 <span class="fontSize">SYSTEM CONFIGURATION</span>
                 <li class="ml-2"><a (click)="navigate('dashboard/admin/questionnaire')" ><i aria-hidden="true" class="fas fa-file-alt"
                             style="color: #fff;"></i>Questionnaire Setup</a></li>
@@ -30,8 +30,7 @@
                 <li class=""><a (click)="logout()"><i aria-hidden="true" class="fas fa-power-off mr-2"
                             style="color: #fff;"></i>Logout</a></li>
             </ul>
-            <ul *ngIf="type==='member'">
-                
+            <ul *ngIf="type==='member'"> 
                 <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
                 <li class="" ><a (click)="navigate('dashboard/member/applyNew')" ><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Apply for new category +</a></li>
                 <span class="fontSize" *ngIf="cat1">Category C1</span>
@@ -63,6 +62,24 @@
         
            
                 <li><a href=""><i aria-hidden="true" class="fas fa-power-off mr-2"
+                            style="color: #fff;"></i>Logout</a></li>
+            </ul>
+            <ul *ngIf="type==='assessor'">
+                <span class="fontSize">NAVIGATION</span>
+                <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
+                <span class="fontSize">APPLICANT</span>
+                <li class="ml-2"><a   (click)="navigate('dashboard/assessor')" ><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Applicant List</a></li>
+        
+                <span class="fontSize">ASSESSOR</span>
+                <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Assessor List</a></li>
+                <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-plus" style="color: #fff;"></i> Add
+                        New Assessor</a></li>
+                <span class="fontSize">ASSESSMENT</span>
+                <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>View
+                        Assessments</a></li>
+               
+                <span class="fontSize">LOGOUT</span>
+                <li class=""><a (click)="logout()"><i aria-hidden="true" class="fas fa-power-off mr-2"
                             style="color: #fff;"></i>Logout</a></li>
             </ul>
         </mat-nav-list>

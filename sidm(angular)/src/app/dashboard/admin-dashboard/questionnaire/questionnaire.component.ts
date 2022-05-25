@@ -14,11 +14,11 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./questionnaire.component.css']
 })
 export class QuestionnaireComponent implements OnInit {
-  dropdown:boolean=false
+  singleSelect:boolean=false
 multiSelect:boolean=false
   toppings = new FormControl();
 
-  toppingList: string[] = ['textBox', 'upload', 'dropdown','multiSelect'];
+  toppingList: string[] = ['textBox', 'upload', 'singleSelect','multiSelect'];
   questionnaire:FormGroup;
   editQuestionnaire!:FormGroup;
   captcha: any;
@@ -76,15 +76,15 @@ multiSelect:boolean=false
 
   optionType(type:any)
   {
-    if(type==='dropdown' &&! this.dropdown&&!this.multiSelect){
-      this.dropdown=!this.dropdown
+    if(type==='singleSelect' &&! this.singleSelect&&!this.multiSelect){
+      this.singleSelect=!this.singleSelect
       this.removeAllOption()
-      if(this.dropdown)
+      if(this.singleSelect)
       {
         this.addOptions()
       }
     }
-    else if(type==='multiSelect'&&! this.dropdown&&!this.multiSelect){
+    else if(type==='multiSelect'&&! this.singleSelect&&!this.multiSelect){
       this.multiSelect=!this.multiSelect
       this.removeAllOption()
       if(this.multiSelect)
@@ -159,7 +159,7 @@ multiSelect:boolean=false
   }
  removeAllOption(){
 
-  if(!this.dropdown || !this.multiSelect){
+  if(!this.singleSelect || !this.multiSelect){
     console.log('hello');
     
 let i=this.option().length

@@ -1,0 +1,60 @@
+<div class="topHeader">
+    <h2 *ngIf="aissmentdata?.category==='cat1'"> Category C1 Questionnaire  List  View</h2>
+    <h2 *ngIf="aissmentdata?.category==='cat2'"> Category C2 Questionnaire  List  View</h2>
+    <h2 *ngIf="aissmentdata?.category==='cat3'"> Category C3 Questionnaire  List  View</h2>
+    <h2 *ngIf="aissmentdata?.category==='cat4'"> Category C4 Questionnaire  List  View</h2>
+  </div>
+  
+  
+  <div class="questionnaireForm">
+    <div>
+        <span class="save-btn">Total Score :{{aissmentdata?.totalScore}}</span>
+      </div>
+      <form [formGroup]="assessor">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Qs.</th>
+            <th scope="col">Questions</th>
+            <th scope="col">Response</th>
+            <th scope="col">Attachment</th>
+            <th scope="col">Score {{aissmentdata?.totalScore}}</th>
+            <th scope="col"> Assessor Score <span *ngIf="aissmentdata.assessorStatus">{{assessorScore ?assessorScore:''}} </span></th>
+            <th scope="col"> Max Score {{maxScore}}</th>
+          </tr>
+        </thead>
+        <tbody  formArrayName="aissment">
+          <tr *ngFor=" let item of aissmentdata?.questionAns; let i = index"  [formGroupName]="i" >
+            <th scope="row">{{i+1}}</th>
+            <td class="">{{item.question}}</td>
+            <td>
+                {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Description</a>
+            </td>
+            <td>   <a class="ml-2" *ngIf='item.uploadDocuments'  target="blank"  href="{{item.uploadDocuments}}"> View Documents</a></td>
+            <td>
+                {{item.score}}
+            </td>
+            <td *ngIf="!aissmentdata.assessorStatus">
+             <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)">
+          </td>
+          <td *ngIf="aissmentdata.assessorStatus">
+            {{item.assessorScore}}
+         </td>
+            <td>
+                {{item.maxScore}}
+            </td>
+          </tr>
+         
+        </tbody>
+    </table>
+  </form>
+  </div>
+  <div *ngIf="!aissmentdata.assessorStatus" class="container mb-3 " > 
+    <button  class="viewBtn"  type="submit" (click)="submit()">
+      Save
+    </button>
+  </div>
+
+
+  
+  

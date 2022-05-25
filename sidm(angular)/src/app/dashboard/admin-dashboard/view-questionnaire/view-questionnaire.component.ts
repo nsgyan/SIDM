@@ -12,7 +12,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
-  dropdown:boolean=false
+  singleSelect:boolean=false
 multiSelect:boolean=false
   questionnaire!:FormGroup;
   editQuestionnaire!:FormGroup;
@@ -29,6 +29,7 @@ multiSelect:boolean=false
 
         this.questionnaire=this.fb.group({
           category:[data.category,Validators.required],
+          typeOfApplicant:[data.typeOfApplicant,Validators.required],
           parameter:[data.parameter,Validators.required],
           maxScore:[data.maxScore,Validators.required],
           inputType:[data.inputType],
@@ -36,8 +37,8 @@ multiSelect:boolean=false
           textBox:[data.textBox],
           options: this.fb.array([]) ,
         })
-        if(data.inputType==='dropdown'){
-          this.dropdown=true;
+        if(data.inputType==='singleSelect'){
+          this.singleSelect=true;
         }
         else if(data.inputType==='multiSelect'){
           this.multiSelect=true

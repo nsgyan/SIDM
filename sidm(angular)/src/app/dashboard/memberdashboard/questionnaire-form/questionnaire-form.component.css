@@ -70,7 +70,7 @@
 }
 ::ng-deep .mat-horizontal-stepper-header-container {
     background-color: #fff;
-    width: 40%;
+    width: 25%;
     float: left;
     height: 316px;
     align-items: flex-start !important;
@@ -112,4 +112,7 @@ form {
 }
 ::ng-deep .mat-step-header .mat-step-icon-state-edit {
     background-color: #363a7a;
+}
+::ng-deep .mat-step-text-label {
+    display: none;
 }
