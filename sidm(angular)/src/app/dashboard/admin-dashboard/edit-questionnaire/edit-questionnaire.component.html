@@ -4,6 +4,8 @@
 </div>
 <div class="container">
   <form class="questionnaireForm" [formGroup]="questionnaire" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-lg-6">
     <div class="form-group">
       <label class="questionnaireLabel" for="exampleFormControlSelect1">Category*</label>
       <select class="form-control" formControlName="category" id="exampleFormControlSelect1">
@@ -23,7 +25,9 @@
         Category <strong>required</strong>
     </p>
     </div>
-     <div class="form-group">
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
       <label class="questionnaireLabel" for="exampleFormControlSelect1">Type Of Applicant*</label>
       <select class="form-control" formControlName="typeOfApplicant" id="exampleFormControlSelect1">
         <option value="A">For All Type Of Applicant</option>
@@ -48,7 +52,12 @@
         Category <strong>required</strong>
     </p>
     </div>
-    <div>
+  </div>
+</div>
+
+  
+<div class="row">
+  <div class="col-lg-3 mt-2">
       <mat-form-field appearance="fill">
         <mat-label>Answer Type</mat-label>
         <mat-select formControlName="inputType" >
@@ -56,7 +65,10 @@
     <mat-option value="multiSelect" (click)="optionType('multiSelect')" >MultiSelect </mat-option>
         </mat-select>
       </mat-form-field>
-      <div class="form-check">
+    </div>
+    <div class="col-lg-3 mt-4">
+      <div class="checkFeild">
+        <div class="form-check">
         <input class="form-check-input" formControlName="upload" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Upload
@@ -69,8 +81,11 @@
         </label>
       </div>
     </div>
-      <div class="row">
-        <div class="col-lg-9">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-10">
           <label class="questionnaireLabel mt-2" for="">Parameter/Question*:</label>
           <textarea name="" id="" cols="30" rows="10" formControlName="parameter"></textarea>
           <p *ngIf="questionnaire.get('parameter')?.hasError('required') &&(submited)" style="color: red;">
@@ -78,17 +93,18 @@
         </p>
           <!-- <input type="text" formControlName="parameter" /> -->
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           <label class="questionnaireLabel mt-2" for="">Max score*:</label>
           <input type="text" formControlName="maxScore" (keypress)="keyPressNumbers($event)" />
           <p *ngIf="questionnaire.get('maxScore')?.hasError('required') &&(submited)" style="color: red;">
             Max score <strong>required</strong>
         </p>
-        </div>
+      </div>
+    </div>
         <!-- <div class="col-lg-1">
           <button class="save-btn savePosition" type="button"><i aria-hidden="true" class="fas fa-plus"></i></button>
         </div> -->
-      </div>
+  
       <div class="form-group">
         <div *ngIf="singleSelect||multiSelect" formArrayName="options">
           <div  *ngFor="let opt of options.controls; let i = index">
