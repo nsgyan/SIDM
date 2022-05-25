@@ -18,6 +18,7 @@ export class ViewQuestionnaireComponent implements OnInit {
   aissmentdata:any
   maxScore: any=0;
   assessorScore: any=0;
+  submitted: boolean=false;
   constructor(
     private httpService: HttpService,
     private fb:FormBuilder,
@@ -45,7 +46,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       inputType:[item.inputType],
       option:[item.option],
       maxScore:[item.maxScore],
-      assessorScore:['',Validators.required] 
+      assessorScore:['',[Validators.required,Validators.max(Number( item.maxScore))]] 
     })
   );
    
@@ -69,10 +70,8 @@ export class ViewQuestionnaireComponent implements OnInit {
   get nameAissment(): FormArray {
     return this.assessor.get('aissment') as FormArray;
   }
-  
-  getControlAt (){
-    
-  }
+
+
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
     const charCode = (event.which) ? event.which : event.keyCode;
     if ((charCode < 48 || charCode > 57)) {
@@ -110,7 +109,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       })
     }
     else {
-
+      this.submitted = true;
     
       this.toast.error('Please Fill Required Field');
     }
