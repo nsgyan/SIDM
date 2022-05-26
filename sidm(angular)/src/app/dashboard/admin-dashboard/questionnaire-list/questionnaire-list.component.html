@@ -26,7 +26,18 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Parameter </th>
         <td mat-cell *matCellDef="let row"> {{row.parameter}} </td>
       </ng-container>
-  
+      <ng-container matColumnDef="inputType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Input Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.inputType}} </td>
+      </ng-container>
+      <ng-container matColumnDef="textBox">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Text box </th>
+        <td mat-cell *matCellDef="let row"> {{row.textBox}} </td>
+      </ng-container>
+      <ng-container matColumnDef="upload">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Document upload </th>
+        <td mat-cell *matCellDef="let row"> {{row.upload}} </td>
+      </ng-container>
       <!-- Fruit Column -->
       <ng-container matColumnDef="maxScore">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
