@@ -29,7 +29,7 @@
             </p>
             <br>
             <mat-form-field *ngIf="questionnaireData[i].textBox" appearance="fill">
-              <mat-label></mat-label>
+              <mat-label>Enter description</mat-label>
               <input matInput formControlName="description" required>
             </mat-form-field>
             <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')">

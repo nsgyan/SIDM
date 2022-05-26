@@ -56,8 +56,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Select Answer</mat-label>
           <mat-select formControlName="inputType">
-            <mat-option value="singleSelect" [disabled]="true">singleSelect </mat-option>
-            <mat-option value="multiSelect" [disabled]="true">MultiSelect </mat-option>
+            <mat-option value="singleSelect" [disabled]="true">Single Select </mat-option>
+            <mat-option value="multiSelect" [disabled]="true">Multi Select </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -66,13 +66,13 @@
           <div class="form-check">
             <input [disabled]="true" formControlName="upload" type="checkbox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
-              Upload
+              Enable document upload
             </label>
           </div>
           <div class="form-check">
             <input [disabled]="true" type="checkbox" formControlName="textBox" value="" readonly id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
-              TextBox
+              Allow description box
             </label>
           </div>
         </div>

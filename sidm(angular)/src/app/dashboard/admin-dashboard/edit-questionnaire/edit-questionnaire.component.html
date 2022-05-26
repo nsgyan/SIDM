@@ -60,8 +60,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Select Answer</mat-label>
           <mat-select formControlName="inputType">
-            <mat-option value="singleSelect" (click)="optionType('singleSelect')">singleSelect </mat-option>
-            <mat-option value="multiSelect" (click)="optionType('multiSelect')">MultiSelect </mat-option>
+            <mat-option value="singleSelect" (click)="optionType('singleSelect')">Single Select </mat-option>
+            <mat-option value="multiSelect" (click)="optionType('multiSelect')">Multi Select </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -70,13 +70,13 @@
           <div class="form-check">
             <input class="form-check-input" formControlName="upload" type="checkbox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
-              Upload
+              Enable document upload
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" formControlName="textBox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
-              TextBox
+              Allow description box
             </label>
           </div>
         </div>
