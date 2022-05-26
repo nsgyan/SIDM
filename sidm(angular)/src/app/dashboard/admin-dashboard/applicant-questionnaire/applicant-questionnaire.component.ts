@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ApplicantQuestionnaireComponent implements OnInit {
   id:any
-  assessorScore:any=0;
+  assessorScore:any=0;  
   maxScore:number=0;
   aissmentdata:any
   constructor(

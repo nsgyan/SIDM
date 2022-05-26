@@ -8,8 +8,10 @@ exports.signup = async (req, res, next) => {
       (hash) => {
         const assessor = new Assessor({
           email: req.body.email,
-          mobile: req.body.mobile,
-          panNumber: hash
+          mobileNumber: req.body.mobileNumber,
+          panNumber: hash,
+          assessorCompanyName: req.body.assessorCompanyName,
+          assessorName: req.body.assessorName,
         });
         assessor.save().then(
           () => {
@@ -36,16 +38,16 @@ exports.signup = async (req, res, next) => {
   exports.login = async(req, res, next) => {
     
     const email= req.body.email;
-   const mobile= req.body.mobile;
+   const mobileNumber= req.body.mobileNumber;
    const  panNumber= req.body.panNumber
-   await Assessor.findOne({email:email,mobile:mobile}).then(data=>{
+   await Assessor.findOne({email:email,mobileNumber:mobileNumber}).then(data=>{
         const panNumberMatch =  bcrypt.compare(panNumber, data.panNumber);
         if(panNumberMatch){
             const token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
                 email: email,
-                mobile: mobile ,
-                panNumber:panNumber
+                mobileNumber: mobileNumber ,
+                panNumber:panNumber,
 
             }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
             );
@@ -65,3 +67,33 @@ exports.signup = async (req, res, next) => {
       );
   };
   
+  exports.getEmail = (req, res, next) => {
+    const email = req.body.email
+    Assessor.findOne({ email: email })
+        .then(data => {
+            res.status(200).send(data)
+        }).catch(err=>{
+            res.json("internal server error");
+        })
+}
+
+exports.getMobile = (req, res, next) => {
+    const mobileNumber = req.body.mobileNumber
+    Assessor.findOne({ mobileNumber: mobileNumber })
+        .then(data => {
+            mobileNumber
+            res.status(200).send(data)
+        })
+        .catch(err => {
+            res.json("internal server error");
+        })
+}
+
+exports.getAssessor =(req,res,next)=>{
+  Assessor.find().then(data => {
+    res.status(200).send(data)
+})
+.catch(err => {
+    res.json("internal server error");
+})
+}

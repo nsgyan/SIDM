@@ -4,6 +4,7 @@ import { AddAssessorComponent } from './add-assessor/add-assessor.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form-view.component';
 import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
+import { AssessorListComponent } from './assessor-list/assessor-list.component';
 import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { QuestionnaireListComponent } from './questionnaire-list/questionnaire-list.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
 },
   { path: 'edit/:id', component:AdminEditComponent },
   { path: 'add/assessor', component:AddAssessorComponent },
+  { path: 'assessor', component:AssessorListComponent },
   { path: 'questionnaire', component:QuestionnaireComponent },
   { path: 'questionnaireList', component:QuestionnaireListComponent },
   { path: 'questionnaireList/edit/:id', component:EditQuestionnaireComponent },

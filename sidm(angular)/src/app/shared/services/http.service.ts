@@ -18,6 +18,18 @@ export class HttpService {
   adminlogin(adminData: any) {
     return this.httpService.post(Globals.route.login, adminData)
   }
+  signupAssessor(assessordata:any){
+    return this.httpService.post(Globals.route.signupAssessor,assessordata)
+  }
+  checkAssessorEmail(data: any) {
+    return this.httpService.post(Globals.route.assessorCheckEmail, data)
+  }
+  checkAssessorMobile(data: any) {
+    return this.httpService.post(Globals.route.assessorCheckMobile, data)
+  }
+  getassessor() {
+    return this.httpService.get(Globals.route.assessor)
+  }
   assessorLogin(assessordata:any){
     return this.httpService.post(Globals.route.loginAssessor,assessordata)
   }

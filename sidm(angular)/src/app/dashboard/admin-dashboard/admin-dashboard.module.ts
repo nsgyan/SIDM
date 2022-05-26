@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form-view.component';
 import { AddAssessorComponent } from './add-assessor/add-assessor.component';
 import { AssessorListComponent } from './assessor-list/assessor-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -50,6 +51,7 @@ import { AssessorListComponent } from './assessor-list/assessor-list.component';
     AdminDashboardRoutingModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     RecaptchaModule,
     MatTableModule,
