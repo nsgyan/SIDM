@@ -542,7 +542,7 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (type === 'finalSubmit' || (this.editForm.valid &&this.captcha )) {
+    if (type === 'finalSubmit' || (this.editForm.valid  )) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -659,7 +659,7 @@ if(type==='changeStatus'){
     this.editForm.get('exhibit2')?.clearValidators()
     this.editForm.get('exhibit2')?.updateValueAndValidity()
 
-    if (this.editForm.valid &&this.captcha ) {
+    if (this.editForm.valid  ) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -948,7 +948,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid &&this.captcha  ) {
+    if (this.editForm.valid   ) {
 this.action=true
 
     const dialogRef = this.dialog.open(ModelComponent, {
