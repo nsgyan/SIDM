@@ -245,3 +245,11 @@ h5 {
 .save-btn p{
   margin: 0;
 }
+.fontWeightBold {
+  font-weight: 500;
+  color: rgb(57, 57, 57);
+}
+.card-header {
+  font-size: 17px;
+    font-weight: 500;
+}
