@@ -76,6 +76,9 @@
     align-items: flex-start !important;
     padding: 1rem;
     margin-right: 10px;
+    white-space: nowrap;
+    display: inline-block !important;
+    /* display: inline-block; */
 }
 form {
     margin: 1rem 0;
@@ -115,4 +118,16 @@ form {
 }
 ::ng-deep .mat-step-text-label {
     display: none;
+}
+::ng-deep .mat-step-header {
+    width: 1% !important;
+    float: left !important;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex  {
+    width: 430px;
+}
+textarea {
+    display: block;
+    width: 435px;
+    height: 100px; 
 }

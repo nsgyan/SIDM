@@ -28,10 +28,13 @@
               please select at least one option
             </p>
             <br>
-            <mat-form-field *ngIf="questionnaireData[i].textBox" appearance="fill">
-              <mat-label>Enter description</mat-label>
-              <input matInput formControlName="description" required>
-            </mat-form-field>
+            <div *ngIf="questionnaireData[i].textBox" >
+              <div>
+                <label
+                class="questionnaireLabel">Enter Description:</label>
+                <textarea name="" id="" cols="30" rows="10" formControlName="description" required></textarea>
+              </div>
+            </div>
             <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')">
               Answer Description required
             </p>
