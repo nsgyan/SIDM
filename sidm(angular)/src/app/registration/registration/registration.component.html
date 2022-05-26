@@ -1,13 +1,112 @@
-<app-formheader></app-formheader>
+<!-- <app-formheader></app-formheader> -->
+<!-- =============== PRELOADER =============== -->
+<!-- <div class="page-preloader-cover">
+        <div class="cssload-loader">
+            <div class="cssload-inner cssload-one"></div>
+            <div class="cssload-inner cssload-two"></div>
+            <div class="cssload-inner cssload-three"></div>
+        </div>
+    </div> -->
+<!-- ============== PRELOADER END ============== -->
+<!-- ================= HEADER ================= -->
+<header class="marathon-header-fixed header-fixed">
+    <a href="javascript:void(0)" class="nav-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <div class="top-panel">
+        <div class="container">
+            <a href="javascript:void(0)" class="logo2">
+                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo">
+            </a>
+            <a href="javascript:void(0)" class="logo1">
+                <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo">
+            </a>
+
+            <a href="javascript:void(0)" class="logo3">
+                <img class="headerLogo3" src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo">
+            </a>
+        </div>
+    </div>
+    <!-- <div class="header-nav">
+            <div class="container">
+                <div class="header-nav-cover">
+                    <nav class="nav-menu menu">
+                        <ul class="nav-list">
+                            <li class="active-page">
+                                <a href="index.html">home</a>
+                            </li>
+                            <li><a href="#about">about sidm</a></li>
+                            <li><a href="#Objective">OBJECTIVE</a></li>
+                            <li><a href="#categories">categories</a></li>
+                            <li><a href="#committee">AWARDS COMMITTEE</a></li>
+                            <li><a href="#process">process</a></li>
+                            <li><a href="#testimonial">testimonials</a></li>
+                            <li><a href="#faq">faqs</a></li>
+                            <li><a href="#award2020">AWARDS 2020</a></li>
+                            <li><a href="#footer">Contact Us</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div> -->
+</header>
+<!-- =============== HEADER END =============== -->
+
+<!--=================== PAGE-TITLE ===================-->
+<div class="page-title padding" style="background: #175AA5;">
+    <div class="container">
+
+        <div class="registrationFormTop">
+            <div class="">
+                <h1 class="content-left">Registration</h1>
+            </div>
+            <div class="">
+                <div class="content-right">
+
+                    <h2>
+                        SIDM Bank Details for Remittance
+                    </h2>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div> <span class="fontWeightBold"> Beneficiary name:</span> Society of Indian Defence
+                                Manufacturers
+                            </div>
+                            <div>
+                                <span class="fontWeightBold">Account Number: </span>50100223201310
+                            </div>
+                            <div>
+                                <span class="fontWeightBold">Bank: </span>HDFC Bank Ltd
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <span class="fontWeightBold">Address: </span>G 3/ 4, Suryakiran building, 19 KG
+                                Marg, New Delhi -10001
+                            </div>
+                            <div>
+                                <span class="fontWeightBold">IFSC Code: </span>HDFC0000003
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section class="registrationForm">
     <div class="maintitle mt-5">
         <div class="container">
-            <p class="loginLink">Already Registered? <a (click)="registerdUser()" class="" target="blanck"> Login
+            <p class=" loginLink">Already Registered? <a (click)="registerdUser()" class="" target="blanck">
+                    Login
                     Here</a>
             </p>
-            <!-- <p class="font-weight-bold">All <span class="mandatory">*</span> marked fields are mandatory</p> -->
-            <div class="mt-4 mb-4"></div>
         </div>
     </div>
 
@@ -396,7 +495,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h3 class="mt-3 mb-1 heading" >Please give
+                                    <h3 class="mt-3 mb-1 heading">Please give
                                         details for additional contact point for ease of reaching out:</h3>
                                 </div>
                             </div>
@@ -783,16 +882,16 @@
                                 Facilities fielded for the awards*</h3>
                             <div class="">
                                 <h5 class="mb-2">Exhibit 1* </h5>
-                                
-                                    <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
+
+                                <input formControlName="exhibit1" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf"
                                     (change)="changeListener($event,'exhibit1')" class="border-light mb-1" name="" id=""
                                     aria-describedby="helpId" placeholder="">
-                                    <!-- <input formControlName="exhibit1" accept=".gif,.jpg,.jpeg,.png,.pdf"
+                                <!-- <input formControlName="exhibit1" accept=".gif,.jpg,.jpeg,.png,.pdf"
                                     (change)="changeListener($event,'exhibit1')"
                                     class="input-file" name="" id="my-file" type="file" aria-describedby="helpId" placeholder=""> -->
-                                    <!-- <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label> -->
-                                    <!-- <p class="file-return"></p> -->
-                                    
+                                <!-- <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label> -->
+                                <!-- <p class="file-return"></p> -->
+
                                 <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. File size should
                                     be less than 2MB</p>
 
@@ -827,9 +926,11 @@
 
                         <div class="row">
                             <div class="col-lg-12 mt-5 mb-5 text-center">
-                                <button class="save-btn" target="blanck" (click)="savedraft('Pending')" [disabled]="action">Save
+                                <button class="save-btn" target="blanck" (click)="savedraft('Pending')"
+                                    [disabled]="action">Save
                                 </button>
-                                <button class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')" [disabled]="action" >Final Submit and pay
+                                <button class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')"
+                                    [disabled]="action">Final Submit and pay
                                 </button>
                             </div>
                         </div>
