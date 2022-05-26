@@ -7,7 +7,7 @@
 
       <div formArrayName="aissment">
         <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
-          <mat-step [stepControl]="nameAissment?.get([i])!">
+          <mat-step [stepControl]="nameAissment?.get([i])!" [editable]="false">
 
             <h2>{{questionnaireData[i].parameter}}</h2>
             <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
