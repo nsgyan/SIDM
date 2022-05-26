@@ -26,6 +26,8 @@ import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/appli
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form-view.component';
+import { AddAssessorComponent } from './add-assessor/add-assessor.component';
+import { AssessorListComponent } from './assessor-list/assessor-list.component';
 
 
 
@@ -39,7 +41,9 @@ import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form
     EditQuestionnaireComponent,
     ViewQuestionnaireComponent,
     ApplicantQuestionnaireComponent,
-    ApplicantFormViewComponent
+    ApplicantFormViewComponent,
+    AddAssessorComponent,
+    AssessorListComponent
   ],
   imports: [
     CommonModule,
