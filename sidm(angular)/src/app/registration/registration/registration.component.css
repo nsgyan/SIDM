@@ -165,3 +165,28 @@ h5 {
   font-style: normal;
   font-weight: normal;
 } */
+.registrationFormTop {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  text-align: left;
+}
+.fontWeightBold {
+  font-weight: 500;
+  color: #fff;
+}
+.content-left {
+  color: #fff;
+  text-align: center;
+  font-size: 26px;
+}
+.content-right {
+  color: rgb(255, 255, 255);
+  text-align: left;
+}
+.content-right h2 {
+  color: #fff;
+  font-size: 20px;
+}
+.page-title .container {
+  padding: 3rem 0;
+}
