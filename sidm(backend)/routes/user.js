@@ -8,6 +8,7 @@ const Assessor= require('../controllers/assessor')
 router.post('/addAdmin', User.addAdminUser);
 router.post('/login/assessor',Assessor.login);
 router.post('/signup/assessor',Assessor.signup);
+router.post('/reset/assessor/password',auth.adminAuth,Assessor.passwordReset);
 router.post('/assessor/checkemail', Assessor.getEmail);
 router.get('/assessor',  Assessor.getAssessor);
 router.post('/login', User.loginVerify);

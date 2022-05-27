@@ -82,3 +82,34 @@ exports.getAssessor =(req,res,next)=>{
     res.json("internal server error");
 })
 }
+
+exports.passwordReset = (req, res, next) => {
+  const email = req.body.email
+  bcrypt.hash(req.body.password, 10).then(
+    (hash) => {
+      Assessor.findOne({ email: email })
+      .then(data => {
+        data.password=hash
+        assessor.save().then(
+          () => {
+            res.status(201).json({
+              message: 'assessor added successfully!'
+            });
+          }
+        )
+      }).catch(
+        (error) => {
+            if(error.code === 11000){
+          res.status(500).json(
+              'email  must be unique'
+          );
+      }
+      else{
+          res.send("Internal server error");
+      }
+        }
+      );
+    }
+  );
+
+}
