@@ -46,7 +46,7 @@
                     assessorForm.controls['password'].touched)">
                     <p *ngIf="assessorForm.get('password')?.hasError('required')"
                         style="color: red;">
-                        password <strong>required</strong>
+                        Password <strong>required</strong>
                     </p>
                     <p style="color: red;"
               *ngIf="assessorForm.get('password')?.invalid && !assessorForm.get('password')?.hasError('required')">
