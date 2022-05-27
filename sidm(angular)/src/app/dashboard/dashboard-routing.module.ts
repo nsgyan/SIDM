@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminAuthGuradService } from '../shared/services/admin-auth-gurad.service';
-import { AssessorModule } from './assessor/assessor.module';
 
 const routes: Routes = [
   {

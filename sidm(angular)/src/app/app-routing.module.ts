@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AssessorModule } from './dashboard/assessor/assessor.module';
+import { AssessorModule } from '../app/assessor/assessor.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminAuthGuradService } from './shared/services/admin-auth-gurad.service';
 import { MemberAuthguradService } from './shared/services/member-authgurad.service';
