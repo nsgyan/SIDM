@@ -264,6 +264,7 @@ export class MemberDashboardComponent implements OnInit {
           registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization : ''],
           nameRegisteredOrganization: this.formBuilder.array([ ]),
           aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
+          nomenclaturOfItems: [this.editData.nomenclaturOfItems ? this.editData.nomenclaturOfItems : ''],
           sidmChampionAwards: [this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards : ''],
           isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
           appreciationDocuments: [''],
@@ -528,6 +529,8 @@ export class MemberDashboardComponent implements OnInit {
     this.editForm.get('registeredOrganization')?.updateValueAndValidity()
     this.editForm.get('aboutCompany')?.setValidators(Validators.required)
     this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('nomenclaturOfItems')?.setValidators(Validators.required)
+    this.editForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.setValidators(Validators.required)
@@ -542,7 +545,7 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (type === 'finalSubmit' || (this.editForm.valid &&this.captcha )) {
+    if (type === 'finalSubmit' || (this.editForm.valid  )) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -568,6 +571,7 @@ export class MemberDashboardComponent implements OnInit {
         registeredOrganization: this.editForm.value.registeredOrganization,
         nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization,
         aboutCompany: this.editForm.value.aboutCompany,
+        nomenclaturOfItems: this.editForm.value.nomenclaturOfItems,
         sidmChampionAwards: this.editForm.value.sidmChampionAwards,
         isappreciation: this.editForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
@@ -644,6 +648,8 @@ if(type==='changeStatus'){
     this.editForm.get('registeredOrganization')?.updateValueAndValidity()
     this.editForm.get('aboutCompany')?.clearValidators()
     this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('nomenclaturOfItems')?.clearValidators()
+    this.editForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.editForm.get('sidmChampionAwards')?.clearValidators()
     this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.clearValidators()
@@ -659,7 +665,7 @@ if(type==='changeStatus'){
     this.editForm.get('exhibit2')?.clearValidators()
     this.editForm.get('exhibit2')?.updateValueAndValidity()
 
-    if (this.editForm.valid &&this.captcha ) {
+    if (this.editForm.valid  ) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -685,6 +691,7 @@ if(type==='changeStatus'){
         registeredOrganization: this.editForm.value.registeredOrganization,
         nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization, 
         aboutCompany: this.editForm.value.aboutCompany,
+        nomenclaturOfItems: this.editForm.value.nomenclaturOfItems,
         sidmChampionAwards: this.editForm.value.sidmChampionAwards,
         isappreciation: this.editForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
@@ -934,6 +941,8 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     this.editForm.get('registeredOrganization')?.updateValueAndValidity()
     this.editForm.get('aboutCompany')?.setValidators(Validators.required)
     this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('nomenclaturOfItems')?.setValidators(Validators.required)
+    this.editForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.setValidators(Validators.required)
@@ -948,7 +957,7 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid &&this.captcha  ) {
+    if (this.editForm.valid   ) {
 this.action=true
 
     const dialogRef = this.dialog.open(ModelComponent, {

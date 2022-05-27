@@ -13,13 +13,13 @@
                
                 <h2>{{questionnaireData[i].parameter}}</h2>
                 <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
-                  <mat-label>Answer Type</mat-label>
+                  <mat-label>Select Answer</mat-label>
                   <mat-select formControlName="answer" >
               <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field *ngIf="questionnaireData[i].inputType==='multiSelect'" appearance="fill">
-                  <mat-label>Answer Type</mat-label>
+                  <mat-label>Select Answer</mat-label>
                   <mat-select formControlName="answer" multiple >
               <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}" >{{option.answer}} </mat-option>
                   </mat-select>
@@ -55,8 +55,8 @@
             <th scope="col">Response</th>
             <th scope="col">Attachment</th>
             <th scope="col">Score ({{aissmentdata[0]?.totalScore}})</th>
-            <th scope="col"> Assessor Score <span>{{assessorScore ?'('+assessorScore+')':''}} </span> </th>
-            <th scope="col"> Max Score ({{maxScore}})</th>
+            <th scope="col"> Assessor score <span>{{assessorScore ?'('+assessorScore+')':''}} </span> </th>
+            <th scope="col"> Max score ({{maxScore}})</th>
           </tr>
         </thead>
         <tbody>
@@ -64,14 +64,14 @@
             <th scope="row">{{i+1}}</th>
             <td class="">{{item.question}}</td>
             <td>
-                {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Description</a>
+                {{item.answer}} <a *ngIf="item.description" class="link" (click)="openModel(item.description)">Description</a>
             </td>
-            <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'  target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
+            <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'   target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
             <td>
                 {{item.score}}
             </td>
             <td>
-              {{item.assessorScore?item.assessorScore:'pending'}}
+              {{item.assessorScore?item.assessorScore:'Pending'}}
           </td>
             <td>
                 {{item.maxScore}}

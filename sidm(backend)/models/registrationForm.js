@@ -30,6 +30,7 @@ const RegistrationFormSchema = new Schema({
         registeredOrganization:{ type: String },
    nameRegisteredOrganization:[], 
         aboutCompany:{ type: String },
+        nomenclaturOfItems:{ type: String },
         sidmChampionAwards:{ type: String },
         isappreciation:{ type: String },
         appreciationDocuments:{ type: String },

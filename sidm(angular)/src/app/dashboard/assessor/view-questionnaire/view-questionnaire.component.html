@@ -44,7 +44,7 @@
             </p>
             <p style="color: red;"
               *ngIf="controlName.get('assessorScore')?.invalid && !controlName.get('assessorScore')?.hasError('required')&& this.submitted">
-              Assessor Score should not Gratter then {{aissmentdata?.questionAns.at(i).maxScore}}
+              Assessor Score should not greater than {{aissmentdata?.questionAns.at(i).maxScore}}
             </p>
           </td>
           <td *ngIf="aissmentdata.assessorStatus">

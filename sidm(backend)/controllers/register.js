@@ -42,6 +42,7 @@ exports.postRegistrationForm = (req, res, next) => {
   const registeredOrganization = req.body.registeredOrganization;
   const nameRegisteredOrganization = req.body.nameRegisteredOrganization;
   const aboutCompany = req.body.aboutCompany;
+  const nomenclaturOfItems = req.body.nomenclaturOfItems;
   const sidmChampionAwards = req.body.sidmChampionAwards;
   const isappreciation = req.body.isappreciation;
   const appreciationDocuments = req.body.appreciationDocuments;
@@ -79,6 +80,7 @@ exports.postRegistrationForm = (req, res, next) => {
     registeredOrganization: registeredOrganization,
     nameRegisteredOrganization: nameRegisteredOrganization,
     aboutCompany: aboutCompany,
+    nomenclaturOfItems:nomenclaturOfItems,
     sidmChampionAwards: sidmChampionAwards,
     isappreciation: isappreciation,
     appreciationDocuments: appreciationDocuments,
@@ -266,6 +268,7 @@ exports.updateFrom = (req, res, next) => {
   const registeredOrganization = req.body.registeredOrganization;
   const nameRegisteredOrganization = req.body.nameRegisteredOrganization;
   const aboutCompany = req.body.aboutCompany;
+  const nomenclaturOfItems = req.body.nomenclaturOfItems;
   const sidmChampionAwards = req.body.sidmChampionAwards;
   const isappreciation = req.body.isappreciation;
   const appreciationDocuments = req.body.appreciationDocuments;
@@ -310,7 +313,8 @@ exports.updateFrom = (req, res, next) => {
           formData.registeredOrganization= registeredOrganization;
           formData.nameRegisteredOrganization= nameRegisteredOrganization;
           formData.aboutCompany= aboutCompany;
-          formData. sidmChampionAwards= sidmChampionAwards;
+          formData.nomenclaturOfItems= nomenclaturOfItems;
+          formData.sidmChampionAwards= sidmChampionAwards;
       formData.isappreciation = isappreciation;
       formData.appreciationDocuments = appreciationDocuments;
           formData.campareAchivement= campareAchivement;

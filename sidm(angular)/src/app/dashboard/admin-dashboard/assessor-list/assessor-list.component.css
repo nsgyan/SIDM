@@ -1,0 +1,67 @@
+.topHeader {
+    background: #363A7A;
+    padding: 5px 0 1px;
+    margin-top: 4rem;
+}
+.topHeader h2 {
+    margin: 0 0 9px 19px;
+    font-size: 20px;
+    color: #fff;
+}
+
+table {
+    width: 100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+td,
+th {
+    width: 25%;
+}
+.topHeader {
+    background: #363A7A;
+    padding: 5px 0 1px;
+    margin-top: 4rem;
+}
+.topHeader h2 {
+    margin: 0 0 9px 19px;
+    font-size: 20px;
+    color: #fff;
+}
+.mat-form-field-wrapper {
+    position: relative;
+    padding: 1rem 0 1rem 1rem!important;
+}
+.mainPadding {
+    padding: 22px;
+}
+/* .mainPadding thead {
+    background: #363a7a!important;
+} */
+.mat-form-field {
+    font-size: 14px;
+    width: 17%;
+}
+tr th {
+    background: #363a7a !important;
+    color: #fff;
+}
+td {
+    border: none!important;
+    padding: 25px 15px 8px 0px!important;
+}
+tr td:first-child {
+    padding-left: 23px !important;
+}
+.table-btn {
+    border: 1px solid #363a7a;
+    padding: 5px 10px;
+    /* color: #000; */
+    background: none;
+    border-radius: 3px;
+}
+.table-btn .fa-cog {
+    color: #363A7A;
+}

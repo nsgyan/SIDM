@@ -26,10 +26,21 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Parameter </th>
         <td mat-cell *matCellDef="let row"> {{row.parameter}} </td>
       </ng-container>
-  
+      <ng-container matColumnDef="inputType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Input Type </th>
+        <td mat-cell *matCellDef="let row"> <span *ngIf="row.inputType==='singleSelect'">Single select</span>  <span *ngIf="row.inputType==='multiSelect'">Multi select</span> </td>
+      </ng-container>
+      <ng-container matColumnDef="textBox">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Text box </th>
+        <td mat-cell *matCellDef="let row"> {{row.textBox?'Yes':'No'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="upload">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Document upload </th>
+        <td mat-cell *matCellDef="let row"> {{row.upload?'Yes':'No'}} </td>
+      </ng-container>
       <!-- Fruit Column -->
       <ng-container matColumnDef="maxScore">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> score </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
         <td mat-cell *matCellDef="let row"> {{row.maxScore}} </td>
       </ng-container>
       <ng-container matColumnDef="action">
@@ -60,6 +71,6 @@
       </tr> -->
     </table>
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[15, 35, 50, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
 </div>
