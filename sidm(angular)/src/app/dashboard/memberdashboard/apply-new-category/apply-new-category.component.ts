@@ -108,6 +108,7 @@ export class ApplyNewCategoryComponent implements OnInit {
       registeredOrganization: [''],
       nameRegisteredOrganization: this.formBuilder.array([]),
       aboutCompany: [''],
+      nomenclaturOfItems:[''],
       sidmChampionAwards: [''],
       isappreciation: [''],
       appreciationDocuments: [''],
@@ -336,6 +337,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
           registeredOrganization: [this.editData.registeredOrganization ? this.editData.registeredOrganization : ''],
           nameRegisteredOrganization: this.formBuilder.array([ ]),
           aboutCompany: [this.editData.aboutCompany ? this.editData.aboutCompany : ''],
+          nomenclaturOfItems: [this.editData.nomenclaturOfItems ? this.editData.nomenclaturOfItems : ''],
           sidmChampionAwards: [this.editData.sidmChampionAwards ? this.editData.sidmChampionAwards : ''],
           isappreciation: [this.editData.isappreciation ? this.editData.isappreciation : ''],
           appreciationDocuments: [''],
@@ -592,6 +594,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         registeredOrganization: this.newCategoryForm.value.registeredOrganization,
         nameRegisteredOrganization: this.newCategoryForm.value.nameRegisteredOrganization, 
         aboutCompany: this.newCategoryForm.value.aboutCompany,
+        nomenclaturOfItems: this.newCategoryForm.value.nomenclaturOfItems,
         sidmChampionAwards: this.newCategoryForm.value.sidmChampionAwards,
         isappreciation: this.newCategoryForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
@@ -658,6 +661,8 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
     this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
     this.newCategoryForm.get('aboutCompany')?.clearValidators()
     this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('nomenclaturOfItems')?.clearValidators()
+    this.newCategoryForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.newCategoryForm.get('sidmChampionAwards')?.clearValidators()
     this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.newCategoryForm.get('isappreciation')?.clearValidators()
@@ -701,6 +706,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         registeredOrganization: this.newCategoryForm.value.registeredOrganization,
         nameRegisteredOrganization: this.newCategoryForm.value.nameRegisteredOrganization, 
         aboutCompany: this.newCategoryForm.value.aboutCompany,
+        nomenclaturOfItems: this.newCategoryForm.value.nomenclaturOfItems,
         sidmChampionAwards: this.newCategoryForm.value.sidmChampionAwards,
         isappreciation: this.newCategoryForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
@@ -1042,6 +1048,8 @@ else{
     this.newCategoryForm.get('registeredOrganization')?.updateValueAndValidity()
     this.newCategoryForm.get('aboutCompany')?.setValidators(Validators.required)
     this.newCategoryForm.get('aboutCompany')?.updateValueAndValidity()
+    this.newCategoryForm.get('nomenclaturOfItems')?.setValidators(Validators.required)
+    this.newCategoryForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.newCategoryForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.newCategoryForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.newCategoryForm.get('isappreciation')?.setValidators(Validators.required)

@@ -92,6 +92,7 @@ export class RegistrationComponent implements OnInit {
       registeredOrganization: [''],
       nameRegisteredOrganization: this.formBuilder.array([]),
       aboutCompany: [''],
+      nomenclaturOfItems:[''],
       sidmChampionAwards:[''],
       isappreciation: [''],
       appreciationDocuments: [''],
@@ -302,6 +303,8 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
     this.registrationForm.get('aboutCompany')?.clearValidators()
     this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
+    this.registrationForm.get('nomenclaturOfItems')?.clearValidators()
+    this.registrationForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.registrationForm.get('sidmChampionAwards')?.clearValidators()
     this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.registrationForm.get('isappreciation')?.clearValidators()
@@ -344,6 +347,7 @@ export class RegistrationComponent implements OnInit {
         registeredOrganization: this.registrationForm.value.registeredOrganization,
    nameRegisteredOrganization: this.registrationForm.value.nameRegisteredOrganization, 
         aboutCompany: this.registrationForm.value.aboutCompany,
+        nomenclaturOfItems: this.registrationForm.value.nomenclaturOfItems,
         sidmChampionAwards: this.registrationForm.value.sidmChampionAwards,
         isappreciation: this.registrationForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
@@ -514,6 +518,7 @@ export class RegistrationComponent implements OnInit {
         registeredOrganization: this.registrationForm.value.registeredOrganization,
    nameRegisteredOrganization: this.registrationForm.value.nameRegisteredOrganization, 
         aboutCompany: this.registrationForm.value.aboutCompany,
+        nomenclaturOfItems: this.registrationForm.value.nomenclaturOfItems,
         sidmChampionAwards: this.registrationForm.value.sidmChampionAwards,
         isappreciation: this.registrationForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
@@ -720,6 +725,8 @@ else{
     this.registrationForm.get('registeredOrganization')?.updateValueAndValidity()
     this.registrationForm.get('aboutCompany')?.setValidators(Validators.required)
     this.registrationForm.get('aboutCompany')?.updateValueAndValidity()
+    this.registrationForm.get('nomenclaturOfItems')?.setValidators(Validators.required)
+    this.registrationForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.registrationForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.registrationForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.registrationForm.get('isappreciation')?.setValidators(Validators.required)
