@@ -1,3 +1,4 @@
+import { escapeRegExp } from '@angular/compiler/src/util';
 import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -12,6 +13,7 @@ import { HttpService } from '../http.service';
 })
 export class ModelComponent implements OnInit {
   OfflinePayment!:FormGroup;
+  assessorPasswordReset!:FormGroup
   requestInfo !:FormGroup ;
   modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   submited!: boolean;
@@ -36,10 +38,22 @@ else if(data.type==='approve')
 {
   this.submited=false
 }
+else if(data.type==='assessor/passwordReset'){
+this.assessPassword()
+}
     
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
+  }
+  resetConfirmPassword($event:any){
+    this.assessorPasswordReset.get('confirmPassword')?.reset()
+  }
+  assessPassword(){
+    this.assessorPasswordReset=this.formBuilder.group({
+      password:['',[Validators.required,Validators.minLength(8)]],
+      confirmPassword:['',Validators.required],
+    })
   }
 
   offlinePayment()
@@ -105,6 +119,11 @@ else if(data.type==='approve')
   }
 
 
+  confirmPassword(event: any,) {
+    if (event.target.value !== this.assessorPasswordReset.value.password) {
+      this.assessorPasswordReset.get('confirmPassword')?.setErrors({ confirmPassword: true })
+    }
+  }
    requestInfoStatus(){
     this.requestInfo=this.formBuilder.group({
       remark:['']
@@ -126,6 +145,23 @@ else if(data.type==='approve')
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  resetPassword(){
+    if(this.assessorPasswordReset.valid){
+      this.httpService.assessorPasswordReset({email:this.data.id,password:this.assessorPasswordReset.value.password}).subscribe(data=>{
+         this.toast.success(' Password successfully  changed');
+         this.onNoClick()
+      },err=>{
+        this.onNoClick()
+        this.toast.error('Please try again');
+  
+      })
+    }
+    else{
+      this.toast.error('Please Fill Required Field');
+    }
+  }
+
   noClick(type:any){
     this.dialogRef.close(type);
   }

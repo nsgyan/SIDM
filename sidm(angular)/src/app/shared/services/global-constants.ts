@@ -8,6 +8,7 @@ export class Globals {
         'signupAssessor': Globals.server + 'user/signup/assessor',
         'assessorCheckEmail': Globals.server + 'assessor/checkemail',
         'assessor': Globals.server + 'user/assessor',
+        'assessorPasswordReset': Globals.server + 'user/reset/assessor/password',
         'assessorCheckMobile': Globals.server + 'assessor/checkMobile',
         'getStateList': Globals.server + 'user/getStateList',
         'update': Globals.server + 'sidm/update',

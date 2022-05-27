@@ -17,14 +17,19 @@ export class AddAssessorComponent implements OnInit {
     this.assessorForm=this.fb.group({
       assessorName:['',Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password:['',[Validators.required]],
+      password:['',[Validators.required,Validators.minLength(8)]],
       confirmPassword:['',Validators.required],
     })
+    this.assessorForm.get('password')?.reset()
+    this.assessorForm.get('confirmPassword')?.reset()
   }
 
   ngOnInit(): void {
   }
 
+  resetConfirmPassword($event:any){
+    this.assessorForm.get('confirmPassword')?.reset()
+  }
   
   checkemail(event: any) {
  

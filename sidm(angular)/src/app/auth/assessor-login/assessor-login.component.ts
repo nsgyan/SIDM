@@ -27,9 +27,8 @@ export class AssessorLoginComponent implements OnInit {
       this.localStorage.clearLocalStorage()
       
     this.assessorform = this.formBuilder.group({
-      mobileNumber: ['', Validators.required],
       email: ['', Validators.required],
-      panNumber: ['', Validators.required],
+      password: ['', Validators.required],
     })
   }
   ngOnInit(): void {
@@ -62,11 +61,9 @@ export class AssessorLoginComponent implements OnInit {
 
 
   assessorlogin() {
-
-    this.assessorform.value.panNumber = this.assessorform.value.panNumber.toUpperCase()
  
     if (this.assessorform.valid  ) {
-      this.httpService.assessorLogin({ email: this.assessorform.value.email, mobile: this.assessorform.value.mobileNumber, panNumber: this.assessorform.value.panNumber })
+      this.httpService.assessorLogin({ email: this.assessorform.value.email, password: this.assessorform.value.password })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
           this.localStorage.set('type', 'assessor')

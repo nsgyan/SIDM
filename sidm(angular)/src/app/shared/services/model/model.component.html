@@ -139,3 +139,62 @@
       <button type="button" class="NewBtn mt-3"  (click)="noClick('no')" data-dismiss="modal">Close</button>
     </div>
 </div>
+
+
+<div *ngIf="data.type==='assessor/passwordReset'" class="paymentPopup">
+    <h5 class="modal-title" id="exampleModalLabel">Password Reset</h5>
+    <div mat-dialog-content>
+        <form [formGroup]="assessorPasswordReset">
+            <div class="row border_b ">
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-2">Password *</h5>
+                    <input  formControlName="password" (focusout)="resetConfirmPassword($event)" type="text"
+                        >
+                    <div *ngIf="assessorPasswordReset.controls['password'].invalid
+                        &&(
+                        assessorPasswordReset.controls['password'].touched)">
+                        <p *ngIf="assessorPasswordReset.get('password')?.hasError('required')"
+                            style="color: red;">
+                            password <strong>required</strong>
+                        </p>
+                        <p style="color: red;"
+              *ngIf="assessorPasswordReset.get('password')?.invalid && !assessorPasswordReset.get('password')?.hasError('required')">
+            Password should not less than  8 character 
+            </p>
+                       
+    
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="mt-3 mb-2"> Confirm Password
+                        *</h5>
+                    <input appBlockCopyPaste 
+                        formControlName="confirmPassword" (focusout)="confirmPassword($event)"
+                        type="password" appCpoyPaste>
+                    <div *ngIf="assessorPasswordReset.controls['confirmPassword'].invalid
+                        &&
+                        (
+                        
+                        assessorPasswordReset.controls['confirmPassword'].touched)">
+                        <p *ngIf="assessorPasswordReset.get('confirmPassword')?.hasError('required')"
+                            style="color: red;">
+                            Please re-enter Password
+                        </p>
+                        <p style="color: red;"
+                            *ngIf="assessorPasswordReset.get('confirmPassword')?.hasError('confirmPassword')
+                                &&
+                                !assessorPasswordReset.get('confirmPassword')?.hasError('required')">
+                                Password mismatch
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="mt-4 d-flex justify-content-end">
+        <button type="button" class="NewBtn ml-2 m-2" (click)="resetPassword()">Submit</button>
+        <button type="button" class="NewBtn  m-2" (click)="onNoClick()">Close</button>
+       
+    </div>
+
+</div>

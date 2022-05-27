@@ -19,26 +19,22 @@
     
         <!-- Progress Column -->
         <ng-container matColumnDef="createAt">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Create date </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created date </th>
           <td mat-cell *matCellDef="let row"> {{row.createAt}}</td>
         </ng-container>
     
-        <!-- Name Column -->
-        <ng-container matColumnDef="assessorCompanyName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.assessorCompanyName}} </td>
-        </ng-container>
+    
         <ng-container matColumnDef="assessorName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Input Type </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Assessor name </th>
           <td mat-cell *matCellDef="let row"> {{row.assessorName}}</td>
         </ng-container>
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
           <td mat-cell *matCellDef="let row">  {{row.email}}</td>
         </ng-container>
-        <ng-container matColumnDef="mobileNumber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
-            <td mat-cell *matCellDef="let row">  {{row.mobileNumber}}</td>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let row">  <a (click)="passwordReset(row.email)">Password Reset</a></td>
           </ng-container>
      
         

@@ -30,6 +30,9 @@ export class HttpService {
   getassessor() {
     return this.httpService.get(Globals.route.assessor)
   }
+  assessorPasswordReset(data:any) {
+    return this.httpService.post(Globals.route.assessorPasswordReset,data)
+  }
   assessorLogin(assessordata:any){
     return this.httpService.post(Globals.route.loginAssessor,assessordata)
   }
