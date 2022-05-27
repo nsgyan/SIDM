@@ -66,9 +66,9 @@
             </ul>
             <ul *ngIf="type==='assessor'">
                 <span class="fontSize">NAVIGATION</span>
-                <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
+                <li class=""><a (click)="navigate('dashboard/assessor')"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
                 <span class="fontSize">APPLICANT</span>
-                <li class="ml-2"><a   (click)="navigate('dashboard/assessor')" ><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Applicant List</a></li>
+                <li class="ml-2"><a   (click)="navigate('dashboard/assessor/applicantList')" ><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Applicant List</a></li>
         
                 <span class="fontSize">ASSESSOR</span>
                 <li class="ml-2 "><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i>Assessor List</a></li>
