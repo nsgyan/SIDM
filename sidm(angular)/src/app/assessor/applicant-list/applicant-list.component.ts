@@ -19,7 +19,7 @@ import { ModelComponent } from 'src/app/shared/services/model/model.component';
 export class ApplicantListComponent implements OnInit {
 
   requestInfo:FormGroup
-  displayedColumns: string[] = [ 'index', 'actions','createAt','nameOfCompany', 'email','name','category','typeOfApplicant','sidmMember','paymentStatus','offlinePaymentDetails','status'];
+  displayedColumns: string[] = [ 'index', 'actions','createAt','nameOfCompany', 'email','name'];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

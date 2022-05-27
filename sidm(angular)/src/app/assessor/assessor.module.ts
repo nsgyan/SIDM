@@ -22,13 +22,15 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 import { AssessorDashboardComponent } from './assessor-dashboard/assessor-dashboard.component';
+import { AssessorHeaderComponent } from './assessor-header/assessor-header.component';
 
 
 @NgModule({
   declarations: [
     ApplicantListComponent,
     ViewQuestionnaireComponent,
-    AssessorDashboardComponent
+    AssessorDashboardComponent,
+    AssessorHeaderComponent
   ],
   imports: [
     CommonModule,
