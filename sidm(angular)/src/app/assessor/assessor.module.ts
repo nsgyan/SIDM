@@ -21,12 +21,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
+import { AssessorDashboardComponent } from './assessor-dashboard/assessor-dashboard.component';
 
 
 @NgModule({
   declarations: [
     ApplicantListComponent,
-    ViewQuestionnaireComponent
+    ViewQuestionnaireComponent,
+    AssessorDashboardComponent
   ],
   imports: [
     CommonModule,

@@ -5,7 +5,7 @@ import { AssessorDashboardComponent } from './assessor-dashboard/assessor-dashbo
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 
 const routes: Routes = [
-  {path:'',component:AssessorDashboardComponent},
+    {path:'',component:AssessorDashboardComponent},
   {
   path :"applicantList",
   component:ApplicantListComponent
