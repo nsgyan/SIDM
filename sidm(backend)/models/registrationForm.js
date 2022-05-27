@@ -47,6 +47,7 @@ const RegistrationFormSchema = new Schema({
         remark:{type:String},
         remarkDate:{type:String},
         approveDate:{type:String},
+        assessorStatus:{type:String},
         offlinePaymentDetails:{type:String,default:null},
         memberShipAmount:{type:String,default: null},
         questionnaireStatus:{type:String,default: null}

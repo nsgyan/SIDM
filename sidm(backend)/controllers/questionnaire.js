@@ -121,6 +121,7 @@ exports.aissmentQuestionnaire=(req,res)=>{
     aissment.save().then(data=>{
         RegistrationForm.findById(userId).then(data=>{
             data.questionnaireStatus='sumbit'
+            data.assessorStatus='Pending'
             data.save().then(data=>{
                 res.status(200).json('successfully sumbit');
             })})
@@ -156,6 +157,15 @@ data.assessorStatus=assessorStatus
         data.save().then(item=>{
             res.status(200).send(item)
         })
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
+exports.findmember=(req,res)=>{
+    const category= req.query.category
+    const typeOfApplicant= req.query.typeOfApplicant
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit'}).then(data=>{
+        res.status(200).send(data)
     }).catch(err=>{
         res.json("internal server error");
     })

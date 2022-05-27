@@ -12,6 +12,7 @@ router.post('/assessorScore',auth.auth,questionnaires.assessorScore)
 router.post('/questionnaireAissment',auth.auth,questionnaires.aissmentQuestionnaire)
 router.get('/questionnaireAissment/:userId',auth.auth,questionnaires.getAissmentQuestionnaire)
 router.delete('/deleteQuestionnaire/:userId', auth.adminAuth,questionnaires.deleteQuestionnairesByID)
+router.get('/formsData',questionnaires.findmember);
 
 
 
