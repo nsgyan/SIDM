@@ -4,13 +4,11 @@ const jwt = require('jsonwebtoken');
 
 
 exports.signup = async (req, res, next) => {
-    bcrypt.hash(req.body.panNumber, 10).then(
+    bcrypt.hash(req.body.password, 10).then(
       (hash) => {
         const assessor = new Assessor({
           email: req.body.email,
-          mobileNumber: req.body.mobileNumber,
-          panNumber: hash,
-          assessorCompanyName: req.body.assessorCompanyName,
+          password: hash,
           assessorName: req.body.assessorName,
         });
         assessor.save().then(
@@ -23,7 +21,7 @@ exports.signup = async (req, res, next) => {
           (error) => {
               if(error.code === 11000){
             res.status(500).json(
-                'email and mobile number must be unique'
+                'email  must be unique'
             );
         }
         else{
@@ -35,19 +33,16 @@ exports.signup = async (req, res, next) => {
     );
   };
   
-  exports.login = async(req, res, next) => {
-    
-    const email= req.body.email;
-   const mobileNumber= req.body.mobileNumber;
-   const  panNumber= req.body.panNumber
-   await Assessor.findOne({email:email,mobileNumber:mobileNumber}).then(data=>{
-        const panNumberMatch =  bcrypt.compare(panNumber, data.panNumber);
-        if(panNumberMatch){
+  exports.login = async(req, res, next) => {  
+   const email= req.body.email;
+   const  password= req.body.password
+   await Assessor.findOne({email:email}).then(data=>{
+        const passwordMatch =  bcrypt.compare(password, data.password);
+        if(passwordMatch){
             const token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
                 email: email,
-                mobileNumber: mobileNumber ,
-                panNumber:panNumber,
+                password:password,
 
             }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
             );
@@ -77,17 +72,7 @@ exports.signup = async (req, res, next) => {
         })
 }
 
-exports.getMobile = (req, res, next) => {
-    const mobileNumber = req.body.mobileNumber
-    Assessor.findOne({ mobileNumber: mobileNumber })
-        .then(data => {
-            mobileNumber
-            res.status(200).send(data)
-        })
-        .catch(err => {
-            res.json("internal server error");
-        })
-}
+
 
 exports.getAssessor =(req,res,next)=>{
   Assessor.find().then(data => {

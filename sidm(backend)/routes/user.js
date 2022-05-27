@@ -9,7 +9,6 @@ router.post('/addAdmin', User.addAdminUser);
 router.post('/login/assessor',Assessor.login);
 router.post('/signup/assessor',Assessor.signup);
 router.post('/assessor/checkemail', Assessor.getEmail);
-router.post('/assessor/checkMobile', Assessor.getMobile);
 router.get('/assessor',  Assessor.getAssessor);
 router.post('/login', User.loginVerify);
 router.post('/memberLogin', User.memberLogin);

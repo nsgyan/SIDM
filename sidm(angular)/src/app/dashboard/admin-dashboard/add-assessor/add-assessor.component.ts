@@ -15,11 +15,10 @@ export class AddAssessorComponent implements OnInit {
     private httpService:HttpService,
     private toast: ToastrService,) { 
     this.assessorForm=this.fb.group({
-      assessorCompanyName:['',Validators.required],
       assessorName:['',Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      mobileNumber: ['', [Validators.required, Validators.maxLength(10), CellNumValidation]],
-      panNumber:['',[Validators.required, panValidation]],
+      password:['',[Validators.required]],
+      confirmPassword:['',Validators.required],
     })
   }
 
@@ -41,22 +40,6 @@ export class AddAssessorComponent implements OnInit {
 
     }
   }
-  checkMobile(event: any) {
-
-
-    const mobileNumber = event.target.value ? event.target.value : this.assessorForm.get('mobileNumber')?.value
-    if (mobileNumber) {
-      this.httpService.checkMobile({ mobileNumber: mobileNumber })
-        .subscribe((data: any) => {
-
-          if (mobileNumber === data?.mobileNumber) {
-            this.assessorForm.get('mobileNumber')?.setErrors({ isExist: true });
-          }
-
-        })
-
-    }
-  }
 
   keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -68,14 +51,18 @@ export class AddAssessorComponent implements OnInit {
     }
   }
 
+  confirmPassword(event: any,) {
+    if (event.target.value !== this.assessorForm.value.password) {
+      this.assessorForm.get('confirmPassword')?.setErrors({ confirmPassword: true })
+    }
+  }
+
 
   sumbit(){
     if(this.assessorForm.valid){
       this.httpService.signupAssessor({
         email: this.assessorForm.value.email,
-        mobile: this.assessorForm.value.mobile,
-        panNumber:  this.assessorForm.value.panNumber,
-        assessorCompanyName: this.assessorForm.value.assessorCompanyName,
+        password: this.assessorForm.value.password,
         assessorName: this.assessorForm.value.assessorName,
       }).subscribe(data=>{  
         this.toast.success('Assessor  Successfully Added')
