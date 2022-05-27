@@ -34,7 +34,7 @@
         </ng-container>
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-            <td mat-cell *matCellDef="let row">  <a (click)="passwordReset(row.email)">Password Reset</a></td>
+            <td mat-cell *matCellDef="let row">  <a  class="link" (click)="passwordReset(row.email)">Password Reset</a></td>
           </ng-container>
      
         
