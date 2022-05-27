@@ -15,11 +15,7 @@ const routes: Routes = [
     loadChildren: () => import(`../dashboard/admin-dashboard/admin-dashboard.module`).then(m => m.AdminDashboardModule),
     canActivate:[AdminAuthGuradService]
   },
-  {
-    path:'assessor',
-    loadChildren: () => import('../dashboard/assessor/assessor.module').then(m=>AssessorModule),
-    canActivate:[AdminAuthGuradService]
-  }
+
 ];
 
 @NgModule({
