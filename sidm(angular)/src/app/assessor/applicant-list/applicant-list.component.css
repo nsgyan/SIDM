@@ -156,7 +156,7 @@ p {
   }
   
   .margin {
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
   .mat-form-field-infix {
     border: 1px solid #000 !important;
@@ -173,6 +173,23 @@ p {
   .mat-drawer-content {
     height: 100vh !important;
   }
+
+  .header-fixed {
+    border-bottom: 2px solid #ebebeb;
+    position: relative;
+}
+.RegistrationBtn {
+  background: #363a7a;
+  padding: 10px 20px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+  color: #fff;
+  margin: 1rem 0;
+}
   
   @media only screen and (max-width: 320px) {
     .table-btn {
