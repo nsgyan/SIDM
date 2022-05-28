@@ -77,6 +77,16 @@ export class HttpService {
       params: queryParams
     })
   }
+  assessorApplicantList(category:any,typeOfApplicant:any,status:any){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("category", category);
+    queryParams = queryParams.append("typeOfApplicant", typeOfApplicant);
+    queryParams = queryParams.append("assessorStatus", status);
+
+    return this.httpService.get(`${Globals.route.assessorApplicantList}`, {
+      params: queryParams
+    })
+  }
   updateQuestionnaireAissment(data:any){
     return this.httpService.post(Globals.route.updateQuestionnaire,data)
   }

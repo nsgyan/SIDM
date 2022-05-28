@@ -1,6 +1,7 @@
 const bcrypt= require('bcrypt')
 const Assessor= require('../models/assessor')
 const jwt = require('jsonwebtoken');
+const RegistrationForm = require("../models/registrationForm");
 
 
 exports.signup = async (req, res, next) => {
@@ -99,5 +100,15 @@ exports.passwordReset = (req, res, next) => {
     })
   }).catch(err=>{
     res.send("Internal server error");
+  })
+}
+exports.findmember=(req,res)=>{
+  const category= req.query.category
+  const typeOfApplicant= req.query.typeOfApplicant
+  const assessorStatus= req.query.assessorStatus
+  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit',assessorStatus:assessorStatus}).then(data=>{
+      res.status(200).send(data)
+  }).catch(err=>{
+      res.json("internal server error");
   })
 }

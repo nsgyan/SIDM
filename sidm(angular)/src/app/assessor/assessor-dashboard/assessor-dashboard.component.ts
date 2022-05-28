@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
@@ -87,7 +88,8 @@ cat4={
     completed:0
   }
 }
-  constructor(private httpService:HttpService) { 
+  constructor(private httpService:HttpService,
+    private router: Router) { 
     this.getMemberData('cat1','M')
     this.getMemberData('cat1','L')
     this.getMemberData('cat1','S')
@@ -104,6 +106,13 @@ cat4={
 
   ngOnInit(): void {
   }
+
+  navigateTo(category:any,type:any,status:any){
+    this.router.navigate(['/assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+    // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
+    // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+  }
+
   getMemberData(category:any,typeOfApplicant:any){
     this.httpService.assessorDashboard(category,typeOfApplicant).subscribe((data:any)=>{
       data.map((item:any)=>{

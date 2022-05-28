@@ -33,6 +33,7 @@ export class Globals {
         'questionnaireAissment':Globals.server+'questionnaire/questionnaireAissment',
         'deleteQuestionnaire':Globals.server+'questionnaire/deleteQuestionnaire',
         'updateQuestionnaire':Globals.server+'questionnaire/assessorScore',
-        'assessorDashboard':Globals.server+'questionnaire/formsData'
+        'assessorDashboard':Globals.server+'questionnaire/formsData',
+        'assessorApplicantList':Globals.server+'questionnaire/assessor/aplicantList'
     };
 }

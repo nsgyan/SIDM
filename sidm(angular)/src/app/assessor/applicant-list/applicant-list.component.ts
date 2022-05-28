@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -29,13 +29,18 @@ export class ApplicantListComponent implements OnInit {
   index=0;
   itemPerPage = 10;
   id: any;
+  jwt: any;
 
   constructor(private httpService: HttpService,
     private toast: ToastrService,
     private localStorage: LocalStorageService,
     private routes: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     public dialog: MatDialog) {
+      this.route.queryParams.subscribe((params) => {
+  
+      });
     this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']
