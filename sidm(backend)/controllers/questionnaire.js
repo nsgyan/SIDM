@@ -1,6 +1,7 @@
 const Questionnaires = require("../models/questionnaires")
 const questionnaireAissment= require("../models/questionnaireAissment")
 const RegistrationForm = require("../models/registrationForm");
+const Assessor= require('../models/assessor');
 exports.addQuestionnaires= (req,res,next)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
@@ -120,11 +121,22 @@ exports.aissmentQuestionnaire=(req,res)=>{
     })
     aissment.save().then(data=>{
         RegistrationForm.findById(userId).then(data=>{
-            data.questionnaireStatus='sumbit'
-            data.assessorStatus='Pending'
-            data.save().then(data=>{
-                res.status(200).json('successfully sumbit');
-            })})
+            data.assessor=[]
+            Assessor.find().then(item=>{
+for(i of item){ 
+    data.assessor.push({
+        id:i._id,
+       assessorName:i.assessorName,
+       email:i.email,
+        status:'Pending'
+      })
+      console.log(data.assessor)
+} data.questionnaireStatus='sumbit'
+data.save().then(data=>{
+    res.status(200).json('successfully sumbit');
+})
+ })
+           })
     }).catch(err=>{
         res.json("internal server error");
     })
@@ -150,9 +162,9 @@ exports.getAissmentQuestionnaire=(req,res)=>{
 exports.assessorScore=(req,res)=>{
     const userId= req.body.id
     const questionAns= req.body.questionAns
-    const assessorStatus= req.body.assessorStatus
+    const assessor= req.body.assessor
     questionnaireAissment.findById(userId).then(data=>{
-data.assessorStatus=assessorStatus
+data.assessor=assessor
         data.questionAns=questionAns
         data.save().then(item=>{
             res.status(200).send(item)

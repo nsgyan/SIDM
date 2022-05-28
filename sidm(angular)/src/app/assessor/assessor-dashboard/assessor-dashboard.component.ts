@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-assessor-dashboard',
@@ -89,6 +90,7 @@ cat4={
   }
 }
   constructor(private httpService:HttpService,
+    private localStorage: LocalStorageService,
     private router: Router) { 
     this.getMemberData('cat1','M')
     this.getMemberData('cat1','L')
@@ -114,8 +116,18 @@ cat4={
   }
 
   getMemberData(category:any,typeOfApplicant:any){
+   let name= this.localStorage.get('name')
+   let email= this.localStorage.get('email')
     this.httpService.assessorDashboard(category,typeOfApplicant).subscribe((data:any)=>{
       data.map((item:any)=>{
+        item.assessor.map((assessor:any)=>{
+          if(assessor.email===email){
+          item.assessorStatus=assessor.status
+
+          }
+        })
+        console.log(item);
+        
         if(category==='cat1'){
           if(typeOfApplicant==='M'){
             this.cat1.mediumType.total+=1

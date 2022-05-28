@@ -1,22 +1,22 @@
 <!-- ================= HEADER ================= -->
 <header class="marathon-header-fixed header-fixed">
-    <a href="javascript:void(0)" class="nav-btn">
+    <a (click)="navigateTo('cat4','S','Pending')" class="nav-btn">
         <span></span>
         <span></span>
         <span></span>
     </a>
     <div class="top-panel">
         <div class="container">
-            <a href="javascript:void(0)" class="logo2">
+            <a (click)="navigateTo('cat4','S','Pending')" class="logo2">
                 <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
                 >
             </a>
-        <a href="javascript:void(0)" class="logo1">
+        <a (click)="navigateTo('cat4','S','Pending')" class="logo1">
             <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
                 >
             </a>
 
-        <a href="javascript:void(0)" class="logo3">
+        <a (click)="navigateTo('cat4','S','Pending')" class="logo3">
             <img class="headerLogo3"
                 src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
                 >
@@ -27,13 +27,14 @@
 </header>
 
 <div class="container">
-    <a href="javascript:void(0)" class="RegistrationBtn" target="blanck">
+    <a (click)="navigateTo('cat4','S','Pending')" class="RegistrationBtn" target="blanck">
         <i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>Logout</a>
 </div>
 
 <section class="container">
     <div class="main-sec">
-        <h2>Category 1 : Technology / Product Innovation to address Defence Capability gaps</h2>
+        <h2>C1 – Technology /
+            Product Innovation to address Defence Capability Gaps</h2>
         <div class="row">
             <div class="col-lg-4">
                 <div class="CategoryBox">
@@ -43,7 +44,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a  (click)="navigateTo('cat1','L','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat1.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -51,7 +52,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','L','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat1.LargeType.callReview}}</h3>
                                     <p>Call review</p>
@@ -59,7 +60,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat1.LargeType.completed}}</h3>
                                     <p>Completed</p>
@@ -77,7 +78,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat1.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -85,7 +86,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','M','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat1.mediumType.callReview}}</h3>
                                     <p>Call review</p>
@@ -93,7 +94,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat1.mediumType.completed}}</h3>
                                     <p>Completed</p>
@@ -107,11 +108,11 @@
                 <div class="CategoryBox">
                     <div class="CategoryBoxTop CategoryBoxTop3">
                         <h3>{{cat1.startUpType.total}}</h3>
-                        <p>MSE/Startup</p>
+                        <p>SME/SSI/START-UP</p>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','S','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat1.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -119,7 +120,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a  (click)="navigateTo('cat1','S','Call review')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat1.startUpType.callReview}}</h3>
                                     <p>Call review</p>
@@ -127,7 +128,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat1.startUpType.completed}}</h3>
                                     <p>Completed</p>
@@ -141,7 +142,9 @@
         </div>
     </div>
     <div class="main-sec mt-4">
-        <h2>Category 2 : Import Substitution for Mission Critical Parts / sub-systems / systems</h2>
+        <h2>C2 – Import
+            Substitution for Mission
+            Critical Parts / Sub-Systems / Systems</h2>
         <div class="row">
             <div class="col-lg-4">
                 <div class="CategoryBox">
@@ -151,7 +154,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','L','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat2.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -159,7 +162,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','L','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat2.LargeType.callReview}}</h3>
                                     <p>Call review</p>
@@ -167,7 +170,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat2.LargeType.completed}}</h3>
                                     <p>Completed</p>
@@ -185,7 +188,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat2.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -193,7 +196,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','M','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat2.mediumType.callReview}}</h3>
                                     <p>Call review</p>
@@ -201,7 +204,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat2.mediumType.completed}}</h3>
                                     <p>Completed</p>
@@ -215,11 +218,11 @@
                 <div class="CategoryBox">
                     <div class="CategoryBoxTop CategoryBoxTop3">
                         <h3>{{cat2.startUpType.total}}</h3>
-                        <p>MSE/Startup</p>
+                        <p>SME/SSI/START-UP</p>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','S','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat2.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -227,7 +230,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','S','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat2.startUpType.callReview}}</h3>
                                     <p>Call review</p>
@@ -235,7 +238,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat2.startUpType.completed}}</h3>
                                     <p>Completed</p>
@@ -249,7 +252,9 @@
         </div>
     </div>
     <div class="main-sec mt-4">
-        <h2>Category 3 : Creation of Niche Technological capability for Design, Manufacturing or Testing</h2>
+        <h2>C3 – Creation of
+            Niche, Technological Capability for
+            Design, Manufacturing or Testing</h2>
          <div class="row">
             <div class="col-lg-4">
                 <div class="CategoryBox">
@@ -259,7 +264,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','L','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat3.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -267,7 +272,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','L','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat3.LargeType.callReview}}</h3>
                                     <p>Call review</p>
@@ -275,7 +280,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat3.LargeType.completed}}</h3>
                                     <p>Completed</p>
@@ -293,7 +298,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat3.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -301,7 +306,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','M','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat3.mediumType.callReview}}</h3>
                                     <p>Call review</p>
@@ -309,7 +314,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat3.mediumType.completed}}</h3>
                                     <p>Completed</p>
@@ -323,11 +328,11 @@
                 <div class="CategoryBox">
                     <div class="CategoryBoxTop CategoryBoxTop3">
                         <h3>{{cat3.startUpType.total}}</h3>
-                        <p>MSE/Startup</p>
+                        <p>SME/SSI/START-UP</p>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','S','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat3.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -335,7 +340,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','S','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat3.startUpType.callReview}}</h3>
                                     <p>Call review</p>
@@ -343,7 +348,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat3.startUpType.completed}}</h3>
                                     <p>Completed</p>
@@ -357,7 +362,9 @@
         </div>
     </div>
     <div class="main-sec mt-4 mb-5">
-        <h2>Category 4 : Export performance in Aerospace and Defence Sector</h2>
+        <h2>C4 – Export
+            Performance of Defence & Aerospace
+            Products</h2>
         <div class="row">
             <div class="col-lg-4">
                 <div class="CategoryBox">
@@ -367,7 +374,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','L','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat4.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -375,7 +382,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','L','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat4.LargeType.callReview}}</h3>
                                     <p>Call review</p>
@@ -383,7 +390,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat4.LargeType.completed}}</h3>
                                     <p>Completed</p>
@@ -401,7 +408,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="/assessor/applicantList" class="CategoryBoxbottom">
+                            <a  (click)="navigateTo('cat4','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat4.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -409,7 +416,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','M','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat4.mediumType.callReview}}</h3>
                                     <p>Call review</p>
@@ -417,7 +424,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat4.mediumType.completed}}</h3>
                                     <p>Completed</p>
@@ -431,7 +438,7 @@
                 <div class="CategoryBox">
                     <div class="CategoryBoxTop CategoryBoxTop3">
                         <h3>{{cat4.startUpType.total}}</h3>
-                        <p>MSE/Startup</p>
+                        <p>SME/SSI/START-UP</p>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
@@ -443,7 +450,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','S','Call review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="yellow">{{cat4.startUpType.callReview}}</h3>
                                     <p>Call review</p>
@@ -451,7 +458,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="javascript:void(0)" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3 class="green">{{cat4.startUpType.completed}}</h3>
                                     <p>Completed</p>

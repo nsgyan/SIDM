@@ -99,7 +99,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       this.httpService.updateQuestionnaireAissment({
         id:this.aissmentdata._id,
         questionAns:this.assessor.value.aissment,
-        assessorStatus:'submited'
+        assessor:'submited'
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');
         this.routes.navigate(['/dashboard/assessor'])

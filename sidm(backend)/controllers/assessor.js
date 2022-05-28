@@ -11,12 +11,27 @@ exports.signup = async (req, res, next) => {
           email: req.body.email,
           password: hash,
           assessorName: req.body.assessorName,
+          
         });
         assessor.save().then(
-          () => {
-            res.status(201).json({
-              message: 'assessor added successfully!'
-            });
+          (data) => {
+            RegistrationForm.find().then((formdata)=>{
+for(let item of formdata){
+ item.assessor.push({
+   id:data._id,
+  assessorName:data.assessorName,
+  email:data.email,
+  status:'Pending'
+ })
+ RegistrationForm.findById(item._id).then(i=>{
+   i.assessor=item.assessor;
+   i.save()
+ })
+}
+res.status(201).json({
+  message: 'assessor added successfully!'
+});
+            })
           }
         ).catch(
           (error) => {
@@ -48,7 +63,7 @@ exports.signup = async (req, res, next) => {
             }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
             );
 
-            res.status(200).send({ token: token })
+            res.status(200).send({ token: token,data:data })
          
         }
         else{
@@ -103,12 +118,14 @@ exports.passwordReset = (req, res, next) => {
   })
 }
 exports.findmember=(req,res)=>{
+
   const category= req.query.category
   const typeOfApplicant= req.query.typeOfApplicant
-  const assessorStatus= req.query.assessorStatus
-  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit',assessorStatus:assessorStatus}).then(data=>{
+  const status= req.query.status
+  const asaessorEmail= req.query.asaessorEmail
+  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit' , assessor : { $elemMatch: {  email : { $gte: asaessorEmail }, status:{ $gte: status }}, } }).then(data=>{
       res.status(200).send(data)
   }).catch(err=>{
-      res.json("internal server error");
+      res.status(500).json("internal server error");
   })
 }

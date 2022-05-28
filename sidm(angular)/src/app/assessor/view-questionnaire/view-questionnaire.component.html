@@ -19,7 +19,7 @@
           <th scope="col">Response</th>
           <th scope="col">Attachment</th>
           <th scope="col">Score {{aissmentdata?.totalScore}}</th>
-          <th scope="col"> Assessor Score <span *ngIf="aissmentdata.assessorStatus">{{assessorScore ?assessorScore:''}}
+          <th scope="col"> Assessor Score <span *ngIf="aissmentdata.assessor">{{assessorScore ?assessorScore:''}}
             </span></th>
           <th scope="col"> Max Score {{maxScore}}</th>
         </tr>
@@ -37,7 +37,7 @@
           <td>
             {{aissmentdata?.questionAns.at(i).score}}
           </td>
-          <td *ngIf="!aissmentdata.assessorStatus">
+          <td *ngIf="!aissmentdata.assessor">
             <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)">
             <p style="color: red;" *ngIf="controlName.get('assessorScore')?.hasError('required')&& this.submitted">
               Assessor Score is required
@@ -47,7 +47,7 @@
               Assessor Score should not greater than {{aissmentdata?.questionAns.at(i).maxScore}}
             </p>
           </td>
-          <td *ngIf="aissmentdata.assessorStatus">
+          <td *ngIf="aissmentdata.assessor">
             {{aissmentdata?.questionAns.at(i).assessorScore}}
           </td>
           <td>
@@ -61,7 +61,7 @@
   </form>
   
 </div>
-<div *ngIf="!aissmentdata.assessorStatus" class="container mb-3 " > 
+<div *ngIf="!aissmentdata.assessor" class="container mb-3 " > 
   <button  class="RegistrationBtn"  type="submit" (click)="submit()">
     Save
   </button>

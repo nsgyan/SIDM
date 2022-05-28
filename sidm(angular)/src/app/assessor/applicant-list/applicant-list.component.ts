@@ -1,4 +1,4 @@
-import { formatDate } from '@angular/common';
+import { formatDate, getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +19,7 @@ import { ModelComponent } from 'src/app/shared/services/model/model.component';
 export class ApplicantListComponent implements OnInit {
 
   requestInfo:FormGroup
-  displayedColumns: string[] = [ 'index', 'actions','createAt','nameOfCompany', 'email','name'];
+  displayedColumns: string[] = [ 'index', 'actions','name','category','typeOfApplicant', 'nameOfCompany','assessorStatus',];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -38,10 +38,11 @@ export class ApplicantListComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     public dialog: MatDialog) {
-      this.route.queryParams.subscribe((params) => {
+      this.route.queryParams.subscribe((params:any) => {
+  console.log(params.category);
+  this.getdata(params.category,params.type,params.status)
   
       });
-    this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']
     })
@@ -55,9 +56,19 @@ export class ApplicantListComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  getdata(type:string) {
-    this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
-      data?.data.map((item: any) => {
+  getdata(category:string,typeOfApplicant:any,status:any) {
+    
+    let email= this.localStorage.get('email')
+    this.httpService.assessorApplicantList(category,typeOfApplicant,status,email).subscribe((data:any)=>{
+      console.log(data);
+      
+      data.map((item: any) => {
+        item.assessor.map((assessor:any)=>{
+          if(assessor.email===email){
+          item.assessorStatus=assessor.status
+
+          }
+        })
         if (item.category === 'cat1') {
           item.category = 'C1 '
         }
@@ -88,11 +99,11 @@ export class ApplicantListComponent implements OnInit {
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
-      this.dataSource = new MatTableDataSource(data.data);
+      this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-
+      
     }, err => {
       console.log(err);
       

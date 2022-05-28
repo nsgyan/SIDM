@@ -52,30 +52,34 @@
               <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
             </ng-container>
             <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
               <td mat-cell *matCellDef="let row">
-                <p>Technology / Product Innovation to address Defence Capability gaps</p>
+                <i _ngcontent-swj-c181="" aria-hidden="true" class="fas fa-eye" style="color: #363a7a"></i>
               </td>
             </ng-container>
-            <ng-container id="date" matColumnDef="createAt">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
-              <td mat-cell *matCellDef="let row">Larsen & Toubro Limited - Chemical Detection System</td>
+            <ng-container id="date" matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  Name </th>
+              <td mat-cell *matCellDef="let row">{{row.name}}</td>
             </ng-container>
-            <ng-container matColumnDef="nameOfCompany">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Scale </th>
-              <td mat-cell *matCellDef="let row">Large (Turnover above 250 CR)</td>
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+              <td mat-cell *matCellDef="let row">{{row.category}}</td>
             </ng-container>
   
             
             <!-- Name Column -->
-            <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-              <td mat-cell *matCellDef="let row">Completed</td>
+            <ng-container matColumnDef="typeOfApplicant">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Type Of Applicant </th>
+              <td mat-cell *matCellDef="let row">{{row.typeOfApplicant}}</td>
             </ng-container>
             <!-- Progress Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-              <td mat-cell *matCellDef="let row"><i _ngcontent-swj-c181="" aria-hidden="true" class="fas fa-eye" style="color: #363a7a"></i></td>
+            <ng-container matColumnDef="nameOfCompany">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  Company Name </th>
+              <td mat-cell *matCellDef="let row">{{row.nameOfCompany}}</td>
+            </ng-container>
+            <ng-container matColumnDef="assessorStatus">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Assessor Status </th>
+              <td mat-cell *matCellDef="let row">{{row.assessorStatus}}</td>
             </ng-container>
   
   

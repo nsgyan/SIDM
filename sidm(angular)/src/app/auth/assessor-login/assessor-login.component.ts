@@ -67,6 +67,8 @@ export class AssessorLoginComponent implements OnInit {
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
           this.localStorage.set('type', 'assessor')
+          this.localStorage.set('name', data.data.assessorName)
+          this.localStorage.set('email', data.data.email)
          this.router.navigate(['/assessor'])
         
       //   this.getassessorData()
