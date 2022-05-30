@@ -177,20 +177,12 @@ data.assessor.push({
     assessorScore:assessorScore,
 })
         data.save().then(item=>{
-           RegistrationForm.findById(item.userId).then(formData=>{
-               let i=0
-            formData.assessor.map(assessor=>{
-                if(assessor.email===assessorEmail){
-                    formData.assessor[i].status='sumbit'
-                    formData.assessor[i].maxScore=assessorMaxScore
-                    formData.assessor[i].score=assessorScore
-                } 
-                i++;
-               })
-               formData.save().then(savedItem=>{
-                res.status(200).send(data)
-               })
-           })
+            RegistrationForm.findByIdAndUpdate(item.userId,{$pull:{assessor:{email:assessorEmail}}}).then(savedData=>{
+                RegistrationForm.findByIdAndUpdate(item.userId,{$push: {assessor:{id:assessorID,assessorName:assessorName,email:assessorEmail,status:'sumbit',maxScore:assessorMaxScore,score:assessorScore}}}).then(savedData=>{
+                    res.status(200).send(data)
+                })
+            })
+       
         })
     }).catch(err=>{
         res.json("internal server error");
