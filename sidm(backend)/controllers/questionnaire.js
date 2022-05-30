@@ -185,6 +185,7 @@ data.assessor.push({
                     formData.assessor[i].maxScore=assessorMaxScore
                     formData.assessor[i].score=assessorScore
                 } 
+                i++;
                })
                formData.save().then(savedItem=>{
                 res.status(200).send(data)
