@@ -163,13 +163,33 @@ exports.getAissmentQuestionnaire=(req,res)=>{
 }
 exports.assessorScore=(req,res)=>{
     const userId= req.body.id
-    const questionAns= req.body.questionAns
-    const assessor= req.body.assessor
+    const assessorMaxScore= req.body.assessorMaxScore
+    const assessorScore= req.body.assessorScore
+    const assessorID= req.body.assessorID
+    const assessorName= req.body.assessorName
+    const assessorEmail= req.body.assessorEmail
     questionnaireAissment.findById(userId).then(data=>{
-data.assessor=assessor
-        data.questionAns=questionAns
+data.assessor.push({
+    assessorName: assessorName,
+    assessorEmail:assessorEmail,
+    assessorID:assessorID,
+    assessorMaxScore:assessorMaxScore,
+    assessorScore:assessorScore,
+})
         data.save().then(item=>{
-            res.status(200).send(item)
+           RegistrationForm.findById(item.userId).then(formData=>{
+               let i=0
+            formData.assessor.map(assessor=>{
+                if(assessor.email===assessorEmail){
+                    formData.assessor[i].status='sumbit'
+                    formData.assessor[i].maxScore=assessorMaxScore
+                    formData.assessor[i].score=assessorScore
+                } 
+               })
+               formData.save().then(savedItem=>{
+                res.status(200).send(data)
+               })
+           })
         })
     }).catch(err=>{
         res.json("internal server error");

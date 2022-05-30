@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
 
@@ -27,7 +28,8 @@ export class ViewQuestionnaireComponent implements OnInit {
     private route: ActivatedRoute,
     private routes: Router,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private localStorage: LocalStorageService,
     ) { 
       
      
@@ -76,7 +78,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       inputType:[item.inputType],
       option:[item.option],
       maxScore:[item.maxScore],
-      assessorScore:['',[Validators.required,Validators.max(Number( item.maxScore))]] 
+      assessorScore:['',[Validators.max(Number( item.maxScore))]] 
     })
   );}
   else{
@@ -139,26 +141,38 @@ export class ViewQuestionnaireComponent implements OnInit {
 
   submit(){
     if(this.assessor.valid){
+      let name= this.localStorage.get('name')
+      let email= this.localStorage.get('email')
+      let assessorID= this.localStorage.get('assessorID')
       let control = <FormArray>this.assessor.get('aissment');
       let assessorScore=0
+      let assessorMaxScore=0
       let i=0;
       this.aissmentdata.questionAns.map((item:any)=>{
         if(item.description)
         {
-          let assessorScore=  control.at(i).value.assessorScore
+          let Maxscore=  Number( control.at(i).value.maxScore)
+          assessorMaxScore+=Maxscore
+      let score=  Number( control.at(i).value.assessorScore)
+           assessorScore+=score
         }
+        i++;
       })
-      // this.httpService.updateQuestionnaireAissment({
-      //   id:this.aissmentdata._id,
-      //   questionAns:this.assessor.value.aissment,
-      //   assessor:'submited'
-      // }).subscribe(data=>{
-      //   this.toast.success('Assessor Score Updated');
-      //   this.routes.navigate(['/dashboard/assessor'])
+      this.httpService.updateQuestionnaireAissment({
+        id:this.aissmentdata._id,
+        assessorMaxScore:assessorMaxScore,
+        assessorScore:assessorScore,
+        assessorID:assessorID,
+        assessorEmail:email,
+        assessorName:name
+
+      }).subscribe(data=>{
+        this.toast.success('Assessor Score Updated');
+        this.routes.navigate(['/dashboard/assessor'])
         
-      // },err=>{
-      //   this.toast.error(err);
-      // })
+      },err=>{
+        this.toast.error(err);
+      })
     }
     else {
       this.submitted = true;
