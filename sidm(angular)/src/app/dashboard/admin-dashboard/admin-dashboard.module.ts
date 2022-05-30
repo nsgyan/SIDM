@@ -29,6 +29,7 @@ import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form
 import { AddAssessorComponent } from './add-assessor/add-assessor.component';
 import { AssessorListComponent } from './assessor-list/assessor-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AssessorQuestionnaireComponent } from './assessor-questionnaire/assessor-questionnaire.component';
 
 
 
@@ -44,7 +45,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ApplicantQuestionnaireComponent,
     ApplicantFormViewComponent,
     AddAssessorComponent,
-    AssessorListComponent
+    AssessorListComponent,
+    AssessorQuestionnaireComponent
   ],
   imports: [
     CommonModule,
