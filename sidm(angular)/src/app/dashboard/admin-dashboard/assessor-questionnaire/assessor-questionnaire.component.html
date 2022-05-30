@@ -1,1 +1,123 @@
-<p>assessor-questionnaire works!</p>
+<div class="topHeader">
+  <h2>Assessments View</h2>
+</div>
+
+<div class="questionnaireForm">
+  <!-- <div>
+        <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
+      </div> -->
+      <form [formGroup]="filter" class="mb-2">
+        <div class="row">
+            <div class="col-lg-3">
+                <h5 class="mt-3 mb-2">Category</h5>
+                <select formControlName="category">
+                    <option value="cat1">C1 – Technology /
+                        Product Innovation to address Defence Capability Gaps</option>
+                        <option value="cat2">C2 – Import
+                            Substitution for Mission
+                            Critical Parts / Sub-Systems / Systems</option>
+                            <option value="cat3"> C3 – Creation of
+                                Niche, Technological Capability for
+                                Design, Manufacturing or Testing
+                           </option>
+                                <option value="cat4">C4 – Export
+                                    Performance of Defence & Aerospace
+                                    Products</option>
+                </select>
+               
+            </div>
+            <div class="col-lg-3">
+                <h5 class="mt-3 mb-2">Type Of Applicant </h5>
+                <select formControlName="typeOfapplicant">
+                    <option value="L">  <h6 class="catBold">L – Large</h6>
+                        (Annual Turnover FY 2020-21 over
+                        & above Rs 250 Crore)</option>
+                    <option value="M"><h6 class="catBold">M – Medium</h6>
+                        (Annual Turnover FY 2020-21 between
+                        Rs 75 to 250 Crore)</option>
+                    <option value="S"><h6 class="catBold">S – SME/SSI/START-UP</h6>
+                        (Annual Turnover FY 2020-21 less
+                        than Rs 75 Crore)</option>
+
+                </select>
+
+            </div>
+        </div>
+      </form>
+      <button  class="save-btn mx-2" target="blanck" (click)="filterData()" >
+         Filter
+      </button>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Qs.</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Admin</th>
+        <th scope="col">Dr Parlahda</th>
+        <th scope="col">Lt Gen JP Nehra</th>
+        <th scope="col">Mr SC Bajpai</th>
+        <th scope="col">Dr RK Tyagi,</th>
+        <th scope="col">Rear Admiral Pritam Lal (Retd.)</th>
+        <th scope="col">Mr Sunil Misra</th>
+        <th scope="col">Bharat Jain</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of applicantData; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td class="">{{ item.nameOfCompany }}</td>
+        <td class="">{{ item.email }}</td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'nivas4837@gmail.com'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'aspillai.bm@gmail.com'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'jp.nehra@cii.in'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'scbajpai1@gmail.com'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'rktyagi.hal@gmail.com'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'pritam.lal@cii.in'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'DG@sidm.in'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+        <td *ngFor="let assessor of item.assessor">
+          <span *ngIf="assessor.email === 'bharat.jain@sidm.in'">
+            status:{{ assessor.status }} <br />
+            score:{{ assessor.score }}/{{ assessor.maxScore }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
