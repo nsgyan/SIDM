@@ -37,7 +37,10 @@
       <div class="col-lg-12">
   
         <div class="d-flex justify-content-between align-items-center mb-1 margin">
-          <input type="sarch" (keyup)="applyFilter($event)"  placeholder="Search" class="table-btn">
+          <div>
+            <button class="BackBtn">Back</button>
+            <input type="sarch" (keyup)="applyFilter($event)"  placeholder="Search" class="table-btn">
+          </div>
 
           <button class="RegistrationBtn"><i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i> Logout</button>
         </div>

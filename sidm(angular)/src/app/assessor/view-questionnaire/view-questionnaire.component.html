@@ -1,40 +1,43 @@
 
 <!-- ================= HEADER ================= -->
 <header class="marathon-header-fixed header-fixed">
-  <a (click)="navigateTo('cat4','S','Pending')" class="nav-btn">
+  <a class="nav-btn">
       <span></span>
       <span></span>
       <span></span>
   </a>
   <div class="top-panel">
       <div class="container">
-          <a (click)="navigateTo('cat4','S','Pending')" class="logo2">
+          <a class="logo2">
               <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
               >
           </a>
-      <a (click)="navigateTo('cat4','S','Pending')" class="logo1">
+      <a class="logo1">
           <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
               >
           </a>
 
-      <a (click)="navigateTo('cat4','S','Pending')" class="logo3">
+      <a class="logo3">
           <img class="headerLogo3"
               src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
               >
           </a>
       </div>
   </div>
-  
 </header>
+
+<button class="BackBtn">Back</button>
 
 <div class="questionnaireForm">
   <!-- <div>
         <span class="save-btn">Total Score :{{aissmentdata?.totalScore}}</span>
-      </div> -->  <div>
-        <div>COMPANY NAME: <span>{{userData?.nameOfCompany}}</span> </div>
-        <div>CATEGORY : <span>{{userData?.category}}</span> </div>
-        <div>Type of applicant company: <span>{{userData?.typeOfApplicant}}</span> </div>
-        <div>COMPANY WRITEUP: <span>{{userData?.aboutCompany}}</span> </div>
+      </div> --> 
+      <div class="mainDiv">
+        <div class="ComName">COMPANY NAME: <span>{{userData?.nameOfCompany}}</span> </div>
+        <div class="ComName">CATEGORY : <span>{{userData?.category}}</span> </div>
+        <div class="ComName">Type of applicant company: <span>{{userData?.typeOfApplicant}}</span> </div>
+        <div class="ComName">COMPANY WRITEUP: <br>
+          <p>{{userData?.aboutCompany}}</p> </div>
       </div>
 
     
@@ -82,9 +85,10 @@
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="submit('Call Review')">Call Review</button>
-          <button mat-button  (click)="submit('Completed')">Submit</button>
+          <button class="RegistrationBtn" mat-button  (click)="submit('Completed')">Submit</button>
+          <button class="RegistrationBtn" mat-button (click)="submit('Call Review')">Call Review</button>
+          
+          <button class="RegistrationBtn" mat-button matStepperPrevious>Back</button>
         </div>
       </mat-step>
     </mat-stepper>

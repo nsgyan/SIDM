@@ -3,7 +3,10 @@
     padding: 5px 0 1px;
     margin-top: 4rem;
 }
-
+.header-fixed {
+    border-bottom: 2px solid #ebebeb;
+    position: relative;
+}
 .topHeader h2 {
     margin: 0 0 9px 19px;
     font-size: 20px;
@@ -58,21 +61,23 @@
     padding: 6px 12px !important;
     width: 193px;
 }
-
+.marathon-header-fixed.header-top.header-scroll {
+    background: transparent !important;
+}
 
 
 .mat-stepper-horizontal {
     /* border: 8px solid rgb(232, 232, 232); */
     padding: 8px;
     background: rgb(232, 232, 232);
-    height: 486px;
+    height: 550px;
 
 }
 ::ng-deep .mat-horizontal-stepper-header-container {
     background-color: #fff;
     width: 25%;
     float: left;
-    height: 468px;
+    height: 532px;
     align-items: flex-start !important;
     padding: 1rem;
     margin-right: 10px;
@@ -107,7 +112,7 @@ form {
     overflow: hidden;
     padding: 0 24px 24px 24px;
     background: #fff;
-    height: 466px;
+    height: 532px;
     padding: 1.5rem !important;
 }
 ::ng-deep .mat-step-header .mat-step-icon-selected {
@@ -130,4 +135,39 @@ textarea {
     display: block;
     width: 435px;
     height: 100px; 
+}
+.mainDiv {
+    border: 1px solid #e8e8e8;
+    padding: 1rem;
+} 
+.ComName {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.ComName span {
+    font-size: 14px;
+    color: #868686;
+    font-weight: 400;
+}
+.ComName p {
+    font-size: 14px;
+    color: #868686;
+    font-weight: 400;
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    margin-top: 5px;
+}
+.BackBtn {
+    background: #363a7a;
+    padding: 10px 22px;
+    border: none;
+    margin: 1rem 0 0 1rem;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
 }

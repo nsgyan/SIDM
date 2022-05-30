@@ -851,10 +851,10 @@ footer h5 {
     text-decoration: none;
 }
 .marathon-header-fixed.header-top.header-scroll {
-    background: #4c5d34;
+    background: transparent !important;
 }
 .marathon-header-fixed.header-top {
-    background-color: #4c5d34;
+    background-color: transparent;
     top: -94px;
     padding: 1rem 0;
 }
