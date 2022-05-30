@@ -168,6 +168,7 @@ exports.assessorScore=(req,res)=>{
     const assessorID= req.body.assessorID
     const assessorName= req.body.assessorName
     const assessorEmail= req.body.assessorEmail
+    const status= req.body.status
     questionnaireAissment.findById(userId).then(data=>{
 data.assessor.push({
     assessorName: assessorName,
@@ -175,10 +176,11 @@ data.assessor.push({
     assessorID:assessorID,
     assessorMaxScore:assessorMaxScore,
     assessorScore:assessorScore,
+    status:status
 })
         data.save().then(item=>{
             RegistrationForm.findByIdAndUpdate(item.userId,{$pull:{assessor:{email:assessorEmail}}}).then(savedData=>{
-                RegistrationForm.findByIdAndUpdate(item.userId,{$push: {assessor:{id:assessorID,assessorName:assessorName,email:assessorEmail,status:'sumbit',maxScore:assessorMaxScore,score:assessorScore}}}).then(savedData=>{
+                RegistrationForm.findByIdAndUpdate(item.userId,{$push: {assessor:{id:assessorID,assessorName:assessorName,email:assessorEmail,status:status,maxScore:assessorMaxScore,score:assessorScore}}}).then(savedData=>{
                     res.status(200).send(data)
                 })
             })

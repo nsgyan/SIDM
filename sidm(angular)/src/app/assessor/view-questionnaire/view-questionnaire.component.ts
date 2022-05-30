@@ -32,7 +32,7 @@ export class ViewQuestionnaireComponent implements OnInit {
     private localStorage: LocalStorageService,
     ) { 
       
-     
+      let email= this.localStorage.get('email')
     this.id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
       if (data?.category === 'cat1') {
@@ -57,6 +57,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       else if (data?.typeOfApplicant === 'S') {
         data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
       }
+      data.
      this.userData=data
       
     })
@@ -139,7 +140,7 @@ export class ViewQuestionnaireComponent implements OnInit {
     
   }
 
-  submit(){
+  submit(status:any){
     if(this.assessor.valid){
       let name= this.localStorage.get('name')
       let email= this.localStorage.get('email')
@@ -164,11 +165,12 @@ export class ViewQuestionnaireComponent implements OnInit {
         assessorScore:assessorScore,
         assessorID:assessorID,
         assessorEmail:email,
-        assessorName:name
+        assessorName:name,
+        status:status
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');
-        this.routes.navigate(['/dashboard/assessor'])
+        this.routes.navigate(['/assessor'])
         
       },err=>{
         this.toast.error(err);
@@ -181,6 +183,7 @@ export class ViewQuestionnaireComponent implements OnInit {
     }
     
   }
+
   navigateTo(category:any,type:any,status:any){
     this.router.navigate(['/assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
     // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});

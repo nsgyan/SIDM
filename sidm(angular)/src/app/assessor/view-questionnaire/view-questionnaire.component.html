@@ -83,7 +83,8 @@
         <p>You are now done.</p>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button  (click)="submit()">Submit</button>
+          <button mat-button (click)="submit('Call Review')">Call Review</button>
+          <button mat-button  (click)="submit('Completed')">Submit</button>
         </div>
       </mat-step>
     </mat-stepper>
