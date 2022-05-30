@@ -1,0 +1,54 @@
+.topHeader {
+    background: #363A7A;
+    padding: 5px 0 1px;
+    margin-top: 4rem;
+}
+.topHeader h2 {
+    margin: 0 0 9px 19px;
+    font-size: 20px;
+    color: #fff;
+}
+.questionnaireForm {
+    margin: 1rem;
+}
+.questionnaireForm h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #4c4c4c;
+}
+.table th {
+    border-top: none;
+}
+.table .thead-dark th {
+    background-color: #e5e7fb;
+    color: #000;
+}
+.paymentsDropdwn {
+    background: none;
+    border: 1px solid #363a7a;
+    color: #363a7a!important;
+    border-radius: 3px!important;
+    padding: 7px!important;
+}
+.table td {
+    vertical-align: middle;
+}
+.table th {
+    vertical-align: middle;
+}
+.table {
+    margin-bottom: 1rem;
+    box-shadow: 1px 1px 10px #d9d9d9;
+}
+.paymentsDropdwn {
+    background: none;
+    border: 1px solid #363a7a;
+    color: #363a7a!important;
+    border-radius: 3px!important;
+    padding: 6px 12px!important;
+}
+.save-btn {
+    padding: 8px 14px;
+    float: right;
+    margin-bottom: 1rem;
+}
