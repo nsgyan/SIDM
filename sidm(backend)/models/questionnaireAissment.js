@@ -6,7 +6,7 @@ const questionnaireAissmentSchema = new Schema({
         totalScore:{type:String},
         category:{ type: String },
         questionAns:[], 
-        assessor:{type:String,default:'Pending'}
+        assessor:[]
         
 })
 

@@ -23,6 +23,10 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 import { AssessorDashboardComponent } from './assessor-dashboard/assessor-dashboard.component';
 import { AssessorHeaderComponent } from './assessor-header/assessor-header.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -52,7 +56,13 @@ import { AssessorHeaderComponent } from './assessor-header/assessor-header.compo
     MatToolbarModule,
     MatListModule ,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule,
+    MatSnackBarModule,
+    SharedModule,
+    MatStepperModule,
+
+    
     
   ]
 })

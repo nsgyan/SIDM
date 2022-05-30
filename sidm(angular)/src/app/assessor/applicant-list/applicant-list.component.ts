@@ -168,7 +168,7 @@ export class ApplicantListComponent implements OnInit {
     }
   }
   viewQuestionnaire(id:any){
-    let url: string = "/dashboard/assessor/ViewApplicantQuestionnaire/" +id
+    let url: string = "/assessor/ViewApplicantQuestionnaire/" +id
     this.routes.navigateByUrl(url);
 
   }

@@ -1,68 +1,94 @@
-<div class="topHeader">
-  <h2 *ngIf="aissmentdata?.category==='cat1'"> Category C1 Questionnaire List View</h2>
-  <h2 *ngIf="aissmentdata?.category==='cat2'"> Category C2 Questionnaire List View</h2>
-  <h2 *ngIf="aissmentdata?.category==='cat3'"> Category C3 Questionnaire List View</h2>
-  <h2 *ngIf="aissmentdata?.category==='cat4'"> Category C4 Questionnaire List View</h2>
-</div>
 
+<!-- ================= HEADER ================= -->
+<header class="marathon-header-fixed header-fixed">
+  <a (click)="navigateTo('cat4','S','Pending')" class="nav-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+  </a>
+  <div class="top-panel">
+      <div class="container">
+          <a (click)="navigateTo('cat4','S','Pending')" class="logo2">
+              <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
+              >
+          </a>
+      <a (click)="navigateTo('cat4','S','Pending')" class="logo1">
+          <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
+              >
+          </a>
+
+      <a (click)="navigateTo('cat4','S','Pending')" class="logo3">
+          <img class="headerLogo3"
+              src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
+              >
+          </a>
+      </div>
+  </div>
+  
+</header>
 
 <div class="questionnaireForm">
   <!-- <div>
         <span class="save-btn">Total Score :{{aissmentdata?.totalScore}}</span>
-      </div> -->
-  <form [formGroup]="assessor">
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Qs.</th>
-          <th scope="col">Questions</th>
-          <th scope="col">Response</th>
-          <th scope="col">Attachment</th>
-          <th scope="col">Score {{aissmentdata?.totalScore}}</th>
-          <th scope="col"> Assessor Score <span *ngIf="aissmentdata.assessor">{{assessorScore ?assessorScore:''}}
-            </span></th>
-          <th scope="col"> Max Score {{maxScore}}</th>
-        </tr>
-      </thead>
-      <tbody formArrayName="aissment">
-        <tr *ngFor="let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
-          <th scope="row">{{i+1}}</th>
-          <td class="">{{aissmentdata?.questionAns.at(i).question}}</td>
-          <td>
-            {{aissmentdata?.questionAns.at(i).answer}} <a *ngIf="aissmentdata?.questionAns.at(i).description"
-              (click)="openModel(aissmentdata?.questionAns.at(i).description)">Description</a>
-          </td>
-          <td> <a class="ml-2" *ngIf='aissmentdata?.questionAns.at(i).uploadDocuments' target="blank"
-              href="{{aissmentdata?.questionAns.at(i).uploadDocuments}}"> View Documents</a></td>
-          <td>
-            {{aissmentdata?.questionAns.at(i).score}}
-          </td>
-          <td *ngIf="!aissmentdata.assessor">
-            <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)">
-            <p style="color: red;" *ngIf="controlName.get('assessorScore')?.hasError('required')&& this.submitted">
-              Assessor Score is required
-            </p>
-            <p style="color: red;"
-              *ngIf="controlName.get('assessorScore')?.invalid && !controlName.get('assessorScore')?.hasError('required')&& this.submitted">
-              Assessor Score should not greater than {{aissmentdata?.questionAns.at(i).maxScore}}
-            </p>
-          </td>
-          <td *ngIf="aissmentdata.assessor">
-            {{aissmentdata?.questionAns.at(i).assessorScore}}
-          </td>
-          <td>
-            {{aissmentdata?.questionAns.at(i).maxScore}}
-          </td>
-        </tr>
+      </div> -->  <div>
+        <div>COMPANY NAME: <span>{{userData.nameOfCompany}}</span> </div>
+        <div>CATEGORY : <span>{{userData.category}}</span> </div>
+        <div>Type of applicant company: <span>{{userData.typeOfApplicant}}</span> </div>
+        <div>COMPANY WRITEUP: <span>{{userData.aboutCompany}}</span> </div>
+      </div>
 
-      </tbody>
-    </table>
+    
+
+  <form [formGroup]="assessor">
+    <mat-stepper #stepper>
+    
+      <div formArrayName="aissment">
+        <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+          <mat-step [stepControl]="nameAissment?.get([i])!" >
+
+            <h2>{{i+1}}:{{aissmentdata.questionAns[i].question}}</h2>
+            <div class="checkFeild" *ngFor="let item of aissmentdata.questionAns[i]?.option;let j =index">
+              <div class="form-check">
+                <input class="form-check-input" disabled type="checkbox" value="{{item?.answer}}" id="{{j}}">
+                <label class="form-check-label" for="{{j}}">
+               {{item?.answer}}
+                </label>
+              </div>
+            </div>
+         <h2 *ngIf="aissmentdata.questionAns[i].answer">selected Option :{{aissmentdata.questionAns[i].answer}}</h2>
+         <h2 *ngIf="aissmentdata.questionAns[i].score">Score :{{aissmentdata.questionAns[i].score}}/{{aissmentdata.questionAns[i].maxScore}}</h2>
+         <div *ngIf="aissmentdata.questionAns[i].description">
+          <h2 >Write up : <br>{{aissmentdata.questionAns[i].description}}</h2>
+          <label for=`assessorScore${{i+1}}`>Assessor Score</label>
+          <input type="text" formControlName="assessorScore" id=`assessorScore${{i+1}}`>
+          
+         </div>
+         
+         <a class="ml-2" *ngIf='aissmentdata.questionAns[i].uploadDocuments'  target="blank" href="{{aissmentdata.questionAns[i].uploadDocuments}}"> Attachement</a>
+            <br>
+            
+           
+            <div>
+
+              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+
+            </div>
+
+          </mat-step>
+        </div>
+      </div>  
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button  (click)="submit()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+
     
   </form>
   
-</div>
-<div *ngIf="!aissmentdata.assessor" class="container mb-3 " > 
-  <button  class="RegistrationBtn"  type="submit" (click)="submit()">
-    Save
-  </button>
 </div>

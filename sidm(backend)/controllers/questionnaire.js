@@ -128,7 +128,9 @@ for(i of item){
         id:i._id,
        assessorName:i.assessorName,
        email:i.email,
-        status:'Pending'
+        status:'Pending',
+        maxScore:null,
+        score:null,
       })
       console.log(data.assessor)
 } data.questionnaireStatus='sumbit'

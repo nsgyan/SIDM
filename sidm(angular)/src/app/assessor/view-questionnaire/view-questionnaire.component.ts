@@ -19,16 +19,45 @@ export class ViewQuestionnaireComponent implements OnInit {
   maxScore: any=0;
   assessorScore: any=0;
   submitted: boolean=false;
+  userData:any;
   constructor(
     private httpService: HttpService,
     private fb:FormBuilder,
     private toast: ToastrService,
     private route: ActivatedRoute,
     private routes: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
     ) { 
       
+     
     this.id = this.route.snapshot.paramMap.get('id')
+    this.httpService.getdetails(this.id).subscribe((data:any)=>{
+      if (data?.category === 'cat1') {
+        data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+      }
+      else if (data?.category === 'cat2') {
+        data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+      }
+      else if (data?.category === 'cat3') {
+        data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+      }
+      else if (data?.category === 'cat4') {
+        data.category = 'C4- Export Performance of Defence & Aerospace Products'
+      }
+
+      if (data?.typeOfApplicant === 'L') {
+        data.typeOfApplicant = 'L – Large (Annual Turnover FY 2020-21 over   & above Rs 250 Crore)'
+      }
+      else if (data?.typeOfApplicant === 'M') {
+        data.typeOfApplicant = 'M – Medium  (Annual Turnover FY 2020-21 between  Rs 75 to 250 Crore)'
+      }
+      else if (data?.typeOfApplicant === 'S') {
+        data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
+      }
+     this.userData=data
+      
+    })
     this.assessor=this.fb.group({
       aissment: this.fb.array([]) 
     })
@@ -36,6 +65,7 @@ export class ViewQuestionnaireComponent implements OnInit {
 
     let control = <FormArray>this.assessor.get('aissment');
     data[0].questionAns.map((item:any)=>{
+      if(item.description){
   control.push(
     this.fb.group({
       question: [item.question],      
@@ -48,7 +78,21 @@ export class ViewQuestionnaireComponent implements OnInit {
       maxScore:[item.maxScore],
       assessorScore:['',[Validators.required,Validators.max(Number( item.maxScore))]] 
     })
-  );
+  );}
+  else{
+    control.push(
+      this.fb.group({
+        question: [item.question],      
+        answer:[item.answer],
+        uploadDocuments:[item.uploadDocuments],
+        description:[item.description],
+        score:[item.score] ,
+        inputType:[item.inputType],
+        option:[item.option],
+        maxScore:[item.maxScore],
+      })
+    );
+  }
    
  })
       data[0].questionAns.map((item:any)=>{
@@ -94,19 +138,27 @@ export class ViewQuestionnaireComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.assessor);
     if(this.assessor.valid){
-      this.httpService.updateQuestionnaireAissment({
-        id:this.aissmentdata._id,
-        questionAns:this.assessor.value.aissment,
-        assessor:'submited'
-      }).subscribe(data=>{
-        this.toast.success('Assessor Score Updated');
-        this.routes.navigate(['/dashboard/assessor'])
-        
-      },err=>{
-        this.toast.error(err);
+      let control = <FormArray>this.assessor.get('aissment');
+      let assessorScore=0
+      let i=0;
+      this.aissmentdata.questionAns.map((item:any)=>{
+        if(item.description)
+        {
+          let assessorScore=  control.at(i).value.assessorScore
+        }
       })
+      // this.httpService.updateQuestionnaireAissment({
+      //   id:this.aissmentdata._id,
+      //   questionAns:this.assessor.value.aissment,
+      //   assessor:'submited'
+      // }).subscribe(data=>{
+      //   this.toast.success('Assessor Score Updated');
+      //   this.routes.navigate(['/dashboard/assessor'])
+        
+      // },err=>{
+      //   this.toast.error(err);
+      // })
     }
     else {
       this.submitted = true;
@@ -115,5 +167,12 @@ export class ViewQuestionnaireComponent implements OnInit {
     }
     
   }
+  navigateTo(category:any,type:any,status:any){
+    this.router.navigate(['/assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+    // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
+    // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+  }
+
 
 }
+

@@ -51,7 +51,7 @@ getquestion(category:any,typeOfApplicant:any){
       uploadDocuments:[''],
       description:[''],
       score:[''] ,
-      inputType:[''],
+      inputType:[item.inputType],
       option:[],
       maxScore:['']    
     })
@@ -166,7 +166,7 @@ for(let item of this.questionnaireData){
    this.totalScore+=data.score;
       }
     })
-    control.at(i).get('inputType')?.setValue(item.options)
+    control.at(i).get('inputType')?.setValue(item.inputType)
     control.at(i).get('inputType')?.updateValueAndValidity()
     control.at(i).get('option')?.setValue(item.options)
     control.at(i).get('option')?.updateValueAndValidity()

@@ -21,7 +21,9 @@ for(let item of formdata){
    id:data._id,
   assessorName:data.assessorName,
   email:data.email,
-  status:'Pending'
+  status:'Pending',
+  maxScore:null,
+  score:null,
  })
  RegistrationForm.findById(item._id).then(i=>{
    i.assessor=item.assessor;
