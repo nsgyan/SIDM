@@ -109,7 +109,7 @@ form {
     float: right;
 }
 ::ng-deep .mat-horizontal-content-container {
-    overflow: hidden;
+    overflow: auto !important;
     padding: 0 24px 24px 24px;
     background: #fff;
     height: 532px;

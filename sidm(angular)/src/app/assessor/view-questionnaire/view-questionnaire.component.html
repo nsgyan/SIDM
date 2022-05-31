@@ -27,6 +27,7 @@
 </header>
 
 <button class="BackBtn" (click)="goBack()">Back</button>
+<div class="clearfix"></div>
 
 <div class="questionnaireForm">
   <!-- <div>
@@ -58,12 +59,18 @@
                 </label>
               </div>
             </div>
-         <h2 *ngIf="aissmentdata.questionAns[i].answer">selected Option :{{aissmentdata.questionAns[i].answer}}</h2>
-         <h2 *ngIf="aissmentdata.questionAns[i].score">Score :{{aissmentdata.questionAns[i].score}}/{{aissmentdata.questionAns[i].maxScore}}</h2>
+         <h2 *ngIf="aissmentdata.questionAns[i].answer">Selected option :{{aissmentdata.questionAns[i].answer}}</h2>
+         <h2 *ngIf="aissmentdata.questionAns[i].score">Score :{{aissmentdata.questionAns[i].score}}</h2>
+         <h2 *ngIf="aissmentdata.questionAns[i].score">Max score :{{aissmentdata.questionAns[i].maxScore}}</h2>
          <div *ngIf="aissmentdata.questionAns[i].description">
           <h2 >Write up : <br>{{aissmentdata.questionAns[i].description}}</h2>
-          <label for=`assessorScore${{i+1}}`>Assessor Score</label>
-          <input type="text" formControlName="assessorScore" id=`assessorScore${{i+1}}`>
+          <label for=`assessorScore${{i+1}}`>Assessor score</label>
+          <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)" id=`assessorScore${{i+1}}`>
+          <p *ngIf="controlName.get('assessorScore')?.invalid"
+          style="color: red;">
+        Assessor
+          score not greater than<strong>{{aissmentdata.questionAns[i].maxScore}}</strong>
+      </p>
           
          </div>
          
@@ -77,6 +84,7 @@
               <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
+            <div class="clearfix"></div>
 
           </mat-step>
         </div>
@@ -90,6 +98,7 @@
           
           <button class="RegistrationBtn" mat-button matStepperPrevious>Back</button>
         </div>
+        <div class="clearfix"></div>
       </mat-step>
     </mat-stepper>
 
