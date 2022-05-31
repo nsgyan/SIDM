@@ -76,3 +76,10 @@ select {
     -webkit-transition: .35s ease;
     transition: .35s ease;
 }
+.bg {
+    background: rgb(25, 116, 37);
+    color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+}
