@@ -138,10 +138,10 @@ textarea {
 }
 .mainDiv {
     border: 1px solid #e8e8e8;
-    padding: 1rem;
+    padding: .75rem;
 } 
 .ComName {
-    font-size: 15px;
+    font-size: 14px;
     color: #000;
     font-weight: 500;
     margin-bottom: 5px;
@@ -162,7 +162,7 @@ textarea {
 }
 .BackBtn {
     background: #363a7a;
-    padding: 10px 22px;
+    padding: 4px 10px;
     border: none;
     margin: 1rem 0 0 1rem;
     font-weight: 500;
@@ -171,3 +171,25 @@ textarea {
     border-radius: 3px;
     color: #fff;
 }
+.marathon-header-fixed.header-top.header-scroll {
+    top: 0 !important;
+}
+.marathon-header-fixed.header-top {
+    top: 0 !important;
+}
+.fontSize {
+    font-size: 16px;
+}
+.score {
+    margin: 0;
+    border: 1px solid #e8e8e8;
+    padding: 5px 20px;
+}
+.secondText {
+    font-size: 17px;
+    font-weight: 400;
+}
+.MaxScore {
+    color: #000;
+}
+

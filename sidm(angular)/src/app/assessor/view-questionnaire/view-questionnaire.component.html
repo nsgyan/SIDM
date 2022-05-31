@@ -1,28 +1,23 @@
-
 <!-- ================= HEADER ================= -->
 <header class="marathon-header-fixed header-fixed">
   <a class="nav-btn">
-      <span></span>
-      <span></span>
-      <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </a>
   <div class="top-panel">
-      <div class="container">
-          <a class="logo2">
-              <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
-              >
-          </a>
+    <div class="container">
+      <a class="logo2">
+        <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo">
+      </a>
       <a class="logo1">
-          <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
-              >
-          </a>
+        <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo">
+      </a>
 
       <a class="logo3">
-          <img class="headerLogo3"
-              src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
-              >
-          </a>
-      </div>
+        <img class="headerLogo3" src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo">
+      </a>
+    </div>
   </div>
 </header>
 
@@ -32,52 +27,81 @@
 <div class="questionnaireForm">
   <!-- <div>
         <span class="save-btn">Total Score :{{aissmentdata?.totalScore}}</span>
-      </div> --> 
-      <div class="mainDiv">
+      </div> -->
+  <div class="mainDiv">
+    <div class="row">
+      <div class="col-lg-6">
         <div class="ComName">COMPANY NAME: <span>{{userData?.nameOfCompany}}</span> </div>
         <div class="ComName">CATEGORY : <span>{{userData?.category}}</span> </div>
-        <div class="ComName">Type of applicant company: <span>{{userData?.typeOfApplicant}}</span> </div>
-        <div class="ComName">COMPANY WRITEUP: <br>
-          <p>{{userData?.aboutCompany}}</p> </div>
       </div>
+      <div class="col-lg-6">
+        <div class="ComName">Type of applicant company: <span>{{userData?.typeOfApplicant}}</span> </div>
 
-    
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ComName">COMPANY WRITEUP: <br>
+          <p>{{userData?.aboutCompany}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <form [formGroup]="assessor">
     <mat-stepper #stepper>
-    
-      <div formArrayName="aissment">
-        <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
-          <mat-step [stepControl]="nameAissment?.get([i])!" >
 
+      <div formArrayName="aissment">
+
+        <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+
+          <mat-step [stepControl]="nameAissment?.get([i])!">
+            <div class="d-flex justify-content-end">
+              <div class="d-flex align-items-center">
+                <label class="mr-2 MaxScore">Max Score</label>
+                <p class="score">12</p>
+              </div>
+              <div class="d-flex align-items-center ml-3">
+                <label class="mr-2 MaxScore">Score</label>
+                <p class="score">12</p>
+              </div>
+            </div>
             <h2>{{i+1}}:{{aissmentdata.questionAns[i].question}}</h2>
             <div class="checkFeild" *ngFor="let item of aissmentdata.questionAns[i]?.option;let j =index">
               <div class="form-check">
                 <input class="form-check-input" disabled type="checkbox" value="{{item?.answer}}" id="{{j}}">
-                <label class="form-check-label" for="{{j}}">
-               {{item?.answer}}
+                <label class="form-check-label fontSize" for="{{j}}">
+                  {{item?.answer}}
                 </label>
               </div>
             </div>
-         <h2 *ngIf="aissmentdata.questionAns[i].answer">Selected option :{{aissmentdata.questionAns[i].answer}}</h2>
-         <h2 *ngIf="aissmentdata.questionAns[i].score">Score :{{aissmentdata.questionAns[i].score}}</h2>
-         <h2 *ngIf="aissmentdata.questionAns[i].score">Max score :{{aissmentdata.questionAns[i].maxScore}}</h2>
-         <div *ngIf="aissmentdata.questionAns[i].description">
-          <h2 >Write up : <br>{{aissmentdata.questionAns[i].description}}</h2>
-          <label for=`assessorScore${{i+1}}`>Assessor score</label>
-          <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)" id=`assessorScore${{i+1}}`>
-          <p *ngIf="controlName.get('assessorScore')?.invalid"
-          style="color: red;">
-        Assessor
-          score not greater than<strong>{{aissmentdata.questionAns[i].maxScore}}</strong>
-      </p>
-          
-         </div>
-         
-         <a class="ml-2" *ngIf='aissmentdata.questionAns[i].uploadDocuments'  target="blank" href="{{aissmentdata.questionAns[i].uploadDocuments}}"> Attachement</a>
+
+            <!-- <div>
+                <h2 *ngIf="aissmentdata.questionAns[i].score">Max score :{{aissmentdata.questionAns[i].maxScore}}</h2>
+                <h2 *ngIf="aissmentdata.questionAns[i].score">Score :{{aissmentdata.questionAns[i].score}}</h2>
+              </div> -->
+
+
+            <h2 *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
+
+            <div *ngIf="aissmentdata.questionAns[i].description">
+              <h2>Write up : <br><span class="secondText">{{aissmentdata.questionAns[i].description}}</span></h2>
+              <label for=`assessorScore${{i+1}}`>Assessor score</label>
+              <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)"
+                id=`assessorScore${{i+1}}`>
+              <p *ngIf="controlName.get('assessorScore')?.invalid" style="color: red;">
+                Assessor
+                score not greater than<strong>{{aissmentdata.questionAns[i].maxScore}}</strong>
+              </p>
+
+            </div>
+
+            <a class="ml-2" *ngIf='aissmentdata.questionAns[i].uploadDocuments' target="blank"
+              href="{{aissmentdata.questionAns[i].uploadDocuments}}"> Attachement</a>
             <br>
-            
-           
+
+
             <div>
 
               <button mat-button matStepperNext class="RegistrationBtn">Next</button>
@@ -88,21 +112,21 @@
 
           </mat-step>
         </div>
-      </div>  
-    <mat-step>
+      </div>
+      <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-          <button class="RegistrationBtn" mat-button  (click)="submit('Completed')">Submit</button>
+          <button class="RegistrationBtn" mat-button (click)="submit('Completed')">Submit</button>
           <button class="RegistrationBtn" mat-button (click)="submit('Call Review')">Call Review</button>
-          
+
           <button class="RegistrationBtn" mat-button matStepperPrevious>Back</button>
         </div>
         <div class="clearfix"></div>
       </mat-step>
     </mat-stepper>
 
-    
+
   </form>
-  
+
 </div>
