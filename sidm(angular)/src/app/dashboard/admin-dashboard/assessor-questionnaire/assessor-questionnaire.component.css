@@ -48,7 +48,31 @@
     padding: 6px 12px!important;
 }
 .save-btn {
-    padding: 8px 14px;
-    float: right;
-    margin-bottom: 1rem;
+    padding: 13px 14px;
+    width: 100%;
+    margin-top: 42px;
+}
+.input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"], textarea {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-family: "Red Hat Display", sans-serif;
+    color: #8b8b8b;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: .35s ease;
+    transition: .35s ease;
+}
+select {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-family: "Red Hat Display", sans-serif;
+    color: #8b8b8b;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: .35s ease;
+    transition: .35s ease;
 }
