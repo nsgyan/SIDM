@@ -201,6 +201,9 @@ p {
   border-radius: 3px;
   color: #fff;
 }
+.ResponsiveTable {
+  min-height: 19rem !important;
+}
   
   @media only screen and (max-width: 320px) {
     .table-btn {
