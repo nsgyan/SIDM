@@ -60,16 +60,16 @@
             <div class="d-flex justify-content-end">
               <div class="d-flex align-items-center">
                 <label class="mr-2 MaxScore">Max Score</label>
-                <p class="score">12</p>
+                <p class="score">{{aissmentdata.questionAns[i].maxScore}}</p>
               </div>
               <div class="d-flex align-items-center ml-3">
                 <label class="mr-2 MaxScore">Score</label>
-                <p class="score">12</p>
+                <p class="score">{{aissmentdata.questionAns[i].score}}</p>
               </div>
             </div>
-            <h2>{{i+1}}:{{aissmentdata.questionAns[i].question}}</h2>
+            <h2>{{i+1}}.{{aissmentdata.questionAns[i].question}}</h2>
             <div class="checkFeild" *ngFor="let item of aissmentdata.questionAns[i]?.option;let j =index">
-              <div class="form-check">
+              <div class="form-check mb-2">
                 <input class="form-check-input" disabled type="checkbox" value="{{item?.answer}}" id="{{j}}">
                 <label class="form-check-label fontSize" for="{{j}}">
                   {{item?.answer}}
@@ -83,12 +83,12 @@
               </div> -->
 
 
-            <h2 *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
+            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
 
             <div *ngIf="aissmentdata.questionAns[i].description">
-              <h2>Write up : <br><span class="secondText">{{aissmentdata.questionAns[i].description}}</span></h2>
-              <label for=`assessorScore${{i+1}}`>Assessor score</label>
-              <input type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)"
+              <h2>Write up: <br><span class="secondText">{{aissmentdata.questionAns[i].description}}</span></h2>
+              <label class="text" for=`assessorScore${{i+1}}`>Assessor score: </label>
+              <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)"
                 id=`assessorScore${{i+1}}`>
               <p *ngIf="controlName.get('assessorScore')?.invalid" style="color: red;">
                 Assessor
@@ -97,8 +97,8 @@
 
             </div>
 
-            <a class="ml-2" *ngIf='aissmentdata.questionAns[i].uploadDocuments' target="blank"
-              href="{{aissmentdata.questionAns[i].uploadDocuments}}"> Attachement</a>
+            <a class="AttachementBtn ml-2" *ngIf='aissmentdata.questionAns[i].uploadDocuments' target="blank"
+              href="{{aissmentdata.questionAns[i].uploadDocuments}}">View Attachement</a>
             <br>
 
 
@@ -115,10 +115,10 @@
       </div>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+        <p class="text">You are now done.</p>
         <div>
           <button class="RegistrationBtn" mat-button (click)="submit('Completed')">Submit</button>
-          <button class="RegistrationBtn" mat-button (click)="submit('Call Review')">Call Review</button>
+          <button class="RegistrationBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
 
           <button class="RegistrationBtn" mat-button matStepperPrevious>Back</button>
         </div>

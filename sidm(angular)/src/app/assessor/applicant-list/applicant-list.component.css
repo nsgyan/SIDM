@@ -8,7 +8,7 @@ p {
   
   .mat-header-cell {
     background-color: #363a7a;
-    font-size: 12px;
+    font-size: 15px;
     color: #ffffff;
   }
   
@@ -48,7 +48,7 @@ p {
     width: 6%;
     text-align: center;
     border: none;
-    font-size: 14px;
+    font-size: 15px;
     color: #000000;
   }
   
@@ -71,6 +71,17 @@ p {
   .mat-row:nth-child(odd) {
     background-color: #F3F1F5
   }
+  .bg {
+    background: rgb(25, 116, 37);
+    color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.callR {
+  font-size: 14px;
+  color: #9d480c!important;
+}
   
   
   .paymentsDropdwn {
@@ -166,6 +177,7 @@ p {
       padding: 9px 10px;
       background: none;
       border-radius: 3px;
+      width: 300px;
   }
   .mat-form-field-flex {
     border: 1px solid #000;
