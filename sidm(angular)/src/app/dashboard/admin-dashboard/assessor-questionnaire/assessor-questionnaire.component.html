@@ -81,7 +81,7 @@
         <td *ngFor="let assessor of item.assessor">
           <span *ngIf="assessor.email === 'admin@admin.com'">
              <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
-            <span class="text-warning callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
+            <span class="callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
