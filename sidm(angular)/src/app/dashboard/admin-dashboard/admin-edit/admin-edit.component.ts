@@ -165,6 +165,7 @@ export class AdminEditComponent implements OnInit {
           registeredOrganization: [this.formData.registeredOrganization ? this.formData.registeredOrganization : ''],
           nameRegisteredOrganization: this.formBuilder.array([ ]),
           aboutCompany: [this.formData.aboutCompany ? this.formData.aboutCompany : ''],
+          nomenclaturOfItems:[this.formData.nomenclaturOfItems ? this.formData.nomenclaturOfItems : ''],
           sidmChampionAwards: [this.formData.sidmChampionAwards ? this.formData.sidmChampionAwards : ''],
           isappreciation: [this.formData.isappreciation ? this.formData.isappreciation : ''],
           appreciationDocuments: [''],
@@ -496,6 +497,8 @@ export class AdminEditComponent implements OnInit {
     this.editForm.get('registeredOrganization')?.updateValueAndValidity()
     this.editForm.get('aboutCompany')?.setValidators(Validators.required)
     this.editForm.get('aboutCompany')?.updateValueAndValidity()
+    this.editForm.get('nomenclaturOfItems')?.setValidators(Validators.required)
+    this.editForm.get('nomenclaturOfItems')?.updateValueAndValidity()
     this.editForm.get('sidmChampionAwards')?.setValidators(Validators.required)
     this.editForm.get('sidmChampionAwards')?.updateValueAndValidity()
     this.editForm.get('isappreciation')?.setValidators(Validators.required)
@@ -538,6 +541,7 @@ export class AdminEditComponent implements OnInit {
         nameRegisteredOrganization: this.editForm.value.nameRegisteredOrganization,
         aboutCompany: this.editForm.value.aboutCompany,
         sidmChampionAwards: this.editForm.value.sidmChampionAwards,
+        nomenclaturOfItems: this.editForm.value.nomenclaturOfItems,
         isappreciation: this.editForm.value.isappreciation,
         appreciationDocuments: this.appreciationDocuments,
         campareAchivement: this.editForm.value.campareAchivement,
