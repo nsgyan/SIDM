@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-applicant-list',
@@ -37,7 +38,8 @@ export class ApplicantListComponent implements OnInit {
     private routes: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private _location: Location) {
       this.route.queryParams.subscribe((params:any) => {
   console.log(params.category);
   this.getdata(params.category,params.type,params.status)
@@ -166,6 +168,9 @@ export class ApplicantListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  goBack(){
+    this._location.back();
   }
   viewQuestionnaire(id:any){
     let url: string = "/assessor/ViewApplicantQuestionnaire/" +id

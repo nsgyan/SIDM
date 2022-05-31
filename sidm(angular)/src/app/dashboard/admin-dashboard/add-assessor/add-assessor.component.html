@@ -6,8 +6,17 @@
       <form [formGroup]="assessorForm" autocomplete="off">
         <div class="row">
             <div class="col-lg-6">
-                <h5 class="mt-3 mb-2">Assessor Name </h5>
+                <h5 class="mt-3 mb-2">Assessor Name* </h5>
                 <input formControlName="assessorName" type="text">
+                <div *ngIf="
+                    assessorForm.controls['assessorName'].invalid&& (
+                    assessorForm.controls['assessorName'].touched)">
+                    <p *ngIf="assessorForm.get('assessorName')?.hasError('required')"
+                        style="color: red;">
+                        Assessor Name<strong>required</strong>
+                    </p>
+                    
+                </div>
 
             </div>
             <div class="col-lg-6">

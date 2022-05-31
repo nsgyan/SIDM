@@ -7,6 +7,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-view-questionnaire',
@@ -30,6 +31,7 @@ export class ViewQuestionnaireComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private localStorage: LocalStorageService,
+    private _location: Location
     ) { 
       
       let email= this.localStorage.get('email')
@@ -57,7 +59,6 @@ export class ViewQuestionnaireComponent implements OnInit {
       else if (data?.typeOfApplicant === 'S') {
         data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
       }
-      data.
      this.userData=data
       
     })
@@ -188,6 +189,9 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.router.navigate(['/assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
     // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
     // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+  }
+  goBack(){
+    this._location.back();
   }
 
 

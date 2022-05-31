@@ -326,6 +326,8 @@ footer {
     background-size: cover;
     width: 100%;
     padding: 100px 0 50px;
+    bottom: 0;
+    position: relative;
 }
 .footer-cont p {
     margin-bottom: 24px;

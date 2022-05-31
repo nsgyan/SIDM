@@ -29,20 +29,20 @@
             </p>
             <br>
             <div *ngIf="questionnaireData[i].textBox" >
-              <div>
+              <div class="mb-2">
                 <label
                 class="questionnaireLabel">Enter Description:</label>
                 <textarea name="" id="" cols="30" rows="10" formControlName="description" required></textarea>
               </div>
             </div>
-            <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')">
-              Answer Description required
+            <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty)">
+              Answer description required
             </p>
             <div *ngIf="questionnaireData[i].upload" appearance="fill">
 
               <input type="file" (change)="changeListener($event,i)" required>
               <p style="color: red;" *ngIf="controlName.get('uploadDocuments')?.hasError('required')">
-                Please upload required Documents
+                Please upload required documents
               </p>
             </div>
             <div>
