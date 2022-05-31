@@ -86,3 +86,8 @@ select {
 .callR {
     font-size: 14px;
 }
+.questionnaireForm h5 {
+    color: rgb(26, 26, 26);
+    font-size: 17px;
+    font-weight: 500;
+}
