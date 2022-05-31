@@ -83,13 +83,14 @@
               </div> -->
 
 
-            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
+            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span
+                class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
 
             <div *ngIf="aissmentdata.questionAns[i].description">
               <h2>Write up: <br><span class="secondText">{{aissmentdata.questionAns[i].description}}</span></h2>
               <label class="text" for=`assessorScore${{i+1}}`>Assessor score: </label>
-              <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)"
-                id=`assessorScore${{i+1}}`>
+              <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore"
+                (keypress)="keyPressNumbers($event)" id=`assessorScore${{i+1}}`>
               <p *ngIf="controlName.get('assessorScore')?.invalid" style="color: red;">
                 Assessor
                 score not greater than<strong>{{aissmentdata.questionAns[i].maxScore}}</strong>
@@ -115,12 +116,14 @@
       </div>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
-        <p class="text">You are now done.</p>
-        <div>
-          <button class="RegistrationBtn" mat-button (click)="submit('Completed')">Submit</button>
-          <button class="RegistrationBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
-
-          <button class="RegistrationBtn" mat-button matStepperPrevious>Back</button>
+        <div class="Submitted">
+          <img class="checkBoxImg" src="assets/img/New_img/checkbox.png" alt="">
+          <p class="text">All Questionnaire Submitted.</p>
+        </div>
+        <div class="FinalBtn">
+          <button class="SubmittedBtn" mat-button matStepperPrevious>Back</button>
+          <button class="SubmittedBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
+          <button class="SubmittedBtn mr-0" mat-button (click)="submit('Completed')">Submit</button>
         </div>
         <div class="clearfix"></div>
       </mat-step>
