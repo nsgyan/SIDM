@@ -82,7 +82,7 @@
             </ng-container>
             <ng-container matColumnDef="assessorStatus">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Assessor Status </th>
-              <td mat-cell *matCellDef="let row">{{row.assessorStatus}}</td>
+              <td mat-cell *matCellDef="let row"><span *ngIf="row.assessorStatus==='Pending'"> Pending</span> <span *ngIf="row.assessorStatus==='Call Review'"> Call Review</span> <span *ngIf="row.assessorStatus==='Completed'"> Completed</span></td>
             </ng-container>
   
   
