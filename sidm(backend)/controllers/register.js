@@ -59,7 +59,7 @@ exports.postRegistrationForm = (req, res, next) => {
   const transactionDetails = req.body.transactionDetails;
   const amount = req.body.amount;
  const paymentMode= req.body.paymentMode;
-  const ofilenModeOfPayment= req.body.ofilenModeOfPayment
+  const offlineModeOfPayment= req.body.offlineModeOfPayment
   let paymentStatus=null
   if(paymentMode==='offline'&&status==='Pending Approval'){
     paymentStatus='Paid'
@@ -108,7 +108,7 @@ exports.postRegistrationForm = (req, res, next) => {
     transactionDetails :transactionDetails,
     amount :amount,
    paymentMode:paymentMode,
-    ofilenModeOfPayment:ofilenModeOfPayment,
+    offlineModeOfPayment:offlineModeOfPayment,
     remark:null
   });
 
@@ -302,7 +302,7 @@ exports.updateFrom = (req, res, next) => {
   const transactionDetails = req.body.transactionDetails;
   const amount = req.body.amount;
  const paymentMode= req.body.paymentMode;
-  const ofilenModeOfPayment= req.body.ofilenModeOfPayment
+  const offlineModeOfPayment= req.body.offlineModeOfPayment
   let paymentStatus
   if(paymentMode==='offline'&&status==='Pending Approval'){
     paymentStatus='Paid'
@@ -356,7 +356,7 @@ exports.updateFrom = (req, res, next) => {
           formData.transactionDetails =transactionDetails,
           formData.amount =amount,
           formData.paymentMode=paymentMode,
-          formData.ofilenModeOfPayment=ofilenModeOfPayment,
+          formData.offlineModeOfPayment=offlineModeOfPayment,
       formData.productLink = productLink;
       formData.exhibit1 = exhibit1;
       formData.exhibit2 = exhibit2;

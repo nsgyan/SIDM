@@ -56,7 +56,7 @@ const RegistrationFormSchema = new Schema({
        transactionDetails :{type:String,default: null},
        amount :{type:String,default: null},
       paymentMode:{type:String,default: null},
-       ofilenModeOfPayment:{type:String,default: null},
+       offlineModeOfPayment:{type:String,default: null},
 
 })
 

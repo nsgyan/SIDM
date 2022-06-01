@@ -277,7 +277,7 @@ export class MemberDashboardComponent implements OnInit {
           alterMobileNumber:[this.editData.alterMobileNumber,[Validators.maxLength(10),  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
           alterEmail:[this.editData.alterEmail,Validators.email],
           paymentMode:[this.editData.paymentMode ?this.editData.paymentMode: 'online'],
-          ofilenModeOfPayment:[this.editData.ofilenModeOfPayment],
+          offlineModeOfPayment:[this.editData.offlineModeOfPayment],
           nameOfBank:[this.editData.nameOfBank],
      
           offlineDateOfPayment:[this.editData.offlineDateOfPayment],
@@ -1013,8 +1013,8 @@ this.action=true
       this.editForm.get('nameOfBank')?.updateValueAndValidity()
       this.editForm.get('transactionDetails')?.reset()
       this.editForm.get('transactionDetails')?.updateValueAndValidity()
-      this.editForm.get('ofilenModeOfPayment')?.reset()
-      this.editForm.get('ofilenModeOfPayment')?.updateValueAndValidity()
+      this.editForm.get('offlineModeOfPayment')?.reset()
+      this.editForm.get('offlineModeOfPayment')?.updateValueAndValidity()
     }
     else if(mode==='offline'){
       this.editForm.get('offlineDateOfPayment')?.setValidators(Validators.required)
@@ -1023,8 +1023,8 @@ this.action=true
       this.editForm.get('nameOfBank')?.updateValueAndValidity()
       this.editForm.get('transactionDetails')?.setValidators(Validators.required)
       this.editForm.get('transactionDetails')?.updateValueAndValidity()
-      this.editForm.get('ofilenModeOfPayment')?.setValidators(Validators.required)
-      this.editForm.get('ofilenModeOfPayment')?.updateValueAndValidity()
+      this.editForm.get('offlineModeOfPayment')?.setValidators(Validators.required)
+      this.editForm.get('offlineModeOfPayment')?.updateValueAndValidity()
       this.participationMode=false
     }
       }

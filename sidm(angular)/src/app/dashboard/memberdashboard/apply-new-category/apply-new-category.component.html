@@ -633,10 +633,10 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mt-3 mb-2"> Mode of Payment</h5>
-                                    <select formControlName="ofilenModeOfPayment" class="select">
+                                    <select formControlName="offlineModeOfPayment" class="select">
                                         <option *ngFor="let items of modeofPayment" value="{{items}}">{{items}}</option>
                                     </select>
-                                    <p *ngIf="newCategoryForm.get('ofilenModeOfPayment')?.hasError('required') && (  newCategoryForm.controls['modeOfPayment']?.touched || submited )"
+                                    <p *ngIf="newCategoryForm.get('offlineModeOfPayment')?.hasError('required') && (  newCategoryForm.controls['modeOfPayment']?.touched || submited )"
                                         style="color: red;">
                                         Mode of Payment <strong>required</strong>
                                     </p>

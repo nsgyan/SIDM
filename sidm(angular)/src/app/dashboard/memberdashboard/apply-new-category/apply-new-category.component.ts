@@ -118,7 +118,7 @@ export class ApplyNewCategoryComponent implements OnInit {
       mudp: [''],
       productLink: [''],
       paymentMode:['online'],
-      ofilenModeOfPayment:[''],
+      offlineModeOfPayment:[''],
       nameOfBank:[''],
       exhibit1:[''],
       exhibit2:[''],
@@ -612,7 +612,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         exhibit2: this.exhibit2,
         alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
         alterEmail:this.newCategoryForm.value.alterEmail,
-        ofilenModeOfPayment:this.newCategoryForm.value.ofilenModeOfPayment,
+        offlineModeOfPayment:this.newCategoryForm.value.offlineModeOfPayment,
         paymentMode:this.newCategoryForm.value.paymentMode,
         amount:this.newCategoryForm.value.amount,
         transactionDetails:this.newCategoryForm.value.transactionDetails,
@@ -730,7 +730,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         exhibit2: this.exhibit2,
         alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
         alterEmail:this.newCategoryForm.value.alterEmail,
-        ofilenModeOfPayment:this.newCategoryForm.value.ofilenModeOfPayment,
+        offlineModeOfPayment:this.newCategoryForm.value.offlineModeOfPayment,
         paymentMode:this.newCategoryForm.value.paymentMode,
         amount:this.newCategoryForm.value.amount,
         transactionDetails:this.newCategoryForm.value.transactionDetails,
@@ -1125,8 +1125,8 @@ if(type==='submitAndPay'){
       this.newCategoryForm.get('nameOfBank')?.updateValueAndValidity()
       this.newCategoryForm.get('transactionDetails')?.reset()
       this.newCategoryForm.get('transactionDetails')?.updateValueAndValidity()
-      this.newCategoryForm.get('ofilenModeOfPayment')?.reset()
-      this.newCategoryForm.get('ofilenModeOfPayment')?.updateValueAndValidity()
+      this.newCategoryForm.get('offlineModeOfPayment')?.reset()
+      this.newCategoryForm.get('offlineModeOfPayment')?.updateValueAndValidity()
     }
     else if(mode==='offline'){
       this.newCategoryForm.get('offlineDateOfPayment')?.setValidators(Validators.required)
@@ -1135,8 +1135,8 @@ if(type==='submitAndPay'){
       this.newCategoryForm.get('nameOfBank')?.updateValueAndValidity()
       this.newCategoryForm.get('transactionDetails')?.setValidators(Validators.required)
       this.newCategoryForm.get('transactionDetails')?.updateValueAndValidity()
-      this.newCategoryForm.get('ofilenModeOfPayment')?.setValidators(Validators.required)
-      this.newCategoryForm.get('ofilenModeOfPayment')?.updateValueAndValidity()
+      this.newCategoryForm.get('offlineModeOfPayment')?.setValidators(Validators.required)
+      this.newCategoryForm.get('offlineModeOfPayment')?.updateValueAndValidity()
       this.participationMode=false
     }
       }

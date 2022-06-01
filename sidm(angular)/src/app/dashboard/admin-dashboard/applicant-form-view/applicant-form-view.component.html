@@ -75,6 +75,38 @@
         </div>
     </div>
 </div>
+<div *ngIf="memberData.paymentMode==='offline'">
+    <div class="container">
+        <div class="profileSection mb-6">
+            <div class="memberData">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date Of Payment</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Transaction Details</th>
+                                <th scope="col">Mode Of Payment</th>
+                                <th scope="col">Name Of Bank</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="memberData">{{memberData?.offlineDateOfPayment}}</th>
+                                <th scope="memberData">{{memberData?.amount}}</th>
+                                <th scope="memberData">{{memberData?.transactionDetails}}</th>
+                                <th scope="memberData">{{memberData?.offlineModeOfPayment}}</th>
+                                <th scope="memberData">{{memberData?.nameOfBank}}</th>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="registrationForm" >
     <div class="formBody">

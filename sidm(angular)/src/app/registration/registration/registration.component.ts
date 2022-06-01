@@ -101,7 +101,7 @@ participationMode:boolean=true;
       mudp:[''],
       productLink:[''],
       paymentMode:['online'],
-      ofilenModeOfPayment:[''],
+      offlineModeOfPayment:[''],
       nameOfBank:[''],
       exhibit1:[''],
       exhibit2:[''],
@@ -364,7 +364,7 @@ participationMode:boolean=true;
         exhibit2:this.exhibit2,
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
-        ofilenModeOfPayment:this.registrationForm.value.ofilenModeOfPayment,
+        offlineModeOfPayment:this.registrationForm.value.offlineModeOfPayment,
         paymentMode:this.registrationForm.value.paymentMode,
         amount:this.registrationForm.value.amount,
         transactionDetails:this.registrationForm.value.transactionDetails,
@@ -542,7 +542,7 @@ participationMode:boolean=true;
         exhibit2:this.exhibit2,
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
-        ofilenModeOfPayment:this.registrationForm.value.ofilenModeOfPayment,
+        offlineModeOfPayment:this.registrationForm.value.offlineModeOfPayment,
         paymentMode:this.registrationForm.value.paymentMode,
         amount:this.registrationForm.value.amount,
         transactionDetails:this.registrationForm.value.transactionDetails,
@@ -811,8 +811,8 @@ if(mode==='online'){
   this.registrationForm.get('nameOfBank')?.updateValueAndValidity()
   this.registrationForm.get('transactionDetails')?.reset()
   this.registrationForm.get('transactionDetails')?.updateValueAndValidity()
-  this.registrationForm.get('ofilenModeOfPayment')?.reset()
-  this.registrationForm.get('ofilenModeOfPayment')?.updateValueAndValidity()
+  this.registrationForm.get('offlineModeOfPayment')?.reset()
+  this.registrationForm.get('offlineModeOfPayment')?.updateValueAndValidity()
 }
 else if(mode==='offline'){
   this.registrationForm.get('offlineDateOfPayment')?.setValidators(Validators.required)
@@ -821,8 +821,8 @@ else if(mode==='offline'){
   this.registrationForm.get('nameOfBank')?.updateValueAndValidity()
   this.registrationForm.get('transactionDetails')?.setValidators(Validators.required)
   this.registrationForm.get('transactionDetails')?.updateValueAndValidity()
-  this.registrationForm.get('ofilenModeOfPayment')?.setValidators(Validators.required)
-  this.registrationForm.get('ofilenModeOfPayment')?.updateValueAndValidity()
+  this.registrationForm.get('offlineModeOfPayment')?.setValidators(Validators.required)
+  this.registrationForm.get('offlineModeOfPayment')?.updateValueAndValidity()
   this.participationMode=false
 }
   }

@@ -179,7 +179,7 @@
                                             <span *ngIf="memberData.paymentStatus==='Pending'"
                                                 (click)="viewForm(memberData)" style="color: red;">Pending</span>
                                             <span *ngIf="memberData.paymentStatus==='Paid'"
-                                                style="color: green;">Paid</span>
+                                                style="color: green;">Paid ({{memberData.paymentMode}})</span>
                                         </td>
 
                                         <td><a *ngIf="memberData?.remark" (click)="viewRemark(memberData?.remark)"
@@ -826,10 +826,10 @@
                                 </div>
                                 <div class="col-lg-6" *ngIf="editData.paymentStatus!=='Paid'">
                                     <h5 class="mt-3 mb-2"> Mode of Payment</h5>
-                                    <select formControlName="ofilenModeOfPayment" class="select">
+                                    <select formControlName="offlineModeOfPayment" class="select">
                                         <option *ngFor="let items of modeofPayment" value="{{items}}">{{items}}</option>
                                     </select>
-                                    <p *ngIf="editForm.get('ofilenModeOfPayment')?.hasError('required') && (  editForm.controls['modeOfPayment']?.touched || submited )"
+                                    <p *ngIf="editForm.get('offlineModeOfPayment')?.hasError('required') && (  editForm.controls['modeOfPayment']?.touched || submited )"
                                         style="color: red;">
                                         Mode of Payment <strong>required</strong>
                                     </p>
@@ -837,7 +837,7 @@
                                 </div>
                                 <div class="col-lg-6" *ngIf="editData.paymentStatus==='Paid'">
                                     <h5 class="mt-3 mb-2"> Mode of Payment</h5>
-                                    <input formControlName="ofilenModeOfPayment" type="text" readonly >
+                                    <input formControlName="offlineModeOfPayment" type="text" readonly >
         
                                 </div>
         
