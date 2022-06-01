@@ -104,7 +104,8 @@
 
             <div>
 
-              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i!==lastIndex" mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button class="RegistrationBtn" *ngIf="i===lastIndex" mat-button (click)="submit('Completed')">Submit</button>
               <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
@@ -113,17 +114,7 @@
           </mat-step>
         </div>
       </div>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p class="text">You are now done.</p>
-        <div>
-          <button class="RegistrationBtn" mat-button (click)="submit('Completed')">Submit</button>
-          <button class="RegistrationBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
-
-          <button class="RegistrationBtn" mat-button matStepperPrevious>Back</button>
-        </div>
-        <div class="clearfix"></div>
-      </mat-step>
+     
     </mat-stepper>
 
 

@@ -62,7 +62,6 @@
       <tr>
         <th scope="col">S.No</th>
         <th scope="col">Company Name</th>
-        <th scope="col">Admin</th>
         <th scope="col">Dr Parlahda</th>
         <th scope="col">Lt Gen JP Nehra</th>
         <th scope="col">Mr SC Bajpai</th>
@@ -75,15 +74,7 @@
     <tbody>
       <tr *ngFor="let item of applicantData; let i = index">
         <td scope="row">{{ i + 1 }}</td>
-        <td class="">{{ item.nameOfCompany }} <br> <span>{{ item.email }} </span> </td>
-        <td *ngFor="let assessor of item.assessor">
-          <span *ngIf="assessor.email === 'admin@admin.com'">
-             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
-            <span class="callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
-            <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
-            score:{{ assessor.score }}/{{ assessor.maxScore }}
-          </span>
-        </td>
+        <td class="">{{ item.nameOfCompany }} <br> <span>{{ item.email }} </span> </td>    
         <td *ngFor="let assessor of item.assessor">
           <span *ngIf="assessor.email === 'aspillai.bm@gmail.com'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>

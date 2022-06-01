@@ -16,6 +16,7 @@ import {Location} from '@angular/common';
 })
 export class ViewQuestionnaireComponent implements OnInit {
   id:any
+  lastIndex!:number;
   assessor:FormGroup
   aissmentdata:any
   maxScore: any=0;
@@ -68,6 +69,8 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
 
     let control = <FormArray>this.assessor.get('aissment');
+  this.lastIndex=data[0].questionAns.length-1;
+    
     data[0].questionAns.map((item:any)=>{
       if(item.description){
   control.push(
