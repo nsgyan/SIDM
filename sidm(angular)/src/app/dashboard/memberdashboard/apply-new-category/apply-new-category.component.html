@@ -615,6 +615,66 @@
                         <input type="text" formControlName="productLink">
 
                     </div>
+                    <div class=" mt-2">
+                        <input formControlName="paymentMode" (change)="paymentMode('online')" type="radio"  name='paymentMode'value = 'online'  /> Online Payment
+<input type='radio' formControlName="paymentMode" name='paymentMode' (change)="paymentMode('offline')" value='offline' type="radio"  /> Offline payment
+                    </div>
+                    <div *ngIf="!participationMode" class="">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2">Name of Bank *</h5>
+                                    <input formControlName="nameOfBank" type="text">
+                                    <p *ngIf="newCategoryForm.get('nameOfBank')?.hasError('required') && (  newCategoryForm.controls['nameOfBank']?.touched || submited )"
+                                        style="color: red;">
+                                        Name of Bank <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2"> Mode of Payment</h5>
+                                    <select formControlName="ofilenModeOfPayment" class="select">
+                                        <option *ngFor="let items of modeofPayment" value="{{items}}">{{items}}</option>
+                                    </select>
+                                    <p *ngIf="newCategoryForm.get('ofilenModeOfPayment')?.hasError('required') && (  newCategoryForm.controls['modeOfPayment']?.touched || submited )"
+                                        style="color: red;">
+                                        Mode of Payment <strong>required</strong>
+                                    </p>
+        
+                                </div>
+        
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2"> Amount *</h5>
+                                    <input formControlName="amount" type="text" readonly >
+            
+        
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2"> Date of Payment</h5>
+                                    <input formControlName="offlineDateOfPayment" type="date" value="yyyy-mm-dd"
+                                        class="input-medium search-query" (keypress)="pickclender()" maxlength="16">
+                                    <p *ngIf="newCategoryForm.get('offlineDateOfPayment')?.hasError('required') && (  newCategoryForm.controls['dateOfPayment']?.touched || submited )"
+                                        style="color: red;">
+                                        Date of Payment <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="mt-3 mb-2">Transaction details *</h5>
+                                    <input formControlName="transactionDetails" type="text">
+                                    <p *ngIf="newCategoryForm.get('transactionDetails')?.hasError('required') && (  newCategoryForm.controls['transactionDetails']?.touched || submited )"
+                                        style="color: red;">
+                                        Transaction details <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                            </div>
+                        </div> -
+                    </div>
                     <div class=" mt-4">
                         <div class="form-group">
                             <re-captcha (resolved)="resolved($event)"
@@ -632,8 +692,12 @@
                         <button class="save-btn" target="blanck" (click)="newsavedraft('Pending')" [disabled]="action">
                             <p>Save </p>
                         </button>
-                        <button class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay
-                        </button>
+                        <button *ngIf="participationMode" class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')"
+                        [disabled]="action">Final Submit and pay
+                    </button>
+                    <button *ngIf="!participationMode" class="save-btn mx-2" target="blanck" (click)="openModel('submitAndOfflinePay')"
+                   >Final Submit
+                </button>
                     </div>
                 </div>
             </div>

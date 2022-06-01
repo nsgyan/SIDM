@@ -53,10 +53,21 @@ exports.postRegistrationForm = (req, res, next) => {
   const exhibit2 = req.body.exhibit2;
   const status = req.body.status;
  const alterMobileNumber= req.body.alterMobileNumber;
-  const alterEmail= req.body.alterEmail
+  const alterEmail= req.body.alterEmail;
+  const nameOfBank = req.body.nameOfBank;
+  const offlineDateOfPayment = req.body.offlineDateOfPayment;
+  const transactionDetails = req.body.transactionDetails;
+  const amount = req.body.amount;
+ const paymentMode= req.body.paymentMode;
+  const ofilenModeOfPayment= req.body.ofilenModeOfPayment
+  let paymentStatus=null
+  if(paymentMode==='offline'&&status==='Pending Approval'){
+    paymentStatus='Paid'
+  }
   const form = new RegistrationForm({
     category: category,
     typeOfApplicant: typeOfApplicant,
+    paymentStatus:paymentStatus,
     subCategoryDoccument: subCategoryDoccument,
     financialDoccument: financialDoccument,
     nameOfCompany: nameOfCompany,
@@ -92,6 +103,12 @@ exports.postRegistrationForm = (req, res, next) => {
     status: status,
     alterMobileNumber:alterMobileNumber,
     alterEmail:alterEmail,
+    nameOfBank :nameOfBank,
+    offlineDateOfPayment :offlineDateOfPayment,
+    transactionDetails :transactionDetails,
+    amount :amount,
+   paymentMode:paymentMode,
+    ofilenModeOfPayment:ofilenModeOfPayment,
     remark:null
   });
 
@@ -279,7 +296,17 @@ exports.updateFrom = (req, res, next) => {
   const exhibit2 = req.body.exhibit2;
   const status = req.body.status;
   const alterMobileNumber= req.body.alterMobileNumber;
-  const alterEmail= req.body.alterEmail
+  const alterEmail= req.body.alterEmail;
+  const nameOfBank = req.body.nameOfBank;
+  const offlineDateOfPayment = req.body.offlineDateOfPayment;
+  const transactionDetails = req.body.transactionDetails;
+  const amount = req.body.amount;
+ const paymentMode= req.body.paymentMode;
+  const ofilenModeOfPayment= req.body.ofilenModeOfPayment
+  let paymentStatus
+  if(paymentMode==='offline'&&status==='Pending Approval'){
+    paymentStatus='Paid'
+  }
   RegistrationForm.findById(userID)
     .then((formData) => {
     if(formData.status!=='Approved'||usertype==='admin')
@@ -291,7 +318,12 @@ exports.updateFrom = (req, res, next) => {
           if (financialDoccument !== formData.financialDoccument) {
             formData.financialDoccument = financialDoccument;
           }
+          
           formData.updatedAt=updatedAt
+          if(paymentMode==='offline'&&status==='Pending Approval'){
+            formData.paymentStatus=paymentStatus
+          }
+       
           formData.nameOfCompany= nameOfCompany;
           formData.addressl1= addressl1;
           formData.addressl2= addressl2;
@@ -319,6 +351,12 @@ exports.updateFrom = (req, res, next) => {
       formData.appreciationDocuments = appreciationDocuments;
           formData.campareAchivement= campareAchivement;
           formData.mudp= mudp;
+          formData.nameOfBank =nameOfBank,
+          formData.offlineDateOfPayment =offlineDateOfPayment,
+          formData.transactionDetails =transactionDetails,
+          formData.amount =amount,
+          formData.paymentMode=paymentMode,
+          formData.ofilenModeOfPayment=ofilenModeOfPayment,
       formData.productLink = productLink;
       formData.exhibit1 = exhibit1;
       formData.exhibit2 = exhibit2;
