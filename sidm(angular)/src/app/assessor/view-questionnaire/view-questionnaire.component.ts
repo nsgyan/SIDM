@@ -15,9 +15,10 @@ import {Location} from '@angular/common';
   styleUrls: ['./view-questionnaire.component.css']
 })
 export class ViewQuestionnaireComponent implements OnInit {
-  id:any
+  id:any 
   lastIndex!:number;
   assessor:FormGroup
+  url=environment.download
   aissmentdata:any
   maxScore: any=0;
   assessorScore: any=0;
@@ -64,10 +65,16 @@ export class ViewQuestionnaireComponent implements OnInit {
       
     })
     this.assessor=this.fb.group({
-      aissment: this.fb.array([]) 
+      aissment: this.fb.array([]) ,
+      assessorScore:[''],
     })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
+if(data[0].category==='cat4'){
+  data[0].staticTable.map((item:any)=>{
+    item.uploadDocuments = environment.download + item.uploadDocuments
 
+  })
+}
     let control = <FormArray>this.assessor.get('aissment');
   this.lastIndex=data[0].questionAns.length-1;
     
@@ -187,6 +194,54 @@ export class ViewQuestionnaireComponent implements OnInit {
     }
     
   }
+
+  
+  staticSubmit(status:any){
+    if(this.assessor.valid){
+      let name= this.localStorage.get('name')
+      let email= this.localStorage.get('email')
+      let assessorID= this.localStorage.get('assessorID')
+      let control = <FormArray>this.assessor.get('aissment');
+      let assessorScore=0
+      let assessorMaxScore=10
+      let score=  Number( this.assessor.value.assessorScore)
+           assessorScore+=score
+      let i=0;
+      this.aissmentdata.questionAns.map((item:any)=>{
+        if(item.description)
+        {
+          let Maxscore=  Number( control.at(i).value.maxScore)
+          assessorMaxScore+=Maxscore
+      let score=  Number( control.at(i).value.assessorScore)
+           assessorScore+=score
+        }
+        i++;
+      })
+      this.httpService.updateQuestionnaireAissment({
+        id:this.aissmentdata._id,
+        assessorMaxScore:assessorMaxScore,
+        assessorScore:assessorScore,
+        assessorID:assessorID,
+        assessorEmail:email,
+        assessorName:name,
+        status:status
+
+      }).subscribe(data=>{
+        this.toast.success('Assessor Score Updated');
+        this.routes.navigate(['/assessor'])
+        
+      },err=>{
+        this.toast.error(err);
+      })
+    }
+    else {
+      this.submitted = true;
+    
+      this.toast.error('Please Fill Required Field');
+    }
+    
+  }
+
 
   navigateTo(category:any,type:any,status:any){
     this.router.navigate(['/assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
