@@ -131,3 +131,12 @@ textarea {
     width: 435px;
     height: 100px; 
 }
+
+.addBtn {
+
+    border-radius: 3px;
+    color: rgb(255, 46, 46)!important;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 10px!important;
+  }

@@ -305,13 +305,21 @@ for(let item of this.questionnaireData){
 }
 let staticAnswer=this.questionnaireForm.value.staticAnswer
 if(staticAnswer==="More than 05 type"){
+  this.questionnaireForm.get('staticScore')?.setValue(10)
+  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=10
 }else if(staticAnswer==="03-04 types"){
+  this.questionnaireForm.get('staticScore')?.setValue(7)
+  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=7
 }else if(staticAnswer==="02 types of products"){
+  this.questionnaireForm.get('staticScore')?.setValue(5)
+  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=5
 }
 else if(staticAnswer==="Single product"){
+  this.questionnaireForm.get('staticScore')?.setValue(2)
+  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=2
 }  console.log(this.totalScore,this.questionnaireForm);
   if (this.questionnaireForm.valid ) {
@@ -371,7 +379,7 @@ control.at(i).get('score')?.updateValueAndValidity()
     staticAnswer:this.questionnaireForm.value.staticAnswer,
     staticTable:this.questionnaireForm.value.staticTable,
     staticMaxScore:this.questionnaireForm.value.staticMaxScore,
-
+    staticScore:this.questionnaireForm.value.staticScore
 
 
   }).subscribe((data:any)=>{

@@ -74,7 +74,7 @@
                           Single product</mat-option>
                 </mat-select>
               </mat-form-field>
-        <button (click)="addStaticQuestion()">ADD </button>
+        <button  class="RegistrationBtn" (click)="addStaticQuestion()">ADD </button>
               <table class="table" formArrayName="staticTable" >
                 <thead class="thead-dark">
                   <tr>
@@ -86,7 +86,10 @@
                 </thead>
                 <tbody>
                   <tr *ngFor=" let controlName of staticTable.controls; let i = index" [formGroupName]="i">
-                   <td>{{i+1}}</td>
+                   <td>{{i+1}}  <a class="addBtn mb-3" *ngIf='i!==0'
+                    (click)="removeStaticQuestion(i)"><i
+                        class="fa fa-trash"></i> </a>
+                </td>
                    <td><input formControlName="product" type="text"></td>
                    <td><input formControlName="description"  type="text"></td>
                    <td><input  (change)="staticTableChangeListener($event,i)"  type="file"></td>
