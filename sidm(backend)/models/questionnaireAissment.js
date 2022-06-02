@@ -6,7 +6,12 @@ const questionnaireAissmentSchema = new Schema({
         totalScore:{type:String},
         category:{ type: String },
         questionAns:[], 
-        assessor:[]
+        assessor:[],
+        staticTable:[],
+        staticAnswer:{type:String},
+        staticMaxScore:{type:String},
+        staticScore:{ type: String },
+        
         
 })
 

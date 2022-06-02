@@ -143,6 +143,50 @@ data.save().then(data=>{
         res.json("internal server error");
     })
 }
+exports.staticissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const staticScore= req.body.staticScore
+    const staticMaxScore= req.body.staticMaxScore
+    const staticAnswer= req.body.staticAnswer
+    const staticTable= req.body.staticTable
+    const aissment= new questionnaireAissment({
+        userId:userId,
+        totalScore:totalScore,
+        questionAns:questionAns,
+        category:category,
+        staticScore:staticScore,
+        staticMaxScore:staticMaxScore,
+        staticAnswer:staticAnswer,
+        staticTable:staticTable,
+        
+    })
+    aissment.save().then(data=>{
+        RegistrationForm.findById(userId).then(data=>{
+            data.assessor=[]
+            Assessor.find().then(item=>{
+for(i of item){ 
+    data.assessor.push({
+        id:i._id,
+       assessorName:i.assessorName,
+       email:i.email,
+        status:'Pending',
+        maxScore:null,
+        score:null,
+      })
+      console.log(data.assessor)
+} data.questionnaireStatus='sumbit'
+data.save().then(data=>{
+    res.status(200).json('successfully sumbit');
+})
+ })
+           })
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
 
 exports.getAissmentQuestionnaire=(req,res)=>{
     const userId= req.params.userId

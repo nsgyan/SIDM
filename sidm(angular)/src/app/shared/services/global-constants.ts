@@ -31,6 +31,7 @@ export class Globals {
         'updateQuestionnaireById':Globals.server+'questionnaire/update',
         'findByCategory':Globals.server+'questionnaire/findByCategory',
         'questionnaireAissment':Globals.server+'questionnaire/questionnaireAissment',
+        'staticAissmentQuestionnaire':Globals.server+'questionnaire/staticQuestionnaireAissment',
         'deleteQuestionnaire':Globals.server+'questionnaire/deleteQuestionnaire',
         'updateQuestionnaire':Globals.server+'questionnaire/assessorScore',
         'assessorDashboard':Globals.server+'questionnaire/formsData',

@@ -55,6 +55,57 @@
           </mat-step>
         </div>
       </div>
+      <div *ngIf="static" >
+          <mat-step  >
+
+            <h2>Number of types of products exported
+              Give a list of products in an excel with their
+              picture/small explanation</h2>
+              <mat-form-field appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="staticAnswer">
+                  <mat-option  value="More than 05 type">
+                    More than 05 type </mat-option>
+                    <mat-option  value="03-04 types">
+                      03-04 types</mat-option>
+                      <mat-option  value="02 types of products">
+                        02 types of products</mat-option>
+                        <mat-option  value="Single product">
+                          Single product</mat-option>
+                </mat-select>
+              </mat-form-field>
+        <button (click)="addStaticQuestion()">ADD </button>
+              <table class="table" formArrayName="staticTable" >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Explain(25 words)</th>
+                    <th scope="col">Upload Pic</th>
+                    <th scope="col">IC Content %</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor=" let controlName of staticTable.controls; let i = index" [formGroupName]="i">
+                   <td>{{i+1}}</td>
+                   <td><input formControlName="product" type="text"></td>
+                   <td><input formControlName="description"  type="text"></td>
+                   <td><input  (change)="staticTableChangeListener($event,i)"  type="file"></td>
+                   <td><input formControlName="IcContent"  type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            <div>
+              <table></table>
+              <button mat-button (click)="submitStaticQuestionnaire()" class="RegistrationBtn">Submit</button>
+              <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+
+            </div>
+
+          </mat-step>
+        </div>
+
+      
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
