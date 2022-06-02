@@ -620,8 +620,16 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         nameOfBank:this.newCategoryForm.value.nameOfBank,
         status: type,
       }).subscribe((data:any) => {
+        if(type==='Pending Approval')
+        {
+          this.newCategoryForm.reset();
+          this.toast.success(' Successfully Applied');
+          let url: string = "/thankYou/" + 'dsfffdsdfds'
+          this.routes.navigateByUrl(url);
+        }
+        else {
         this.payNow(this.newCategoryForm.value.typeOfApplicant,this.newCategoryForm.value.category,this.newCategoryForm.value.panNumber,this.newCategoryForm.value.mobileNumber,this.newCategoryForm.value.email)
-        this.toast.success('successfully applied');
+        this.toast.success('successfully applied');}
    
   
    
