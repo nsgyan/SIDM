@@ -19,6 +19,7 @@ export class AssessorQuestionnaireComponent implements OnInit {
   filter:FormGroup;
   itemPerPage = 10;
   applicantData:any;
+
   id: any;
   submited: boolean=false;
   constructor(private httpService: HttpService,

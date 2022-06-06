@@ -212,7 +212,7 @@ for(let item of this.questionnaireData){
        }
        j++;
 }
-  if (this.questionnaireForm.valid ) {
+  if (this.questionnaireForm) {
     let  i=0;
  
   for(let item of this.questionnaireData){
