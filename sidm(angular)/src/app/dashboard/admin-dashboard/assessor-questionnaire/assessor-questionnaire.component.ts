@@ -39,7 +39,7 @@ export class AssessorQuestionnaireComponent implements OnInit {
   }
 
   getdata(type:string) {
-    this.httpService.getData(this.page, this.itemPerPage).subscribe((data: any) => {
+    this.httpService.assessmentsList().subscribe((data: any) => {
       data?.data.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = 'C1 '
@@ -83,7 +83,7 @@ export class AssessorQuestionnaireComponent implements OnInit {
   }
   filterData(){
     if(this.filter.valid){
-this.httpService.assessmentsList(this.filter.value.category,this.filter.value.typeOfapplicant).subscribe(data=>{
+this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.value.typeOfapplicant).subscribe(data=>{
   this.applicantData=data
 })
     }

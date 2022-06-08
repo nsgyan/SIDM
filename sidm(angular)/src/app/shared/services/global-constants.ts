@@ -36,6 +36,7 @@ export class Globals {
         'updateQuestionnaire':Globals.server+'questionnaire/assessorScore',
         'assessorDashboard':Globals.server+'questionnaire/formsData',
         'assessorApplicantList':Globals.server+'questionnaire/assessor/aplicantList',
-        'assessmentsList':Globals.server+'questionnaire/assessmentsList'
+        'assessmentsList':Globals.server+'questionnaire/assessmentsList',
+        'filterAssessmentsList':Globals.server+'questionnaire/filterAssessmentsList'
     };
 }

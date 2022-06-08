@@ -80,11 +80,14 @@ export class HttpService {
       params: queryParams
     })
   }
-  assessmentsList(category:any,typeOfApplicant:any){
+  assessmentsList(){
+return this.httpService.get(Globals.route.assessmentsList)
+  }
+  filterAssessmentsList(category:any,typeOfApplicant:any){
     let queryParams = new HttpParams();
     queryParams = queryParams.append("category", category);
     queryParams = queryParams.append("typeOfApplicant", typeOfApplicant);
-    return this.httpService.get(`${Globals.route.assessmentsList}`, {
+    return this.httpService.get(`${Globals.route.filterAssessmentsList}`, {
       params: queryParams
     })
   }
