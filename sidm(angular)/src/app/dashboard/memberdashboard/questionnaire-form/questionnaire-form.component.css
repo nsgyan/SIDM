@@ -29,7 +29,13 @@
     color: #000;
 }
 
-
+::ng-deep .mat-horizontal-content-container {
+    overflow: auto !important;
+    padding: 0 24px 24px 24px;
+    background: #fff;
+    height: 532px;
+    padding: 1.5rem !important;
+}
 .paymentsDropdwn {
     background: none;
     border: 1px solid #363a7a;

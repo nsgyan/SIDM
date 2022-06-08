@@ -36,12 +36,26 @@ questionnaireForm:FormGroup
       staticMaxScore:[''] ,
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
-      this.userData=data
+ 
       if(data.category==='cat4'){
 this.static=true
       }
       console.log(data);
       this.getquestion(data?.category,data?.typeOfApplicant)
+      this.userData=data
+      if ( this.userData.category === 'cat1') {
+        this.userData.category = 'C1'
+      }
+      else if ( this.userData.category === 'cat2') {
+        this.userData.category = 'C2'
+      }
+      else if ( this.userData.category === 'cat3') {
+        this.userData.category = 'C3'
+      }
+      else if ( this.userData.category === 'cat4') {
+        this.userData.category = 'C4'
+      }
+   
       
     })
    }
