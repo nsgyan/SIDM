@@ -213,7 +213,7 @@ exports.getForms = (req, res, next) => {
       if (data) {
         res.status(200).json({ data });
       } else {
-        res.status(404).json("not Found");
+        res.status(401).json("not Found");
       }
     })
     .catch((err) => {
@@ -234,11 +234,11 @@ exports.getUserData = (req, res, next) => {
       if (data) {
         res.status(200).json(data);
       } else {
-        res.status(404).json("not Found user Data");
+        res.status(401).json("not Found user Data");
       }
     })
     .catch((err) => {
-      res.status(404).json("not Found");
+      res.status(401).json("not Found");
     });
 };
 
@@ -249,7 +249,7 @@ exports.getmemberData = (req, res, next) => {
       if (data) {
         res.status(200).json(data);
       } else {
-        res.status(404).json("not Found");
+        res.status(401).json("not Found");
       }
     })
     .catch((err) => {
@@ -375,7 +375,7 @@ exports.updateFrom = (req, res, next) => {
       });}
       else
       {
-        res.status(404).json('user cannot update form');
+        res.status(401).json('user cannot update form');
 
       }
     })
@@ -403,7 +403,7 @@ exports.changeStatus = (req, res, next) => {
     data.remarkDate=createAt
   }
   else{
-    res.status(404).json('not Found')
+    res.status(401).json('not Found')
   }
    data.save((err, success) => {
     if(err){

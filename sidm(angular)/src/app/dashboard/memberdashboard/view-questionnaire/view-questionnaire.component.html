@@ -73,7 +73,7 @@
                 {{item.maxScore}}
             </td>
           </tr>
-          <tr>
+          <tr *ngIf="aissmentdata?.at(0)?.category==='cat4'">
             <th scope="row">{{aissmentdata?.at(0)?.questionAns.length+1}}</th>
             <td class="">Number of types of products exported
               Give a list of products in an excel with their

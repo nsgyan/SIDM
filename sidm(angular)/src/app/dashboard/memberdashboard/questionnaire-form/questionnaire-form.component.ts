@@ -13,9 +13,11 @@ import { HttpService } from 'src/app/shared/services/http.service';
 export class QuestionnaireFormComponent implements OnInit {
   questionnaireData:any
   uploadDocuments:any
+  userData:any
  totalScore=0;
  static:any=false;
  id:any;
+ lastIndex!:number;
 questionnaireForm:FormGroup
   captcha: any;
   submited:any=null;
@@ -34,6 +36,7 @@ questionnaireForm:FormGroup
       staticMaxScore:[''] ,
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
+      this.userData=data
       if(data.category==='cat4'){
 this.static=true
       }
@@ -50,13 +53,16 @@ this.static=true
 
 getquestion(category:any,typeOfApplicant:any){
   this.httpService.findByCategory({category:category,
-    typeOfApplicant:typeOfApplicant}).subscribe(data=>{
+    typeOfApplicant:typeOfApplicant}).subscribe((data:any)=>{
+      console.log(data.length);
+      this.lastIndex=data.length-1
+      
  this.questionnaireData=data
  let control = <FormArray>this.questionnaireForm.get('aissment');
  this.questionnaireData.map((item:any)=>{
   control.push(
     this.fb.group({
-      question: [item.parameter, Validators.required],      
+      question: [item.parameter],      
       answer:[''],
       uploadDocuments:[''],
       description:[''],
@@ -68,6 +74,24 @@ getquestion(category:any,typeOfApplicant:any){
   );
    
  })
+ let j=0;
+ for(let item of this.questionnaireData){ 
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  if(item.textBox)
+  {    control.at(j).get('description')?.setValidators(Validators.required)
+      control.at(j).get('description')?.updateValueAndValidity()}    
+   if(item.upload){
+        control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
+        control.at(j).get('uploadDocuments')?.updateValueAndValidity()
+      }
+   if(item.inputType==='multiSelect'|| item.inputType==='singleSelect'){
+     console.log(item.inputType,j);
+     
+        control.at(j).get('answer')?.setValidators(Validators.required)
+        control.at(j).get('answer')?.updateValueAndValidity()
+       }
+       j++;
+}
 
  
     
@@ -91,7 +115,7 @@ addStaticQuestion() {
   let control = <FormArray>this.questionnaireForm.get('staticTable');
   control.push(
     this.fb.group({
-      product: ['', Validators.required], 
+      product: [''], 
       uploadDocuments:[''],
       description:[''],
       IcContent:[''],
@@ -110,7 +134,7 @@ addAissment() {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   control.push(
     this.fb.group({
-      question: ['', Validators.required], 
+      question: [''], 
       assessorScore:[''],     
       answer:[''],
       uploadDocuments:[''],
@@ -197,21 +221,7 @@ submitQuestionnaire(){
 let j=0;
 console.log(this.questionnaireForm);
 
-for(let item of this.questionnaireData){ 
-  let control = <FormArray>this.questionnaireForm.get('aissment');
-  if(item.textBox)
-  {    control.at(j).get('description')?.setValidators(Validators.required)
-      control.at(j).get('description')?.updateValueAndValidity()}    
-   if(item.upload){
-        control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
-        control.at(j).get('uploadDocuments')?.updateValueAndValidity()
-      }
-   if(item.inputType==='multiSelect'|| item.inputType==='singleSelect'){
-        control.at(j).get('answer')?.setValidators(Validators.required)
-        control.at(j).get('answer')?.updateValueAndValidity()
-       }
-       j++;
-}
+
   if (this.questionnaireForm.valid ) {
     let  i=0;
  
@@ -288,21 +298,7 @@ control.at(i).get('score')?.updateValueAndValidity()
 submitStaticQuestionnaire(){
 
   let j=0;
-for(let item of this.questionnaireData){ 
-  let control = <FormArray>this.questionnaireForm.get('aissment');
-  if(item.textBox)
-  {    control.at(j).get('description')?.setValidators(Validators.required)
-      control.at(j).get('description')?.updateValueAndValidity()}    
-   if(item.upload){
-        control.at(j).get('uploadDocuments')?.setValidators(Validators.required)
-        control.at(j).get('uploadDocuments')?.updateValueAndValidity()
-      }
-   if(item.inputType==='multiSelect'|| item.inputType==='singleSelect'){
-        control.at(j).get('answer')?.setValidators(Validators.required)
-        control.at(j).get('answer')?.updateValueAndValidity()
-       }
-       j++;
-}
+
 let staticAnswer=this.questionnaireForm.value.staticAnswer
 if(staticAnswer==="More than 05 type"){
   this.questionnaireForm.get('staticScore')?.setValue(10)

@@ -10,23 +10,28 @@
           <mat-step [stepControl]="nameAissment?.get([i])!" >
 
             <h2>{{questionnaireData[i].parameter}}</h2>
-            <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
-              <mat-label>Select Answer</mat-label>
-              <mat-select formControlName="answer">
-                <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
-                  {{option.answer}} </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field *ngIf="questionnaireData[i].inputType==='multiSelect'" appearance="fill">
-              <mat-label>Select Answer</mat-label>
-              <mat-select formControlName="answer" multiple>
-                <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
-                  {{option.answer}} </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')">
-              please select at least one option
-            </p>
+            <div class="auto-width">
+              <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="answer">
+                  <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
+                    {{option.answer}} </mat-option>
+                </mat-select>
+              </mat-form-field></div>
+              <div class="auto-width">
+              <mat-form-field *ngIf="questionnaireData[i].inputType==='multiSelect'" appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="answer" multiple>
+                  <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
+                    {{option.answer}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
+                please select at least one option
+              </p>
+         
+ 
             <br>
             <div *ngIf="questionnaireData[i].textBox" >
               <div class="mb-2">
@@ -35,21 +40,21 @@
                 <textarea name="" id="" cols="30" rows="10" formControlName="description" required></textarea>
               </div>
             </div>
-            <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty)">
+            <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">
               Answer description required
             </p>
             <div *ngIf="questionnaireData[i].upload" appearance="fill">
 
               <input type="file" (change)="changeListener($event,i)" required>
-              <p style="color: red;" *ngIf="controlName.get('uploadDocuments')?.hasError('required')">
+              <p style="color: red;" *ngIf="controlName.get('uploadDocuments')?.hasError('required')&&(controlName.get('uploadDocuments')?.touched||controlName.get('uploadDocuments')?.dirty||submited)">
                 Please upload required documents
               </p>
             </div>
             <div>
 
-              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i!==lastIndex ||userData.category==='cat4' " mat-button matStepperNext class="RegistrationBtn">Next</button>
               <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
-
+              <button *ngIf="i===lastIndex && userData.category!=='cat4'" mat-button (click)="submitQuestionnaire()" class="RegistrationBtn">Submit</button>
             </div>
 
           </mat-step>
@@ -108,15 +113,6 @@
           </mat-step>
         </div>
 
-      
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button (click)="submitQuestionnaire()" class="RegistrationBtn">Submit</button>
-          <button mat-button matStepperPrevious class="RegistrationBtn">Back</button>
-        </div>
-      </mat-step>
     </mat-stepper>
 
   </form>

@@ -78,7 +78,7 @@ exports.updateQuestionnaires=(req,res)=>{
         data.textBox=textBox
        data.save((err, success) => {
             if(err){
-           res.status(404).json(err);
+           res.status(401).json(err);
             }
             else{
                 console.log(success);
@@ -100,7 +100,7 @@ exports.findByCategory=(req,res)=>{
             res.status(200).send(data)
         }
         else {
-            res.status(404).send('not Found Questionnaire in that category')
+            res.status(401).send('not Found Questionnaire in that category')
         }
 
     })
@@ -195,7 +195,7 @@ exports.getAissmentQuestionnaire=(req,res)=>{
             res.status(200).send(data)
         }
         else {
-            res.status(404).send('not Found Questionnaire in that category')
+            res.status(401).send('not Found Questionnaire in that category')
         }
 
     })
