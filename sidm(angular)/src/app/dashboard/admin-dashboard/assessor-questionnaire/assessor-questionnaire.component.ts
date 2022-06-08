@@ -40,7 +40,7 @@ export class AssessorQuestionnaireComponent implements OnInit {
 
   getdata(type:string) {
     this.httpService.assessmentsList().subscribe((data: any) => {
-      data?.data.map((item: any) => {
+ data.map((item: any) => {
         if (item.category === 'cat1') {
           item.category = 'C1 '
         }
@@ -71,7 +71,7 @@ export class AssessorQuestionnaireComponent implements OnInit {
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
-      this.applicantData=data.data
+      this.applicantData=data
      
 
     }, err => {
