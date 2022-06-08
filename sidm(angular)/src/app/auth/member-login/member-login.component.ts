@@ -64,7 +64,7 @@ id:any
 
     this.memberform.value.panNumber = this.memberform.value.panNumber.toUpperCase()
  
-    if (this.memberform.valid   ) {
+    if (this.memberform.valid&&this.captcha  ) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
@@ -77,7 +77,7 @@ id:any
        window.location.href=url
         this.toast.success('Member Successfully login!');
       }, err => {
-        this.toast.error('Please Provide Valid Email Mobile Number And Pan Number');
+        this.toast.error('User does not exist');
       })
     }
     else if (!this.captcha) {

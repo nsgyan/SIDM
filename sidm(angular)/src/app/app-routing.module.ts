@@ -20,11 +20,11 @@ const routes: Routes = [
     component:DashboardComponent,
     loadChildren: () => import(`./dashboard/dashboard.module`).then(m => m.DashboardModule),
   },
-  {
-    path:'assessor',
-    loadChildren: () => import('../app/assessor/assessor.module').then(m=>AssessorModule),
-    canActivate:[AdminAuthGuradService]
-  },
+  // {
+  //   path:'assessor',
+  //   loadChildren: () => import('../app/assessor/assessor.module').then(m=>AssessorModule),
+  //   canActivate:[AdminAuthGuradService]
+  // },
   {
     path: 'detail/:id',
     component: ViewpageComponent,
