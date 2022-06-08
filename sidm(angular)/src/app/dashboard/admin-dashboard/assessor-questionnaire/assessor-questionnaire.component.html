@@ -62,13 +62,7 @@
       <tr>
         <th scope="col">S.No</th>
         <th scope="col">Company Name</th>
-        <th scope="col">Dr Parlahda</th>
-        <th scope="col">Lt Gen JP Nehra</th>
-        <th scope="col">Mr SC Bajpai</th>
-        <th scope="col">Dr RK Tyagi</th>
-        <th scope="col">Rear Admiral Pritam Lal (Retd.)</th>
-        <th scope="col">Mr Sunil Misra</th>
-        <th scope="col">Bharat Jain</th>
+        <th *ngFor="let item of applicantData[0].assessor; let i = index"  scope="col">{{item.assessorName}}</th>
       </tr>
     </thead>
     <tbody>
@@ -82,48 +76,41 @@
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
-        </td>
-        <td *ngFor="let assessor of item.assessor">
+       
           <span *ngIf="assessor.email === 'jp.nehra@cii.in'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
-        </td>
-        <td *ngFor="let assessor of item.assessor">
+    
           <span *ngIf="assessor.email === 'scbajpai1@gmail.com'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
-        </td>
-        <td *ngFor="let assessor of item.assessor">
+       
           <span *ngIf="assessor.email === 'rktyagi.hal@gmail.com'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
-        </td>
-        <td *ngFor="let assessor of item.assessor">
+       
           <span *ngIf="assessor.email === 'pritam.lal@cii.in'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
-        </td>
-        <td *ngFor="let assessor of item.assessor">
-          <span *ngIf="assessor.email === 'DG@sidm.in'">
+     
+          <span *ngIf="assessor.email === 'dg@sidm.in'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="assessor.status==='Completed'"> Completed</span> <br />
             score:{{ assessor.score }}/{{ assessor.maxScore }}
           </span>
-        </td>
-        <td *ngFor="let assessor of item.assessor">
           <span *ngIf="assessor.email === 'bharat.jain@sidm.in'">
             <span class="text-danger" *ngIf="assessor.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="assessor.status==='Call Review'"> Call Review</span>
