@@ -1,8 +1,9 @@
-import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Globals } from './global-constants';
-import { LocalStorageService } from './local-storage.service';
+import { HttpClient, HttpParams, HttpEvent, HttpRequest, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Globals } from "./global-constants";
+import { LocalStorageService } from "./local-storage.service";
+
 
 @Injectable({
   providedIn: 'root'

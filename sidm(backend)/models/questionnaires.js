@@ -6,6 +6,7 @@ const QuestionnairesSchema = new Schema({
         category:{ type: String },
         typeOfApplicant:{ type: String },
         parameter:{type:String},
+        parameterDescription:{type:String},
         maxScore:{type:Number},
         inputType:{type:String},
         options:[], 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, FormArray, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { HttpService } from "src/app/shared/services/http.service";
+
 
 @Component({
   selector: 'app-questionnaire-form',
@@ -84,6 +85,7 @@ getquestion(category:any,typeOfApplicant:any){
       inputType:[item.inputType],
       option:[],
       maxScore:[''] ,
+      parameterDescription:[item.parameterDescription]
     })
   );
    

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { HttpService } from "src/app/shared/services/http.service";
 
 
 @Component({
@@ -35,6 +35,7 @@ multiSelect:boolean=false
           inputType:[data.inputType],
           upload:[data.upload],
           textBox:[data.textBox],
+          parameterDescription:[data.parameterDescription],
           options: this.fb.array([]) ,
         })
         if(data.inputType==='singleSelect'){

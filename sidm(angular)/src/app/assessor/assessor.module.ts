@@ -1,32 +1,32 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { AssessorRoutingModule } from './assessor-routing.module';
-import { ApplicantListComponent } from './applicant-list/applicant-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableExporterModule } from 'mat-table-exporter';
-import { RecaptchaModule } from 'ng-recaptcha';
-import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
-import { AssessorDashboardComponent } from './assessor-dashboard/assessor-dashboard.component';
-import { AssessorHeaderComponent } from './assessor-header/assessor-header.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatStepperModule } from '@angular/material/stepper';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { SharedModule } from '../shared/shared.module';
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSortModule } from "@angular/material/sort";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatTableModule } from "@angular/material/table";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { CKEditorModule } from "ckeditor4-angular";
+import { MatTableExporterModule } from "mat-table-exporter";
+import { RecaptchaModule } from "ng-recaptcha";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { SharedModule } from "../shared/shared.module";
+import { ApplicantListComponent } from "./applicant-list/applicant-list.component";
+import { AssessorDashboardComponent } from "./assessor-dashboard/assessor-dashboard.component";
+import { AssessorHeaderComponent } from "./assessor-header/assessor-header.component";
+import { AssessorRoutingModule } from "./assessor-routing.module";
+import { ViewQuestionnaireComponent } from "./view-questionnaire/view-questionnaire.component";
 
 
 @NgModule({
@@ -61,6 +61,7 @@ import { SharedModule } from '../shared/shared.module';
     MatSnackBarModule,
     SharedModule,
     MatStepperModule,
+    CKEditorModule
 
     
     

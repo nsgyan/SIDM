@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { HttpService } from "src/app/shared/services/http.service";
+
 
 @Component({
   selector: 'app-edit-questionnaire',
@@ -36,6 +37,7 @@ export class EditQuestionnaireComponent implements OnInit {
           inputType:[data.inputType,Validators.required],
           upload:[data.upload,Validators.required],
           textBox:[data.textBox,Validators.required],
+          parameterDescription:[data.parameterDescription ?data.parameterDescription:''],
           options: this.fb.array([]) ,
         })
         if(data.inputType==='singleSelect'){
@@ -136,7 +138,8 @@ export class EditQuestionnaireComponent implements OnInit {
         options: this.questionnaire.value.options, 
         inputType:this.questionnaire.value.inputType,
         textBox:this.questionnaire.value.textBox ? true:false,
-        upload:this.questionnaire.value.upload?true:false
+        upload:this.questionnaire.value.upload?true:false,
+        parameterDescription:this.questionnaire.value.parameterDescription
       }).subscribe((data:any)=>{
       
         this.toast.success(data);

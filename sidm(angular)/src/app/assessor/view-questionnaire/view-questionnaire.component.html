@@ -88,7 +88,7 @@
             <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
 
             <div *ngIf="aissmentdata.questionAns[i].description">
-              <h2>Write up: <br><span class="secondText">{{aissmentdata.questionAns[i].description}}</span></h2>
+              <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i].description"></div>
               <label class="text" for=`assessorScore${{i+1}}`>Assessor score: </label>
               <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)"
                 id=`assessorScore${{i+1}}`>

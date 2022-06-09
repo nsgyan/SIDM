@@ -66,7 +66,7 @@ exports.updateQuestionnaires=(req,res)=>{
     const inputType= req.body.inputType
     const upload= req.body.upload;
     const textBox=req.body.textBox
-
+    const parameterDescription=req.body.parameterDescription
     const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
@@ -78,6 +78,7 @@ exports.updateQuestionnaires=(req,res)=>{
         data.inputType=inputType,
         data.upload=upload,
         data.textBox=textBox
+        data.parameterDescription=parameterDescription
        data.save((err, success) => {
             if(err){
            res.status(401).json(err);

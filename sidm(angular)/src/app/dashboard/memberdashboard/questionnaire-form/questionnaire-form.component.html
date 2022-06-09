@@ -7,9 +7,10 @@
 
       <div formArrayName="aissment">
         <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
-          <mat-step [stepControl]="nameAissment?.get([i])!" >
+          <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
 
-            <h2>{{questionnaireData[i].parameter}}</h2>
+            <h2 class="matlable m-0">{{questionnaireData[i].parameter}}</h2>
+            <p style="color:#777">{{questionnaireData[i].parameterDescription}}</p>
             <div class="auto-width">
               <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
                 <mat-label>Select Answer</mat-label>
@@ -37,7 +38,9 @@
               <div class="mb-2">
                 <label
                 class="questionnaireLabel">Enter Description:</label>
-                <textarea name="" id="" cols="30" rows="10" formControlName="description" required></textarea>
+                <ckeditor formControlName="description" data="<p>Hello, world!</p>"></ckeditor>
+
+               
               </div>
             </div>
             <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">

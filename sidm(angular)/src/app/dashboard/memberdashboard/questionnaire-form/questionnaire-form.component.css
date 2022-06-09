@@ -28,6 +28,10 @@
     background-color: #e5e7fb;
     color: #000;
 }
+.matlable{
+    font: 500 20px/32px Roboto,"Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
 
 ::ng-deep .mat-horizontal-content-container {
     overflow: auto !important;

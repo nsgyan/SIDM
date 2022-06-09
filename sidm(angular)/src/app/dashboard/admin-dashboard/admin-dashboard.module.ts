@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import {MatTableModule} from '@angular/material/table';
@@ -13,7 +12,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
-import { MatTableExporterModule } from 'mat-table-exporter';
 import { ListViewComponent } from './list-view/list-view.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -30,6 +28,10 @@ import { AddAssessorComponent } from './add-assessor/add-assessor.component';
 import { AssessorListComponent } from './assessor-list/assessor-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AssessorQuestionnaireComponent } from './assessor-questionnaire/assessor-questionnaire.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { NgModule } from '@angular/core';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 
@@ -69,7 +71,9 @@ import { AssessorQuestionnaireComponent } from './assessor-questionnaire/assesso
     MatToolbarModule,
     MatListModule ,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    CKEditorModule
+
     
   
   ]

@@ -1,12 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { CommonModule } from '@angular/common';
 import { MemberdashboardRoutingModule } from './memberdashboard-routing.module';
 import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RecaptchaModule } from 'ng-recaptcha';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
@@ -18,6 +15,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatMenuModule,
     MatButtonModule,
     MatSelectModule,
-    
+    CKEditorModule
+
     
   ]
 })
