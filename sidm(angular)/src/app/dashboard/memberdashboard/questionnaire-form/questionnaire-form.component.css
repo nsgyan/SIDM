@@ -36,6 +36,12 @@
     height: 532px;
     padding: 1.5rem !important;
 }
+::ng-deep .mat-option-text {
+    display: inline-block;
+    flex-grow: 1;
+    overflow: auto !important;
+    text-overflow: ellipsis;
+}
 .paymentsDropdwn {
     background: none;
     border: 1px solid #363a7a;

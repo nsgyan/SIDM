@@ -11,6 +11,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     const upload= req.body.upload;
     const textBox=req.body.textBox
     const typeOfApplicant = req.body.typeOfApplicant;
+    const parameterDescription= req.body.parameterDescription
 
     const Questionnaire= new  Questionnaires({
         category :category,
@@ -20,7 +21,8 @@ exports.addQuestionnaires= (req,res,next)=>{
         inputType:inputType,
         upload:upload,
         textBox:textBox,
-        typeOfApplicant:typeOfApplicant
+        typeOfApplicant:typeOfApplicant,
+        parameterDescription:parameterDescription
     })
     Questionnaire.save().then(data=>{
     
@@ -213,7 +215,9 @@ exports.assessorScore=(req,res)=>{
     const assessorName= req.body.assessorName
     const assessorEmail= req.body.assessorEmail
     const status= req.body.status
+    const questionAns=req.body.aissment
     questionnaireAissment.findById(userId).then(data=>{
+        data.questionAns=questionAns
 data.assessor.push({
     assessorName: assessorName,
     assessorEmail:assessorEmail,

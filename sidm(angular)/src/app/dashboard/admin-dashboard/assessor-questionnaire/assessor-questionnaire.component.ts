@@ -16,6 +16,7 @@ export class AssessorQuestionnaireComponent implements OnInit {
   allFormsData: any;
   page:any='sd';
   index=0;
+  
   filter:FormGroup;
   itemPerPage = 10;
   applicantData:any;
@@ -71,6 +72,33 @@ export class AssessorQuestionnaireComponent implements OnInit {
         item.panNumberOfOrganization = item.panNumberOfOrganization;
 
       })
+      data.map((item:any)=>{
+        item.assessor.map((assessorUser:any)=>{
+          if(assessorUser.email==='aspillai.bm@gmail.com'){
+            item.aspillai=assessorUser
+          }
+          else  if(assessorUser.email==='jp.nehra@cii.in'){
+            item.jp=assessorUser
+          }
+          else  if(assessorUser.email==='scbajpai1@gmail.com'){
+            item.scbajpai1=assessorUser
+          }
+          else  if(assessorUser.email==='rktyagi.hal@gmail.com'){
+            item.rktyagi=assessorUser
+          }
+          else  if(assessorUser.email==='pritam.lal@cii.in'){
+            item.pritam=assessorUser
+          }
+          else  if(assessorUser.email==='dg@sidm.in'){
+            item.dg=assessorUser
+          }
+          else  if(assessorUser.email==='bharat.jain@sidm.in'){
+            item.bharat=assessorUser
+          }
+        })
+      })
+      console.log(data);
+      
       this.applicantData=data
      
 

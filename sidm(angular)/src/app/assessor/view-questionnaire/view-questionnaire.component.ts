@@ -90,7 +90,7 @@ if(data[0].category==='cat4'){
       inputType:[item.inputType],
       option:[item.option],
       maxScore:[item.maxScore],
-      assessorScore:['',[Validators.max(Number( item.maxScore))]] 
+      assessorScore:[item.assessorScore? item.assessorScore:'',[Validators.max(Number( item.maxScore))]] 
     })
   );}
   else{
@@ -177,7 +177,8 @@ if(data[0].category==='cat4'){
         assessorID:assessorID,
         assessorEmail:email,
         assessorName:name,
-        status:status
+        status:status,
+        aissment:this.assessor.value.aissment
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');
@@ -224,7 +225,8 @@ if(data[0].category==='cat4'){
         assessorID:assessorID,
         assessorEmail:email,
         assessorName:name,
-        status:status
+        status:status,
+        aissment:this.assessor.value.aissment
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');

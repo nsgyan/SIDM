@@ -85,7 +85,7 @@
     <div class="row">
       <div class="col-lg-10">
         <label class="questionnaireLabel" for="">Parameter/Question*:</label>
-        <textarea name="" id="" cols="30" rows="10" formControlName="parameter"></textarea>
+        <textarea name="" id="" cols="30" rows="10" formControlName="note"></textarea>
         <p *ngIf="questionnaire.get('parameter')?.hasError('required') &&(submited)" style="color: red;">
           Parameter/Question <strong>required</strong>
         </p>
@@ -103,7 +103,12 @@
     </div>
 
     <div class="row">
+      <div class="col-lg-10">
+        <label class="questionnaireLabel" for=""> Parameter Description:</label>
+        <textarea name="" id="" cols="30" rows="10" formControlName="parameterDescription"></textarea>
       
+        <!-- <input type="text" formControlName="parameter" /> -->
+      </div>
       
       <!-- <div class="col-lg-1">
           <button class="save-btn savePosition" type="button"><i aria-hidden="true" class="fas fa-plus"></i></button>
