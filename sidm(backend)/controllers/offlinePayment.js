@@ -28,11 +28,11 @@ const RegistrationForm = require("../models/registrationForm");
           })
       }
       else{
-        res.status(404).json("Registration Form Not Found")
+        res.status(401).json("Registration Form Not Found")
       }
 
   }).catch(err=>{
-    res.status(404).json("Server Unable to understand request")
+    res.status(401).json("Server Unable to understand request")
   })
  }
 
@@ -43,11 +43,11 @@ const RegistrationForm = require("../models/registrationForm");
         res.status(200).json(data)
       }
       else{
-        res.status(404).json("Payment Details Not Found")
+        res.status(401).json("Payment Details Not Found")
       }
 
   }).catch(err=>{
     console.log(err);
-    res.status(404).json("Server Unable to understand request")
+    res.status(401).json("Server Unable to understand request")
   })
  }

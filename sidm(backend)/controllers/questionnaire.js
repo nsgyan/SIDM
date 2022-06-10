@@ -11,6 +11,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     const upload= req.body.upload;
     const textBox=req.body.textBox
     const typeOfApplicant = req.body.typeOfApplicant;
+    const parameterDescription= req.body.parameterDescription
 
     const Questionnaire= new  Questionnaires({
         category :category,
@@ -20,7 +21,8 @@ exports.addQuestionnaires= (req,res,next)=>{
         inputType:inputType,
         upload:upload,
         textBox:textBox,
-        typeOfApplicant:typeOfApplicant
+        typeOfApplicant:typeOfApplicant,
+        parameterDescription:parameterDescription
     })
     Questionnaire.save().then(data=>{
     
@@ -64,7 +66,7 @@ exports.updateQuestionnaires=(req,res)=>{
     const inputType= req.body.inputType
     const upload= req.body.upload;
     const textBox=req.body.textBox
-
+    const parameterDescription=req.body.parameterDescription
     const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
@@ -76,9 +78,10 @@ exports.updateQuestionnaires=(req,res)=>{
         data.inputType=inputType,
         data.upload=upload,
         data.textBox=textBox
+        data.parameterDescription=parameterDescription
        data.save((err, success) => {
             if(err){
-           res.status(404).json(err);
+           res.status(401).json(err);
             }
             else{
                 console.log(success);
@@ -100,7 +103,7 @@ exports.findByCategory=(req,res)=>{
             res.status(200).send(data)
         }
         else {
-            res.status(404).send('not Found Questionnaire in that category')
+            res.status(401).send('not Found Questionnaire in that category')
         }
 
     })
@@ -143,6 +146,50 @@ data.save().then(data=>{
         res.json("internal server error");
     })
 }
+exports.staticissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const staticScore= req.body.staticScore
+    const staticMaxScore= req.body.staticMaxScore
+    const staticAnswer= req.body.staticAnswer
+    const staticTable= req.body.staticTable
+    const aissment= new questionnaireAissment({
+        userId:userId,
+        totalScore:totalScore,
+        questionAns:questionAns,
+        category:category,
+        staticScore:staticScore,
+        staticMaxScore:staticMaxScore,
+        staticAnswer:staticAnswer,
+        staticTable:staticTable,
+        
+    })
+    aissment.save().then(data=>{
+        RegistrationForm.findById(userId).then(data=>{
+            data.assessor=[]
+            Assessor.find().then(item=>{
+for(i of item){ 
+    data.assessor.push({
+        id:i._id,
+       assessorName:i.assessorName,
+       email:i.email,
+        status:'Pending',
+        maxScore:null,
+        score:null,
+      })
+      console.log(data.assessor)
+} data.questionnaireStatus='sumbit'
+data.save().then(data=>{
+    res.status(200).json('successfully sumbit');
+})
+ })
+           })
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
 
 exports.getAissmentQuestionnaire=(req,res)=>{
     const userId= req.params.userId
@@ -151,7 +198,7 @@ exports.getAissmentQuestionnaire=(req,res)=>{
             res.status(200).send(data)
         }
         else {
-            res.status(404).send('not Found Questionnaire in that category')
+            res.status(401).send('not Found Questionnaire in that category')
         }
 
     })
@@ -169,7 +216,9 @@ exports.assessorScore=(req,res)=>{
     const assessorName= req.body.assessorName
     const assessorEmail= req.body.assessorEmail
     const status= req.body.status
+    const questionAns=req.body.aissment
     questionnaireAissment.findById(userId).then(data=>{
+        data.questionAns=questionAns
 data.assessor.push({
     assessorName: assessorName,
     assessorEmail:assessorEmail,

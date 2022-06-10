@@ -18,9 +18,13 @@ var transporter = nodemailer.createTransport({
 const RegistrationForm = require("../models/registrationForm");
 
 const PaymentDb = require("../models/paymentSchema");
+// var instance = new Razorpay({
+//   key_id: 'rzp_live_Zu1ExXrsDrcwKq',
+//   key_secret: 'KVc4fjpnn8xe8PWNXDQsUrpt',
+// });
 var instance = new Razorpay({
-  key_id: 'rzp_live_Zu1ExXrsDrcwKq',
-  key_secret: 'KVc4fjpnn8xe8PWNXDQsUrpt',
+  key_id: 'rzp_test_DXNpoNMGmHrPoO',
+  key_secret: 'ROwMeHInG0Ir6QDm0cNqYeWK',
 });
 
 
@@ -105,10 +109,10 @@ exports.verifypayment= async (req,res)=>{
         };
         var maillist = [
           data.email,
-          'bharat.jain@sidm.in',
-        'awards22@sidm.in',
-        'vikas.rai@sidm.in',
-        'manoj.mishra@sidm.in'
+        //   'bharat.jain@sidm.in',
+        // 'awards22@sidm.in',
+        // 'vikas.rai@sidm.in',
+        // 'manoj.mishra@sidm.in'
            
         ];
         

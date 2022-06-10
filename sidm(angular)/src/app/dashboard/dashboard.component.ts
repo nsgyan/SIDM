@@ -49,34 +49,40 @@ this.type='member'
         
         if (item.category === 'cat1') {
           this.cat1 = true
+          if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat1',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat1=true
           }
+        }
 
           
         }
         else if (item.category === 'cat2') {
           this.cat2 = true
+          if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat2',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat2=true
-          }
+          }}
          
         }
         else if (item.category === 'cat3') {
-          this.cat3 = true
+          this.cat3 = true 
+          if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat3',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat3=true
-          }
+          }}
         }
         else if (item.category === 'cat4') {
           this.cat4 = true
+          if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat4',item.typeOfApplicant)
           if(item.questionnaireStatus==='sumbit'){
             this.QuesStatusCat4=true
           }
+        }
         }  
       })
 

@@ -18,9 +18,6 @@
         <th scope="col">Questions</th>
         <th scope="col">Response</th>
         <th scope="col">Attachment</th>
-        <th scope="col">Score ({{aissmentdata[0]?.totalScore}})</th>
-    
-        <th scope="col"> Max Score ({{maxScore}})</th>
       </tr>
     </thead>
     <tbody>
@@ -31,12 +28,7 @@
             {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Description</a>
         </td>
         <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'  target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
-        <td>
-            {{item.score}}
-        </td>
-        <td>
-            {{item.maxScore}}
-        </td>
+     
       </tr>
      
     </tbody>

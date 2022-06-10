@@ -1,8 +1,9 @@
-import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Globals } from './global-constants';
-import { LocalStorageService } from './local-storage.service';
+import { HttpClient, HttpParams, HttpEvent, HttpRequest, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Globals } from "./global-constants";
+import { LocalStorageService } from "./local-storage.service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,9 @@ export class HttpService {
   questionnaireAissment(data:any){
     return this.httpService.post(Globals.route.questionnaireAissment,data)
   }
+  staticAissmentQuestionnaire(data:any){
+    return this.httpService.post(Globals.route.staticAissmentQuestionnaire,data)
+  }
   getQuestionnaireAissment(id:any){
     return this.httpService.get(`${Globals.route.questionnaireAissment}/${id}`)
   }
@@ -77,11 +81,14 @@ export class HttpService {
       params: queryParams
     })
   }
-  assessmentsList(category:any,typeOfApplicant:any){
+  assessmentsList(){
+return this.httpService.get(Globals.route.assessmentsList)
+  }
+  filterAssessmentsList(category:any,typeOfApplicant:any){
     let queryParams = new HttpParams();
     queryParams = queryParams.append("category", category);
     queryParams = queryParams.append("typeOfApplicant", typeOfApplicant);
-    return this.httpService.get(`${Globals.route.assessmentsList}`, {
+    return this.httpService.get(`${Globals.route.filterAssessmentsList}`, {
       params: queryParams
     })
   }

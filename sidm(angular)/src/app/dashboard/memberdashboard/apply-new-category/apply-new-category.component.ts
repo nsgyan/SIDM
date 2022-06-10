@@ -20,6 +20,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ApplyNewCategoryComponent implements OnInit {
   action:any
+  participationMode=true
+  modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   razorPayOptions={
     
     "amount":1,
@@ -115,9 +117,14 @@ export class ApplyNewCategoryComponent implements OnInit {
       campareAchivement: [''],
       mudp: [''],
       productLink: [''],
-
-      exhibit1: [''],
-      exhibit2: [''],
+      paymentMode:['online'],
+      offlineModeOfPayment:[''],
+      nameOfBank:[''],
+      exhibit1:[''],
+      exhibit2:[''],
+      offlineDateOfPayment:[''],
+      transactionDetails:[''],
+      amount:[5000]
 
 
 
@@ -605,10 +612,24 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         exhibit2: this.exhibit2,
         alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
         alterEmail:this.newCategoryForm.value.alterEmail,
+        offlineModeOfPayment:this.newCategoryForm.value.offlineModeOfPayment,
+        paymentMode:this.newCategoryForm.value.paymentMode,
+        amount:this.newCategoryForm.value.amount,
+        transactionDetails:this.newCategoryForm.value.transactionDetails,
+        offlineDateOfPayment:this.newCategoryForm.value.offlineDateOfPayment,
+        nameOfBank:this.newCategoryForm.value.nameOfBank,
         status: type,
       }).subscribe((data:any) => {
+        if(type==='Pending Approval')
+        {
+          this.newCategoryForm.reset();
+          this.toast.success(' Successfully Applied');
+          let url: string = "/thankYou/" + 'dsfffdsdfds'
+          this.routes.navigateByUrl(url);
+        }
+        else {
         this.payNow(this.newCategoryForm.value.typeOfApplicant,this.newCategoryForm.value.category,this.newCategoryForm.value.panNumber,this.newCategoryForm.value.mobileNumber,this.newCategoryForm.value.email)
-        this.toast.success('successfully applied');
+        this.toast.success('successfully applied');}
    
   
    
@@ -717,6 +738,12 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
         exhibit2: this.exhibit2,
         alterMobileNumber:this.newCategoryForm.value.alterMobileNumber,
         alterEmail:this.newCategoryForm.value.alterEmail,
+        offlineModeOfPayment:this.newCategoryForm.value.offlineModeOfPayment,
+        paymentMode:this.newCategoryForm.value.paymentMode,
+        amount:this.newCategoryForm.value.amount,
+        transactionDetails:this.newCategoryForm.value.transactionDetails,
+        offlineDateOfPayment:this.newCategoryForm.value.offlineDateOfPayment,
+        nameOfBank:this.newCategoryForm.value.nameOfBank,
         status: type,
       }).subscribe(data => {
         this.newCategoryForm.reset();
@@ -1065,21 +1092,27 @@ else{
     if (this.newCategoryForm.valid  ) {
 this.action=true
 
+if(type==='submitAndPay'){
 
-    const dialogRef = this.dialog.open(ModelComponent, {
-      width: '500px',
-      data: {type:type},
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    if(result==='no'){
-      console.log('no'); 
-    }
-    else if(result==='ok'){
-      this.newSubmit('Pending')
+  const dialogRef = this.dialog.open(ModelComponent, {
+    width: '500px',
+    data: {type:type},
+  });
+  dialogRef.afterClosed().subscribe(result => {
+  if(result==='no'){
+    console.log('no'); 
+  }
+  else if(result==='ok'){
+    this.newSubmit('Pending')
+ 
+  }
    
+  });}
+    else if(type==='submitAndOfflinePay')
+    {
+      this.newSubmit('Pending Approval')
     }
-     
-    });
+
   }
   else if (!this.captcha) {
     this.submited = true;
@@ -1091,6 +1124,31 @@ this.action=true
     this.toast.error('Form invalid');
   }
   }
+  paymentMode(mode:any){
+    if(mode==='online'){
+      this.participationMode=true
+      this.newCategoryForm.get('offlineDateOfPayment')?.reset()
+      this.newCategoryForm.get('offlineDateOfPayment')?.updateValueAndValidity()
+      this.newCategoryForm.get('nameOfBank')?.reset()
+      this.newCategoryForm.get('nameOfBank')?.updateValueAndValidity()
+      this.newCategoryForm.get('transactionDetails')?.reset()
+      this.newCategoryForm.get('transactionDetails')?.updateValueAndValidity()
+      this.newCategoryForm.get('offlineModeOfPayment')?.reset()
+      this.newCategoryForm.get('offlineModeOfPayment')?.updateValueAndValidity()
+    }
+    else if(mode==='offline'){
+      this.newCategoryForm.get('offlineDateOfPayment')?.setValidators(Validators.required)
+      this.newCategoryForm.get('offlineDateOfPayment')?.updateValueAndValidity()
+      this.newCategoryForm.get('nameOfBank')?.setValidators(Validators.required)
+      this.newCategoryForm.get('nameOfBank')?.updateValueAndValidity()
+      this.newCategoryForm.get('transactionDetails')?.setValidators(Validators.required)
+      this.newCategoryForm.get('transactionDetails')?.updateValueAndValidity()
+      this.newCategoryForm.get('offlineModeOfPayment')?.setValidators(Validators.required)
+      this.newCategoryForm.get('offlineModeOfPayment')?.updateValueAndValidity()
+      this.participationMode=false
+    }
+      }
+    
 
 
 

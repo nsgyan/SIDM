@@ -10,10 +10,12 @@ router.patch('/update/:userID', auth.adminAuth, questionnaires.updateQuestionnai
 router.post('/findByCategory',auth.auth,questionnaires.findByCategory)
 router.post('/assessorScore',auth.auth,questionnaires.assessorScore)
 router.post('/questionnaireAissment',auth.auth,questionnaires.aissmentQuestionnaire)
+router.post('/staticQuestionnaireAissment',auth.auth,questionnaires.staticissmentQuestionnaire)
 router.get('/questionnaireAissment/:userId',auth.auth,questionnaires.getAissmentQuestionnaire)
 router.delete('/deleteQuestionnaire/:userId', auth.adminAuth,questionnaires.deleteQuestionnairesByID)
 router.get('/formsData',questionnaires.findmember);
 router.get('/assessor/aplicantList',Assessor.findmember)
+router.get('/filterAssessmentsList',Assessor.filterAssessmentsList)
 router.get('/assessmentsList',Assessor.assessmentsList)
 
 

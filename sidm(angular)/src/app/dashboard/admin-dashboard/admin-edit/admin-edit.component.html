@@ -513,6 +513,13 @@
                     Specific Achievement being registered for the Champion Award * (Name of the product / Technology/Facility)*
                 </h5>
                 <div class="">
+                    <textarea formControlName="nomenclaturOfItems" class="form-control mb-1" aria-label="With
+                    textarea" maxlength="200"></textarea>
+                    <p class="fileSizetext">Write in 15 Words about the nomenclature of the items.
+                    </p>
+                    <p *ngIf="editForm.get('nomenclaturOfItems')?.hasError('required')" style="color: red;">
+                        Nomenclature of the items <strong>required</strong>
+                    </p>
                     <textarea formControlName="sidmChampionAwards" class="form-control mb-2" aria-label="With
                     textarea" maxlength="100"></textarea>
                     <p class="fileSizetext">Write a about the product/technology/facility/exports (100 Words). For

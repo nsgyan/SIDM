@@ -120,10 +120,18 @@ exports.passwordReset = (req, res, next) => {
     res.send("Internal server error");
   })
 }
-exports.assessmentsList=(req,res)=>{
+exports.filterAssessmentsList=(req,res)=>{
   const category= req.query.category
   const typeOfApplicant= req.query.typeOfApplicant
   registrationForm.find({category:category,typeOfApplicant:typeOfApplicant}).then(data=>{
+    res.status(200).send(data)
+  }).catch(err=>{
+      res.status(500).json("internal server error");
+  })
+}
+exports.assessmentsList=(req,res)=>{
+  
+  registrationForm.find({questionnaireStatus:'sumbit'}).then(data=>{
     res.status(200).send(data)
   }).catch(err=>{
       res.status(500).json("internal server error");

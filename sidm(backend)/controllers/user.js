@@ -35,7 +35,7 @@ exports.loginVerify = (req, res, next) => {
                 res.status(200).send({ token: token })
             }
             else {
-                res.status(404).send({ message: 'User does not exist' })
+                res.status(401).send({ message: 'User does not exist' })
             }
         }).catch(err => {
             res.json("internal server error");
@@ -104,10 +104,10 @@ exports.memberLogin = (req, res, next) => {
             }
             else {
 
-                res.status(404).send('user not Found')
+                res.status(401).send('user not Found')
             }
         }).catch(err => {
-            res.status(404).send('not Found')
+            res.status(401).send('not Found')
         })
 
 }
@@ -123,7 +123,7 @@ exports.memberData = (req, res, next) => {
                         res.status(200).send(data)
                     }
                     else {
-                        res.status(404).send('not Found user Data')
+                        res.status(401).send('not Found user Data')
                     }
 
                 })

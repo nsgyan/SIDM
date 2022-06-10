@@ -37,6 +37,8 @@
       <div class="col-lg-6">
         <div class="ComName">Type of applicant company: <span>{{userData?.typeOfApplicant}}</span> </div>
 
+        <div class="ComName">Nomenclature of items: <span>{{userData?.nomenclaturOfItems}}</span> </div>
+
       </div>
     </div>
     <div class="row">
@@ -48,7 +50,7 @@
     </div>
 
   </div>
-
+  <button class="RegistrationBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
   <form [formGroup]="assessor">
     <mat-stepper #stepper>
 
@@ -67,7 +69,7 @@
                 <p class="score">{{aissmentdata.questionAns[i].score}}</p>
               </div>
             </div>
-            <h2>{{i+1}}:{{aissmentdata.questionAns[i].question}}</h2>
+            <h2>{{i+1}}.{{aissmentdata.questionAns[i].question}}</h2>
             <div class="checkFeild" *ngFor="let item of aissmentdata.questionAns[i]?.option;let j =index">
               <div class="form-check mb-2">
                 <input class="form-check-input" disabled type="checkbox" value="{{item?.answer}}" id="{{j}}">
@@ -87,7 +89,7 @@
                 class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
 
             <div *ngIf="aissmentdata.questionAns[i].description">
-              <h2>Write up: <br><span class="secondText">{{aissmentdata.questionAns[i].description}}</span></h2>
+              <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i].description"></div>
               <label class="text" for=`assessorScore${{i+1}}`>Assessor score: </label>
               <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore"
                 (keypress)="keyPressNumbers($event)" id=`assessorScore${{i+1}}`>
@@ -105,7 +107,8 @@
 
             <div>
 
-              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i!==lastIndex ||aissmentdata.category==='cat4' " mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button class="RegistrationBtn" *ngIf="i===lastIndex && aissmentdata.category!=='cat4'" mat-button (click)="submit('Completed')">Submit</button>
               <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
@@ -114,6 +117,7 @@
           </mat-step>
         </div>
       </div>
+<<<<<<< HEAD
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <div class="Submitted">
@@ -126,8 +130,76 @@
           <button class="SubmittedBtn mr-0" mat-button (click)="submit('Completed')">Submit</button>
         </div>
         <div class="clearfix"></div>
+=======
+      <mat-step #stepper *ngIf="aissmentdata?.category==='cat4'">
+          <div class="d-flex justify-content-end">
+            <div class="d-flex align-items-center">
+              <label class="mr-2 MaxScore">Max Score</label>
+              <p class="score">10</p>
+            </div>
+            <div class="d-flex align-items-center ml-3">
+              <label class="mr-2 MaxScore">Score</label>
+              <p class="score">{{aissmentdata.staticScore}}</p>
+            </div>
+          </div>
+          <h2>{{lastIndex+2}}.Number of types of products exported
+            Give a list of products in an excel with their
+            picture/small explanation</h2>
+            <div class="checkFeild" >
+              <div class="form-check mb-2">
+                <input class="form-check-input mb-3" disabled type="checkbox" value="More than 05 type" id="1">
+                <label class="form-check-label fontSize mb-3" for="1">More than 05 type </label><br>
+                  <input class="form-check-input mb-3" disabled type="checkbox" value="03-04 types" id="2">
+                <label class="form-check-label fontSize mb-3" for="2">03-04 types </label>
+                <br>
+                  <input class="form-check-input mb-3" disabled type="checkbox" value="02 types of products" id="3">
+                <label class="form-check-label fontSize mb-3" for="3">02 types of products </label>
+                <br>
+                  <input class="form-check-input" disabled type="checkbox" value="Single product" id="4">
+                <label class="form-check-label fontSize" for="4">
+                  Single product
+                </label>
+              </div>
+            </div>
+            <h2 class="mt-3" *ngIf="aissmentdata.staticAnswer">Selected option: <span class="secondText">{{aissmentdata.staticAnswer}}</span></h2>
+            <table class="table" formArrayName="staticTable" >
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">S.No</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Explain(25 words)</th>
+                  <th scope="col">Upload Pic</th>
+                  <th scope="col">IC Content %</th>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let item of aissmentdata.staticTable; let i = index" >
+                 <td>{{i+1}} 
+              </td>
+                 <td>{{item.product}}</td>
+                 <td>{{item.description}}</td>
+                 <td>
+                  <a class="AttachementBtn ml-2" *ngIf='item.uploadDocuments' target="blank"
+                    href="{{item.uploadDocuments}}">View Attachment</a></td>
+                 <td>{{item.IcContent}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)">
+            <div>
+
+              <button class="RegistrationBtn"  mat-button  (click)="staticSubmit('Completed')">Submit</button>
+              <button mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+
+            </div>
+  
+        
+  
+       
+>>>>>>> e81c7dc7a4557bd58af194557ca7b095be91b4d4
       </mat-step>
+     
     </mat-stepper>
+
 
 
   </form>

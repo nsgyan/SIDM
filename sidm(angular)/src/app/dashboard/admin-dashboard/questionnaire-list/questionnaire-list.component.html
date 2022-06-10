@@ -16,6 +16,10 @@
       <!-- ID Column -->
   
       <!-- Progress Column -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: max-content"> S No. </th>
+        <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+      </ng-container>
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
         <td mat-cell *matCellDef="let row"> {{row.category}}</td>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
@@ -13,7 +14,8 @@ export class AddAssessorComponent implements OnInit {
   assessorForm:FormGroup
   constructor(private fb:FormBuilder,
     private httpService:HttpService,
-    private toast: ToastrService,) { 
+    private toast: ToastrService,
+    private routes: Router,) { 
     this.assessorForm=this.fb.group({
       assessorName:['',Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -66,11 +68,12 @@ export class AddAssessorComponent implements OnInit {
   sumbit(){
     if(this.assessorForm.valid){
       this.httpService.signupAssessor({
-        email: this.assessorForm.value.email,
+        email: this.assessorForm.value.email.toLowerCase(),
         password: this.assessorForm.value.password,
         assessorName: this.assessorForm.value.assessorName,
       }).subscribe(data=>{  
         this.toast.success('Assessor  Successfully Added')
+        this.routes.navigate(['admin/assessorQuestionnaire'])
       },err=>{
         this.toast.error('Assessor already exist ');
     

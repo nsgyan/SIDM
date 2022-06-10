@@ -28,7 +28,24 @@
     background-color: #e5e7fb;
     color: #000;
 }
+.matlable{
+    font: 500 20px/32px Roboto,"Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
 
+::ng-deep .mat-horizontal-content-container {
+    overflow: auto !important;
+    padding: 0 24px 24px 24px;
+    background: #fff;
+    height: 532px;
+    padding: 1.5rem !important;
+}
+::ng-deep .mat-option-text {
+    display: inline-block;
+    flex-grow: 1;
+    overflow: auto !important;
+    text-overflow: ellipsis;
+}
 .paymentsDropdwn {
     background: none;
     border: 1px solid #363a7a;
@@ -131,3 +148,12 @@ textarea {
     width: 435px;
     height: 100px; 
 }
+
+.addBtn {
+
+    border-radius: 3px;
+    color: rgb(255, 46, 46)!important;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 10px!important;
+  }

@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
@@ -39,6 +37,7 @@ multiSelect:boolean=false
       upload:['',Validators.required],
       textBox:['',Validators.required],
       options: this.fb.array([]) ,
+      parameterDescription:['']
     })
   }
   ngOnInit(): void {
@@ -92,6 +91,9 @@ multiSelect:boolean=false
         this.addOptions()
       }
     }
+    else{
+      this.removeAllOption()
+    }
     
   }
  
@@ -119,8 +121,8 @@ multiSelect:boolean=false
       options:this.questionnaire.value.options, 
       inputType:this.questionnaire.value.inputType,
       textBox:this.questionnaire.value.textBox ? true:false,
-      upload:this.questionnaire.value.upload?true:false
-
+      upload:this.questionnaire.value.upload?true:false,
+      parameterDescription:this.questionnaire.value.parameterDescription
       }).subscribe((data:any)=>{
         console.log(data);
         this.toast.success(data);

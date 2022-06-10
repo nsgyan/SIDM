@@ -179,7 +179,7 @@
                                             <span *ngIf="memberData.paymentStatus==='Pending'"
                                                 (click)="viewForm(memberData)" style="color: red;">Pending</span>
                                             <span *ngIf="memberData.paymentStatus==='Paid'"
-                                                style="color: green;">Paid</span>
+                                                style="color: green;">Paid ({{memberData.paymentMode}})</span>
                                         </td>
 
                                         <td><a *ngIf="memberData?.remark" (click)="viewRemark(memberData?.remark)"
@@ -807,6 +807,73 @@
                         <input type="text" formControlName="productLink">
 
                     </div>
+                    <div *ngIf="editData.paymentStatus!=='Paid'" class=" mt-2">
+                        <input formControlName="paymentMode" (change)="paymentMode('online')" type="radio"  name='paymentMode' value = 'online'   /> Online Payment
+<input type='radio' formControlName="paymentMode" name='paymentMode' (change)="paymentMode('offline')" value='offline' type="radio"  /> Offline payment
+                    </div>
+                     <div *ngIf="editData.paymentStatus==='Paid'">Payment Mode :{{editData.paymentMode}} </div>
+                    <div *ngIf="!participationMode" class="">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2">Name of Bank *</h5>
+                                    <input formControlName="nameOfBank" type="text" [readonly]="editData.paymentStatus==='Paid'">
+                                    <p *ngIf="editForm.get('nameOfBank')?.hasError('required') && (  editForm.controls['nameOfBank']?.touched || submited )"
+                                        style="color: red;">
+                                        Name of Bank <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                                <div class="col-lg-6" *ngIf="editData.paymentStatus!=='Paid'">
+                                    <h5 class="mt-3 mb-2"> Mode of Payment</h5>
+                                    <select formControlName="offlineModeOfPayment" class="select">
+                                        <option *ngFor="let items of modeofPayment" value="{{items}}">{{items}}</option>
+                                    </select>
+                                    <p *ngIf="editForm.get('offlineModeOfPayment')?.hasError('required') && (  editForm.controls['modeOfPayment']?.touched || submited )"
+                                        style="color: red;">
+                                        Mode of Payment <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                                <div class="col-lg-6" *ngIf="editData.paymentStatus==='Paid'">
+                                    <h5 class="mt-3 mb-2"> Mode of Payment</h5>
+                                    <input formControlName="offlineModeOfPayment" type="text" readonly >
+        
+                                </div>
+        
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2"> Amount *</h5>
+                                    <input formControlName="amount" type="text" readonly >
+            
+        
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mt-3 mb-2"> Date of Payment</h5>
+                                    <input formControlName="offlineDateOfPayment" type="date" value="yyyy-mm-dd"
+                                        class="input-medium search-query" (keypress)="pickclender()" [readonly]="editData.paymentStatus==='Paid'" maxlength="16">
+                                    <p *ngIf="editForm.get('offlineDateOfPayment')?.hasError('required') && (  editForm.controls['dateOfPayment']?.touched || submited )"
+                                        style="color: red;">
+                                        Date of Payment <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="mt-3 mb-2">Transaction details *</h5>
+                                    <input formControlName="transactionDetails" type="text" [readonly]="editData.paymentStatus==='Paid'">
+                                    <p *ngIf="editForm.get('transactionDetails')?.hasError('required') && (  editForm.controls['transactionDetails']?.touched || submited )"
+                                        style="color: red;">
+                                        Transaction details <strong>required</strong>
+                                    </p>
+        
+                                </div>
+                            </div>
+                        </div> -
+                    </div>
+
                     <div class=" mt-4">
                         <div class="form-group">
                             <re-captcha (resolved)="resolved($event)"
@@ -827,9 +894,13 @@
                             <p> Submit for approval
                             </p>
                         </button>
-                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'"
+                        <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'&&participationMode"
                             (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay
                         </button>
+                        
+                    <button *ngIf="!participationMode||editData.paymentStatus==='Paid'" class="save-btn mx-2" target="blanck" (click)="finalSubmit('Pending Approval','changeStatus')">
+                   Final Submit
+                </button>
                         <button class="save-btn" target="blanck" (click)="savedraft('Pending')" [disabled]="action">
                             <p>Save</p>
                         </button>
@@ -840,87 +911,5 @@
     </div>
 </section>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Offline Payment Details</h5>
 
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="OfflinePayment">
-                    <div class="">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-2">Name of Bank *</h5>
-                                    <input formControlName="nameOfBank" type="text">
-                                    <p *ngIf="OfflinePayment.get('nameOfBank')?.hasError('required') && (  OfflinePayment.controls['nameOfBank'].touched || submited )"
-                                        style="color: red;">
-                                        Name of Bank <strong>required</strong>
-                                    </p>
-
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-2"> Mode of Payment</h5>
-                                    <select formControlName="modeOfPayment" class="select">
-                                        <option *ngFor="let item of modeofPayment" value="{{item}}">{{item}}</option>
-                                    </select>
-                                    <p *ngIf="OfflinePayment.get('modeOfPayment')?.hasError('required') && (  OfflinePayment.controls['modeOfPayment'].touched || submited )"
-                                        style="color: red;">
-                                        Mode of Payment <strong>required</strong>
-                                    </p>
-
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-2"> Amount *</h5>
-                                    <input formControlName="amount" type="text" (keypress)="keyPressNumbers($event)">
-                                    <p *ngIf="OfflinePayment.get('amount')?.hasError('required') && (  OfflinePayment.controls['amount'].touched || submited )"
-                                        style="color: red;">
-                                        Amount <strong>required</strong>
-                                    </p>
-
-
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mt-3 mb-2"> Date of Payment</h5>
-                                    <input formControlName="dateOfPayment" type="date" value="yyyy-mm-dd"
-                                        class="input-medium search-query" (keypress)="pickclender()" maxlength="16">
-                                    <p *ngIf="OfflinePayment.get('dateOfPayment')?.hasError('required') && (  OfflinePayment.controls['dateOfPayment'].touched || submited )"
-                                        style="color: red;">
-                                        Date of Payment <strong>required</strong>
-                                    </p>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h5 class="mt-3 mb-2">Transaction details *</h5>
-                                    <input formControlName="transactionDetails" type="text">
-                                    <p *ngIf="OfflinePayment.get('transactionDetails')?.hasError('required') && (  OfflinePayment.controls['transactionDetails'].touched || submited )"
-                                        style="color: red;">
-                                        Transaction details <strong>required</strong>
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div> -
-                    </div>
-
-
-
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="NewBtn" data-dismiss="modal">Close</button>
-                <button type="button" class="NewBtn" (click)="submitOfflinePaymentDetails()">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
