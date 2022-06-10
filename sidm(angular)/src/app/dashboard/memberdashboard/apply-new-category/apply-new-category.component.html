@@ -125,12 +125,16 @@
                                 <li class="categoryList mb-2">DPIIT Certificate - <span
                                         class="catBold">SME/START-UP</span></li>
                             </ul>
-                            <input type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'
+                            <input *ngIf="!memberData[0].subCategoryDoccument" type="file" accept=".gif,.jpg,.jpeg,.png,.pdf" formControlName='subCategoryDoccument'
                                 (change)="newChangeListener($event,'subCategoryDoccument')">
-                            <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be
+                                <a *ngIf="memberData[0].subCategoryDoccument" href="{{memberData[0].subCategoryDoccument}}"
+                                target="_blank"><i class="fas fa-eye"></i></a>
+                            <a *ngIf="memberData[0].subCategoryDoccument" (click)="delete('subCategoryDoccument')"><i
+                                    class="fa fa-trash"></i></a>
+                            <p  *ngIf="memberData[0].subCategoryDoccument" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be
                                 less than 2MB</p>
 
-                            <p *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
+                            <p  *ngIf="newCategoryForm.get('subCategoryDoccument')?.hasError('required')"
                                 style="color: red;">
                                 sub category Documents <strong>required</strong>
                             </p>
@@ -140,9 +144,13 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h5 class="mt-5 mb-2">Upload Financial Audited Statement for 2020-21 (Balance sheet and P & L) * </h5>
-                            <input type="file" accept="application/pdf" formControlName='financialDoccument'
+                            <input *ngIf="!memberData[0].financialDoccument" type="file" accept="application/pdf" formControlName='financialDoccument'
                                 (change)="newGstpdfOnly($event,'financialDoccument')">
-                            <p class="fileSizetext">File should be in pdf.Pdf size should be less than 2MB</p>
+                                <a *ngIf="memberData[0].financialDoccument" href="{{memberData[0].financialDoccument}}"
+                                target="_blank"><i class="fas fa-eye"></i></a>
+                            <a *ngIf="memberData[0].financialDoccument" (click)="delete('financialDoccument')"><i
+                                    class="fa fa-trash"></i></a>
+                            <p *ngIf="memberData[0].financialDoccument"  class="fileSizetext">File should be in pdf.Pdf size should be less than 2MB</p>
                             <br>
                             <p *ngIf="newCategoryForm.get('financialDoccument')?.hasError('required')"
                                 style="color: red;">
@@ -315,10 +323,14 @@
                         <div class="col-lg-6">
                             <h5 class="mt-3 mb-2">Upload GSTIN Certificate*
                             </h5>
-                            <input formControlName="documentGstCertificate" type="file"
+                            <input *ngIf="!memberData[0].documentGstCertificate" formControlName="documentGstCertificate" type="file"
                                 accept=".gif,.jpg,.jpeg,.png,.pdf"
                                 (change)="newChangeListener($event,'documentGstCertificate')">
-                            <p class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be
+                                <a *ngIf="memberData[0].documentGstCertificate" href="{{memberData[0].documentGstCertificate}}"
+                                target="_blank"><i class="fas fa-eye"></i></a>
+                            <a *ngIf="memberData[0].documentGstCertificate" (click)="delete('documentGstCertificate')"><i
+                                    class="fa fa-trash"></i></a>
+                            <p *ngIf="memberData[0].documentGstCertificate" class="fileSizetext">File should be in pdf, jpg, jpeg & png format. Image size should be
                                 less than 2MB</p>
                             <br>
                             <p *ngIf="newCategoryForm.get('documentGstCertificate')?.hasError('required')"
