@@ -12,7 +12,7 @@
           <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
 
             <h2 class="matlable m-0">{{questionnaireData[i].parameter}}</h2>
-            <p style="color:#777">{{questionnaireData[i].parameterDescription}}</p>
+            <p style="color:rgb(150 67 67);font-size: 17px ;">{{questionnaireData[i].parameterDescription}}</p>
             <div class="auto-width">
               <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
                 <mat-label>Select Answer</mat-label>

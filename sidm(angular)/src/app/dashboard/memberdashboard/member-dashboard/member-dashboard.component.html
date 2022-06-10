@@ -6,7 +6,7 @@
     <div class="mt-4 mb-4">
         <div class="card">
             <div class="card-header">
-                SIDM Bank Details for Remittance
+                SIDM Bank Details for remittance in case of offline payment
             </div>
             <div class="card-body">
                 <div class="row">
@@ -187,7 +187,7 @@
                                                 class="badge badge-light"><i aria-hidden="true"
                                                     class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a>
                                         </td>
-                                        <td><span *ngIf="memberData?.questionnaireStatus===''"></span></td>
+                                        <td>{{memberData?.questionnaireStatus}}</td>
                                         <td class="text-center">
                                             <div class="dropBtn dropdown">
                                                 <button class="paymentsDropdwn  dropdown-toggle" type="button"
@@ -212,9 +212,10 @@
                                                             aria-hidden="true" class="fas fa-edit"></i> View Payment
                                                     </a>
                                                     <a *ngIf="memberData?.paymentStatus==='Paid'&&memberData?.questionnaireStatus!=='Submitted'" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> 
-                                                        Apply for award </a>
+                                                        <i aria-hidden="true" class="fas fa-edit"></i> Apply for award </a>
                                                         <a *ngIf="memberData?.paymentStatus==='Paid'&&memberData?.questionnaireStatus==='Submitted'" (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
-                                                            Award Questionnaire View </a>
+                                                            <i aria-hidden="true"
+                                                            class="fas fa-eye"></i>   Award Questionnaire View </a>
                                                 </div>
                                             </div>
                                         </td>
@@ -901,11 +902,11 @@
                             </p>
                         </button>
                         <button class="save-btn mx-2" target="blanck" *ngIf="editData.paymentStatus!=='Paid'&&participationMode"
-                            (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay
+                            (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay(online)
                         </button>
                         
                     <button *ngIf="!participationMode||editData.paymentStatus==='Paid'" class="save-btn mx-2" target="blanck" (click)="finalSubmit('Pending Approval','changeStatus')">
-                   Final Submit
+                        Final Submit and pay(offline)
                 </button>
                         <button class="save-btn" target="blanck" (click)="savedraft('Pending')" [disabled]="action">
                             <p>Save</p>

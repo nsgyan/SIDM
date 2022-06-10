@@ -131,7 +131,7 @@ table {
 .mat-cell,
 .mat-header-cell {
   border: none;
-
+cursor: pointer !important;
   white-space: pre-line;
 }
 

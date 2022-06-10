@@ -692,10 +692,10 @@
                             <p>Save </p>
                         </button>
                         <button *ngIf="participationMode" class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')"
-                        [disabled]="action">Final Submit and pay
+                        [disabled]="action">Final Submit and pay(online)
                     </button>
                     <button *ngIf="!participationMode" class="save-btn mx-2" target="blanck" (click)="openModel('submitAndOfflinePay')"
-                   >Final Submit
+                   >Final Submit and pay(offline)
                 </button>
                     </div>
                 </div>

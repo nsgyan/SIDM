@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { formatDate, Location } from '@angular/common'
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +27,8 @@ export class ApplicantFormViewComponent implements OnInit {
     private localStorage: LocalStorageService,
     private toast: ToastrService,
     private location: Location, 
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private routes:Router) {
     const id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(id)
       .subscribe((data: any) => {
@@ -110,4 +111,17 @@ export class ApplicantFormViewComponent implements OnInit {
   goBack(){
     this.location?.back();
   }
+  editForm(id:any){
+ 
+    // this.routes.navigate(['/adminEdit/edit/',id]);
+    let url: string = "/dashboard/admin/edit/" +id
+    this.routes.navigateByUrl(url);
+    // this.routes.navigateByUrl(url);
+    // window.location.href=url
+  }
+  viewQuestionnaire(id:any){
+    let url: string = "/dashboard/admin/ViewApplicantQuestionnaire/" +id
+    this.routes.navigateByUrl(url);
+  }
+  
 }
