@@ -31,9 +31,9 @@
                             style="color: #fff;"></i>Logout</a></li>
             </ul>
             <ul *ngIf="type==='member'"> 
-                <li class=""><a href="javascript:void(0)"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
+                <li class=""><a (click)="navigate('dashboard/member')"><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Dashboard</a></li>
                 <li class="" ><a (click)="navigate('dashboard/member/applyNew')" ><i aria-hidden="true" class="fas fa-th-large"style="color: #fff;"></i>Apply for new category +</a></li>
-                <span class="fontSize" *ngIf="cat1">Category C1</span>
+                <!-- <span class="fontSize" *ngIf="cat1">Category C1</span>
                 <li  class="ml-2" *ngIf="cat1"><a (click)="navigateTo('/dashboard/member/view/','cat1')"><i aria-hidden="true" class="fas fa-list" style="color: #fff;"></i> List View</a></li>
                 
                 <li class="ml-2" *ngIf="!QuesStatusCat1&&Quescat1"><a  (click)="navigateTo('dashboard/member/questionnaire/','cat1')"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i>  
@@ -57,7 +57,7 @@
                             <li class="ml-2"  *ngIf="!QuesStatusCat4&&Quescat4"><a (click)="navigateTo('dashboard/member/questionnaire/','cat4')"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i>  
                                 Apply for award </a></li>
                                 <li class="ml-2"  *ngIf="QuesStatusCat4"><a (click)="navigateTo('dashboard/member/viewQuestionnaire/','cat4')"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
-                                    Award Questionnaire View </a></li>
+                                    Award Questionnaire View </a></li> -->
                    
         
            

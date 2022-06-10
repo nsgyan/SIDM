@@ -19,6 +19,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MemberDashboardPageComponent } from './member-dashboard-page/member-dashboard-page.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ApplyNewCategoryComponent,
     QuestionnaireFormComponent,
     ViewQuestionnaireComponent,
+    MemberDashboardPageComponent,
   ],
   imports: [
     CommonModule,

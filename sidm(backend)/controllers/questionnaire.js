@@ -26,7 +26,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     })
     Questionnaire.save().then(data=>{
     
-        res.status(200).json('successfully sumbit');
+        res.status(200).json('successfully Submitted');
     }).catch(err=>{
         res.json("internal server error");
     })
@@ -136,9 +136,9 @@ for(i of item){
         score:null,
       })
       console.log(data.assessor)
-} data.questionnaireStatus='sumbit'
+} data.questionnaireStatus='Submitted'
 data.save().then(data=>{
-    res.status(200).json('successfully sumbit');
+    res.status(200).json('successfully Submitted');
 })
  })
            })
@@ -180,9 +180,9 @@ for(i of item){
         score:null,
       })
       console.log(data.assessor)
-} data.questionnaireStatus='sumbit'
+} data.questionnaireStatus='Submitted'
 data.save().then(data=>{
-    res.status(200).json('successfully sumbit');
+    res.status(200).json('successfully Submitted');
 })
  })
            })
@@ -242,7 +242,7 @@ data.assessor.push({
 exports.findmember=(req,res)=>{
     const category= req.query.category
     const typeOfApplicant= req.query.typeOfApplicant
-    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit'}).then(data=>{
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'Submitted'}).then(data=>{
         res.status(200).send(data)
     }).catch(err=>{
         res.json("internal server error");

@@ -1,5 +1,6 @@
+
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AssessorModule } from '../app/assessor/assessor.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminAuthGuradService } from './shared/services/admin-auth-gurad.service';
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'dashboard',
     component:DashboardComponent,
     loadChildren: () => import(`./dashboard/dashboard.module`).then(m => m.DashboardModule),
+    canActivate:[AdminAuthGuradService]
   },
   {
     path:'assessor',

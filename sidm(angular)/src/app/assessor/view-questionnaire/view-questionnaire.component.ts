@@ -79,7 +79,7 @@ if(data[0].category==='cat4'){
   this.lastIndex=data[0].questionAns.length-1;
     
     data[0].questionAns.map((item:any)=>{
-      if(item.description){
+      if(item.inputType==='assessorScore'){
   control.push(
     this.fb.group({
       question: [item.question],      

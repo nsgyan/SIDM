@@ -1028,6 +1028,18 @@ this.action=true
       this.participationMode=false
     }
       }
+      navigateTo(url:string,id:string){
+  
 
+    
+        
+       
+          
+       
+            url=url+id
+            window.location.href=url
+         
+    
+      }
 
 }

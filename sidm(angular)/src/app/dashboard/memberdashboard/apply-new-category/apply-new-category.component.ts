@@ -87,7 +87,7 @@ export class ApplyNewCategoryComponent implements OnInit {
       typeOfApplicant: [''],
       subCategoryDoccument: [''],
       financialDoccument: [''],
-      nameOfCompany: [''],
+      nameOfCompany: [],
       addressl1: [''],
       addressl2: [''],
       state: [''],
@@ -154,22 +154,40 @@ export class ApplyNewCategoryComponent implements OnInit {
           this.email = i.email
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumber;
+          
         }
+        console.log(this.memberData[0].nameOfCompany);
         
+this.newCategoryForm.get('nameOfCompany')?.setValue(this.memberData[0].nameOfCompany)
+this.newCategoryForm.get('nameOfCompany')?.updateValueAndValidity()
+this.newCategoryForm.get('addressl1')?.setValue(this.memberData[0].addressl1)
+this.newCategoryForm.get('addressl1')?.updateValueAndValidity()     
+this.newCategoryForm.get('addressl2')?.setValue(this.memberData[0].addressl2)
+this.newCategoryForm.get('addressl2')?.updateValueAndValidity()
+this.newCategoryForm.get('state')?.setValue(this.memberData[0].state)
+this.newCategoryForm.get('state')?.updateValueAndValidity()
+this.newCategoryForm.get('pincode')?.setValue(this.memberData[0].pincode)
+this.newCategoryForm.get('pincode')?.updateValueAndValidity()
+this.newCategoryForm.get('city')?.setValue(this.memberData[0].city)
+this.newCategoryForm.get('city')?.updateValueAndValidity()
+this.newCategoryForm.get('dateOfCompany')?.setValue(this.memberData[0].dateOfCompany)
+this.newCategoryForm.get('dateOfCompany')?.updateValueAndValidity()
+this.newCategoryForm.get('designation')?.setValue(this.memberData[0].alterEmail)
+this.newCategoryForm.get('designation')?.updateValueAndValidity()
+this.newCategoryForm.get('name')?.setValue(this.memberData[0].name)
+this.newCategoryForm.get('name')?.updateValueAndValidity()
+this.newCategoryForm.get('alterEmail')?.setValue(this.memberData[0].alterEmail)
+this.newCategoryForm.get('alterEmail')?.updateValueAndValidity()
+this.newCategoryForm.get('alterMobileNumber')?.setValue(this.memberData[0].alterMobileNumber)
+this.newCategoryForm.get('alterMobileNumber')?.updateValueAndValidity()
 this.newCategoryForm.get('email')?.setValue(this.email)
-this.newCategoryForm.get('email')?.updateValueAndValidity()
-        
+this.newCategoryForm.get('email')?.updateValueAndValidity()     
 this.newCategoryForm.get('mobileNumber')?.setValue(this.mobilenumber)
 this.newCategoryForm.get('mobileNumber')?.updateValueAndValidity()
-        
 this.newCategoryForm.get('panNumber')?.setValue(this.pan)
 this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
       
       
-        if(!this.cat1&&!this.cat2&&!this.cat3&&!this.cat4){
-          const url='/dashboard/member/view/'+data[0]._id
-          this.routes.navigateByUrl(url);
-        }
       }, err => {
         this.toast.error(err.error);
         this.localStorage.clearLocalStorage()
