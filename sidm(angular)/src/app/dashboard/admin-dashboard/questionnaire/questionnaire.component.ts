@@ -91,6 +91,9 @@ multiSelect:boolean=false
         this.addOptions()
       }
     }
+    else{
+      this.removeAllOption()
+    }
     
   }
  

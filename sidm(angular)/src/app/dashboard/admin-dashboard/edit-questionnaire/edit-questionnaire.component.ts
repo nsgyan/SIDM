@@ -80,6 +80,9 @@ export class EditQuestionnaireComponent implements OnInit {
         this.addOptions()
       }
     }
+    else{
+      this.removeAllOption()
+    }
     
   }
   
