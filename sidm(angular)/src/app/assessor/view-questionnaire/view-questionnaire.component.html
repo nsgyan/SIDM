@@ -117,20 +117,6 @@
           </mat-step>
         </div>
       </div>
-<<<<<<< HEAD
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <div class="Submitted">
-          <img class="checkBoxImg" src="assets/img/New_img/checkbox.png" alt="">
-          <p class="text">All Questionnaire Submitted.</p>
-        </div>
-        <div class="FinalBtn">
-          <button class="SubmittedBtn" mat-button matStepperPrevious>Back</button>
-          <button class="SubmittedBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
-          <button class="SubmittedBtn mr-0" mat-button (click)="submit('Completed')">Submit</button>
-        </div>
-        <div class="clearfix"></div>
-=======
       <mat-step #stepper *ngIf="aissmentdata?.category==='cat4'">
           <div class="d-flex justify-content-end">
             <div class="d-flex align-items-center">
@@ -195,7 +181,6 @@
         
   
        
->>>>>>> e81c7dc7a4557bd58af194557ca7b095be91b4d4
       </mat-step>
      
     </mat-stepper>
