@@ -238,7 +238,7 @@ let j=0;
 console.log(this.questionnaireForm);
 
 
-  if (this.questionnaireForm.valid ) {
+  if (this.questionnaireForm.valid &&this.userData.offlinePaymentDetails ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
@@ -302,6 +302,9 @@ control.at(i).get('score')?.updateValueAndValidity()
     window.location.href=url
   })
   }
+  else if(this.questionnaireForm.valid &&!this.userData.offlinePaymentDetails ){
+    this.toast.error('Please Submit Offline Payment Details');
+  }
   else {
 
     this.submited = true;
@@ -334,7 +337,7 @@ else if(staticAnswer==="Single product"){
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=2
 }  console.log(this.totalScore,this.questionnaireForm);
-  if (this.questionnaireForm.valid ) {
+  if (this.questionnaireForm.valid &&this.userData.offlinePaymentDetails  ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
@@ -400,6 +403,9 @@ control.at(i).get('score')?.updateValueAndValidity()
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })
+  }
+  else if(this.questionnaireForm.valid &&!this.userData.offlinePaymentDetails ){
+    this.toast.error('Please Submit Offline Payment Details');
   }
   else {
 
