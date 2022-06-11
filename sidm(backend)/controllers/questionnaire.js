@@ -312,7 +312,7 @@ data.assessor.push({
 exports.findmember=(req,res)=>{
     const category= req.query.category
     const typeOfApplicant= req.query.typeOfApplicant
-    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'Submitted'}).then(data=>{
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'aprroved'}).then(data=>{
         res.status(200).send(data)
     }).catch(err=>{
         res.json("internal server error");
