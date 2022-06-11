@@ -410,7 +410,37 @@ exports.changeStatus = (req, res, next) => {
       res.json("internal server error");
     }
     else{
-      console.log(success);
+     if(success.status==='Approved'){
+      const filePath = path.join(__dirname, '../view/registrationApproval.html');
+      const source = fs.readFileSync(filePath, 'utf-8').toString();
+      const template = handlebars.compile(source);
+  
+      var maillist = [
+        success.email,
+        // 'bharat.jain@sidm.in',
+        // 'awards22@sidm.in',
+        // 'vikas.rai@sidm.in',
+        // 'manoj.mishra@sidm.in'
+         
+
+      ];
+      
+      maillist.toString();
+      const htmlToSend = template(replacements);
+      var mailOptions = {
+        from: 'awardsidm@gmail.com',
+        to: maillist,
+        subject: 'SIDM Champion Award 2022',
+        html: htmlToSend
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          res.json(error);
+        } else {
+          res.status(200).json('Please check your email');
+        }
+      })
+     }
       res.status(200).json('successfully status change');
     }
   });

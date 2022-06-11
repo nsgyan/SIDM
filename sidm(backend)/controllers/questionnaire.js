@@ -124,6 +124,37 @@ exports.aissmentQuestionnaire=(req,res)=>{
     })
     aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
+          
+                const filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                const source = fs.readFileSync(filePath, 'utf-8').toString();
+                const template = handlebars.compile(source);
+            
+                var maillist = [
+                    data.email,
+                  // 'bharat.jain@sidm.in',
+                  // 'awards22@sidm.in',
+                  // 'vikas.rai@sidm.in',
+                  // 'manoj.mishra@sidm.in'
+                   
+          
+                ];
+                
+                maillist.toString();
+                const htmlToSend = template(replacements);
+                var mailOptions = {
+                  from: 'awardsidm@gmail.com',
+                  to: maillist,
+                  subject: 'SIDM Champion Award 2022',
+                  html: htmlToSend
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                   
+                  } else {
+                  
+                  }
+                })
+               
             data.assessor=[]
             Assessor.find().then(item=>{
 for(i of item){ 
@@ -141,6 +172,7 @@ for(i of item){
 data.save().then(data=>{
     savedAissment.assessor=data.assessor
     savedAissment.save().then(item=>{
+        
         res.status(200).json('successfully Submitted');
     })
   
@@ -170,6 +202,41 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
             RegistrationForm.findById(userId).then(data=>{
                 data.questionnaireStatus=questionnaireStatus
                 data.save().then(data=>{
+                    let filePath
+                    if(data.questionnaireStatus==='aprroved'){
+                        filePath = path.join(__dirname, '../view/questionaireApprove.html');}
+                       else {
+                         filePath = path.join(__dirname, '../view/requestInfo.html');
+                       }
+                const source = fs.readFileSync(filePath, 'utf-8').toString();
+                const template = handlebars.compile(source);
+            
+                var maillist = [
+                    data.email,
+                  // 'bharat.jain@sidm.in',
+                  // 'awards22@sidm.in',
+                  // 'vikas.rai@sidm.in',
+                  // 'manoj.mishra@sidm.in'
+                   
+          
+                ];
+                
+                maillist.toString();
+                const htmlToSend = template(replacements);
+                var mailOptions = {
+                  from: 'awardsidm@gmail.com',
+                  to: maillist,
+                  subject: 'SIDM Champion Award 2022',
+                  html: htmlToSend
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                   
+                  } else {
+                  
+                  }
+                })
+               
                     res.status(200).json('successfully Submitted');
                 })
             
@@ -203,6 +270,36 @@ exports.staticissmentQuestionnaire=(req,res)=>{
     })
     aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
+            const filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+            const source = fs.readFileSync(filePath, 'utf-8').toString();
+            const template = handlebars.compile(source);
+        
+            var maillist = [
+                data.email,
+              // 'bharat.jain@sidm.in',
+              // 'awards22@sidm.in',
+              // 'vikas.rai@sidm.in',
+              // 'manoj.mishra@sidm.in'
+               
+      
+            ];
+            
+            maillist.toString();
+            const htmlToSend = template(replacements);
+            var mailOptions = {
+              from: 'awardsidm@gmail.com',
+              to: maillist,
+              subject: 'SIDM Champion Award 2022',
+              html: htmlToSend
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+              if (error) {
+               
+              } else {
+              
+              }
+            })
+           
             data.assessor=[]
             Assessor.find().then(item=>{
 for(i of item){ 
