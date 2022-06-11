@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const questionnaireAissmentSchema = new Schema({
         createAt: { type: Date,default:new Date() },
-        userId:{ type: String },
+        userId:{ type: String,unique:true },
         totalScore:{type:String},
         category:{ type: String },
         questionAns:[], 
@@ -11,6 +11,10 @@ const questionnaireAissmentSchema = new Schema({
         staticAnswer:{type:String},
         staticMaxScore:{type:String},
         staticScore:{ type: String },
+        adminRemark:{ type: String },
+        status:{ type: String,default:'Pending' },
+        assessorRemark:{ type: String },
+        
         
         
 })

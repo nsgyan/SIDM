@@ -146,6 +146,48 @@ data.save().then(data=>{
         res.json("internal server error");
     })
 }
+exports.updateAissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const questionnaireStatus= req.body.questionnaireStatus
+    const id= req.body.id
+    const adminRemark= req.body.adminRemark
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    questionnaireAissment.findById(id).then(assessment=>{
+        assessment.userId=userId,
+        assessment.adminRemark=adminRemark,
+        assessment.totalScore=totalScore,
+        assessment.questionAns=questionAns,
+        assessment.category=category,
+        assessment.status=questionnaireStatus,
+        assessment.save().then(data=>{
+            RegistrationForm.findById(userId).then(data=>{
+                data.assessor=[]
+                Assessor.find().then(item=>{
+    for(i of item){ 
+        data.assessor.push({
+            id:i._id,
+           assessorName:i.assessorName,
+           email:i.email,
+            status:'Pending',
+            maxScore:null,
+            score:null,
+          })
+          console.log(data.assessor)
+    } data.questionnaireStatus=questionnaireStatus
+    data.save().then(data=>{
+        res.status(200).json('successfully Submitted');
+    })
+     })
+               })
+        })
+
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
+
 exports.staticissmentQuestionnaire=(req,res)=>{
     const userId= req.body.userId
     const totalScore= req.body.totalScore
@@ -191,9 +233,62 @@ data.save().then(data=>{
     })
 }
 
+exports.updateStaticissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const questionnaireStatus= req.body.questionnaireStatus
+    const id= req.body.id
+    const adminRemark= req.body.adminRemark
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const staticScore= req.body.staticScore
+    const staticMaxScore= req.body.staticMaxScore
+    const staticAnswer= req.body.staticAnswer
+    const staticTable= req.body.staticTable
+    questionnaireAissment.findById(id).then(assessment=>{
+        assessment.userId=userId,
+        assessment.adminRemark=adminRemark,
+        assessment.totalScore=totalScore,
+        assessment.status=questionnaireStatus,
+        assessment.questionAns=questionAns,
+        assessment.category=category,
+        assessment.staticScore=staticScore,
+        assessment.staticMaxScore=staticMaxScore,
+        assessment.staticAnswer=staticAnswer,
+        assessment.staticTable=staticTable,
+        assessment.save().then(data=>{
+            RegistrationForm.findById(userId).then(data=>{
+                data.assessor=[]
+                Assessor.find().then(item=>{
+    for(i of item){ 
+        data.assessor.push({
+            id:i._id,
+           assessorName:i.assessorName,
+           email:i.email,
+            status:'Pending',
+            maxScore:null,
+            score:null,
+          })
+          console.log(data.assessor)
+    } data.questionnaireStatus=questionnaireStatus
+    data.save().then(data=>{
+        res.status(200).json('successfully Submitted');
+    })
+     })
+               })
+        })
+
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+   
+  
+}
+
+
 exports.getAissmentQuestionnaire=(req,res)=>{
     const userId= req.params.userId
-    questionnaireAissment.find({userId:userId}).then(data=>{
+    questionnaireAissment.findOne({userId:userId}).then(data=>{
         if (data) {
             res.status(200).send(data)
         }

@@ -1,36 +1,170 @@
 <div class="topHeader">
-  <h2 *ngIf="aissmentdata[0]?.category==='cat1'"> Category C1 Questionnaire  List  View</h2>
-  <h2 *ngIf="aissmentdata[0]?.category==='cat2'"> Category C2 Questionnaire  List  View</h2>
-  <h2 *ngIf="aissmentdata[0]?.category==='cat3'"> Category C3 Questionnaire  List  View</h2>
-  <h2 *ngIf="aissmentdata[0]?.category==='cat4'"> Category C4 Questionnaire  List  View</h2>
+  <h2>Category {{userData?.category}}  Questionnaire </h2>
 </div>
 
 
-<div class="questionnaireForm">
-  <!-- <div>
-      <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
-    </div> -->
+<div class="container">
+  <form [formGroup]="questionnaireForm">
+    <mat-stepper #stepper>
 
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Qs.</th>
-        <th scope="col">Questions</th>
-        <th scope="col">Response</th>
-        <th scope="col">Attachment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
-        <th scope="row">{{i+1}}</th>
-        <td class="">{{item.question}}</td>
-        <td>
-            {{item.answer}} <a *ngIf="item.description" (click)="openModel(item.description)">Description</a>
-        </td>
-        <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'  target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
-     
-      </tr>
-     
-    </tbody>
-</table>
+      <div formArrayName="aissment">
+        <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+          <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
+            <div class="d-flex justify-content-end">
+              <div class="d-flex align-items-center">
+                <label class="mr-2 MaxScore">Max Score</label>
+                <p class="score">{{questionnaireData.questionAns[i].maxScore}}</p>
+              </div>
+              <div class="d-flex align-items-center ml-3">
+                <label class="mr-2 MaxScore">Score</label>
+                <p class="score">{{questionnaireData.questionAns[i].score}}</p>
+              </div>
+            </div>
+            <h2 class="matlable m-0">{{questionnaireData.questionAns[i].question}}</h2>
+            <p style="color:rgb(150 67 67);font-size: 17px ;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
+            <div class="auto-width">
+              <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="answer">
+                  <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
+                    {{option.answer}} </mat-option>
+                </mat-select>
+              </mat-form-field></div>
+              <div class="auto-width">
+              <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='multiSelect'" appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="answer" multiple>
+                  <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
+                    {{option.answer}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
+                please select at least one option
+              </p>
+         
+ 
+            <br>
+            <div *ngIf="questionnaireData.questionAns[i].description" >
+              <div class="mb-2">
+                <label
+                class="questionnaireLabel">Enter Description:</label>
+                <ckeditor formControlName="description" data="<p>Hello, world!</p>"></ckeditor>
+
+               
+              </div>
+            </div>
+            <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">
+              Answer description required
+            </p>
+            <div *ngIf="questionnaireData.questionAns[i].uploadDocuments" appearance="fill">
+              <a class="AttachementBtn ml-2" *ngIf='questionnaireData.questionAns[i].uploadDocuments' target="blank"
+              href="{{questionnaireData.questionAns[i].uploadDocuments}}">View Attachement</a>
+           
+            </div>
+            <div>
+
+              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button mat-button class="RegistrationBtn">Back</button>
+             
+            </div>
+
+          </mat-step>
+        </div>
+      </div>
+      <div *ngIf="static" >
+          <mat-step  >
+<div class="d-flex justify-content-end">
+              <div class="d-flex align-items-center">
+                <label class="mr-2 MaxScore">Max Score</label>
+                <p class="score">{{questionnaireData.staticMaxScore?questionnaireData.staticMaxScore:20}}</p>
+              </div>
+              <div class="d-flex align-items-center ml-3">
+                <label class="mr-2 MaxScore">Score</label>
+                <p class="score">{{questionnaireData.staticScore}}</p>
+              </div>
+            </div>
+            <h2>Number of types of products exported
+              Give a list of products in an excel with their
+              picture/small explanation</h2>
+              <mat-form-field appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="staticAnswer">
+                  <mat-option  value="More than 05 type">
+                    More than 05 type </mat-option>
+                    <mat-option  value="03-04 types">
+                      03-04 types</mat-option>
+                      <mat-option  value="02 types of products">
+                        02 types of products</mat-option>
+                        <mat-option  value="Single product">
+                          Single product</mat-option>
+                </mat-select>
+              </mat-form-field>
+        <button  class="RegistrationBtn" (click)="addStaticQuestion()">ADD </button>
+              <table class="table" formArrayName="staticTable" >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Explain(25 words)</th>
+                    <th scope="col">Upload Pic</th>
+                    <th scope="col">IC Content %</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor=" let controlName of staticTable.controls; let i = index" [formGroupName]="i">
+                   <td>{{i+1}}  <a class="addBtn mb-3" *ngIf='i!==0'
+                    (click)="removeStaticQuestion(i)"><i
+                        class="fa fa-trash"></i> </a>
+                </td>
+                   <td><input formControlName="product" type="text"></td>
+                   <td><input formControlName="description"  type="text"></td>
+                   <td><a class="AttachementBtn ml-2"  target="blank"
+                    href="{{questionnaireData.staticTable[i]?.uploadDocuments}}">View Attachement</a></td>
+                   <td><input formControlName="IcContent"  type="text"></td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            <div>
+              <table></table>
+              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button mat-button class="RegistrationBtn">Back</button>
+
+            </div>
+
+          </mat-step>
+        </div>
+        <mat-step   >
+          <div class="auto-width">
+            <mat-form-field  appearance="fill">
+              <mat-label>Select Answer</mat-label>
+              <mat-select formControlName="questionnaireStatus">
+                <mat-option  value="requestInfo">
+                 requestInfo </mat-option>
+                 <mat-option  value="aprroved">
+                  Aprrove </mat-option>
+              </mat-select>
+            </mat-form-field></div>
+          <h2 class="matlable m-0">Admin Remark:</h2>
+          <div class="mb-2">
+           
+            <ckeditor formControlName="adminRemark" ></ckeditor>
+
+            <p style="color: red;" *ngIf="questionnaireForm.get('adminRemark')?.hasError('required')&&(questionnaireForm.get('adminRemark')?.touched||questionnaireForm.get('description')?.dirty||submited)">
+              Admin Remark description required
+            </p>
+          </div>
+      
+          <div>
+
+            <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+            <button mat-button *ngIf="!static" (click)="submitQuestionnaire()" class="RegistrationBtn">Submit</button>
+            <button mat-button *ngIf="static" (click)="submitStaticQuestionnaire()" class="RegistrationBtn">Submit</button>
+          </div>
+
+        </mat-step>
+
+    </mat-stepper>
+
+  </form>
 </div>

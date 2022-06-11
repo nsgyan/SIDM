@@ -34,7 +34,7 @@ questionnaireForm:FormGroup
       staticAnswer:[''],
       staticTable:this.fb.array([]) ,
       staticScore:[''] ,
-      staticMaxScore:[''] ,
+      staticMaxScore:[20] ,
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
  
