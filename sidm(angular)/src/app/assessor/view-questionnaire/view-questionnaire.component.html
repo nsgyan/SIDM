@@ -106,9 +106,9 @@
 
             <div>
 
-              <button *ngIf="i!==lastIndex ||aissmentdata.category==='cat4' " mat-button matStepperNext class="RegistrationBtn">Next</button>
-              <button class="RegistrationBtn" *ngIf="i===lastIndex && aissmentdata.category!=='cat4'" mat-button (click)="submit('Completed')">Submit</button>
-              <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+              <button  mat-button matStepperNext class="RegistrationBtn">Next</button>
+
+              <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
             <div class="clearfix"></div>
@@ -172,8 +172,10 @@
             <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)">
             <div>
 
-              <button class="RegistrationBtn"  mat-button  (click)="staticSubmit('Completed')">Submit</button>
-              <button mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+           
+              <button  mat-button matStepperNext class="RegistrationBtn">Next</button>
+
+              <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
   
@@ -181,6 +183,27 @@
   
        
       </mat-step>
+      <mat-step   >
+      
+        <h2 class="matlable m-0">Assessor Remark:</h2>
+        <div class="mb-2">
+         
+          <ckeditor formControlName="assessorRemark" ></ckeditor>
+
+          <p style="color: red;" *ngIf="assessor.get('assessorRemark')?.hasError('required')&&(assessor.get('assessorRemark')?.touched||assessor.get('description')?.dirty)">
+            Assessor Remark description required
+          </p>
+        </div>
+    
+        <div>
+
+          <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+          <button mat-button  *ngIf="aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
+          <button mat-button  *ngIf="aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
+        </div>
+
+      </mat-step>
+
      
     </mat-stepper>
 

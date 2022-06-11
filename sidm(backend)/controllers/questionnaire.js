@@ -122,7 +122,7 @@ exports.aissmentQuestionnaire=(req,res)=>{
         questionAns:questionAns,
         category:category
     })
-    aissment.save().then(data=>{
+    aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
             data.assessor=[]
             Assessor.find().then(item=>{
@@ -135,10 +135,15 @@ for(i of item){
         maxScore:null,
         score:null,
       })
-      console.log(data.assessor)
-} data.questionnaireStatus='Submitted'
+     
+}
+ data.questionnaireStatus='Submitted'
 data.save().then(data=>{
-    res.status(200).json('successfully Submitted');
+    savedAissment.assessor=data.assessor
+    savedAissment.save().then(item=>{
+        res.status(200).json('successfully Submitted');
+    })
+  
 })
  })
            })
@@ -196,7 +201,7 @@ exports.staticissmentQuestionnaire=(req,res)=>{
         staticTable:staticTable,
         
     })
-    aissment.save().then(data=>{
+    aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
             data.assessor=[]
             Assessor.find().then(item=>{
@@ -212,6 +217,10 @@ for(i of item){
       console.log(data.assessor)
 } data.questionnaireStatus='Submitted'
 data.save().then(data=>{
+    savedAissment.assessor=data.assessor
+    savedAissment.save().then(item=>{
+        res.status(200).json('successfully Submitted');
+    })
     res.status(200).json('successfully Submitted');
 })
  })
@@ -287,8 +296,10 @@ exports.assessorScore=(req,res)=>{
     const assessorEmail= req.body.assessorEmail
     const status= req.body.status
     const questionAns=req.body.aissment
+    const assessorRemark=req.body.assessorRemark
     questionnaireAissment.findById(userId).then(data=>{
         data.questionAns=questionAns
+        data.assessorRemark=assessorRemark
 data.assessor.push({
     assessorName: assessorName,
     assessorEmail:assessorEmail,
