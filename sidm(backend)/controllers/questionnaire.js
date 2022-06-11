@@ -163,23 +163,11 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
         assessment.status=questionnaireStatus,
         assessment.save().then(data=>{
             RegistrationForm.findById(userId).then(data=>{
-                data.assessor=[]
-                Assessor.find().then(item=>{
-    for(i of item){ 
-        data.assessor.push({
-            id:i._id,
-           assessorName:i.assessorName,
-           email:i.email,
-            status:'Pending',
-            maxScore:null,
-            score:null,
-          })
-          console.log(data.assessor)
-    } data.questionnaireStatus=questionnaireStatus
-    data.save().then(data=>{
-        res.status(200).json('successfully Submitted');
-    })
-     })
+                data.questionnaireStatus=questionnaireStatus
+                data.save().then(data=>{
+                    res.status(200).json('successfully Submitted');
+                })
+            
                })
         })
 
@@ -258,23 +246,10 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
         assessment.staticTable=staticTable,
         assessment.save().then(data=>{
             RegistrationForm.findById(userId).then(data=>{
-                data.assessor=[]
-                Assessor.find().then(item=>{
-    for(i of item){ 
-        data.assessor.push({
-            id:i._id,
-           assessorName:i.assessorName,
-           email:i.email,
-            status:'Pending',
-            maxScore:null,
-            score:null,
-          })
-          console.log(data.assessor)
-    } data.questionnaireStatus=questionnaireStatus
-    data.save().then(data=>{
-        res.status(200).json('successfully Submitted');
-    })
-     })
+                data.questionnaireStatus=questionnaireStatus
+                data.save().then(data=>{
+                    res.status(200).json('successfully Submitted');
+                })
                })
         })
 

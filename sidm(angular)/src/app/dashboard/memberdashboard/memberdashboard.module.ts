@@ -20,6 +20,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MemberDashboardPageComponent } from './member-dashboard-page/member-dashboard-page.component';
+import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MemberDashboardPageComponent } from './member-dashboard-page/member-das
     QuestionnaireFormComponent,
     ViewQuestionnaireComponent,
     MemberDashboardPageComponent,
+    EditQuestionnaireComponent,
   ],
   imports: [
     CommonModule,

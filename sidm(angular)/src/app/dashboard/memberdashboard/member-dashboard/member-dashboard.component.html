@@ -211,11 +211,14 @@
                                                         (click)="recipt(memberData?.paymentId,memberData?.offlinePaymentDetails)"><i
                                                             aria-hidden="true" class="fas fa-edit"></i> View Payment
                                                     </a>
-                                                    <a *ngIf="memberData?.paymentStatus==='Paid'&&memberData?.questionnaireStatus!=='Submitted'" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> 
+                                                    <a *ngIf="memberData?.paymentStatus==='Paid'&& !(memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='aprroved'||memberData?.questionnaireStatus==='requestInfo')" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> 
                                                         <i aria-hidden="true" class="fas fa-edit"></i> Apply for award </a>
-                                                        <a *ngIf="memberData?.paymentStatus==='Paid'&&memberData?.questionnaireStatus==='Submitted'" (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
+                                                        <a *ngIf="memberData?.paymentStatus==='Paid'&&(memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='aprroved')&&memberData?.questionnaireStatus!=='requestInfo'" (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
                                                             <i aria-hidden="true"
                                                             class="fas fa-eye"></i>   Award Questionnaire View </a>
+                                                            <a *ngIf="memberData?.paymentStatus==='Paid'&&(memberData?.questionnaireStatus==='requestInfo')" (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
+                                                                <i aria-hidden="true"
+                                                                class="fas fa-eye"></i> Edit  Award Questionnaire  </a>
                                                 </div>
                                             </div>
                                         </td>

@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
 
 
 import { ApplyNewCategoryComponent } from './apply-new-category/apply-new-category.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'applyNew', component: ApplyNewCategoryComponent },
   { path: 'questionnaire/:id', component:QuestionnaireFormComponent },
   { path: 'viewQuestionnaire/:id', component:ViewQuestionnaireComponent },
+  {path:'editQuestionnaire/:id',component:EditQuestionnaireComponent},
 ];
 
 @NgModule({
