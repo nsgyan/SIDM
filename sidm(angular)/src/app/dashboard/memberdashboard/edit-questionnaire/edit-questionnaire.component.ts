@@ -56,7 +56,7 @@ questionnaireForm:FormGroup
         staticAnswer:[''],
         staticTable:this.fb.array([]) ,
         staticScore:[''] ,
-        staticMaxScore:['20'] ,
+        staticMaxScore:[''] ,
         adminRemark:[''],
         questionnaireStatus:['']
       })
@@ -119,6 +119,8 @@ if(this.questionnaireData.adminRemark){
      console.log(this.questionnaireData);
      if( this.questionnaireData?.staticAnswer){
       this.static=true
+      this.questionnaireForm.get('staticMaxScore')?.setValue(10)
+      this.questionnaireForm.get('staticMaxScore')?.updateValueAndValidity()
       this.questionnaireForm.get('staticAnswer')?.setValue(this.questionnaireData.staticAnswer)
       this.questionnaireForm.get('staticAnswer')?.updateValueAndValidity()
       this.questionnaireForm.get('staticScore')?.setValue(this.questionnaireData.staticScore)
@@ -352,7 +354,7 @@ window.location.href=url
   else {
 
     this.submited = true;
-    this.toast.error('Please Fill Required Field');
+    this.toast.error('Please Fill all questions');
   }
  
 
@@ -459,7 +461,7 @@ console.log(this.questionnaireForm);
   else {
 
     this.submited = true;
-    this.toast.error('Please Fill Required Field');
+    this.toast.error('Please Fill all questions');
   }
 }
 

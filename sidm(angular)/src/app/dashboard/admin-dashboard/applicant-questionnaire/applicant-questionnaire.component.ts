@@ -61,13 +61,13 @@ else if (this.questionnaireData.category === 'cat3') {
 }
 else {
   this.questionnaireData.category = 'C4'
+  this.userScore+=10
 }
-data.staticScore= Number( data.staticScore);
-this.userScore+=data.score
+
       data.questionAns.map((item:any)=>{
      
-        item.staticScore= Number( item.staticScore);
-        this.userScore+=item.score
+        item.maxScore= Number( item.maxScore);
+        this.userScore+=item.maxScore
        control.push(
          this.fb.group({
            question: [item.question],      

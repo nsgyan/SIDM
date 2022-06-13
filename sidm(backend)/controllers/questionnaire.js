@@ -165,10 +165,10 @@ data.save().then(data=>{
     
         var maillist = [
             data.email,
-          // 'bharat.jain@sidm.in',
-          // 'awards22@sidm.in',
-          // 'vikas.rai@sidm.in',
-          // 'manoj.mishra@sidm.in'
+          'bharat.jain@sidm.in',
+          'awards22@sidm.in',
+          'vikas.rai@sidm.in',
+          'manoj.mishra@sidm.in'
            
   
         ];
@@ -242,10 +242,10 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
             
                 var maillist = [
                     data.email,
-                  // 'bharat.jain@sidm.in',
-                  // 'awards22@sidm.in',
-                  // 'vikas.rai@sidm.in',
-                  // 'manoj.mishra@sidm.in'
+                  'bharat.jain@sidm.in',
+                  'awards22@sidm.in',
+                  'vikas.rai@sidm.in',
+                  'manoj.mishra@sidm.in'
                    
           
                 ];
@@ -311,10 +311,10 @@ exports.staticissmentQuestionnaire=(req,res)=>{
             
                 var maillist = [
                     data.email,
-                  // 'bharat.jain@sidm.in',
-                  // 'awards22@sidm.in',
-                  // 'vikas.rai@sidm.in',
-                  // 'manoj.mishra@sidm.in'
+                  'bharat.jain@sidm.in',
+                  'awards22@sidm.in',
+                  'vikas.rai@sidm.in',
+                  'manoj.mishra@sidm.in'
                    
           
                 ];
@@ -408,10 +408,10 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
                 
                     var maillist = [
                         data.email,
-                      // 'bharat.jain@sidm.in',
-                      // 'awards22@sidm.in',
-                      // 'vikas.rai@sidm.in',
-                      // 'manoj.mishra@sidm.in'
+                      'bharat.jain@sidm.in',
+                      'awards22@sidm.in',
+                      'vikas.rai@sidm.in',
+                      'manoj.mishra@sidm.in'
                        
               
                     ];

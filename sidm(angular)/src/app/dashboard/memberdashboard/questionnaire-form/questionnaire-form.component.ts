@@ -34,12 +34,14 @@ questionnaireForm:FormGroup
       staticAnswer:[''],
       staticTable:this.fb.array([]) ,
       staticScore:[''] ,
-      staticMaxScore:[20] ,
+      staticMaxScore:[''] ,
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
  
       if(data.category==='cat4'){
 this.static=true
+this.questionnaireForm.get('staticMaxScore')?.setValue(10)
+this.questionnaireForm.get('staticMaxScore')?.updateValueAndValidity()
       }
       console.log(data);
       this.getquestion(data?.category,data?.typeOfApplicant)
@@ -225,9 +227,7 @@ changeListener($event: any,index:any) {
 
 
 submitQuestionnaire(status:any){
-  if(status==='save'){
-    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
-   }
+
 let j=0;
 console.log(this.questionnaireForm);
 
@@ -305,16 +305,14 @@ control.at(i).get('score')?.updateValueAndValidity()
   else {
 
     this.submited = true;
-    this.toast.error('Please Fill Required Field');
+    this.toast.error('Please Fill all questions');
   }
  
 
   
 }
 submitStaticQuestionnaire(status:any){
-  if(status==='save'){
-    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
-   }
+
   let j=0;
 
 let staticAnswer=this.questionnaireForm.value.staticAnswer
@@ -412,7 +410,7 @@ control.at(i).get('score')?.updateValueAndValidity()
   else {
 
     this.submited = true;
-    this.toast.error('Please Fill Required Field');
+    this.toast.error('Please Fill all questions');
   }
 }
 

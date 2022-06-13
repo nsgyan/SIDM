@@ -130,10 +130,10 @@ exports.postRegistrationForm = (req, res, next) => {
       };
       var maillist = [
         result.email,
-        // 'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
          
 
       ];
@@ -168,10 +168,10 @@ exports.postRegistrationForm = (req, res, next) => {
         };
         var maillist = [
           result.email,
-        //   'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+          'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
           
            
         ];
@@ -417,10 +417,10 @@ exports.changeStatus = (req, res, next) => {
   
       var maillist = [
         success.email,
-        // 'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
          
 
       ];
