@@ -205,12 +205,6 @@ changeListener($event: any,index:any) {
 
 
 
-  if (
-    file[0].type == 'image/png' ||
-    file[0].type == 'image/jpg' ||
-    file[0].type == 'image/jpeg' ||
-    file[0].type == 'application/pdf'
-  ) {
 
 
     if (parseInt(file[0].size) > 2097152) {
@@ -226,14 +220,14 @@ changeListener($event: any,index:any) {
     })
 
     }
-  }
-  else {
-    this.toast.error('File uploaded is invalid!')
-  }
+ 
 }
 
 
 submitQuestionnaire(status:any){
+  if(status==='save'){
+    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+   }
 let j=0;
 console.log(this.questionnaireForm);
 
@@ -297,8 +291,10 @@ control.at(i).get('score')?.updateValueAndValidity()
 
 
   }).subscribe((data:any)=>{
-    console.log(data);
-    this.toast.success(data);
+    if(status==='save'){
+      this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+     }else{
+      this.toast.success(data);}
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })
@@ -316,7 +312,9 @@ control.at(i).get('score')?.updateValueAndValidity()
   
 }
 submitStaticQuestionnaire(status:any){
-
+  if(status==='save'){
+    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+   }
   let j=0;
 
 let staticAnswer=this.questionnaireForm.value.staticAnswer
@@ -400,8 +398,10 @@ control.at(i).get('score')?.updateValueAndValidity()
 
 
   }).subscribe((data:any)=>{
-   
-    this.toast.success(data);
+   if(status==='save'){
+    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+   }else{
+    this.toast.success(data);}
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })

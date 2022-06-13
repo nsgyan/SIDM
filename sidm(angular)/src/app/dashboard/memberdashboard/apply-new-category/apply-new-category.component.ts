@@ -131,7 +131,7 @@ export class ApplyNewCategoryComponent implements OnInit {
         console.log(this.memberData[0].nameOfCompany);
         
         this.newCategoryForm = this.formBuilder.group({
-          category: ['', Validators.required],
+          category: ['',Validators.required],
           typeOfApplicant: [''],
           subCategoryDoccument: [this.memberData[0].subCategoryDoccument?this.memberData[0].subCategoryDoccument:''],
           financialDoccument:[this.memberData[0].financialDoccument?this.memberData[0].financialDoccument:''],
@@ -188,7 +188,9 @@ export class ApplyNewCategoryComponent implements OnInit {
           this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
 
         }
+      
         if (this.memberData[0].registeredOrganization === 'Yes') {
+          this.registeredOrganization = true
           let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
          this.memberData[0].nameRegisteredOrganization.map((item:any)=>{
           control.push(

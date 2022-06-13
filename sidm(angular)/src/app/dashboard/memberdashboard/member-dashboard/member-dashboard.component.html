@@ -155,10 +155,11 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Category Name</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Application Status</th>
                                         <th scope="col">Membership Fees</th>
-                                        <th scope="col">Remark</th>
+                                        <th scope="col">Application Remark</th>
                                         <th scope="col"> Award Questionnaire Status</th>
+                                        <th scope="col">Participation Fees</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -187,7 +188,18 @@
                                                 class="badge badge-light"><i aria-hidden="true"
                                                     class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a>
                                         </td>
-                                        <td>{{memberData?.questionnaireStatus}}</td>
+                                        <td> <a *ngIf="memberData?.questionnaireStatus==='requestInfo'"  (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)">Request Info</a>
+                                             <span *ngIf="!memberData?.questionnaireStatus" style="color: red;">Pending </span> 
+                                             <span *ngIf="memberData?.questionnaireStatus==='Submitted'" >Submitted For Review </span> 
+                                             <span *ngIf="memberData?.questionnaireStatus==='save'" >Saved </span> 
+                                             <span *ngIf="memberData?.questionnaireStatus==='aprroved'">Approved </span></td>
+                                        <td>
+                                            <span *ngIf="!memberData?.offlinePaymentDetails"
+                                                (click)="viewForm(memberData)" style="color: red;">Pending</span>
+                                            <span  *ngIf="memberData?.offlinePaymentDetails"
+                                                style="color: green;">Paid </span>
+                                        </td>
+
                                         <td class="text-center">
                                             <div class="dropBtn dropdown">
                                                 <button class="paymentsDropdwn  dropdown-toggle" type="button"
@@ -206,14 +218,14 @@
                                                         *ngIf="!memberData?.offlinePaymentDetails && memberData?.paymentStatus==='Paid'"
                                                         (click)="openDialog(memberData?._id)">
                                                         <i aria-hidden="true" class="fas fa-file-alt"></i>
-                                                        Offline Payment Details</a>
+                                                       Pay Participation Fee</a>
                                                     <a class="dropdown-item" *ngIf="memberData?.paymentStatus==='Paid'"
                                                         (click)="recipt(memberData?.paymentId,memberData?.offlinePaymentDetails)"><i
                                                             aria-hidden="true" class="fas fa-edit"></i> View Payment
                                                     </a>
-                                                    <a *ngIf="memberData?.paymentStatus==='Paid'&& (!memberData?.questionnaireStatus)" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> 
+                                                    <a *ngIf="memberData?.status==='Approved'&& (!memberData?.questionnaireStatus)" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> 
                                                         <i aria-hidden="true" class="fas fa-edit"></i> Apply for award </a>
-                                                        <a *ngIf="memberData?.paymentStatus==='Paid'&&(memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='aprroved')&&memberData?.questionnaireStatus!=='requestInfo'"&& (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
+                                                        <a *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='aprroved'" (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
                                                             <i aria-hidden="true"
                                                             class="fas fa-eye"></i>   Award Questionnaire View </a>
                                                             <a *ngIf="memberData?.paymentStatus==='Paid'&&(memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='save')" (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
@@ -232,7 +244,24 @@
                 </div>
             </div>
         </div>
-
+        <div class="row" *ngIf="!memberData?.offlinePaymentDetails&&memberData?.status==='Approved'">
+            <div class="col-lg-12">
+                <div class="container">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Alert ! : </strong>Kindly complete offline participation fee payment and fill the award questionnaire
+                      
+                    </div>
+                    <!-- <div class="alert alert-danger alert-warning alert-dismissible fade show" role="alert">
+                        <div class="alertContent">
+                            <h6>Remark!</h6>
+                            <p>{{remark}}</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
 
         <!--view Form-->
         <div *ngIf="!EditForm">
@@ -817,7 +846,7 @@
                         <input type="text" formControlName="productLink">
 
                     </div>
-                    <div *ngIf="editData.paymentStatus!=='Paid'" class=" mt-2">
+                    <!-- <div *ngIf="editData.paymentStatus!=='Paid'" class=" mt-2">
                         <input formControlName="paymentMode" (change)="paymentMode('online')" type="radio"  name='paymentMode' value = 'online'   /> Online Payment
 <input type='radio' formControlName="paymentMode" name='paymentMode' (change)="paymentMode('offline')" value='offline' type="radio"  /> Offline payment
                     </div>
@@ -882,7 +911,7 @@
                                 </div>
                             </div>
                         </div> -
-                    </div>
+                    </div> -->
 
                     <div class=" mt-4">
                         <div class="form-group">
@@ -908,9 +937,9 @@
                             (click)="openModel('submitAndPay')" [disabled]="action">Final Submit and pay(online)
                         </button>
                         
-                    <button *ngIf="!participationMode||editData.paymentStatus==='Paid'" class="save-btn mx-2" target="blanck" (click)="finalSubmit('Pending Approval','changeStatus')">
+                    <!-- <button *ngIf="!participationMode||editData.paymentStatus==='Paid'" class="save-btn mx-2" target="blanck" (click)="finalSubmit('Pending Approval','changeStatus')">
                         Final Submit and pay(offline)
-                </button>
+                </button> -->
                         <button class="save-btn" target="blanck" (click)="savedraft('Pending')" [disabled]="action">
                             <p>Save</p>
                         </button>

@@ -274,6 +274,7 @@ changeListener($event: any,index:any) {
 
 
 submitQuestionnaire(status:string){
+  
 let j=0;
 console.log(this.questionnaireForm);
 
@@ -339,9 +340,11 @@ control.at(i).get('score')?.updateValueAndValidity()
 
 
   }).subscribe((data:any)=>{
-console.log(data,'not');
-
-this.toast.success(data);
+    if(status==='save'){
+      this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+     }else{
+      this.toast.success(data);
+     }
 const url='dashboard/member/viewQuestionnaire/'+this.id
 window.location.href=url
   })
@@ -356,6 +359,9 @@ window.location.href=url
   
 }
 submitStaticQuestionnaire(status:string){
+  if(status==='save'){
+    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+   }
 let staticAnswer=this.questionnaireForm.value.staticAnswer
 if(staticAnswer==="More than 05 type"){
   this.questionnaireForm.get('staticScore')?.setValue(10)
@@ -441,7 +447,11 @@ console.log(this.questionnaireForm);
 
   }).subscribe((data:any)=>{
  
-    this.toast.success(data);
+    if(status==='save'){
+      this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+     }else{
+      this.toast.success(data);
+     }
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })

@@ -16,7 +16,8 @@ export class ApplicantQuestionnaireComponent implements OnInit {
   questionnaireData:any
   uploadDocuments:any
   userData:any
- totalScore=0;
+  totalScore=0;
+userScore=0;
  static:any=false;
  id:any;
  lastIndex!:number;
@@ -36,7 +37,7 @@ questionnaireForm:FormGroup
         staticTable:this.fb.array([]) ,
         staticScore:[''] ,
         staticMaxScore:['20'] ,
-        adminRemark:['',Validators.required],
+        adminRemark:[''],
         questionnaireStatus:['',Validators.required]
       })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
@@ -49,8 +50,24 @@ if(this.questionnaireData.adminRemark){
   this.questionnaireForm.get('questionnaireStatus')?.setValue(this.questionnaireData.status)
   this.questionnaireForm.get('questionnaireStatus')?.updateValueAndValidity()
 }
-
+if (this.questionnaireData.category === 'cat1') {
+  this.questionnaireData.category = 'C1 '
+}
+else if (this.questionnaireData.category === 'cat2') {
+  this.questionnaireData.category = 'C2'
+}
+else if (this.questionnaireData.category === 'cat3') {
+  this.questionnaireData.category = 'C3'
+}
+else {
+  this.questionnaireData.category = 'C4'
+}
+data.staticScore= Number( data.staticScore);
+this.userScore+=data.score
       data.questionAns.map((item:any)=>{
+     
+        item.staticScore= Number( item.staticScore);
+        this.userScore+=item.score
        control.push(
          this.fb.group({
            question: [item.question],      

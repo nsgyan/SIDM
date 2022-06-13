@@ -1,5 +1,5 @@
 <div class="topHeader">
-  <h2>Category {{userData?.category}}  Questionnaire </h2>
+  <h2>Category {{questionnaireData?.category}}  Questionnaire </h2>
 </div>
 
 
@@ -135,12 +135,22 @@
           </mat-step>
         </div>
         <mat-step   >
-          <div class="auto-width">
+          <div class="d-flex justify-content-end">
+            <div class="d-flex align-items-center">
+              <label class="mr-2 MaxScore">Max Score</label>
+              <p class="score">{{questionnaireData.totalScore}}</p>
+            </div>
+            <div class="d-flex align-items-center ml-3">
+              <label class="mr-2 MaxScore">Score</label>
+              <p class="score">{{totalScore}}</p>
+            </div>
+          </div>
+          <div class="auto-width" style="font-size: 20px;">
             <mat-form-field  appearance="fill">
-              <mat-label>Select Answer</mat-label>
+              <mat-label>Select Status</mat-label>
               <mat-select formControlName="questionnaireStatus">
                 <mat-option  value="requestInfo">
-                 requestInfo </mat-option>
+                 Request Info </mat-option>
                  <mat-option  value="aprroved">
                   Aprrove </mat-option>
               </mat-select>
@@ -157,9 +167,10 @@
       
           <div>
 
-            <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+           
             <button mat-button *ngIf="!static" (click)="submitQuestionnaire()" class="RegistrationBtn">Submit</button>
             <button mat-button *ngIf="static" (click)="submitStaticQuestionnaire()" class="RegistrationBtn">Submit</button>
+             <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
           </div>
 
         </mat-step>
