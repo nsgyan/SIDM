@@ -424,6 +424,11 @@ exports.changeStatus = (req, res, next) => {
          
 
       ];
+      const replacements = {
+                   
+        date:new Date()
+
+      };
       
       maillist.toString();
       const htmlToSend = template(replacements);

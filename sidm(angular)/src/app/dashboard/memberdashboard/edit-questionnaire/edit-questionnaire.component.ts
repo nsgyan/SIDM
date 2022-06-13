@@ -18,7 +18,7 @@ export class EditQuestionnaireComponent implements OnInit {
  totalScore=0;
  static:any=false;
  id:any;
- lastIndex!:number;
+ lastIndex:number=0;
 questionnaireForm:FormGroup
   captcha: any;
   submited:any=null;
@@ -29,14 +29,36 @@ questionnaireForm:FormGroup
     private route: ActivatedRoute,
     private routes:Router) {
       this.id = this.route.snapshot.paramMap.get('id')
+      this.httpService.getdetails(this.id).subscribe((data:any)=>{
+ 
+        if(data.category==='cat4'){
+  this.static=true
+        }
+        console.log(data);    
+        this.userData=data
+        if ( this.userData.category === 'cat1') {
+          this.userData.category = 'C1'
+        }
+        else if ( this.userData.category === 'cat2') {
+          this.userData.category = 'C2'
+        }
+        else if ( this.userData.category === 'cat3') {
+          this.userData.category = 'C3'
+        }
+        else if ( this.userData.category === 'cat4') {
+          this.userData.category = 'C4'
+        }
+     
+        
+      })
       this.questionnaireForm=this.fb.group({
         aissment: this.fb.array([]) ,
         staticAnswer:[''],
         staticTable:this.fb.array([]) ,
         staticScore:[''] ,
         staticMaxScore:['20'] ,
-        adminRemark:['',Validators.required],
-        questionnaireStatus:['',Validators.required]
+        adminRemark:[''],
+        questionnaireStatus:['']
       })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
       let control = <FormArray>this.questionnaireForm.get('aissment');
@@ -49,7 +71,9 @@ if(this.questionnaireData.adminRemark){
   this.questionnaireForm.get('questionnaireStatus')?.updateValueAndValidity()
 }
 
+
       data.questionAns.map((item:any)=>{
+        this.lastIndex= this.lastIndex+1
        control.push(
          this.fb.group({
            question: [item.question],      
@@ -68,6 +92,9 @@ if(this.questionnaireData.adminRemark){
       }
         
       })
+   this.lastIndex= this.lastIndex-1
+
+      
 
 
       let j=0;
@@ -246,8 +273,9 @@ changeListener($event: any,index:any) {
 }
 
 
-submitQuestionnaire(){
+submitQuestionnaire(status:string){
 let j=0;
+console.log(this.questionnaireForm);
 
 
 
@@ -307,7 +335,7 @@ control.at(i).get('score')?.updateValueAndValidity()
     category:this.questionnaireData.category,
     questionAns:this.questionnaireForm.value.aissment,
     adminRemark:this.questionnaireForm.value.adminRemark,
-    questionnaireStatus:'Submitted',
+    questionnaireStatus:status,
 
 
   }).subscribe((data:any)=>{
@@ -327,7 +355,7 @@ window.location.href=url
 
   
 }
-submitStaticQuestionnaire(){
+submitStaticQuestionnaire(status:string){
 let staticAnswer=this.questionnaireForm.value.staticAnswer
 if(staticAnswer==="More than 05 type"){
   this.questionnaireForm.get('staticScore')?.setValue(10)
@@ -408,7 +436,7 @@ console.log(this.questionnaireForm);
     staticMaxScore:this.questionnaireForm.value.staticMaxScore,
     staticScore:this.questionnaireForm.value.staticScore,
     adminRemark:this.questionnaireForm.value.adminRemark,
-    questionnaireStatus:'Submitted',
+    questionnaireStatus:status,
 
 
   }).subscribe((data:any)=>{

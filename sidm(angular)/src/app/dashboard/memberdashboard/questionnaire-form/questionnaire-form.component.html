@@ -59,7 +59,8 @@
 
               <button *ngIf="i!==lastIndex ||static " mat-button matStepperNext class="RegistrationBtn">Next</button>
               <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
-              <button *ngIf="i===lastIndex && !static" mat-button (click)="submitQuestionnaire()" class="RegistrationBtn">Submit</button>
+              <button *ngIf="i===lastIndex && !static &&userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+              <button *ngIf="i===lastIndex && !static &&!userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('save')" class="RegistrationBtn">Save</button>
             </div>
 
           </mat-step>
@@ -110,7 +111,8 @@
             
             <div>
               <table></table>
-              <button mat-button (click)="submitStaticQuestionnaire()" class="RegistrationBtn">Submit</button>
+              <button mat-button *ngIf="userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+              <button mat-button *ngIf="!userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('save')" class="RegistrationBtn">Save</button>
               <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>

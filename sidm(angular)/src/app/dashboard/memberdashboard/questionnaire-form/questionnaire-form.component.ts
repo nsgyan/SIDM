@@ -233,12 +233,12 @@ changeListener($event: any,index:any) {
 }
 
 
-submitQuestionnaire(){
+submitQuestionnaire(status:any){
 let j=0;
 console.log(this.questionnaireForm);
 
 
-  if (this.questionnaireForm.valid &&this.userData.offlinePaymentDetails ) {
+  if (this.questionnaireForm.valid  ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
@@ -292,6 +292,7 @@ control.at(i).get('score')?.updateValueAndValidity()
     totalScore:this.totalScore,
     category:this.questionnaireData[0].category,
     questionAns:this.questionnaireForm.value.aissment,
+    status:status
 
 
 
@@ -314,7 +315,7 @@ control.at(i).get('score')?.updateValueAndValidity()
 
   
 }
-submitStaticQuestionnaire(){
+submitStaticQuestionnaire(status:any){
 
   let j=0;
 
@@ -337,7 +338,7 @@ else if(staticAnswer==="Single product"){
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=2
 }  console.log(this.totalScore,this.questionnaireForm);
-  if (this.questionnaireForm.valid &&this.userData.offlinePaymentDetails  ) {
+  if (this.questionnaireForm.valid   ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
@@ -394,7 +395,8 @@ control.at(i).get('score')?.updateValueAndValidity()
     staticAnswer:this.questionnaireForm.value.staticAnswer,
     staticTable:this.questionnaireForm.value.staticTable,
     staticMaxScore:this.questionnaireForm.value.staticMaxScore,
-    staticScore:this.questionnaireForm.value.staticScore
+    staticScore:this.questionnaireForm.value.staticScore,
+    status:status
 
 
   }).subscribe((data:any)=>{
