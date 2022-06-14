@@ -2,6 +2,22 @@ const Questionnaires = require("../models/questionnaires")
 const questionnaireAissment= require("../models/questionnaireAissment")
 const RegistrationForm = require("../models/registrationForm");
 const Assessor= require('../models/assessor');
+
+const fs = require("fs");
+var nodemailer = require('nodemailer');
+const path = require('path')
+var handlebars = require('handlebars');
+const date = require('date-and-time')
+
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'awardsidm@gmail.com',
+      pass: 'gllznygeziabftrf'
+    }
+  });
+  
 exports.addQuestionnaires= (req,res,next)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
@@ -11,6 +27,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     const upload= req.body.upload;
     const textBox=req.body.textBox
     const typeOfApplicant = req.body.typeOfApplicant;
+    const parameterDescription= req.body.parameterDescription
 
     const Questionnaire= new  Questionnaires({
         category :category,
@@ -20,11 +37,12 @@ exports.addQuestionnaires= (req,res,next)=>{
         inputType:inputType,
         upload:upload,
         textBox:textBox,
-        typeOfApplicant:typeOfApplicant
+        typeOfApplicant:typeOfApplicant,
+        parameterDescription:parameterDescription
     })
     Questionnaire.save().then(data=>{
     
-        res.status(200).json('successfully sumbit');
+        res.status(200).json('successfully Submitted');
     }).catch(err=>{
         res.json("internal server error");
     })
@@ -64,7 +82,7 @@ exports.updateQuestionnaires=(req,res)=>{
     const inputType= req.body.inputType
     const upload= req.body.upload;
     const textBox=req.body.textBox
-
+    const parameterDescription=req.body.parameterDescription
     const id = req.params.userID
     Questionnaires.findById(id)
     .then(data=>{
@@ -76,9 +94,10 @@ exports.updateQuestionnaires=(req,res)=>{
         data.inputType=inputType,
         data.upload=upload,
         data.textBox=textBox
+        data.parameterDescription=parameterDescription
        data.save((err, success) => {
             if(err){
-           res.status(404).json(err);
+           res.status(401).json(err);
             }
             else{
                 console.log(success);
@@ -100,7 +119,7 @@ exports.findByCategory=(req,res)=>{
             res.status(200).send(data)
         }
         else {
-            res.status(404).send('not Found Questionnaire in that category')
+            res.status(401).send('not Found Questionnaire in that category')
         }
 
     })
@@ -113,14 +132,214 @@ exports.aissmentQuestionnaire=(req,res)=>{
     const totalScore= req.body.totalScore
     const questionAns= req.body.questionAns
     const category= req.body.category
+    const status= req.body.status
     const aissment= new questionnaireAissment({
         userId:userId,
         totalScore:totalScore,
         questionAns:questionAns,
         category:category
     })
-    aissment.save().then(data=>{
+    aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
+         
+               
+            data.assessor=[]
+            Assessor.find().then(item=>{
+for(i of item){ 
+    data.assessor.push({
+        id:i._id,
+       assessorName:i.assessorName,
+       email:i.email,
+        status:'Pending',
+        maxScore:null,
+        score:null,
+      })
+     
+}
+ data.questionnaireStatus=status
+data.save().then(data=>{
+    if(status==='Submitted'){
+        const filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+        const source = fs.readFileSync(filePath, 'utf-8').toString();
+        const template = handlebars.compile(source);
+    
+        var maillist = [
+            data.email,
+          'bharat.jain@sidm.in',
+          'awards22@sidm.in',
+          'vikas.rai@sidm.in',
+          'manoj.mishra@sidm.in'
+           
+  
+        ];
+        const replacements = {
+           
+            date:new Date()
+    
+          };
+        
+        maillist.toString();
+        const htmlToSend = template(replacements);
+        var mailOptions = {
+          from: 'awardsidm@gmail.com',
+          to: maillist,
+          subject: 'SIDM Champion Award 2022',
+          html: htmlToSend
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+           
+          } else {
+          
+          }
+        })}
+       
+    savedAissment.assessor=data.assessor
+    savedAissment.save().then(item=>{
+     
+        
+            res.status(200).json('successfully Submitted');
+    })
+  
+})
+ })
+           })
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
+exports.updateAissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const questionnaireStatus= req.body.questionnaireStatus
+    const id= req.body.id
+    const adminRemark= req.body.adminRemark
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    questionnaireAissment.findById(id).then(assessment=>{
+        assessment.userId=userId,
+        assessment.adminRemark=adminRemark,
+        assessment.totalScore=totalScore,
+        assessment.questionAns=questionAns,
+        assessment.category=category,
+        assessment.status=questionnaireStatus,
+        assessment.save().then(data=>{
+            RegistrationForm.findById(userId).then(data=>{
+                data.questionnaireStatus=questionnaireStatus
+                data.save().then(data=>{
+                    let filePath
+                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='aprroved'||questionnaireStatus==='requestInfo'){
+                    if(questionnaireStatus==='aprroved'){
+                        filePath = path.join(__dirname, '../view/questionaireApprove.html');}
+                        else if(questionnaireStatus==='Submitted'){
+                         filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                        }
+                       else {
+                         filePath = path.join(__dirname, '../view/requestInfo.html');
+                       }
+                const source = fs.readFileSync(filePath, 'utf-8').toString();
+                const template = handlebars.compile(source);
+            
+                var maillist = [
+                    data.email,
+                  'bharat.jain@sidm.in',
+                  'awards22@sidm.in',
+                  'vikas.rai@sidm.in',
+                  'manoj.mishra@sidm.in'
+                   
+          
+                ];
+                const replacements = {
+                   
+                    date:new Date()
+            
+                  };
+                maillist.toString();
+                const htmlToSend = template(replacements);
+                var mailOptions = {
+                  from: 'awardsidm@gmail.com',
+                  to: maillist,
+                  subject: 'SIDM Champion Award 2022',
+                  html: htmlToSend
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                   
+                  } else {
+                  
+                  }
+                })}
+               
+                    res.status(200).json('successfully Submitted');
+                })
+            
+               })
+        })
+
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
+
+exports.staticissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const staticScore= req.body.staticScore
+    const staticMaxScore= req.body.staticMaxScore
+    const staticAnswer= req.body.staticAnswer
+    const staticTable= req.body.staticTable
+    const status= req.body.status
+    const aissment= new questionnaireAissment({
+        userId:userId,
+        totalScore:totalScore,
+        questionAns:questionAns,
+        category:category,
+        staticScore:staticScore,
+        staticMaxScore:staticMaxScore,
+        staticAnswer:staticAnswer,
+        staticTable:staticTable,
+        
+    })
+    aissment.save().then(savedAissment=>{
+        RegistrationForm.findById(userId).then(data=>{
+            if(status==='Submitted'){
+                const filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                const source = fs.readFileSync(filePath, 'utf-8').toString();
+                const template = handlebars.compile(source);
+            
+                var maillist = [
+                    data.email,
+                  'bharat.jain@sidm.in',
+                  'awards22@sidm.in',
+                  'vikas.rai@sidm.in',
+                  'manoj.mishra@sidm.in'
+                   
+          
+                ];
+                const replacements = {
+                   
+                    date:new Date()
+            
+                  };
+                
+                maillist.toString();
+                const htmlToSend = template(replacements);
+                var mailOptions = {
+                  from: 'awardsidm@gmail.com',
+                  to: maillist,
+                  subject: 'SIDM Champion Award 2022',
+                  html: htmlToSend
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                   
+                  } else {
+                  
+                  }
+                })}
+           
             data.assessor=[]
             Assessor.find().then(item=>{
 for(i of item){ 
@@ -133,9 +352,13 @@ for(i of item){
         score:null,
       })
       console.log(data.assessor)
-} data.questionnaireStatus='sumbit'
+} data.questionnaireStatus=status
 data.save().then(data=>{
-    res.status(200).json('successfully sumbit');
+    savedAissment.assessor=data.assessor
+    savedAissment.save().then(item=>{
+        res.status(200).json('successfully Submitted');
+    })
+    res.status(200).json('successfully Submitted');
 })
  })
            })
@@ -144,14 +367,95 @@ data.save().then(data=>{
     })
 }
 
+exports.updateStaticissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const questionnaireStatus= req.body.questionnaireStatus
+    const id= req.body.id
+    const adminRemark= req.body.adminRemark
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const staticScore= req.body.staticScore
+    const staticMaxScore= req.body.staticMaxScore
+    const staticAnswer= req.body.staticAnswer
+    const staticTable= req.body.staticTable
+    questionnaireAissment.findById(id).then(assessment=>{
+        assessment.userId=userId,
+        assessment.adminRemark=adminRemark,
+        assessment.totalScore=totalScore,
+        assessment.status=questionnaireStatus,
+        assessment.questionAns=questionAns,
+        assessment.category=category,
+        assessment.staticScore=staticScore,
+        assessment.staticMaxScore=staticMaxScore,
+        assessment.staticAnswer=staticAnswer,
+        assessment.staticTable=staticTable,
+        assessment.save().then(data=>{
+            RegistrationForm.findById(userId).then(data=>{
+                data.questionnaireStatus=questionnaireStatus
+                data.save().then(data=>{
+                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='aprroved'||questionnaireStatus==='requestInfo'){
+                        if(questionnaireStatus==='aprroved'){
+                            filePath = path.join(__dirname, '../view/questionaireApprove.html');}
+                            else if(questionnaireStatus==='Submitted'){
+                             filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                            }
+                           else {
+                             filePath = path.join(__dirname, '../view/requestInfo.html');
+                           }
+                    const source = fs.readFileSync(filePath, 'utf-8').toString();
+                    const template = handlebars.compile(source);
+                
+                    var maillist = [
+                        data.email,
+                      'bharat.jain@sidm.in',
+                      'awards22@sidm.in',
+                      'vikas.rai@sidm.in',
+                      'manoj.mishra@sidm.in'
+                       
+              
+                    ];
+                    const replacements = {
+                       
+                        date:new Date()
+                
+                      };
+                    maillist.toString();
+                    const htmlToSend = template(replacements);
+                    var mailOptions = {
+                      from: 'awardsidm@gmail.com',
+                      to: maillist,
+                      subject: 'SIDM Champion Award 2022',
+                      html: htmlToSend
+                    };
+                    transporter.sendMail(mailOptions, function(error, info){
+                      if (error) {
+                       
+                      } else {
+                      
+                      }
+                    })}
+                    res.status(200).json('successfully Submitted');
+                })
+               })
+        })
+
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+   
+  
+}
+
+
 exports.getAissmentQuestionnaire=(req,res)=>{
     const userId= req.params.userId
-    questionnaireAissment.find({userId:userId}).then(data=>{
+    questionnaireAissment.findOne({userId:userId}).then(data=>{
         if (data) {
             res.status(200).send(data)
         }
         else {
-            res.status(404).send('not Found Questionnaire in that category')
+            res.status(401).send('not Found Questionnaire in that category')
         }
 
     })
@@ -169,7 +473,11 @@ exports.assessorScore=(req,res)=>{
     const assessorName= req.body.assessorName
     const assessorEmail= req.body.assessorEmail
     const status= req.body.status
+    const questionAns=req.body.aissment
+    const assessorRemark=req.body.assessorRemark
     questionnaireAissment.findById(userId).then(data=>{
+        data.questionAns=questionAns
+        data.assessorRemark=assessorRemark
 data.assessor.push({
     assessorName: assessorName,
     assessorEmail:assessorEmail,
@@ -193,7 +501,7 @@ data.assessor.push({
 exports.findmember=(req,res)=>{
     const category= req.query.category
     const typeOfApplicant= req.query.typeOfApplicant
-    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit'}).then(data=>{
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'aprroved'}).then(data=>{
         res.status(200).send(data)
     }).catch(err=>{
         res.json("internal server error");

@@ -1,7 +1,6 @@
 <div class="topHeader">
-    <h2> Questionnaire  List  View</h2>
+  <h2> Questionnaire  List  View</h2>
 </div>
-
 
 <div class="questionnaireForm">
    
@@ -54,24 +53,29 @@
             <th scope="col">Questions</th>
             <th scope="col">Response</th>
             <th scope="col">Attachment</th>
-            <th scope="col">Score ({{aissmentdata[0]?.totalScore}})</th>
-            <th scope="col"> Max score ({{maxScore}})</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor=" let item of aissmentdata?.at(0)?.questionAns; let i = index" >
+          <tr *ngFor=" let item of aissmentdata?.questionAns; let i = index" >
             <th scope="row">{{i+1}}</th>
             <td class="">{{item.question}}</td>
             <td>
                 {{item.answer}} <a *ngIf="item.description" class="link" (click)="openModel(item.description)">Description</a>
             </td>
             <td>   <a class="ml-2" *ngIf='item?.uploadDocuments'   target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
+           
+          </tr>
+          <tr *ngIf="aissmentdata?.category==='cat4'">
+            <th scope="row">{{aissmentdata?.questionAns.length+1}}</th>
+            <td class="">Number of types of products exported
+              Give a list of products in an excel with their
+              picture/small explanation</td>
             <td>
-                {{item.score}}
+               {{aissmentdata[0]?.staticAnswer}}  <!-- <a *ngIf="item.description" class="link" (click)="openModel(item.description)">Description</a> -->
             </td>
-            <td>
-                {{item.maxScore}}
-            </td>
+            <td> 
+                <!-- <a class="ml-2" *ngIf='item?.uploadDocuments'   target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a> -->
+              </td>
           </tr>
          
         </tbody>

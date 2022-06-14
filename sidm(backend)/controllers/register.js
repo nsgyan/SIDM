@@ -53,10 +53,21 @@ exports.postRegistrationForm = (req, res, next) => {
   const exhibit2 = req.body.exhibit2;
   const status = req.body.status;
  const alterMobileNumber= req.body.alterMobileNumber;
-  const alterEmail= req.body.alterEmail
+  const alterEmail= req.body.alterEmail;
+  const nameOfBank = req.body.nameOfBank;
+  const offlineDateOfPayment = req.body.offlineDateOfPayment;
+  const transactionDetails = req.body.transactionDetails;
+  const amount = req.body.amount;
+ const paymentMode= req.body.paymentMode;
+  const offlineModeOfPayment= req.body.offlineModeOfPayment
+  let paymentStatus=null
+  if(paymentMode==='offline'&&status==='Pending Approval'){
+    paymentStatus='Paid'
+  }
   const form = new RegistrationForm({
     category: category,
     typeOfApplicant: typeOfApplicant,
+    paymentStatus:paymentStatus,
     subCategoryDoccument: subCategoryDoccument,
     financialDoccument: financialDoccument,
     nameOfCompany: nameOfCompany,
@@ -92,6 +103,12 @@ exports.postRegistrationForm = (req, res, next) => {
     status: status,
     alterMobileNumber:alterMobileNumber,
     alterEmail:alterEmail,
+    nameOfBank :nameOfBank,
+    offlineDateOfPayment :offlineDateOfPayment,
+    transactionDetails :transactionDetails,
+    amount :amount,
+   paymentMode:paymentMode,
+    offlineModeOfPayment:offlineModeOfPayment,
     remark:null
   });
 
@@ -176,10 +193,10 @@ exports.postRegistrationForm = (req, res, next) => {
         })
       }
   if(status==='Pending Approval'){
-      res.status(200).json({message:'successfully sumbit',
+      res.status(200).json({message:'successfully Submitted',
     id:result._id});}
       else{
-        res.status(200).json({message:'successfully sumbit'});
+        res.status(200).json({message:'successfully Submitted'});
       }
     })
     .catch((err) => {
@@ -196,7 +213,7 @@ exports.getForms = (req, res, next) => {
       if (data) {
         res.status(200).json({ data });
       } else {
-        res.status(404).json("not Found");
+        res.status(401).json("not Found");
       }
     })
     .catch((err) => {
@@ -217,11 +234,11 @@ exports.getUserData = (req, res, next) => {
       if (data) {
         res.status(200).json(data);
       } else {
-        res.status(404).json("not Found user Data");
+        res.status(401).json("not Found user Data");
       }
     })
     .catch((err) => {
-      res.status(404).json("not Found");
+      res.status(401).json("not Found");
     });
 };
 
@@ -232,7 +249,7 @@ exports.getmemberData = (req, res, next) => {
       if (data) {
         res.status(200).json(data);
       } else {
-        res.status(404).json("not Found");
+        res.status(401).json("not Found");
       }
     })
     .catch((err) => {
@@ -279,7 +296,17 @@ exports.updateFrom = (req, res, next) => {
   const exhibit2 = req.body.exhibit2;
   const status = req.body.status;
   const alterMobileNumber= req.body.alterMobileNumber;
-  const alterEmail= req.body.alterEmail
+  const alterEmail= req.body.alterEmail;
+  const nameOfBank = req.body.nameOfBank;
+  const offlineDateOfPayment = req.body.offlineDateOfPayment;
+  const transactionDetails = req.body.transactionDetails;
+  const amount = req.body.amount;
+ const paymentMode= req.body.paymentMode;
+  const offlineModeOfPayment= req.body.offlineModeOfPayment
+  let paymentStatus
+  if(paymentMode==='offline'&&status==='Pending Approval'){
+    paymentStatus='Paid'
+  }
   RegistrationForm.findById(userID)
     .then((formData) => {
     if(formData.status!=='Approved'||usertype==='admin')
@@ -291,7 +318,12 @@ exports.updateFrom = (req, res, next) => {
           if (financialDoccument !== formData.financialDoccument) {
             formData.financialDoccument = financialDoccument;
           }
+          
           formData.updatedAt=updatedAt
+          if(paymentMode==='offline'&&status==='Pending Approval'){
+            formData.paymentStatus=paymentStatus
+          }
+       
           formData.nameOfCompany= nameOfCompany;
           formData.addressl1= addressl1;
           formData.addressl2= addressl2;
@@ -319,6 +351,12 @@ exports.updateFrom = (req, res, next) => {
       formData.appreciationDocuments = appreciationDocuments;
           formData.campareAchivement= campareAchivement;
           formData.mudp= mudp;
+          formData.nameOfBank =nameOfBank,
+          formData.offlineDateOfPayment =offlineDateOfPayment,
+          formData.transactionDetails =transactionDetails,
+          formData.amount =amount,
+          formData.paymentMode=paymentMode,
+          formData.offlineModeOfPayment=offlineModeOfPayment,
       formData.productLink = productLink;
       formData.exhibit1 = exhibit1;
       formData.exhibit2 = exhibit2;
@@ -330,14 +368,14 @@ exports.updateFrom = (req, res, next) => {
           res.json("internal server error");
         }
         else{
-          res.status(200).json({message:'successfully sumbit',
+          res.status(200).json({message:'successfully Submitted',
           id:success._id});
         
         }
       });}
       else
       {
-        res.status(404).json('user cannot update form');
+        res.status(401).json('user cannot update form');
 
       }
     })
@@ -365,14 +403,49 @@ exports.changeStatus = (req, res, next) => {
     data.remarkDate=createAt
   }
   else{
-    res.status(404).json('not Found')
+    res.status(401).json('not Found')
   }
    data.save((err, success) => {
     if(err){
       res.json("internal server error");
     }
     else{
-      console.log(success);
+     if(success.status==='Approved'){
+      const filePath = path.join(__dirname, '../view/registrationApproval.html');
+      const source = fs.readFileSync(filePath, 'utf-8').toString();
+      const template = handlebars.compile(source);
+  
+      var maillist = [
+        success.email,
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
+         
+
+      ];
+      const replacements = {
+                   
+        date:new Date()
+
+      };
+      
+      maillist.toString();
+      const htmlToSend = template(replacements);
+      var mailOptions = {
+        from: 'awardsidm@gmail.com',
+        to: maillist,
+        subject: 'SIDM Champion Award 2022',
+        html: htmlToSend
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          res.json(error);
+        } else {
+          res.status(200).json('Please check your email');
+        }
+      })
+     }
       res.status(200).json('successfully status change');
     }
   });

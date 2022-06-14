@@ -18,6 +18,7 @@ import { WindowRefService } from 'src/app/shared/services/window-ref.service';
 })
 export class RegistrationComponent implements OnInit {
   action:any
+  modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   registeredFieldIndexs=1;
   sidmMember = false
   association = false
@@ -43,7 +44,7 @@ export class RegistrationComponent implements OnInit {
 
     }
   }
-
+participationMode:boolean=true;
   memberform: FormGroup;
   registrationForm: FormGroup
   submited: boolean = false;
@@ -99,9 +100,14 @@ export class RegistrationComponent implements OnInit {
       campareAchivement: [''],
       mudp:[''],
       productLink:[''],
-      
+      paymentMode:['online'],
+      offlineModeOfPayment:[''],
+      nameOfBank:[''],
       exhibit1:[''],
       exhibit2:[''],
+      offlineDateOfPayment:[''],
+      transactionDetails:[''],
+      amount:[5000]
 
 
       // achievementsToJustifyApplication: [''],
@@ -319,7 +325,11 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.clearValidators()
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
+<<<<<<< HEAD
     if (this.registrationForm.valid&&this.captcha ) {
+=======
+    if (this.registrationForm.valid &&this.captcha ) {
+>>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
@@ -358,6 +368,12 @@ export class RegistrationComponent implements OnInit {
         exhibit2:this.exhibit2,
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
+        offlineModeOfPayment:this.registrationForm.value.offlineModeOfPayment,
+        paymentMode:this.registrationForm.value.paymentMode,
+        amount:this.registrationForm.value.amount,
+        transactionDetails:this.registrationForm.value.transactionDetails,
+        offlineDateOfPayment:this.registrationForm.value.offlineDateOfPayment,
+        nameOfBank:this.registrationForm.value.nameOfBank,
         status: type,
       }).subscribe(data => {
         console.log(' Successfully Applied');
@@ -365,6 +381,7 @@ export class RegistrationComponent implements OnInit {
         this.toast.success(' Successfully Applied');
         let url: string = "/thankYou/" + 'dsfffdsdfds'
         this.router.navigateByUrl(url);
+        
       })
     }
     else if (!this.captcha) {
@@ -529,11 +546,25 @@ export class RegistrationComponent implements OnInit {
         exhibit2:this.exhibit2,
         alterMobileNumber:this.registrationForm.value.alterMobileNumber,
         alterEmail:this.registrationForm.value.alterEmail,
+        offlineModeOfPayment:this.registrationForm.value.offlineModeOfPayment,
+        paymentMode:this.registrationForm.value.paymentMode,
+        amount:this.registrationForm.value.amount,
+        transactionDetails:this.registrationForm.value.transactionDetails,
+        offlineDateOfPayment:this.registrationForm.value.offlineDateOfPayment,
+        nameOfBank:this.registrationForm.value.nameOfBank,
         status: type,
       }).subscribe((data:any) => {
+        if(type==='Pending Approval')
+        {
+          this.registrationForm.reset();
+          this.toast.success(' Successfully Applied');
+          let url: string = "/thankYou/" + 'dsfffdsdfds'
+          this.router.navigateByUrl(url);
+        }
+        else{
         this.payNow(this.registrationForm.value.typeOfApplicant,this.registrationForm.value.category,this.registrationForm.value.panNumber,this.registrationForm.value.mobileNumber,this.registrationForm.value.email)
         this.toast.success('successfully applied');
-  
+  }
        
 
        
@@ -739,10 +770,14 @@ else{
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
+<<<<<<< HEAD
     if (this.registrationForm.valid&&this.captcha ) {
+=======
+    if (this.registrationForm.valid &&this.captcha ) {
+>>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       
       this.action=true
-
+if(type==='submitAndPay'){
 
     const dialogRef = this.dialog.open(ModelComponent, {
       width: '500px',
@@ -757,7 +792,11 @@ else{
  
     }
      
-    });
+    });}
+    else if(type==='submitAndOfflinePay')
+    {
+      this.finalSubmit('Pending Approval')
+    }
   }
   else if (!this.captcha) {
     this.submited = true;
@@ -768,6 +807,32 @@ else{
     this.submited = true;
     this.toast.error('Form invalid');
   }
+  }
+
+
+  paymentMode(mode:any){
+if(mode==='online'){
+  this.participationMode=true
+  this.registrationForm.get('offlineDateOfPayment')?.reset()
+  this.registrationForm.get('offlineDateOfPayment')?.updateValueAndValidity()
+  this.registrationForm.get('nameOfBank')?.reset()
+  this.registrationForm.get('nameOfBank')?.updateValueAndValidity()
+  this.registrationForm.get('transactionDetails')?.reset()
+  this.registrationForm.get('transactionDetails')?.updateValueAndValidity()
+  this.registrationForm.get('offlineModeOfPayment')?.reset()
+  this.registrationForm.get('offlineModeOfPayment')?.updateValueAndValidity()
+}
+else if(mode==='offline'){
+  this.registrationForm.get('offlineDateOfPayment')?.setValidators(Validators.required)
+  this.registrationForm.get('offlineDateOfPayment')?.updateValueAndValidity()
+  this.registrationForm.get('nameOfBank')?.setValidators(Validators.required)
+  this.registrationForm.get('nameOfBank')?.updateValueAndValidity()
+  this.registrationForm.get('transactionDetails')?.setValidators(Validators.required)
+  this.registrationForm.get('transactionDetails')?.updateValueAndValidity()
+  this.registrationForm.get('offlineModeOfPayment')?.setValidators(Validators.required)
+  this.registrationForm.get('offlineModeOfPayment')?.updateValueAndValidity()
+  this.participationMode=false
+}
   }
 
 }

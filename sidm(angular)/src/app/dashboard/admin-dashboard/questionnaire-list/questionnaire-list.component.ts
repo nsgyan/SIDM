@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { HttpService } from "src/app/shared/services/http.service";
+
 
 @Component({
   selector: 'app-questionnaire-list',
@@ -13,7 +14,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
   styleUrls: ['./questionnaire-list.component.css']
 })
 export class QuestionnaireListComponent implements OnInit {
-  displayedColumns: string[] = [ 'category', 'parameter','inputType','textBox','upload', 'maxScore','action'];
+  displayedColumns: string[] = ['index',  'category', 'parameter','inputType','textBox','upload', 'maxScore','action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -19,7 +19,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./member-dashboard.component.css']
 })
 export class MemberDashboardComponent implements OnInit {
-
+  participationMode=true
   action:any
   paymentDetails:any
   appreciationDocuments: any;
@@ -63,7 +63,7 @@ export class MemberDashboardComponent implements OnInit {
 
     }
   }
-  modeofPayment: string[] | undefined;
+  modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   OfflinepaymentDetails: any;
   remark: any;
   constructor(private localStorage: LocalStorageService,
@@ -236,6 +236,9 @@ export class MemberDashboardComponent implements OnInit {
         data.isappreciation === 'Yes' ? this.isappreciation = true : ''
 
         this.editData = data
+        if(this.editData.paymentMode==='offline'){
+          this.participationMode=false
+        }
 
         this.editData.panNumber = this.editData.panNumber
         this.editForm = this.formBuilder.group({
@@ -273,7 +276,13 @@ export class MemberDashboardComponent implements OnInit {
           productLink: [this.editData.productLink ? this.editData.productLink : ''],
           alterMobileNumber:[this.editData.alterMobileNumber,[Validators.maxLength(10),  Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
           alterEmail:[this.editData.alterEmail,Validators.email],
-
+          paymentMode:[this.editData.paymentMode ?this.editData.paymentMode: 'online'],
+          offlineModeOfPayment:[this.editData.offlineModeOfPayment],
+          nameOfBank:[this.editData.nameOfBank],
+     
+          offlineDateOfPayment:[this.editData.offlineDateOfPayment],
+          transactionDetails:[this.editData.transactionDetails],
+          amount:[5000],
           exhibit1: [''],
           exhibit2: [''],
 
@@ -545,7 +554,11 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
+<<<<<<< HEAD
     if (type === 'finalSubmit' || (this.editForm.valid&&this.captcha )) {
+=======
+    if (type === 'finalSubmit' || (this.editForm.valid &&this.captcha )) {
+>>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -582,7 +595,11 @@ export class MemberDashboardComponent implements OnInit {
         exhibit2: this.exhibit2,
         alterMobileNumber:this.editForm.value.alterMobileNumber,
         alterEmail:this.editForm.value.alterEmail,
-        
+        paymentMode:this.editForm.value.paymentMode,
+        amount:this.editForm.value.amount,
+        transactionDetails:this.editForm.value.transactionDetails,
+        offlineDateOfPayment:this.editForm.value.offlineDateOfPayment,
+        nameOfBank:this.editForm.value.nameOfBank,
         status: status,
       }).subscribe((data:any) => {
 if(type==='changeStatus'){
@@ -665,7 +682,11 @@ if(type==='changeStatus'){
     this.editForm.get('exhibit2')?.clearValidators()
     this.editForm.get('exhibit2')?.updateValueAndValidity()
 
+<<<<<<< HEAD
     if (this.editForm.valid&&this.captcha ) {
+=======
+    if (this.editForm.valid &&this.captcha ) {
+>>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -702,6 +723,11 @@ if(type==='changeStatus'){
         exhibit2: this.exhibit2,
         alterMobileNumber:this.editForm.value.alterMobileNumber,
         alterEmail:this.editForm.value.alterEmail,
+        paymentMode:this.editForm.value.paymentMode,
+        amount:this.editForm.value.amount,
+        transactionDetails:this.editForm.value.transactionDetails,
+        offlineDateOfPayment:this.editForm.value.offlineDateOfPayment,
+        nameOfBank:this.editForm.value.nameOfBank,
         status: type,
 
       }).subscribe(data => {
@@ -957,7 +983,11 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
+<<<<<<< HEAD
     if (this.editForm.valid&&this.captcha  ) {
+=======
+    if (this.editForm.valid &&this.captcha  ) {
+>>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
 this.action=true
 
     const dialogRef = this.dialog.open(ModelComponent, {
@@ -986,6 +1016,42 @@ this.action=true
     this.toast.error('Form invalid');
   }
   }
+  paymentMode(mode:any){
+    if(mode==='online'){
+      this.participationMode=true
+      this.editForm.get('offlineDateOfPayment')?.reset()
+      this.editForm.get('offlineDateOfPayment')?.updateValueAndValidity()
+      this.editForm.get('nameOfBank')?.reset()
+      this.editForm.get('nameOfBank')?.updateValueAndValidity()
+      this.editForm.get('transactionDetails')?.reset()
+      this.editForm.get('transactionDetails')?.updateValueAndValidity()
+      this.editForm.get('offlineModeOfPayment')?.reset()
+      this.editForm.get('offlineModeOfPayment')?.updateValueAndValidity()
+    }
+    else if(mode==='offline'){
+      this.editForm.get('offlineDateOfPayment')?.setValidators(Validators.required)
+      this.editForm.get('offlineDateOfPayment')?.updateValueAndValidity()
+      this.editForm.get('nameOfBank')?.setValidators(Validators.required)
+      this.editForm.get('nameOfBank')?.updateValueAndValidity()
+      this.editForm.get('transactionDetails')?.setValidators(Validators.required)
+      this.editForm.get('transactionDetails')?.updateValueAndValidity()
+      this.editForm.get('offlineModeOfPayment')?.setValidators(Validators.required)
+      this.editForm.get('offlineModeOfPayment')?.updateValueAndValidity()
+      this.participationMode=false
+    }
+      }
+      navigateTo(url:string,id:string){
+  
 
+    
+        
+       
+          
+       
+            url=url+id
+            window.location.href=url
+         
+    
+      }
 
 }

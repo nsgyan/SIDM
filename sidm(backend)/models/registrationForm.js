@@ -50,7 +50,13 @@ const RegistrationFormSchema = new Schema({
         assessor:[],
         offlinePaymentDetails:{type:String,default:null},
         memberShipAmount:{type:String,default: null},
-        questionnaireStatus:{type:String,default: null}
+        questionnaireStatus:{type:String,default: null},
+       nameOfBank :{type:String,default: null},
+       offlineDateOfPayment :{type:String,default: null},
+       transactionDetails :{type:String,default: null},
+       amount :{type:String,default: null},
+      paymentMode:{type:String,default: null},
+       offlineModeOfPayment:{type:String,default: null},
 
 })
 

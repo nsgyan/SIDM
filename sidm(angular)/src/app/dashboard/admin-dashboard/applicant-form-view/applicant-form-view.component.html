@@ -6,6 +6,9 @@
 
 <div class="container mt-4">
     <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button>
+    <button class="viewBtn mx-2" *ngIf="memberData?.status==='Approved'" (click)="editForm(memberData._id)"> Edit</button>
+    <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='aprroved'"   (click)="viewQuestionnaire(memberData._id)"><i
+        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</button>
 </div>
 <div *ngIf="paymentDetails">
     <div class="container">
@@ -75,12 +78,52 @@
         </div>
     </div>
 </div>
+<div *ngIf="memberData.paymentMode==='offline'">
+    <div class="container">
+        <div class="profileSection mb-6">
+            <div class="memberData">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date Of Payment</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Transaction Details</th>
+                                <th scope="col">Mode Of Payment</th>
+                                <th scope="col">Name Of Bank</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="memberData">{{memberData?.offlineDateOfPayment}}</th>
+                                <th scope="memberData">{{memberData?.amount}}</th>
+                                <th scope="memberData">{{memberData?.transactionDetails}}</th>
+                                <th scope="memberData">{{memberData?.offlineModeOfPayment}}</th>
+                                <th scope="memberData">{{memberData?.nameOfBank}}</th>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="registrationForm" >
     <div class="formBody">
         <div class="container">
             <!-- <h2>This is heading</h2> -->
             <div class="formPart_1 mt-4 mb-4" >
+                <div class="detail">
+                    <h6>Category</h6>
+                    <p >{{memberData?.category}}</p>
+                </div>
+                <div class="detail">
+                    <h6>Type of Applicant company</h6>
+                    <p>{{memberData?.typeOfApplicant}}</p>
+                </div>
                 <div class="detail" *ngIf="memberData?.remark">
                     <h6>Remark</h6>
                     <p style="color: red !important;">{{memberData?.remark}}</p>
@@ -94,10 +137,10 @@
                     <h6>Status</h6>
                     <p>{{memberData?.status}}</p>
                 </div>
-                <div class="detail">
+                <!-- <div class="detail">
                     <h6>Created Date</h6>
                     <p>{{memberData?.createAt}}</p>
-                </div>
+                </div> -->
                 <div class="detail">
                     <h6>Last updated Date</h6>
                     <p>{{memberData?.updatedAt}}</p>
@@ -108,10 +151,7 @@
                     <h6>Payment Status</h6>
                     <p>{{memberData?.paymentStatus}}</p>
                 </div>
-                <div class="detail">
-                    <h6>Type of Applicant company</h6>
-                    <p>{{memberData?.typeOfApplicant}}</p>
-                </div>
+               
                 <div class="detail">
                     <h6>Document as sub Category Setected</h6>
                     <p  *ngIf='!memberData?.subCategoryDoccument'>you have't upload sub Category Document </p>
@@ -233,7 +273,7 @@
                     <p>{{memberData?.sidmChampionAwards}}</p>
                 </div>
                 <div class="detail">
-                    <h6>Nomenclatur of items</h6>
+                    <h6>Nomenclature of items</h6>
                     <p>{{memberData?.nomenclaturOfItems}}</p>
                 </div>
                 <div class="detail">
@@ -271,6 +311,7 @@
             </div>
         </div>
     </div>
-<div class="container mb-3 " *ngIf="memberData.paymentStatus==='Paid' &&( memberData.status==='Pending Approval'||memberData.status==='Request Info')"> <button  class="viewBtn mx-2" (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
+<div class="container mb-3 mt-0 text-center " *ngIf="memberData.paymentStatus==='Paid' &&( memberData.status==='Pending Approval'||memberData.status==='Request Info')">
+     <button  class="viewBtn mx-2" (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
      <button class="viewBtn" (click)="modalOpen(memberData._id,'approve')" > Approve</button></div>
 </div>

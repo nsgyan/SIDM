@@ -31,10 +31,14 @@ export class Globals {
         'updateQuestionnaireById':Globals.server+'questionnaire/update',
         'findByCategory':Globals.server+'questionnaire/findByCategory',
         'questionnaireAissment':Globals.server+'questionnaire/questionnaireAissment',
+        'updateQuestionnaireAissment':Globals.server+'questionnaire/update/questionnaireAissment',
+        'staticAissmentQuestionnaire':Globals.server+'questionnaire/staticQuestionnaireAissment',
+        'updateStaticAissmentQuestionnaire':Globals.server+'questionnaire/update/staticQuestionnaireAissment',
         'deleteQuestionnaire':Globals.server+'questionnaire/deleteQuestionnaire',
         'updateQuestionnaire':Globals.server+'questionnaire/assessorScore',
         'assessorDashboard':Globals.server+'questionnaire/formsData',
         'assessorApplicantList':Globals.server+'questionnaire/assessor/aplicantList',
-        'assessmentsList':Globals.server+'questionnaire/assessmentsList'
+        'assessmentsList':Globals.server+'questionnaire/assessmentsList',
+        'filterAssessmentsList':Globals.server+'questionnaire/filterAssessmentsList'
     };
 }
