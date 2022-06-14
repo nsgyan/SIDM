@@ -62,11 +62,7 @@ export class AssessorLoginComponent implements OnInit {
 
   assessorlogin() {
  
-<<<<<<< HEAD
-    if (this.assessorform.valid&&this.captcha ) {
-=======
     if (this.assessorform.valid &&this.captcha ) {
->>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       this.httpService.assessorLogin({ email: this.assessorform.value.email, password: this.assessorform.value.password })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)

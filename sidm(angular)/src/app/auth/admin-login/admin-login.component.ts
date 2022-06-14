@@ -32,11 +32,7 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
-<<<<<<< HEAD
     if (this.adminLogin.valid&&this.captcha) {
-=======
-    if (this.adminLogin.valid &&this.captcha) {
->>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
     this.httpService.adminlogin({
       'email': this.adminLogin.value.email,
       'password': this.adminLogin.value.password

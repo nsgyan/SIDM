@@ -325,11 +325,7 @@ participationMode:boolean=true;
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.clearValidators()
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-<<<<<<< HEAD
-    if (this.registrationForm.valid&&this.captcha ) {
-=======
     if (this.registrationForm.valid &&this.captcha ) {
->>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         category: this.registrationForm.value.category,
@@ -770,11 +766,7 @@ else{
     this.registrationForm.get('exhibit1')?.updateValueAndValidity()
     this.registrationForm.get('exhibit2')?.setValidators(Validators.required)
     this.registrationForm.get('exhibit2')?.updateValueAndValidity()
-<<<<<<< HEAD
-    if (this.registrationForm.valid&&this.captcha ) {
-=======
     if (this.registrationForm.valid &&this.captcha ) {
->>>>>>> fc00f5ba29ebe04bcea9ee33e07cee20d35c1ddc
       
       this.action=true
 if(type==='submitAndPay'){
