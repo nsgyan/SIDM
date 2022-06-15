@@ -35,6 +35,10 @@ questionnaireForm:FormGroup
       staticTable:this.fb.array([]) ,
       staticScore:[''] ,
       staticMaxScore:[''] ,
+      secoundStaticAnswer:[''],
+      secoundStaticTable:this.fb.array([]) ,
+      secoundStaticScore:[''] ,
+      secoundStaticMaxScore:[20] ,
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
  
@@ -120,6 +124,11 @@ get nameAissment(): FormArray {
   return this.questionnaireForm.get('aissment') as FormArray;
 }
 
+get secoundStaticTable(): FormArray {
+  return this.questionnaireForm.get('secoundStaticTable') as FormArray;
+}
+
+
 get staticTable(): FormArray {
   return this.questionnaireForm.get('staticTable') as FormArray;
 }
@@ -127,7 +136,22 @@ removeStaticQuestion(index:number) {
   let control = <FormArray>this.questionnaireForm.get('staticTable');
   control.removeAt(index)
 }
+removeSecoundStaticTable(index:number) {
+  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
+  control.removeAt(index)
+}
 
+addsecoundStaticQuestion() {
+  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
+  control.push(
+    this.fb.group({
+      product: [''],
+      IcContent:[''],
+      answer:['']
+    })
+  );
+ 
+}
 
 addStaticQuestion() {
   let control = <FormArray>this.questionnaireForm.get('staticTable');
@@ -316,6 +340,24 @@ submitStaticQuestionnaire(status:any){
   let j=0;
 
 let staticAnswer=this.questionnaireForm.value.staticAnswer
+if(staticAnswer==="Build to Customer Print"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(6)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=6
+}else if(staticAnswer==="Under ToT from FOEM"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(10)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=10
+}else if(staticAnswer==="Under ToT from DRDO"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(15)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=15
+}
+else if(staticAnswer==="Indigenous, in-house design"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(20)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=20
+}  
 if(staticAnswer==="More than 05 type"){
   this.questionnaireForm.get('staticScore')?.setValue(10)
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
@@ -333,7 +375,8 @@ else if(staticAnswer==="Single product"){
   this.questionnaireForm.get('staticScore')?.setValue(2)
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=2
-}  console.log(this.totalScore,this.questionnaireForm);
+}  
+console.log(this.totalScore,this.questionnaireForm);
   if (this.questionnaireForm.valid   ) {
     let  i=0;
  
@@ -392,6 +435,10 @@ control.at(i).get('score')?.updateValueAndValidity()
     staticTable:this.questionnaireForm.value.staticTable,
     staticMaxScore:this.questionnaireForm.value.staticMaxScore,
     staticScore:this.questionnaireForm.value.staticScore,
+    secoundStaticAnswer:this.questionnaireForm.value.secoundStaticAnswer,
+    secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
+    secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
+    secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
     status:status
 
 

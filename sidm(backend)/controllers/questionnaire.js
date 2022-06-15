@@ -290,6 +290,10 @@ exports.staticissmentQuestionnaire=(req,res)=>{
     const staticMaxScore= req.body.staticMaxScore
     const staticAnswer= req.body.staticAnswer
     const staticTable= req.body.staticTable
+    const secoundStaticScore= req.body.secoundStaticScore
+    const secoundStaticMaxScore= req.body.secoundStaticMaxScore
+    const secoundStaticAnswer= req.body.secoundStaticAnswer
+    const secoundStaticTable= req.body.secoundStaticTable
     const status= req.body.status
     const aissment= new questionnaireAissment({
         userId:userId,
@@ -300,6 +304,10 @@ exports.staticissmentQuestionnaire=(req,res)=>{
         staticMaxScore:staticMaxScore,
         staticAnswer:staticAnswer,
         staticTable:staticTable,
+        secoundStaticScore:secoundStaticScore,
+        secoundStaticMaxScore:secoundStaticMaxScore,
+        secoundStaticAnswer:secoundStaticAnswer,
+        secoundStaticTable:secoundStaticTable,
         
     })
     aissment.save().then(savedAissment=>{
@@ -358,7 +366,6 @@ data.save().then(data=>{
     savedAissment.save().then(item=>{
         res.status(200).json('successfully Submitted');
     })
-    res.status(200).json('successfully Submitted');
 })
  })
            })
@@ -379,6 +386,11 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
     const staticMaxScore= req.body.staticMaxScore
     const staticAnswer= req.body.staticAnswer
     const staticTable= req.body.staticTable
+    const secoundStaticMaxScore= req.body.secoundStaticMaxScore
+    const secoundStaticScore= req.body.secoundStaticScore
+    const secoundStaticAnswer= req.body.secoundStaticAnswer
+    const secoundStaticTable= req.body.secoundStaticTable
+    
     questionnaireAissment.findById(id).then(assessment=>{
         assessment.userId=userId,
         assessment.adminRemark=adminRemark,
@@ -390,6 +402,10 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
         assessment.staticMaxScore=staticMaxScore,
         assessment.staticAnswer=staticAnswer,
         assessment.staticTable=staticTable,
+        assessment.secoundStaticMaxScore=secoundStaticMaxScore,
+        assessment.secoundStaticScore=secoundStaticScore,
+        assessment.secoundStaticAnswer=secoundStaticAnswer,
+        assessment.secoundStaticTable=secoundStaticTable,
         assessment.save().then(data=>{
             RegistrationForm.findById(userId).then(data=>{
                 data.questionnaireStatus=questionnaireStatus

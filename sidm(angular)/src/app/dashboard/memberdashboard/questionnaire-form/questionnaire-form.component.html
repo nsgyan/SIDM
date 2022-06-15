@@ -88,9 +88,9 @@
           <mat-step  >
             
 
-            <h2>Number of types of products exported
-              Give a list of products in an excel with their
-              picture/small explanation</h2>
+            <h2>Number and types of product being exported
+              .Give  list of products in an excel with  their
+              picture/uppload</h2>
               <mat-form-field appearance="fill">
                 <mat-label>Select Answer</mat-label>
                 <mat-select formControlName="staticAnswer">
@@ -110,9 +110,9 @@
                   <tr>
                     <th scope="col">S.No</th>
                     <th scope="col">Product</th>
-                    <th scope="col">Explain(25 words)</th>
+                    <!-- <th scope="col">Explain(25 words)</th> -->
                     <th scope="col">Upload Pic</th>
-                    <th scope="col">IC Content %</th>
+                    <!-- <th scope="col">IC Content %</th> -->
                 </thead>
                 <tbody>
                   <tr *ngFor=" let controlName of staticTable.controls; let i = index" [formGroupName]="i">
@@ -121,9 +121,9 @@
                         class="fa fa-trash"></i> </a>
                 </td>
                    <td><input formControlName="product" type="text"></td>
-                   <td><input formControlName="description"  type="text"></td>
+                   <!-- <td><input formControlName="description"  type="text"></td> -->
                    <td><input  (change)="staticTableChangeListener($event,i)"  type="file"></td>
-                   <td><input formControlName="IcContent"  type="text"></td>
+                   <!-- <td><input formControlName="IcContent"  type="text"></td> -->
                   </tr>
                 </tbody>
               </table>
@@ -131,8 +131,71 @@
             <div>
               <table></table>
             
+              <button mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+
+            </div>
+
+          </mat-step>
+          <mat-step  >
+  
+            <h2>Please Select appropriate choice from Dropdown list for maximum product. Please provide details of each product</h2>
+              <mat-form-field appearance="fill">
+                <mat-label>Select Answer</mat-label>
+                <mat-select formControlName="secoundStaticAnswer">
+                  <mat-option  value="Build to Customer Print">
+                    Build to Customer Print </mat-option>
+                    <mat-option  value="Under ToT from FOEM">
+                      Under ToT from FOEM</mat-option>
+                      <mat-option  value="Under ToT from DRDO">
+                        Under ToT from DRDO</mat-option>
+                        <mat-option  value="Indigenous, in-house design">
+                          Indigenous, in-house design</mat-option>
+                </mat-select>
+              </mat-form-field>
+        <button  class="RegistrationBtn" (click)="addsecoundStaticQuestion()">ADD </button>
+              <table class="table" formArrayName="secoundStaticTable" >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Product Name</th>
+                    <!-- <th scope="col">Explain(25 words)</th> -->
+                    <!-- <th scope="col">Upload Pic</th> -->
+                    <th scope="col">IC Content %</th>
+                    <th scope="col">Select</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor=" let controlName of secoundStaticTable.controls; let i = index" [formGroupName]="i">
+                   <td>{{i+1}}  <a class="addBtn mb-3" *ngIf='i!==0'
+                    (click)="removeSecoundStaticTable(i)"><i
+                        class="fa fa-trash"></i> </a>
+                </td>
+                <td><input formControlName="product" type="text"></td>
+                   <!-- <td><a class="AttachementBtn ml-2"  target="blank"
+                    href="{{questionnaireData.staticTable[i]?.uploadDocuments}}">View Attachement</a></td> -->
+                   <td><input formControlName="IcContent"  type="text"></td>
+              
+                   <td>   <mat-form-field appearance="fill">
+                    <mat-label>Select Answer</mat-label>
+                    <mat-select formControlName="answer">
+                      <mat-option  value="Build to Customer Print">
+                        Build to Customer Print </mat-option>
+                        <mat-option  value="Under ToT from FOEM">
+                          Under ToT from FOEM</mat-option>
+                          <mat-option  value="Under ToT from DRDO">
+                            Under ToT from DRDO</mat-option>
+                            <mat-option  value="Indigenous, in-house design">
+                              Indigenous, in-house design</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            <div>
+              <table></table>
               <button mat-button *ngIf="userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
-              <button mat-button *ngIf="!userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('save')" class="RegistrationBtn">Save</button>
+            <button mat-button *ngIf="!userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('save')" class="RegistrationBtn">Save</button>
               <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>

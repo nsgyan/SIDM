@@ -57,6 +57,10 @@ questionnaireForm:FormGroup
         staticTable:this.fb.array([]) ,
         staticScore:[''] ,
         staticMaxScore:[''] ,
+        secoundStaticAnswer:[''],
+        secoundStaticTable:this.fb.array([]) ,
+        secoundStaticScore:[''] ,
+        secoundStaticMaxScore:[''] ,
         adminRemark:[''],
         questionnaireStatus:['']
       })
@@ -116,7 +120,28 @@ if(this.questionnaireData.adminRemark){
      }
       
       
-     console.log(this.questionnaireData);
+ if(this.questionnaireData?.secoundStaticAnswer){
+  this.static=true
+  this.questionnaireForm.get('secoundStaticMaxScore')?.setValue(20)
+  this.questionnaireForm.get('secoundStaticMaxScore')?.updateValueAndValidity()
+  this.questionnaireForm.get('secoundStaticAnswer')?.setValue(this.questionnaireData.secoundStaticAnswer)
+  this.questionnaireForm.get('secoundStaticAnswer')?.updateValueAndValidity()
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(this.questionnaireData.secoundStaticScore)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  let staticControl=<FormArray>this.questionnaireForm.get('secoundStaticTable');
+  data.secoundStaticTable.map((item:any)=>{
+    staticControl.push(
+      this.fb.group({
+        product: [item.product], 
+        IcContent:[item.IcContent],
+        answer:[item.answer]
+      })
+    );
+    if(item.uploadDocuments){
+      item.uploadDocuments = environment.download + item.uploadDocuments
+    }
+  })
+}
      if( this.questionnaireData?.staticAnswer){
       this.static=true
       this.questionnaireForm.get('staticMaxScore')?.setValue(10)
@@ -163,9 +188,31 @@ get nameAissment(): FormArray {
 get staticTable(): FormArray {
   return this.questionnaireForm.get('staticTable') as FormArray;
 }
+get secoundStaticTable(): FormArray {
+  return this.questionnaireForm.get('secoundStaticTable') as FormArray;
+}
+
+
+
 removeStaticQuestion(index:number) {
   let control = <FormArray>this.questionnaireForm.get('staticTable');
   control.removeAt(index)
+}
+removeSecoundStaticTable(index:number) {
+  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
+  control.removeAt(index)
+}
+
+addsecoundStaticQuestion() {
+  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
+  control.push(
+    this.fb.group({
+      product: [''],
+      IcContent:[''],
+      answer:['']
+    })
+  );
+ 
 }
 
 
@@ -364,7 +411,26 @@ submitStaticQuestionnaire(status:string){
   if(status==='save'){
     this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
    }
-let staticAnswer=this.questionnaireForm.value.staticAnswer
+let  staticAnswer=this.questionnaireForm.value.staticAnswer
+let  secoundStaticAnswer=this.questionnaireForm.value.secoundStaticAnswer
+if(secoundStaticAnswer==="Build to Customer Print"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(6)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=6
+}else if(secoundStaticAnswer==="Under ToT from FOEM"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(10)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=10
+}else if(secoundStaticAnswer==="Under ToT from DRDO"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(15)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=15
+}
+else if(secoundStaticAnswer==="Indigenous, in-house design"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(20)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=20
+} 
 if(staticAnswer==="More than 05 type"){
   this.questionnaireForm.get('staticScore')?.setValue(10)
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
@@ -444,6 +510,10 @@ console.log(this.questionnaireForm);
     staticMaxScore:this.questionnaireForm.value.staticMaxScore,
     staticScore:this.questionnaireForm.value.staticScore,
     adminRemark:this.questionnaireForm.value.adminRemark,
+    secoundStaticAnswer:this.questionnaireForm.value.secoundStaticAnswer,
+    secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
+    secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
+    secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
     questionnaireStatus:status,
 
 
