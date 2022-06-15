@@ -137,9 +137,7 @@ if(this.questionnaireData.adminRemark){
         answer:[item.answer]
       })
     );
-    if(item.uploadDocuments){
-      item.uploadDocuments = environment.download + item.uploadDocuments
-    }
+
   })
 }
      if( this.questionnaireData?.staticAnswer){
