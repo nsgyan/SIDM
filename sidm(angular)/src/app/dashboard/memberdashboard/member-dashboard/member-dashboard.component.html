@@ -156,7 +156,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Category Name</th>
                                         <th scope="col">Application Status</th>
-                                        <th scope="col">Membership Fees</th>
+                                        <th scope="col">Registration Fees</th>
                                         <th scope="col">Application Remark</th>
                                         <th scope="col"> Award Questionnaire Status</th>
                                         <th scope="col">Participation Fees</th>
@@ -189,9 +189,9 @@
                                                     class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a>
                                         </td>
                                         <td> <a *ngIf="memberData?.questionnaireStatus==='requestInfo'"  (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)">Request Info</a>
-                                             <span *ngIf="!memberData?.questionnaireStatus" style="color: red;">Pending </span> 
+                                             <span *ngIf="!memberData?.questionnaireStatus" style="color: red;"> </span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='Submitted'" >Submitted For Review </span> 
-                                             <span *ngIf="memberData?.questionnaireStatus==='save'" >Saved </span> 
+                                             <span *ngIf="memberData?.questionnaireStatus==='save'&&memberData?.offlinePaymentDetails" >Applied </span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='aprroved'">Approved </span></td>
                                         <td>
                                             <span *ngIf="!memberData?.offlinePaymentDetails"
