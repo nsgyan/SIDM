@@ -451,12 +451,12 @@
                     <h5 class="mt-3 mb-2">Are you registered with any Defence Organization (such as DPSU/DRDO etc.)? *
                     </h5>
                     <div class="container">
-                        <input type="radio" formControlName="registeredOrganization" value="Yes"
+                        <input type="radio" formControlName="registeredOrganization" name="registeredOrganization" value="Yes"
                             (click)="newChangetoggel('registeredOrganization','Yes')" id="YES">
                         <label class="mx-2" for="YES">Yes</label>
 
 
-                        <input type="radio" formControlName="registeredOrganization"
+                        <input type="radio" formControlName="registeredOrganization" name="registeredOrganization"
                             (click)="newChangetoggel('registeredOrganization','No')" value="No" id="No">
                         <label class="mx-2" for="No">No</label>
                         <p style="color: red;"
@@ -536,12 +536,12 @@
                         customer
                         organization?*</h5>
                     <div class="mb-2 mt-3">
-                        <input type="radio" formControlName="isappreciation" name="hello" value="Yes"
+                        <input type="radio" formControlName="isappreciation" name="isappreciation" value="Yes"
                             (click)="newChangetoggel('isappreciation','Yes')" id="YES">
                         <label class="mx-2" for="YES">Yes</label>
 
 
-                        <input type="radio" formControlName="isappreciation" name="hello"
+                        <input type="radio" formControlName="isappreciation" name="isappreciation"
                             (click)="newChangetoggel('isappreciation','No')" value="No" id="No">
                         <label class="mx-2" for="No">No</label>
                         <p style="color: red;" *ngIf="newCategoryForm.get('isappreciation')?.hasError('required')">
