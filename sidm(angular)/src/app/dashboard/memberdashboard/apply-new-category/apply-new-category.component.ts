@@ -82,53 +82,7 @@ export class ApplyNewCategoryComponent implements OnInit {
   
  this.applyNew()
     this.getState()
-    this.newCategoryForm = this.formBuilder.group({
-      category: ['', Validators.required],
-      typeOfApplicant: [''],
-      subCategoryDoccument: [''],
-      financialDoccument: [''],
-      nameOfCompany: [''],
-      addressl1: [''],
-      addressl2: [''],
-      state: [''],
-      city: [''],
-      pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
-      name: [''],
-      designation: [''],
-      email: [this.email],
-      mobileNumber: [this.mobilenumber],
-      panNumber: [this.pan],
-      alterEmail:['',Validators.email],
-      alterMobileNumber:['',[Validators.maxLength(10), Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-      gstinOfCompany: ['', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
-      documentGstCertificate: [''],
-      dateOfCompany: [''],
-      sidmMember: [''],
-      sidmMemberShipNumber: [''],
-      association: [''],
-      associationName: [''],
-      registeredOrganization: [''],
-      nameRegisteredOrganization: this.formBuilder.array([]),
-      aboutCompany: [''],
-      nomenclaturOfItems:[''],
-      sidmChampionAwards: [''],
-      isappreciation: [''],
-      appreciationDocuments: [''],
-      campareAchivement: [''],
-      mudp: [''],
-      productLink: [''],
-      paymentMode:['online'],
-      offlineModeOfPayment:[''],
-      nameOfBank:[''],
-      exhibit1:[''],
-      exhibit2:[''],
-      offlineDateOfPayment:[''],
-      transactionDetails:[''],
-      amount:[5000]
-
-
-
-    })
+ 
     this.httpService.getMemberData().
       subscribe((data: any) => {
         data.map((item: any) => {
@@ -150,26 +104,106 @@ export class ApplyNewCategoryComponent implements OnInit {
           }  
         })
         this.memberData = data;
+        if (this.memberData[0].documentGstCertificate) {
+          this.documentGstCertificate = this.memberData[0].documentGstCertificate
+          this.memberData[0].documentGstCertificate = environment.download + this.memberData[0].documentGstCertificate
+          
+        }
+        if (this.memberData[0].appreciationDocuments) {
+          this.appreciationDocuments = this.memberData[0].appreciationDocuments
+          this.memberData[0].appreciationDocuments = environment.download + this.memberData[0].appreciationDocuments   
+        }
+        if (this.memberData[0].subCategoryDoccument) {
+          this.subCategoryDoccument = this.memberData[0].subCategoryDoccument
+          this.memberData[0].subCategoryDoccument = environment.download + this.memberData[0].subCategoryDoccument         
+        }
+        if (this.memberData[0].financialDoccument) {
+          this.financialDoccument = this.memberData[0].financialDoccument
+          this.memberData[0].financialDoccument = environment.download + this.memberData[0].financialDoccument         
+        }
+     
         for (let i of this.memberData) {
           this.email = i.email
           this.mobilenumber = i.mobileNumber;
           this.pan = i.panNumber;
+          
         }
+        console.log(this.memberData[0].nameOfCompany);
         
-this.newCategoryForm.get('email')?.setValue(this.email)
-this.newCategoryForm.get('email')?.updateValueAndValidity()
-        
-this.newCategoryForm.get('mobileNumber')?.setValue(this.mobilenumber)
-this.newCategoryForm.get('mobileNumber')?.updateValueAndValidity()
-        
-this.newCategoryForm.get('panNumber')?.setValue(this.pan)
-this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
+        this.newCategoryForm = this.formBuilder.group({
+          category: ['',Validators.required],
+          typeOfApplicant: [''],
+          subCategoryDoccument: [this.memberData[0].subCategoryDoccument?this.memberData[0].subCategoryDoccument:''],
+          financialDoccument:[this.memberData[0].financialDoccument?this.memberData[0].financialDoccument:''],
+          nameOfCompany: [this.memberData[0].nameOfCompany?this.memberData[0].nameOfCompany:''],
+          addressl1:[this.memberData[0].addressl1?this.memberData[0].addressl1:''],
+          addressl2: [this.memberData[0].addressl2?this.memberData[0].addressl2:''],
+          state:[this.memberData[0].state?this.memberData[0].state:''],
+          city: [this.memberData[0].city?this.memberData[0].city:''],
+          pincode: [this.memberData[0].pincode?this.memberData[0].pincode:'', [Validators.pattern('^[1-9][0-9]{5}$'), Validators.minLength(6), Validators.maxLength(6)]],
+          name: [this.memberData[0].name?this.memberData[0].name:''],
+          designation: [this.memberData[0].email?this.memberData[0].email:''],
+          email: [this.memberData[0].email?this.memberData[0].email:''],
+          mobileNumber: [this.memberData[0].mobileNumber?this.memberData[0].mobileNumber:''],
+          panNumber: [this.memberData[0].panNumber?this.memberData[0].panNumber:''],
+          alterEmail:[this.memberData[0].alterEmail?this.memberData[0].alterEmail:'',Validators.email],
+          alterMobileNumber:[this.memberData[0].alterMobileNumber?this.memberData[0].alterMobileNumber:'',[Validators.maxLength(10), Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+          gstinOfCompany: [this.memberData[0].gstinOfCompany?this.memberData[0].gstinOfCompany:'', Validators.pattern(/^([0]{1}[1-9]{1}|[1-2]{1}[0-9]{1}|[3]{1}[0-7]{1})([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/)],
+          documentGstCertificate: [this.memberData[0].documentGstCertificate?this.memberData[0].documentGstCertificate:''],
+          dateOfCompany:[this.memberData[0].dateOfCompany?this.memberData[0].dateOfCompany:''],
+          sidmMember: [this.memberData[0].sidmMember?this.memberData[0].sidmMember:''],
+          sidmMemberShipNumber: [this.memberData[0].sidmMemberShipNumber?this.memberData[0].sidmMemberShipNumber:''],
+          association: [this.memberData[0].association?this.memberData[0].association:''],
+          associationName: [this.memberData[0].associationName?this.memberData[0].associationName:''],
+          registeredOrganization: [this.memberData[0].registeredOrganization?this.memberData[0].registeredOrganization:''],
+          nameRegisteredOrganization: this.formBuilder.array([]),
+          aboutCompany: [''],
+          nomenclaturOfItems:[''],
+          sidmChampionAwards: [''],
+          isappreciation: [''],
+          appreciationDocuments: [''],
+          campareAchivement: [''],
+          mudp: [''],
+          productLink: [''],
+          paymentMode:['online'],
+          offlineModeOfPayment:[''],
+          nameOfBank:[''],
+          exhibit1:[''],
+          exhibit2:[''],
+          offlineDateOfPayment:[''],
+          transactionDetails:[''],
+          amount:[5000]
+    
+    
+    
+        })
+        if (this.memberData[0].sidmMember === 'Yes') {
+          this.newCategoryForm.get('sidmMemberShipNumber')?.setValidators(Validators.required)
+          this.newCategoryForm.get('sidmMemberShipNumber')?.updateValueAndValidity()
+
+        }
+        if (this.memberData[0].association === 'Yes') {
+          this.newCategoryForm.get('otherAssociationMemberShipNumber')?.setValidators(Validators.required)
+
+          this.newCategoryForm.get('otherAssociationMemberShipNumber')?.updateValueAndValidity()
+
+        }
+      
+        if (this.memberData[0].registeredOrganization === 'Yes') {
+          this.registeredOrganization = true
+          let control = <FormArray>this.newCategoryForm.get('nameRegisteredOrganization');
+         this.memberData[0].nameRegisteredOrganization.map((item:any)=>{
+          control.push(
+            this.formBuilder.group({
+              name: [item.name, Validators.required],            
+            })
+          );
+           
+         })
+                          
+        }
       
       
-        if(!this.cat1&&!this.cat2&&!this.cat3&&!this.cat4){
-          const url='/dashboard/member/view/'+data[0]._id
-          this.routes.navigateByUrl(url);
-        }
       }, err => {
         this.toast.error(err.error);
         this.localStorage.clearLocalStorage()
@@ -698,7 +732,7 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.clearValidators()
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.valid  ) {
+    if (this.newCategoryForm.valid &&this.captcha ) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -941,44 +975,44 @@ this.newCategoryForm.get('panNumber')?.updateValueAndValidity()
   delete(conttrolName: string) {
     if (conttrolName === 'documentGstCertificate') {
       this.documentGstCertificate = null
-      this.editForm.get('documentGstCertificate')?.reset()
-      this.editForm.get('documentGstCertificate')?.updateValueAndValidity()
-      this.editData.documentGstCertificate = null
+      this.newCategoryForm.get('documentGstCertificate')?.reset()
+      this.newCategoryForm.get('documentGstCertificate')?.updateValueAndValidity()
+      this.memberData[0].documentGstCertificate = null
 
     }
     else if (conttrolName === 'exhibit1') {
       this.exhibit1 = null;
-      this.editForm.get('exhibit1')?.reset()
-      this.editForm.get('exhibit1')?.updateValueAndValidity()
-      this.editData.exhibit1 = null
+      this.newCategoryForm.get('exhibit1')?.reset()
+      this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
+      this.memberData[0].exhibit1 = null
     }
     else if (conttrolName === 'exhibit2') {
       this.exhibit2 = null;
-      this.editForm.get('exhibit2')?.reset()
-      this.editForm.get('exhibit2')?.updateValueAndValidity()
-      this.editData.exhibit2 = null
+      this.newCategoryForm.get('exhibit2')?.reset()
+      this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
+      this.memberData[0].exhibit2 = null
     }
     else if (conttrolName === 'subCategoryDoccument') {
       this.subCategoryDoccument = null;
-      this.editForm.get('subCategoryDoccument')?.reset()
-      this.editForm.get('subCategoryDoccument')?.updateValueAndValidity()
-      this.editData.subCategoryDoccument = null
+      this.newCategoryForm.get('subCategoryDoccument')?.reset()
+      this.newCategoryForm.get('subCategoryDoccument')?.updateValueAndValidity()
+      this.memberData[0].subCategoryDoccument = null
     }
     else if (conttrolName === 'financialDoccument') {
       this.financialDoccument = null;
-      this.editForm.get('financialDoccument')?.reset()
-      this.editForm.get('financialDoccument')?.updateValueAndValidity()
-      this.editData.financialDoccument = null
+      this.newCategoryForm.get('financialDoccument')?.reset()
+      this.newCategoryForm.get('financialDoccument')?.updateValueAndValidity()
+      this.memberData[0].financialDoccument = null
     }
     else if (conttrolName === 'appreciationDocuments') {
       this.appreciationDocuments = null;
-      this.editForm.get('appreciationDocuments')?.reset()
-      this.editForm.get('appreciationDocuments')?.updateValueAndValidity()
-      this.editData.appreciationDocuments = null
-      this.editForm.get('isappreciation')?.setValue('No')
+      this.newCategoryForm.get('appreciationDocuments')?.reset()
+      this.newCategoryForm.get('appreciationDocuments')?.updateValueAndValidity()
+      this.memberData[0].appreciationDocuments = null
+      this.newCategoryForm.get('isappreciation')?.setValue('No')
       this.isappreciation = false
 
-      this.editForm.get('isappreciation')?.updateValueAndValidity()
+      this.newCategoryForm.get('isappreciation')?.updateValueAndValidity()
     }
 
   }
@@ -1089,7 +1123,7 @@ else{
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.valid  ) {
+    if (this.newCategoryForm.valid &&this.captcha ) {
 this.action=true
 
 if(type==='submitAndPay'){

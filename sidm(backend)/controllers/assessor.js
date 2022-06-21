@@ -131,7 +131,7 @@ exports.filterAssessmentsList=(req,res)=>{
 }
 exports.assessmentsList=(req,res)=>{
   
-  registrationForm.find({questionnaireStatus:'sumbit'}).then(data=>{
+  registrationForm.find({questionnaireStatus:'aprroved'}).then(data=>{
     res.status(200).send(data)
   }).catch(err=>{
       res.status(500).json("internal server error");
@@ -143,7 +143,7 @@ exports.findmember=(req,res)=>{
   const typeOfApplicant= req.query.typeOfApplicant
   const status= req.query.status
   const asaessorEmail= req.query.asaessorEmail
-  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit' , assessor : { $elemMatch: {  email : { $gte: asaessorEmail }, status:{ $gte: status }}, } }).then(data=>{
+  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'aprroved' , assessor : { $elemMatch: {  email : { $gte: asaessorEmail }, status:{ $gte: status }}, } }).then(data=>{
       res.status(200).send(data)
   }).catch(err=>{
       res.status(500).json("internal server error");

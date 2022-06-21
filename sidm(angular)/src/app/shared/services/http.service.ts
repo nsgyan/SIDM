@@ -65,8 +65,14 @@ export class HttpService {
   questionnaireAissment(data:any){
     return this.httpService.post(Globals.route.questionnaireAissment,data)
   }
+  updateQuestionnaireAissmentAdmin(data:any){
+    return this.httpService.post(Globals.route.updateQuestionnaireAissment,data)
+  }
   staticAissmentQuestionnaire(data:any){
     return this.httpService.post(Globals.route.staticAissmentQuestionnaire,data)
+  }
+  updateStaticAissmentQuestionnaire(data:any){
+    return this.httpService.post(Globals.route.updateStaticAissmentQuestionnaire,data)
   }
   getQuestionnaireAissment(id:any){
     return this.httpService.get(`${Globals.route.questionnaireAissment}/${id}`)

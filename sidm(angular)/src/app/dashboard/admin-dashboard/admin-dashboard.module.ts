@@ -32,6 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { NgModule } from '@angular/core';
 import { CKEditorModule } from 'ckeditor4-angular';
+import {MatStepperModule} from '@angular/material/stepper';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -72,7 +74,11 @@ import { CKEditorModule } from 'ckeditor4-angular';
     MatListModule ,
     MatIconModule,
     MatDialogModule,
-    CKEditorModule
+    CKEditorModule,
+    MatDialogModule,
+    NgxSpinnerModule,
+    MatStepperModule,
+   
 
     
   

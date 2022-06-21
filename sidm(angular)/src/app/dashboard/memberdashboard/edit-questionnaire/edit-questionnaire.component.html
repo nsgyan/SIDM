@@ -1,0 +1,223 @@
+<div class="topHeader">
+    <h2>Category {{questionnaireData?.category}}  Questionnaire </h2>
+  </div>
+  
+
+  
+  <div class="row mt-4">
+    <div class="col-lg-12">
+        <div class="container">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Remark ! : </strong> <span  [innerHTML]="questionnaireData?.adminRemark"></span>
+            
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="row mt-4" *ngIf="!userData?.offlinePaymentDetails">
+  <div class="col-lg-12">
+      <div class="container">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Alert ! : </strong>Kindly complete offline participation fee payment and then submit the questionnaire, without payment you can only save the Questionnaire.
+            
+          </div>
+          <!-- <div class="alert alert-danger alert-warning alert-dismissible fade show" role="alert">
+              <div class="alertContent">
+                  <h6>Remark!</h6>
+                  <p>{{remark}}</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div> -->
+      </div>
+  </div>
+</div>
+  <div class="container">
+    <form [formGroup]="questionnaireForm">
+      <mat-stepper #stepper>
+  
+        <div formArrayName="aissment">
+          <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
+            <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
+             
+              <h2 class="matlable m-0">{{questionnaireData.questionAns[i].question}}</h2>
+              <p style="color:rgb(150 67 67);font-size: 17px ;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
+              <div class="auto-width">
+                <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
+                  <mat-label>Select Answer</mat-label>
+                  <mat-select formControlName="answer">
+                    <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
+                      {{option.answer}} </mat-option>
+                  </mat-select>
+                </mat-form-field></div>
+                <div class="auto-width">
+                <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='multiSelect'" appearance="fill">
+                  <mat-label>Select Answer</mat-label>
+                  <mat-select formControlName="answer" multiple>
+                    <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
+                      {{option.answer}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+                <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
+                  please select at least one option
+                </p>
+           
+   
+              <br>
+              <div *ngIf="questionnaireData.questionAns[i].description" >
+                <div class="mb-2">
+                  <label
+                  class="questionnaireLabel">Enter Description:</label>
+                  <ckeditor formControlName="description" data="<p>Hello, world!</p>"></ckeditor>
+  
+                 
+                </div>
+              </div>
+              <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">
+                Answer description required
+              </p>
+              <div *ngIf="questionnaireData.questionAns[i].uploadDocuments" appearance="fill">
+                <a class="AttachementBtn ml-2" *ngIf='questionnaireData.questionAns[i].uploadDocuments' target="blank"
+                href="{{questionnaireData.questionAns[i].uploadDocuments}}">View Attachement</a>
+             
+              </div>
+              <div>
+  
+
+              <button *ngIf="i!==lastIndex ||static " mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i===lastIndex && !static &&userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+              <button *ngIf="i===lastIndex && !static &&!userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('save')" class="RegistrationBtn">Save</button>
+          
+              <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+             
+              </div>
+  
+            </mat-step>
+          </div>
+        </div>
+        <div *ngIf="static" >
+            <mat-step  >
+  
+              <h2>Number and types of product being exported
+                .Give  list of products in an excel with  their
+                picture/uppload</h2>
+                <mat-form-field appearance="fill">
+                  <mat-label>Select Answer</mat-label>
+                  <mat-select formControlName="staticAnswer">
+                    <mat-option  value="More than 05 type">
+                      More than 05 type </mat-option>
+                      <mat-option  value="03-04 types">
+                        03-04 types</mat-option>
+                        <mat-option  value="02 types of products">
+                          02 types of products</mat-option>
+                          <mat-option  value="Single product">
+                            Single product</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          <button  class="RegistrationBtn" (click)="addStaticQuestion()">ADD </button>
+                <table class="table" formArrayName="staticTable" >
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">S.No</th>
+                      <th scope="col">Product</th>
+                      <!-- <th scope="col">Explain(25 words)</th> -->
+                      <th scope="col">Upload Pic</th>
+                      <!-- <th scope="col">IC Content %</th> -->
+                  </thead>
+                  <tbody>
+                    <tr *ngFor=" let controlName of staticTable.controls; let i = index" [formGroupName]="i">
+                     <td>{{i+1}}  <a class="addBtn mb-3" *ngIf='i!==0'
+                      (click)="removeStaticQuestion(i)"><i
+                          class="fa fa-trash"></i> </a>
+                  </td>
+                     <td><input formControlName="product" type="text"></td>
+                     <!-- <td><input formControlName="description"  type="text"></td> -->
+                     <td><a *ngIf="questionnaireData.staticTable[i]?.uploadDocuments" class="AttachementBtn ml-2"  target="blank"
+                      href="{{questionnaireData.staticTable[i]?.uploadDocuments}}">View Attachement</a>
+                      <input *ngIf="!questionnaireData.staticTable[i]?.uploadDocuments"  (change)="staticTableChangeListener($event,i)"  type="file"></td>
+                    
+                     <!-- <td><input formControlName="IcContent"  type="text"></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              
+              <div>
+                <table></table>
+                <button  mat-button matStepperNext class="RegistrationBtn">Next</button>
+                <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+  
+              </div>
+  
+            </mat-step>
+            <mat-step  >
+  
+              <h2>Please Select appropiate choise from Dropdown list for maximum product .Please provide details of each product</h2>
+                <mat-form-field appearance="fill">
+                  <mat-label>Select Answer</mat-label>
+                  <mat-select formControlName="secoundStaticAnswer">
+                    <mat-option  value="Build to Customer Print">
+                      Build to Customer Print </mat-option>
+                      <mat-option  value="Under ToT from FOEM">
+                        Under ToT from FOEM</mat-option>
+                        <mat-option  value="Under ToT from DRDO">
+                          Under ToT from DRDO</mat-option>
+                          <mat-option  value="Indigenous, in-house design">
+                            Indigenous, in-house design</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          <button  class="RegistrationBtn" (click)="addsecoundStaticQuestion()">ADD </button>
+                <table class="table" formArrayName="secoundStaticTable" >
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">S.No</th>
+                      <th scope="col">Product Name</th>
+                      <!-- <th scope="col">Explain(25 words)</th> -->
+                      <!-- <th scope="col">Upload Pic</th> -->
+                      <th scope="col">IC Content %</th>
+                      <th scope="col">Select</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor=" let controlName of secoundStaticTable.controls; let i = index" [formGroupName]="i">
+                     <td>{{i+1}}  <a class="addBtn mb-3" *ngIf='i!==0'
+                      (click)="removeSecoundStaticTable(i)"><i
+                          class="fa fa-trash"></i> </a>
+                  </td>
+                  <td><input formControlName="product" type="text"></td>
+                     <!-- <td><a class="AttachementBtn ml-2"  target="blank"
+                      href="{{questionnaireData.staticTable[i]?.uploadDocuments}}">View Attachement</a></td> -->
+                     <td><input formControlName="IcContent"  type="text"></td>
+                
+                     <td>   <mat-form-field appearance="fill">
+                      <mat-label>Select Answer</mat-label>
+                      <mat-select formControlName="answer">
+                        <mat-option  value="Build to Customer Print">
+                          Build to Customer Print </mat-option>
+                          <mat-option  value="Under ToT from FOEM">
+                            Under ToT from FOEM</mat-option>
+                            <mat-option  value="Under ToT from DRDO">
+                              Under ToT from DRDO</mat-option>
+                              <mat-option  value="Indigenous, in-house design">
+                                Indigenous, in-house design</mat-option>
+                      </mat-select>
+                    </mat-form-field></td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+              <div>
+                <table></table>
+                <button mat-button *ngIf="userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+              <button mat-button *ngIf="!userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('save')" class="RegistrationBtn">Save</button>
+                <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+  
+              </div>
+  
+            </mat-step>
+          </div>
+        
+  
+      </mat-stepper>
+  
+    </form>
+  </div>

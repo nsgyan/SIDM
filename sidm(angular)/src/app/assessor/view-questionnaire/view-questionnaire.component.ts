@@ -67,19 +67,20 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.assessor=this.fb.group({
       aissment: this.fb.array([]) ,
       assessorScore:[''],
+      assessorRemark:['']
     })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
-if(data[0].category==='cat4'){
-  data[0].staticTable.map((item:any)=>{
+if(data.category==='cat4'){
+  data.staticTable.map((item:any)=>{
     item.uploadDocuments = environment.download + item.uploadDocuments
 
   })
 }
     let control = <FormArray>this.assessor.get('aissment');
-  this.lastIndex=data[0].questionAns.length-1;
+  this.lastIndex=data.questionAns.length-1;
     
-    data[0].questionAns.map((item:any)=>{
-      if(item.description){
+    data.questionAns.map((item:any)=>{
+      if(item.inputType==='assessorScore'){
   control.push(
     this.fb.group({
       question: [item.question],      
@@ -109,7 +110,7 @@ if(data[0].category==='cat4'){
   }
    
  })
-      data[0].questionAns.map((item:any)=>{
+      data.questionAns.map((item:any)=>{
         item.maxScore= Number( item.maxScore);
         this.maxScore=this.maxScore+item.maxScore
         item.assessorScore= Number( item.assessorScore);
@@ -119,7 +120,7 @@ if(data[0].category==='cat4'){
           item.uploadDocuments = environment.download + item.uploadDocuments
         }
       })
-      this.aissmentdata=data[0]
+      this.aissmentdata=data
     },err=>{
       this.routes.navigate(['login/admin'])
     })
@@ -161,7 +162,7 @@ if(data[0].category==='cat4'){
       let assessorMaxScore=0
       let i=0;
       this.aissmentdata.questionAns.map((item:any)=>{
-        if(item.description)
+        if(item.inputType==='assessorScore')
         {
           let Maxscore=  Number( control.at(i).value.maxScore)
           assessorMaxScore+=Maxscore
@@ -178,7 +179,8 @@ if(data[0].category==='cat4'){
         assessorEmail:email,
         assessorName:name,
         status:status,
-        aissment:this.assessor.value.aissment
+        aissment:this.assessor.value.aissment,
+        assessorRemark:this.assessor.value.assessorRemark
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');
@@ -226,7 +228,8 @@ if(data[0].category==='cat4'){
         assessorEmail:email,
         assessorName:name,
         status:status,
-        aissment:this.assessor.value.aissment
+        aissment:this.assessor.value.aissment,
+        assessorRemark:this.assessor.value.assessorRemark
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');

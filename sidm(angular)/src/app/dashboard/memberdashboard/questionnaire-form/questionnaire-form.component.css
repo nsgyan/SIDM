@@ -1,159 +1,159 @@
 .topHeader {
-    background: #363A7A;
-    padding: 5px 0 1px;
-    margin-top: 4rem;
+  background: #363A7A;
+  padding: 5px 0 1px;
+  margin-top: 4rem;
 }
 
 .topHeader h2 {
-    margin: 0 0 9px 19px;
-    font-size: 20px;
-    color: #fff;
+  margin: 0 0 9px 19px;
+  font-size: 20px;
+  color: #fff;
 }
 
 .questionnaireForm {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .questionnaireForm h3 {
-    font-size: 20px;
-    font-weight: 500;
-    color: #4c4c4c;
+  font-size: 20px;
+  font-weight: 500;
+  color: #4c4c4c;
 }
 
 .table th {
-    border-top: none;
+  border-top: none;
 }
 
 .table .thead-dark th {
-    background-color: #e5e7fb;
-    color: #000;
+  background-color: #e5e7fb;
+  color: #000;
 }
 .matlable{
-    font: 500 20px/32px Roboto,"Helvetica Neue", sans-serif;
-    letter-spacing: normal;
+  font: 500 20px/32px Roboto,"Helvetica Neue", sans-serif;
+  letter-spacing: normal;
 }
 
 ::ng-deep .mat-horizontal-content-container {
-    overflow: auto !important;
-    padding: 0 24px 24px 24px;
-    background: #fff;
-    height: 532px;
-    padding: 1.5rem !important;
+  overflow: auto !important;
+  padding: 0 24px 24px 24px;
+  background: #fff;
+  height: 532px;
+  padding: 1.5rem !important;
 }
 ::ng-deep .mat-option-text {
-    display: inline-block;
-    flex-grow: 1;
-    overflow: auto !important;
-    text-overflow: ellipsis;
+  display: inline-block;
+  flex-grow: 1;
+  overflow: auto !important;
+  text-overflow: ellipsis;
 }
 .paymentsDropdwn {
-    background: none;
-    border: 1px solid #363a7a;
-    color: #363a7a !important;
-    border-radius: 3px !important;
-    padding: 7px !important;
+  background: none;
+  border: 1px solid #363a7a;
+  color: #363a7a !important;
+  border-radius: 3px !important;
+  padding: 7px !important;
 }
 
 .table td {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .table th {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .table {
-    margin-bottom: 1rem;
-    box-shadow: 1px 1px 10px #d9d9d9;
+  margin-bottom: 1rem;
+  box-shadow: 1px 1px 10px #d9d9d9;
 }
 
 .paymentsDropdwn {
-    background: none;
-    border: 1px solid #363a7a;
-    color: #363a7a !important;
-    border-radius: 3px !important;
-    padding: 6px 12px !important;
-    width: 193px;
+  background: none;
+  border: 1px solid #363a7a;
+  color: #363a7a !important;
+  border-radius: 3px !important;
+  padding: 6px 12px !important;
+  width: 193px;
 }
 
 
 
 .mat-stepper-horizontal {
-    /* border: 8px solid rgb(232, 232, 232); */
-    padding: 8px;
-    background: rgb(232, 232, 232);
-    height: 486px;
+  /* border: 8px solid rgb(232, 232, 232); */
+  padding: 8px;
+  background: rgb(232, 232, 232);
+  height: 486px;
 
 }
 ::ng-deep .mat-horizontal-stepper-header-container {
-    background-color: #fff;
-    width: 25%;
-    float: left;
-    height: 468px;
-    align-items: flex-start !important;
-    padding: 1rem;
-    margin-right: 10px;
-    white-space: nowrap;
-    display: inline-block !important;
-    /* display: inline-block; */
+  background-color: #fff;
+  width: 25%;
+  float: left;
+  height: 468px;
+  align-items: flex-start !important;
+  padding: 1rem;
+  margin-right: 10px;
+  white-space: nowrap;
+  display: inline-block !important;
+  /* display: inline-block; */
 }
 form {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 ::ng-deep .mat-stepper-horizontal-line {
-    border-top-width: none !important;
-    border-top-style: none !important;
-    flex: auto;
-    height: 0;
-    margin: 0 -16px;
-    min-width: 32px;
+  border-top-width: none !important;
+  border-top-style: none !important;
+  flex: auto;
+  height: 0;
+  margin: 0 -16px;
+  min-width: 32px;
 }
 .RegistrationBtn {
-    background: #363a7a;
-    padding: 0px 15px;
-    border: none;
-    margin: 1rem 1rem 0 0;
-    font-weight: 500;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-radius: 3px;
-    color: #fff;
-    float: right;
+  background: #363a7a;
+  padding: 0px 15px;
+  border: none;
+  margin: 1rem 1rem 0 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  color: #fff;
+  float: right;
 }
 ::ng-deep .mat-horizontal-content-container {
-    overflow: hidden;
-    padding: 0 24px 24px 24px;
-    background: #fff;
-    height: 466px;
-    padding: 1.5rem !important;
+  overflow: hidden;
+  padding: 0 24px 24px 24px;
+  background: #fff;
+  height: 466px;
+  padding: 1.5rem !important;
 }
 ::ng-deep .mat-step-header .mat-step-icon-selected {
-    background-color: #363a7a;
+  background-color: #363a7a;
 }
 ::ng-deep .mat-step-header .mat-step-icon-state-edit {
-    background-color: #363a7a;
+  background-color: #363a7a;
 }
 ::ng-deep .mat-step-text-label {
-    display: none;
+  display: none;
 }
 ::ng-deep .mat-step-header {
-    width: 1% !important;
-    float: left !important;
+  width: 1% !important;
+  float: left !important;
 }
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex  {
-    width: 430px;
+  width: 430px;
 }
 textarea {
-    display: block;
-    width: 435px;
-    height: 100px; 
+  display: block;
+  width: 435px;
+  height: 100px; 
 }
 
 .addBtn {
 
-    border-radius: 3px;
-    color: rgb(255, 46, 46)!important;
-    cursor: pointer;
-    border: none;
-    margin-bottom: 10px!important;
-  }
+  border-radius: 3px;
+  color: rgb(255, 46, 46)!important;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 10px!important;
+}

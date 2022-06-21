@@ -35,11 +35,17 @@ questionnaireForm:FormGroup
       staticTable:this.fb.array([]) ,
       staticScore:[''] ,
       staticMaxScore:[''] ,
+      secoundStaticAnswer:[''],
+      secoundStaticTable:this.fb.array([]) ,
+      secoundStaticScore:[''] ,
+      secoundStaticMaxScore:[20] ,
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
  
       if(data.category==='cat4'){
 this.static=true
+this.questionnaireForm.get('staticMaxScore')?.setValue(10)
+this.questionnaireForm.get('staticMaxScore')?.updateValueAndValidity()
       }
       console.log(data);
       this.getquestion(data?.category,data?.typeOfApplicant)
@@ -118,6 +124,11 @@ get nameAissment(): FormArray {
   return this.questionnaireForm.get('aissment') as FormArray;
 }
 
+get secoundStaticTable(): FormArray {
+  return this.questionnaireForm.get('secoundStaticTable') as FormArray;
+}
+
+
 get staticTable(): FormArray {
   return this.questionnaireForm.get('staticTable') as FormArray;
 }
@@ -125,7 +136,22 @@ removeStaticQuestion(index:number) {
   let control = <FormArray>this.questionnaireForm.get('staticTable');
   control.removeAt(index)
 }
+removeSecoundStaticTable(index:number) {
+  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
+  control.removeAt(index)
+}
 
+addsecoundStaticQuestion() {
+  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
+  control.push(
+    this.fb.group({
+      product: [''],
+      IcContent:[''],
+      answer:['']
+    })
+  );
+ 
+}
 
 addStaticQuestion() {
   let control = <FormArray>this.questionnaireForm.get('staticTable');
@@ -205,12 +231,6 @@ changeListener($event: any,index:any) {
 
 
 
-  if (
-    file[0].type == 'image/png' ||
-    file[0].type == 'image/jpg' ||
-    file[0].type == 'image/jpeg' ||
-    file[0].type == 'application/pdf'
-  ) {
 
 
     if (parseInt(file[0].size) > 2097152) {
@@ -226,19 +246,17 @@ changeListener($event: any,index:any) {
     })
 
     }
-  }
-  else {
-    this.toast.error('File uploaded is invalid!')
-  }
+ 
 }
 
 
-submitQuestionnaire(){
+submitQuestionnaire(status:any){
+
 let j=0;
 console.log(this.questionnaireForm);
 
 
-  if (this.questionnaireForm.valid ) {
+  if (this.questionnaireForm.valid  ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
@@ -292,30 +310,54 @@ control.at(i).get('score')?.updateValueAndValidity()
     totalScore:this.totalScore,
     category:this.questionnaireData[0].category,
     questionAns:this.questionnaireForm.value.aissment,
+    status:status
 
 
 
   }).subscribe((data:any)=>{
-    console.log(data);
-    this.toast.success(data);
+    if(status==='save'){
+      this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+     }else{
+      this.toast.success(data);}
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })
   }
+  else if(this.questionnaireForm.valid &&!this.userData.offlinePaymentDetails ){
+    this.toast.error('Please Submit Offline Payment Details');
+  }
   else {
 
     this.submited = true;
-    this.toast.error('Please Fill Required Field');
+    this.toast.error('Please Fill all questions');
   }
  
 
   
 }
-submitStaticQuestionnaire(){
+submitStaticQuestionnaire(status:any){
 
   let j=0;
 
 let staticAnswer=this.questionnaireForm.value.staticAnswer
+if(staticAnswer==="Build to Customer Print"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(6)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=6
+}else if(staticAnswer==="Under ToT from FOEM"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(10)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=10
+}else if(staticAnswer==="Under ToT from DRDO"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(15)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=15
+}
+else if(staticAnswer==="Indigenous, in-house design"){
+  this.questionnaireForm.get('secoundStaticScore')?.setValue(20)
+  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+  this.totalScore+=20
+}  
 if(staticAnswer==="More than 05 type"){
   this.questionnaireForm.get('staticScore')?.setValue(10)
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
@@ -333,8 +375,9 @@ else if(staticAnswer==="Single product"){
   this.questionnaireForm.get('staticScore')?.setValue(2)
   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
   this.totalScore+=2
-}  console.log(this.totalScore,this.questionnaireForm);
-  if (this.questionnaireForm.valid ) {
+}  
+console.log(this.totalScore,this.questionnaireForm);
+  if (this.questionnaireForm.valid   ) {
     let  i=0;
  
   for(let item of this.questionnaireData){
@@ -391,20 +434,30 @@ control.at(i).get('score')?.updateValueAndValidity()
     staticAnswer:this.questionnaireForm.value.staticAnswer,
     staticTable:this.questionnaireForm.value.staticTable,
     staticMaxScore:this.questionnaireForm.value.staticMaxScore,
-    staticScore:this.questionnaireForm.value.staticScore
+    staticScore:this.questionnaireForm.value.staticScore,
+    secoundStaticAnswer:this.questionnaireForm.value.secoundStaticAnswer,
+    secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
+    secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
+    secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
+    status:status
 
 
   }).subscribe((data:any)=>{
-    console.log(data);
-    this.toast.success(data);
+   if(status==='save'){
+    this.toast.warning('Your Questionnaire is saved successfully please make offline payment and the submit')
+   }else{
+    this.toast.success(data);}
     const url='dashboard/member/viewQuestionnaire/'+this.id
     window.location.href=url
   })
   }
+  else if(this.questionnaireForm.valid &&!this.userData.offlinePaymentDetails ){
+    this.toast.error('Please Submit Offline Payment Details');
+  }
   else {
 
     this.submited = true;
-    this.toast.error('Please Fill Required Field');
+    this.toast.error('Please Fill all questions');
   }
 }
 

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { HttpService } from 'src/app/shared/services/http.service';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { HttpService } from "src/app/shared/services/http.service";
+import { LocalStorageService } from "src/app/shared/services/local-storage.service";
 
 @Component({
   selector: 'app-member-login',
@@ -64,7 +64,7 @@ id:any
 
     this.memberform.value.panNumber = this.memberform.value.panNumber.toUpperCase()
  
-    if (this.memberform.valid   ) {
+    if (this.memberform.valid &&this.captcha  ) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
@@ -72,7 +72,7 @@ id:any
         //  this.router.navigate(['/dashboard/member'])
         
       //   this.getmemberData()
-         const url='/dashboard/member/view/'+data.data._id
+         const url='/dashboard/member'
          this.routes.navigateByUrl(url);
        window.location.href=url
         this.toast.success('Member Successfully login!');

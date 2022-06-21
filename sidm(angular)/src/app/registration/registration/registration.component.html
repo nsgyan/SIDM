@@ -67,7 +67,7 @@
                 <div class="content-right">
 
                     <h2>
-                        SIDM Bank Details for Remittance
+                        SIDM Bank Details for remittance in case of offline payment
                     </h2>
 
                     <div class="row">
@@ -916,7 +916,7 @@
                                 <br>
                                 <h5 class="mb-2">Product video link (Optional)</h5>
                                 <input type="text" formControlName="productLink">
-                                <div class=" mt-2">
+                                <!-- <div class=" mt-2">
                                     <input formControlName="paymentMode" (change)="paymentMode('online')" type="radio"  name='paymentMode'value = 'online'  /> Online Payment
 <input type='radio' formControlName="paymentMode" name='paymentMode' (change)="paymentMode('offline')" value='offline' type="radio"  /> Offline payment
                                 </div>
@@ -975,7 +975,7 @@
                                             </div>
                                         </div>
                                     </div> -
-                                </div>
+                                </div> -->
                     
 
                             </div>
@@ -997,10 +997,10 @@
                                     [disabled]="action">Save
                                 </button>
                                 <button *ngIf="participationMode" class="save-btn mx-2" target="blanck" (click)="openModel('submitAndPay')"
-                                    [disabled]="action">Final Submit and pay
+                                    [disabled]="action">Final Submit and pay(online)
                                 </button>
                                 <button *ngIf="!participationMode" class="save-btn mx-2" target="blanck" (click)="openModel('submitAndOfflinePay')"
-                               >Final Submit
+                               >Final Submit and pay(offline)
                             </button>
                             </div>
                         </div>

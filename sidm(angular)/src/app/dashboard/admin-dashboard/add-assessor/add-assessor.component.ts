@@ -65,7 +65,7 @@ export class AddAssessorComponent implements OnInit {
   }
 
 
-  sumbit(){
+  Submitted(){
     if(this.assessorForm.valid){
       this.httpService.signupAssessor({
         email: this.assessorForm.value.email.toLowerCase(),

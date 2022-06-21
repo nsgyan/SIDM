@@ -22,7 +22,7 @@ export class ThankYouPageComponent implements OnInit {
     this.router.navigate(['/login/member'])
   }
   goBack(){
-    this.location?.back();
+    this.router.navigate(['/dashboard/member'])
 
   }
 }

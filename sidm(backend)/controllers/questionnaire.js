@@ -2,6 +2,22 @@ const Questionnaires = require("../models/questionnaires")
 const questionnaireAissment= require("../models/questionnaireAissment")
 const RegistrationForm = require("../models/registrationForm");
 const Assessor= require('../models/assessor');
+
+const fs = require("fs");
+var nodemailer = require('nodemailer');
+const path = require('path')
+var handlebars = require('handlebars');
+const date = require('date-and-time')
+
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'awardsidm@gmail.com',
+      pass: 'gllznygeziabftrf'
+    }
+  });
+  
 exports.addQuestionnaires= (req,res,next)=>{
     const category = req.body.category;
     const parameter = req.body.parameter;
@@ -26,7 +42,7 @@ exports.addQuestionnaires= (req,res,next)=>{
     })
     Questionnaire.save().then(data=>{
     
-        res.status(200).json('successfully sumbit');
+        res.status(200).json('successfully Submitted');
     }).catch(err=>{
         res.json("internal server error");
     })
@@ -116,14 +132,17 @@ exports.aissmentQuestionnaire=(req,res)=>{
     const totalScore= req.body.totalScore
     const questionAns= req.body.questionAns
     const category= req.body.category
+    const status= req.body.status
     const aissment= new questionnaireAissment({
         userId:userId,
         totalScore:totalScore,
         questionAns:questionAns,
         category:category
     })
-    aissment.save().then(data=>{
+    aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
+         
+               
             data.assessor=[]
             Assessor.find().then(item=>{
 for(i of item){ 
@@ -135,10 +154,53 @@ for(i of item){
         maxScore:null,
         score:null,
       })
-      console.log(data.assessor)
-} data.questionnaireStatus='sumbit'
+     
+}
+ data.questionnaireStatus=status
 data.save().then(data=>{
-    res.status(200).json('successfully sumbit');
+    if(status==='Submitted'){
+        const filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+        const source = fs.readFileSync(filePath, 'utf-8').toString();
+        const template = handlebars.compile(source);
+    
+        var maillist = [
+            data.email,
+          'bharat.jain@sidm.in',
+          'awards22@sidm.in',
+          'vikas.rai@sidm.in',
+          'manoj.mishra@sidm.in'
+           
+  
+        ];
+        const replacements = {
+           
+            date:new Date()
+    
+          };
+        
+        maillist.toString();
+        const htmlToSend = template(replacements);
+        var mailOptions = {
+          from: 'awardsidm@gmail.com',
+          to: maillist,
+          subject: 'SIDM Champion Award 2022',
+          html: htmlToSend
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+           
+          } else {
+          
+          }
+        })}
+       
+    savedAissment.assessor=data.assessor
+    savedAissment.save().then(item=>{
+     
+        
+            res.status(200).json('successfully Submitted');
+    })
+  
 })
  })
            })
@@ -146,6 +208,79 @@ data.save().then(data=>{
         res.json("internal server error");
     })
 }
+exports.updateAissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const questionnaireStatus= req.body.questionnaireStatus
+    const id= req.body.id
+    const adminRemark= req.body.adminRemark
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    questionnaireAissment.findById(id).then(assessment=>{
+        assessment.userId=userId,
+        assessment.adminRemark=adminRemark,
+        assessment.totalScore=totalScore,
+        assessment.questionAns=questionAns,
+        assessment.category=category,
+        assessment.status=questionnaireStatus,
+        assessment.save().then(data=>{
+            RegistrationForm.findById(userId).then(data=>{
+                data.questionnaireStatus=questionnaireStatus
+                data.save().then(data=>{
+                    let filePath
+                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='aprroved'||questionnaireStatus==='requestInfo'){
+                    if(questionnaireStatus==='aprroved'){
+                        filePath = path.join(__dirname, '../view/questionaireApprove.html');}
+                        else if(questionnaireStatus==='Submitted'){
+                         filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                        }
+                       else {
+                         filePath = path.join(__dirname, '../view/requestInfo.html');
+                       }
+                const source = fs.readFileSync(filePath, 'utf-8').toString();
+                const template = handlebars.compile(source);
+            
+                var maillist = [
+                    data.email,
+                  'bharat.jain@sidm.in',
+                  'awards22@sidm.in',
+                  'vikas.rai@sidm.in',
+                  'manoj.mishra@sidm.in'
+                   
+          
+                ];
+                const replacements = {
+                   
+                    date:new Date()
+            
+                  };
+                maillist.toString();
+                const htmlToSend = template(replacements);
+                var mailOptions = {
+                  from: 'awardsidm@gmail.com',
+                  to: maillist,
+                  subject: 'SIDM Champion Award 2022',
+                  html: htmlToSend
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                   
+                  } else {
+                  
+                  }
+                })}
+               
+                    res.status(200).json('successfully Submitted');
+                })
+            
+               })
+        })
+
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
+
 exports.staticissmentQuestionnaire=(req,res)=>{
     const userId= req.body.userId
     const totalScore= req.body.totalScore
@@ -155,6 +290,11 @@ exports.staticissmentQuestionnaire=(req,res)=>{
     const staticMaxScore= req.body.staticMaxScore
     const staticAnswer= req.body.staticAnswer
     const staticTable= req.body.staticTable
+    const secoundStaticScore= req.body.secoundStaticScore
+    const secoundStaticMaxScore= req.body.secoundStaticMaxScore
+    const secoundStaticAnswer= req.body.secoundStaticAnswer
+    const secoundStaticTable= req.body.secoundStaticTable
+    const status= req.body.status
     const aissment= new questionnaireAissment({
         userId:userId,
         totalScore:totalScore,
@@ -164,10 +304,50 @@ exports.staticissmentQuestionnaire=(req,res)=>{
         staticMaxScore:staticMaxScore,
         staticAnswer:staticAnswer,
         staticTable:staticTable,
+        secoundStaticScore:secoundStaticScore,
+        secoundStaticMaxScore:secoundStaticMaxScore,
+        secoundStaticAnswer:secoundStaticAnswer,
+        secoundStaticTable:secoundStaticTable,
         
     })
-    aissment.save().then(data=>{
+    aissment.save().then(savedAissment=>{
         RegistrationForm.findById(userId).then(data=>{
+            if(status==='Submitted'){
+                const filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                const source = fs.readFileSync(filePath, 'utf-8').toString();
+                const template = handlebars.compile(source);
+            
+                var maillist = [
+                    data.email,
+                  'bharat.jain@sidm.in',
+                  'awards22@sidm.in',
+                  'vikas.rai@sidm.in',
+                  'manoj.mishra@sidm.in'
+                   
+          
+                ];
+                const replacements = {
+                   
+                    date:new Date()
+            
+                  };
+                
+                maillist.toString();
+                const htmlToSend = template(replacements);
+                var mailOptions = {
+                  from: 'awardsidm@gmail.com',
+                  to: maillist,
+                  subject: 'SIDM Champion Award 2022',
+                  html: htmlToSend
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                   
+                  } else {
+                  
+                  }
+                })}
+           
             data.assessor=[]
             Assessor.find().then(item=>{
 for(i of item){ 
@@ -180,9 +360,12 @@ for(i of item){
         score:null,
       })
       console.log(data.assessor)
-} data.questionnaireStatus='sumbit'
+} data.questionnaireStatus=status
 data.save().then(data=>{
-    res.status(200).json('successfully sumbit');
+    savedAissment.assessor=data.assessor
+    savedAissment.save().then(item=>{
+        res.status(200).json('successfully Submitted');
+    })
 })
  })
            })
@@ -191,9 +374,99 @@ data.save().then(data=>{
     })
 }
 
+exports.updateStaticissmentQuestionnaire=(req,res)=>{
+    const userId= req.body.userId
+    const questionnaireStatus= req.body.questionnaireStatus
+    const id= req.body.id
+    const adminRemark= req.body.adminRemark
+    const totalScore= req.body.totalScore
+    const questionAns= req.body.questionAns
+    const category= req.body.category
+    const staticScore= req.body.staticScore
+    const staticMaxScore= req.body.staticMaxScore
+    const staticAnswer= req.body.staticAnswer
+    const staticTable= req.body.staticTable
+    const secoundStaticMaxScore= req.body.secoundStaticMaxScore
+    const secoundStaticScore= req.body.secoundStaticScore
+    const secoundStaticAnswer= req.body.secoundStaticAnswer
+    const secoundStaticTable= req.body.secoundStaticTable
+    
+    questionnaireAissment.findById(id).then(assessment=>{
+        assessment.userId=userId,
+        assessment.adminRemark=adminRemark,
+        assessment.totalScore=totalScore,
+        assessment.status=questionnaireStatus,
+        assessment.questionAns=questionAns,
+        assessment.category=category,
+        assessment.staticScore=staticScore,
+        assessment.staticMaxScore=staticMaxScore,
+        assessment.staticAnswer=staticAnswer,
+        assessment.staticTable=staticTable,
+        assessment.secoundStaticMaxScore=secoundStaticMaxScore,
+        assessment.secoundStaticScore=secoundStaticScore,
+        assessment.secoundStaticAnswer=secoundStaticAnswer,
+        assessment.secoundStaticTable=secoundStaticTable,
+        assessment.save().then(data=>{
+            RegistrationForm.findById(userId).then(data=>{
+                data.questionnaireStatus=questionnaireStatus
+                data.save().then(data=>{
+                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='aprroved'||questionnaireStatus==='requestInfo'){
+                        if(questionnaireStatus==='aprroved'){
+                            filePath = path.join(__dirname, '../view/questionaireApprove.html');}
+                            else if(questionnaireStatus==='Submitted'){
+                             filePath = path.join(__dirname, '../view/questionairesubmitted.html');
+                            }
+                           else {
+                             filePath = path.join(__dirname, '../view/requestInfo.html');
+                           }
+                    const source = fs.readFileSync(filePath, 'utf-8').toString();
+                    const template = handlebars.compile(source);
+                
+                    var maillist = [
+                        data.email,
+                      'bharat.jain@sidm.in',
+                      'awards22@sidm.in',
+                      'vikas.rai@sidm.in',
+                      'manoj.mishra@sidm.in'
+                       
+              
+                    ];
+                    const replacements = {
+                       
+                        date:new Date()
+                
+                      };
+                    maillist.toString();
+                    const htmlToSend = template(replacements);
+                    var mailOptions = {
+                      from: 'awardsidm@gmail.com',
+                      to: maillist,
+                      subject: 'SIDM Champion Award 2022',
+                      html: htmlToSend
+                    };
+                    transporter.sendMail(mailOptions, function(error, info){
+                      if (error) {
+                       
+                      } else {
+                      
+                      }
+                    })}
+                    res.status(200).json('successfully Submitted');
+                })
+               })
+        })
+
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+   
+  
+}
+
+
 exports.getAissmentQuestionnaire=(req,res)=>{
     const userId= req.params.userId
-    questionnaireAissment.find({userId:userId}).then(data=>{
+    questionnaireAissment.findOne({userId:userId}).then(data=>{
         if (data) {
             res.status(200).send(data)
         }
@@ -217,8 +490,10 @@ exports.assessorScore=(req,res)=>{
     const assessorEmail= req.body.assessorEmail
     const status= req.body.status
     const questionAns=req.body.aissment
+    const assessorRemark=req.body.assessorRemark
     questionnaireAissment.findById(userId).then(data=>{
         data.questionAns=questionAns
+        data.assessorRemark=assessorRemark
 data.assessor.push({
     assessorName: assessorName,
     assessorEmail:assessorEmail,
@@ -242,7 +517,7 @@ data.assessor.push({
 exports.findmember=(req,res)=>{
     const category= req.query.category
     const typeOfApplicant= req.query.typeOfApplicant
-    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'sumbit'}).then(data=>{
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'aprroved'}).then(data=>{
         res.status(200).send(data)
     }).catch(err=>{
         res.json("internal server error");

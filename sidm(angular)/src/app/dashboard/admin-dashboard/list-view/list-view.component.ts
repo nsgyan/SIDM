@@ -19,7 +19,7 @@ import { ModelComponent } from 'src/app/shared/services/model/model.component';
 export class ListViewComponent implements OnInit {
 
   requestInfo:FormGroup
-  displayedColumns: string[] = [ 'index', 'actions','createAt','nameOfCompany', 'email','name','category','typeOfApplicant','sidmMember','paymentStatus','offlinePaymentDetails','status'];
+  displayedColumns: string[] = [ 'index','createAt','nameOfCompany', 'email','name','category','sidmMember','paymentStatus','offlinePaymentDetails','status'];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -84,7 +84,7 @@ export class ListViewComponent implements OnInit {
 
       })
       this.dataSource = new MatTableDataSource(data.data);
-      this.dataSource.paginator = this.paginator;
+
       this.dataSource.sort = this.sort;
 
 

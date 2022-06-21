@@ -51,7 +51,7 @@ this.type='member'
           this.cat1 = true
           if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat1',item.typeOfApplicant)
-          if(item.questionnaireStatus==='sumbit'){
+          if(item.questionnaireStatus==='Submitted'){
             this.QuesStatusCat1=true
           }
         }
@@ -62,7 +62,7 @@ this.type='member'
           this.cat2 = true
           if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat2',item.typeOfApplicant)
-          if(item.questionnaireStatus==='sumbit'){
+          if(item.questionnaireStatus==='Submitted'){
             this.QuesStatusCat2=true
           }}
          
@@ -71,7 +71,7 @@ this.type='member'
           this.cat3 = true 
           if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat3',item.typeOfApplicant)
-          if(item.questionnaireStatus==='sumbit'){
+          if(item.questionnaireStatus==='Submitted'){
             this.QuesStatusCat3=true
           }}
         }
@@ -79,7 +79,7 @@ this.type='member'
           this.cat4 = true
           if(item.paymentStatus==='Paid'){
           this.getQuestionnaire('cat4',item.typeOfApplicant)
-          if(item.questionnaireStatus==='sumbit'){
+          if(item.questionnaireStatus==='Submitted'){
             this.QuesStatusCat4=true
           }
         }

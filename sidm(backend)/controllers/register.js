@@ -130,10 +130,10 @@ exports.postRegistrationForm = (req, res, next) => {
       };
       var maillist = [
         result.email,
-        // 'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
          
 
       ];
@@ -168,10 +168,10 @@ exports.postRegistrationForm = (req, res, next) => {
         };
         var maillist = [
           result.email,
-        //   'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+          'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
           
            
         ];
@@ -193,10 +193,10 @@ exports.postRegistrationForm = (req, res, next) => {
         })
       }
   if(status==='Pending Approval'){
-      res.status(200).json({message:'successfully sumbit',
+      res.status(200).json({message:'successfully Submitted',
     id:result._id});}
       else{
-        res.status(200).json({message:'successfully sumbit'});
+        res.status(200).json({message:'successfully Submitted'});
       }
     })
     .catch((err) => {
@@ -368,7 +368,7 @@ exports.updateFrom = (req, res, next) => {
           res.json("internal server error");
         }
         else{
-          res.status(200).json({message:'successfully sumbit',
+          res.status(200).json({message:'successfully Submitted',
           id:success._id});
         
         }
@@ -410,7 +410,42 @@ exports.changeStatus = (req, res, next) => {
       res.json("internal server error");
     }
     else{
-      console.log(success);
+     if(success.status==='Approved'){
+      const filePath = path.join(__dirname, '../view/registrationApproval.html');
+      const source = fs.readFileSync(filePath, 'utf-8').toString();
+      const template = handlebars.compile(source);
+  
+      var maillist = [
+        success.email,
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
+         
+
+      ];
+      const replacements = {
+                   
+        date:new Date()
+
+      };
+      
+      maillist.toString();
+      const htmlToSend = template(replacements);
+      var mailOptions = {
+        from: 'awardsidm@gmail.com',
+        to: maillist,
+        subject: 'SIDM Champion Award 2022',
+        html: htmlToSend
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          res.json(error);
+        } else {
+          res.status(200).json('Please check your email');
+        }
+      })
+     }
       res.status(200).json('successfully status change');
     }
   });
