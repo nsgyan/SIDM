@@ -28,6 +28,7 @@ export class ViewQuestionnaireComponent implements OnInit {
   remark:any;
  totalMaxScore=0
  TotalObtained=0
+ askedDoccument:any=null
   scorebyAssessor:any;
   constructor(
     private httpService: HttpService,
@@ -66,6 +67,14 @@ export class ViewQuestionnaireComponent implements OnInit {
       else if (data?.typeOfApplicant === 'S') {
         data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
       }
+      data.assessor.map((item:any)=>{
+        let assessorID= this.localStorage.get('assessorID');
+        if(assessorID===item.id){
+          this.askedDoccument=  environment.download + item.document
+        }
+
+      })
+      
      this.userData=data
       
     })
@@ -415,6 +424,13 @@ x++;
     }
    
     })
+  }
+
+  viewDetails(id: string) {
+    let url: string = "/assessor/applicantForm/" + id
+    // this.routes.([]).then(result => {  window.open(link, '_blank'); });
+    this.routes.navigate([]).then(result => {  window.open(url, '_blank'); });
+  
   }
 
 }

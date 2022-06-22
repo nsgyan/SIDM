@@ -1,117 +1,30 @@
+<!-- ================= HEADER ================= -->
+<header class="marathon-header-fixed header-fixed">
+    <a  class="nav-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <div class="top-panel">
+        <div class="container">
+            <a  class="logo2">
+                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
+                >
+            </a>
+        <a  class="logo1">
+            <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
+                >
+            </a>
 
-<div class="topHeader">
-    <h2>Applicant Detail </h2>
-  </div>
-<!--================= PAGE-TITLE END =================-->
-
-<div class="container mt-4">
-    <!-- <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button> -->
-    <button class="viewBtn mx-2" *ngIf="memberData?.status==='Approved'" (click)="editForm(memberData._id)"> Edit</button>
-    <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='approved'"   (click)="viewQuestionnaire(memberData._id)"><i
-        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</button>
-</div>
-<div *ngIf="paymentDetails">
-    <span>Membership fee</span>
-    <div class="container">
-        <div class="profileSection mb-6">
-            
-                <div class="memberData">
-                    <div class="col-lg-12">
-                        <table class="table">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col" >Mobile Number</th>
-                                    <th scope="col">Pan Number</th>
-                                    <th scope="col" >Order Id</th>
-                                    <th scope="col">Payment Id</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><th scope="memberData">{{paymentDetails?.createAt}}</th>
-                                    <th scope="memberData">{{paymentDetails?.amount}}</th>
-                                    <th scope="memberData">{{paymentDetails?.email}}</th>
-                                    <th scope="memberData">{{paymentDetails?.mobileNumber}}</th>                                    
-                                    <th scope="memberData">{{paymentDetails?.panNumber}}</th>                                   
-                                    <th scope="memberData">{{paymentDetails?.razorpay_order_id}}</th>                                   
-                                    <th scope="memberData">{{paymentDetails?.razorpay_payment_id}}</th>                              
-                                
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            
+        <a  class="logo3">
+            <img class="headerLogo3"
+                src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
+                >
+            </a>
         </div>
     </div>
-</div>
-<div *ngIf="OfflinepaymentDetails">
-    <div class="container">
-        <span>Participation fee</span>
-        <div class="profileSection mb-6">
-            <div class="memberData">
-                <div class="col-lg-12">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Date Of Payment</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Transaction Details</th>
-                                <th scope="col">Mode Of Payment</th>
-                                <th scope="col">Name Of Bank</th>
-                              
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="memberData">{{OfflinepaymentDetails?.dateOfPayment}}</th>
-                                <th scope="memberData">{{OfflinepaymentDetails?.amount}}</th>
-                                <th scope="memberData">{{OfflinepaymentDetails?.transactionDetails}}</th>
-                                <th scope="memberData">{{OfflinepaymentDetails?.modeOfPayment}}</th>
-                                <th scope="memberData">{{OfflinepaymentDetails?.nameOfBank}}</th>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div *ngIf="memberData.paymentMode==='offline'">
-    <div class="container">
-        <div class="profileSection mb-6">
-            <div class="memberData">
-                <div class="col-lg-12">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Date Of Payment</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Transaction Details</th>
-                                <th scope="col">Mode Of Payment</th>
-                                <th scope="col">Name Of Bank</th>
-                              
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="memberData">{{memberData?.offlineDateOfPayment}}</th>
-                                <th scope="memberData">{{memberData?.amount}}</th>
-                                <th scope="memberData">{{memberData?.transactionDetails}}</th>
-                                <th scope="memberData">{{memberData?.offlineModeOfPayment}}</th>
-                                <th scope="memberData">{{memberData?.nameOfBank}}</th>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    
+</header>
 
 <div class="registrationForm" >
     <div class="formBody">
@@ -313,7 +226,3 @@
             </div>
         </div>
     </div>
-<div class="container mb-3 mt-0 text-center " *ngIf="memberData.paymentStatus==='Paid' &&( memberData.status==='Pending Approval'||memberData.status==='Request Info')">
-     <button  class="viewBtn mx-2" (click)="modalOpen(memberData._id,'requestInfo')"> Request Info</button>
-     <button class="viewBtn" (click)="modalOpen(memberData._id,'approve')" > Approve</button></div>
-</div>

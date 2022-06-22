@@ -56,12 +56,15 @@
           </div>
         </div>
       </div>
+      <div *ngIf="askedDoccument"><span class="ComName">Applicant Response Against  Assessor Remark</span> <a class="mx-2" *ngIf="askedDoccument" href="{{askedDoccument}}"
+        target="_blank"><i class="fas fa-eye"></i></a></div>
   
     </div>
     
     <button mat-button (click)="openModel(aissmentdata?.category)" class="RegistrationBtn">Call For Review</button>
   <button mat-button  *ngIf="aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
   <button mat-button  *ngIf="aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
+  <button mat-button  (click)="viewDetails(userData._id)"  class="RegistrationBtn">View Applicant Details</button>
   <div class="clearfix"></div>
     <!-- <button class="RegistrationBtn CallBtn" mat-button  (click)="submit('Call Review')">Call Review</button> -->
     <form [formGroup]="assessor">

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminAssessorDashBoardComponent } from './admin-assessor-dash-board/admin-assessor-dash-board.component';
 import { ApplicantListComponent } from './applicant-list/applicant-list.component';
 import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
+import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
 import { ViewAssessmentComponent } from './view-assessment/view-assessment.component';
 
 const routes: Routes = [ {path:'',component:AdminAssessorDashBoardComponent},
@@ -13,7 +14,8 @@ component:ApplicantListComponent
 {path:'applicantQuestionnaire/:id',component:ApplicantQuestionnaireComponent},
 {
   path:"assessorQuestionnaire",component:ViewAssessmentComponent
-}
+},
+{ path: 'applicantForm/:id',component:ViewApplicantComponent},
 ];
 
 @NgModule({

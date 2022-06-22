@@ -554,7 +554,7 @@ exports.assessorRequiredDocument=(req,res)=>{
     const assessor= req.body.assessor
     const assessorEmail= req.body.assessor.email
     RegistrationForm.findByIdAndUpdate(userId,{$pull:{assessor:{email:assessorEmail}}}).then(savedData=>{
-        RegistrationForm.findByIdAndUpdate(userId,{$push: {assessor:{id:assessor.id,assessorName:assessor.assessorName,email:assessorEmail,status:assessor.status,maxScore:assessorMaxScore,score:assessorScore,remark:assessorRemark,applicantScore:TotalObtained,totalScore:totalMaxScore}}}).then(data=>{
+        RegistrationForm.findByIdAndUpdate(userId,{$push: {assessor:{id:assessor.id,assessorName:assessor.assessorName,email:assessorEmail,status:assessor.status,maxScore:assessor.maxScore,score:assessor.score,remark:assessor.remark,applicantScore:assessor.applicantScore,totalScore:assessor.totalScore,document:assessor.document}}}).then(data=>{
             res.status(200).send(data)
         })
     })
