@@ -192,7 +192,8 @@
                                              <span *ngIf="!memberData?.questionnaireStatus" style="color: red;"> </span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='Submitted'" >Submitted For Review </span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='save'&&memberData?.offlinePaymentDetails" >Applied </span> 
-                                             <span *ngIf="memberData?.questionnaireStatus==='aprroved'">Approved </span></td>
+                                             <span *ngIf="memberData?.questionnaireStatus==='approved
+'">Approved </span></td>
                                         <td>
                                             <span *ngIf="!memberData?.offlinePaymentDetails"
                                                 (click)="viewForm(memberData)" style="color: red;">Pending</span>
@@ -225,7 +226,8 @@
                                                     </a>
                                                     <a *ngIf="memberData?.status==='Approved'&& (!memberData?.questionnaireStatus)" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-file-alt" style="color: #fff;"></i> 
                                                         <i aria-hidden="true" class="fas fa-edit"></i> Apply for award </a>
-                                                        <a *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='aprroved'" (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
+                                                        <a *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='approved
+'" (click)="navigateTo('dashboard/member/viewQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>
                                                             <i aria-hidden="true"
                                                             class="fas fa-eye"></i>   Award Questionnaire View </a>
                                                             <a *ngIf="memberData?.paymentStatus==='Paid'&&(memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='save')" (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;"></i>

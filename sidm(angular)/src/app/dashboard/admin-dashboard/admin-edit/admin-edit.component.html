@@ -1,59 +1,18 @@
+<div class="topHeader">
+    <h2>Admin Edit </h2>
+  </div>
+  
+<div class="container mt-4">
+    <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button>
+    <!-- <button class="viewBtn mx-2" *ngIf="memberData?.status==='Approved'" (click)="editForm(memberData._id)"> Edit</button>
+    <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='approved
+'"   (click)="viewQuestionnaire(memberData._id)"><i
+        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</button> -->
+  </div>
 <!-- ================= HEADER ================= -->
-<header class="marathon-header-fixed header-fixed">
-    <a href="javascript:void(0)" class="nav-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-    </a>
-    <div class="top-panel">
-        <div class="container">
-            <a href="javascript:void(0)" class="logo2">
-                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
-                >
-            </a>
-        <a href="javascript:void(0)" class="logo1">
-            <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
-                >
-            </a>
 
-        <a href="javascript:void(0)" class="logo3">
-            <img class="headerLogo3"
-                src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
-                >
-            </a>
-        </div>
-    </div>
-    <!-- <div class="header-nav">
-        <div class="container">
-            <div class="header-nav-cover">
-                <nav class="nav-menu menu">
-                    <ul class="nav-list">
-                        <li class="active-page">
-                            <a href="index.html">home</a>
-                        </li>
-                        <li><a href="#about">about sidm</a></li>
-                        <li><a href="#Objective">OBJECTIVE</a></li>
-                        <li><a href="#categories">categories</a></li>
-                        <li><a href="#committee">AWARDS COMMITTEE</a></li>
-                        <li><a href="#process">process</a></li>
-                        <li><a href="#testimonial">testimonials</a></li>
-                        <li><a href="#faq">faqs</a></li>
-                        <li><a href="#award2020">AWARDS 2020</a></li>
-                        <li><a href="#footer">Contact Us</a></li>
-                    </ul>
-                </nav>
-
-            </div>
-        </div>
-    </div> -->
-</header>
 <!-- =============== HEADER END =============== -->
-<div class="page-title" style="background: #175AA5;">
-    <div class="container">
-       
-        <h1 class="title">Admin <i aria-hidden="true" class="fas fa-pen"></i></h1>
-    </div>
-</div>
+
 
 <div class="container">
     <div *ngIf="!EditForm">
@@ -667,13 +626,3 @@
 </div>
 
 
-<!--==================== FOOTER ====================-->
-<footer id="footer">
-    
-</footer>
-<!--================== FOOTER END ==================-->
-
-<!--=================== TO TOP ===================-->
-<a class="to-top" href="#home">
-    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-</a>

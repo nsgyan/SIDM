@@ -157,3 +157,22 @@ textarea {
   border: none;
   margin-bottom: 10px!important;
 }
+
+input[type="text"] {
+  padding: 0 7px;
+}
+.IcContent {
+  width: 85px;
+}
+.productF {
+  width: 267px;
+}
+.selectInput {
+  height: 50px;
+    border-radius: 5px;
+    border: 1px solid #dcdada;
+    color: #8b8b8b;
+}
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}

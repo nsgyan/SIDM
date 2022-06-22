@@ -5,9 +5,12 @@ const User = require('../controllers/user')
 const Payment= require('../controllers/payment')
 const offlinePayment= require('../controllers/offlinePayment')
 const Assessor= require('../controllers/assessor')
+const adminAssessor= require('../controllers/adminAssessor')
 router.post('/addAdmin', User.addAdminUser);
 router.post('/login/assessor',Assessor.login);
 router.post('/signup/assessor',Assessor.signup);
+router.post('/login/adminAssessor',adminAssessor.login);
+router.post('/signup/adminAssessor',adminAssessor.signup);
 router.post('/reset/assessor/password',Assessor.passwordReset);
 router.post('/assessor/checkemail', Assessor.getEmail);
 router.get('/assessor',  Assessor.getAssessor);

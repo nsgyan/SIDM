@@ -123,7 +123,7 @@ exports.passwordReset = (req, res, next) => {
 exports.filterAssessmentsList=(req,res)=>{
   const category= req.query.category
   const typeOfApplicant= req.query.typeOfApplicant
-  registrationForm.find({category:category,typeOfApplicant:typeOfApplicant}).then(data=>{
+  registrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'approved'}).then(data=>{
     res.status(200).send(data)
   }).catch(err=>{
       res.status(500).json("internal server error");
@@ -131,7 +131,7 @@ exports.filterAssessmentsList=(req,res)=>{
 }
 exports.assessmentsList=(req,res)=>{
   
-  registrationForm.find({questionnaireStatus:'aprroved'}).then(data=>{
+  registrationForm.find({questionnaireStatus:'approved'}).then(data=>{
     res.status(200).send(data)
   }).catch(err=>{
       res.status(500).json("internal server error");
@@ -143,7 +143,7 @@ exports.findmember=(req,res)=>{
   const typeOfApplicant= req.query.typeOfApplicant
   const status= req.query.status
   const asaessorEmail= req.query.asaessorEmail
-  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'aprroved' , assessor : { $elemMatch: {  email : { $gte: asaessorEmail }, status:{ $gte: status }}, } }).then(data=>{
+  RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'approved' , assessor : { $elemMatch: {  email : { $gte: asaessorEmail }, status:{ $gte: status }}, } }).then(data=>{
       res.status(200).send(data)
   }).catch(err=>{
       res.status(500).json("internal server error");

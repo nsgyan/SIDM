@@ -62,7 +62,7 @@ export class AssessorLoginComponent implements OnInit {
 
   assessorlogin() {
  
-    if (this.assessorform.valid &&this.captcha ) {
+    if (this.assessorform.valid  ) {
       this.httpService.assessorLogin({ email: this.assessorform.value.email, password: this.assessorform.value.password })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
@@ -79,10 +79,7 @@ export class AssessorLoginComponent implements OnInit {
         this.toast.success('Assessor Successfully login!');
       })
     }
-    else if (!this.captcha) {
-      this.submitted = true;
-      this.toast.error('Please verify that you are not a robot.');
-    }
+   
     else {
       this.submitted = true;
       this.toast.error('Please Fill Required Field');

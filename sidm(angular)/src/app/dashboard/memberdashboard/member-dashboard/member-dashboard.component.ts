@@ -39,6 +39,8 @@ export class MemberDashboardComponent implements OnInit {
   cat2 = true
   cat3 = true
   cat4 = true
+  amount:any;
+  gst:any;
   memberData: any
   submited: boolean = true;
   captcha: any;
@@ -108,6 +110,39 @@ export class MemberDashboardComponent implements OnInit {
             this.cat4 = false
             data.category = 'C4- Export Performance of Defence & Aerospace Products'
           }  
+          if (data?.typeOfApplicant === 'L') {
+            if(data.sidmMember==="No"){
+this.amount=45000
+this.gst=8100
+            }
+            else{
+              this.amount=35000
+              this.gst=6300
+            }
+            data.typeOfApplicant = 'L – Large (Annual Turnover FY 2020-21 over   & above Rs 250 Crore)'
+          }
+          else if (data?.typeOfApplicant === 'M') {
+            if(data.sidmMember==="No"){
+              this.amount=25000
+              this.gst=4500
+                          }
+                          else{
+                            this.amount=15000
+                            this.gst=2700
+                          }
+            data.typeOfApplicant = 'M – Medium  (Annual Turnover FY 2020-21 between  Rs 75 to 250 Crore)'
+          }
+          else if (data?.typeOfApplicant === 'S') {
+            if(data.sidmMember==="No"){
+              this.amount=10000
+              this.gst=1800
+                          }
+                          else{
+                            this.amount=5000
+                            this.gst=900
+                          }
+            data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
+          }
       
         this.memberData = data;
       
@@ -554,7 +589,8 @@ export class MemberDashboardComponent implements OnInit {
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (type === 'finalSubmit' || (this.editForm.valid &&this.captcha )) {
+    if (type === 'finalSubmit' || (this.editForm.valid
+  )) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -678,7 +714,8 @@ if(type==='changeStatus'){
     this.editForm.get('exhibit2')?.clearValidators()
     this.editForm.get('exhibit2')?.updateValueAndValidity()
 
-    if (this.editForm.valid &&this.captcha ) {
+    if (this.editForm.valid
+  ) {
       this.httpService.updateform(this.editData._id, {
         typeOfApplicant: this.editForm.value.typeOfApplicant,
         subCategoryDoccument: this.subCategoryDoccument,
@@ -884,14 +921,15 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     this.submited=false
     const dialogRef = this.dialog.open(ModelComponent, {
       width: '500px',
-      data: {id: id,type:'offlinePayment'},
+      data: {id: id,type:'offlinePayment',amount:this.amount,gst:this.gst},
     });
 
 
   }
   submitOfflinePaymentDetails(){
    this.submited=true
-   if(this.OfflinePayment.valid)
+   if(this.OfflinePayment.valid
+)
    {
      this.httpService.postOflinePayment({
       registrationId:this.OfflinePayment.value.id,
@@ -975,7 +1013,8 @@ data.createAt  = formatDate(data.createAt , 'MMM d, y,', 'en-US');
     if(!this.editData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid &&this.captcha  ) {
+    if (this.editForm.valid
+   ) {
 this.action=true
 
     const dialogRef = this.dialog.open(ModelComponent, {

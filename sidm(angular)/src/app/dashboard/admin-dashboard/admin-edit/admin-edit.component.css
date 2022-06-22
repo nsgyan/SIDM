@@ -12,6 +12,27 @@ select {
     transition: .35s ease;
 
 }
+
+.viewBtn {
+  border: none;
+  background: #363a7a;
+  padding: 7px 16px;
+  margin-top: 1.5rem;
+}
+.viewBtn .fa-long-arrow-left {
+  color: #fff;
+  margin-right: 9px;
+}
+.topHeader {
+  background: #363A7A;
+  padding: 5px 0 1px;
+  margin-top: 4rem;
+}
+.topHeader h2 {
+  margin: 0 0 9px 19px;
+  font-size: 20px;
+  color: #fff;
+}
 .documentBtn {
     background: #5b7842;;
     color: #fff;

@@ -14,6 +14,8 @@ import { HttpService } from '../http.service';
 export class ModelComponent implements OnInit {
   OfflinePayment!:FormGroup;
   assessorPasswordReset!:FormGroup
+  adminAssessorCallforRevie!:FormGroup
+  assessorAssessorRequestInfo!:FormGroup
   requestInfo !:FormGroup ;
   modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   submited!: boolean;
@@ -41,6 +43,12 @@ else if(data.type==='approve')
 else if(data.type==='assessor/passwordReset'){
 this.assessPassword()
 }
+else if(data.type==='adminAssessorRequestInfo'){
+  this.adminAssessorCallforReview()
+}
+else if(data.type==='assessorAssessorRequestInfo'){
+  this.assessorAssessorRequest()
+}
     
   }
   ngOnInit(): void {
@@ -58,11 +66,12 @@ this.assessPassword()
 
   offlinePayment()
   {
+    let totalAmount= this.data.amount+this.data.gst
     this.OfflinePayment=this.formBuilder.group({
       id:[this.data?.id,Validators.required],
       nameOfBank:['',Validators.required],
       modeOfPayment:['',Validators.required],
-      amount:['',Validators.required],
+      amount:[totalAmount,Validators.required],
       dateOfPayment:['',Validators.required],
       transactionDetails:['',Validators.required]
     })
@@ -106,6 +115,16 @@ this.assessPassword()
     }
      
    }
+   adminAssessorCallforReview(){
+this.adminAssessorCallforRevie= this.formBuilder.group({
+  adminAssessorCallforReview:[this.data.adminRemark?this.data.adminRemark:'']
+})
+   }
+   assessorAssessorRequest(){
+    this.assessorAssessorRequestInfo= this.formBuilder.group({
+     remark:[this.data.adminRemark?this.data.adminRemark:'']
+    })
+       }
    remark(){
     let createAt = new Date();
 
@@ -144,6 +163,20 @@ this.assessPassword()
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  onNoClickadminAssessor(){
+    this.dialogRef.close(null);
+  }
+  closeDialog(){
+ 
+    this.dialogRef.close({remark:this.adminAssessorCallforRevie.value.adminAssessorCallforReview});
+  }
+  onNoClickAssessor(){
+    this.dialogRef.close(null);
+  }
+  closeDialogAssessor(){
+ 
+    this.dialogRef.close({remark:this.assessorAssessorRequestInfo.value.remark});
   }
 
   resetPassword(){

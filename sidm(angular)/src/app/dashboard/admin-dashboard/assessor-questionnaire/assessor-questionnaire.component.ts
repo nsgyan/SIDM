@@ -111,7 +111,65 @@ export class AssessorQuestionnaireComponent implements OnInit {
   }
   filterData(){
     if(this.filter.valid){
-this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.value.typeOfapplicant).subscribe(data=>{
+this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.value.typeOfapplicant).subscribe((data:any)=>{
+  data.map((item: any) => {
+    if (item.category === 'cat1') {
+      item.category = 'C1 '
+    }
+    else if (item.category === 'cat2') {
+      item.category = 'C2'
+    }
+    else if (item.category === 'cat3') {
+      item.category = 'C3'
+    }
+    else {
+      item.category = 'C4'
+    }
+    if (item.typeOfApplicant === 'L') {
+      item.typeOfApplicant = 'Large'
+    }
+    else if (item.typeOfApplicant === 'M') {
+      item.typeOfApplicant = 'Medium'
+    }
+    else {
+      item.typeOfApplicant = 'SME/SSI/START-UP'
+    }
+    const format = 'dd-MMM-yy';
+    const locale = 'en-US';
+    item.createAt = formatDate(item.createAt, format, locale)
+    // console.log(data.createAt.type);
+
+    // data.createAt = formatDate(data.createAt, 'yyyy-MM-dd', 'en-US')
+    item.panNumberOfOrganization = item.panNumberOfOrganization;
+
+  })
+  data.map((item:any)=>{
+    item.assessor.map((assessorUser:any)=>{
+      if(assessorUser.email==='aspillai.bm@gmail.com'){
+        item.aspillai=assessorUser
+      }
+      else  if(assessorUser.email==='jp.nehra@cii.in'){
+        item.jp=assessorUser
+      }
+      else  if(assessorUser.email==='scbajpai1@gmail.com'){
+        item.scbajpai1=assessorUser
+      }
+      else  if(assessorUser.email==='rktyagi.hal@gmail.com'){
+        item.rktyagi=assessorUser
+      }
+      else  if(assessorUser.email==='pritam.lal@cii.in'){
+        item.pritam=assessorUser
+      }
+      else  if(assessorUser.email==='dg@sidm.in'){
+        item.dg=assessorUser
+      }
+      else  if(assessorUser.email==='bharat.jain@sidm.in'){
+        item.bharat=assessorUser
+      }
+    })
+  })
+  console.log(data);
+  
   this.applicantData=data
 })
     }
@@ -120,6 +178,9 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
       this.toast.error('Please Fill Required Field');
     }
 
+  }
+  reset(){
+    location.reload();
   }
  
 }

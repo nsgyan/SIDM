@@ -3,6 +3,7 @@ const router = express.Router();
 const questionnaires=require('../controllers/questionnaire')
 const auth= require('../controllers/auth')
 const Assessor= require('../controllers/assessor')
+const adminAssessor= require('../controllers/adminAssessor')
 router.get('',questionnaires.getQuestionnaires);
 router.post('/add', auth.adminAuth,questionnaires.addQuestionnaires);
 router.get('/get/:userID', auth.adminAuth, questionnaires.getQuestionnairesByID)
@@ -17,6 +18,8 @@ router.get('/questionnaireAissment/:userId',auth.auth,questionnaires.getAissment
 router.delete('/deleteQuestionnaire/:userId', auth.adminAuth,questionnaires.deleteQuestionnairesByID)
 router.get('/formsData',questionnaires.findmember);
 router.get('/assessor/aplicantList',Assessor.findmember)
+router.get('/applicantQuestionnaire/aplicantList',adminAssessor.applicantQuestionnaire)
+router.get('/applicantQuestionnaire',adminAssessor.aplicantList)
 router.get('/filterAssessmentsList',Assessor.filterAssessmentsList)
 router.get('/assessmentsList',Assessor.assessmentsList)
 

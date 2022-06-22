@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { formatDate, Location } from '@angular/common'
 import { HttpService } from 'src/app/shared/services/http.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
@@ -17,6 +18,7 @@ export class ApplicantQuestionnaireComponent implements OnInit {
   uploadDocuments:any
   userData:any
   totalScore=0;
+  category:any
 userScore=0;
  static:any=false;
  id:any;
@@ -29,8 +31,36 @@ questionnaireForm:FormGroup
     private fb:FormBuilder,
     private toast: ToastrService,
     private route: ActivatedRoute,
-    private routes:Router) {
+    private routes:Router,
+    private location: Location, 
+    public dialog: MatDialog) {
       this.id = this.route.snapshot.paramMap.get('id')
+      this.httpService.getdetails(this.id).subscribe((data:any)=>{
+        if (data?.category === 'cat1') {
+      this.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+        }
+        else if (data?.category === 'cat2') {
+          this.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+        }
+        else if (data?.category === 'cat3') {
+          this.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+        }
+        else if (data?.category === 'cat4') {
+          this.category = 'C4- Export Performance of Defence & Aerospace Products'
+        }
+  
+        if (data?.typeOfApplicant === 'L') {
+          data.typeOfApplicant = 'L – Large (Annual Turnover FY 2020-21 over   & above Rs 250 Crore)'
+        }
+        else if (data?.typeOfApplicant === 'M') {
+          data.typeOfApplicant = 'M – Medium  (Annual Turnover FY 2020-21 between  Rs 75 to 250 Crore)'
+        }
+        else if (data?.typeOfApplicant === 'S') {
+          data.typeOfApplicant = 'S – Small  (Annual Turnover FY 2020-21 less than Rs 75 Crore)'
+        }
+       this.userData=data
+        
+      })
       this.questionnaireForm=this.fb.group({
         aissment: this.fb.array([]) ,
         staticAnswer:[''],
@@ -38,34 +68,35 @@ questionnaireForm:FormGroup
         staticScore:[''] ,
         staticMaxScore:['20'] ,
         secoundStaticAnswer:['20'],
+        staticAssessor:[''],
+        secoundStaticAssessor:[''],
         secoundStaticTable:this.fb.array([]) ,
         secoundStaticScore:[''] ,
         secoundStaticMaxScore:[''] ,
-        adminRemark:[''],
-        questionnaireStatus:['',Validators.required]
+        adminReview:[''],
+        doccumentAskedByAdmin:[null],
       })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
       let control = <FormArray>this.questionnaireForm.get('aissment');
       this.questionnaireData=data
+ 
 
-if(this.questionnaireData.adminRemark){
-  this.questionnaireForm.get('adminRemark')?.setValue(this.questionnaireData.adminRemark)
-  this.questionnaireForm.get('adminRemark')?.updateValueAndValidity()
-  this.questionnaireForm.get('questionnaireStatus')?.setValue(this.questionnaireData.status)
-  this.questionnaireForm.get('questionnaireStatus')?.updateValueAndValidity()
-}
 if (this.questionnaireData.category === 'cat1') {
-  this.questionnaireData.category = 'C1 '
+  this.category = 'C1 '
 }
 else if (this.questionnaireData.category === 'cat2') {
-  this.questionnaireData.category = 'C2'
+  this.category = 'C2'
 }
 else if (this.questionnaireData.category === 'cat3') {
-  this.questionnaireData.category = 'C3'
+  this.category = 'C3'
 }
 else {
-  this.questionnaireData.category = 'C4'
-  this.userScore+=10
+  this.category = 'C4'
+  this.questionnaireForm.get('secoundStaticAssessor')?.setValue(this.questionnaireData.secoundStaticAssessor)
+  this.questionnaireForm.get('secoundStaticAssessor')?.updateValueAndValidity()
+  this.questionnaireForm.get('staticAssessor')?.setValue(this.questionnaireData.staticAssessor)
+  this.questionnaireForm.get('staticAssessor')?.updateValueAndValidity()
+  this.userScore+=10+20
 }
 
       data.questionAns.map((item:any)=>{
@@ -80,8 +111,12 @@ else {
            description:[item.description],
            score:[item.score],     
            inputType:[item.inputType],
+           assessor:[item.assessor],
            option:[item.option],
-           maxScore:[[item.maxScore],] ,
+           maxScore:[item.maxScore,] ,
+           applicantAnswer:[item.applicantAnswer],
+           adminRemark:[item.adminRemark?item.adminRemark:''],
+           adminAnswer:[item.adminAnswer?item.adminAnswer:''],
            parameterDescription:[item.parameterDescription]
          })
        );
@@ -91,6 +126,14 @@ else {
         
       })
 
+      if(this.questionnaireData.adminRemark){
+        this.questionnaireForm.get('adminRemark')?.setValue(this.questionnaireData.adminRemark)
+        this.questionnaireForm.get('adminRemark')?.updateValueAndValidity()
+        this.questionnaireForm.get('questionnaireStatus')?.setValue(this.questionnaireData.status)
+        this.questionnaireForm.get('questionnaireStatus')?.updateValueAndValidity()
+        this.questionnaireForm.get('doccumentAskedByAdmin')?.setValue(this.questionnaireData.doccumentAskedByAdmin)
+        this.questionnaireForm.get('doccumentAskedByAdmin')?.updateValueAndValidity()
+      }
 
       let j=0;
       for(let item of this.questionnaireData.questionAns){ 
@@ -111,7 +154,7 @@ else {
      }
       
       
-     console.log(this.questionnaireData);
+   
      if( this.questionnaireData?.secoundStaticAnswer){
       this.static=true
      
@@ -152,7 +195,9 @@ else {
         }
       })
     }
-     
+    if(this.questionnaireData.doccumentAskedByAdmin){
+      this.questionnaireData.doccumentAskedByAdmin = environment.download + this.questionnaireData.doccumentAskedByAdmin
+    }
     },err=>{
       this.routes.navigate(['login/admin'])
     })
@@ -305,7 +350,7 @@ changeListener($event: any,index:any) {
 }
 
 
-submitQuestionnaire(){
+submitQuestionnaire(status:any){
 let j=0;
 
 
@@ -316,6 +361,10 @@ let j=0;
   for(let item of this.questionnaireData.questionAns){
    
     let control = <FormArray>this.questionnaireForm.get('aissment');
+    if(control.at(i).value.answer!== item.answer){
+      control.at(i).get('adminAnswer')?.setValue(control.at(i).value.answer)
+      control.at(i).get('adminAnswer')?.updateValueAndValidity()
+    }
     control.at(i).get('maxScore')?.setValue(item.maxScore)
     control.at(i).get('maxScore')?.updateValueAndValidity()
     if(item.inputType==='singleSelect'){
@@ -365,15 +414,16 @@ control.at(i).get('score')?.updateValueAndValidity()
     totalScore:this.totalScore,
     category:this.questionnaireData.category,
     questionAns:this.questionnaireForm.value.aissment,
-    adminRemark:this.questionnaireForm.value.adminRemark,
-    questionnaireStatus:this.questionnaireForm.value.questionnaireStatus,
+    adminRemark:this.questionnaireForm.value.adminReview,
+    doccumentAskedByAdmin:this.questionnaireForm.value.doccumentAskedByAdmin,
+    questionnaireStatus:status,
 
 
   }).subscribe((data:any)=>{
 console.log(data,'not');
 
     this.toast.success(data);
-    const url='/dashboard/admin'
+    const url='/adminAssessor'
     window.location.href=url
   })
   }
@@ -386,7 +436,7 @@ console.log(data,'not');
 
   
 }
-submitStaticQuestionnaire(){
+submitStaticQuestionnaire(status:any){
 let staticAnswer=this.questionnaireForm.value.staticAnswer
 let  secoundStaticAnswer=this.questionnaireForm.value.secoundStaticAnswer
 if(secoundStaticAnswer==="Build to Customer Print"){
@@ -430,6 +480,10 @@ else if(staticAnswer==="Single product"){
     for(let item of this.questionnaireData.questionAns){
    
       let control = <FormArray>this.questionnaireForm.get('aissment');
+      if(control.at(i).value.answer!== item.answer){
+        control.at(i).get('adminAnswer')?.setValue(control.at(i).value.answer)
+        control.at(i).get('adminAnswer')?.updateValueAndValidity()
+      }
       control.at(i).get('maxScore')?.setValue(item.maxScore)
       control.at(i).get('maxScore')?.updateValueAndValidity()
       if(item.inputType==='singleSelect'){
@@ -489,8 +543,9 @@ console.log(this.questionnaireForm);
     secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
     secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
     secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
-    adminRemark:this.questionnaireForm.value.adminRemark,
-    questionnaireStatus:this.questionnaireForm.value.questionnaireStatus,
+    adminRemark:this.questionnaireForm.value.adminReview,
+    doccumentAskedByAdmin:this.questionnaireForm.value.doccumentAskedByAdmin,
+    questionnaireStatus:status,
 
 
   }).subscribe((data:any)=>{
@@ -498,7 +553,7 @@ console.log(this.questionnaireForm);
     console.log(data);
     
     this.toast.success(data);
-    const url='/dashboard/admin'
+    const url='/adminAssessor'
     window.location.href=url
   })
   }
@@ -508,5 +563,42 @@ console.log(this.questionnaireForm);
     this.toast.error('Please Fill Required Field');
   }
 }
+goBack(){
+  this.location?.back();
+}
+
+openModel(_static:boolean){
+  const dialogRef = this.dialog.open(ModelComponent, {
+    width: '500px',
+    data: {static: _static,type:'adminAssessorRequestInfo',adminRemark:this.questionnaireData.adminRemark?this.questionnaireData.adminRemark:null,},
+  });
+  
+  dialogRef.afterClosed().subscribe((res:any) => {
+    // received data from dialog-component
+  
+    if(res===null){
+      console.log(res,'close');
+    }
+    else{
+      console.log(res,'open');
+    
+    
+if(res?.remark){
+    this.questionnaireForm.get('adminReview')?.setValue(res.remark)
+    this.questionnaireForm.get('adminReview')?.updateValueAndValidity()
+    if(this.static){
+      this.submitStaticQuestionnaire('requestInfo')
+    }
+    else{
+      this.submitQuestionnaire('requestInfo')
+   
+      
+    }
+    }
+  }
+ 
+  })
+}
+
 
 }

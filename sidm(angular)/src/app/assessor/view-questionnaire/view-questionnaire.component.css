@@ -230,19 +230,7 @@ textarea {
 .CallBtn {
     background: #676cb7;
 }
-.checkBoxImg {
-    width: 135px;
-    margin: 0 0 2rem 0;
-}
-.FinalBtn {
-    text-align: center;
-    margin-top: 3rem;
-}
-.Submitted {
-    background: #fff;
-    padding: 2rem;
-    width: 70%;
-    margin: auto;
-    text-align: center;
-    box-shadow: 1px 1px 10px #cdcdcd;
-}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }

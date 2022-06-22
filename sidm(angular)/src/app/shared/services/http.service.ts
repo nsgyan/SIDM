@@ -90,6 +90,12 @@ export class HttpService {
   assessmentsList(){
 return this.httpService.get(Globals.route.assessmentsList)
   }
+
+  applicantQuestionnaire(){
+
+    return this.httpService.get(Globals.route.applicantQuestionnaire)
+  }
+
   filterAssessmentsList(category:any,typeOfApplicant:any){
     let queryParams = new HttpParams();
     queryParams = queryParams.append("category", category);
@@ -106,6 +112,17 @@ return this.httpService.get(Globals.route.assessmentsList)
     queryParams = queryParams.append("asaessorEmail", asaessorEmail);
 
     return this.httpService.get(`${Globals.route.assessorApplicantList}`, {
+      params: queryParams
+    })
+  }
+  applicantQuestionnaireApplicantList(category:any,typeOfApplicant:any,status:any){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("category", category);
+    queryParams = queryParams.append("typeOfApplicant", typeOfApplicant);
+    queryParams = queryParams.append("status", status);
+
+
+    return this.httpService.get(`${Globals.route.applicantQuestionnaireApplicantList}`, {
       params: queryParams
     })
   }
