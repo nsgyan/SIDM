@@ -27,11 +27,11 @@
         <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
           <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
 
-            <h2 class="matlable m-0">Q{{i+1}}- {{questionnaireData[i].parameter}}</h2>
-            <p style="color:rgb(150 67 67);font-size: 17px ;">{{questionnaireData[i].parameterDescription}}</p>
+            <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}}- {{questionnaireData[i].parameter}}</h2>
+            <p style="color:rgb(150 67 67);font-size: 18px;font-weight: 600;">{{questionnaireData[i].parameterDescription}}</p>
             <div class="auto-width">
               <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
-                <mat-label>Select Answer</mat-label>
+                <mat-label style="font-size: 18px;">Select Answer</mat-label>
                 <mat-select formControlName="answer">
                   <mat-option *ngFor="let option of questionnaireData[i].options" value="{{option.answer}}">
                     {{option.answer}} </mat-option>
