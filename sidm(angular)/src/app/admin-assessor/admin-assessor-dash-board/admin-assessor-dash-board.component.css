@@ -1,0 +1,93 @@
+.main-sec {
+    background: #e5e9d5;
+    margin-top: 4.5rem;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+}
+.CategoryBox {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    height: 180px;
+    margin-top: 3rem;
+}
+.CategoryBox .CategoryBoxTop {
+    position: relative;
+    top: -59px;
+    margin-bottom: -25px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 160px;
+    background: #d45353;
+}
+.CategoryBox  .CategoryBoxTop h3 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 7px 0;
+}
+.CategoryBox  .CategoryBoxTop p {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    /* margin: 0 0 7px 0; */
+}
+.CategoryBox .CategoryBoxbottom {
+    text-align: center;
+}
+.CategoryBox .CategoryBoxbottom h3 {
+    color: #d45353;
+    font-size: 20px;
+    margin: 0 0 5px 0;
+}
+.CategoryBox .CategoryBoxbottom p {
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+}
+.CategoryBoxTop2 {
+    background: #d47153 !important;
+}
+.CategoryBoxTop3 {
+    background: #d48f53 !important;
+}
+.main-sec h2 {
+    font-size: 25px;
+}
+.CategoryBox .CategoryBoxbottomContect {
+    transition: .3s all ease-in-out;
+}
+.CategoryBox .CategoryBoxbottomContect:hover {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #d7d7d7;
+    padding: 2px;
+    transition: .3s all ease-in-out;
+}
+.CategoryBox a {
+    text-decoration: none;
+}
+.yellow {
+    color: #363a7a  !important;
+}
+.green {
+    color: #1eab02 !important;
+}
+.header-fixed {
+    border-bottom: 2px solid #ebebeb;
+    position: relative;
+}
+.RegistrationBtn {
+    background: #363a7a;
+    padding: 10px 20px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
+    float: right;
+    margin: 1rem 0;
+}

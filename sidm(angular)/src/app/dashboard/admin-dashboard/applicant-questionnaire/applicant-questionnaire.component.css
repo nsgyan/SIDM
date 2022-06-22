@@ -8,6 +8,16 @@
     font-size: 20px;
     color: #fff;
 }
+.viewBtn {
+  border: none;
+  background: #363a7a;
+  padding: 7px 16px;
+  margin-top: 1.5rem;
+}
+.viewBtn .fa-long-arrow-left {
+  color: #fff;
+  margin-right: 9px;
+}
 /* .questionnaireForm {
     margin: 1rem;
 }
@@ -224,3 +234,24 @@
     border: none;
     margin-bottom: 10px!important;
   }
+
+
+  
+input[type="text"] {
+  padding: 0 7px;
+}
+.IcContent {
+  width: 85px;
+}
+.productF {
+  width: 267px;
+}
+.selectInput {
+  height: 50px;
+    border-radius: 5px;
+    border: 1px solid #dcdada;
+    color: #8b8b8b;
+}
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}

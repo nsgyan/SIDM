@@ -6,12 +6,11 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-assessor-login',
-  templateUrl: './assessor-login.component.html',
-  styleUrls: ['./assessor-login.component.css']
+  selector: 'app-admin-assessor-login',
+  templateUrl: './admin-assessor-login.component.html',
+  styleUrls: ['./admin-assessor-login.component.css']
 })
-export class AssessorLoginComponent implements OnInit {
-
+export class AdminAssessorLoginComponent implements OnInit {
   id:any
   assessorform: FormGroup;
   submitted: boolean = false;
@@ -62,7 +61,7 @@ export class AssessorLoginComponent implements OnInit {
 
   assessorlogin() {
  
-    if (this.assessorform.valid  ) {
+    if (this.assessorform.valid) {
       this.httpService.assessorLogin({ email: this.assessorform.value.email, password: this.assessorform.value.password })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
@@ -70,7 +69,7 @@ export class AssessorLoginComponent implements OnInit {
           this.localStorage.set('name', data.data.assessorName)
           this.localStorage.set('email', data.data.email)
           this.localStorage.set('assessorID', data.data._id)
-         this.router.navigate(['/assessor'])
+         this.router.navigate(['/adminAssessor'])
         
       //   this.getassessorData()
       //    const url='/dashboard/assessor/view/'+data.data._id
@@ -79,7 +78,7 @@ export class AssessorLoginComponent implements OnInit {
         this.toast.success('Assessor Successfully login!');
       })
     }
-   
+
     else {
       this.submitted = true;
       this.toast.error('Please Fill Required Field');

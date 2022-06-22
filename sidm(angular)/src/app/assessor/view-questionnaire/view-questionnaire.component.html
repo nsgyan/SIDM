@@ -31,14 +31,20 @@
   <div class="mainDiv">
     <div class="row">
       <div class="col-lg-6">
-        <div class="ComName">COMPANY NAME: <span>{{userData?.nameOfCompany}}</span> </div>
-        <div class="ComName">CATEGORY : <span>{{userData?.category}}</span> </div>
+        <div class="ComName" >COMPANY NAME: <span style="color: #0b24ab !important;">{{userData?.nameOfCompany}}</span> </div>
+        <div class="ComName" >CATEGORY : <span style="color: #f86400 !important;">{{category}}</span> </div>
       </div>
       <div class="col-lg-6">
-        <div class="ComName">Type of applicant company: <span>{{userData?.typeOfApplicant}}</span> </div>
+        <div class="ComName" >Type of applicant company: <span style="color: #f86400 !important;">{{userData?.typeOfApplicant}}</span> </div>
 
-        <div class="ComName">Nomenclature of items: <span>{{userData?.nomenclaturOfItems}}</span> </div>
 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ComName">Nomenclature of items: <br>
+          <p>{{userData?.nomenclaturOfItems}} <br> <br>{{userData?.sidmChampionAwards}}</p>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -50,7 +56,9 @@
     </div>
 
   </div>
-  <button class="RegistrationBtn CallBtn" mat-button (click)="submit('Call Review')">Call Review</button>
+  
+  <button mat-button (click)="openModel(aissmentdata?.category)" class="RegistrationBtn">Call For Review</button>
+  <!-- <button class="RegistrationBtn CallBtn" mat-button  (click)="submit('Call Review')">Call Review</button> -->
   <form [formGroup]="assessor">
     <mat-stepper #stepper>
 
@@ -62,14 +70,14 @@
             <div class="d-flex justify-content-end">
               <div class="d-flex align-items-center">
                 <label class="mr-2 MaxScore">Max Score</label>
-                <p class="score">{{aissmentdata.questionAns[i].maxScore}}</p>
+                <p class="score">{{aissmentdata.questionAns[i]?.maxScore}}</p>
               </div>
               <div class="d-flex align-items-center ml-3">
                 <label class="mr-2 MaxScore">Score</label>
-                <p class="score">{{aissmentdata.questionAns[i].score}}</p>
+                <p class="score">{{aissmentdata.questionAns[i]?.score}}</p>
               </div>
             </div>
-            <h2>{{i+1}}.{{aissmentdata.questionAns[i].question}}</h2>
+            <h2>{{i+1}}.{{aissmentdata.questionAns[i]?.question}}</h2>
             <div class="checkFeild" *ngFor="let item of aissmentdata.questionAns[i]?.option;let j =index">
               <div class="form-check mb-2">
                 <input class="form-check-input" disabled type="checkbox" value="{{item?.answer}}" id="{{j}}">
@@ -80,28 +88,36 @@
             </div>
 
             <!-- <div>
-                <h2 *ngIf="aissmentdata.questionAns[i].score">Max score :{{aissmentdata.questionAns[i].maxScore}}</h2>
-                <h2 *ngIf="aissmentdata.questionAns[i].score">Score :{{aissmentdata.questionAns[i].score}}</h2>
+                <h2 *ngIf="aissmentdata.questionAns[i]?.score">Max score :{{aissmentdata.questionAns[i]?.maxScore}}</h2>
+                <h2 *ngIf="aissmentdata.questionAns[i]?.score">Score :{{aissmentdata.questionAns[i]?.score}}</h2>
               </div> -->
 
 
-            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i].answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i].answer}}</span></h2>
+            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i]?.answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i]?.answer}}</span></h2>
 
-            <div *ngIf="aissmentdata.questionAns[i].inputType==='assessorScore'">
-              <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i].description"></div>
+            <div *ngIf="aissmentdata.questionAns[i]?.inputType==='assessorScore'">
+              <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i]?.description"></div>
               <label class="text" for=`assessorScore${{i+1}}`>Assessor score: </label>
               <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore" (keypress)="keyPressNumbers($event)"
                 id=`assessorScore${{i+1}}`>
               <p *ngIf="controlName.get('assessorScore')?.invalid" style="color: red;">
                 Assessor
-                score not greater than<strong>{{aissmentdata.questionAns[i].maxScore}}</strong>
+                score not greater than<strong>{{aissmentdata.questionAns[i]?.maxScore}}</strong>
               </p>
 
             </div>
 
-            <a class="AttachementBtn ml-2" *ngIf='aissmentdata.questionAns[i].uploadDocuments' target="blank"
-              href="{{aissmentdata.questionAns[i].uploadDocuments}}">View Attachement</a>
+            <a class="AttachementBtn ml-2" *ngIf='aissmentdata.questionAns[i]?.uploadDocuments' target="blank"
+              href="{{aissmentdata.questionAns[i]?.uploadDocuments}}">View Attachement</a>
             <br>
+            <div class="mb-2">
+              <h3>Assessor Remark</h3>
+                  <ckeditor formControlName="assessorRemark" ></ckeditor>
+      
+                  <p style="color: red;" *ngIf="controlName.get('assessorRemark')?.hasError('required')&&(controlName.get('assessorRemark')?.touched||controlName.get('assessorRemark')?.dirty)">
+                    Assessor Remark description required
+                  </p>
+                </div>
 
 
             <div>
@@ -116,7 +132,7 @@
           </mat-step>
         </div>
       </div>
-      <mat-step #stepper *ngIf="aissmentdata?.category==='C4'">
+      <mat-step #stepper *ngIf="aissmentdata?.category==='cat4'">
           <div class="d-flex justify-content-end">
             <div class="d-flex align-items-center">
               <label class="mr-2 MaxScore">Max Score</label>
@@ -183,7 +199,7 @@
   
        
       </mat-step>
-      <mat-step #stepper *ngIf="aissmentdata?.category==='C4'">
+      <mat-step #stepper *ngIf="aissmentdata?.category==='cat4'">
         <div class="d-flex justify-content-end">
           <div class="d-flex align-items-center">
             <label class="mr-2 MaxScore">Max Score</label>
@@ -252,21 +268,14 @@
     </mat-step>
       <mat-step   >
       
-        <h2 class="matlable m-0">Assessor Remark:</h2>
-        <div class="mb-2">
-         
-          <ckeditor formControlName="assessorRemark" ></ckeditor>
-
-          <p style="color: red;" *ngIf="assessor.get('assessorRemark')?.hasError('required')&&(assessor.get('assessorRemark')?.touched||assessor.get('description')?.dirty)">
-            Assessor Remark description required
-          </p>
-        </div>
+      
     
         <div>
 
-          <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+        
           <button mat-button  *ngIf="aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
           <button mat-button  *ngIf="aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
+          <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
         </div>
 
       </mat-step>

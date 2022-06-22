@@ -20,10 +20,15 @@ export class ViewQuestionnaireComponent implements OnInit {
   assessor:FormGroup
   url=environment.download
   aissmentdata:any
+  category:any;
   maxScore: any=0;
   assessorScore: any=0;
   submitted: boolean=false;
   userData:any;
+  remark:any;
+ totalMaxScore=0
+ TotalObtained=0
+  scorebyAssessor:any;
   constructor(
     private httpService: HttpService,
     private fb:FormBuilder,
@@ -40,16 +45,16 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
       if (data?.category === 'cat1') {
-        data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+    this.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
       }
       else if (data?.category === 'cat2') {
-        data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+        this.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
       }
       else if (data?.category === 'cat3') {
-        data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+        this.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
       }
       else if (data?.category === 'cat4') {
-        data.category = 'C4- Export Performance of Defence & Aerospace Products'
+        this.category = 'C4- Export Performance of Defence & Aerospace Products'
       }
 
       if (data?.typeOfApplicant === 'L') {
@@ -68,8 +73,11 @@ export class ViewQuestionnaireComponent implements OnInit {
       aissment: this.fb.array([]) ,
       assessorScore:[''],
       assessorRemark:['']
+   
     })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
+  
+    
 if(data.category==='cat4'){
   data.staticTable.map((item:any)=>{
     item.uploadDocuments = environment.download + item.uploadDocuments
@@ -80,34 +88,49 @@ if(data.category==='cat4'){
   this.lastIndex=data.questionAns.length-1;
     
     data.questionAns.map((item:any)=>{
-      if(item.inputType==='assessorScore'){
-  control.push(
-    this.fb.group({
-      question: [item.question],      
-      answer:[item.answer],
-      uploadDocuments:[item.uploadDocuments],
-      description:[item.description],
-      score:[item.score] ,
-      inputType:[item.inputType],
-      option:[item.option],
-      maxScore:[item.maxScore],
-      assessorScore:[item.assessorScore? item.assessorScore:'',[Validators.max(Number( item.maxScore))]] 
-    })
-  );}
-  else{
-    control.push(
-      this.fb.group({
-        question: [item.question],      
-        answer:[item.answer],
-        uploadDocuments:[item.uploadDocuments],
-        description:[item.description],
-        score:[item.score] ,
-        inputType:[item.inputType],
-        option:[item.option],
-        maxScore:[item.maxScore],
+      item.assessor.map((assessor:any)=>{
+        let assessorID= this.localStorage.get('assessorID')
+        if(assessor.id===assessorID){
+          this.remark=assessor.remark
+          this.scorebyAssessor=assessor.score
+          
+        }
+      
       })
-    );
-  }
+      if(item.inputType==='assessorScore'){
+        control.push(
+          this.fb.group({
+            question: [item.question],      
+            answer:[item.answer],
+            uploadDocuments:[item.uploadDocuments],
+            description:[item.description],
+            score:[item.score] ,
+            inputType:[item.inputType],
+            option:[item.option],
+            maxScore:[item.maxScore],
+            assessor:[item.assessor],
+            assessorRemark:[this.remark?this.remark:null],
+            assessorScore:[this.scorebyAssessor?this.scorebyAssessor:null,[Validators.max(Number( item.maxScore))]] 
+          })
+        );}
+        else{
+          control.push(
+            this.fb.group({
+              question: [item.question],      
+              answer:[item.answer],
+              uploadDocuments:[item.uploadDocuments],
+              description:[item.description],
+              score:[item.score] ,
+              inputType:[item.inputType],
+              option:[item.option],
+              maxScore:[item.maxScore],
+              assessor:[item.assessor],
+              assessorRemark:[this.remark?this.remark:null],
+              assessorScore:[this.scorebyAssessor?this.scorebyAssessor:null,[Validators.max(Number( item.maxScore))]] 
+            })
+          );
+        }
+  
    
  })
       data.questionAns.map((item:any)=>{
@@ -121,6 +144,15 @@ if(data.category==='cat4'){
         }
       })
       this.aissmentdata=data
+      console.log(this.aissmentdata,'asda');
+      if(data.assessorRemark){
+        this.assessor.get('assessorRemark')?.setValue(data.assessorRemark)
+        this.assessor.get('assessorRemark')?.updateValueAndValidity()}
+        if(data.assessorScore){
+        this.assessor.get('assessorScore')?.setValue(data.assessorScore)
+        this.assessor.get('assessorScore')?.updateValueAndValidity()
+        }
+      
     },err=>{
       this.routes.navigate(['login/admin'])
     })
@@ -144,15 +176,52 @@ if(data.category==='cat4'){
   ngOnInit(): void {
   }
 
-  openModel(data:any){
-    const dialogRef = this.dialog.open(ModelComponent, {
-      width: '500px',
-      data: {data: data,type:'ViewQuestionnaire'},
-    });
+  
     
-  }
+  
 
   submit(status:any){
+ 
+ 
+  let control = <FormArray>this.assessor.get('aissment');
+
+  this.aissmentdata.questionAns.map((FormData:any)=>{
+
+    this.TotalObtained=this.TotalObtained+Number( FormData.score);
+   
+    this.totalMaxScore= this.totalMaxScore+Number( FormData.maxScore);
+  })
+  console.log(this.TotalObtained);
+  console.log(this.totalMaxScore);
+  
+  
+  
+ let x=0
+    this.aissmentdata.questionAns.map((item:any)=>{
+      let j=0;
+      control.value.map((FormData:any)=>{
+        if( item.question=== FormData.question){
+item.assessor.map((assessor:any)=>{
+  let assessorID= this.localStorage.get('assessorID')
+  if(assessor.id===assessorID){
+    assessor.remark=control.at(j).value.assessorRemark
+    assessor.score=control.at(j).value.assessorScore
+    assessor.maxScore=control.at(j).value.maxScore
+  }
+})
+        }
+        j++;
+      }) 
+      control.at(x).get("assessor")?.reset()
+      control.at(x).get("assessor")?.updateValueAndValidity()
+      control.at(x).get("assessor")?.setValue(item.assessor)
+      control.at(x).get("assessor")?.updateValueAndValidity()
+x++;
+ 
+    })
+
+    
+
     if(this.assessor.valid){
       let name= this.localStorage.get('name')
       let email= this.localStorage.get('email')
@@ -171,16 +240,28 @@ if(data.category==='cat4'){
         }
         i++;
       })
+      
+      this.aissmentdata.assessor.map((item:any)=>{
+        if(item.id===assessorID){
+          item.status=status
+          item.maxScore=assessorMaxScore,
+          item.score=assessorScore,
+          item.assessorRemark=this.assessor.value.assessorRemark
+        }
+      })
       this.httpService.updateQuestionnaireAissment({
         id:this.aissmentdata._id,
         assessorMaxScore:assessorMaxScore,
+        assessor: this.aissmentdata.assessor,
         assessorScore:assessorScore,
         assessorID:assessorID,
         assessorEmail:email,
         assessorName:name,
         status:status,
         aissment:this.assessor.value.aissment,
-        assessorRemark:this.assessor.value.assessorRemark
+        assessorRemark:this.assessor.value.assessorRemark,
+        TotalObtained: this.aissmentdata.totalScore,
+      totalMaxScore:this.totalMaxScore
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');
@@ -200,6 +281,41 @@ if(data.category==='cat4'){
 
   
   staticSubmit(status:any){
+
+ 
+  let control = <FormArray>this.assessor.get('aissment');
+  // this.aissmentdata.questionAns.map((FormData:any)=>{
+
+  //   this.TotalObtained=this.TotalObtained+Number( FormData.score);
+   
+  //   this.totalMaxScore= this.totalMaxScore+Number( FormData.maxScore);
+  // })
+  // console.log(this.TotalObtained);
+  // console.log(this.totalMaxScore);
+  
+    let x=0
+       this.aissmentdata.questionAns.map((item:any)=>{
+         let j=0;
+         control.value.map((FormData:any)=>{
+           if( item.question=== FormData.question){
+   item.assessor.map((assessor:any)=>{
+     let assessorID= this.localStorage.get('assessorID')
+     if(assessor.id===assessorID){
+       assessor.remark=control.at(j).value.assessorRemark
+       assessor.score=control.at(j).value.assessorScore
+       assessor.maxScore=control.at(j).value.maxScore
+     }
+   })
+           }
+           j++;
+         })
+         control.at(x).get("assessor")?.reset()
+         control.at(x).get("assessor")?.updateValueAndValidity()
+         control.at(x).get("assessor")?.setValue(item.assessor)
+         control.at(x).get("assessor")?.updateValueAndValidity()
+   x++;
+    
+       })
     if(this.assessor.valid){
       let name= this.localStorage.get('name')
       let email= this.localStorage.get('email')
@@ -220,8 +336,17 @@ if(data.category==='cat4'){
         }
         i++;
       })
+      this.aissmentdata.assessor.map((item:any)=>{
+        if(item.id===assessorID){
+          item.status=status
+          item.maxScore=assessorMaxScore,
+          item.score=assessorScore,
+          item.assessorRemark=this.assessor.value.assessorRemark
+        }
+      })
       this.httpService.updateQuestionnaireAissment({
         id:this.aissmentdata._id,
+        assessor: this.aissmentdata.assessor,
         assessorMaxScore:assessorMaxScore,
         assessorScore:assessorScore,
         assessorID:assessorID,
@@ -229,7 +354,9 @@ if(data.category==='cat4'){
         assessorName:name,
         status:status,
         aissment:this.assessor.value.aissment,
-        assessorRemark:this.assessor.value.assessorRemark
+        assessorRemark:this.assessor.value.assessorRemark,
+          TotalObtained: this.aissmentdata.totalScore,
+        totalMaxScore:this.totalMaxScore
 
       }).subscribe(data=>{
         this.toast.success('Assessor Score Updated');
@@ -257,6 +384,38 @@ if(data.category==='cat4'){
     this._location.back();
   }
 
+  openModel(_static:any){
+    const dialogRef = this.dialog.open(ModelComponent, {
+      width: '500px',
+      data: {type:'assessorAssessorRequestInfo',adminRemark:this.aissmentdata.assessorRemark?this.aissmentdata.assessorRemark:null,},
+    });
+    
+    dialogRef.afterClosed().subscribe((res:any) => {
+      // received data from dialog-component
+    
+      if(res===null){
+        console.log(res,'close');
+      }
+      else{
+        console.log(res,'open');
+      
+      
+  if(res?.remark){
+      this.assessor.get('assessorRemark')?.setValue(res.remark)
+      this.assessor.get('assessorRemark')?.updateValueAndValidity()
+      if(_static==='cat4'){
+        this.staticSubmit('Call Review')
+      }
+      else{
+        this.submit('Call Review')
+     
+        
+      }
+      }
+    }
+   
+    })
+  }
 
 }
 

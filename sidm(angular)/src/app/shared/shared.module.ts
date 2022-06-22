@@ -5,6 +5,7 @@ import { UpperCaseDirective } from './services/upper-case.directive';
 import { LowercaseDirective } from './services/lowercase.directive';
 import { ModelComponent } from './services/model/model.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CKEditorModule,
   ],
   exports: [BlockCopyPasteDirective, UpperCaseDirective,LowercaseDirective]
 })

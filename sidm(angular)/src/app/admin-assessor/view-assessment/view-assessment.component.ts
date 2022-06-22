@@ -1,18 +1,20 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import {Location} from '@angular/common';
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
 
 @Component({
-  selector: 'app-assessor-questionnaire',
-  templateUrl: './assessor-questionnaire.component.html',
-  styleUrls: ['./assessor-questionnaire.component.css']
+  selector: 'app-view-assessment',
+  templateUrl: './view-assessment.component.html',
+  styleUrls: ['./view-assessment.component.css']
 })
-export class AssessorQuestionnaireComponent implements OnInit {
+export class ViewAssessmentComponent implements OnInit {
   allFormsData: any;
   page:any='sd';
   index=0;
@@ -20,12 +22,12 @@ export class AssessorQuestionnaireComponent implements OnInit {
   filter:FormGroup;
   itemPerPage = 10;
   applicantData:any;
-
+average=0
   id: any;
   submited: boolean=false;
   constructor(private httpService: HttpService,
     private toast: ToastrService,
-    private localStorage: LocalStorageService,
+    private location: Location, 
     private routes: Router,
     private fb: FormBuilder,
     public dialog: MatDialog) { 
@@ -62,7 +64,12 @@ export class AssessorQuestionnaireComponent implements OnInit {
         }
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
-        }
+        } 
+        item.assessor.map((assessor:any)=>{
+          this.average+=Number( assessor.applicantScore);
+          this.average+=assessor.score
+        })
+        item.average=(this.average/800)*100
         const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
@@ -182,5 +189,35 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
   reset(){
     location.reload();
   }
+  navigateTo(category:any,type:any,status:any){
+        this.routes.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+        // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
+        // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+      }
+      goBack(){
+        this.location?.back();
+      }
+      openModel(data:any){
+        const dialogRef = this.dialog.open(ModelComponent, {
+          width: '500px',
+          data: {data: data,type:'View'},
+        });
+        
+      
+      }
  
 }
+
+
+//   constructor( private router: Router) { }
+
+//   ngOnInit(): void {
+//   }
+   
+//   navigateTo(category:any,type:any,status:any){
+//     this.router.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+//     // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
+//     // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+//   }
+
+// }

@@ -49,9 +49,15 @@
 
       </div>
       <div class="col-lg-2">
-        <button class="save-btn mx-2" target="blanck" (click)="filterData()">
-        Submit
-        </button>
+        <div>
+          <button class="save-btn mx-2" target="blanck" (click)="filterData()">
+            Submit
+            </button>
+            <!-- <button class="save-btn mx-2" target="blanck" (click)="reset()">
+              Reset
+              </button> -->
+        </div>
+        
       </div>
     </div>
   </form>
@@ -62,6 +68,7 @@
       <tr>
         <th scope="col">S.No</th>
         <th scope="col">Company Name</th>
+        <th scope="col">Category</th>
         <th  scope="col">Dr Parlahda</th>
         <th  scope="col">	Lt Gen JP Nehra</th>
         <th  scope="col">	Mr SC Bajpai</th>
@@ -75,12 +82,13 @@
       <tr *ngFor="let item of applicantData; let i = index">
         <td scope="row">{{ i + 1 }}</td>
         <td class="">{{ item.nameOfCompany }} <br> <span>{{ item.email }} </span> </td>    
+        <td class="">{{ item.category }} <br> <span>{{ item.typeOfApplicant }} </span> </td>    
         <td >
           <span >
             <span class="text-danger" *ngIf="item.aspillai.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.aspillai.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.aspillai.status==='Completed'"> Completed</span> <br />
-            score:{{ item.aspillai.score }}/{{ item.aspillai.maxScore }}
+            Score:{{ item.aspillai.score }}/{{ item.aspillai.maxScore }}
           </span>
         </td>
           <td >
@@ -88,7 +96,7 @@
             <span class="text-danger" *ngIf="item.jp.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.jp.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.jp.status==='Completed'"> Completed</span> <br />
-            score:{{ item.jp.score }}/{{ item.jp.maxScore }}
+            Score:{{ item.jp.score }}/{{ item.jp.maxScore }}
           </span>
         </td>
         <td >
@@ -96,7 +104,7 @@
             <span class="text-danger" *ngIf="item.scbajpai1.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.scbajpai1.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.scbajpai1.status==='Completed'"> Completed</span> <br />
-            score:{{ item.scbajpai1.score }}/{{ item.scbajpai1.maxScore }}
+            Score:{{ item.scbajpai1.score }}/{{ item.scbajpai1.maxScore }}
           </span>
         </td>
         <td >
@@ -104,7 +112,7 @@
             <span class="text-danger" *ngIf="item.rktyagi.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.rktyagi.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.rktyagi.status==='Completed'"> Completed</span> <br />
-            score:{{ item.rktyagi.score }}/{{ item.rktyagi.maxScore }}
+            Score:{{ item.rktyagi.score }}/{{ item.rktyagi.maxScore }}
           </span>
         </td>
         <td >
@@ -112,7 +120,7 @@
             <span class="text-danger" *ngIf="item.pritam.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.pritam.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.pritam.status==='Completed'"> Completed</span> <br />
-            score:{{ item.pritam.score }}/{{ item.pritam.maxScore }}
+            Score:{{ item.pritam.score }}/{{ item.pritam.maxScore }}
           </span>
         </td>
         <td >
@@ -120,7 +128,7 @@
             <span class="text-danger" *ngIf="item.dg.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.dg.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.dg.status==='Completed'"> Completed</span> <br />
-            score:{{ item.dg.score }}/{{ item.dg.maxScore }}
+            Score:{{ item.dg.score }}/{{ item.dg.maxScore }}
           </span>
         </td>
         <td  >
@@ -128,7 +136,7 @@
             <span class="text-danger" *ngIf="item.bharat.status==='Pending'"> Pending</span>
             <span class=" callR" *ngIf="item.bharat.status==='Call Review'"> Call Review</span>
             <span class="bg" *ngIf="item.bharat.status==='Completed'"> Completed</span> <br />
-            score:{{ item.bharat.score }}/{{ item.bharat.maxScore }}
+            Score:{{ item.bharat.score }}/{{ item.bharat.maxScore }}
           </span>
         </td>
       </tr>

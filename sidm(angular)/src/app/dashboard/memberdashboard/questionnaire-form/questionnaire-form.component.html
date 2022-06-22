@@ -1,5 +1,5 @@
 <div class="topHeader">
-  <h2>Category {{userData.category}}  Questionnaire </h2>
+  <h2>Category {{userData?.category}}  Questionnaire </h2>
 </div>
 
 <div class="row mt-3" *ngIf="!userData?.offlinePaymentDetails">
@@ -27,7 +27,7 @@
         <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
           <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
 
-            <h2 class="matlable m-0">{{questionnaireData[i].parameter}}</h2>
+            <h2 class="matlable m-0">Q{{i+1}}- {{questionnaireData[i].parameter}}</h2>
             <p style="color:rgb(150 67 67);font-size: 17px ;">{{questionnaireData[i].parameterDescription}}</p>
             <div class="auto-width">
               <mat-form-field *ngIf="questionnaireData[i].inputType==='singleSelect'" appearance="fill">
@@ -88,9 +88,8 @@
           <mat-step  >
             
 
-            <h2>Number and types of product being exported
-              .Give  list of products in an excel with  their
-              picture/uppload</h2>
+            <h2>Q{{lastIndex+2}}- Number and types of product being exported. Give  list of products in an excel with  their
+              picture/upload</h2>
               <mat-form-field appearance="fill">
                 <mat-label>Select Answer</mat-label>
                 <mat-select formControlName="staticAnswer">
@@ -122,7 +121,7 @@
                 </td>
                    <td><input formControlName="product" type="text"></td>
                    <!-- <td><input formControlName="description"  type="text"></td> -->
-                   <td><input  (change)="staticTableChangeListener($event,i)"  type="file"></td>
+                   <td style="width: 100px; text-align: center;"><input  (change)="staticTableChangeListener($event,i)"  type="file"></td>
                    <!-- <td><input formControlName="IcContent"  type="text"></td> -->
                   </tr>
                 </tbody>
@@ -139,7 +138,8 @@
           </mat-step>
           <mat-step  >
   
-            <h2>Please Select appropriate choice from Dropdown list for maximum product. Please provide details of each product</h2>
+            <h2>Q{{lastIndex+3}} - How has the subject product(s) been developed?</h2>
+            <p style="color:rgb(150 67 67);font-size: 17px ;">Please Select appropriate choice from Dropdown list for maximum product. Please provide details of each product</p>
               <mat-form-field appearance="fill">
                 <mat-label>Select Answer</mat-label>
                 <mat-select formControlName="secoundStaticAnswer">
@@ -170,24 +170,21 @@
                     (click)="removeSecoundStaticTable(i)"><i
                         class="fa fa-trash"></i> </a>
                 </td>
-                <td><input formControlName="product" type="text"></td>
+                <td><input formControlName="product" type="text" class="productF"></td>
                    <!-- <td><a class="AttachementBtn ml-2"  target="blank"
                     href="{{questionnaireData.staticTable[i]?.uploadDocuments}}">View Attachement</a></td> -->
-                   <td><input formControlName="IcContent"  type="text"></td>
+                   <td><input formControlName="IcContent"  type="text" class="IcContent" ></td>
               
-                   <td>   <mat-form-field appearance="fill">
-                    <mat-label>Select Answer</mat-label>
-                    <mat-select formControlName="answer">
-                      <mat-option  value="Build to Customer Print">
-                        Build to Customer Print </mat-option>
-                        <mat-option  value="Under ToT from FOEM">
-                          Under ToT from FOEM</mat-option>
-                          <mat-option  value="Under ToT from DRDO">
-                            Under ToT from DRDO</mat-option>
-                            <mat-option  value="Indigenous, in-house design">
-                              Indigenous, in-house design</mat-option>
-                    </mat-select>
-                  </mat-form-field></td>
+                   <td>    <select class="selectInput" formControlName="answer">
+                    <option  value="Build to Customer Print">
+                      Build to Customer Print </option>
+                      <option  value="Under ToT from FOEM">
+                        Under ToT from FOEM</option>
+                        <option  value="Under ToT from DRDO">
+                          Under ToT from DRDO</option>
+                          <option  value="Indigenous, in-house design">
+                            Indigenous, in-house design</option>
+                  </select></td>
                   </tr>
                 </tbody>
               </table>

@@ -1,0 +1,181 @@
+<!-- ================= HEADER ================= -->
+<header class="marathon-header-fixed header-fixed">
+    <a (click)="navigateTo('cat4','S','Submitted')" class="nav-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <div class="top-panel">
+        <div class="container">
+            <a (click)="navigateTo('cat4','S','Submitted')" class="logo2">
+                <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
+                >
+            </a>
+        <a (click)="navigateTo('cat4','S','Submitted')" class="logo1">
+            <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
+                >
+            </a>
+
+        <a (click)="navigateTo('cat4','S','Submitted')" class="logo3">
+            <img class="headerLogo3"
+                src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
+                >
+            </a>
+        </div>
+    </div>
+    
+</header>
+
+<div class="container mt-4">
+    <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button>
+    <!-- <button class="viewBtn mx-2" *ngIf="memberData?.status==='Approved'" (click)="editForm(memberData._id)"> Edit</button>
+    <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='approved
+  '"   (click)="viewQuestionnaire(memberData._id)"><i
+        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</button> -->
+  </div>
+
+  <div class="questionnaireForm">
+    <!-- <div>
+          <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
+        </div> -->
+    <form [formGroup]="filter" class="mb-2">
+      <div class="row mb-4">
+        <div class="col-lg-4">
+          <h5 class="mt-3 mb-2">Category</h5>
+          <select formControlName="category">
+            <option value="cat1">C1 – Technology /
+              Product Innovation to address Defence Capability Gaps</option>
+            <option value="cat2">C2 – Import
+              Substitution for Mission
+              Critical Parts / Sub-Systems / Systems</option>
+            <option value="cat3"> C3 – Creation of
+              Niche, Technological Capability for
+              Design, Manufacturing or Testing
+            </option>
+            <option value="cat4">C4 – Export
+              Performance of Defence & Aerospace
+              Products</option>
+          </select>
+  
+        </div>
+        <div class="col-lg-4">
+          <h5 class="mt-3 mb-2">Type Of Applicant </h5>
+          <select formControlName="typeOfapplicant">
+            <option value="L">
+              <h6 class="catBold">L – Large</h6>
+              (Annual Turnover FY 2020-21 over
+              & above Rs 250 Crore)
+            </option>
+            <option value="M">
+              <h6 class="catBold">M – Medium</h6>
+              (Annual Turnover FY 2020-21 between
+              Rs 75 to 250 Crore)
+            </option>
+            <option value="S">
+              <h6 class="catBold">S – SME/SSI/START-UP</h6>
+              (Annual Turnover FY 2020-21 less
+              than Rs 75 Crore)
+            </option>
+  
+          </select>
+  
+        </div>
+        <div class="col-lg-2">
+          <div>
+            <button class="save-btn mx-2" target="blanck" (click)="filterData()">
+              Submit
+              </button>
+              <!-- <button class="save-btn mx-2" target="blanck" (click)="reset()">
+                Reset
+                </button> -->
+          </div>
+          
+        </div>
+      </div>
+    </form>
+  
+  
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Category</th>
+          <th  scope="col">Dr Parlahda</th>
+          <th  scope="col">	Lt Gen JP Nehra</th>
+          <th  scope="col">	Mr SC Bajpai</th>
+          <th  scope="col">Dr RK Tyagi</th>
+          <th  scope="col">	Rear Admiral Pritam Lal</th>
+          <th  scope="col">Mr Sunil Misra</th>
+          <th  scope="col">		Bharat Jain</th>
+          <th  scope="col">		Final Jury</th>
+          <th  scope="col">		Total Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of applicantData; let i = index">
+          <td scope="row">{{ i + 1 }}</td>
+          <td class="">{{ item.nameOfCompany }} <br> <span>{{ item.email }} </span> </td>    
+          <td class="">{{ item.category }} <br> <span>{{ item.typeOfApplicant }} </span> </td>    
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="item.aspillai.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.aspillai.status==='Call Review'" (click)="openModel(item.aspillai.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.aspillai.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.aspillai.score }}/{{ item.aspillai.maxScore }}
+            </span>
+          </td>
+            <td >
+            <span >
+              <span class="text-danger" *ngIf="item.jp.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.jp.status==='Call Review'"  (click)="openModel(item.jp.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.jp.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.jp.score }}/{{ item.jp.maxScore }}
+            </span>
+          </td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="item.scbajpai1.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.scbajpai1.status==='Call Review'" (click)="openModel(item.scbajpai1.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.scbajpai1.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.scbajpai1.score }}/{{ item.scbajpai1.maxScore }}
+            </span>
+          </td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="item.rktyagi.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.rktyagi.status==='Call Review'"  (click)="openModel(item.rktyagi.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.rktyagi.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.rktyagi.score }}/{{ item.rktyagi.maxScore }}
+            </span>
+          </td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="item.pritam.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.pritam.status==='Call Review'" (click)="openModel(item.pritam.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.pritam.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.pritam.score }}/{{ item.pritam.maxScore }}
+            </span>
+          </td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="item.dg.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.dg.status==='Call Review'" (click)="openModel(item.dg.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.dg.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.dg.score }}/{{ item.dg.maxScore }}
+            </span>
+          </td>
+          <td  >
+            <span >
+              <span class="text-danger" *ngIf="item.bharat.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.bharat.status==='Call Review'" (click)="openModel(item.bharat.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.bharat.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.bharat.score }}/{{ item.bharat.maxScore }}
+            </span>
+          </td>
+          <td></td>
+          <td>{{item.average}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

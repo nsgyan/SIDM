@@ -15,6 +15,7 @@ export class QuestionnaireFormComponent implements OnInit {
   questionnaireData:any
   uploadDocuments:any
   userData:any
+  assessor:any=[]
  totalScore=0;
  static:any=false;
  id:any;
@@ -29,13 +30,30 @@ questionnaireForm:FormGroup
     private route: ActivatedRoute,) {
       
    this.id = this.route.snapshot.paramMap.get('id')
+   this.httpService.getassessor().subscribe((data:any)=>{
+ data.map((item:any)=>{
+  this.assessor.push({
+    id:item._id,
+    assessorName:item.assessorName,
+    email:item.email,
+    maxScore:null,
+    score:null,
+    remark:null
+  })
+
+  })
+    
+    
+  })
     this.questionnaireForm=this.fb.group({
       aissment: this.fb.array([]) ,
       staticAnswer:[''],
       staticTable:this.fb.array([]) ,
       staticScore:[''] ,
       staticMaxScore:[''] ,
+      staticAssessor:[this.assessor],
       secoundStaticAnswer:[''],
+      secoundStaticAssessor:[this.assessor],
       secoundStaticTable:this.fb.array([]) ,
       secoundStaticScore:[''] ,
       secoundStaticMaxScore:[20] ,
@@ -89,8 +107,10 @@ getquestion(category:any,typeOfApplicant:any){
       description:[''],
       score:[''] ,
       inputType:[item.inputType],
+      assessor:[this.assessor],
       option:[],
       maxScore:[''] ,
+      applicantAnswer:[],
       parameterDescription:[item.parameterDescription]
     })
   );
@@ -262,6 +282,8 @@ console.log(this.questionnaireForm);
   for(let item of this.questionnaireData){
    
     let control = <FormArray>this.questionnaireForm.get('aissment');
+    control.at(i).get('applicantAnswer')?.setValue(control.at(i).value.answer)
+    control.at(i).get('applicantAnswer')?.updateValueAndValidity()
     control.at(i).get('maxScore')?.setValue(item.maxScore)
     control.at(i).get('maxScore')?.updateValueAndValidity()
     if(item.inputType==='singleSelect'){
@@ -383,6 +405,8 @@ console.log(this.totalScore,this.questionnaireForm);
   for(let item of this.questionnaireData){
    
     let control = <FormArray>this.questionnaireForm.get('aissment');
+    control.at(i).get('applicantAnswer')?.setValue(control.at(i).value.answer)
+    control.at(i).get('applicantAnswer')?.updateValueAndValidity()
     control.at(i).get('maxScore')?.setValue(item.maxScore)
     control.at(i).get('maxScore')?.updateValueAndValidity()
     if(item.inputType==='singleSelect'){
@@ -439,6 +463,8 @@ control.at(i).get('score')?.updateValueAndValidity()
     secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
     secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
     secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
+    staticAssessor:this.questionnaireForm.value.staticAssessor, 
+    secoundStaticAssessor:this.questionnaireForm.value.secoundStaticAssessor,
     status:status
 
 

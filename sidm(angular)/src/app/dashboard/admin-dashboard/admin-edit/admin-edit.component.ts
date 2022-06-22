@@ -513,7 +513,7 @@ export class AdminEditComponent implements OnInit {
     if(!this.formData.exhibit2){
     this.editForm.get('exhibit2')?.setValidators(Validators.required)
     this.editForm.get('exhibit2')?.updateValueAndValidity()}
-    if (this.editForm.valid &&this.captcha ) {
+    if (this.editForm.valid) {
       this.httpService.updateform(this.formData._id, {
         userType:'admin',
         typeOfApplicant: this.editForm.value.typeOfApplicant,
@@ -572,6 +572,9 @@ export class AdminEditComponent implements OnInit {
       this.submited = true;
       this.toast.error('Please Fill Required Field');
     }
+  }
+  goBack(){
+    this.location?.back();
   }
 
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { formatDate, Location } from '@angular/common'
 import { HttpService } from 'src/app/shared/services/http.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-applicant-questionnaire',

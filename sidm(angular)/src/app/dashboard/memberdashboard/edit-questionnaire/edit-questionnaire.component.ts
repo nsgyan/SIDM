@@ -22,6 +22,7 @@ export class EditQuestionnaireComponent implements OnInit {
 questionnaireForm:FormGroup
   captcha: any;
   submited:any=null;
+  assessor: any;
   constructor(
     private httpService: HttpService,
     private fb:FormBuilder,
@@ -48,33 +49,51 @@ questionnaireForm:FormGroup
         else if ( this.userData.category === 'cat4') {
           this.userData.category = 'C4'
         }
+        
      
         
       })
+     
       this.questionnaireForm=this.fb.group({
         aissment: this.fb.array([]) ,
         staticAnswer:[''],
         staticTable:this.fb.array([]) ,
         staticScore:[''] ,
+        staticAssessor:[''],
         staticMaxScore:[''] ,
         secoundStaticAnswer:[''],
         secoundStaticTable:this.fb.array([]) ,
+        secoundStaticAssessor:[''],
         secoundStaticScore:[''] ,
         secoundStaticMaxScore:[''] ,
-        adminRemark:[''],
+        adminRemark:[],
+        doccumentAskedByAdmin:[null],
         questionnaireStatus:['']
       })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
       let control = <FormArray>this.questionnaireForm.get('aissment');
       this.questionnaireData=data
+      
 
 if(this.questionnaireData.adminRemark){
   this.questionnaireForm.get('adminRemark')?.setValue(this.questionnaireData.adminRemark)
   this.questionnaireForm.get('adminRemark')?.updateValueAndValidity()
   this.questionnaireForm.get('questionnaireStatus')?.setValue(this.questionnaireData.status)
   this.questionnaireForm.get('questionnaireStatus')?.updateValueAndValidity()
+  this.questionnaireForm.get('doccumentAskedByAdmin')?.setValue(this.questionnaireData.doccumentAskedByAdmin)
+  this.questionnaireForm.get('doccumentAskedByAdmin')?.updateValueAndValidity()
 }
-
+if (this.questionnaireData.category === 'cat4')  {
+ 
+  this.questionnaireForm.get('secoundStaticAssessor')?.setValue(this.questionnaireData.secoundStaticAssessor)
+  this.questionnaireForm.get('secoundStaticAssessor')?.updateValueAndValidity()
+  this.questionnaireForm.get('staticAssessor')?.setValue(this.questionnaireData.staticAssessor)
+  this.questionnaireForm.get('staticAssessor')?.updateValueAndValidity()
+  
+}
+if(this.questionnaireData.doccumentAskedByAdmin){
+  this.questionnaireData.doccumentAskedByAdmin = environment.download + this.questionnaireData.doccumentAskedByAdmin
+}
 
       data.questionAns.map((item:any)=>{
         this.lastIndex= this.lastIndex+1
@@ -86,14 +105,17 @@ if(this.questionnaireData.adminRemark){
            description:[item.description],
            score:[item.score],     
            inputType:[item.inputType],
+           assessor:[item.assessor],
            option:[item.option],
-           maxScore:[[item.maxScore],] ,
+           applicantAnswer:[item.applicantAnswer],
+           maxScore:[item.maxScore,] ,
            parameterDescription:[item.parameterDescription]
          })
        );
        if(item.uploadDocuments){
         item.uploadDocuments = environment.download + item.uploadDocuments
       }
+      
         
       })
    this.lastIndex= this.lastIndex-1
@@ -286,6 +308,38 @@ staticTableChangeListener($event: any,index:any){
   }
 }
 
+adminRequiredDoccument($event: any){
+  let file = $event.target.files;
+
+
+
+  if (
+    file[0].type == 'image/png' ||
+    file[0].type == 'image/jpg' ||
+    file[0].type == 'image/jpeg' ||
+    file[0].type == 'application/pdf'
+  ) {
+
+
+    if (parseInt(file[0].size) > 2097152) {
+    this.toast.error('file to large')
+  }
+  else {
+    const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+    const time = '7:00 AM';
+    this.httpService.upload(file[0]).subscribe((data: any) => {
+
+      this.questionnaireForm.get('doccumentAskedByAdmin')?.setValue(data.body)
+      this.questionnaireForm.get('doccumentAskedByAdmin')?.updateValueAndValidity()
+    })
+
+    }
+  }
+  else {
+    this.toast.error('File uploaded is invalid!')
+  }
+}
+
 
 changeListener($event: any,index:any) {
   let file = $event.target.files;
@@ -319,6 +373,17 @@ changeListener($event: any,index:any) {
   }
 }
 
+delete(conttrolName: string) {
+  if (conttrolName === 'documentGstCertificate') {
+    this.questionnaireForm.get('documentGstCertificate')?.reset()
+    this.questionnaireForm.get('documentGstCertificate')?.updateValueAndValidity()
+    this.questionnaireData.doccumentAskedByAdmin = null
+
+  }
+
+
+}
+
 
 submitQuestionnaire(status:string){
   
@@ -333,6 +398,8 @@ console.log(this.questionnaireForm);
   for(let item of this.questionnaireData.questionAns){
    
     let control = <FormArray>this.questionnaireForm.get('aissment');
+    control.at(i).get('applicantAnswer')?.setValue(control.at(i).value.answer)
+    control.at(i).get('applicantAnswer')?.updateValueAndValidity()
     control.at(i).get('maxScore')?.setValue(item.maxScore)
     control.at(i).get('maxScore')?.updateValueAndValidity()
     if(item.inputType==='singleSelect'){
@@ -383,6 +450,7 @@ control.at(i).get('score')?.updateValueAndValidity()
     category:this.questionnaireData.category,
     questionAns:this.questionnaireForm.value.aissment,
     adminRemark:this.questionnaireForm.value.adminRemark,
+    doccumentAskedByAdmin:this.questionnaireForm.value.doccumentAskedByAdmin,
     questionnaireStatus:status,
 
 
@@ -452,6 +520,8 @@ else if(staticAnswer==="Single product"){
     for(let item of this.questionnaireData.questionAns){
    
       let control = <FormArray>this.questionnaireForm.get('aissment');
+      control.at(i).get('applicantAnswer')?.setValue(control.at(i).value.answer)
+      control.at(i).get('applicantAnswer')?.updateValueAndValidity()
       control.at(i).get('maxScore')?.setValue(item.maxScore)
       control.at(i).get('maxScore')?.updateValueAndValidity()
       if(item.inputType==='singleSelect'){
@@ -512,6 +582,9 @@ console.log(this.questionnaireForm);
     secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
     secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
     secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
+    staticAssessor:this.questionnaireForm.value.staticAssessor, 
+    secoundStaticAssessor:this.questionnaireForm.value.secoundStaticAssessor,
+    doccumentAskedByAdmin:this.questionnaireForm.value.doccumentAskedByAdmin,
     questionnaireStatus:status,
 
 
