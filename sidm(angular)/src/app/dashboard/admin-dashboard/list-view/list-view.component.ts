@@ -19,7 +19,7 @@ import { ModelComponent } from 'src/app/shared/services/model/model.component';
 export class ListViewComponent implements OnInit {
 
   requestInfo:FormGroup
-  displayedColumns: string[] = [ 'index','createAt','nameOfCompany', 'email','name','category','sidmMember','paymentStatus','offlinePaymentDetails','status'];
+  displayedColumns: string[] = [ 'index','createAt','nameOfCompany', 'email','name','category','sidmMember','paymentStatus','offlinePaymentDetails','status','questionnaireStatus'];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
