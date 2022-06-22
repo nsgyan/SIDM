@@ -28,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ApplicantListComponent } from './applicant-list/applicant-list.component';
 import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/applicant-questionnaire.component';
 import { ViewAssessmentComponent } from './view-assessment/view-assessment.component';
+import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ViewAssessmentComponent } from './view-assessment/view-assessment.compo
     AdminAssessorDashBoardComponent,
     ApplicantListComponent,
     ApplicantQuestionnaireComponent,
-    ViewAssessmentComponent
+    ViewAssessmentComponent,
+    ViewApplicantComponent
   ],
   imports: [
     CommonModule,

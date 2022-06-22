@@ -57,6 +57,7 @@
     <button mat-button (click)="openModel(static)" class="RegistrationBtn">Call For Review</button>
     <button mat-button *ngIf="!static" (click)="submitQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
     <button mat-button *ngIf="static" (click)="submitStaticQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
+    <button mat-button  (click)="viewDetails(userData._id)"  class="RegistrationBtn">View Applicant Details</button>
     <!-- <button class="viewBtn mx-2" *ngIf="memberData?.status==='Approved'" (click)="editForm(memberData._id)"> Edit</button>
     <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='approved
   '"   (click)="viewQuestionnaire(memberData._id)"><i

@@ -599,6 +599,12 @@ if(res?.remark){
  
   })
 }
+viewDetails(id: string) {
+  let url: string = "/adminAssessor/applicantForm/" + id
+  // this.routes.([]).then(result => {  window.open(link, '_blank'); });
+  this.routes.navigate([]).then(result => {  window.open(url, '_blank'); });
+
+}
 
 
 }
