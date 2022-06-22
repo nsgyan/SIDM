@@ -244,3 +244,22 @@
     </div>
 
 </div>
+
+
+<div *ngIf="data.type==='uploadDocument'" class="requestInfoPopup">
+    <h5 class="modal-title" id="exampleModalLabel">Upload Document</h5>
+    <div mat-dialog-content>
+        <form >
+            <div class="">
+                <div class="form-group   m-4">
+                    <input  type="file" (change)="upload($event)">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="NewBtn" (click)="onNoClickAssessor()">Close</button>
+        <button type="button" class="NewBtn ml-2" (click)="documentUpoaded()">Submit</button>
+    </div>
+
+</div>

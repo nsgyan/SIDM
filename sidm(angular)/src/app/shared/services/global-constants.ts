@@ -42,6 +42,7 @@ export class Globals {
         'applicantQuestionnaire':Globals.server+'questionnaire/applicantQuestionnaire/aplicantList',
         'applicantQuestionnaireApplicantList':Globals.server+'questionnaire/applicantQuestionnaire',
         
-        'filterAssessmentsList':Globals.server+'questionnaire/filterAssessmentsList'
+        'filterAssessmentsList':Globals.server+'questionnaire/filterAssessmentsList',
+        'assessorRequiredDocument':Globals.server+'questionnaire/assessorRequiredDocument'
     };
 }

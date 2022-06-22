@@ -549,3 +549,13 @@ exports.applicantQuestionnaire=(req,res)=>{
         res.json("internal server error");
     })
 }
+exports.assessorRequiredDocument=(req,res)=>{
+    const userId= req.body.id
+    const assessor= req.body.assessor
+    const assessorEmail= req.body.assessor.email
+    RegistrationForm.findByIdAndUpdate(userId,{$pull:{assessor:{email:assessorEmail}}}).then(savedData=>{
+        RegistrationForm.findByIdAndUpdate(userId,{$push: {assessor:{id:assessor.id,assessorName:assessor.assessorName,email:assessorEmail,status:assessor.status,maxScore:assessorMaxScore,score:assessorScore,remark:assessorRemark,applicantScore:TotalObtained,totalScore:totalMaxScore}}}).then(data=>{
+            res.status(200).send(data)
+        })
+    })
+}

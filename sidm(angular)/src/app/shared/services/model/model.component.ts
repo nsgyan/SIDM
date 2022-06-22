@@ -19,6 +19,7 @@ export class ModelComponent implements OnInit {
   requestInfo !:FormGroup ;
   modeofPayment=['Cheque','Bank Draft',"NEFT/RTGS",'IMPS','UPI']
   submited!: boolean;
+  uploadDocumnet: any;
   constructor(
     private  formBuilder :FormBuilder,
     private toast: ToastrService,
@@ -194,6 +195,41 @@ this.adminAssessorCallforRevie= this.formBuilder.group({
       this.toast.error('Please Fill Required Field');
     }
   }
+
+  
+upload($event: any){
+  let file = $event.target.files;
+
+
+
+  if (
+    file[0].type == 'image/png' ||
+    file[0].type == 'image/jpg' ||
+    file[0].type == 'image/jpeg' ||
+    file[0].type == 'application/pdf'
+  ) {
+
+
+    if (parseInt(file[0].size) > 2097152) {
+    this.toast.error('file to large')
+  }
+  else {
+    const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
+    const time = '7:00 AM';
+    this.httpService.upload(file[0]).subscribe((data: any) => {
+
+      this.uploadDocumnet=data.body
+    })
+
+    }
+  }
+  else {
+    this.toast.error('File uploaded is invalid!')
+  }
+}
+documentUpoaded(){
+  this.dialogRef.close({document:this.uploadDocumnet});
+}
 
   noClick(type:any){
     this.dialogRef.close(type);
