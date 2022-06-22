@@ -7,16 +7,20 @@
 <div class="container mt-4">
     <!-- <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button> -->
     <button class="viewBtn mx-2" *ngIf="memberData?.status==='Approved'" (click)="editForm(memberData._id)"> Edit</button>
-    <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='approved'"   (click)="viewQuestionnaire(memberData._id)"><i
-        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</button>
+    <button  class="viewBtn mx-2" *ngIf="memberData?.questionnaireStatus==='Submitted'||memberData?.questionnaireStatus==='requestInfo'||memberData?.questionnaireStatus==='approved'"   (click)="viewQuestionnaire(memberData._id)">
+        <!-- <i
+        aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> -->
+         View Questionnaire</button>
 </div>
 <div *ngIf="paymentDetails">
-    <span>Membership fee</span>
     <div class="container">
         <div class="profileSection mb-6">
             
-                <div class="memberData">
-                    <div class="col-lg-12">
+            <div class="memberData">
+                <div class="col-lg-12">
+                        <h1 style="font-size: 21px;
+                        font-weight: 500;
+                        padding-top: 10px;">Membership fee</h1>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
@@ -49,10 +53,12 @@
 </div>
 <div *ngIf="OfflinepaymentDetails">
     <div class="container">
-        <span>Participation fee</span>
         <div class="profileSection mb-6">
             <div class="memberData">
                 <div class="col-lg-12">
+                    <h1 style="font-size: 21px;
+                    font-weight: 500;
+                    padding-top: 10px;">Participation fee</h1>
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
