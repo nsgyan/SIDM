@@ -20,7 +20,7 @@
       </div>
     </div>
   </header>
-  <div class="mainDiv">
+  <div class="container mainDiv mt-3">
     <div class="row">
       <div class="col-lg-6">
         <div class="ComName" >COMPANY NAME: <span style="color: #0b24ab !important;">{{userData?.nameOfCompany}}</span> </div>
@@ -85,11 +85,11 @@
                   <p class="score">{{questionnaireData.questionAns[i].score}}</p>
                 </div>
               </div>
-              <h2 class="matlable m-0">{{questionnaireData.questionAns[i].question}}</h2>
-              <p style="color:rgb(150 67 67);font-size: 17px ;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
+              <h2 style="font-size: 26px;" class="matlable m-0">{{questionnaireData.questionAns[i].question}}</h2>
+              <p style="color:rgb(150 67 67);font-size: 18px; font-weight: 500;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
               <div class="auto-width">
                 <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
-                  <mat-label>Select Answer</mat-label>
+                  <mat-label style="font-size: 18px;">Select Answer</mat-label>
                   <mat-select formControlName="answer">
                     <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
                       {{option.answer}} </mat-option>
@@ -98,15 +98,15 @@
   
                 <div class="auto-width">
                 <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='multiSelect'" appearance="fill">
-                  <mat-label>Select Answer</mat-label>
+                  <mat-label style="font-size: 18px;">Select Answer</mat-label>
                   <mat-select formControlName="answer" multiple>
                     <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
                       {{option.answer}} </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
-              <p *ngIf="questionnaireData.questionAns[i].applicantAnswer">Applicant Response: <span>{{questionnaireData.questionAns[i].applicantAnswer}}</span></p>
-              <p  *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span>{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
+              <p style="font-size: 18px;" *ngIf="questionnaireData.questionAns[i].applicantAnswer">Applicant Response: <span>{{questionnaireData.questionAns[i].applicantAnswer}}</span></p>
+              <p style="font-size: 18px;"  *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span>{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
                 <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
                   please select at least one option
                 </p>
@@ -115,7 +115,7 @@
               <br>
               <div *ngIf="questionnaireData.questionAns[i].description" >
                 <div class="mb-2">
-                  <label
+                  <label style="font-size: 18px; font-weight: 500;color: #333333;"
                   class="questionnaireLabel">Enter Description:</label>
                   <ckeditor formControlName="description" data="<p>Hello, world!</p>"></ckeditor>
   
@@ -125,13 +125,13 @@
               <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">
                 Answer description required
               </p>
-              <div *ngIf="questionnaireData.questionAns[i].uploadDocuments" appearance="fill">
-                <a class="AttachementBtn ml-2" *ngIf='questionnaireData.questionAns[i].uploadDocuments' target="blank"
+              <div style="margin:20px 0;" *ngIf="questionnaireData.questionAns[i].uploadDocuments" appearance="fill">
+                <a  class="AttachementBtn ml-2" *ngIf='questionnaireData.questionAns[i].uploadDocuments' target="blank"
                 href="{{questionnaireData.questionAns[i].uploadDocuments}}">View Attachement</a>
              
               </div>
               <div class="mb-2">
-            <h3>Admin Remark</h3>
+            <h3 style="font-size: 18px; font-weight: 500; margin-bottom: 0;">Admin Remark</h3>
                 <ckeditor formControlName="adminRemark" ></ckeditor>
     
                 <p style="color: red;" *ngIf="questionnaireForm.get('adminRemark')?.hasError('required')&&(questionnaireForm.get('adminRemark')?.touched||questionnaireForm.get('description')?.dirty||submited)">
@@ -287,13 +287,17 @@
          
         
         
-            <div>
-  
-             
-              <button mat-button (click)="openModel(static)" class="RegistrationBtn">Call For Review</button>
-              <button mat-button *ngIf="!static" (click)="submitQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
-              <button mat-button *ngIf="static" (click)="submitStaticQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
-               <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+            <div style="background: #f5f4f4;
+            text-align: center!important;
+            padding: 3rem 0 4rem;
+            width: 60%;
+            border: 1px solid #d7d7d7;
+            margin: 5rem 0 0 14rem;">
+            <button style="float: none;" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+              <button style="float: none;" mat-button (click)="openModel(static)" class="RegistrationBtn">Call For Review</button>
+              <button style="float: none;" mat-button *ngIf="!static" (click)="submitQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
+              <button style="float: none;" mat-button *ngIf="static" (click)="submitStaticQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
+               
             </div>
   
           </mat-step>

@@ -81,7 +81,7 @@
            
             </div>
             <div class="mb-2">
-          <h3 style="font-size: 18px; font-weight:500;">Admin Remark</h3>
+          <h3 style="font-size: 18px; font-weight:500; margin-bottom: 0;">Admin Remark</h3>
               <ckeditor formControlName="adminRemark" ></ckeditor>
   
               <p style="color: red;" *ngIf="questionnaireForm.get('adminRemark')?.hasError('required')&&(questionnaireForm.get('adminRemark')?.touched||questionnaireForm.get('description')?.dirty||submited)">
@@ -243,10 +243,11 @@
           width: 60%;
           border: 1px solid #d7d7d7;
           margin: 5rem 0 0 14rem;">
-            <button mat-button (click)="openModel(static)" class="RegistrationBtn">Call For Review</button>
-            <button mat-button *ngIf="!static" (click)="submitQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
-            <button mat-button *ngIf="static" (click)="submitStaticQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
-             <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+            <button style="float: none;"  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
+            <button style="float: none;" mat-button (click)="openModel(static)" class="RegistrationBtn">Call For Review</button>
+            <button style="float: none;" mat-button *ngIf="!static" (click)="submitQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
+            <button style="float: none;" mat-button *ngIf="static" (click)="submitStaticQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
+             
           </div>
 
         </mat-step>

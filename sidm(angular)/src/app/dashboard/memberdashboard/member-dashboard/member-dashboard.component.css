@@ -207,7 +207,8 @@ margin-left: 10px;
 background-color: #ffffff;
 }
 .dropBtn .dropdown-menu {
-margin: 0.125rem -136px 0;
+margin: 0 -15rem;
+padding-right: 20px;
 }
 
 .badge-light {
