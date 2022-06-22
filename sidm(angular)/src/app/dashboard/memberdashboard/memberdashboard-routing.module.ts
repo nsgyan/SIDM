@@ -9,6 +9,7 @@ import { MemberDashboardPageComponent } from './member-dashboard-page/member-das
 import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
 import { QuestionnaireFormComponent } from './questionnaire-form/questionnaire-form.component';
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
+import { AssessorRemarkComponent } from './assessor-remark/assessor-remark.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'questionnaire/:id', component:QuestionnaireFormComponent },
   { path: 'viewQuestionnaire/:id', component:ViewQuestionnaireComponent },
   {path:'editQuestionnaire/:id',component:EditQuestionnaireComponent},
+  {path:'assessorRemark/:id',component:AssessorRemarkComponent},
 ];
 
 @NgModule({

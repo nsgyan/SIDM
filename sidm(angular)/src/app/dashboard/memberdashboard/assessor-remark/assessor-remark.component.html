@@ -1,0 +1,117 @@
+<div class="topHeader">
+    <h2>Category Applied In</h2>
+</div>
+<div class="questionnaireForm">
+    <!-- <div>
+          <span class="save-btn">Total Score :{{aissmentdata[0]?.totalScore}}</span>
+        </div> -->
+ 
+  
+  
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+         
+          <th scope="col">Assessor Name</th>
+          <th scope="col">Assessor Status</th>
+      
+     
+        
+   
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+            <td>  <span>Dr A Sivathanu Pillai</span></td>
+             
+          <td >
+          
+            <span >
+              <span class="text-danger" *ngIf="applicantData.prahlada.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.prahlada.status==='Call Review'" (click)="openModel(applicantData.prahlada.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.prahlada.status==='Completed'"> Completed</span> <br />
+              
+            </span>
+          </td>
+          </tr>
+          <tr >
+            <td>Dr Parlahda</td>
+          <td >
+            
+            <span >
+              <span class="text-danger" *ngIf="applicantData.aspillai.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.aspillai.status==='Call Review'" (click)="openModel(applicantData.aspillai.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.aspillai.status==='Completed'"> Completed</span> <br />
+              
+            </span>
+          </td>
+        </tr>
+        <tr >
+            <td>Lt Gen JP Nehra</td>
+        
+            <td >
+            <span >
+              <span class="text-danger" *ngIf="applicantData.jp.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.jp.status==='Call Review'"  (click)="openModel(applicantData.jp.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.jp.status==='Completed'"> Completed</span>
+            </span>
+          </td>
+        </tr>
+        <tr >
+            <td>Mr SC Bajpai</td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="applicantData.scbajpai1.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.scbajpai1.status==='Call Review'" (click)="openModel(applicantData.scbajpai1.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.scbajpai1.status==='Completed'"> Completed</span> <br />
+              
+            </span>
+          </td>
+        </tr>
+        <tr >
+            <td>Dr RK Tyagi</td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="applicantData.rktyagi.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.rktyagi.status==='Call Review'"  (click)="openModel(applicantData.rktyagi.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.rktyagi.status==='Completed'"> Completed</span> <br />
+        
+            </span>
+          </td>
+        </tr>
+        <tr >
+            <td>Rear Admiral Pritam Lal</td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="applicantData.pritam.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.pritam.status==='Call Review'" (click)="openModel(applicantData.pritam.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.pritam.status==='Completed'"> Completed</span> <br />
+
+            </span>
+          </td>
+        </tr>
+        <tr >
+            <td>Mr Sunil Misra</td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="applicantData.dg.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.dg.status==='Call Review'" (click)="openModel(applicantData.dg.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.dg.status==='Completed'"> Completed</span>
+            </span>
+          </td>
+        </tr>
+        <tr >
+            <td>Bharat Jain</td>
+          <td  >
+            <span >
+              <span class="text-danger" *ngIf="applicantData.bharat.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="applicantData.bharat.status==='Call Review'" (click)="openModel(applicantData.bharat.remark)"> Call Review</a>
+              <span class="bg" *ngIf="applicantData.bharat.status==='Completed'"> Completed</span> <br />
+
+            </span>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -155,7 +155,8 @@ for(i of item){
         score:null,
         remark:null,
         applicantScore:null,
-        totalScore:null
+        totalScore:null,
+        doccument:null
       })
      
 }
@@ -370,7 +371,8 @@ for(i of item){
         score:null,
         remark:null,
         applicantScore:null,
-        totalScore:null
+        totalScore:null,
+        doccument:null
       })
       console.log(data.assessor)
 } data.questionnaireStatus=status

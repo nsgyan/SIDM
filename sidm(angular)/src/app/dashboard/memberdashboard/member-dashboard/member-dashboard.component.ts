@@ -32,7 +32,7 @@ export class MemberDashboardComponent implements OnInit {
   documentGstCertificate: any;
   userId: any
   EditForm = true
- 
+ assessorRemark=false
   OfflinePayment!:FormGroup ;
   editForm!: FormGroup;
   cat1 = true
@@ -109,7 +109,13 @@ export class MemberDashboardComponent implements OnInit {
           else if (data.category === 'cat4') {
             this.cat4 = false
             data.category = 'C4- Export Performance of Defence & Aerospace Products'
-          }  
+          } 
+          data.assessor.map((assessor:any)=>{
+if(assessor.status==='Call Review'){
+  this.assessorRemark= true
+}
+          })
+          
           if (data?.typeOfApplicant === 'L') {
             if(data.sidmMember==="No"){
 this.amount=45000
