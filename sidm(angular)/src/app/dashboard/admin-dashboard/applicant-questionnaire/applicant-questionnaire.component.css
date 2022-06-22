@@ -256,3 +256,7 @@ input[type="text"] {
 ::ng-deep .mat-horizontal-stepper-header-container {
   display: none !important;
 }
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+  padding: 0.25em 0 0.75em 0;
+  font-size: 19px !important;
+}
