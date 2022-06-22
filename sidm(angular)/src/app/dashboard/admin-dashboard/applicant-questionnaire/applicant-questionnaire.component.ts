@@ -423,7 +423,8 @@ control.at(i).get('score')?.updateValueAndValidity()
 console.log(data,'not');
 
     this.toast.success(data);
-    const url='/adminAssessor'
+    
+    const url='/dashboard/admin'
     window.location.href=url
   })
   }
@@ -553,7 +554,7 @@ console.log(this.questionnaireForm);
     console.log(data);
     
     this.toast.success(data);
-    const url='/adminAssessor'
+    const url='/dashboard/admin'
     window.location.href=url
   })
   }
