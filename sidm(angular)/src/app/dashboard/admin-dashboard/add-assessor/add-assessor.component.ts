@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CellNumValidation, panValidation } from 'src/app/shared/services/custom-validator.service';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-add-assessor',
@@ -15,7 +16,10 @@ export class AddAssessorComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private httpService:HttpService,
     private toast: ToastrService,
-    private routes: Router,) { 
+    private routes: Router,
+    private localStorage: LocalStorageService,) { 
+      let type= this.localStorage.get('type');
+      
     this.assessorForm=this.fb.group({
       assessorName:['',Validators.required],
       email: ['', [Validators.required, Validators.email]],

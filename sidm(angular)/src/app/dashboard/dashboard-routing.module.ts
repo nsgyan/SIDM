@@ -3,13 +3,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminAuthGuradService } from '../shared/services/admin-auth-gurad.service';
+import { MemberAuthguradService } from '../shared/services/member-authgurad.service';
 
 const routes: Routes = [
 
   {
     path: 'admin',
     loadChildren: () => import(`../dashboard/admin-dashboard/admin-dashboard.module`).then(m => m.AdminDashboardModule),
-    canActivate:[AdminAuthGuradService]
+    canActivate:[MemberAuthguradService]
   },
   {
     path: 'member',

@@ -7,6 +7,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
 import {Location} from '@angular/common';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-applicant-questionnaire',
@@ -33,7 +34,14 @@ questionnaireForm:FormGroup
     private route: ActivatedRoute,
     private routes:Router,
     private location: Location, 
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private localStorage: LocalStorageService,) {
+      let email= this.localStorage.get('email');
+      if(email!=="pritam.lal@cii.in"){
+this.localStorage.clearLocalStorage()
+const url='/login/adminAssessor'
+window.location.href=url
+      }
       this.id = this.route.snapshot.paramMap.get('id')
       this.httpService.getdetails(this.id).subscribe((data:any)=>{
         if (data?.category === 'cat1') {

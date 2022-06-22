@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MemberAuthguradService } from 'src/app/shared/services/member-authgurad.service';
 import { AddAssessorComponent } from './add-assessor/add-assessor.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { ApplicantFormViewComponent } from './applicant-form-view/applicant-form-view.component';
@@ -15,7 +16,7 @@ import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionna
 const routes: Routes = [
   { path: '', component: ListViewComponent ,
 },
-  { path: 'edit/:id', component:AdminEditComponent },
+  { path: 'edit/:id', component:AdminEditComponent,},
   { path: 'add/assessor', component:AddAssessorComponent },
   { path: 'assessor', component:AssessorListComponent },
   { path: 'questionnaire', component:QuestionnaireComponent },
