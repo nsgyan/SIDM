@@ -22,7 +22,7 @@
 </header>
 
 <button class="BackBtn" (click)="goBack()">Back</button>
-<div class="clearfix"></div>
+
 
 <div class="questionnaireForm">
   <!-- <div>
@@ -58,6 +58,9 @@
   </div>
   
   <button mat-button (click)="openModel(aissmentdata?.category)" class="RegistrationBtn">Call For Review</button>
+<button mat-button  *ngIf="aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
+<button mat-button  *ngIf="aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
+<div class="clearfix"></div>
   <!-- <button class="RegistrationBtn CallBtn" mat-button  (click)="submit('Call Review')">Call Review</button> -->
   <form [formGroup]="assessor">
     <mat-stepper #stepper>
@@ -93,7 +96,9 @@
               </div> -->
 
 
-            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i]?.answer">Selected option: <span class="secondText">{{aissmentdata.questionAns[i]?.answer}}</span></h2>
+           
+            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i]?.adminAnswer">Admin Assessor Response : <span class="secondText">{{aissmentdata.questionAns[i]?.adminAnswer}}</span></h2>
+            <h2 class="mt-3" *ngIf="aissmentdata.questionAns[i]?.applicantAnswer">Applicant Response : <span class="secondText">{{aissmentdata.questionAns[i]?.applicantAnswer}}</span></h2>
 
             <div *ngIf="aissmentdata.questionAns[i]?.inputType==='assessorScore'">
               <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i]?.description"></div>
@@ -122,8 +127,10 @@
 
             <div>
 
-              <button  mat-button matStepperNext class="RegistrationBtn">Next</button>
-
+              <button *ngIf="i!==lastIndex ||aissmentdata?.category!=='cat4'"  mat-button matStepperNext class="RegistrationBtn">Next</button>
+             
+              <button mat-button  *ngIf="i===lastIndex && aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
+              <button mat-button  *ngIf="i===lastIndex && aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
               <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
@@ -256,7 +263,8 @@
           <div>
 
          
-            <button  mat-button matStepperNext class="RegistrationBtn">Next</button>
+            <button mat-button  *ngIf="aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
+            <button mat-button  *ngIf="aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
 
             <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
@@ -266,19 +274,7 @@
 
      
     </mat-step>
-      <mat-step   >
-      
-      
-    
-        <div>
 
-        
-          <button mat-button  *ngIf="aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
-          <button mat-button  *ngIf="aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
-          <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
-        </div>
-
-      </mat-step>
 
      
     </mat-stepper>
