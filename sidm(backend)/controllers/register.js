@@ -143,7 +143,7 @@ exports.postRegistrationForm = (req, res, next) => {
       var mailOptions = {
         from: 'awardsidm@gmail.com',
         to: maillist,
-        subject: 'SIDM Champion Award 2022',
+        subject: 'SIDM Champion Awards 2022',
         html: htmlToSend
       };
       transporter.sendMail(mailOptions, function(error, info){
@@ -181,7 +181,7 @@ exports.postRegistrationForm = (req, res, next) => {
         var mailOptions = {
           from: 'awardsidm@gmail.com',
           to: maillist,
-          subject: 'SIDM Champion Award 2022',
+          subject: 'SIDM Champion Awards 2022',
           html: htmlToSend
         };
         transporter.sendMail(mailOptions, function(error, info){
@@ -435,7 +435,7 @@ exports.changeStatus = (req, res, next) => {
       var mailOptions = {
         from: 'awardsidm@gmail.com',
         to: maillist,
-        subject: 'SIDM Champion Award 2022',
+        subject: 'SIDM Champion Awards 2022',
         html: htmlToSend
       };
       transporter.sendMail(mailOptions, function(error, info){

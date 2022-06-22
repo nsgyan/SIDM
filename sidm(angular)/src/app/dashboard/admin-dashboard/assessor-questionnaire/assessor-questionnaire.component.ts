@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { ModelComponent } from 'src/app/shared/services/model/model.component';
 
 @Component({
   selector: 'app-assessor-questionnaire',
@@ -20,12 +21,12 @@ export class AssessorQuestionnaireComponent implements OnInit {
   filter:FormGroup;
   itemPerPage = 10;
   applicantData:any;
-
+average=0
   id: any;
   submited: boolean=false;
   constructor(private httpService: HttpService,
     private toast: ToastrService,
-    private localStorage: LocalStorageService,
+    private location: Location, 
     private routes: Router,
     private fb: FormBuilder,
     public dialog: MatDialog) { 
@@ -62,7 +63,12 @@ export class AssessorQuestionnaireComponent implements OnInit {
         }
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
-        }
+        } 
+        item.assessor.map((assessor:any)=>{
+          this.average+=Number( assessor.applicantScore);
+          this.average+=assessor.score
+        })
+        item.average=(this.average/800)*100
         const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
@@ -145,6 +151,9 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
   })
   data.map((item:any)=>{
     item.assessor.map((assessorUser:any)=>{
+      if(assessorUser.email==='prahlada.ramarao@gmail.com'){
+        item.prahlada=assessorUser
+      }
       if(assessorUser.email==='aspillai.bm@gmail.com'){
         item.aspillai=assessorUser
       }
@@ -182,5 +191,33 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
   reset(){
     location.reload();
   }
+  navigateTo(category:any,type:any,status:any){
+        this.routes.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+        // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
+        // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+      }
+  
+      openModel(data:any){
+        const dialogRef = this.dialog.open(ModelComponent, {
+          width: '500px',
+          data: {data: data,type:'View'},
+        });
+        
+      
+      }
  
 }
+
+
+//   constructor( private router: Router) { }
+
+//   ngOnInit(): void {
+//   }
+   
+//   navigateTo(category:any,type:any,status:any){
+//     this.router.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+//     // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
+//     // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+//   }
+
+// }

@@ -186,7 +186,7 @@ data.save().then(data=>{
         var mailOptions = {
           from: 'awardsidm@gmail.com',
           to: maillist,
-          subject: 'SIDM Champion Award 2022',
+          subject: 'SIDM Champion Awards 2022',
           html: htmlToSend
         };
         transporter.sendMail(mailOptions, function(error, info){
@@ -265,7 +265,7 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
                 var mailOptions = {
                   from: 'awardsidm@gmail.com',
                   to: maillist,
-                  subject: 'SIDM Champion Award 2022',
+                  subject: 'SIDM Champion Awards 2022',
                   html: htmlToSend
                 };
                 transporter.sendMail(mailOptions, function(error, info){
@@ -347,7 +347,7 @@ exports.staticissmentQuestionnaire=(req,res)=>{
                 var mailOptions = {
                   from: 'awardsidm@gmail.com',
                   to: maillist,
-                  subject: 'SIDM Champion Award 2022',
+                  subject: 'SIDM Champion Awards 2022',
                   html: htmlToSend
                 };
                 transporter.sendMail(mailOptions, function(error, info){
@@ -461,7 +461,7 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
                     var mailOptions = {
                       from: 'awardsidm@gmail.com',
                       to: maillist,
-                      subject: 'SIDM Champion Award 2022',
+                      subject: 'SIDM Champion Awards 2022',
                       html: htmlToSend
                     };
                     transporter.sendMail(mailOptions, function(error, info){
