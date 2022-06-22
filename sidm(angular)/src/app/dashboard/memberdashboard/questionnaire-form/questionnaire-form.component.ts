@@ -38,7 +38,8 @@ questionnaireForm:FormGroup
     email:item.email,
     maxScore:null,
     score:null,
-    remark:null
+    remark:null,
+    assessorDocument:null
   })
 
   })

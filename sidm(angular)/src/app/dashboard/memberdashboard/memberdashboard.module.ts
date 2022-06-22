@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MemberDashboardPageComponent } from './member-dashboard-page/member-dashboard-page.component';
 import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionnaire.component';
+import { AssessorRemarkComponent } from './assessor-remark/assessor-remark.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { EditQuestionnaireComponent } from './edit-questionnaire/edit-questionna
     ViewQuestionnaireComponent,
     MemberDashboardPageComponent,
     EditQuestionnaireComponent,
+    AssessorRemarkComponent,
   ],
   imports: [
     CommonModule,
