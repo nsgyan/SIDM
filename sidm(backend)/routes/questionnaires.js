@@ -22,6 +22,7 @@ router.get('/applicantQuestionnaire/aplicantList',adminAssessor.applicantQuestio
 router.get('/applicantQuestionnaire',adminAssessor.aplicantList)
 router.get('/filterAssessmentsList',Assessor.filterAssessmentsList)
 router.get('/assessmentsList',Assessor.assessmentsList)
+router.post('/assessorRequiredDocument',questionnaires.assessorRequiredDocument)
 
 
 

@@ -16,6 +16,9 @@ export class HttpService {
   postregistrationForm(formData: any) {
     return this.httpService.post(Globals.route.formsData, formData);
   }
+  assessorRequiredDocument(formData: any) {
+    return this.httpService.post(Globals.route.assessorRequiredDocument, formData);
+  }
   adminlogin(adminData: any) {
     return this.httpService.post(Globals.route.login, adminData)
   }

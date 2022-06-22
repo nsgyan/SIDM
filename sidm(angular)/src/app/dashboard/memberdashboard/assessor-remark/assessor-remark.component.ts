@@ -31,9 +31,9 @@ average=0
     private fb: FormBuilder,
     public dialog: MatDialog,
     private route: ActivatedRoute,) { 
-      const id = this.route.snapshot.paramMap.get('id')
+      this.id = this.route.snapshot.paramMap.get('id')
     
-      this.httpService.getdetails(id).
+      this.httpService.getdetails(this.id).
       subscribe((data: any) => {
       
         data.assessor.map((assessorUser:any)=>{
@@ -98,6 +98,35 @@ average=0
           width: '500px',
           data: {data: data,type:'View'},
         });
+        
+      
+      }
+      uploadDocument(data:any,assessor:any){
+        const dialogRef = this.dialog.open(ModelComponent, {
+          width: '500px',
+          data: {data: data,type:'uploadDocument'},
+        });
+        dialogRef.afterClosed().subscribe((res:any) => {
+          // received data from dialog-component
+        
+          if(res===null){
+            console.log(res,'close');
+          }
+          else{
+            console.log(res,'open');
+          
+          
+      if(res?.document){
+        assessor.document=res?.document
+        this.httpService.assessorRequiredDocument({id:this.id,assessor:assessor}).subscribe(Data=>{
+          console.log(Data);
+          
+        })
+      
+          }
+        }
+       
+        })
         
       
       }
