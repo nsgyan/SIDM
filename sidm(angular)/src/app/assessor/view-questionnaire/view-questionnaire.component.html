@@ -127,10 +127,10 @@
 
             <div>
 
-              <button *ngIf="i!==lastIndex ||aissmentdata?.category!=='cat4'"  mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i!==lastIndex ||aissmentdata?.category==='cat4'"  mat-button matStepperNext class="RegistrationBtn">Next</button>
              
               <button mat-button  *ngIf="i===lastIndex && aissmentdata?.category!=='cat4'"(click)="submit('Completed')"class="RegistrationBtn">Submit</button>
-              <button mat-button  *ngIf="i===lastIndex && aissmentdata?.category==='cat4'" (click)="staticSubmit('Completed')" class="RegistrationBtn">Submit</button>
+
               <button  mat-button matStepperPrevious class="RegistrationBtn">Back</button>
 
             </div>
