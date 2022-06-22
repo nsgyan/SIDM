@@ -141,7 +141,8 @@ form {
   float: left !important;
 }
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex  {
-  width: 430px;
+  width: 800px;
+  margin-top: 1.5rem;
 }
 textarea {
   display: block;
@@ -175,4 +176,7 @@ input[type="text"] {
 }
 ::ng-deep .mat-horizontal-stepper-header-container {
   display: none !important;
+}
+.questionnaireLabel {
+  font-size: 20px;
 }

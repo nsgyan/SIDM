@@ -223,3 +223,18 @@ textarea {
 ::ng-deep .mat-horizontal-stepper-header-container {
     display: none !important;
   }
+.viewBtn {
+    background: #363a7a;
+    padding: 10px 15px;
+    border: none;
+    margin: 1rem 1rem 0 0;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
+  }
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex  {
+    width: 800px;
+    margin-top: 1.5rem;
+  }

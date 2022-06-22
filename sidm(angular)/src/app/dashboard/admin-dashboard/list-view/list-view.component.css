@@ -45,7 +45,7 @@ table {
 }
 td,
 th {
-  width: 6%;
+  /* width: 6%; */
   text-align: center;
   border: none;
   font-size: 14px;
@@ -172,6 +172,9 @@ cursor: pointer !important;
 }
 .mat-drawer-content {
   height: 100vh !important;
+}
+.companyNameW {
+  width: 15%;
 }
 
 @media only screen and (max-width: 320px) {

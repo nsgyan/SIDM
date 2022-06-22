@@ -108,6 +108,17 @@ form {
     color: #fff;
     float: right;
 }
+.SubmittedBtn {
+    background: #363a7a;
+    padding: 0px 15px;
+    border: none;
+    margin: 1rem 1rem 0 0;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    color: #fff;
+}
 ::ng-deep .mat-horizontal-content-container {
     overflow: auto !important;
     padding: 0 24px 24px 24px;
