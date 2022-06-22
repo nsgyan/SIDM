@@ -62,6 +62,7 @@ export class AdminAssessorLoginComponent implements OnInit {
   assessorlogin() {
  
     if (this.assessorform.valid) {
+      if(this.assessorform.value.email==='pritam.lal@cii.in'){
       this.httpService.assessorLogin({ email: this.assessorform.value.email, password: this.assessorform.value.password })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
@@ -76,7 +77,10 @@ export class AdminAssessorLoginComponent implements OnInit {
       //    this.routes.navigateByUrl(url);
       //  window.location.href=url
         this.toast.success('Assessor Successfully login!');
-      })
+      })}
+      else{
+        this.toast.error('Invalid Eamil');
+      }
     }
 
     else {

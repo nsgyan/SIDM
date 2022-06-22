@@ -69,6 +69,7 @@
         <th scope="col">S.No</th>
         <th scope="col">Company Name</th>
         <th scope="col">Category</th>
+        <th>Dr A Sivathanu Pillai</th>
         <th  scope="col">Dr Parlahda</th>
         <th  scope="col">	Lt Gen JP Nehra</th>
         <th  scope="col">	Mr SC Bajpai</th>
@@ -76,6 +77,8 @@
         <th  scope="col">	Rear Admiral Pritam Lal</th>
         <th  scope="col">Mr Sunil Misra</th>
         <th  scope="col">		Bharat Jain</th>
+        <th  scope="col">		Final Jury</th>
+        <th  scope="col">		Total Score</th>
       </tr>
     </thead>
     <tbody>
@@ -86,15 +89,23 @@
         <td >
           <span >
             <span class="text-danger" *ngIf="item.aspillai.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.aspillai.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.aspillai.status==='Call Review'" (click)="openModel(item.aspillai.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.aspillai.status==='Completed'"> Completed</span> <br />
             Score:{{ item.aspillai.score }}/{{ item.aspillai.maxScore }}
+          </span>
+        </td>
+        <td >
+          <span >
+            <span class="text-danger" *ngIf="item.prahlada.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.prahlada.status==='Call Review'" (click)="openModel(item.prahlada.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.prahlada.status==='Completed'"> Completed</span> <br />
+            Score:{{ item.prahlada.score }}/{{ item.prahlada.maxScore }}
           </span>
         </td>
           <td >
           <span >
             <span class="text-danger" *ngIf="item.jp.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.jp.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.jp.status==='Call Review'"  (click)="openModel(item.jp.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.jp.status==='Completed'"> Completed</span> <br />
             Score:{{ item.jp.score }}/{{ item.jp.maxScore }}
           </span>
@@ -102,7 +113,7 @@
         <td >
           <span >
             <span class="text-danger" *ngIf="item.scbajpai1.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.scbajpai1.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.scbajpai1.status==='Call Review'" (click)="openModel(item.scbajpai1.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.scbajpai1.status==='Completed'"> Completed</span> <br />
             Score:{{ item.scbajpai1.score }}/{{ item.scbajpai1.maxScore }}
           </span>
@@ -110,7 +121,7 @@
         <td >
           <span >
             <span class="text-danger" *ngIf="item.rktyagi.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.rktyagi.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.rktyagi.status==='Call Review'"  (click)="openModel(item.rktyagi.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.rktyagi.status==='Completed'"> Completed</span> <br />
             Score:{{ item.rktyagi.score }}/{{ item.rktyagi.maxScore }}
           </span>
@@ -118,7 +129,7 @@
         <td >
           <span >
             <span class="text-danger" *ngIf="item.pritam.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.pritam.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.pritam.status==='Call Review'" (click)="openModel(item.pritam.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.pritam.status==='Completed'"> Completed</span> <br />
             Score:{{ item.pritam.score }}/{{ item.pritam.maxScore }}
           </span>
@@ -126,7 +137,7 @@
         <td >
           <span >
             <span class="text-danger" *ngIf="item.dg.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.dg.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.dg.status==='Call Review'" (click)="openModel(item.dg.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.dg.status==='Completed'"> Completed</span> <br />
             Score:{{ item.dg.score }}/{{ item.dg.maxScore }}
           </span>
@@ -134,11 +145,13 @@
         <td  >
           <span >
             <span class="text-danger" *ngIf="item.bharat.status==='Pending'"> Pending</span>
-            <span class=" callR" *ngIf="item.bharat.status==='Call Review'"> Call Review</span>
+            <a class=" callR" *ngIf="item.bharat.status==='Call Review'" (click)="openModel(item.bharat.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.bharat.status==='Completed'"> Completed</span> <br />
             Score:{{ item.bharat.score }}/{{ item.bharat.maxScore }}
           </span>
         </td>
+        <td></td>
+        <td>{{item.average}}</td>
       </tr>
     </tbody>
   </table>

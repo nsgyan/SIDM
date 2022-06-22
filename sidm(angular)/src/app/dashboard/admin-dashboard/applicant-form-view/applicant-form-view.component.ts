@@ -121,7 +121,8 @@ export class ApplicantFormViewComponent implements OnInit {
   }
   viewQuestionnaire(id:any){
     let url: string = "/dashboard/admin/ViewApplicantQuestionnaire/" +id
-    this.routes.navigateByUrl(url);
+    // this.routes.navigateByUrl(url);
+    this.routes.navigate([]).then(result => {  window.open(url, '_blank'); });
   }
   
 }
