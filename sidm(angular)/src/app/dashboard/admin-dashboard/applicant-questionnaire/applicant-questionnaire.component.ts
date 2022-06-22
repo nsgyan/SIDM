@@ -114,7 +114,7 @@ else {
            assessor:[item.assessor],
            option:[item.option],
            maxScore:[item.maxScore,] ,
-           applicantAnswer:[item.applicantAnswer],
+           applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
            adminRemark:[item.adminRemark?item.adminRemark:''],
            adminAnswer:[item.adminAnswer?item.adminAnswer:''],
            parameterDescription:[item.parameterDescription]

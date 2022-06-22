@@ -81,6 +81,11 @@ average=0
       })
       data.map((item:any)=>{
         item.assessor.map((assessorUser:any)=>{
+          if(assessorUser.email==='prahlada.ramarao@gmail.com'){
+            item.prahlada=assessorUser
+            console.log('jhkeeo');
+            
+          }
           if(assessorUser.email==='aspillai.bm@gmail.com'){
             item.aspillai=assessorUser
           }
@@ -154,6 +159,8 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
     item.assessor.map((assessorUser:any)=>{
       if(assessorUser.email==='prahlada.ramarao@gmail.com'){
         item.prahlada=assessorUser
+        console.log('jhkeeo');
+        
       }
       if(assessorUser.email==='aspillai.bm@gmail.com'){
         item.aspillai=assessorUser

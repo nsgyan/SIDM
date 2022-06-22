@@ -28,12 +28,17 @@
         <div class="col-lg-12">
             <div class="container">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Remark ! : </strong> <span  [innerHTML]="questionnaireData?.adminRemark"></span>
+                    <strong>Questionnaire Remark ! : </strong> <span  [innerHTML]="questionnaireData?.adminRemark"></span>
+                    <span>Document : </span>
                     <input *ngIf="!questionnaireData.doccumentAskedByAdmin" type="file" (change)="adminRequiredDoccument($event)">
                     <a class="" *ngIf="questionnaireData.doccumentAskedByAdmin" href="{{questionnaireData?.doccumentAskedByAdmin}}"
                     target="_blank"><i class="fas fa-eye"></i></a>
                 <a *ngIf="questionnaireData.doccumentAskedByAdmin" (click)="delete('documentGstCertificate')"><i
                         class="fa fa-trash"></i></a>
+                        <button mat-button *ngIf="static&&userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+                        <button mat-button *ngIf="static&&!userData.offlinePaymentDetails" (click)="submitStaticQuestionnaire('save')" class="RegistrationBtn">Save</button>
+                        <button *ngIf=" !static &&userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+                        <button *ngIf=" !static &&!userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('save')" class="RegistrationBtn">Save</button>
                 </div>
                 
             </div>
