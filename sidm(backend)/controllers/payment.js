@@ -101,18 +101,18 @@ exports.verifypayment= async (req,res)=>{
         const source = fs.readFileSync(filePath, 'utf-8').toString();
         const template = handlebars.compile(source);
         const replacements = {
-          email: data.email,
-          mobileNumber:data.mobileNumber,
-          PanNumber:data.panNumber,
+          category: data.category,
+          mobileNumber:data.typeOfApplicant,
+          // PanNumber:data.panNumber,
           date:Date
   
         };
         var maillist = [
           data.email,
-          'bharat.jain@sidm.in',
-        'awards22@sidm.in',
-        'vikas.rai@sidm.in',
-        'manoj.mishra@sidm.in'
+        //   'bharat.jain@sidm.in',
+        // 'awards22@sidm.in',
+        // 'vikas.rai@sidm.in',
+        // 'manoj.mishra@sidm.in'
            
         ];
         

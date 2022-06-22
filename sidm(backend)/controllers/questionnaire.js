@@ -153,6 +153,9 @@ for(i of item){
         status:'Pending',
         maxScore:null,
         score:null,
+        remark:null,
+        applicantScore:null,
+        totalScore:null
       })
      
 }
@@ -165,10 +168,10 @@ data.save().then(data=>{
     
         var maillist = [
             data.email,
-          'bharat.jain@sidm.in',
-          'awards22@sidm.in',
-          'vikas.rai@sidm.in',
-          'manoj.mishra@sidm.in'
+        //   'bharat.jain@sidm.in',
+        //   'awards22@sidm.in',
+        //   'vikas.rai@sidm.in',
+        //   'manoj.mishra@sidm.in'
            
   
         ];
@@ -210,6 +213,7 @@ data.save().then(data=>{
 }
 exports.updateAissmentQuestionnaire=(req,res)=>{
     const userId= req.body.userId
+    const doccumentAskedByAdmin= req.body.doccumentAskedByAdmin
     const questionnaireStatus= req.body.questionnaireStatus
     const id= req.body.id
     const adminRemark= req.body.adminRemark
@@ -218,6 +222,7 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
     const category= req.body.category
     questionnaireAissment.findById(id).then(assessment=>{
         assessment.userId=userId,
+         assessment.doccumentAskedByAdmin=doccumentAskedByAdmin,
         assessment.adminRemark=adminRemark,
         assessment.totalScore=totalScore,
         assessment.questionAns=questionAns,
@@ -225,11 +230,12 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
         assessment.status=questionnaireStatus,
         assessment.save().then(data=>{
             RegistrationForm.findById(userId).then(data=>{
-                data.questionnaireStatus=questionnaireStatus
+                data.questionnaireStatus=questionnaireStatus,
+                
                 data.save().then(data=>{
                     let filePath
-                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='aprroved'||questionnaireStatus==='requestInfo'){
-                    if(questionnaireStatus==='aprroved'){
+                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='approved'||questionnaireStatus==='requestInfo'){
+                    if(questionnaireStatus==='approved'){
                         filePath = path.join(__dirname, '../view/questionaireApprove.html');}
                         else if(questionnaireStatus==='Submitted'){
                          filePath = path.join(__dirname, '../view/questionairesubmitted.html');
@@ -242,10 +248,10 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
             
                 var maillist = [
                     data.email,
-                  'bharat.jain@sidm.in',
-                  'awards22@sidm.in',
-                  'vikas.rai@sidm.in',
-                  'manoj.mishra@sidm.in'
+                //   'bharat.jain@sidm.in',
+                //   'awards22@sidm.in',
+                //   'vikas.rai@sidm.in',
+                //   'manoj.mishra@sidm.in'
                    
           
                 ];
@@ -294,10 +300,14 @@ exports.staticissmentQuestionnaire=(req,res)=>{
     const secoundStaticMaxScore= req.body.secoundStaticMaxScore
     const secoundStaticAnswer= req.body.secoundStaticAnswer
     const secoundStaticTable= req.body.secoundStaticTable
+    const staticAssessor= req.body.staticAssessor
+    const secoundStaticAssessor= req.body.secoundStaticAssessor
     const status= req.body.status
     const aissment= new questionnaireAissment({
         userId:userId,
         totalScore:totalScore,
+        staticAssessor:staticAssessor,
+        secoundStaticAssessor:secoundStaticAssessor,
         questionAns:questionAns,
         category:category,
         staticScore:staticScore,
@@ -319,10 +329,10 @@ exports.staticissmentQuestionnaire=(req,res)=>{
             
                 var maillist = [
                     data.email,
-                  'bharat.jain@sidm.in',
-                  'awards22@sidm.in',
-                  'vikas.rai@sidm.in',
-                  'manoj.mishra@sidm.in'
+                //   'bharat.jain@sidm.in',
+                //   'awards22@sidm.in',
+                //   'vikas.rai@sidm.in',
+                //   'manoj.mishra@sidm.in'
                    
           
                 ];
@@ -358,6 +368,9 @@ for(i of item){
         status:'Pending',
         maxScore:null,
         score:null,
+        remark:null,
+        applicantScore:null,
+        totalScore:null
       })
       console.log(data.assessor)
 } data.questionnaireStatus=status
@@ -376,6 +389,8 @@ data.save().then(data=>{
 
 exports.updateStaticissmentQuestionnaire=(req,res)=>{
     const userId= req.body.userId
+    const doccumentAskedByAdmin= req.body.doccumentAskedByAdmin
+    
     const questionnaireStatus= req.body.questionnaireStatus
     const id= req.body.id
     const adminRemark= req.body.adminRemark
@@ -390,10 +405,15 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
     const secoundStaticScore= req.body.secoundStaticScore
     const secoundStaticAnswer= req.body.secoundStaticAnswer
     const secoundStaticTable= req.body.secoundStaticTable
+    const staticAssessor= req.body.staticAssessor
+    const secoundStaticAssessor= req.body.secoundStaticAssessor
     
     questionnaireAissment.findById(id).then(assessment=>{
         assessment.userId=userId,
+        assessment.doccumentAskedByAdmin=doccumentAskedByAdmin,
         assessment.adminRemark=adminRemark,
+        assessment.staticAssessor=staticAssessor,
+        assessment.secoundStaticAssessor=secoundStaticAssessor,
         assessment.totalScore=totalScore,
         assessment.status=questionnaireStatus,
         assessment.questionAns=questionAns,
@@ -410,8 +430,8 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
             RegistrationForm.findById(userId).then(data=>{
                 data.questionnaireStatus=questionnaireStatus
                 data.save().then(data=>{
-                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='aprroved'||questionnaireStatus==='requestInfo'){
-                        if(questionnaireStatus==='aprroved'){
+                    if(questionnaireStatus==='Submitted'||questionnaireStatus==='approved'||questionnaireStatus==='requestInfo'){
+                        if(questionnaireStatus==='approved'){
                             filePath = path.join(__dirname, '../view/questionaireApprove.html');}
                             else if(questionnaireStatus==='Submitted'){
                              filePath = path.join(__dirname, '../view/questionairesubmitted.html');
@@ -424,10 +444,10 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
                 
                     var maillist = [
                         data.email,
-                      'bharat.jain@sidm.in',
-                      'awards22@sidm.in',
-                      'vikas.rai@sidm.in',
-                      'manoj.mishra@sidm.in'
+                    //   'bharat.jain@sidm.in',
+                    //   'awards22@sidm.in',
+                    //   'vikas.rai@sidm.in',
+                    //   'manoj.mishra@sidm.in'
                        
               
                     ];
@@ -483,6 +503,7 @@ exports.getAissmentQuestionnaire=(req,res)=>{
 }
 exports.assessorScore=(req,res)=>{
     const userId= req.body.id
+    const assessor= req.body.assessor
     const assessorMaxScore= req.body.assessorMaxScore
     const assessorScore= req.body.assessorScore
     const assessorID= req.body.assessorID
@@ -491,20 +512,14 @@ exports.assessorScore=(req,res)=>{
     const status= req.body.status
     const questionAns=req.body.aissment
     const assessorRemark=req.body.assessorRemark
+    const totalMaxScore=req.body.totalMaxScore
+    const TotalObtained=req.body.TotalObtained
     questionnaireAissment.findById(userId).then(data=>{
         data.questionAns=questionAns
-        data.assessorRemark=assessorRemark
-data.assessor.push({
-    assessorName: assessorName,
-    assessorEmail:assessorEmail,
-    assessorID:assessorID,
-    assessorMaxScore:assessorMaxScore,
-    assessorScore:assessorScore,
-    status:status
-})
+data.assessor=assessor  
         data.save().then(item=>{
             RegistrationForm.findByIdAndUpdate(item.userId,{$pull:{assessor:{email:assessorEmail}}}).then(savedData=>{
-                RegistrationForm.findByIdAndUpdate(item.userId,{$push: {assessor:{id:assessorID,assessorName:assessorName,email:assessorEmail,status:status,maxScore:assessorMaxScore,score:assessorScore}}}).then(savedData=>{
+                RegistrationForm.findByIdAndUpdate(item.userId,{$push: {assessor:{id:assessorID,assessorName:assessorName,email:assessorEmail,status:status,maxScore:assessorMaxScore,score:assessorScore,remark:assessorRemark,applicantScore:TotalObtained,totalScore:totalMaxScore}}}).then(savedData=>{
                     res.status(200).send(data)
                 })
             })
@@ -517,7 +532,16 @@ data.assessor.push({
 exports.findmember=(req,res)=>{
     const category= req.query.category
     const typeOfApplicant= req.query.typeOfApplicant
-    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'aprroved'}).then(data=>{
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,questionnaireStatus:'approved'}).then(data=>{
+        res.status(200).send(data)
+    }).catch(err=>{
+        res.json("internal server error");
+    })
+}
+exports.applicantQuestionnaire=(req,res)=>{
+    const category= req.query.category
+    const typeOfApplicant= req.query.typeOfApplicant
+    RegistrationForm.find({category:category,typeOfApplicant:typeOfApplicant,status:'approved'}).then(data=>{
         res.status(200).send(data)
     }).catch(err=>{
         res.json("internal server error");
