@@ -101,6 +101,7 @@
           <th scope="col">S.No</th>
           <th scope="col">Company Name</th>
           <th scope="col">Category</th>
+          <th>Dr A Sivathanu Pillai</th>
           <th  scope="col">Dr Parlahda</th>
           <th  scope="col">	Lt Gen JP Nehra</th>
           <th  scope="col">	Mr SC Bajpai</th>
@@ -123,6 +124,14 @@
               <a class=" callR" *ngIf="item.aspillai.status==='Call Review'" (click)="openModel(item.aspillai.remark)"> Call Review</a>
               <span class="bg" *ngIf="item.aspillai.status==='Completed'"> Completed</span> <br />
               Score:{{ item.aspillai.score }}/{{ item.aspillai.maxScore }}
+            </span>
+          </td>
+          <td >
+            <span >
+              <span class="text-danger" *ngIf="item.prahlada.status==='Pending'"> Pending</span>
+              <a class=" callR" *ngIf="item.prahlada.status==='Call Review'" (click)="openModel(item.prahlada.remark)"> Call Review</a>
+              <span class="bg" *ngIf="item.prahlada.status==='Completed'"> Completed</span> <br />
+              Score:{{ item.prahlada.score }}/{{ item.prahlada.maxScore }}
             </span>
           </td>
             <td >
