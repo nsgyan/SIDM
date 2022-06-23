@@ -74,6 +74,7 @@ window.location.href=url
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         } 
+        this.average=0
         item.assessor.map((assessor:any)=>{
           this.average+=Number( assessor.applicantScore);
           this.average+=assessor.score

@@ -26,10 +26,12 @@ average=0
   submited: boolean=false;
   constructor(private httpService: HttpService,
     private toast: ToastrService,
-    private location: Location, 
+   
     private routes: Router,
     private fb: FormBuilder,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog,
+    private localStorage: LocalStorageService,) { 
+    
       this.getdata('sdaf')
       this.filter= this.fb.group({
         category:['',Validators.required],
@@ -64,6 +66,7 @@ average=0
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         } 
+        this.average=0
         item.assessor.map((assessor:any)=>{
           this.average+=Number( assessor.applicantScore);
           this.average+=assessor.score
@@ -80,6 +83,11 @@ average=0
       })
       data.map((item:any)=>{
         item.assessor.map((assessorUser:any)=>{
+          if(assessorUser.email==='prahlada.ramarao@gmail.com'){
+            item.prahlada=assessorUser
+            console.log('jhkeeo');
+            
+          }
           if(assessorUser.email==='aspillai.bm@gmail.com'){
             item.aspillai=assessorUser
           }
@@ -153,6 +161,8 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
     item.assessor.map((assessorUser:any)=>{
       if(assessorUser.email==='prahlada.ramarao@gmail.com'){
         item.prahlada=assessorUser
+        console.log('jhkeeo');
+        
       }
       if(assessorUser.email==='aspillai.bm@gmail.com'){
         item.aspillai=assessorUser
@@ -189,14 +199,14 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
 
   }
   reset(){
-    location.reload();
+   
   }
   navigateTo(category:any,type:any,status:any){
         this.routes.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
         // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
         // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
       }
-  
+   
       openModel(data:any){
         const dialogRef = this.dialog.open(ModelComponent, {
           width: '500px',
