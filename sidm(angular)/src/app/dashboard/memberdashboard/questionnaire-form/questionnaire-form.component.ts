@@ -152,7 +152,6 @@ get table(): FormArray {
     .get('table') as FormArray;
 }
 
-
 get firsttable(): FormArray {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   return control
@@ -160,15 +159,12 @@ get firsttable(): FormArray {
     .get('table') as FormArray;
 }
 
-
-
 addTable(empIndex: number): FormArray {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   return control.at(empIndex).get('table') as FormArray;
 }
 
 addStaticTable(index:any): FormGroup {
-
   if(index==2){
   return  this.fb.group({
     product: [''],
@@ -187,19 +183,9 @@ else {
 addStatic(empIndex: number) {
 this.addTable(empIndex).push(this.addStaticTable(empIndex));
 }
-
 removeStatic(empIndex: number, skillIndex: number) {
   this.addTable(empIndex).removeAt(skillIndex);
 }
-
-
-
-
-
-
-
-
-
 removeAissment(index:number) {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   control.removeAt(index)
