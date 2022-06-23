@@ -46,8 +46,12 @@
         </div>
       </div>
     </div>
-    <div *ngIf="questionnaireData.doccumentAskedByAdmin"><span>Applicant Response Against Admin Assessor Remark</span> <a class="mx-2" *ngIf="questionnaireData.doccumentAskedByAdmin" href="{{questionnaireData?.doccumentAskedByAdmin}}"
-      target="_blank"><i class="fas fa-eye"></i></a></div>
+    <div *ngIf="questionnaireData.doccumentAskedByAdmin">
+      <span style="font-size: 16px;color:#000;">Applicant Response Against Admin Assessor Remark</span>
+        <a class="mx-2" *ngIf="questionnaireData.doccumentAskedByAdmin" href="{{questionnaireData?.doccumentAskedByAdmin}}"
+      target="_blank">
+          <i class="fas fa-eye"></i>
+        </a></div>
 
 
   </div>
