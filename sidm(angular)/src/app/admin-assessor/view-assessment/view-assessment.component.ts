@@ -30,7 +30,16 @@ average=0
     private location: Location, 
     private routes: Router,
     private fb: FormBuilder,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog,
+    private localStorage: LocalStorageService,) { 
+      let email= this.localStorage.get('email');
+      if(email!=="pritam.lal@cii.in"){
+this.localStorage.clearLocalStorage()
+const url='/login/adminAssessor'
+
+window.location.href=url
+
+      }
       this.getdata('sdaf')
       this.filter= this.fb.group({
         category:['',Validators.required],
@@ -65,6 +74,7 @@ average=0
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         } 
+        this.average=0
         item.assessor.map((assessor:any)=>{
           this.average+=Number( assessor.applicantScore);
           this.average+=assessor.score

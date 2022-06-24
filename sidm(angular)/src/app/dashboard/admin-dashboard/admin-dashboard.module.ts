@@ -1,6 +1,6 @@
 
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { RecaptchaModule } from 'ng-recaptcha';
@@ -34,6 +34,7 @@ import { NgModule } from '@angular/core';
 import { CKEditorModule } from 'ckeditor4-angular';
 import {MatStepperModule} from '@angular/material/stepper';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { InterceptorService } from 'src/app/shared/services/interceptor.service';
 
 
 
@@ -79,9 +80,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule,
     MatStepperModule,
    
-
-    
-  
   ]
+  
 })
 export class AdminDashboardModule { }

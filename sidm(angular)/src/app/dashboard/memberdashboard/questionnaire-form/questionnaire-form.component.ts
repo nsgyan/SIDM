@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, FormArray, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { HttpService } from "src/app/shared/services/http.service";
@@ -47,17 +47,7 @@ questionnaireForm:FormGroup
     
   })
     this.questionnaireForm=this.fb.group({
-      aissment: this.fb.array([]) ,
-      staticAnswer:[''],
-      staticTable:this.fb.array([]) ,
-      staticScore:[''] ,
-      staticMaxScore:[''] ,
-      staticAssessor:[this.assessor],
-      secoundStaticAnswer:[''],
-      secoundStaticAssessor:[this.assessor],
-      secoundStaticTable:this.fb.array([]) ,
-      secoundStaticScore:[''] ,
-      secoundStaticMaxScore:[20] ,
+      aissment: this.fb.array([]) ,  
     })
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
  
@@ -87,7 +77,7 @@ this.questionnaireForm.get('staticMaxScore')?.updateValueAndValidity()
    }
 
   ngOnInit(): void {
-    this.addStaticQuestion()
+
   }
 
 
@@ -112,12 +102,18 @@ getquestion(category:any,typeOfApplicant:any){
       option:[],
       maxScore:[''] ,
       applicantAnswer:[],
+      table:this.fb.array([]),
       parameterDescription:[item.parameterDescription]
     })
   );
    
  })
  let j=0;
+ if ( this.userData.category === 'C4') {
+  this.addStatic(2)
+  this.addStatic(4)
+  }
+
  for(let item of this.questionnaireData){ 
   let control = <FormArray>this.questionnaireForm.get('aissment');
   if(item.textBox)
@@ -137,6 +133,8 @@ getquestion(category:any,typeOfApplicant:any){
 }
 
  
+console.log(this.questionnaireForm);
+
     
   })
 }
@@ -145,48 +143,49 @@ get nameAissment(): FormArray {
   return this.questionnaireForm.get('aissment') as FormArray;
 }
 
-get secoundStaticTable(): FormArray {
-  return this.questionnaireForm.get('secoundStaticTable') as FormArray;
-}
 
 
-get staticTable(): FormArray {
-  return this.questionnaireForm.get('staticTable') as FormArray;
-}
-removeStaticQuestion(index:number) {
-  let control = <FormArray>this.questionnaireForm.get('staticTable');
-  control.removeAt(index)
-}
-removeSecoundStaticTable(index:number) {
-  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
-  control.removeAt(index)
+get table(): FormArray {
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  return control
+    .at(4)
+    .get('table') as FormArray;
 }
 
-addsecoundStaticQuestion() {
-  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
-  control.push(
-    this.fb.group({
-      product: [''],
-      IcContent:[''],
-      answer:['']
-    })
-  );
+get firsttable(): FormArray {
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  return control
+    .at(2)
+    .get('table') as FormArray;
+}
+
+addTable(empIndex: number): FormArray {
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  return control.at(empIndex).get('table') as FormArray;
+}
+
+addStaticTable(index:any): FormGroup {
+  if(index==2){
+  return  this.fb.group({
+    product: [''],
+    IcContent:[''],
+    answer:['']
+  })}
+else {
+  return  this.fb.group({
+    product: [''], 
+    uploadDocuments:[''],
+    description:[''],
+    IcContent:[''],
+  })}
  
 }
-
-addStaticQuestion() {
-  let control = <FormArray>this.questionnaireForm.get('staticTable');
-  control.push(
-    this.fb.group({
-      product: [''], 
-      uploadDocuments:[''],
-      description:[''],
-      IcContent:[''],
-    })
-  );
- 
+addStatic(empIndex: number) {
+this.addTable(empIndex).push(this.addStaticTable(empIndex));
 }
-
+removeStatic(empIndex: number, skillIndex: number) {
+  this.addTable(empIndex).removeAt(skillIndex);
+}
 removeAissment(index:number) {
   let control = <FormArray>this.questionnaireForm.get('aissment');
   control.removeAt(index)
@@ -205,7 +204,8 @@ addAissment() {
       score:[''],
       inputType:[''],
       option:[''],
-      maxScore:['']    
+      maxScore:['']   ,
+      table:this.fb.array([]),
     })
   );
  
@@ -214,7 +214,7 @@ resolved(captchaResponse: any) {
   this.captcha = captchaResponse;
 }
 
-staticTableChangeListener($event: any,index:any){
+staticTableChangeListener($event: any,tableIndex:any,index:any){
   let file = $event.target.files;
 
 
@@ -234,7 +234,7 @@ staticTableChangeListener($event: any,index:any){
     const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
     const time = '7:00 AM';
     this.httpService.upload(file[0]).subscribe((data: any) => {
-      let control = <FormArray>this.questionnaireForm.get('staticTable');
+      let control = <FormArray>this.addTable(tableIndex);
       control.at(index).get('uploadDocuments')?.setValue(data.body)
       control.at(index).get('uploadDocuments')?.updateValueAndValidity()
     })
@@ -362,43 +362,7 @@ submitStaticQuestionnaire(status:any){
 
   let j=0;
 
-let staticAnswer=this.questionnaireForm.value.staticAnswer
-if(staticAnswer==="Build to Customer Print"){
-  this.questionnaireForm.get('secoundStaticScore')?.setValue(6)
-  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
-  this.totalScore+=6
-}else if(staticAnswer==="Under ToT from FOEM"){
-  this.questionnaireForm.get('secoundStaticScore')?.setValue(10)
-  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
-  this.totalScore+=10
-}else if(staticAnswer==="Under ToT from DRDO"){
-  this.questionnaireForm.get('secoundStaticScore')?.setValue(15)
-  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
-  this.totalScore+=15
-}
-else if(staticAnswer==="Indigenous, in-house design"){
-  this.questionnaireForm.get('secoundStaticScore')?.setValue(20)
-  this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
-  this.totalScore+=20
-}  
-if(staticAnswer==="More than 05 type"){
-  this.questionnaireForm.get('staticScore')?.setValue(10)
-  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
-  this.totalScore+=10
-}else if(staticAnswer==="03-04 types"){
-  this.questionnaireForm.get('staticScore')?.setValue(7)
-  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
-  this.totalScore+=7
-}else if(staticAnswer==="02 types of products"){
-  this.questionnaireForm.get('staticScore')?.setValue(5)
-  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
-  this.totalScore+=5
-}
-else if(staticAnswer==="Single product"){
-  this.questionnaireForm.get('staticScore')?.setValue(2)
-  this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
-  this.totalScore+=2
-}  
+
 console.log(this.totalScore,this.questionnaireForm);
   if (this.questionnaireForm.valid   ) {
     let  i=0;
@@ -456,16 +420,6 @@ control.at(i).get('score')?.updateValueAndValidity()
     totalScore:this.totalScore,
     category:this.questionnaireData[0].category,
     questionAns:this.questionnaireForm.value.aissment,
-    staticAnswer:this.questionnaireForm.value.staticAnswer,
-    staticTable:this.questionnaireForm.value.staticTable,
-    staticMaxScore:this.questionnaireForm.value.staticMaxScore,
-    staticScore:this.questionnaireForm.value.staticScore,
-    secoundStaticAnswer:this.questionnaireForm.value.secoundStaticAnswer,
-    secoundStaticTable:this.questionnaireForm.value.secoundStaticTable ,
-    secoundStaticScore:this.questionnaireForm.value.secoundStaticScore ,
-    secoundStaticMaxScore:this.questionnaireForm.value.secoundStaticMaxScore, 
-    staticAssessor:this.questionnaireForm.value.staticAssessor, 
-    secoundStaticAssessor:this.questionnaireForm.value.secoundStaticAssessor,
     status:status
 
 

@@ -113,11 +113,16 @@ if(data.category==='cat4'){
             answer:[item.answer],
             uploadDocuments:[item.uploadDocuments],
             description:[item.description],
-            score:[item.score] ,
+            score:[item.score],     
             inputType:[item.inputType],
-            option:[item.option],
-            maxScore:[item.maxScore],
             assessor:[item.assessor],
+            option:[item.option],
+            maxScore:[item.maxScore,] ,
+            applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
+            adminRemark:[item.adminRemark?item.adminRemark:''],
+            adminAnswer:[item.adminAnswer?item.adminAnswer:''],
+            table:[item.table?item.table:''], 
+            parameterDescription:[item.parameterDescription],
             assessorRemark:[this.remark?this.remark:null],
             assessorScore:[this.scorebyAssessor?this.scorebyAssessor:null,[Validators.max(Number( item.maxScore))]] 
           })
@@ -126,16 +131,21 @@ if(data.category==='cat4'){
           control.push(
             this.fb.group({
               question: [item.question],      
-              answer:[item.answer],
-              uploadDocuments:[item.uploadDocuments],
-              description:[item.description],
-              score:[item.score] ,
-              inputType:[item.inputType],
-              option:[item.option],
-              maxScore:[item.maxScore],
-              assessor:[item.assessor],
-              assessorRemark:[this.remark?this.remark:null],
-              assessorScore:[this.scorebyAssessor?this.scorebyAssessor:null,[Validators.max(Number( item.maxScore))]] 
+            answer:[item.answer],
+            uploadDocuments:[item.uploadDocuments],
+            description:[item.description],
+            score:[item.score],     
+            inputType:[item.inputType],
+            assessor:[item.assessor],
+            option:[item.option],
+            maxScore:[item.maxScore,] ,
+            applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
+            adminRemark:[item.adminRemark?item.adminRemark:''],
+            adminAnswer:[item.adminAnswer?item.adminAnswer:''],
+            table:[item.table?item.table:''], 
+            parameterDescription:[item.parameterDescription],
+            assessorRemark:[this.remark?this.remark:null],
+            assessorScore:[this.scorebyAssessor?this.scorebyAssessor:null,[Validators.max(Number( item.maxScore))]]
             })
           );
         }
@@ -147,7 +157,11 @@ if(data.category==='cat4'){
         this.maxScore=this.maxScore+item.maxScore
         item.assessorScore= Number( item.assessorScore);
         this.assessorScore=this.assessorScore+item.assessorScore
-        
+        item.table.map((tableData:any)=>{
+          if(tableData.uploadDocuments){
+            tableData.uploadDocuments = environment.download + tableData.uploadDocuments
+          }
+        })
         if(item.uploadDocuments){
           item.uploadDocuments = environment.download + item.uploadDocuments
         }
@@ -161,6 +175,8 @@ if(data.category==='cat4'){
         this.assessor.get('assessorScore')?.setValue(data.assessorScore)
         this.assessor.get('assessorScore')?.updateValueAndValidity()
         }
+        console.log(this.assessor);
+        
       
     },err=>{
       this.routes.navigate(['login/admin'])

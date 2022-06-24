@@ -63,16 +63,6 @@ questionnaireForm:FormGroup
       })
       this.questionnaireForm=this.fb.group({
         aissment: this.fb.array([]) ,
-        staticAnswer:[''],
-        staticTable:this.fb.array([]) ,
-        staticScore:[''] ,
-        staticMaxScore:['20'] ,
-        secoundStaticAnswer:['20'],
-        staticAssessor:[''],
-        secoundStaticAssessor:[''],
-        secoundStaticTable:this.fb.array([]) ,
-        secoundStaticScore:[''] ,
-        secoundStaticMaxScore:[''] ,
         adminReview:[''],
         doccumentAskedByAdmin:[null],
       })
@@ -92,11 +82,7 @@ else if (this.questionnaireData.category === 'cat3') {
 }
 else {
   this.category = 'C4'
-  this.questionnaireForm.get('secoundStaticAssessor')?.setValue(this.questionnaireData.secoundStaticAssessor)
-  this.questionnaireForm.get('secoundStaticAssessor')?.updateValueAndValidity()
-  this.questionnaireForm.get('staticAssessor')?.setValue(this.questionnaireData.staticAssessor)
-  this.questionnaireForm.get('staticAssessor')?.updateValueAndValidity()
-  this.userScore+=10+20
+ 
 }
 
       data.questionAns.map((item:any)=>{
@@ -117,6 +103,7 @@ else {
            applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
            adminRemark:[item.adminRemark?item.adminRemark:''],
            adminAnswer:[item.adminAnswer?item.adminAnswer:''],
+           table:this.fb.array([]) ,
            parameterDescription:[item.parameterDescription]
          })
        );
@@ -134,8 +121,30 @@ else {
         this.questionnaireForm.get('doccumentAskedByAdmin')?.setValue(this.questionnaireData.doccumentAskedByAdmin)
         this.questionnaireForm.get('doccumentAskedByAdmin')?.updateValueAndValidity()
       }
-
       let j=0;
+      data.questionAns.map((item:any)=>{
+        item.table.map((tableData:any)=>{
+          if(j===2){
+            this.addTable(j).push( this.fb.group({
+              product: [tableData.product],
+              IcContent:[tableData.IcContent],
+              answer:[tableData.answer]
+            }))
+          }
+          else if(j===4){
+            this.addTable(j).push(  this.fb.group({
+              product: [tableData.product], 
+              uploadDocuments:[tableData.uploadDocuments],
+              description:[tableData.description],
+              IcContent:[tableData.IcContent],
+            }))
+          }
+
+        })
+        j++;
+      })
+
+       j=0;
       for(let item of this.questionnaireData.questionAns){ 
        let control = <FormArray>this.questionnaireForm.get('aissment');
        if(item.textBox)
@@ -154,47 +163,53 @@ else {
      }
       
       
-   
-     if( this.questionnaireData?.secoundStaticAnswer){
-      this.static=true
-     
-      this.questionnaireForm.get('secoundStaticAnswer')?.setValue(this.questionnaireData.secoundStaticAnswer)
-      this.questionnaireForm.get('secoundStaticAnswer')?.updateValueAndValidity()
-      this.questionnaireForm.get('secoundStaticScore')?.setValue(this.questionnaireData.secoundStaticScore)
-      this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
-      let staticControl=<FormArray>this.questionnaireForm.get('secoundStaticTable');
-      data.secoundStaticTable.map((item:any)=>{
-        staticControl.push(
-          this.fb.group({
-            product: [item.product], 
-            IcContent:[item.IcContent],
-            answer:[item.answer]
-          })
-        );
     
-      })
-    }
-     if( this.questionnaireData?.staticAnswer){
-      this.static=true
-      this.questionnaireForm.get('staticAnswer')?.setValue(this.questionnaireData.staticAnswer)
-      this.questionnaireForm.get('staticAnswer')?.updateValueAndValidity()
-      this.questionnaireForm.get('staticScore')?.setValue(this.questionnaireData.staticScore)
-      this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
-      let staticControl=<FormArray>this.questionnaireForm.get('staticTable');
-      data.staticTable.map((item:any)=>{
-        staticControl.push(
-          this.fb.group({
-            product: [item.product], 
-            uploadDocuments:[item.uploadDocuments],
-            description:[item.description],
-            IcContent:[item.IcContent],
-          })
-        );
-        if(item.uploadDocuments){
-          item.uploadDocuments = environment.download + item.uploadDocuments
-        }
-      })
-    }
+    //  if( this.questionnaireData?.secoundStaticAnswer){
+    //   this.static=true
+     
+    //   this.questionnaireForm.get('secoundStaticAnswer')?.setValue(this.questionnaireData.secoundStaticAnswer)
+    //   this.questionnaireForm.get('secoundStaticAnswer')?.updateValueAndValidity()
+    //   this.questionnaireForm.get('secoundStaticScore')?.setValue(this.questionnaireData.secoundStaticScore)
+    //   this.questionnaireForm.get('secoundStaticScore')?.updateValueAndValidity()
+    //   let staticControl=<FormArray>this.questionnaireForm.get('secoundStaticTable');
+    //   data.secoundStaticTable.map((item:any)=>{
+    //     staticControl.push(
+    //       this.fb.group({
+    //         product: [item.product], 
+    //         IcContent:[item.IcContent],
+    //         answer:[item.answer]
+    //       })
+    //     );
+    
+    //   })
+    // }
+    //  if( this.questionnaireData?.staticAnswer){
+    //   this.static=true
+    //   this.questionnaireForm.get('staticAnswer')?.setValue(this.questionnaireData.staticAnswer)
+    //   this.questionnaireForm.get('staticAnswer')?.updateValueAndValidity()
+    //   this.questionnaireForm.get('staticScore')?.setValue(this.questionnaireData.staticScore)
+    //   this.questionnaireForm.get('staticScore')?.updateValueAndValidity()
+    //   let staticControl=<FormArray>this.questionnaireForm.get('staticTable');
+    //   data.staticTable.map((item:any)=>{
+    //     staticControl.push(
+    //       this.fb.group({
+    //         product: [item.product], 
+    //         uploadDocuments:[item.uploadDocuments],
+    //         description:[item.description],
+    //         IcContent:[item.IcContent],
+    //       })
+    //     );
+    //     if(item.uploadDocuments){
+    //       item.uploadDocuments = environment.download + item.uploadDocuments
+    //     }
+    //   })
+    // }
+    this.questionnaireData.questionAns.map((quest:any)=>{
+      quest.table.map((item:any)=>{
+       if(item.uploadDocuments){
+        item.uploadDocuments = environment.download + item.uploadDocuments
+       }
+    })})
     if(this.questionnaireData.doccumentAskedByAdmin){
       this.questionnaireData.doccumentAskedByAdmin = environment.download + this.questionnaireData.doccumentAskedByAdmin
     }
@@ -216,45 +231,47 @@ else {
 get nameAissment(): FormArray {
   return this.questionnaireForm.get('aissment') as FormArray;
 }
-get secoundStaticTable(): FormArray {
-  return this.questionnaireForm.get('secoundStaticTable') as FormArray;
-}
-get staticTable(): FormArray {
-  return this.questionnaireForm.get('staticTable') as FormArray;
-}
-removeStaticQuestion(index:number) {
-  let control = <FormArray>this.questionnaireForm.get('staticTable');
-  control.removeAt(index)
+
+get table(): FormArray {
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  return control
+    .at(4)
+    .get('table') as FormArray;
 }
 
-removeSecoundStaticTable(index:number) {
-  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
-  control.removeAt(index)
+get firsttable(): FormArray {
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  return control
+    .at(2)
+    .get('table') as FormArray;
 }
 
-addsecoundStaticQuestion() {
-  let control = <FormArray>this.questionnaireForm.get('secoundStaticTable');
-  control.push(
-    this.fb.group({
-      product: [''],
-      IcContent:[''],
-      answer:['']
-    })
-  );
+addTable(empIndex: number): FormArray {
+  let control = <FormArray>this.questionnaireForm.get('aissment');
+  return control.at(empIndex).get('table') as FormArray;
+}
+
+addStaticTable(index:any): FormGroup {
+  if(index==2){
+  return  this.fb.group({
+    product: [''],
+    IcContent:[''],
+    answer:['']
+  })}
+else {
+  return  this.fb.group({
+    product: [''], 
+    uploadDocuments:[''],
+    description:[''],
+    IcContent:[''],
+  })}
  
 }
-
-addStaticQuestion() {
-  let control = <FormArray>this.questionnaireForm.get('staticTable');
-  control.push(
-    this.fb.group({
-      product: [''], 
-      uploadDocuments:[''],
-      description:[''],
-      IcContent:[''],
-    })
-  );
- 
+addStatic(empIndex: number) {
+this.addTable(empIndex).push(this.addStaticTable(empIndex));
+}
+removeStatic(empIndex: number, skillIndex: number) {
+  this.addTable(empIndex).removeAt(skillIndex);
 }
 
 removeAissment(index:number) {
@@ -284,7 +301,7 @@ resolved(captchaResponse: any) {
   this.captcha = captchaResponse;
 }
 
-staticTableChangeListener($event: any,index:any){
+staticTableChangeListener($event: any,tableIndex:any,index:any){
   let file = $event.target.files;
 
 
@@ -304,7 +321,7 @@ staticTableChangeListener($event: any,index:any){
     const date = 'Wed Feb 20 2019 00:00:00 GMT-0400 (Atlantic Standard Time)';
     const time = '7:00 AM';
     this.httpService.upload(file[0]).subscribe((data: any) => {
-      let control = <FormArray>this.questionnaireForm.get('staticTable');
+      let control = <FormArray>this.addTable(tableIndex);
       control.at(index).get('uploadDocuments')?.setValue(data.body)
       control.at(index).get('uploadDocuments')?.updateValueAndValidity()
     })
@@ -598,6 +615,12 @@ if(res?.remark){
   }
  
   })
+}
+viewDetails(id: string) {
+  let url: string = "/adminAssessor/applicantForm/" + id
+  // this.routes.([]).then(result => {  window.open(link, '_blank'); });
+  this.routes.navigate([]).then(result => {  window.open(url, '_blank'); });
+
 }
 
 

@@ -29,7 +29,14 @@ export class ViewApplicantComponent implements OnInit {
     private toast: ToastrService,
     private location: Location, 
     public dialog: MatDialog,
-    private routes:Router) {
+    private routes:Router,  ) { 
+      let email= this.localStorage.get('email');
+      if(email!=="pritam.lal@cii.in"){
+this.localStorage.clearLocalStorage()
+const url='/login/adminAssessor'
+window.location.href=url
+      }
+
     const id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(id)
       .subscribe((data: any) => {
