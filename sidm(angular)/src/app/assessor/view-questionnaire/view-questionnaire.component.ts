@@ -81,11 +81,23 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.assessor=this.fb.group({
       aissment: this.fb.array([]) ,
       assessorScore:[''],
-      assessorRemark:['']
+      adminReview:[''],
+      assessorRemark:[''],
+      doccumentAskedByAdmin:[]
    
     })
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
   
+      if(data.doccumentAskedByAdmin){
+        this.assessor.get('doccumentAskedByAdmin')?.setValue(data.doccumentAskedByAdmin)
+        this.assessor.get('doccumentAskedByAdmin')?.updateValueAndValidity()
+      }
+      if(data.adminReview){
+        this.assessor.get('adminReview')?.setValue(data.adminReview)
+        this.assessor.get('adminReview')?.updateValueAndValidity()
+      }
+ 
+ 
     
 if(data.category==='cat4'){
   data.staticTable.map((item:any)=>{
@@ -281,6 +293,8 @@ x++;
         assessorScore:assessorScore,
         assessorID:assessorID,
         assessorEmail:email,
+      //   adminReview:this.assessor.value.adminReview,
+      // doccumentAskedByAdmin:this.assessor.value.doccumentAskedByAdmin,
         assessorName:name,
         status:status,
         aissment:this.assessor.value.aissment,

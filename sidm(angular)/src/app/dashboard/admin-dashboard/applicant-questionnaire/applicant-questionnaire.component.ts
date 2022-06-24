@@ -69,6 +69,10 @@ questionnaireForm:FormGroup
     this.httpService.getQuestionnaireAissment(this.id).subscribe((data:any)=>{
       let control = <FormArray>this.questionnaireForm.get('aissment');
       this.questionnaireData=data
+      if(this.questionnaireData.doccumentAskedByAdmin){
+        this.questionnaireForm.get('doccumentAskedByAdmin')?.setValue(this.questionnaireData.doccumentAskedByAdmin)
+        this.questionnaireForm.get('doccumentAskedByAdmin')?.updateValueAndValidity()
+      }
  
 
 if (this.questionnaireData.category === 'cat1') {
@@ -440,7 +444,7 @@ control.at(i).get('score')?.updateValueAndValidity()
 console.log(data,'not');
 
     this.toast.success(data);
-    const url='/adminAssessor'
+    const url='/admin'
     window.location.href=url
   })
   }
@@ -570,7 +574,7 @@ console.log(this.questionnaireForm);
     console.log(data);
     
     this.toast.success(data);
-    const url='/adminAssessor'
+    const url='/admin'
     window.location.href=url
   })
   }
@@ -616,12 +620,7 @@ if(res?.remark){
  
   })
 }
-viewDetails(id: string) {
-  let url: string = "/adminAssessor/applicantForm/" + id
-  // this.routes.([]).then(result => {  window.open(link, '_blank'); });
-  this.routes.navigate([]).then(result => {  window.open(url, '_blank'); });
 
-}
 
 
 }

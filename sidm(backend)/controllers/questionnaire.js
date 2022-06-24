@@ -505,6 +505,8 @@ exports.getAissmentQuestionnaire=(req,res)=>{
 }
 exports.assessorScore=(req,res)=>{
     const userId= req.body.id
+    // const doccumentAskedByAdmin= req.body.doccumentAskedByAdmin
+    // const adminReview= req.body.adminReview
     const assessor= req.body.assessor
     const assessorMaxScore= req.body.assessorMaxScore
     const assessorScore= req.body.assessorScore
@@ -518,6 +520,8 @@ exports.assessorScore=(req,res)=>{
     const TotalObtained=req.body.TotalObtained
     questionnaireAissment.findById(userId).then(data=>{
         data.questionAns=questionAns
+        // data.doccumentAskedByAdmin=doccumentAskedByAdmin
+        // data.adminReview=adminReview
 data.assessor=assessor  
         data.save().then(item=>{
             RegistrationForm.findByIdAndUpdate(item.userId,{$pull:{assessor:{email:assessorEmail}}}).then(savedData=>{
