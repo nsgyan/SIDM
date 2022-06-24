@@ -86,7 +86,7 @@
                   <p class="score">{{questionnaireData.questionAns[i].score}}</p>
                 </div>
               </div>
-              <h2 style="font-size: 26px;" class="matlable m-0">{{questionnaireData.questionAns[i].question}}</h2>
+              <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}} - {{questionnaireData.questionAns[i].question}}</h2>
               <p style="color:rgb(150 67 67);font-size: 18px; font-weight: 500;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
               <div class="auto-width">
                 <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
@@ -110,7 +110,9 @@
               font-weight: 600;" *ngIf="questionnaireData.questionAns[i].applicantAnswer">Applicant Response: 
                 <span style="font-size: 18px;
                 font-weight: 500;">{{questionnaireData.questionAns[i].applicantAnswer}}</span></p>
-              <p style="font-size: 18px;"  *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span>{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
+              <p style="font-size: 20px;color: #333;
+              font-weight: 600;"  *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span style="font-size: 18px;
+                font-weight: 500;">{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
                 <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
                   please select at least one option
                 </p>
@@ -176,8 +178,8 @@
                   <table class="table" formArrayName="table" >
                     <thead class="thead-dark">
                       <tr>
-                        <th scope="col">S.No</th>
-                        <th scope="col">Product</th>
+                        <th scope="col" style="width: 42px;">S.No</th>
+                        <th scope="col" style="width: 535px;">Product</th>
                         <!-- <th scope="col">Explain(25 words)</th> -->
                         <th scope="col">Upload Pic</th>
                         <!-- <th scope="col">IC Content %</th> -->
@@ -191,9 +193,10 @@
                        <td><input formControlName="product" type="text"></td>
                        <!-- <td><input formControlName="description"  type="text"></td> -->
                        <td style="width: 100px; text-align: center;">
-                        <a *ngIf="questionnaireData.questionAns[i]?.table[j].uploadDocuments" class="AttachementBtn ml-2"  target="blank"
-                      href="{{questionnaireData.questionAns[i]?.table[j].uploadDocuments}}">View Attachement</a>
-                        <input  (change)="staticTableChangeListener($event,i,j)"  type="file"></td>
+                        <a *ngIf="questionnaireData.questionAns[i]?.table[j]?.uploadDocuments" class="AttachementBtn ml-2"  target="blank"
+                      href="{{questionnaireData.questionAns[i]?.table[j]?.uploadDocuments}}">View Attachement</a>
+                    
+                        <input *ngIf="!questionnaireData.questionAns[i].table[j]?.uploadDocuments"  (change)="staticTableChangeListener($event,i,j)"  type="file"></td>
                        <!-- <td><input formControlName="IcContent"  type="text"></td> -->
                       </tr>
                     </tbody>

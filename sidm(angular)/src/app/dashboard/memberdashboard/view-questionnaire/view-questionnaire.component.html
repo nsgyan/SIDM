@@ -65,18 +65,7 @@
             <td>   <a class="ml-2 view-btn" *ngIf='item?.uploadDocuments'   target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a></td>
            
           </tr>
-          <tr *ngIf="aissmentdata?.category==='cat4'">
-            <th scope="row">{{aissmentdata?.questionAns.length+1}}</th>
-            <td class="">Number of types of products exported
-              Give a list of products in an excel with their
-              picture/small explanation</td>
-            <td>
-               {{aissmentdata[0]?.staticAnswer}}  <!-- <a *ngIf="item.description" class="link" (click)="openModel(item.description)">Description</a> -->
-            </td>
-            <td> 
-                <!-- <a class="ml-2" *ngIf='item?.uploadDocuments'   target="blank"  href="{{item?.uploadDocuments}}"> View Documents</a> -->
-              </td>
-          </tr>
+          
          
         </tbody>
     </table>

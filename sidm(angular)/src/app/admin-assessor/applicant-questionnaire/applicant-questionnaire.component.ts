@@ -36,6 +36,7 @@ questionnaireForm:FormGroup
     private location: Location, 
     public dialog: MatDialog,
     private localStorage: LocalStorageService,) {
+     
       let email= this.localStorage.get('email');
       if(email!=="pritam.lal@cii.in"){
 this.localStorage.clearLocalStorage()
