@@ -3,7 +3,8 @@
 </div>
 
 <div class="container mt-4">
-  <button class="viewBtn" (click)="goBack()"><i class="fa fa-long-armemberData-left"></i>Back</button>
+  <div *ngIf="questionnaireData?.doccumentAskedByAdmin"><span class="">Applicant Response Against Admin Assessor Remark</span> <a class="mx-2" *ngIf="questionnaireData.doccumentAskedByAdmin" href="{{questionnaireData?.doccumentAskedByAdmin}}"
+    target="_blank"><i class="fas fa-eye"></i></a></div>
   <button mat-button (click)="openModel(static)" class="RegistrationBtn">Call For Review</button>
   <button mat-button *ngIf="!static" (click)="submitQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
   <button mat-button *ngIf="static" (click)="submitStaticQuestionnaire('approved')" class="RegistrationBtn">Approve</button>
@@ -12,6 +13,9 @@
 '"   (click)="viewQuestionnaire(memberData._id)"><i
       aria-hidden="true" class="fas fa-edit" style="color:#363a7a"></i> View Questionnaire</button> -->
 </div>
+
+
+
 
 <div class="clearfix"></div>
 <div class="container">
