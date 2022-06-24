@@ -73,6 +73,10 @@ questionnaireForm:FormGroup
         this.questionnaireForm.get('doccumentAskedByAdmin')?.setValue(this.questionnaireData.doccumentAskedByAdmin)
         this.questionnaireForm.get('doccumentAskedByAdmin')?.updateValueAndValidity()
       }
+      if(this.questionnaireData.adminReview){
+        this.questionnaireForm.get('adminReview')?.setValue(this.questionnaireData.adminReview)
+        this.questionnaireForm.get('adminReview')?.updateValueAndValidity()
+      }
  
 
 if (this.questionnaireData.category === 'cat1') {
