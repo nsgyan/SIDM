@@ -57,7 +57,7 @@
               
             </div>
              
-              <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}}{{questionnaireData.questionAns[i].question}}</h2>
+              <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}} - {{questionnaireData.questionAns[i].question}}</h2>
               <p style="color:rgb(150 67 67);font-size: 18px; font-weight: 500;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
               <div class="auto-width">
                 <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
@@ -167,9 +167,9 @@
               <div>
   
 
-              <button *ngIf="i!==lastIndex ||static " mat-button matStepperNext class="RegistrationBtn">Next</button>
-              <button *ngIf="i===lastIndex && !static &&userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
-              <button *ngIf="i===lastIndex && !static &&!userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('save')" class="RegistrationBtn">Save</button>
+              <button *ngIf="i!==lastIndex  " mat-button matStepperNext class="RegistrationBtn">Next</button>
+              <button *ngIf="i===lastIndex  &&userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('Submitted')" class="RegistrationBtn">Submit</button>
+              <button *ngIf="i===lastIndex  &&!userData.offlinePaymentDetails" mat-button (click)="submitQuestionnaire('save')" class="RegistrationBtn">Save</button>
           
               <button *ngIf="i!==0" mat-button matStepperPrevious class="RegistrationBtn">Back</button>
              
