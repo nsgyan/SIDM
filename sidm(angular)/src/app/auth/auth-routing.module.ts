@@ -8,8 +8,8 @@ import { MemberLoginComponent } from './member-login/member-login.component';
 const routes: Routes = [
   { path: 'admin', component: AdminLoginComponent },
   { path: 'member', component: MemberLoginComponent },
-  { path: 'assessor', component: AssessorLoginComponent },
-  { path: 'adminAssessor', component:AdminAssessorLoginComponent },
+  // { path: 'assessor', component: AssessorLoginComponent },
+  // { path: 'adminAssessor', component:AdminAssessorLoginComponent },
 ];
 
 @NgModule({
