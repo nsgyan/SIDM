@@ -101,7 +101,9 @@ exports.verifypayment= async (req,res)=>{
         const source = fs.readFileSync(filePath, 'utf-8').toString();
         const template = handlebars.compile(source);
         const replacements = {
+          typeOfApplicant:data.typeOfApplicant,
           category: data.category,
+          companyName:data.companyName,
           mobileNumber:data.typeOfApplicant,
           PanNumber:data.panNumber,
           date:Date

@@ -177,7 +177,9 @@ data.save().then(data=>{
   
         ];
         const replacements = {
-           
+            typeOfApplicant:data.typeOfApplicant,
+            category: data.category,
+            companyName:data.companyName,
             date:new Date()
     
           };
@@ -257,7 +259,9 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
           
                 ];
                 const replacements = {
-                   
+                    typeOfApplicant:data.typeOfApplicant,
+                    category: data.category,
+                    companyName:data.companyName,
                     date:new Date()
             
                   };
@@ -338,7 +342,9 @@ exports.staticissmentQuestionnaire=(req,res)=>{
           
                 ];
                 const replacements = {
-                   
+                    typeOfApplicant:data.typeOfApplicant,
+                    category: data.category,
+                    companyName:data.companyName,
                     date:new Date()
             
                   };
@@ -454,7 +460,9 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
               
                     ];
                     const replacements = {
-                       
+                        typeOfApplicant:data.typeOfApplicant,
+                        category: data.category,
+                        companyName:data.companyName,
                         date:new Date()
                 
                       };

@@ -122,6 +122,9 @@ exports.postRegistrationForm = (req, res, next) => {
       const source = fs.readFileSync(filePath, 'utf-8').toString();
       const template = handlebars.compile(source);
       const replacements = {
+        typeOfApplicant:result.typeOfApplicant,
+        category: result.category,
+        companyName:result.companyName,
 
         email: result.email,
         mobileNumber:result.mobileNumber,
@@ -161,6 +164,9 @@ exports.postRegistrationForm = (req, res, next) => {
         const source = fs.readFileSync(filePath, 'utf-8').toString();
         const template = handlebars.compile(source);
         const replacements = {
+          typeOfApplicant:result.typeOfApplicant,
+          category: result.category,
+          companyName:result.companyName,
           email: result.email,
           mobileNumber:result.mobileNumber,
           PanNumber:result.panNumber,
@@ -426,7 +432,9 @@ exports.changeStatus = (req, res, next) => {
 
       ];
       const replacements = {
-                   
+        typeOfApplicant:success.typeOfApplicant,
+        category: success.category,
+        companyName:success.companyName,
         date:new Date()
 
       };
