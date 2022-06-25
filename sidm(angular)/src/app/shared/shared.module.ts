@@ -6,6 +6,7 @@ import { LowercaseDirective } from './services/lowercase.directive';
 import { ModelComponent } from './services/model/model.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { TwoDecimalPlaceDirective } from './two-decimal-place.directive';
 
 
 
@@ -14,7 +15,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     BlockCopyPasteDirective,
     UpperCaseDirective,
     LowercaseDirective,
-    ModelComponent
+    ModelComponent,
+    TwoDecimalPlaceDirective
   ],
   imports: [
     CommonModule,

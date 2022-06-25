@@ -74,12 +74,16 @@ window.location.href=url
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         } 
+   let i = 0
         this.average=0
         item.assessor.map((assessor:any)=>{
+          if (assessor.status !== "Pending") {
           this.average+=Number( assessor.applicantScore);
-          this.average+=assessor.score
+            this.average += assessor.score
+            i++
+          }
         })
-        item.average=(this.average/800)*100
+   item.average = Math.floor((this.average / (100 * i)) * 100)
         const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
@@ -92,11 +96,10 @@ window.location.href=url
       data.map((item:any)=>{
         item.assessor.map((assessorUser:any)=>{
           if(assessorUser.email==='prahlada.ramarao@gmail.com'){
-            item.prahlada=assessorUser
-            console.log('jhkeeo');
+            item.prahlada = assessorUser 
             
           }
-          if(assessorUser.email==='aspillai.bm@gmail.com'){
+          else if (assessorUser.email === 'aspillai.bm@gmail.com') {
             item.aspillai=assessorUser
           }
           else  if(assessorUser.email==='jp.nehra@cii.in'){

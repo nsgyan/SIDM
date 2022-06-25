@@ -77,6 +77,8 @@ export class AdminAssessorLoginComponent implements OnInit {
       //    this.routes.navigateByUrl(url);
       //  window.location.href=url
         this.toast.success('Assessor Successfully login!');
+        }, err => {
+          this.toast.error('Invalid Password');
       })}
       else{
         this.toast.error('Invalid Eamil');

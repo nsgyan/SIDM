@@ -77,6 +77,8 @@ export class AssessorLoginComponent implements OnInit {
       //    this.routes.navigateByUrl(url);
       //  window.location.href=url
         this.toast.success('Assessor Successfully login!');
+        }, err => {
+          this.toast.error('Email or Password not correct');
       })
     }
    

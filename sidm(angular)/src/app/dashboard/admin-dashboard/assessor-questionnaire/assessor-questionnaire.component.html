@@ -69,8 +69,8 @@
         <th scope="col">S.No</th>
         <th scope="col">Company Name</th>
         <th scope="col">Category</th>
-        <th>Dr A Sivathanu Pillai</th>
         <th  scope="col">Dr Parlahda</th>
+          <th>Dr A Sivathanu Pillai</th>
         <th  scope="col">	Lt Gen JP Nehra</th>
         <th  scope="col">	Mr SC Bajpai</th>
         <th  scope="col">Dr RK Tyagi</th>
@@ -91,7 +91,7 @@
             <span class="text-danger" *ngIf="item.aspillai.status==='Pending'"> Pending</span>
             <a class=" callR" *ngIf="item.aspillai.status==='Call Review'" (click)="openModel(item.aspillai.remark)"> Call Review</a>
             <span class="bg" *ngIf="item.aspillai.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.aspillai.score }}/{{ item.aspillai.maxScore }}
+            Score:{{ item.aspillai.score  }}/{{ item.aspillai.maxScore }}
           </span>
         </td>
         <td >
@@ -151,7 +151,7 @@
           </span>
         </td>
         <td></td>
-        <td>{{item.average}}</td>
+        <td>{{item.average | number: '2.2'}}</td>
       </tr>
     </tbody>
   </table>

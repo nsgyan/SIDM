@@ -134,7 +134,7 @@ else {
               adminAnswer: [item.adminAnswer ? item.adminAnswer : ''],
               table: this.fb.array([]),
               parameterDescription: [item.parameterDescription],
-              assessorScore: [this.scorebyAssessor ? this.scorebyAssessor : null, [Validators.max(Number(item.maxScore))]]
+              assessorScore: [this.scorebyAssessor ? this.scorebyAssessor : 0, [Validators.max(Number(item.maxScore))]]
             })
           );
         }

@@ -69,7 +69,8 @@ export class ViewQuestionnaireComponent implements OnInit {
       }
       data.assessor.map((item:any)=>{
         let assessorID= this.localStorage.get('assessorID');
-        if(assessorID===item.id){
+        if(assessorID===item.id&&item.document){
+          
           this.askedDoccument=  environment.download + item.document
         }
 
