@@ -19,7 +19,7 @@ import {Location} from '@angular/common';
 })
 export class ApplicantListComponent implements OnInit {
   requestInfo:FormGroup
-  displayedColumns: string[] = [ 'index', 'actions','name','category','typeOfApplicant', 'nameOfCompany','assessorStatus',];
+  displayedColumns: string[] = [ 'index', 'actions','name','category','typeOfApplicant', 'nameOfCompany','questionnaireStatus',];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

@@ -123,7 +123,7 @@ window.location.href=url
      
           if(item.category==='cat1'){
             if(item.typeOfApplicant==='M'){
-              this.cat1.mediumType.total+=1
+
               if(item.questionnaireStatus==='Submitted'){
                 this.cat1.mediumType.pending+=1
               }
@@ -133,11 +133,12 @@ window.location.href=url
               else if(item.questionnaireStatus==='requestInfo'){
                 this.cat1.mediumType.requestInfo+=1
               }
+              this.cat1.mediumType.total = this.cat1.mediumType.pending + this.cat1.mediumType.approved + this.cat1.mediumType.requestInfo
   
        
             }else if(item.typeOfApplicant==='L')
             {  
-              this.cat1.LargeType.total+=1
+
                 if(item.questionnaireStatus==='Submitted'){
               this.cat1.LargeType.pending+=1
             }
@@ -148,10 +149,11 @@ window.location.href=url
               this.cat1.LargeType.requestInfo+=1
             }
        
+              this.cat1.LargeType.total = this.cat1.LargeType.approved + this.cat1.LargeType.pending + this.cat1.LargeType.requestInfo
             }
             else if(item.typeOfApplicant==='S')
             {
-              this.cat1.startUpType.total+=1
+
               if(item.questionnaireStatus==='Submitted'){
                 this.cat1.startUpType.pending+=1
               }
@@ -161,6 +163,7 @@ window.location.href=url
               else if(item.questionnaireStatus==='requestInfo'){
                 this.cat1.startUpType.requestInfo+=1
               }
+              this.cat1.startUpType.total = this.cat1.startUpType.approved + this.cat1.startUpType.pending + this.cat1.startUpType.requestInfo
               
             }
           }
@@ -176,7 +179,7 @@ window.location.href=url
               else if(item.questionnaireStatus==='requestInfo'){
                 this.cat2.mediumType.requestInfo+=1
               }
-  
+              this.cat2.mediumType.total = this.cat2.mediumType.approved + this.cat2.mediumType.pending + this.cat2.mediumType.requestInfo
        
             }else if(item.typeOfApplicant==='L')
             {  
@@ -190,6 +193,7 @@ window.location.href=url
             else if(item.questionnaireStatus==='requestInfo'){
               this.cat2.LargeType.requestInfo+=1
             }
+              this.cat2.LargeType.total = this.cat2.LargeType.approved + this.cat2.LargeType.pending + this.cat2.LargeType.requestInfo
        
             }
             else if(item.typeOfApplicant==='S')
@@ -204,12 +208,13 @@ window.location.href=url
               else if(item.questionnaireStatus==='requestInfo'){
                 this.cat2.startUpType.requestInfo+=1
               }
+              this.cat2.startUpType.total = this.cat2.startUpType.approved + this.cat2.startUpType.pending + this.cat2.startUpType.requestInfo
               
             }
          }
             else  if(item.category==='cat3'){
               if(item.typeOfApplicant==='M'){
-                this.cat3.mediumType.total+=1
+
                 if(item.questionnaireStatus==='Submitted'){
                   this.cat3.mediumType.pending+=1
                 }
@@ -219,11 +224,12 @@ window.location.href=url
                 else if(item.questionnaireStatus==='requestInfo'){
                   this.cat3.mediumType.requestInfo+=1
                 }
+                this.cat3.mediumType.total = this.cat3.mediumType.approved + this.cat3.mediumType.pending + this.cat3.mediumType.requestInfo
     
          
               }else if(item.typeOfApplicant==='L')
               {  
-                this.cat3.LargeType.total+=1
+
                   if(item.questionnaireStatus==='Submitted'){
                 this.cat3.LargeType.pending+=1
               }
@@ -233,7 +239,7 @@ window.location.href=url
               else if(item.questionnaireStatus==='requestInfo'){
                 this.cat3.LargeType.requestInfo+=1
               }
-         
+                this.cat3.LargeType.total = this.cat3.LargeType.approved + this.cat3.LargeType.pending + this.cat3.LargeType.requestInfo
               }
               else if(item.typeOfApplicant==='S')
               {
@@ -247,7 +253,7 @@ window.location.href=url
                 else if(item.questionnaireStatus==='requestInfo'){
                   this.cat3.startUpType.requestInfo+=1
                 }
-                
+                this.cat3.startUpType.total = this.cat3.startUpType.approved + this.cat3.startUpType.pending + this.cat3.startUpType.requestInfo
               }
            }
              else  if(item.category==='cat4'){
@@ -263,7 +269,7 @@ window.location.href=url
                   this.cat4.mediumType.requestInfo+=1
                 }
     
-         
+                this.cat4.mediumType.total = this.cat4.mediumType.approved + this.cat4.mediumType.pending + this.cat4.mediumType.requestInfo
               }else if(item.typeOfApplicant==='L')
               {  this.cat4.LargeType.total+=1 
                   if(item.questionnaireStatus==='Submitted'){
@@ -275,11 +281,12 @@ window.location.href=url
               else if(item.questionnaireStatus==='requestInfo'){
                 this.cat4.LargeType.requestInfo+=1
               }
+                this.cat4.LargeType.total = this.cat4.LargeType.approved + this.cat4.LargeType.pending + this.cat4.LargeType.requestInfo
          
               }
               else if(item.typeOfApplicant==='S')
               {
-                this.cat4.startUpType.total+=1 
+
                 if(item.questionnaireStatus==='Submitted'){
                   this.cat4.startUpType.pending+=1
                 }
@@ -289,6 +296,7 @@ window.location.href=url
                 else if(item.questionnaireStatus==='requestInfo'){
                   this.cat4.startUpType.requestInfo+=1
                 }
+                this.cat4.startUpType.total = this.cat4.startUpType.approved + this.cat4.startUpType.pending + this.cat4.startUpType.requestInfo
                 
               }
              }

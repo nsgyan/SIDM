@@ -80,9 +80,9 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>  Company Name </th>
                 <td mat-cell *matCellDef="let row">{{row.nameOfCompany}}</td>
               </ng-container>
-              <ng-container matColumnDef="assessorStatus">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Assessor Status </th>
-                <td mat-cell *matCellDef="let row"><span class="text-danger" *ngIf="row.assessorStatus==='Pending'"> Pending</span> <span class="text-warning callR" *ngIf="row.assessorStatus==='Call Review'"> Call Review</span> <span class="bg" *ngIf="row.assessorStatus==='Completed'"> Completed</span></td>
+              <ng-container matColumnDef="questionnaireStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin Assessor Status </th>
+                <td mat-cell *matCellDef="let row"><span class="text-danger" *ngIf="row.questionnaireStatus==='Submitted'"> Pending</span> <span class="text-warning callR" *ngIf="row.questionnaireStatus==='requestInfo'"> Call Review</span> <span class="bg" *ngIf="row.questionnaireStatus==='approved'"> Approved</span></td>
               </ng-container>
     
     

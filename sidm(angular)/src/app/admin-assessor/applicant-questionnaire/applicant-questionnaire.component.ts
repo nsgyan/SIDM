@@ -27,6 +27,9 @@ userScore=0;
 questionnaireForm:FormGroup
   captcha: any;
   submited:any=null;
+  scorebyAssessor: any;
+  TotalObtained: number = 0;
+  totalMaxScore: any;
   constructor(
     private httpService: HttpService,
     private fb:FormBuilder,
@@ -102,27 +105,59 @@ else {
 }
 
       data.questionAns.map((item:any)=>{
+        item.assessor.map((assessor: any) => {
+          let assessorID = this.localStorage.get('assessorID')
+          if (assessor.id === assessorID) {
+
+            this.scorebyAssessor = assessor.score
+
+          }
+
+        })
      
         item.maxScore= Number( item.maxScore);
         this.userScore+=item.maxScore
+        if (item.inputType === 'assessorScore') {
+          control.push(
+            this.fb.group({
+              question: [item.question],
+              answer: [item.answer],
+              uploadDocuments: [item.uploadDocuments],
+              description: [item.description],
+              score: [item.score],
+              inputType: [item.inputType],
+              assessor: [item.assessor],
+              option: [item.option],
+              maxScore: [item.maxScore,],
+              applicantAnswer: [item.applicantAnswer ? item.applicantAnswer : item.answer],
+              adminRemark: [item.adminRemark ? item.adminRemark : ''],
+              adminAnswer: [item.adminAnswer ? item.adminAnswer : ''],
+              table: this.fb.array([]),
+              parameterDescription: [item.parameterDescription],
+              assessorScore: [this.scorebyAssessor ? this.scorebyAssessor : null, [Validators.max(Number(item.maxScore))]]
+            })
+          );
+        }
+        else {
        control.push(
          this.fb.group({
-           question: [item.question],      
-           answer:[item.answer],
-           uploadDocuments:[item.uploadDocuments],
-           description:[item.description],
-           score:[item.score],     
-           inputType:[item.inputType],
-           assessor:[item.assessor],
-           option:[item.option],
-           maxScore:[item.maxScore,] ,
-           applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
-           adminRemark:[item.adminRemark?item.adminRemark:''],
-           adminAnswer:[item.adminAnswer?item.adminAnswer:''],
-           table:this.fb.array([]) ,
-           parameterDescription:[item.parameterDescription]
+           question: [item.question],
+           answer: [item.answer],
+           uploadDocuments: [item.uploadDocuments],
+           description: [item.description],
+           score: [item.score],
+           inputType: [item.inputType],
+           assessor: [item.assessor],
+           option: [item.option],
+           maxScore: [item.maxScore,],
+           applicantAnswer: [item.applicantAnswer ? item.applicantAnswer : item.answer],
+           adminRemark: [item.adminRemark ? item.adminRemark : ''],
+           adminAnswer: [item.adminAnswer ? item.adminAnswer : ''],
+           table: this.fb.array([]),
+           parameterDescription: [item.parameterDescription]
          })
-       );
+          );
+        }
        if(item.uploadDocuments){
         item.uploadDocuments = environment.download + item.uploadDocuments
       }
@@ -247,6 +282,16 @@ else {
 get nameAissment(): FormArray {
   return this.questionnaireForm.get('aissment') as FormArray;
 }
+
+  keyPressNumbers(event: { which: any; keyCode: any; preventDefault: () => void; }) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 get table(): FormArray {
   let control = <FormArray>this.questionnaireForm.get('aissment');
@@ -453,11 +498,14 @@ control.at(i).get('score')?.updateValueAndValidity()
 
 
   }).subscribe((data:any)=>{
-console.log(data,'not');
-
+    if (status === 'approved') {
+      this.submit('Completed')
+    }
+    else {
     this.toast.success(data);
     const url='/adminAssessor'
-    window.location.href=url
+  window.location.href = url
+}
   })
   }
   else {
@@ -639,5 +687,105 @@ viewDetails(id: string) {
 
 }
 
+  submit(status: any) {
+
+
+    let control = <FormArray>this.questionnaireForm.get('aissment');
+
+    this.questionnaireData.questionAns.map((FormData: any) => {
+
+      this.TotalObtained = this.TotalObtained + Number(FormData.score);
+
+      this.totalMaxScore = this.totalMaxScore + Number(FormData.maxScore);
+    })
+    console.log(this.TotalObtained);
+    console.log(this.totalMaxScore);
+
+
+
+    let x = 0
+    this.questionnaireData.questionAns.map((item: any) => {
+      let j = 0;
+      control.value.map((FormData: any) => {
+        if (item.question === FormData.question) {
+          item.assessor.map((assessor: any) => {
+            let assessorID = this.localStorage.get('assessorID')
+            if (assessor.id === assessorID) {
+              assessor.remark = control.at(j).value.assessorRemark
+              assessor.score = control.at(j).value.assessorScore
+              assessor.maxScore = control.at(j).value.maxScore
+            }
+          })
+        }
+        j++;
+      })
+      control.at(x).get("assessor")?.reset()
+      control.at(x).get("assessor")?.updateValueAndValidity()
+      control.at(x).get("assessor")?.setValue(item.assessor)
+      control.at(x).get("assessor")?.updateValueAndValidity()
+      x++;
+
+    })
+
+
+
+    if (this.questionnaireForm.valid) {
+      let name = this.localStorage.get('name')
+      let email = this.localStorage.get('email')
+      let assessorID = this.localStorage.get('assessorID')
+      let control = <FormArray>this.questionnaireForm.get('aissment');
+      let assessorScore = 0
+      let assessorMaxScore = 0
+      let i = 0;
+      this.questionnaireData.questionAns.map((item: any) => {
+        if (item.inputType === 'assessorScore') {
+          let Maxscore = Number(control.at(i).value.maxScore)
+          assessorMaxScore += Maxscore
+          let score = Number(control.at(i).value.assessorScore)
+          assessorScore += score
+        }
+        i++;
+      })
+
+      this.questionnaireData.assessor.map((item: any) => {
+        if (item.id === assessorID) {
+          item.status = status
+          item.maxScore = assessorMaxScore,
+            item.score = assessorScore,
+            item.assessorRemark = this.questionnaireForm.value.assessorRemark
+        }
+      })
+      this.httpService.updateQuestionnaireAissment({
+        id: this.questionnaireData._id,
+        assessorMaxScore: assessorMaxScore,
+        assessor: this.questionnaireData.assessor,
+        assessorScore: assessorScore,
+        assessorID: assessorID,
+        assessorEmail: email,
+        //   adminReview:this.assessor.value.adminReview,
+        // doccumentAskedByAdmin:this.assessor.value.doccumentAskedByAdmin,
+        assessorName: name,
+        status: status,
+        aissment: this.questionnaireForm.value.aissment,
+        assessorRemark: this.questionnaireForm.value.assessorRemark,
+        TotalObtained: this.questionnaireData.totalScore,
+        totalMaxScore: this.totalMaxScore
+
+      }).subscribe(data => {
+        this.toast.success('Questionnaire updated');
+        const url = '/adminAssessor'
+        window.location.href = url
+
+      }, err => {
+        this.toast.error(err);
+      })
+    }
+    else {
+
+
+      this.toast.error('Please Fill Required Field');
+    }
+
+  }
 
 }

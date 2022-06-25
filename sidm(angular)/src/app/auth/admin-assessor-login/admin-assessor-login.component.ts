@@ -66,7 +66,7 @@ export class AdminAssessorLoginComponent implements OnInit {
       this.httpService.assessorLogin({ email: this.assessorform.value.email, password: this.assessorform.value.password })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)
-          this.localStorage.set('type', 'assessor')
+          this.localStorage.set('type', 'AdminAssessor')
           this.localStorage.set('name', data.data.assessorName)
           this.localStorage.set('email', data.data.email)
           this.localStorage.set('assessorID', data.data._id)

@@ -135,6 +135,17 @@
               <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">
                 Answer description required
               </p>
+              <div *ngIf="questionnaireData.questionAns[i]?.inputType==='assessorScore'">
+                <!-- <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i]?.description"></div> -->
+                <label class="text" for=`assessorScore${{i+1}}`> Assessor score: </label>
+                <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore"
+                  (keypress)="keyPressNumbers($event)" id=`assessorScore${{i+1}}`>
+                <p *ngIf="controlName.get('assessorScore')?.invalid" style="color: red;">
+                  Assessor
+                  score not greater than<strong>{{questionnaireData.questionAns[i]?.maxScore}}</strong>
+                </p>
+  
+              </div>
               <div style="margin:20px 0;" *ngIf="questionnaireData.questionAns[i].uploadDocuments" appearance="fill">
                 <a  class="AttachementBtn ml-2" *ngIf='questionnaireData.questionAns[i].uploadDocuments' target="blank"
                 href="{{questionnaireData.questionAns[i].uploadDocuments}}">View Attachement</a>

@@ -161,7 +161,6 @@ if(data.category==='cat4'){
             })
           );
         }
-  
    
  })
       data.questionAns.map((item:any)=>{
