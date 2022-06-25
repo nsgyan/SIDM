@@ -122,6 +122,7 @@ exports.postRegistrationForm = (req, res, next) => {
       const source = fs.readFileSync(filePath, 'utf-8').toString();
       const template = handlebars.compile(source);
       const replacements = {
+        
         email: result.email,
         mobileNumber:result.mobileNumber,
         PanNumber:result.panNumber,
