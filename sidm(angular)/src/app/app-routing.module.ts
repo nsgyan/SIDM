@@ -23,16 +23,16 @@ const routes: Routes = [
     loadChildren: () => import(`./dashboard/dashboard.module`).then(m => m.DashboardModule),
     canActivate:[AdminAuthGuradService]
   },
-  // {
-  //   path:'assessor',
-  //   loadChildren: () => import('../app/assessor/assessor.module').then(m=>AssessorModule),
-  //   canActivate:[AdminAuthGuradService]
-  // },
-  // {
-  //   path:'adminAssessor',
-  //   loadChildren: () => import('../app/admin-assessor/admin-assessor.module').then(m=>AdminAssessorModule),
-  //   canActivate:[AdminAuthGuradService]
-  // },
+  {
+    path:'assessor',
+    loadChildren: () => import('../app/assessor/assessor.module').then(m=>AssessorModule),
+    canActivate:[AdminAuthGuradService]
+  },
+  {
+    path:'adminAssessor',
+    loadChildren: () => import('../app/admin-assessor/admin-assessor.module').then(m=>AdminAssessorModule),
+    canActivate:[AdminAuthGuradService]
+  },
   {
     path: 'detail/:id',
     component: ViewpageComponent,
