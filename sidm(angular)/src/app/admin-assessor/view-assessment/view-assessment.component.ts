@@ -83,7 +83,7 @@ window.location.href=url
             i++
           }
         })
-   item.average = Math.floor((this.average / (100 * i)) * 100)
+   item.average = Math.round((this.average*100)) / (i * 100)
         const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)

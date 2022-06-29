@@ -194,13 +194,15 @@
                                                 class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a>
                                     </td>
                                         <td> <a *ngIf="memberData?.questionnaireStatus==='requestInfo'"  (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)" style="color: red;">Request Info</a>
-                                             <span *ngIf="!memberData?.questionnaireStatus" style="color: red;">Pending</span> 
+                                             <span *ngIf="!memberData?.questionnaireStatus" ><span style="color: red;">Pending</span>  <br>  <a class="link" style="color: rgb(20, 112, 232);" *ngIf="memberData?.status==='Approved'&& (!memberData?.questionnaireStatus)" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)">(Apply for award)</a></span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='Submitted'" >Submitted For Review </span> 
                                              <span  *ngIf="memberData?.questionnaireStatus==='save'&&memberData?.offlinePaymentDetails" >Applied (<span style="color: red;">Final Submit Pending</span>) </span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='approved'">Approved </span></td>
                                         <td>
                                             <span *ngIf="!memberData?.offlinePaymentDetails"
-                                                (click)="viewForm(memberData)" style="color: red;">Pending</span>
+                                                 > <span style="color: red;">Pending </span><br><a class="link" style="color: rgb(20, 112, 232);"
+                                                *ngIf="!memberData?.offlinePaymentDetails && memberData?.paymentStatus==='Paid'"
+                                                (click)="openDialog(memberData?._id)">(Pay Fee)</a></span>
                                             <span  *ngIf="memberData?.offlinePaymentDetails"
                                                 style="color: green;">Paid </span>
                                         </td>

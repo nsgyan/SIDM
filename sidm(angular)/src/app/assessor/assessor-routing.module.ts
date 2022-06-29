@@ -6,13 +6,13 @@ import { ViewApplicantComponent } from './view-applicant/view-applicant.componen
 import { ViewQuestionnaireComponent } from './view-questionnaire/view-questionnaire.component';
 
 const routes: Routes = [
-  {path:'',component:AssessorDashboardComponent},
-  {
-  path :"applicantList",
-  component:ApplicantListComponent
-  },
-  {path:'ViewApplicantQuestionnaire/:id',component:ViewQuestionnaireComponent},
-  { path: 'applicantForm/:id',component:ViewApplicantComponent},
+  // {path:'',component:AssessorDashboardComponent},
+  // {
+  // path :"applicantList",
+  // component:ApplicantListComponent
+  // },
+  // {path:'ViewApplicantQuestionnaire/:id',component:ViewQuestionnaireComponent},
+  // { path: 'applicantForm/:id',component:ViewApplicantComponent},
 ];
 
 @NgModule({

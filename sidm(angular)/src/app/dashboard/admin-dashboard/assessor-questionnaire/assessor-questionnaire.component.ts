@@ -66,12 +66,16 @@ average=0
         else {
           item.typeOfApplicant = 'SME/SSI/START-UP'
         } 
+        let i = 0
         this.average=0
         item.assessor.map((assessor:any)=>{
+          if (assessor.status !== "Pending") {
           this.average+=Number( assessor.applicantScore);
-          this.average+=assessor.score
+            this.average += assessor.score
+            i++
+          }
         })
-        item.average=(this.average/800)*100
+   item.average = Math.round((this.average*100)) / (i * 100)
         const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
