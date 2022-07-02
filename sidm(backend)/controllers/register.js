@@ -125,7 +125,6 @@ exports.postRegistrationForm = (req, res, next) => {
         typeOfApplicant:result.typeOfApplicant,
         category: result.category,
         companyName:result.companyName,
-
         email: result.email,
         mobileNumber:result.mobileNumber,
         PanNumber:result.panNumber,
