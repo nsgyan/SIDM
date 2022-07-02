@@ -6,16 +6,17 @@ import { ApplicantQuestionnaireComponent } from './applicant-questionnaire/appli
 import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
 import { ViewAssessmentComponent } from './view-assessment/view-assessment.component';
 
-const routes: Routes = [ {path:'',component:AdminAssessorDashBoardComponent},
-{
-path :"applicantList",
-component:ApplicantListComponent
-},
-{path:'applicantQuestionnaire/:id',component:ApplicantQuestionnaireComponent},
-{
-  path:"assessorQuestionnaire",component:ViewAssessmentComponent
-},
-{ path: 'applicantForm/:id',component:ViewApplicantComponent},
+ const routes: Routes = [
+ //  {path:'',component:AdminAssessorDashBoardComponent},
+// {
+// path :"applicantList",
+// component:ApplicantListComponent
+// },
+// {path:'applicantQuestionnaire/:id',component:ApplicantQuestionnaireComponent},
+// {
+//   path:"assessorQuestionnaire",component:ViewAssessmentComponent
+// },
+// { path: 'applicantForm/:id',component:ViewApplicantComponent},
 ];
 
 @NgModule({
