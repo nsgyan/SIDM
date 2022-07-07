@@ -176,10 +176,22 @@ data.save().then(data=>{
            
   
         ];
+        if (data.category === 'cat1') {
+            data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+          }
+          else if (data.category === 'cat2') {
+            data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+          }
+          else if (data.category === 'cat3') {
+            data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+          }
+          else if (data.category === 'cat4') {
+            data.category = 'C4- Export Performance of Defence & Aerospace Products'
+          }
         const replacements = {
             typeOfApplicant:data.typeOfApplicant,
             category: data.category,
-            companyName:data.companyName,
+            companyName:data.nameOfCompany,
             date:new Date()
     
           };
@@ -248,7 +260,7 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
                        }
                 const source = fs.readFileSync(filePath, 'utf-8').toString();
                 const template = handlebars.compile(source);
-            
+             
                 var maillist = [
                     data.email,
                   'bharat.jain@sidm.in',
@@ -258,10 +270,22 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
                    
           
                 ];
+                if (data.category === 'cat1') {
+                    data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+                  }
+                  else if (data.category === 'cat2') {
+                    data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+                  }
+                  else if (data.category === 'cat3') {
+                    data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+                  }
+                  else if (data.category === 'cat4') {
+                    data.category = 'C4- Export Performance of Defence & Aerospace Products'
+                  }
                 const replacements = {
                     typeOfApplicant:data.typeOfApplicant,
                     category: data.category,
-                    companyName:data.companyName,
+                    companyName:data.nameOfCompany,
                     date:new Date()
             
                   };
@@ -341,10 +365,34 @@ exports.staticissmentQuestionnaire=(req,res)=>{
                    
           
                 ];
+                if (data.category === 'cat1') {
+                    data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+                  }
+                  else if (data.category === 'cat2') {
+                    data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+                  }
+                  else if (data.category === 'cat3') {
+                    data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+                  }
+                  else if (data.category === 'cat4') {
+                    data.category = 'C4- Export Performance of Defence & Aerospace Products'
+                  }
+                  if (data.category === 'cat1') {
+                    data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+                  }
+                  else if (data.category === 'cat2') {
+                    data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+                  }
+                  else if (data.category === 'cat3') {
+                    data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+                  }
+                  else if (data.category === 'cat4') {
+                    data.category = 'C4- Export Performance of Defence & Aerospace Products'
+                  }
                 const replacements = {
                     typeOfApplicant:data.typeOfApplicant,
                     category: data.category,
-                    companyName:data.companyName,
+                    companyName:data.nameOfCompany,
                     date:new Date()
             
                   };
@@ -459,10 +507,22 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
                        
               
                     ];
+                    if (data.category === 'cat1') {
+                        data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+                      }
+                      else if (data.category === 'cat2') {
+                        data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+                      }
+                      else if (data.category === 'cat3') {
+                        data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+                      }
+                      else if (data.category === 'cat4') {
+                        data.category = 'C4- Export Performance of Defence & Aerospace Products'
+                      }
                     const replacements = {
                         typeOfApplicant:data.typeOfApplicant,
                         category: data.category,
-                        companyName:data.companyName,
+                        companyName:data.nameOfCompany,
                         date:new Date()
                 
                       };
