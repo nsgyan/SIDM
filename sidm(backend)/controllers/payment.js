@@ -18,14 +18,14 @@ var transporter = nodemailer.createTransport({
 const RegistrationForm = require("../models/registrationForm");
 
 const PaymentDb = require("../models/paymentSchema");
-var instance = new Razorpay({
-  key_id: 'rzp_live_Zu1ExXrsDrcwKq',
-  key_secret: 'KVc4fjpnn8xe8PWNXDQsUrpt',
-});
 // var instance = new Razorpay({
-//   key_id: 'rzp_test_DXNpoNMGmHrPoO',
-//   key_secret: 'ROwMeHInG0Ir6QDm0cNqYeWK',
+//   key_id: 'rzp_live_Zu1ExXrsDrcwKq',
+//   key_secret: 'KVc4fjpnn8xe8PWNXDQsUrpt',
 // });
+var instance = new Razorpay({
+  key_id: 'rzp_test_DXNpoNMGmHrPoO',
+  key_secret: 'ROwMeHInG0Ir6QDm0cNqYeWK',
+});
 
 
  exports.payNow= async (req,res)=>{
@@ -100,10 +100,22 @@ exports.verifypayment= async (req,res)=>{
         const filePath = path.join(__dirname, '../view/finalEmail.html');
         const source = fs.readFileSync(filePath, 'utf-8').toString();
         const template = handlebars.compile(source);
+        if (data.category === 'cat1') {
+          data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+        }
+        else if (data.category === 'cat2') {
+          data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+        }
+        else if (data.category === 'cat3') {
+          data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+        }
+        else if (data.category === 'cat4') {
+          data.category = 'C4- Export Performance of Defence & Aerospace Products'
+        }
         const replacements = {
           typeOfApplicant:data.typeOfApplicant,
           category: data.category,
-          companyName:data.companyName,
+          companyName:data.nameOfCompany,
           mobileNumber:data.typeOfApplicant,
           PanNumber:data.panNumber,
           date:Date

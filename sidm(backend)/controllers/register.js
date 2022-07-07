@@ -121,10 +121,22 @@ exports.postRegistrationForm = (req, res, next) => {
       const filePath = path.join(__dirname, '../view/email.html');
       const source = fs.readFileSync(filePath, 'utf-8').toString();
       const template = handlebars.compile(source);
+      if (data.category === 'cat1') {
+        data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+      }
+      else if (data.category === 'cat2') {
+        data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+      }
+      else if (data.category === 'cat3') {
+        data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+      }
+      else if (data.category === 'cat4') {
+        data.category = 'C4- Export Performance of Defence & Aerospace Products'
+      }
       const replacements = {
         typeOfApplicant:result.typeOfApplicant,
         category: result.category,
-        companyName:result.companyName,
+        companyName:result.nameOfCompany,
         email: result.email,
         mobileNumber:result.mobileNumber,
         PanNumber:result.panNumber,
@@ -162,10 +174,22 @@ exports.postRegistrationForm = (req, res, next) => {
         const filePath = path.join(__dirname, '../view/finalEmail.html');
         const source = fs.readFileSync(filePath, 'utf-8').toString();
         const template = handlebars.compile(source);
+        if (data.category === 'cat1') {
+          data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+        }
+        else if (data.category === 'cat2') {
+          data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+        }
+        else if (data.category === 'cat3') {
+          data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+        }
+        else if (data.category === 'cat4') {
+          data.category = 'C4- Export Performance of Defence & Aerospace Products'
+        }
         const replacements = {
           typeOfApplicant:result.typeOfApplicant,
           category: result.category,
-          companyName:result.companyName,
+          companyName:result.nameOfCompany,
           email: result.email,
           mobileNumber:result.mobileNumber,
           PanNumber:result.panNumber,
@@ -430,10 +454,22 @@ exports.changeStatus = (req, res, next) => {
          
 
       ];
+      if (data.category === 'cat1') {
+        data.category = 'C1- Technology /  Product Innovation to address Defence Capability Gaps'
+      }
+      else if (data.category === 'cat2') {
+        data.category = 'C2-Import Substitution for Mission Critical Parts / Sub-Systems / Systems'
+      }
+      else if (data.category === 'cat3') {
+        data.category = 'C3-  Creation of   Niche, Technological Capability for Design, Manufacturing or Testing'
+      }
+      else if (data.category === 'cat4') {
+        data.category = 'C4- Export Performance of Defence & Aerospace Products'
+      }
       const replacements = {
         typeOfApplicant:success.typeOfApplicant,
         category: success.category,
-        companyName:success.companyName,
+        companyName:success.nameOfCompany,
         date:new Date()
 
       };

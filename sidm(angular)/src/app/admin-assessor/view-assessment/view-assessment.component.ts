@@ -77,13 +77,16 @@ window.location.href=url
    let i = 0
         this.average=0
         item.assessor.map((assessor:any)=>{
-          if (assessor.status !== "Pending") {
+          if (assessor.status !== "Pending" &&assessor.email!=='finaljury@sidm.com'&&assessor.email!=='bharat.jain@sidm.in') {
+     
+            
           this.average+=Number( assessor.applicantScore);
             this.average += assessor.score
             i++
           }
         })
-   item.average = Math.round((this.average*100)) / (i * 100)
+   item.average = (this.average*100) / (i * 100)
+   item.average=item.average.toFixed(2);
         const format = 'dd-MMM-yy';
         const locale = 'en-US';
         item.createAt = formatDate(item.createAt, format, locale)
@@ -117,8 +120,9 @@ window.location.href=url
           else  if(assessorUser.email==='dg@sidm.in'){
             item.dg=assessorUser
           }
-          else  if(assessorUser.email==='bharat.jain@sidm.in'){
-            item.bharat=assessorUser
+          else  if(assessorUser.email==='finaljury@sidm.com'){
+            assessorUser.totalApplicantScore=    assessorUser.score+Number( assessorUser.applicantScore)
+            item.finaljury=assessorUser
           }
         })
       })

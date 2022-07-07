@@ -109,7 +109,7 @@
           <th  scope="col">Dr RK Tyagi</th>
           <th  scope="col">	Rear Admiral Pritam Lal</th>
           <th  scope="col">Mr Sunil Misra</th>
-          <th  scope="col">		Bharat Jain</th>
+          <!-- <th  scope="col">		Bharat Jain</th> -->
           <th  scope="col">		Final Jury</th>
           <th  scope="col">		Total Score</th>
         </tr>
@@ -178,13 +178,11 @@
           </td>
           <td  >
             <span >
-              <span class="text-danger" *ngIf="item.bharat?.status==='Pending'"> Pending</span>
-              <a class=" callR" *ngIf="item.bharat?.status==='Call Review'" (click)="openModel(item.bharat.remark)"> Call Review</a>
-              <span class="bg" *ngIf="item.bharat?.status==='Completed'"> Completed</span> <br />
-              Score:{{ item.bharat?.score }}/{{ item.bharat?.maxScore }}
+
+            <span *ngIf="item.finaljury?.totalApplicantScore"> Score:{{ item.finaljury?.totalApplicantScore ? item.finaljury?.totalApplicantScore:0 }}/{{ item.finaljury?.totalScore }}</span> 
             </span>
           </td>
-          <td></td>
+          <!-- <td></td> -->
           <td>{{item.average}}</td>
         </tr>
       </tbody>
