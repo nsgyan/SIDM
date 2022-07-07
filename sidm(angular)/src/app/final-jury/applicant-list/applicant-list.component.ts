@@ -39,6 +39,12 @@ export class ApplicantListComponent implements OnInit {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private _location: Location) {
+      let email= this.localStorage.get('email');
+      if(email!=="finaljury@sidm.com"){
+this.localStorage.clearLocalStorage()
+const url='/login/finalJury'
+window.location.href=url
+      }
       this.route.queryParams.subscribe((params:any) => {
   console.log(params.category);
   this.getdata(params.category,params.type,params.status)

@@ -93,6 +93,13 @@ export class AdminAssessorDashBoardComponent implements OnInit {
     constructor(private httpService:HttpService,
       private localStorage: LocalStorageService,
       private router: Router) { 
+        let email= this.localStorage.get('email');
+        if(email!=="finaljury@sidm.com"){
+  this.localStorage.clearLocalStorage()
+  const url='/login/finalJury'
+window.location.href=url
+        }
+
       this.getMemberData('cat1','M')
       this.getMemberData('cat1','L')
       this.getMemberData('cat1','S')

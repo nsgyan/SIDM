@@ -36,9 +36,7 @@ average=0
       if(email!=="finaljury@sidm.com"){
 this.localStorage.clearLocalStorage()
 const url='/login/finalJury'
-
 window.location.href=url
-
       }
       this.getdata('sdaf')
       this.filter= this.fb.group({
