@@ -178,10 +178,8 @@
           </td>
           <td  >
             <span >
-              <span class="text-danger" *ngIf="item.finaljury?.status==='Pending'"> Pending</span>
-              <a class=" callR" *ngIf="item.finaljury?.status==='Call Review'" (click)="openModel(item.finaljury.remark)"> Call Review</a>
-              <span class="bg" *ngIf="item.finaljury?.status==='Completed'"> Completed</span> <br />
-              Score:{{ item.finaljury?.score }}/{{ item.finaljury?.maxScore }}
+
+            <span *ngIf="item.finaljury?.totalApplicantScore"> Score:{{ item.finaljury?.totalApplicantScore ? item.finaljury?.totalApplicantScore:0 }}/{{ item.finaljury?.totalScore }}</span> 
             </span>
           </td>
           <!-- <td></td> -->
