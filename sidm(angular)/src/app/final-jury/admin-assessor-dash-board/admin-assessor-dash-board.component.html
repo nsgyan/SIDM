@@ -1,22 +1,22 @@
 <!-- ================= HEADER ================= -->
 <header class="marathon-header-fixed header-fixed">
-    <a (click)="navigateTo('cat4','S','Submitted')" class="nav-btn">
+    <a (click)="navigateTo('cat4','S','Pending')" class="nav-btn">
         <span></span>
         <span></span>
         <span></span>
     </a>
     <div class="top-panel">
         <div class="container">
-            <a (click)="navigateTo('cat4','S','Submitted')" class="logo2">
+            <a (click)="navigateTo('cat4','S','Pending')" class="logo2">
                 <img class="headerLogo1" src="assets/img/New_img/SIDM-c-logo-01.png" alt="logo"
                 >
             </a>
-        <a (click)="navigateTo('cat4','S','Submitted')" class="logo1">
+        <a (click)="navigateTo('cat4','S','Pending')" class="logo1">
             <img class="headerLogo2" src="assets/img/New_img/logo.png" alt="logo"
                 >
             </a>
 
-        <a (click)="navigateTo('cat4','S','Submitted')" class="logo3">
+        <a (click)="navigateTo('cat4','S','Pending')" class="logo3">
             <img class="headerLogo3"
                 src="assets/img/New_img/azadi-ka-amrit-mahotsav.png" alt="logo"
                 >
@@ -25,13 +25,18 @@
     </div>
     
 </header>
-
 <div class="container">
 
     <a href="" class="RegistrationBtn" >
         <i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>Logout</a>
         <a  class="RegistrationBtn mx-4" style="color: #fff;" (click)="navigate('/finalJury/assessorQuestionnaire')"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;" style="color: #fff;"></i>View
             Assessments</a>
+</div>
+
+<div class="container">
+
+    <a href="" class="RegistrationBtn" >
+        <i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>Logout</a>
 </div>
 
 <section class="container">
@@ -47,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a  (click)="navigateTo('cat1','L','Submitted')" class="CategoryBoxbottom">
+                            <a  (click)="navigateTo('cat1','L','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat1.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -55,18 +60,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','L','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','L','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat1.LargeType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat1.LargeType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','L','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat1.LargeType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat1.LargeType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -81,7 +86,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','M','Submitted')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat1.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -89,18 +94,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','M','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','M','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat1.mediumType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat1.mediumType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','M','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat1.mediumType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat1.mediumType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -115,7 +120,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','S','Submitted')"  class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','S','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat1.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -123,18 +128,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a  (click)="navigateTo('cat1','S','requestInfo')"  class="CategoryBoxbottom">
+                            <a  (click)="navigateTo('cat1','S','Call Review')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat1.startUpType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat1.startUpType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat1','S','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat1','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat1.startUpType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat1.startUpType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -157,7 +162,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','L','Submitted')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','L','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat2.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -165,18 +170,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','L','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','L','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat2.LargeType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat2.LargeType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','L','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat2.LargeType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat2.LargeType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -191,7 +196,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','M','Submitted')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat2.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -199,18 +204,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','M','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','M','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat2.mediumType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat2.mediumType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','M','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat2.mediumType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat2.mediumType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -225,7 +230,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','S','Submitted')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','S','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat2.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -233,18 +238,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','S','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','S','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat2.startUpType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat2.startUpType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat2','S','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat2','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat2.startUpType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat2.startUpType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -267,7 +272,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','L','Submitted')"  class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','L','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat3.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -275,18 +280,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','L','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','L','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat3.LargeType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat3.LargeType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','L','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat3.LargeType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat3.LargeType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -301,7 +306,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','M','Submitted')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat3.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -309,18 +314,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','M','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','M','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat3.mediumType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat3.mediumType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','M','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat3.mediumType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat3.mediumType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -335,7 +340,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','S','Submitted')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','S','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat3.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -343,18 +348,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','S','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','S','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat3.startUpType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat3.startUpType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat3','S','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat3','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat3.startUpType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat3.startUpType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -377,7 +382,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','L','Submitted')"  class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','L','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat4.LargeType.pending}}</h3>
                                     <p>Pending</p>
@@ -385,18 +390,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','L','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','L','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat4.LargeType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat4.LargeType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','L','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','L','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat4.LargeType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat4.LargeType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -411,7 +416,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a  (click)="navigateTo('cat4','M','Submitted')" class="CategoryBoxbottom">
+                            <a  (click)="navigateTo('cat4','M','Pending')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat4.mediumType.pending}}</h3>
                                     <p>Pending</p>
@@ -419,18 +424,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','M','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','M','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat4.mediumType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat4.mediumType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','M','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','M','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat4.mediumType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat4.mediumType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>
@@ -445,7 +450,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','S','Submitted')"  class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','S','Pending')"  class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
                                     <h3>{{cat4.startUpType.pending}}</h3>
                                     <p>Pending</p>
@@ -453,18 +458,18 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','S','requestInfo')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','S','Call Review')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="yellow">{{cat4.startUpType.requestInfo}}</h3>
-                                    <p>Request Info</p>
+                                    <h3 class="yellow">{{cat4.startUpType.callReview}}</h3>
+                                    <p>Call review</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a (click)="navigateTo('cat4','S','approved')" class="CategoryBoxbottom">
+                            <a (click)="navigateTo('cat4','S','Completed')" class="CategoryBoxbottom">
                                 <div class="CategoryBoxbottomContect">
-                                    <h3 class="green">{{cat4.startUpType.approved}}</h3>
-                                    <p>Approved</p>
+                                    <h3 class="green">{{cat4.startUpType.completed}}</h3>
+                                    <p>Completed</p>
                                 </div>
                             </a>
                         </div>

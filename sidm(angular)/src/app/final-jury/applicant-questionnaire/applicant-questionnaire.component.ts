@@ -756,7 +756,7 @@ viewDetails(id: string) {
           let Maxscore = Number(control.at(i).value.maxScore)
           assessorMaxScore += Maxscore
           let score = Number(control.at(i).value.assessorScore)
-          assessorScore += score
+          assessorScore += score?score:0
         }
         i++;
       })

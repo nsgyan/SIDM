@@ -19,7 +19,7 @@ import {Location} from '@angular/common';
 })
 export class ApplicantListComponent implements OnInit {
   requestInfo:FormGroup
-  displayedColumns: string[] = [ 'index', 'actions','name','category','typeOfApplicant', 'nameOfCompany','questionnaireStatus',];
+  displayedColumns: string[] = [ 'index', 'actions','name','category','typeOfApplicant', 'nameOfCompany','assessorStatus',];
   dataSource !: MatTableDataSource<any> ;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -39,14 +39,6 @@ export class ApplicantListComponent implements OnInit {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private _location: Location) {
-
-        let email= this.localStorage.get('email');
-        if(email!=="finaljury@sidm.com"){
-  this.localStorage.clearLocalStorage()
-  const url='/login/finalJury'
-window.location.href=url
-        }
-
       this.route.queryParams.subscribe((params:any) => {
   console.log(params.category);
   this.getdata(params.category,params.type,params.status)
@@ -60,17 +52,54 @@ window.location.href=url
   }
   logout() {
     this.localStorage.clearLocalStorage()
-    this.routes.navigate(['login/admin'])
+    this.routes.navigate(['login/finalJury'])
 
   }
   ngOnInit(): void {
   }
   getdata(category:string,typeOfApplicant:any,status:any) {
     
-
-    this.httpService.applicantQuestionnaireApplicantList(category,typeOfApplicant,status).subscribe((data:any)=>{
+    let email= this.localStorage.get('email')
+    this.httpService.assessorApplicantList(category,typeOfApplicant,status,email).subscribe((data:any)=>{
       console.log(data);
-    
+      
+      data.map((item: any) => {
+        item.assessor.map((assessor:any)=>{
+          if(assessor.email===email){
+          item.assessorStatus=assessor.status
+
+          }
+        })
+        if (item.category === 'cat1') {
+          item.category = 'C1 '
+        }
+        else if (item.category === 'cat2') {
+          item.category = 'C2'
+        }
+        else if (item.category === 'cat3') {
+          item.category = 'C3'
+        }
+        else {
+          item.category = 'C4'
+        }
+        if (item.typeOfApplicant === 'L') {
+          item.typeOfApplicant = 'Large'
+        }
+        else if (item.typeOfApplicant === 'M') {
+          item.typeOfApplicant = 'Medium'
+        }
+        else {
+          item.typeOfApplicant = 'SME/SSI/START-UP'
+        }
+        const format = 'dd-MMM-yy';
+        const locale = 'en-US';
+        item.createAt = formatDate(item.createAt, format, locale)
+        // console.log(data.createAt.type);
+
+        // data.createAt = formatDate(data.createAt, 'yyyy-MM-dd', 'en-US')
+        item.panNumberOfOrganization = item.panNumberOfOrganization;
+
+      })
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
