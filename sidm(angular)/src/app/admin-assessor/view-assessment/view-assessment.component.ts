@@ -117,8 +117,8 @@ window.location.href=url
           else  if(assessorUser.email==='dg@sidm.in'){
             item.dg=assessorUser
           }
-          else  if(assessorUser.email==='bharat.jain@sidm.in'){
-            item.bharat=assessorUser
+          else  if(assessorUser.email==='	finaljury@sidm.com'){
+            item.finaljury=assessorUser
           }
         })
       })
