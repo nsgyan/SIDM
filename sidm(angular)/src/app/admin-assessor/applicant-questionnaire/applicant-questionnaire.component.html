@@ -46,9 +46,9 @@
         </div>
       </div>
     </div>
-    <div *ngIf="questionnaireData.doccumentAskedByAdmin">
+    <div *ngIf="questionnaireData?.doccumentAskedByAdmin">
       <span style="font-size: 16px;color:#000;">Applicant Response Against Admin Assessor Remark</span>
-        <a class="mx-2" *ngIf="questionnaireData.doccumentAskedByAdmin" href="{{questionnaireData?.doccumentAskedByAdmin}}"
+        <a class="mx-2" *ngIf="questionnaireData?.doccumentAskedByAdmin" href="{{questionnaireData?.doccumentAskedByAdmin}}"
       target="_blank">
           <i class="fas fa-eye"></i>
         </a></div>
@@ -77,53 +77,53 @@
           <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
             <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
               <div class="d-flex justify-content-end">
-                <div class="d-flex align-items-center" *ngIf="questionnaireData.questionAns[i].assessorScore">
+                <div class="d-flex align-items-center" *ngIf="questionnaireData?.questionAns[i].assessorScore">
                   <label class="mr-2 MaxScore">Assessor Score</label>
-                  <p class="score">{{questionnaireData.questionAns[i].assessorScore}}</p>
+                  <p class="score">{{questionnaireData?.questionAns[i].assessorScore}}</p>
                 </div>
                 <div class="d-flex align-items-center">
                   <label class="mr-2 MaxScore">Max Score</label>
-                  <p class="score">{{questionnaireData.questionAns[i].maxScore}}</p>
+                  <p class="score">{{questionnaireData?.questionAns[i].maxScore}}</p>
                 </div>
                 <div class="d-flex align-items-center ml-3">
                   <label class="mr-2 MaxScore">Score</label>
-                  <p class="score">{{questionnaireData.questionAns[i].score}}</p>
+                  <p class="score">{{questionnaireData?.questionAns[i].score}}</p>
                 </div>
               </div>
-              <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}} - {{questionnaireData.questionAns[i].question}}</h2>
-              <p style="color:rgb(150 67 67);font-size: 18px; font-weight: 500;">{{questionnaireData.questionAns[i].parameterDescription}}</p>
+              <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}} - {{questionnaireData?.questionAns[i].question}}</h2>
+              <p style="color:rgb(150 67 67);font-size: 18px; font-weight: 500;">{{questionnaireData?.questionAns[i].parameterDescription}}</p>
               <div class="auto-width">
-                <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
+                <mat-form-field *ngIf="questionnaireData?.questionAns[i].inputType==='singleSelect'" appearance="fill">
                   <mat-label style="font-size: 18px;">Select Answer</mat-label>
                   <mat-select formControlName="answer">
-                    <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
+                    <mat-option *ngFor="let option of questionnaireData?.questionAns[i].option" value="{{option.answer}}">
                       {{option.answer}} </mat-option>
                   </mat-select>
                 </mat-form-field></div>
   
                 <div class="auto-width">
-                <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='multiSelect'" appearance="fill">
+                <mat-form-field *ngIf="questionnaireData?.questionAns[i].inputType==='multiSelect'" appearance="fill">
                   <mat-label style="font-size: 18px;">Select Answer</mat-label>
                   <mat-select formControlName="answer" multiple>
-                    <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
+                    <mat-option *ngFor="let option of questionnaireData?.questionAns[i].option" value="{{option.answer}}">
                       {{option.answer}} </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
               <p style="font-size: 20px;color: #333;
-              font-weight: 600;" *ngIf="questionnaireData.questionAns[i].applicantAnswer">Applicant Response: 
+              font-weight: 600;" *ngIf="questionnaireData?.questionAns[i].applicantAnswer">Applicant Response: 
                 <span style="font-size: 18px;
-                font-weight: 500;">{{questionnaireData.questionAns[i].applicantAnswer}}</span></p>
+                font-weight: 500;">{{questionnaireData?.questionAns[i].applicantAnswer}}</span></p>
               <p style="font-size: 20px;color: #333;
-              font-weight: 600;"  *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span style="font-size: 18px;
-                font-weight: 500;">{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
+              font-weight: 600;"  *ngIf="questionnaireData?.questionAns[i].adminAnswer">Admin Response: <span style="font-size: 18px;
+                font-weight: 500;">{{questionnaireData?.questionAns[i].adminAnswer}}</span></p>
                 <p style="color: red;" *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
                   please select at least one option
                 </p>
            
    
               <br>
-              <div *ngIf="questionnaireData.questionAns[i].description" >
+              <div *ngIf="questionnaireData?.questionAns[i].description" >
                 <div class="mb-2">
                   <label style="font-size: 18px; font-weight: 500;color: #333333;"
                   class="questionnaireLabel">Enter Description:</label>
@@ -135,20 +135,20 @@
               <p style="color: red;" *ngIf="controlName.get('description')?.hasError('required')&&(controlName.get('description')?.touched||controlName.get('description')?.dirty||submited)">
                 Answer description required
               </p>
-              <div *ngIf="questionnaireData.questionAns[i]?.inputType==='assessorScore'">
+              <div *ngIf="questionnaireData?.questionAns[i]?.inputType==='assessorScore'">
                 <!-- <h2>Write up: <br><span class="secondText">  </span></h2><div [innerHTML]="aissmentdata.questionAns[i]?.description"></div> -->
                 <label class="text" for=`assessorScore${{i+1}}`> Assessor score: </label>
                 <input class="mb-4 AssessorInput" type="text" formControlName="assessorScore"
                   (keypress)="keyPressNumbers($event)" id=`assessorScore${{i+1}}`>
                 <p *ngIf="controlName.get('assessorScore')?.invalid" style="color: red;">
                   Assessor
-                  score not greater than<strong>{{questionnaireData.questionAns[i]?.maxScore}}</strong>
+                  score not greater than<strong>{{questionnaireData?.questionAns[i]?.maxScore}}</strong>
                 </p>
   
               </div>
-              <div style="margin:20px 0;" *ngIf="questionnaireData.questionAns[i].uploadDocuments" appearance="fill">
-                <a  class="AttachementBtn ml-2" *ngIf='questionnaireData.questionAns[i].uploadDocuments' target="blank"
-                href="{{questionnaireData.questionAns[i].uploadDocuments}}">View Attachement</a>
+              <div style="margin:20px 0;" *ngIf="questionnaireData?.questionAns[i].uploadDocuments" appearance="fill">
+                <a  class="AttachementBtn ml-2" *ngIf='questionnaireData?.questionAns[i].uploadDocuments' target="blank"
+                href="{{questionnaireData?.questionAns[i].uploadDocuments}}">View Attachement</a>
              
               </div>
               <div class="mb-2">
@@ -171,7 +171,7 @@
                     </td>
                     <td><input formControlName="product" type="text" class="productF"></td>
                        <!-- <td><a class="AttachementBtn ml-2"  target="blank"
-                        href="{{questionnaireData.staticTable[i]?.uploadDocuments}}">View Attachement</a></td> -->
+                        href="{{questionnaireData?.staticTable[i]?.uploadDocuments}}">View Attachement</a></td> -->
                        <td><input formControlName="IcContent"  type="text" class="IcContent" ></td>
                   
                        <td>    <select class="selectInput" formControlName="answer">
@@ -208,10 +208,10 @@
                        <td><input formControlName="product" type="text"></td>
                        <!-- <td><input formControlName="description"  type="text"></td> -->
                        <td style="width: 100px; text-align: center;">
-                        <a *ngIf="questionnaireData.questionAns[i]?.table[j]?.uploadDocuments" class="AttachementBtn ml-2"  target="blank"
-                      href="{{questionnaireData.questionAns[i]?.table[j]?.uploadDocuments}}">View Attachement</a>
+                        <a *ngIf="questionnaireData?.questionAns[i]?.table[j]?.uploadDocuments" class="AttachementBtn ml-2"  target="blank"
+                      href="{{questionnaireData?.questionAns[i]?.table[j]?.uploadDocuments}}">View Attachement</a>
                     
-                        <input *ngIf="!questionnaireData.questionAns[i].table[j]?.uploadDocuments"  (change)="staticTableChangeListener($event,i,j)"  type="file"></td>
+                        <input *ngIf="!questionnaireData?.questionAns[i].table[j]?.uploadDocuments"  (change)="staticTableChangeListener($event,i,j)"  type="file"></td>
                        <!-- <td><input formControlName="IcContent"  type="text"></td> -->
                       </tr>
                     </tbody>

@@ -39,6 +39,8 @@
 .table {
     margin-bottom: 1rem;
     box-shadow: 1px 1px 10px #d9d9d9;
+    height: auto;
+    overflow: scroll;
 }
 .paymentsDropdwn {
     background: none;

@@ -103,18 +103,30 @@ else {
   this.category = 'C4'
  
 }
+data.assessor.map((assessor: any) => {
+  let assessorID = this.localStorage.get('assessorID')
+  if (assessor.id === assessorID) {
 
+    this.scorebyAssessor = assessor.score
+    console.log(this.scorebyAssessor);
+    
+
+  }
+
+})
       data.questionAns.map((item:any)=>{
+       
         item.assessor.map((assessor: any) => {
           let assessorID = this.localStorage.get('assessorID')
           if (assessor.id === assessorID) {
-
-            this.scorebyAssessor = assessor.score
-
+        
+            item.assessorScore = assessor.score
+            console.log(this.scorebyAssessor);
+            
+        
           }
-
+        
         })
-     
         item.maxScore= Number( item.maxScore);
         this.userScore+=item.maxScore
         if (item.inputType === 'assessorScore') {
@@ -134,7 +146,7 @@ else {
               adminAnswer: [item.adminAnswer ? item.adminAnswer : ''],
               table: this.fb.array([]),
               parameterDescription: [item.parameterDescription],
-              assessorScore: [this.scorebyAssessor ? this.scorebyAssessor : 0, [Validators.max(Number(item.maxScore))]]
+              assessorScore: [item.assessorScore ? item.assessorScore : 0, [Validators.max(Number(item.maxScore))]]
             })
           );
         }
@@ -163,7 +175,9 @@ else {
       }
         
       })
+console.log(data);
 
+      data.totalScore=Number( this.scorebyAssessor)+Number(data.totalScore);
       if(this.questionnaireData.adminRemark){
         this.questionnaireForm.get('adminRemark')?.setValue(this.questionnaireData.adminRemark)
         this.questionnaireForm.get('adminRemark')?.updateValueAndValidity()
