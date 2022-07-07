@@ -30,6 +30,12 @@ export class ViewApplicantComponent implements OnInit {
     private location: Location, 
     public dialog: MatDialog,
     private routes:Router) {
+      let type= this.localStorage.get('type');
+      if(type!=="assessor"){
+this.localStorage.clearLocalStorage()
+const url='/login/assessor'
+window.location.href=url
+      }
     const id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(id)
       .subscribe((data: any) => {

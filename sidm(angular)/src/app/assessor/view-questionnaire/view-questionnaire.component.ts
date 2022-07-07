@@ -43,6 +43,12 @@ export class ViewQuestionnaireComponent implements OnInit {
     ) { 
       
       let email= this.localStorage.get('email')
+      let type= this.localStorage.get('type');
+      if(type!=="assessor"){
+this.localStorage.clearLocalStorage()
+const url='/login/assessor'
+window.location.href=url
+      }
     this.id = this.route.snapshot.paramMap.get('id')
     this.httpService.getdetails(this.id).subscribe((data:any)=>{
       if (data?.category === 'cat1') {

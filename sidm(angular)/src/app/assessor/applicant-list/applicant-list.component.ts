@@ -40,6 +40,12 @@ export class ApplicantListComponent implements OnInit {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private _location: Location) {
+      let type= this.localStorage.get('type');
+      if(type!=="assessor"){
+this.localStorage.clearLocalStorage()
+const url='/login/assessor'
+window.location.href=url
+      }
       this.route.queryParams.subscribe((params:any) => {
   console.log(params.category);
   this.getdata(params.category,params.type,params.status)

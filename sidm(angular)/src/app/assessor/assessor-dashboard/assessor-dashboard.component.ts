@@ -92,6 +92,12 @@ cat4={
   constructor(private httpService:HttpService,
     private localStorage: LocalStorageService,
     private router: Router) { 
+            let type= this.localStorage.get('type');
+      if(type!=="assessor"){
+this.localStorage.clearLocalStorage()
+const url='/login/assessor'
+window.location.href=url
+      }
     this.getMemberData('cat1','M')
     this.getMemberData('cat1','L')
     this.getMemberData('cat1','S')
