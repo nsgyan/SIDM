@@ -140,11 +140,13 @@ exports.postRegistrationForm = (req, res, next) => {
         email: result.email,
         mobileNumber:result.mobileNumber,
         PanNumber:result.panNumber,
-        date:Date
+        date:Date,
+        nomenclaturOfItems:data.nomenclaturOfItems
 
       };
       var maillist = [
         result.email,
+        result.alterEmail,
         'bharat.jain@sidm.in',
         'awards22@sidm.in',
         'vikas.rai@sidm.in',
@@ -193,11 +195,13 @@ exports.postRegistrationForm = (req, res, next) => {
           email: result.email,
           mobileNumber:result.mobileNumber,
           PanNumber:result.panNumber,
-          date:Date
+          date:Date,
+          nomenclaturOfItems:data.nomenclaturOfItems
   
         };
         var maillist = [
           result.email,
+          result.alterEmail,
           'bharat.jain@sidm.in',
         'awards22@sidm.in',
         'vikas.rai@sidm.in',
@@ -447,6 +451,7 @@ exports.changeStatus = (req, res, next) => {
   
       var maillist = [
         success.email,
+        success.alterEmail,
         'bharat.jain@sidm.in',
         'awards22@sidm.in',
         'vikas.rai@sidm.in',
@@ -470,7 +475,8 @@ exports.changeStatus = (req, res, next) => {
         typeOfApplicant:success.typeOfApplicant,
         category: success.category,
         companyName:success.nameOfCompany,
-        date:new Date()
+        date:new Date(),
+        nomenclaturOfItems:data.nomenclaturOfItems
 
       };
       

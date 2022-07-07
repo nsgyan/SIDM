@@ -169,6 +169,7 @@ data.save().then(data=>{
     
         var maillist = [
             data.email,
+            data.alterEmail,
           'bharat.jain@sidm.in',
           'awards22@sidm.in',
           'vikas.rai@sidm.in',
@@ -192,7 +193,8 @@ data.save().then(data=>{
             typeOfApplicant:data.typeOfApplicant,
             category: data.category,
             companyName:data.nameOfCompany,
-            date:new Date()
+            date:new Date(),
+            nomenclaturOfItems:data.nomenclaturOfItems
     
           };
         
@@ -263,6 +265,7 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
              
                 var maillist = [
                     data.email,
+                    data.alterEmail,
                   'bharat.jain@sidm.in',
                   'awards22@sidm.in',
                   'vikas.rai@sidm.in',
@@ -286,7 +289,8 @@ exports.updateAissmentQuestionnaire=(req,res)=>{
                     typeOfApplicant:data.typeOfApplicant,
                     category: data.category,
                     companyName:data.nameOfCompany,
-                    date:new Date()
+                    date:new Date(),
+                    nomenclaturOfItems:data.nomenclaturOfItems
             
                   };
                 maillist.toString();
@@ -358,6 +362,7 @@ exports.staticissmentQuestionnaire=(req,res)=>{
             
                 var maillist = [
                     data.email,
+                    data.alterEmail,
                   'bharat.jain@sidm.in',
                   'awards22@sidm.in',
                   'vikas.rai@sidm.in',
@@ -393,7 +398,8 @@ exports.staticissmentQuestionnaire=(req,res)=>{
                     typeOfApplicant:data.typeOfApplicant,
                     category: data.category,
                     companyName:data.nameOfCompany,
-                    date:new Date()
+                    date:new Date(),
+                    nomenclaturOfItems:data.nomenclaturOfItems
             
                   };
                 
@@ -500,6 +506,7 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
                 
                     var maillist = [
                         data.email,
+                        data.alterEmail,
                       'bharat.jain@sidm.in',
                       'awards22@sidm.in',
                       'vikas.rai@sidm.in',
@@ -523,7 +530,8 @@ exports.updateStaticissmentQuestionnaire=(req,res)=>{
                         typeOfApplicant:data.typeOfApplicant,
                         category: data.category,
                         companyName:data.nameOfCompany,
-                        date:new Date()
+                        date:new Date(),
+                        nomenclaturOfItems:data.nomenclaturOfItems
                 
                       };
                     maillist.toString();
