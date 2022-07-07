@@ -11,6 +11,7 @@ import { MemberLoginComponent } from './member-login/member-login.component';
 import { SharedModule } from '../shared/shared.module';
 import { AssessorLoginComponent } from './assessor-login/assessor-login.component';
 import { AdminAssessorLoginComponent } from './admin-assessor-login/admin-assessor-login.component';
+import { FinalJuryComponent } from './final-jury/final-jury.component';
 
 
 
@@ -20,6 +21,7 @@ import { AdminAssessorLoginComponent } from './admin-assessor-login/admin-assess
     MemberLoginComponent,
     AssessorLoginComponent,
     AdminAssessorLoginComponent,
+    FinalJuryComponent,
   ],
   imports: [
     CommonModule,

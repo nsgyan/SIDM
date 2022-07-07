@@ -1,0 +1,95 @@
+.topHeader {
+    background: #363A7A;
+    padding: 5px 0 1px;
+    margin-top: 4rem;
+}
+.topHeader h2 {
+    margin: 0 0 9px 19px;
+    font-size: 20px;
+    color: #fff;
+}
+.questionnaireForm {
+    margin: 1rem;
+}
+.questionnaireForm h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #4c4c4c;
+}
+.table th {
+    border-top: none;
+}
+.table .thead-dark th {
+    background-color: #e5e7fb;
+    color: #000;
+}
+.paymentsDropdwn {
+    background: none;
+    border: 1px solid #363a7a;
+    color: #363a7a!important;
+    border-radius: 3px!important;
+    padding: 7px!important;
+}
+.table td {
+    vertical-align: middle;
+}
+.table th {
+    vertical-align: middle;
+}
+.table {
+    margin-bottom: 1rem;
+    box-shadow: 1px 1px 10px #d9d9d9;
+    height: auto;
+    overflow: scroll;
+}
+.paymentsDropdwn {
+    background: none;
+    border: 1px solid #363a7a;
+    color: #363a7a!important;
+    border-radius: 3px!important;
+    padding: 6px 12px!important;
+}
+.save-btn {
+    padding: 13px 14px;
+    margin-top: 42px;
+}
+.input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"], textarea {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-family: "Red Hat Display", sans-serif;
+    color: #8b8b8b;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: .35s ease;
+    transition: .35s ease;
+}
+select {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-family: "Red Hat Display", sans-serif;
+    color: #8b8b8b;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: .35s ease;
+    transition: .35s ease;
+}
+.bg {
+    background: rgb(25, 116, 37);
+    color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.callR {
+    font-size: 14px;
+    color: #9d480c!important;
+}
+.questionnaireForm h5 {
+    color: rgb(26, 26, 26);
+    font-size: 17px;
+    font-weight: 500;
+}

@@ -1,0 +1,123 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    function validateForm() {
+
+        let x = document.forms["adminLogin"]["g-recaptcha-response"].value;
+        if (x == "") {
+            alert("Captcha must be filled out");
+            return false;
+        }
+    }
+</script>
+
+<!-- content1 -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="timer" [fullScreen]="true">
+    <p style="color: white"> Hold on while we take you to your CII FACE Account!
+    </p>
+</ngx-spinner>
+
+<section class="main-bg">
+    <a href="javascript:void(0)" target="blanck" class="qr-img"></a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="food-img-bg">
+                    <div class="top-logo">
+                        <!-- <img src="./assets/img/troology-logo.png" alt="" class="">  -->
+                        <img src="./assets/img/srlm-logo.png" alt="" class="UPSRLM">
+                    </div>
+                    <div class="main-bg-con">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="left-content">
+                                    <h3>Welcome to<br> SIDM Champion Awards 2022</h3>
+                                    <!-- <span>2022</span> -->
+                                    <div class="clearfix"></div>
+                                    <div class="Bottom-Content mt-4">
+                                        <p class="mb-2">SIDM’s vision is to catalyse the Indian defence industry to
+                                            effectively
+                                            contribute to India’s national security and become a trustworthy global
+                                            partner. Its mission is to work closely with the Government towards enabling
+                                            the growth of the defence industry and collaborate with experts from the
+                                            Armed
+                                            forces, Academia and Defence industry to optimize the industry’s development
+                                            capabilities.</p>
+                                        <!-- <p class="mb-2" >Please use the 
+                                            <a (click)="applyNow()" class=" " > Registration form</a>
+                                              to create your application.</p> -->
+                                        <h5 class="mb-2">Awarding excellence in Defence Manufacturing!</h5>
+                                        <p>For more details, please contact:</p>
+                                        <p>Society of Indian Defence Manufacturing</p>
+                                        <a href="#" class="manojurl">bharat.jain@sidm.in</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="login-sec">
+                                    <h2>Admin Assessor Login</h2>
+                                    <p>Login to your SIDM system portal</p>
+                                    <div class="login-sec-con">
+                                        <form [formGroup]="assessorform">
+                                            <div class="">
+                                                <div class="">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="mt-1 mb-1">Email</h5>
+                                                        <input formControlName="email" appLowercase type="text">
+                                                        <div
+                                                            *ngIf="assessorform.controls['email'].invalid && (submitted|| assessorform.controls['email'].touched)">
+                                                            <span *ngIf="assessorform.get('email')?.hasError('required')"
+                                                                style="color: red;">
+                                                                E-Mail Address <strong>required</strong>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="mt-3 mb-1">Password</h5>
+                                                        <input appUpperCase formControlName="password" type="text">
+                                                        <div
+                                                            *ngIf=" assessorform.controls['password'].invalid && ( submitted || assessorform.controls['password'].touched)">
+                                                            <span
+                                                                *ngIf="assessorform.get('password')?.hasError('required')"
+                                                                style="color: red;">
+                                                                Pan Number <strong>required</strong>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="mt-4">
+                                                    <div class="form-group">
+                                                        <re-captcha (resolved)="resolved($event)"
+                                                            siteKey="6LcZYWYeAAAAAFFzV_pFdZBksDadFNggfpxTZMfS">
+                                                        </re-captcha>
+                                                    </div>
+
+                                                </div> -->
+                                                <!-- <p class="loginLink">Not registered yet ?
+                                                    <a target="blanck"(click)="applyNow()"> Register Here</a>
+                                                </p> -->
+                                            </div>
+
+                                        </form>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-3 mb-2 text-center">
+                                                    <button type="submit" class="NewBtn"
+                                                        (click)="assessorlogin()"><span>Submit</span></button>
+                                                    <!-- <button class="save-btn ml-2" target="blanck" (click)="reset()"><span>Reset</span></button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
