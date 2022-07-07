@@ -98,7 +98,7 @@ export class AdminAssessorDashBoardComponent implements OnInit {
           let email= this.localStorage.get('email');
           if(email!=="finaljury@sidm.com"){
     this.localStorage.clearLocalStorage()
-    const url='/login/adminAssessor'
+    const url='/login/finalJury'
 window.location.href=url
           }
       this.getMemberData('cat1','M')
@@ -109,7 +109,7 @@ window.location.href=url
     }
   
     navigateTo(category:any,type:any,status:any){
-      this.router.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+      this.router.navigate(['/finalJury/applicantList'], { queryParams: { category: category,type:type,status:status}});
       // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
       // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
     }

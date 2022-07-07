@@ -33,7 +33,7 @@ export class ViewApplicantComponent implements OnInit {
       let email= this.localStorage.get('email');
       if(email!=="finaljury@sidm.com"){
 this.localStorage.clearLocalStorage()
-const url='/login/adminAssessor'
+const url='/login/finalJury'
 window.location.href=url
       }
 

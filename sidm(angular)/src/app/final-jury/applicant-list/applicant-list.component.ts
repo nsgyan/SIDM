@@ -43,7 +43,7 @@ export class ApplicantListComponent implements OnInit {
         let email= this.localStorage.get('email');
         if(email!=="finaljury@sidm.com"){
   this.localStorage.clearLocalStorage()
-  const url='/login/adminAssessor'
+  const url='/login/finalJury'
 window.location.href=url
         }
 
@@ -143,7 +143,7 @@ window.location.href=url
     this._location.back();
   }
   viewQuestionnaire(id:any){
-    let url: string = "/adminAssessor/applicantQuestionnaire/" +id
+    let url: string = "/finalJury/applicantQuestionnaire/" +id
     this.routes.navigateByUrl(url);
 
   }

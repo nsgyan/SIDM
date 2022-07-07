@@ -35,7 +35,7 @@ average=0
       let email= this.localStorage.get('email');
       if(email!=="finaljury@sidm.com"){
 this.localStorage.clearLocalStorage()
-const url='/login/adminAssessor'
+const url='/login/finalJury'
 
 window.location.href=url
 
@@ -217,7 +217,7 @@ this.httpService.filterAssessmentsList(this.filter.value.category,this.filter.va
     location.reload();
   }
   navigateTo(category:any,type:any,status:any){
-        this.routes.navigate(['/adminAssessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
+        this.routes.navigate(['/finalJury/applicantList'], { queryParams: { category: category,type:type,status:status}});
         // this.router.navigate( ['/assessor/applicantList'], { queryParams: { jwt: '1236XWK+4bpLA++2UfBr'}});
         // this.router.navigate( ['assessor/applicantList'], { queryParams: { category: category,type:type,status:status}});
       }

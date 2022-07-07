@@ -43,7 +43,7 @@ questionnaireForm:FormGroup
       let email= this.localStorage.get('email');
       if(email!=="finaljury@sidm.com"){
 this.localStorage.clearLocalStorage()
-const url='/login/adminAssessor'
+const url='/login/finalJury'
 window.location.href=url
       }
       this.id = this.route.snapshot.paramMap.get('id')
@@ -517,7 +517,7 @@ control.at(i).get('score')?.updateValueAndValidity()
     }
     else {
     this.toast.success(data);
-    const url='/adminAssessor'
+    const url='/finalJury'
   window.location.href = url
 }
   })
@@ -648,7 +648,7 @@ console.log(this.questionnaireForm);
     console.log(data);
     
     this.toast.success(data);
-    const url='/adminAssessor'
+    const url='/finalJury'
     window.location.href=url
   })
   }
@@ -695,7 +695,7 @@ if(res?.remark){
   })
 }
 viewDetails(id: string) {
-  let url: string = "/adminAssessor/applicantForm/" + id
+  let url: string = "/finalJury/applicantForm/" + id
   // this.routes.([]).then(result => {  window.open(link, '_blank'); });
   this.routes.navigate([]).then(result => {  window.open(url, '_blank'); });
 
@@ -787,7 +787,7 @@ viewDetails(id: string) {
 
       }).subscribe(data => {
         this.toast.success('Questionnaire updated');
-        const url = '/adminAssessor'
+        const url = '/finalJury'
         window.location.href = url
 
       }, err => {

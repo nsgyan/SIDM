@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminAssessorModule } from '../app/admin-assessor/admin-assessor.module';
 import { AssessorModule } from '../app/assessor/assessor.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FinalJuryModule } from './final-jury/final-jury.module';
 import { AdminAuthGuradService } from './shared/services/admin-auth-gurad.service';
 import { MemberAuthguradService } from './shared/services/member-authgurad.service';
 import { ViewpageComponent } from './viewpage/viewpage.component';
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path:'adminAssessor',
     loadChildren: () => import('../app/admin-assessor/admin-assessor.module').then(m=>AdminAssessorModule),
+    canActivate:[AdminAuthGuradService]
+  },
+  {
+    path:'finalJury',
+    loadChildren: () => import("./final-jury/final-jury-routing.module").then(m=>FinalJuryModule),
     canActivate:[AdminAuthGuradService]
   },
   {
