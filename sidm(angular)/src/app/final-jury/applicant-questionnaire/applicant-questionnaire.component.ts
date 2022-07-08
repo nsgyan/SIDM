@@ -139,6 +139,7 @@ if(data.category==='cat4'){
             applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
             adminRemark:[item.adminRemark?item.adminRemark:''],
             adminAnswer:[item.adminAnswer?item.adminAnswer:''],
+            finalJuryAnswer:[item.finalJuryAnswer?item.finalJuryAnswer:''],
             table:[item.table?item.table:''], 
             parameterDescription:[item.parameterDescription],
             assessorRemark:[this.remark?this.remark:null],
@@ -160,6 +161,7 @@ if(data.category==='cat4'){
             applicantAnswer:[item.applicantAnswer?item.applicantAnswer:item.answer],
             adminRemark:[item.adminRemark?item.adminRemark:''],
             adminAnswer:[item.adminAnswer?item.adminAnswer:''],
+            finalJuryAnswer:[item.finalJuryAnswer?item.finalJuryAnswer:''],
             table:[item.table?item.table:''], 
             parameterDescription:[item.parameterDescription],
             assessorRemark:[this.remark?this.remark:null],
@@ -377,6 +379,10 @@ changeListener($event: any,index:any) {
  let x=0
     this.aissmentdata.questionAns.map((item:any)=>{
       let j=0;
+      if(control.at(x).value.answer!== item.answer){
+        control.at(x).get('finalJuryAnswer')?.setValue(control.at(x).value.answer)
+        control.at(x).get('finalJuryAnswer')?.updateValueAndValidity()
+      }
       control.value.map((FormData:any)=>{
         if( item.question=== FormData.question){
 item.assessor.map((assessor:any)=>{

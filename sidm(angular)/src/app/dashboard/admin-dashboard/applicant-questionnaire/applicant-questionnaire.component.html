@@ -83,6 +83,8 @@
             <p style="font-size: 20px;color: #333;
             font-weight: 600;" *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span style="font-size: 18px;
               font-weight: 500;">{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
+               <p style="font-size: 20px;color: #333; font-weight: 600;"  *ngIf="questionnaireData?.questionAns[i].finalJuryAnswer">
+                Final Jury Answer: <span style="font-size: 18px; font-weight: 500;">{{questionnaireData?.questionAns[i].finalJuryAnswer}}</span></p>
             <p style="color: red;"
               *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
               please select at least one option
