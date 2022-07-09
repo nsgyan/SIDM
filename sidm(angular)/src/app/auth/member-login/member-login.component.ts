@@ -64,8 +64,7 @@ id:any
 
     this.memberform.value.panNumber = this.memberform.value.panNumber.toUpperCase()
  
-    if (this.memberform.valid&&this.captcha
-   ) {
+    if (this.memberform.valid) {
       this.httpService.memberlogin({ email: this.memberform.value.email, mobileNumber: this.memberform.value.mobileNumber, panNumber: this.memberform.value.panNumber })
         .subscribe((data: any) => {
           this.localStorage.set('token', data.token)

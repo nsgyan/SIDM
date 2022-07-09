@@ -225,7 +225,7 @@ export class ApplyNewCategoryComponent implements OnInit {
 
 
   onSubmit() {
-    if (this.newCategoryForm.valid&&this.captcha
+    if (this.newCategoryForm.valid
 ) {
 
     }
@@ -733,7 +733,7 @@ export class ApplyNewCategoryComponent implements OnInit {
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.clearValidators()
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.invalid&&this.captcha) {
+    if (this.newCategoryForm.invalid) {
       let currentDate = new Date();
       this.httpService.postregistrationForm({
         createAt: currentDate,
@@ -1124,7 +1124,7 @@ else{
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.valid&&this.captcha) {
+    if (this.newCategoryForm.valid) {
 this.action=true
 
 if(type==='submitAndPay'){
