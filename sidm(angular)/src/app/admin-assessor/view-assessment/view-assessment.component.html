@@ -165,7 +165,9 @@
               <span class="text-danger" *ngIf="item.pritam?.status==='Pending'"> Pending</span>
               <a class=" callR" *ngIf="item.pritam?.status==='Call Review'" (click)="openModel(item.pritam.remark)"> Call Review</a>
               <span class="bg" *ngIf="item.pritam?.status==='Completed'"> Completed</span> <br />
-              Score:{{ item.pritam?.score }}/{{ item.pritam?.maxScore }}
+            
+            Subjective  Score:{{ item.pritam?.score }}/{{ item.pritam?.maxScore }}
+            Objective  Score:{{ item.pritam?.applicantScore }}/{{ 100-item.pritam?.maxScore }}
             </span>
           </td>
           <td >
