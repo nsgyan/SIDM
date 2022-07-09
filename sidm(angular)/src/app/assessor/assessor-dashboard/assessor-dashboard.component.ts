@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./assessor-dashboard.component.css']
 })
 export class AssessorDashboardComponent implements OnInit {
+  viewAssessment:boolean=false
 cat1={
   LargeType:{
     total:0,
@@ -93,6 +94,11 @@ cat4={
     private localStorage: LocalStorageService,
     private router: Router) { 
             let type= this.localStorage.get('type');
+            let email= this.localStorage.get('email');
+      if(email==="aspillai.bm@gmail.com"){
+
+this.viewAssessment=true
+      }
       if(type!=="assessor"){
 this.localStorage.clearLocalStorage()
 const url='/login/assessor'
@@ -311,6 +317,12 @@ window.location.href=url
       
     })
 
+  }
+
+
+  
+  navigate(url:any){
+    this.router.navigateByUrl(url);
   }
 
 }

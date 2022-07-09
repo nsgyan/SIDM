@@ -28,6 +28,7 @@ import { AssessorHeaderComponent } from "./assessor-header/assessor-header.compo
 import { AssessorRoutingModule } from "./assessor-routing.module";
 import { ViewQuestionnaireComponent } from "./view-questionnaire/view-questionnaire.component";
 import { ViewApplicantComponent } from './view-applicant/view-applicant.component';
+import { ViewAssessmentComponent } from './view-assessment/view-assessment.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ViewApplicantComponent } from './view-applicant/view-applicant.componen
     ViewQuestionnaireComponent,
     AssessorDashboardComponent,
     AssessorHeaderComponent,
-    ViewApplicantComponent
+    ViewApplicantComponent,
+    ViewAssessmentComponent
   ],
   imports: [
     CommonModule,

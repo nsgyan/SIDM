@@ -31,6 +31,13 @@
     <a href="" class="RegistrationBtn" >
         <i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>Logout</a>
 </div>
+<div class="container" *ngIf="viewAssessment">
+
+    <a href="" class="RegistrationBtn" >
+        <i aria-hidden="true" class="fas fa-power-off mr-2" style="color: #fff;"></i>Logout</a>
+        <a  class="RegistrationBtn mx-4" style="color: #fff;" (click)="navigate('/assessor/viewAssessment')"><i aria-hidden="true" class="fas fa-eye" style="color: #fff;" style="color: #fff;"></i>View
+            Assessments</a>
+</div>
 
 <section class="container">
     <div class="main-sec">
