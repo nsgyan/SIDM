@@ -1,6 +1,7 @@
 
 const RegistrationForm = require('../models/registrationForm')
 const User = require('../models/user')
+const assessor= require('../models/assessor')
 const Register = require('../models/registrationForm')
 const State = require('../models/state.model')
 const jwt = require('jsonwebtoken');
@@ -37,6 +38,27 @@ exports.adminAuth = (req, res, next) => {
     jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
         if (decoded) {
             User.findOne({ email: decoded.email, password: decoded.password })
+                .then(data => {
+                    if (data) {
+                        next()
+                    }
+                    else {
+                        res.status(401).json('invalid token')
+                    }
+                })
+        }
+        else {
+            res.status(401).json('Token expired  please login again')
+        }
+
+    })
+}
+
+exports.assessorAuth = (req, res, next) => {
+    const token = req.header('authorization');
+    jwt.verify(token, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg', function (err, decoded) {
+        if (decoded) {
+            assessor.findOne({ email: decoded.email, password: decoded.password })
                 .then(data => {
                     if (data) {
                         next()

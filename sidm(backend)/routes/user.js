@@ -11,9 +11,9 @@ router.post('/login/assessor',Assessor.login);
 router.post('/signup/assessor',Assessor.signup);
 router.post('/login/adminAssessor',adminAssessor.login);
 router.post('/signup/adminAssessor',adminAssessor.signup);
-router.post('/reset/assessor/password',Assessor.passwordReset);
-router.post('/assessor/checkemail', Assessor.getEmail);
-router.get('/assessor',  Assessor.getAssessor);
+router.post('/reset/assessor/password',auth.auth,Assessor.passwordReset);
+router.post('/assessor/checkemail',auth.auth, Assessor.getEmail);
+router.get('/assessor',auth.auth,  Assessor.getAssessor);
 router.post('/login', User.loginVerify);
 router.post('/memberLogin', User.memberLogin);
 

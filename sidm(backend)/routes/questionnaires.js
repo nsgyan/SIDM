@@ -17,12 +17,12 @@ router.post('/update/staticQuestionnaireAissment',auth.auth,questionnaires.updat
 router.get('/questionnaireAissment/:userId',auth.auth,questionnaires.getAissmentQuestionnaire)
 router.delete('/deleteQuestionnaire/:userId', auth.adminAuth,questionnaires.deleteQuestionnairesByID)
 router.get('/formsData',questionnaires.findmember);
-router.get('/assessor/aplicantList',Assessor.findmember)
-router.get('/applicantQuestionnaire/aplicantList',adminAssessor.applicantQuestionnaire)
-router.get('/applicantQuestionnaire',adminAssessor.aplicantList)
-router.get('/filterAssessmentsList',Assessor.filterAssessmentsList)
-router.get('/assessmentsList',Assessor.assessmentsList)
-router.post('/assessorRequiredDocument',questionnaires.assessorRequiredDocument)
+router.get('/assessor/aplicantList',auth.auth,Assessor.findmember)
+router.get('/applicantQuestionnaire/aplicantList',auth.auth,adminAssessor.applicantQuestionnaire)
+router.get('/applicantQuestionnaire',auth.auth,adminAssessor.aplicantList)
+router.get('/filterAssessmentsList',auth.auth,Assessor.filterAssessmentsList)
+router.get('/assessmentsList',auth.auth,Assessor.assessmentsList)
+router.post('/assessorRequiredDocument',auth.auth,questionnaires.assessorRequiredDocument)
 
 
 
