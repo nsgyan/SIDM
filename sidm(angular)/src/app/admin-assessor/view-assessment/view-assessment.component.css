@@ -32,6 +32,7 @@
 }
 .table td {
     vertical-align: middle;
+    color: #000;
 }
 .table th {
     vertical-align: middle;
@@ -39,8 +40,9 @@
 .table {
     margin-bottom: 1rem;
     box-shadow: 1px 1px 10px #d9d9d9;
-    height: auto;
-    overflow: scroll;
+    /* height: 400px; */
+    display: block;
+    overflow-x: scroll;
 }
 .paymentsDropdwn {
     background: none;
@@ -92,4 +94,15 @@ select {
     color: rgb(26, 26, 26);
     font-size: 17px;
     font-weight: 500;
+}
+.viewBtn {
+    background: #353979;
+    padding: 6px 25px;
+    border-radius: 3px;
+    border: none;
+    color: #fff!important;
+    cursor: pointer;
+}
+.marathon-header-fixed.header-top {
+    top: -150px;
 }
