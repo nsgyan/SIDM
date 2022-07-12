@@ -18,8 +18,13 @@ export class AddAssessorComponent implements OnInit {
     private toast: ToastrService,
     private routes: Router,
     private localStorage: LocalStorageService,) { 
+      // let type= this.localStorage.get('type');
       let type= this.localStorage.get('type');
-      
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
     this.assessorForm=this.fb.group({
       assessorName:['',Validators.required],
       email: ['', [Validators.required, Validators.email]],

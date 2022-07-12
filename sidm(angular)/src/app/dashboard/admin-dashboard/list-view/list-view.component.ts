@@ -36,6 +36,12 @@ export class ListViewComponent implements OnInit {
     private routes: Router,
     private fb: FormBuilder,
     public dialog: MatDialog) {
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
     this.getdata('')
     this.requestInfo=this.fb.group({
       remark:['']

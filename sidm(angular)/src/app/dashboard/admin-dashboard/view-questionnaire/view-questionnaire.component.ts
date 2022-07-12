@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { HttpService } from "src/app/shared/services/http.service";
+import { LocalStorageService } from "src/app/shared/services/local-storage.service";
 
 
 @Component({
@@ -23,7 +24,14 @@ multiSelect:boolean=false
     private httpService: HttpService,
     private routes: Router,
     private route: ActivatedRoute,
-    private toast: ToastrService,) {
+    private toast: ToastrService,
+    private localStorage: LocalStorageService,) {
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+this.routes.navigateByUrl(url);
+      }
       const id = this.route.snapshot.paramMap.get('id')
       this.httpService.getQuestionnaireById(id).subscribe((data:any)=>{
 

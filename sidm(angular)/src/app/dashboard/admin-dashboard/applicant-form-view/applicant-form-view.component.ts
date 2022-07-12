@@ -30,6 +30,12 @@ export class ApplicantFormViewComponent implements OnInit {
     public dialog: MatDialog,
     private routes:Router) {
     const id = this.route.snapshot.paramMap.get('id')
+    let type= this.localStorage.get('type');
+    if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+    }
     this.httpService.getdetails(id)
       .subscribe((data: any) => {
         if (data?.category === 'cat1') {

@@ -60,6 +60,12 @@ export class AdminEditComponent implements OnInit {
     private winRef: WindowRefService) {
       debugger
       const id = this.route.snapshot.paramMap.get('id')
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
       this.viewForm(id)
       this.getState()
 

@@ -7,6 +7,7 @@ import { formatDate, Location } from '@angular/common'
 import { HttpService } from 'src/app/shared/services/http.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-applicant-questionnaire',
@@ -31,9 +32,16 @@ questionnaireForm:FormGroup
     private fb:FormBuilder,
     private toast: ToastrService,
     private route: ActivatedRoute,
+    private localStorage: LocalStorageService,
     private routes:Router,
     private location: Location, 
     public dialog: MatDialog) {
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
       this.id = this.route.snapshot.paramMap.get('id')
       this.httpService.getdetails(this.id).subscribe((data:any)=>{
         if (data?.category === 'cat1') {

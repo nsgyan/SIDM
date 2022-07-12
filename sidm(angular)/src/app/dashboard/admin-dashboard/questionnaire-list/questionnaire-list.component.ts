@@ -6,6 +6,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { HttpService } from "src/app/shared/services/http.service";
+import { LocalStorageService } from "src/app/shared/services/local-storage.service";
 
 
 @Component({
@@ -22,7 +23,14 @@ export class QuestionnaireListComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private httpService: HttpService,
     private toast: ToastrService,
-    private routes: Router,) {
+    private routes: Router,
+    private localStorage: LocalStorageService,) {
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
 this.httpService.getQuestionnaire().subscribe((data:any)=>{
   data.map((item:any)=>{
     if (item.category === 'cat1') {

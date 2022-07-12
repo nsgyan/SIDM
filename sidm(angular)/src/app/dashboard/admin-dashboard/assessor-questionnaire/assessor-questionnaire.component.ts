@@ -31,7 +31,12 @@ average=0
     private fb: FormBuilder,
     public dialog: MatDialog,
     private localStorage: LocalStorageService,) { 
-    
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
       this.getdata('sdaf')
       this.filter= this.fb.group({
         category:['',Validators.required],

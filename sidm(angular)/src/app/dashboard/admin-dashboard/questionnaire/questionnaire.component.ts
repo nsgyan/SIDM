@@ -27,7 +27,12 @@ multiSelect:boolean=false
     private toast: ToastrService,
     private routes: Router,
     private localStorage: LocalStorageService,) {
-
+      let type= this.localStorage.get('type');
+      if(type!=="admin"){
+this.localStorage.clearLocalStorage()
+const url='/login/admin'
+window.location.href=url
+      }
     this.questionnaire=this.fb.group({
       category:['',Validators.required],
       typeOfApplicant:['',Validators.required],
