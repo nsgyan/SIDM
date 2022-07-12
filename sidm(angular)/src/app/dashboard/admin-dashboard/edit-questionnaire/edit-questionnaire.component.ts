@@ -30,8 +30,8 @@ export class EditQuestionnaireComponent implements OnInit {
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/login/admin'])
+
       }
       const id = this.route.snapshot.paramMap.get('id')
       this.httpService.getQuestionnaireById(id).subscribe((data:any)=>{

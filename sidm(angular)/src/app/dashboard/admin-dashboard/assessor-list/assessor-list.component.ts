@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
@@ -21,12 +22,13 @@ export class AssessorListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private httpService:HttpService,
     private dialog:MatDialog,
-    private localStorage: LocalStorageService,) {
+    private localStorage: LocalStorageService,
+    private routes: Router,) {
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/login/admin'])
+
       }
     this.httpService.getassessor().subscribe((data:any)=>{
       console.log(data);

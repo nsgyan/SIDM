@@ -33,8 +33,8 @@ export class ApplicantFormViewComponent implements OnInit {
     let type= this.localStorage.get('type');
     if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/login/admin'])
+
     }
     this.httpService.getdetails(id)
       .subscribe((data: any) => {

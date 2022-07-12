@@ -34,8 +34,8 @@ average=0
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/login/admin'])
+
       }
       this.getdata('sdaf')
       this.filter= this.fb.group({

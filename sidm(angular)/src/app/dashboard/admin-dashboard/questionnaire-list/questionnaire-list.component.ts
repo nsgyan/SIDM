@@ -28,8 +28,7 @@ export class QuestionnaireListComponent implements OnInit {
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/login/admin'])
       }
 this.httpService.getQuestionnaire().subscribe((data:any)=>{
   data.map((item:any)=>{

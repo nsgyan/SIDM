@@ -39,8 +39,8 @@ questionnaireForm:FormGroup
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/login/admin'])
+
       }
       this.id = this.route.snapshot.paramMap.get('id')
       this.httpService.getdetails(this.id).subscribe((data:any)=>{

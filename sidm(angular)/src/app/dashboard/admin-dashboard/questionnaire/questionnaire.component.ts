@@ -30,8 +30,7 @@ multiSelect:boolean=false
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-window.location.href=url
+this.routes.navigate(['/dashboard/admin'])
       }
     this.questionnaire=this.fb.group({
       category:['',Validators.required],

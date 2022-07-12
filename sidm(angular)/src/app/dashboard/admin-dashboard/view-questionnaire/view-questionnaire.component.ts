@@ -29,8 +29,7 @@ multiSelect:boolean=false
       let type= this.localStorage.get('type');
       if(type!=="admin"){
 this.localStorage.clearLocalStorage()
-const url='/login/admin'
-this.routes.navigateByUrl(url);
+this.routes.navigate(['/login/admin'])
       }
       const id = this.route.snapshot.paramMap.get('id')
       this.httpService.getQuestionnaireById(id).subscribe((data:any)=>{
