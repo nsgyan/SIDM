@@ -88,70 +88,90 @@
         <td class="">{{ item.category }} <br> <span>{{ item.typeOfApplicant }} </span> </td>    
         <td >
           <span >
-            <span class="text-danger" *ngIf="item.aspillai.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.aspillai.status==='Call Review'" (click)="openModel(item.aspillai.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.aspillai.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.aspillai.score  }}/{{ item.aspillai.maxScore }}
+            <span class="text-danger" *ngIf="item.prahlada?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.prahlada?.status==='Call Review'" (click)="openModel(item.prahlada.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.prahlada?.status==='Completed'"> Completed</span> <br />
+          <span *ngIf=" item.prahlada?.score">
+             Subjective Score:{{ item.prahlada?.score }}/{{ item.prahlada?.maxScore }}
+            Objective  Score:{{ item.prahlada?.applicantScore }}/{{ 100-item.prahlada?.maxScore }}
+          </span> 
           </span>
         </td>
         <td >
           <span >
-            <span class="text-danger" *ngIf="item.prahlada.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.prahlada.status==='Call Review'" (click)="openModel(item.prahlada.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.prahlada.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.prahlada.score }}/{{ item.prahlada.maxScore }}
+            <span class="text-danger" *ngIf="item.aspillai?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.aspillai?.status==='Call Review'" (click)="openModel(item.aspillai.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.aspillai?.status==='Completed'"> Completed</span> <br />
+            <span *ngIf="item.aspillai?.score">
+            Subjective Score:{{ item.aspillai?.score }}/{{ item.aspillai?.maxScore }}
+            Objective  Score:{{ item.aspillai?.applicantScore }}/{{ 100-item.aspillai?.maxScore }}
+            </span>
           </span>
         </td>
+      
           <td >
           <span >
-            <span class="text-danger" *ngIf="item.jp.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.jp.status==='Call Review'"  (click)="openModel(item.jp.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.jp.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.jp.score }}/{{ item.jp.maxScore }}
+            <span class="text-danger" *ngIf="item.jp?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.jp?.status==='Call Review'"  (click)="openModel(item.jp.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.jp?.status==='Completed'"> Completed</span> <br />
+            <span *ngIf="item.jp?.score">
+            Subjective  Score:{{ item.jp?.score }}/{{ item.jp?.maxScore }}
+            Objective  Score:{{ item.jp?.applicantScore }}/{{ 100-item.jp?.maxScore }}
+          </span>
           </span>
         </td>
         <td >
           <span >
-            <span class="text-danger" *ngIf="item.scbajpai1.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.scbajpai1.status==='Call Review'" (click)="openModel(item.scbajpai1.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.scbajpai1.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.scbajpai1.score }}/{{ item.scbajpai1.maxScore }}
+            <span class="text-danger" *ngIf="item.scbajpai1?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.scbajpai1?.status==='Call Review'" (click)="openModel(item.scbajpai1.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.scbajpai1?.status==='Completed'"> Completed</span> <br />
+            <span *ngIf="item.scbajpai1?.score ">
+            Subjective  Score:{{ item.scbajpai1?.score }}/{{ item.scbajpai1?.maxScore }}
+            Objective  Score:{{ item.scbajpai1?.applicantScore }}/{{ 100-item.scbajpai1?.maxScore }}
+          </span>
           </span>
         </td>
         <td >
           <span >
-            <span class="text-danger" *ngIf="item.rktyagi.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.rktyagi.status==='Call Review'"  (click)="openModel(item.rktyagi.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.rktyagi.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.rktyagi.score }}/{{ item.rktyagi.maxScore }}
+            <span class="text-danger" *ngIf="item.rktyagi?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.rktyagi?.status==='Call Review'"  (click)="openModel(item.rktyagi.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.rktyagi?.status==='Completed'"> Completed</span> <br />
+            <span *ngIf="item.rktyagi?.score">
+            Subjective   Score:{{ item.rktyagi?.score }}/{{ item.rktyagi?.maxScore }}
+            Objective  Score:{{ item.rktyagi?.applicantScore }}/{{ 100-item.rktyagi?.maxScore }}
+            </span>
           </span>
         </td>
         <td >
           <span >
-            <span class="text-danger" *ngIf="item.pritam.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.pritam.status==='Call Review'" (click)="openModel(item.pritam.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.pritam.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.pritam.score }}/{{ item.pritam.maxScore }}
+            <span class="text-danger" *ngIf="item.pritam?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.pritam?.status==='Call Review'" (click)="openModel(item.pritam.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.pritam?.status==='Completed'"> Completed</span> <br />
+            <span *ngIf="item.pritam?.score">
+          Subjective  Score:{{ item.pritam?.score }}/{{ item.pritam?.maxScore }}
+          Objective  Score:{{ item.pritam?.applicantScore }}/{{ 100-item.pritam?.maxScore }}
+          </span>
           </span>
         </td>
         <td >
           <span >
-            <span class="text-danger" *ngIf="item.dg.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.dg.status==='Call Review'" (click)="openModel(item.dg.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.dg.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.dg.score }}/{{ item.dg.maxScore }}
+            <span class="text-danger" *ngIf="item.dg?.status==='Pending'"> Pending</span>
+            <a class=" callR" *ngIf="item.dg?.status==='Call Review'" (click)="openModel(item.dg.remark)"> Call Review</a>
+            <span class="bg" *ngIf="item.dg?.status==='Completed'"> Completed</span> <br />
+            <span *ngIf="item.dg?.score">
+            Subjective Score:{{ item.dg?.score }}/{{ item.dg?.maxScore }}
+            Objective  Score:{{ item.dg?.applicantScore }}/{{ 100-item.dg?.maxScore }}
+          </span>
           </span>
         </td>
         <td  >
           <span >
-            <span class="text-danger" *ngIf="item.bharat.status==='Pending'"> Pending</span>
-            <a class=" callR" *ngIf="item.bharat.status==='Call Review'" (click)="openModel(item.bharat.remark)"> Call Review</a>
-            <span class="bg" *ngIf="item.bharat.status==='Completed'"> Completed</span> <br />
-            Score:{{ item.bharat.score }}/{{ item.bharat.maxScore }}
+
+          <span *ngIf="item.finaljury?.totalApplicantScore"> Score:{{ item.finaljury?.totalApplicantScore ? item.finaljury?.totalApplicantScore:0 }}/{{ item.finaljury?.totalScore }}</span> 
           </span>
         </td>
-        <td></td>
-        <td>{{item.average | number: '2.2'}}</td>
+        <!-- <td></td> -->
+        <td>{{item.average}}</td>
       </tr>
     </tbody>
   </table>
