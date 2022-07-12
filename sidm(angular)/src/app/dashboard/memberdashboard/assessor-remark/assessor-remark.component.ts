@@ -30,7 +30,13 @@ average=0
     private routes: Router,
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private route: ActivatedRoute,) { 
+    private route: ActivatedRoute,
+    private localStorage: LocalStorageService,) { 
+      let type= this.localStorage.get('type');
+      if(type!=="member"){
+  this.localStorage.clearLocalStorage()
+  this.routes.navigate(['/login/member'])
+      }
       this.id = this.route.snapshot.paramMap.get('id')
     
       this.httpService.getdetails(this.id).

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -28,7 +29,14 @@ questionnaireForm:FormGroup
     private fb:FormBuilder,
     private toast: ToastrService,
     private route: ActivatedRoute,
-    private routes:Router) {
+    private routes:Router,
+      private localStorage: LocalStorageService,) { 
+      let type= this.localStorage.get('type');
+      if(type!=="member"){
+  this.localStorage.clearLocalStorage()
+  this.routes.navigate(['/login/member'])
+      }
+
       this.id = this.route.snapshot.paramMap.get('id')
       this.httpService.getdetails(this.id).subscribe((data:any)=>{
  

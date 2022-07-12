@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-member-dashboard-page',
@@ -11,7 +12,13 @@ import { HttpService } from 'src/app/shared/services/http.service';
 export class MemberDashboardPageComponent implements OnInit {
   memberData:any
   constructor(private httpservice:HttpService,
-    private routes:Router) {
+    private routes:Router,
+    private localStorage: LocalStorageService,) { 
+      let type= this.localStorage.get('type');
+      if(type!=="member"){
+  this.localStorage.clearLocalStorage()
+  this.routes.navigate(['/login/member'])
+      }
     this.httpservice.getMemberData().subscribe((data:any)=>{
       data.map((item:any)=>{
         if (item.category === 'cat1') {

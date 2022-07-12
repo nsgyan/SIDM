@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { ModelComponent } from 'src/app/shared/services/model/model.component';
 import { environment } from 'src/environments/environment.prod';
 
@@ -22,8 +23,15 @@ export class ViewQuestionnaireComponent implements OnInit {
     private httpService: HttpService,
     private fb:FormBuilder,
     private toast: ToastrService,
+    private routes:Router,
     private route: ActivatedRoute,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog,
+    private localStorage: LocalStorageService,) { 
+      let type= this.localStorage.get('type');
+      if(type!=="member"){
+  this.localStorage.clearLocalStorage()
+  this.routes.navigate(['/login/member'])
+      }
     this.id = this.route.snapshot.paramMap.get('id')
     this.questionnaireForm=this.fb.group({
       aissment: this.fb.array([]) 

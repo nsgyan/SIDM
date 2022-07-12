@@ -79,6 +79,12 @@ export class MemberDashboardComponent implements OnInit {
     public dialog: MatDialog,
     private spinner: NgxSpinnerService
   ) {
+   
+      let type= this.localStorage.get('type');
+      if(type!=="member"){
+  this.localStorage.clearLocalStorage()
+  this.routes.navigate(['/login/member'])
+      }
     const id = this.route.snapshot.paramMap.get('id')
     this.OfflinePayment=this.formBuilder.group({
       id:['',Validators.required],

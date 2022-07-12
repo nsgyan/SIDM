@@ -79,6 +79,11 @@ export class ApplyNewCategoryComponent implements OnInit {
     public dialog: MatDialog,
     private spinner: NgxSpinnerService
   ) {
+    let type= this.localStorage.get('type');
+    if(type!=="member"){
+this.localStorage.clearLocalStorage()
+this.routes.navigate(['/login/member'])
+    }
   
  this.applyNew()
     this.getState()
