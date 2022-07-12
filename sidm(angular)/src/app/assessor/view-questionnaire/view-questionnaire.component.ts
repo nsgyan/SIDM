@@ -119,12 +119,15 @@ if(data.category==='cat4'){
       item.assessor.map((assessor:any)=>{
         let assessorID= this.localStorage.get('assessorID')
         if(assessor.id===assessorID){
+          item.assessorData=assessor
           this.remark=assessor.remark
           this.scorebyAssessor=assessor.score
           
         }
       
       })
+      
+      
       if(item.inputType==='assessorScore'){
         control.push(
           this.fb.group({
@@ -193,7 +196,7 @@ if(data.category==='cat4'){
         this.assessor.get('assessorScore')?.setValue(data.assessorScore)
         this.assessor.get('assessorScore')?.updateValueAndValidity()
         }
-        console.log(this.assessor);
+        console.log(console.log(data));
         
       
     },err=>{

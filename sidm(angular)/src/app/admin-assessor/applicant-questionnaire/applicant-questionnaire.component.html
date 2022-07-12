@@ -77,9 +77,13 @@
           <div *ngFor=" let controlName of nameAissment.controls; let i = index" [formGroupName]="i">
             <mat-step label="Q {{i}}"  [stepControl]="nameAissment?.get([i])!" >
               <div class="d-flex justify-content-end">
-                <div class="d-flex align-items-center" *ngIf="questionnaireData?.questionAns[i].assessorScore">
+                <!-- <div class="d-flex align-items-center" *ngIf="questionnaireData?.questionAns[i].assessorScore">
                   <label class="mr-2 MaxScore">Assessor Score</label>
                   <p class="score">{{questionnaireData?.questionAns[i].assessorScore}}</p>
+                </div> -->
+                <div class="d-flex align-items-center" *ngIf="questionnaireData?.questionAns[i].assessorScore">
+                  <label class="mr-2 MaxScore"> Admin Assessor Score</label>
+                  <p class="score" > {{questionnaireData.questionAns[i]?.assessorData.score}} </p>
                 </div>
                 <div class="d-flex align-items-center">
                   <label class="mr-2 MaxScore">Max Score</label>

@@ -119,7 +119,7 @@ data.assessor.map((assessor: any) => {
         item.assessor.map((assessor: any) => {
           let assessorID = this.localStorage.get('assessorID')
           if (assessor.id === assessorID) {
-        
+            item.assessorData=assessor
             item.assessorScore = assessor.score
             console.log(this.scorebyAssessor);
             
@@ -766,6 +766,7 @@ viewDetails(id: string) {
           item.status = status
           item.maxScore = assessorMaxScore,
             item.score = assessorScore,
+            
             item.assessorRemark = this.questionnaireForm.value.assessorRemark
         }
       })

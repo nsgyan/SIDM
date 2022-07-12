@@ -120,6 +120,7 @@ if(data.category==='cat4'){
         if(assessor.id===assessorID){
           this.remark=assessor.remark
           this.scorebyAssessor=assessor.score
+          item.assessorData=assessor
           
         }
       
