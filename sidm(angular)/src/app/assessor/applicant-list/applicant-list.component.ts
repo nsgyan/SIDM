@@ -183,5 +183,8 @@ window.location.href=url
     this.routes.navigateByUrl(url);
 
   }
+  navigate(url:any){
+    this.routes.navigateByUrl(url);
+  }
 
 }
