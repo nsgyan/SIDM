@@ -52,28 +52,47 @@ res.status(201).json({
     );
   };
   
-  exports.login = async(req, res, next) => {  
+  exports.login = (req, res, next) => {  
    const email= req.body.email;
    const  password= req.body.password
-   await Assessor.findOne({email:email}).then(data=>{
-        const passwordMatch =  bcrypt.compare(password, data.password);
-        if(passwordMatch){
-            const token = jwt.sign({
-                exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                email: email,
-                password:password,
+    Assessor.findOne({email:email}).then(data=>{
+        bcrypt.compare(password, data.password,function(err, result){
+if(result){
+  const token = jwt.sign({
+            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+            email: email,
+            password:password,
 
-            }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
-            );
+        }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
+        );
 
-            res.status(200).send({ token: token,data:data })
+        res.status(200).send({ token: token,data:data })
+}
+else{
+  res.status(401).json({
+            message: 'invalid pan Number'
+          });
+}
+
+        });
+       
+        // if(passwordMatch){
+        //     const token = jwt.sign({
+        //         exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        //         email: email,
+        //         password:password,
+
+        //     }, 'saaffffgfhteresfdxvbcgfhtdsefgfbdhtg'
+        //     );
+
+        //     res.status(200).send({ token: token,data:data })
          
-        }
-        else{
-            res.status(401).json({
-                message: 'invalid pan Number'
-              });
-        }
+        // }
+        // else{
+        //     res.status(401).json({
+        //         message: 'invalid pan Number'
+        //       });
+        // }
     }).catch(
         (error) => {
             res.send("Internal server error");
