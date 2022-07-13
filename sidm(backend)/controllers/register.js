@@ -147,10 +147,10 @@ exports.postRegistrationForm = (req, res, next) => {
       var maillist = [
         result.email,
         result.alterEmail,
-        // 'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
          
 
       ];
@@ -202,10 +202,10 @@ exports.postRegistrationForm = (req, res, next) => {
         var maillist = [
           result.email,
           result.alterEmail,
-        //   'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+          'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
           
            
         ];
@@ -452,10 +452,10 @@ exports.changeStatus = (req, res, next) => {
       var maillist = [
         success.email,
         success.alterEmail,
-        // 'bharat.jain@sidm.in',
-        // 'awards22@sidm.in',
-        // 'vikas.rai@sidm.in',
-        // 'manoj.mishra@sidm.in'
+        'bharat.jain@sidm.in',
+        'awards22@sidm.in',
+        'vikas.rai@sidm.in',
+        'manoj.mishra@sidm.in'
          
 
       ];

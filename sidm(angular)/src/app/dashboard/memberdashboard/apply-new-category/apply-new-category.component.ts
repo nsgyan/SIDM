@@ -230,7 +230,7 @@ this.routes.navigate(['/login/member'])
 
 
   onSubmit() {
-    if (this.newCategoryForm.valid
+    if (this.newCategoryForm.valid&&this.captcha
 ) {
 
     }
@@ -1129,7 +1129,7 @@ else{
     this.newCategoryForm.get('exhibit1')?.updateValueAndValidity()
     this.newCategoryForm.get('exhibit2')?.setValidators(Validators.required)
     this.newCategoryForm.get('exhibit2')?.updateValueAndValidity()
-    if (this.newCategoryForm.valid) {
+    if (this.newCategoryForm.valid&&this.captcha) {
 this.action=true
 
 if(type==='submitAndPay'){
