@@ -125,6 +125,7 @@ exports.passwordReset = (req, res, next) => {
   const email = req.body.email
   bcrypt.hash(req.body.password, 10).then((hash)=>{
   Assessor.findOne({email:email}).then(data=>{
+    data.password=hash
   data.save((err,success)=>{
     if(err){
       res.json("internal server error");

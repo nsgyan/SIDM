@@ -60,7 +60,7 @@ else if(data.type==='assessorAssessorRequestInfo'){
   }
   assessPassword(){
     this.assessorPasswordReset=this.formBuilder.group({
-      password:['',[Validators.required,Validators.minLength(8)]],
+      password:['',[Validators.required,Validators.minLength(6)]],
       confirmPassword:['',Validators.required],
     })
   }
