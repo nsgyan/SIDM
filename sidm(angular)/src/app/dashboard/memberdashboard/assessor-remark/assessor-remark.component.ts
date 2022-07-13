@@ -66,8 +66,9 @@ average=0
           else  if(assessorUser.email==='dg@sidm.in'){
             data.dg=assessorUser
           }
-          else  if(assessorUser.email==='bharat.jain@sidm.in'){
-            data.bharat=assessorUser
+          else  if(assessorUser.email==='finaljury@sidm.com'){
+            // data.totalApplicantScore=    assessorUser.score+Number( assessorUser.applicantScore)
+            data.finaljury=assessorUser
           }
         })
       

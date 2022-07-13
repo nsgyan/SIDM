@@ -158,7 +158,7 @@
                                         <th scope="col">Application Status</th>
                                         <th scope="col">Registration Fees</th>
                                         <th scope="col">Application Remark</th>
-                                        <th scope="col">Screening Committee</th>
+                                        <th scope="col"> Comments by Screening Committee</th>
                                         <th scope="col"> Award Questionnaire Status</th>
                                         <th scope="col">Participation Fees</th>
                                         <th scope="col">Action</th>
@@ -185,19 +185,17 @@
                                                 style="color: green;">Paid ({{memberData?.paymentMode}})</span>
                                         </td>
 
-                                        <td><a *ngIf="memberData?.remark" (click)="viewRemark(memberData?.remark)"
-                                                class="badge badge-light"><i aria-hidden="true"
-                                                    class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a>
+                                        <td><a *ngIf="memberData?.remark"  (click)="viewRemark(memberData?.remark)"
+                                                class="badge badge-light">Click to view</a>
                                         </td>
                                         <td><a *ngIf="assessorRemark" (click)="navigateTo('dashboard/member/assessorRemark/',memberData?._id)"
-                                            class="badge badge-light"><i aria-hidden="true"
-                                                class="fas fa-info-circle mr-0" style="color: #cc1d2c;"></i></a>
+                                            class="badge badge-light" style="color: red;">Click to view</a>
                                     </td>
                                         <td> <a *ngIf="memberData?.questionnaireStatus==='requestInfo'"  (click)="navigateTo('dashboard/member/editQuestionnaire/',memberData?._id)" style="color: red;">Request Info</a>
                                              <span *ngIf="!memberData?.questionnaireStatus" ><span style="color: red;">Pending</span>  <br>  <a class="link" style="color: rgb(20, 112, 232);" *ngIf="memberData?.status==='Approved'&& (!memberData?.questionnaireStatus)" (click)="navigateTo('dashboard/member/questionnaire/',memberData?._id)">(Apply for award)</a></span> 
                                              <span *ngIf="memberData?.questionnaireStatus==='Submitted'" >Submitted For Screening </span> 
                                              <span  *ngIf="memberData?.questionnaireStatus==='save'&&memberData?.offlinePaymentDetails" >Applied (<span style="color: red;">Final Submit Pending</span>) </span> 
-                                             <span *ngIf="memberData?.questionnaireStatus==='approved'">Approved </span></td>
+                                             <span *ngIf="memberData?.questionnaireStatus==='approved'" style="color: green;">Approved </span></td>
                                         <td>
                                             <span *ngIf="!memberData?.offlinePaymentDetails"
                                                  > <span style="color: red;">Pending </span><br><a class="link" style="color: rgb(20, 112, 232);"

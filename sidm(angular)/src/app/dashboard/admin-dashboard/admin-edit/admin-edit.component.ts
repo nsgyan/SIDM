@@ -562,7 +562,7 @@ this.routes.navigate(['/login/admin'])
         status: type,
       }).subscribe(data => {
 
-        this.routes.navigate(['/adminDashboard'])
+        this.routes.navigate(['/dashboard/admin'])
         this.toast.success('successfully update');
       }, err => {
         this.toast.error(err.error);

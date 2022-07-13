@@ -54,11 +54,11 @@
             </div>
             <h2 style="font-size: 26px;" class="matlable m-0">Q{{i+1}} - {{questionnaireData.questionAns[i].question}}
             </h2>
-            <p style="color:rgb(150 67 67);font-size: 18px; font-weight: 500;">
+            <p style="color:rgb(150 67 67);font-size: 25px; font-weight: 500;">
               {{questionnaireData.questionAns[i].parameterDescription}}</p>
             <div class="auto-width">
               <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='singleSelect'" appearance="fill">
-                <mat-label style="font-size: 18px;">Select Answer</mat-label>
+                <mat-label style="font-size: 18px; font-weight: 500; color: #000;">Select Answer</mat-label>
                 <mat-select formControlName="answer">
                   <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
                     {{option.answer}} </mat-option>
@@ -68,23 +68,17 @@
 
             <div class="auto-width">
               <mat-form-field *ngIf="questionnaireData.questionAns[i].inputType==='multiSelect'" appearance="fill">
-                <mat-label style="font-size: 18px;">Select Answer</mat-label>
+                <mat-label style="font-size: 18px; font-weight: 500; color: #000;">Select Answer</mat-label>
                 <mat-select formControlName="answer" multiple>
                   <mat-option *ngFor="let option of questionnaireData.questionAns[i].option" value="{{option.answer}}">
                     {{option.answer}} </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-            <p style="font-size: 20px;color: #333;
-            font-weight: 600;" *ngIf="questionnaireData.questionAns[i].applicantAnswer">Applicant Response:
-              <span style="font-size: 18px;
-              font-weight: 500;">{{questionnaireData.questionAns[i].applicantAnswer}}</span>
-            </p>
-            <p style="font-size: 20px;color: #333;
-            font-weight: 600;" *ngIf="questionnaireData.questionAns[i].adminAnswer">Admin Response: <span style="font-size: 18px;
-              font-weight: 500;">{{questionnaireData.questionAns[i].adminAnswer}}</span></p>
-               <p style="font-size: 20px;color: #333; font-weight: 600;"  *ngIf="questionnaireData?.questionAns[i].finalJuryAnswer">
-                Final Jury Answer: <span style="font-size: 18px; font-weight: 500;">{{questionnaireData?.questionAns[i].finalJuryAnswer}}</span></p>
+            <h2 style="font-size: 26px; font-weight: 500; color: #000;" class="mt-3" *ngIf="questionnaireData.questionAns[i]?.adminAnswer">Admin Assessor Response : <span  style="font-size: 22px; font-weight: 400;">{{questionnaireData.questionAns[i]?.adminAnswer}}</span></h2>
+            <h2 style="font-size: 26px; font-weight: 500; color: #000;" *ngIf="questionnaireData?.questionAns[i].finalJuryAnswer"> Final Jury Response: <span style="font-size: 22px; font-weight: 400;">{{questionnaireData?.questionAns[i].finalJuryAnswer}}</span></h2>
+            <h2 style="font-size: 26px; font-weight: 500; color: #000;" class="mt-3" *ngIf="questionnaireData.questionAns[i]?.applicantAnswer">Applicant Response : <span  style="font-size: 22px; font-weight: 400;">{{questionnaireData.questionAns[i]?.applicantAnswer}}</span></h2>
+            <h2 style="font-size: 26px; font-weight: 500; color: #000;" class="mt-3" *ngIf="questionnaireData?.questionAns[i].answer">Final Response: : <span  style="font-size: 22px; font-weight: 400;">{{questionnaireData?.questionAns[i].answer}}</span></h2>
             <p style="color: red;"
               *ngIf="controlName.get('answer')?.hasError('required')&&(controlName.get('answer')?.touched||controlName.get('answer')?.dirty ||submited)">
               please select at least one option
@@ -94,7 +88,7 @@
             <br>
             <div *ngIf="questionnaireData.questionAns[i].description">
               <div class="mb-2">
-                <label style="font-size: 18px; font-weight: 500;color: #333333;" class="questionnaireLabel">Enter
+                <label style="font-size: 26px; font-weight: 500; color: #000;" class="questionnaireLabel">Enter
                   Description:</label>
                 <ckeditor formControlName="description" data="<p>Hello, world!</p>"></ckeditor>
 
@@ -178,7 +172,7 @@
                   </tbody>
                 </table>
               </div>
-              <h3 style="font-size: 18px; font-weight: 500; margin-bottom: 0;">Admin Remark</h3>
+              <h3 style="font-size: 26px; font-weight: 500; color: #000;">Admin Remark</h3>
               <ckeditor formControlName="adminRemark"></ckeditor>
 
               <p style="color: red;"

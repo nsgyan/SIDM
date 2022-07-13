@@ -29,14 +29,14 @@
           
             <span >
               <span class="text-danger" *ngIf="applicantData?.prahlada?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.prahlada?.status==='Call Review'" (click)="openModel(applicantData?.prahlada.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.prahlada?.status==='Call Review'" (click)="openModel(applicantData?.prahlada.remark)"> Call Review (click to view)</a>
 
               <span class="bg" *ngIf="applicantData?.prahlada?.status==='Completed'"> Completed</span> <br />
               
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.prahlada?.status==='Call Review'"
-             (click)="uploadDocument(applicantData?.prahlada.remark,applicantData?.prahlada)"> Upload</a>
+             (click)="uploadDocument(applicantData?.prahlada.remark,applicantData?.prahlada)">Click to upload</a>
             </td>
           </tr>
           <tr >
@@ -45,13 +45,13 @@
             
             <span >
               <span class="text-danger" *ngIf="applicantData?.aspillai?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.aspillai?.status==='Call Review'" (click)="openModel(applicantData?.aspillai.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.aspillai?.status==='Call Review'" (click)="openModel(applicantData?.aspillai.remark)"> Call Review (click to view)</a>
               <span class="bg" *ngIf="applicantData?.aspillai?.status==='Completed'"> Completed</span> <br />
               
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.aspillai?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.aspillai.remark,applicantData?.aspillai)"> Upload</a>
+            (click)="uploadDocument(applicantData?.aspillai.remark,applicantData?.aspillai)"> Click to upload</a>
            </td>
         </tr>
         <tr >
@@ -60,12 +60,12 @@
             <td >
             <span >
               <span class="text-danger" *ngIf="applicantData?.jp?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.jp?.status==='Call Review'"  (click)="openModel(applicantData?.jp.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.jp?.status==='Call Review'"  (click)="openModel(applicantData?.jp.remark)"> Call Review (click to view)</a>
               <span class="bg" *ngIf="applicantData?.jp?.status==='Completed'"> Completed</span>
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.jp?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.jp.remark,applicantData?.jp)"> Upload</a>
+            (click)="uploadDocument(applicantData?.jp.remark,applicantData?.jp)"> Click to upload</a>
            </td>
         </tr>
         <tr >
@@ -73,13 +73,13 @@
           <td >
             <span >
               <span class="text-danger" *ngIf="applicantData?.scbajpai1?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.scbajpai1?.status==='Call Review'" (click)="openModel(applicantData?.scbajpai1.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.scbajpai1?.status==='Call Review'" (click)="openModel(applicantData?.scbajpai1.remark)"> Call Review (click to view)</a>
               <span class="bg" *ngIf="applicantData?.scbajpai1?.status==='Completed'"> Completed</span> <br />
               
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.scbajpai1?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.scbajpai1.remark,applicantData?.scbajpai1)"> Upload</a>
+            (click)="uploadDocument(applicantData?.scbajpai1.remark,applicantData?.scbajpai1)"> Click to upload</a>
            </td>
         </tr>
         <tr >
@@ -87,13 +87,13 @@
           <td >
             <span >
               <span class="text-danger" *ngIf="applicantData?.rktyagi?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.rktyagi?.status==='Call Review'"  (click)="openModel(applicantData?.rktyagi.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.rktyagi?.status==='Call Review'"  (click)="openModel(applicantData?.rktyagi.remark)"> Call Review (click to view)</a>
               <span class="bg" *ngIf="applicantData?.rktyagi?.status==='Completed'"> Completed</span> <br />
         
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.rktyagi?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.rktyagi.remark,applicantData?.rktyagi)"> Upload</a>
+            (click)="uploadDocument(applicantData?.rktyagi.remark,applicantData?.rktyagi)"> Click to upload</a>
            </td>
         </tr>
         <tr >
@@ -101,13 +101,13 @@
           <td >
             <span >
               <span class="text-danger" *ngIf="applicantData?.pritam?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.pritam?.status==='Call Review'" (click)="openModel(applicantData?.pritam.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.pritam?.status==='Call Review'" (click)="openModel(applicantData?.pritam.remark)"> Call Review (click to view)</a>
               <span class="bg" *ngIf="applicantData?.pritam?.status==='Completed'"> Completed</span> <br />
 
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.pritam?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.pritam.remark,applicantData?.pritam)"> Upload</a>
+            (click)="uploadDocument(applicantData?.pritam.remark,applicantData?.pritam)"> Click to upload</a>
            </td>
         </tr>
         <tr >
@@ -115,26 +115,26 @@
           <td >
             <span >
               <span class="text-danger" *ngIf="applicantData?.dg?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.dg?.status==='Call Review'" (click)="openModel(applicantData?.dg.remark)"> Call Review</a>
+              <a class=" callR" *ngIf="applicantData?.dg?.status==='Call Review'" (click)="openModel(applicantData?.dg.remark)"> Call Review (click to view)</a>
               <span class="bg" *ngIf="applicantData?.dg?.status==='Completed'"> Completed</span>
             </span>
           </td>
           <td>              <a class=" callR" *ngIf="applicantData?.dg?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.dg.remark,applicantData?.dg)"> Upload</a>
+            (click)="uploadDocument(applicantData?.dg.remark,applicantData?.dg)"> Click to upload</a>
            </td>
         </tr>
         <tr >
-            <td>Bharat Jain</td>
+            <td>Final Jury</td>
           <td  >
             <span >
-              <span class="text-danger" *ngIf="applicantData?.bharat?.status==='Pending'"> </span>
-              <a class=" callR" *ngIf="applicantData?.bharat?.status==='Call Review'" (click)="openModel(applicantData?.bharat.remark)"> Call Review</a>
-              <span class="bg" *ngIf="applicantData?.bharat?.status==='Completed'"> Completed</span> <br />
+              <span class="text-danger" *ngIf="applicantData?.finaljury?.status==='Pending'"> </span>
+              <a class=" callR" *ngIf="applicantData?.finaljury?.status==='Call Review'" (click)="openModel(applicantData?.finaljury.remark)"> Call Review (click to view)</a>
+              <span class="bg" *ngIf="applicantData?.finaljury?.status==='Completed'"> Completed</span> <br />
 
             </span>
           </td>
-          <td>              <a class=" callR" *ngIf="applicantData?.bharat?.status==='Call Review'"
-            (click)="uploadDocument(applicantData?.bharat.remark,applicantData?.bharat)"> Upload</a>
+          <td>              <a class=" callR" *ngIf="applicantData?.finaljury?.status==='Call Review'"
+            (click)="uploadDocument(applicantData?.finaljury.remark,applicantData?.finaljury)"> Click to upload</a>
            </td>
 
         </tr>
